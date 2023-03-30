@@ -1,5 +1,6 @@
-Pyper
------
+<p align="center"><a href="https://github.com/pypercc" target="_blank">
+    <img src="doc/images/logo.svg" width="300">
+</a></p>
 
 Pyper is a **Python Platform** to build Web and API Applications  with a set of reusable **modules**.
 
