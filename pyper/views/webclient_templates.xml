@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="layout" inherit_id="web.layout">
+        <xpath expr="//head/title" position="attributes">
+            <attribute name="t-esc">title or 'Krafter'</attribute>
+        </xpath>
+
+        <xpath expr="//head/link[@type='image/x-icon']" position="attributes">
+            <attribute name="t-att-href">x_icon or '/pyper/static/img/badge-512x512.svg'</attribute>
+        </xpath>
+    </template>
+
+    <template id="webclient_bootstrap" inherit_id="web.webclient_bootstrap">
+        <xpath expr="//meta[@name='theme-color']" position="attributes">
+            <attribute name="content">#ffffff</attribute>
+        </xpath>
+
+        <xpath expr="//link[@rel='apple-touch-icon']" position="attributes">
+            <attribute name="href">/pyper/static/img/badge-ios.png</attribute>
+        </xpath>
+    </template>
+
+    <template id="webclient_offline" inherit_id="web.webclient_offline">
+        <xpath expr="//t[@t-set='head']/style" position="inside">
+            .card img {
+                filter: none;
+            }
+            .card button {
+                background-color: <t t-esc="bg_color"/>;
+                border: 1px solid <t t-esc="bg_color"/>;
+            }
+        </xpath>
+
+        <xpath expr="//div[hasclass('card')]/img" position="attributes">
+            <attribute name="t-attf-src">data:{{app_icon_type}};base64,{{app_icon}}</attribute>
+            <attribute name="alt"/>
+            <attribute name="t-att-alt">app_name</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('card')]/p" position="replace">
+            <p>Check your network connection and come back here. <t t-esc="app_name"/> will load as soon as you're back online.</p>
+        </xpath>
+    </template>
+</odoo>
