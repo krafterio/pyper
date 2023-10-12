@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pyper_queue_job_form" model="ir.ui.view">
+        <field name="name">pyper.queue.job.form</field>
+        <field name="model">pyper.queue.job</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        string="Schedule now"
+                        type="object"
+                        name="schedule_now"
+                        invisible="[('state', 'not in', ['enqueued'])]"
+                    />
+
+                    <button
+                        string="Stop"
+                        type="object"
+                        name="stop"
+                        invisible="[('state', 'not in', ['doing'])]"
+                        confirm="Do you really want to quit the job?"
+                    />
+
+                    <button
+                        string="Relaunch"
+                        type="object"
+                        name="relaunch"
+                        invisible="[('state', 'not in', ['stopped', 'failed'])]"
+                        confirm="Do you really want to relaunch the job?"
+                    />
+
+                    <button
+                        string="Retry"
+                        type="object"
+                        name="retry"
+                        invisible="[('state', 'not in', ['cancelled', 'failed'])]"
+                        confirm="Do you really want to retry the job?"
+                    />
+
+                    <button
+                        string="Cancel"
+                        type="object"
+                        name="cancel"
+                        invisible="[('state', 'not in', ['enqueued', 'doing', 'stopped'])]"
+                        confirm="Do you really want to cancel the job?"
+                    />
+
+                    <field name="state" widget="statusbar" statusbar_visible="enqueued,done"/>
+                </header>
+
+                <sheet>
+                    <div name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_view_queue_job_logs" invisible="[('log_count', '=', 0)]">
+                            <field name="log_count" string="Logs" widget="statinfo"/>
+                        </button>
+
+                        <button class="oe_stat_button" type="object" name="action_view_queue_job_successes" invisible="[('log_success_count', '=', 0)]">
+                            <field name="log_success_count" string="Successes" widget="statinfo"/>
+                        </button>
+
+                        <button class="oe_stat_button" type="object" name="action_view_queue_job_infos" invisible="[('log_info_count', '=', 0)]">
+                            <field name="log_info_count" string="Infos" widget="statinfo"/>
+                        </button>
+
+                        <button class="oe_stat_button" type="object" name="action_view_queue_job_warnings" invisible="[('log_warning_count', '=', 0)]">
+                            <field name="log_warning_count" string="Warning" widget="statinfo"/>
+                        </button>
+
+                        <button class="oe_stat_button" type="object" name="action_view_queue_job_errors" invisible="[('log_error_count', '=', 0)]">
+                            <field name="log_error_count" string="Errors" widget="statinfo"/>
+                        </button>
+                    </div>
+
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+
+                    <group name="row_dates">
+                        <group string="Scheduled dates">
+                            <field name="date_created"/>
+                            <field name="date_write"/>
+                            <field name="date_enqueued"/>
+                        </group>
+
+                        <group string="Execution dates">
+                            <field name="date_started"/>
+                            <field name="date_ended"/>
+                            <field name="execution_time"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="results" string="Details">
+                            <group>
+                                <group name="row_context" string="Context">
+                                    <field name="company_id"/>
+                                    <field name="user_id"/>
+                                </group>
+
+                                <group name="row_exceptions" string="Exceptions" invisible="[('exception_name', '=', False), ('exception_message', '=', False), ('exception_info', '=', False)]">
+                                    <field name="exception_name" invisible="[('exception_name', '=', False)]"/>
+                                    <field name="exception_message" invisible="[('exception_message', '=', False)]"/>
+                                    <field name="exception_info" invisible="[('exception_info', '=', False)]"/>
+                                </group>
+                            </group>
+
+                            <group name="row_result">
+                                <field colspan="2" name="result" nolabel="1" invisible="[('result', '=', False)]"/>
+                            </group>
+
+                            <group name="row_result_details">
+                                <group></group>
+                                <group></group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pyper_queue_job_tree" model="ir.ui.view">
+        <field name="name">pyper.queue.job.tree</field>
+        <field name="model">pyper.queue.job</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree create="False">
+                <field name="name"/>
+                <field name="date_created" optional="hide"/>
+                <field name="date_write" optional="hide"/>
+                <field name="date_ping_api" optional="hide"/>
+                <field name="date_enqueued"/>
+                <field name="date_started"/>
+                <field name="date_ended"/>
+                <field name="execution_time" optional="hide"/>
+                <field name="result" optional="hide"/>
+                <field name="exception_name" optional="hide"/>
+                <field name="exception_message" optional="hide"/>
+                <field name="exception_info" optional="hide"/>
+                <field name="user_id" optional="hide"/>
+                <field name="company_id" optional="hide"/>
+                <field name="log_count" optional="hide"/>
+                <field name="log_success_count" optional="hide"/>
+                <field name="log_info_count" optional="hide"/>
+                <field name="log_warning_count" optional="hide"/>
+                <field name="log_error_count" optional="hide"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="pyper_queue_job_search" model="ir.ui.view">
+        <field name="name">pyper.queue.job.search</field>
+        <field name="model">pyper.queue.job</field>
+        <field eval="3" name="priority"/>
+        <field name="arch" type="xml">
+            <search string="Queue Jobs">
+                <filter name="state_enqueued" string="Enqueued" domain="[('state', '=', 'enqueued')]"/>
+                <filter name="state_doing" string="Doing" domain="[('state', '=', 'doing')]"/>
+                <filter name="state_failed" string="Failed" domain="[('state', '=', 'failed')]"/>
+                <filter name="state_done" string="Done" domain="[('state', '=', 'done')]"/>
+                <filter name="state_cancelled" string="Cancelled" domain="[('state', '=', 'cancelled')]"/>
+                <separator/>
+                <filter name="log_count" string="Has log" domain="[('log_count', '>', 0)]"/>
+                <filter name="log_success_count" string="Has success log" domain="[('log_success_count', '>', 0)]"/>
+                <filter name="log_info_count" string="Has info log" domain="[('log_info_count', '>', 0)]"/>
+                <filter name="log_warning_count" string="Has warning log" domain="[('log_warning_count', '>', 0)]"/>
+                <filter name="log_error_count" string="Has error log" domain="[('log_error_count', '>', 0)]"/>
+
+                <group expand="0" string="Group By">
+                    <filter name="by_state" string="State" domain="[]"  context="{'group_by': 'state'}"/>
+                    <filter name="by_company_id" string="Company" domain="[]"  context="{'group_by': 'company_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="pyper_queue_job_action" model="ir.actions.act_window">
+        <field name="name">Queue Jobs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pyper.queue.job</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_pyper_queue_job_config"
+        name="Queue Jobs"
+        parent="base.menu_custom"
+    />
+
+    <menuitem
+        id="menu_pyper_queue_job"
+        action="pyper_queue_job_action"
+        parent="menu_pyper_queue_job_config"
+    />
+</odoo>
