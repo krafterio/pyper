@@ -1,0 +1,26 @@
+// = Drawer Variables
+// ============================================================================
+$o-navbar-apps-menu-width: 72px !default;
+$o-drawer-width: 290px !default;
+$o-drawer-mini-width: 72px !default;
+$o-drawer-zindex: 999 !default;
+$o-drawer-border-width: 1px !default;
+$o-drawer-border-color: $o-border-color !default;
+$o-drawer-bg: $o-navbar-background !default;
+$o-drawer-shadow: 3px 0 4px rgba(0, 0, 0, 0.18) !default;
+
+$o-drawer-item-icon-width: 28px !default;
+$o-drawer-item-icon-font-width: $o-drawer-item-icon-width !default;
+$o-drawer-item-label-padding-h: $o-drawer-item-icon-width !default;
+$o-drawer-item-padding-v: 10px !default;
+$o-drawer-item-padding-h: ($o-drawer-mini-width - $o-drawer-item-icon-width) / 2 !default;
+
+$o-drawer-toggler-locked-width: ($o-drawer-width - $o-navbar-apps-menu-width) !default;
+
+$o-drawer-swiper-zindex: $o-drawer-zindex + 1 !default;
+$o-drawer-swiper-width: 8px !default;
+$o-drawer-swiper-bg: transparent !default;
+
+$o-drawer-obfuscator-zindex: $o-drawer-zindex - 1 !default;
+$o-drawer-obfuscator-duration: '0.3s' !default;
+$o-drawer-obfuscator-bg: rgba(0, 0, 0, 0.5) !default;

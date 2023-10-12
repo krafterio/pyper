@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-inherit="web.NavBar" t-inherit-mode="extension" owl="1">
+        <xpath expr="//header[hasclass('o_navbar')]" position="before">
+            <Drawer fixedTop="true" showRootApp="true" minifiable="true"/>
+        </xpath>
+
+        <xpath expr="//t[@t-call='web.NavBar.AppsMenu']" position="after">
+            <DrawerToggler useCaretIcon="true"/>
+        </xpath>
+    </t>
+
+</templates>

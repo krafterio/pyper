@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pyper_drawer.Drawer" owl="1">
+        <div t-if="isDraggable" class="o_drawer--swiper" t-on-touchstart="_onTouchStartDrag" t-on-touchmove="_onTouchMoveDrag" t-on-touchend="_onTouchEndDrag" t-ref="swiper"/>
+
+        <div t-att-class="classes" t-on-touchstart="_onTouchStartDrag" t-on-touchmove="_onTouchMoveDrag" t-on-touchend="_onTouchEndDrag" t-ref="root">
+            <div class="o_drawer--closer btn"
+                 tabindex="0"
+                 aria-expanded="false"
+                 t-if="props.closeAction"
+                 t-on-click="close"
+            >
+                <i class="fa fa-fw fa-chevron-circle-left"/>
+            </div>
+
+            <t t-slot="header" t-if="displayHeader"/>
+
+            <!-- Top Action -->
+            <t t-call="pyper_drawer.Drawer.TopAction"/>
+
+            <!-- Current App Sections -->
+            <t t-if="Object.keys(currentCategoryAppSections).length" t-call="pyper_drawer.Drawer.Menu">
+                <t t-set="categories" t-value="Object.values(currentCategoryAppSections)"/>
+            </t>
+
+            <!-- Bottom Action -->
+            <t t-call="pyper_drawer.Drawer.BottomAction"/>
+
+            <t t-slot="footer" t-if="displayFooter"/>
+        </div>
+
+        <div class="o_drawer--obfuscator" t-on-click="close"/>
+    </t>
+
+    <t t-name="pyper_drawer.Drawer.TopAction" />
+
+    <t t-name="pyper_drawer.Drawer.BottomAction" />
+
+    <t t-name="pyper_drawer.Drawer.Menu" owl="1">
+        <t t-set="section_index" t-value="0" />
+
+        <div class="o_drawer--menu"
+             t-ref="appSubMenus"
+             role="menu"
+        >
+            <t t-foreach="categories" t-as="category" t-key="category.value">
+                <p class="text-muted small mt-4 mb-2 px-3">
+                    <t t-esc="category.display_name"/>
+                </p>
+
+                <t t-foreach="category.menus" t-as="menu" t-key="menu.id">
+                    <t t-if="section_index lt Math.min(10, currentAppSections.length)">
+                        <t t-set="section_index" t-value="section_index + 1" />
+                        <t t-set="hotkey" t-value="'shift+' + (section_index % 10).toString()" />
+                    </t>
+                    <t t-else="">
+                        <t t-set="hotkey" t-value="undefined" />
+                    </t>
+
+                    <t t-call="pyper_drawer.Drawer.Menu.Item">
+                        <t t-set="menu" t-value="menu"/>
+                        <t t-set="hotkey" t-value="hotkey"/>
+                    </t>
+                </t>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="pyper_drawer.Drawer.Menu.Item" owl="1">
+        <DropdownItem
+            class="{'o_drawer--menu-item': true, 'd-flex': true, 'align-items-center': true}"
+            href="getMenuItemHref(menu)"
+            hotkey="hotkey"
+            dataset="{menuXmlid: menu.xmlid, menu: menu.id, tooltip: isMinified ? menu.name : undefined, tooltipPosition: 'right'}"
+            onSelected="() => this.onNavBarDropdownItemSelection(menu)"
+        >
+            <div t-if="props.showRootApp and menu.font_icon" class="o_drawer--item-icon-empty rounded-3" t-att-style="'color: ' + (menu.font_icon_color || 'inherit') + ';'">
+                <i t-att-class="menu.font_icon"/>
+            </div>
+
+            <img t-elif="props.showRootApp and menu.webIconData"
+                class="o_drawer--item-icon rounded-3"
+                t-attf-src="data:image/jpeg;base64, {{menu.webIconData}}"
+            />
+
+            <div t-else="props.showRootApp" class="o_drawer--item-icon-empty rounded-3">
+                <i class="ph-light ph-cube"/>
+            </div>
+
+            <div t-if="!isMinified" class="o_drawer--item-label">
+                <t t-esc="menu.name"/>
+            </div>
+        </DropdownItem>
+    </t>
+
+</templates>
