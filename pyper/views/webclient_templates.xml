@@ -2,7 +2,7 @@
 <odoo>
     <template id="layout" inherit_id="web.layout">
         <xpath expr="//head/title" position="attributes">
-            <attribute name="t-esc">title or 'Krafter'</attribute>
+            <attribute name="t-esc">title or 'Pyper'</attribute>
         </xpath>
 
         <xpath expr="//head/link[@type='image/x-icon']" position="attributes">
