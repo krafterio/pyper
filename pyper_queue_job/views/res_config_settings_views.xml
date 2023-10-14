@@ -7,9 +7,9 @@
         <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//form//block[@name='integration']" position="after">
-                <div id="pyper">
-                    <block title="Pyper" name="pyper_settings" groups="base.group_erp_manager">
-                        <setting id="klipper_queue_job_config">
+                <div id="pyper_queue_job">
+                    <block title="Queue job" name="pyper_queue_job_settings" groups="base.group_erp_manager">
+                        <setting id="pyper_queue_job_config">
                             <span class="o_form_label d-block mt16">Queue Job Execution Configuration</span>
                             <div class="text-muted mb16">
                                 In order to prevent the hosting platforms from stopping the container because no network action is detected, this option allows you to perform public HTTP pings on the instance in order to simulate network activity when a job is running in progress
