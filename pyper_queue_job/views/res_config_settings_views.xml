@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="1024"/>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form//block[@name='integration']" position="after">
+                <div id="pyper">
+                    <block title="Pyper" name="pyper_settings" groups="base.group_erp_manager">
+                        <setting id="klipper_queue_job_config">
+                            <span class="o_form_label d-block mt16">Queue Job Execution Configuration</span>
+                            <div class="text-muted mb16">
+                                In order to prevent the hosting platforms from stopping the container because no network action is detected, this option allows you to perform public HTTP pings on the instance in order to simulate network activity when a job is running in progress
+                            </div>
+
+                            <div class="content-group">
+                                <div class="row">
+                                    <label for="queue_job_allow_to_ping_api" string="Allow to ping API?" class="col-lg-6 o_light_label"/>
+                                    <field name="queue_job_allow_to_ping_api" class="col-lg-2 p-0"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

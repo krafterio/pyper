@@ -26,5 +26,6 @@
         'views/ir_cron_views.xml',
         'views/pyper_queue_job_views.xml',
         'views/pyper_queue_job_log_views.xml',
+        'views/res_config_settings_views.xml',
     ],
 }

@@ -438,7 +438,7 @@ class PyperQueueJob(models.Model):
 
     @api.model
     def _acquire_next_job(self):
-        max_doing = int(self.env['ir.config_parameter'].sudo().get_param('queue_job.max_doing_without_action', 20))
+        max_doing = int(self.env['ir.config_parameter'].sudo().get_param('pyper_queue_job.max_doing_without_action', 20))
 
         self.env.flush_all()
 
@@ -515,8 +515,8 @@ class PyperQueueJob(models.Model):
         if not self._ping_api_base_url:
             # Initialize ping config only the first time
             config = self.env['ir.config_parameter'].sudo()
-            self._allow_to_ping_api = bool(config.get_param('queue_job.allow_to_ping_api', False))
-            self._ping_api_interval = int(config.get_param('queue_job.ping_api.interval', 60))
+            self._allow_to_ping_api = bool(config.get_param('pyper_queue_job.allow_to_ping_api', False))
+            self._ping_api_interval = int(config.get_param('pyper_queue_job.ping_api.interval', 60))
             self._ping_api_base_url = config.get_param('web.base.url')
 
         if not self._allow_to_ping_api:
