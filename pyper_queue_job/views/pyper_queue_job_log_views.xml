@@ -12,9 +12,9 @@
                     </group>
 
                     <group name="log" string="Log">
-                        <field name="name" invisible="[('name', '=', False)]"/>
-                        <field name="message" invisible="[('message', '=', False)]"/>
-                        <field name="info" invisible="[('info', '=', False)]"/>
+                        <field name="name" invisible="name == False"/>
+                        <field name="message" invisible="message == False"/>
+                        <field name="info" invisible="info == False"/>
                     </group>
                 </sheet>
             </form>

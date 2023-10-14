@@ -7,7 +7,7 @@
             <field name="doall" position="after">
                 <field
                     name="queue_job_runner"
-                    invisible="[('model_name', '!=', 'pyper.queue.job')]"
+                    invisible="model_name != 'pyper.queue.job'"
                 />
             </field>
         </field>

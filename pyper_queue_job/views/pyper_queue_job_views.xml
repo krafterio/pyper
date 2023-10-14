@@ -11,14 +11,14 @@
                         string="Schedule now"
                         type="object"
                         name="schedule_now"
-                        invisible="[('state', 'not in', ['enqueued'])]"
+                        invisible="state not in ['enqueued']"
                     />
 
                     <button
                         string="Stop"
                         type="object"
                         name="stop"
-                        invisible="[('state', 'not in', ['doing'])]"
+                        invisible="state not in ['doing']"
                         confirm="Do you really want to quit the job?"
                     />
 
@@ -26,7 +26,7 @@
                         string="Relaunch"
                         type="object"
                         name="relaunch"
-                        invisible="[('state', 'not in', ['stopped', 'failed'])]"
+                        invisible="state not in ['stopped', 'failed']"
                         confirm="Do you really want to relaunch the job?"
                     />
 
@@ -34,7 +34,7 @@
                         string="Retry"
                         type="object"
                         name="retry"
-                        invisible="[('state', 'not in', ['cancelled', 'failed'])]"
+                        invisible="state not in ['cancelled', 'failed']"
                         confirm="Do you really want to retry the job?"
                     />
 
@@ -42,7 +42,7 @@
                         string="Cancel"
                         type="object"
                         name="cancel"
-                        invisible="[('state', 'not in', ['enqueued', 'doing', 'stopped'])]"
+                        invisible="state not in ['enqueued', 'doing', 'stopped']"
                         confirm="Do you really want to cancel the job?"
                     />
 
@@ -51,23 +51,23 @@
 
                 <sheet>
                     <div name="button_box">
-                        <button class="oe_stat_button" type="object" name="action_view_queue_job_logs" invisible="[('log_count', '=', 0)]">
+                        <button class="oe_stat_button" type="object" name="action_view_queue_job_logs" invisible="log_count == 0">
                             <field name="log_count" string="Logs" widget="statinfo"/>
                         </button>
 
-                        <button class="oe_stat_button" type="object" name="action_view_queue_job_successes" invisible="[('log_success_count', '=', 0)]">
+                        <button class="oe_stat_button" type="object" name="action_view_queue_job_successes" invisible="log_success_count == 0">
                             <field name="log_success_count" string="Successes" widget="statinfo"/>
                         </button>
 
-                        <button class="oe_stat_button" type="object" name="action_view_queue_job_infos" invisible="[('log_info_count', '=', 0)]">
+                        <button class="oe_stat_button" type="object" name="action_view_queue_job_infos" invisible="log_info_count == 0">
                             <field name="log_info_count" string="Infos" widget="statinfo"/>
                         </button>
 
-                        <button class="oe_stat_button" type="object" name="action_view_queue_job_warnings" invisible="[('log_warning_count', '=', 0)]">
+                        <button class="oe_stat_button" type="object" name="action_view_queue_job_warnings" invisible="log_warning_count == 0">
                             <field name="log_warning_count" string="Warning" widget="statinfo"/>
                         </button>
 
-                        <button class="oe_stat_button" type="object" name="action_view_queue_job_errors" invisible="[('log_error_count', '=', 0)]">
+                        <button class="oe_stat_button" type="object" name="action_view_queue_job_errors" invisible="log_error_count == 0">
                             <field name="log_error_count" string="Errors" widget="statinfo"/>
                         </button>
                     </div>
@@ -98,15 +98,15 @@
                                     <field name="user_id"/>
                                 </group>
 
-                                <group name="row_exceptions" string="Exceptions" invisible="[('exception_name', '=', False), ('exception_message', '=', False), ('exception_info', '=', False)]">
-                                    <field name="exception_name" invisible="[('exception_name', '=', False)]"/>
-                                    <field name="exception_message" invisible="[('exception_message', '=', False)]"/>
-                                    <field name="exception_info" invisible="[('exception_info', '=', False)]"/>
+                                <group name="row_exceptions" string="Exceptions" invisible="exception_name == False and exception_message == False and exception_info == False">
+                                    <field name="exception_name" invisible="exception_name == False"/>
+                                    <field name="exception_message" invisible="exception_message == False"/>
+                                    <field name="exception_info" invisible="exception_info == False"/>
                                 </group>
                             </group>
 
                             <group name="row_result">
-                                <field colspan="2" name="result" nolabel="1" invisible="[('result', '=', False)]"/>
+                                <field colspan="2" name="result" nolabel="1" invisible="result == False"/>
                             </group>
 
                             <group name="row_result_details">

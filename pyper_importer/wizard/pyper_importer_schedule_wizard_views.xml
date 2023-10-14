@@ -19,7 +19,7 @@
                         <field name="start_offset"/>
 
                         <field name="display_allow_update" invisible="True"/>
-                        <field name="allow_update" invisible="[('display_allow_update', '=', False)]"/>
+                        <field name="allow_update" invisible="display_allow_update == False"/>
                     </group>
                 </group>
 
@@ -31,10 +31,10 @@
                     />
                 </group>
 
-                <group string="Importer used" invisible="[('importer_provider_count', '=', 1)]">
+                <group string="Importer used" invisible="importer_provider_count == 1">
                 </group>
 
-                <field name="importer_provider_ids" readonly="True" invisible="[('importer_provider_count', '=', 1)]">
+                <field name="importer_provider_ids" readonly="True" invisible="importer_provider_count == 1">
                     <tree create="False" edit="False">
                         <field name="name"/>
                     </tree>

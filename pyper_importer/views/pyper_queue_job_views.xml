@@ -7,13 +7,13 @@
         <field name="inherit_id" ref="pyper_queue_job.pyper_queue_job_form"/>
         <field name="arch" type="xml">
             <xpath expr="/form/sheet//button[@name='action_view_queue_job_successes']" position="after">
-                <button class="oe_stat_button" type="object" name="action_view_queue_job_skipped" invisible="[('log_skip_count', '=', 0)]">
+                <button class="oe_stat_button" type="object" name="action_view_queue_job_skipped" invisible="log_skip_count == 0">
                     <field name="log_skip_count" string="Skipped" widget="statinfo"/>
                 </button>
             </xpath>
 
             <xpath expr="/form/sheet//notebook" position="inside">
-                <page name="pyper_importer" string="Importer" invisible="[('importer_provider_id', '=', False)]">
+                <page name="pyper_importer" string="Importer" invisible="importer_provider_id == False">
                     <group name="importer_information">
                         <group string="Config">
                             <field name="importer_batch_size"/>
