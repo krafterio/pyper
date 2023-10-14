@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pyper_queue_job_log_form" model="ir.ui.view">
+        <field name="name">pyper.queue.job.log.form.inherit</field>
+        <field name="model">pyper.queue.job.log</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="pyper_queue_job.pyper_queue_job_log_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='details']/field[@name='queue_job_id']" position="after">
+                <field name="offset"/>
+                <field name="origin_identifier"/>
+                <field name="target_identifier"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="pyper_queue_job_log_tree" model="ir.ui.view">
+        <field name="name">pyper.queue.job.log.tree.inherit</field>
+        <field name="model">pyper.queue.job.log</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" ref="pyper_queue_job.pyper_queue_job_log_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="offset"/>
+                <field name="origin_identifier" optional="hide"/>
+                <field name="target_identifier" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="pyper_queue_job_log_search" model="ir.ui.view">
+        <field name="name">pyper.queue.job.log.search.inherit</field>
+        <field name="model">pyper.queue.job.log</field>
+        <field name="inherit_id" ref="pyper_queue_job.pyper_queue_job_log_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search//filter[@name='type_success']" position="after">
+                <filter name="type_skip" string="Skip" domain="[('type', '=', 'skip')]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

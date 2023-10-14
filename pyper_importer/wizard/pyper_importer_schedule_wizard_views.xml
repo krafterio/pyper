@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="pyper_importer_schedule_wizard_form" model="ir.ui.view">
+        <field name="name">pyper.importer.schedule_wizard.form</field>
+        <field name="model">pyper.importer.schedule_wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="importer_provider_count" invisible="True"/>
+
+                <group>
+                    <group string="Context">
+                        <field name="scheduled_date"/>
+                        <field name="user_id"/>
+                    </group>
+
+                    <group string="Config" name="config">
+                        <field name="batch_size"/>
+                        <field name="max_offset"/>
+                        <field name="start_offset"/>
+
+                        <field name="display_allow_update" invisible="True"/>
+                        <field name="allow_update" invisible="[('display_allow_update', '=', False)]"/>
+                    </group>
+                </group>
+
+                <group>
+                    <field
+                        name="company_ids"
+                        widget="many2many_tags"
+                        options="{'no_create': True, 'no_edit': True}"
+                    />
+                </group>
+
+                <group string="Importer used" invisible="[('importer_provider_count', '=', 1)]">
+                </group>
+
+                <field name="importer_provider_ids" readonly="True" invisible="[('importer_provider_count', '=', 1)]">
+                    <tree create="False" edit="False">
+                        <field name="name"/>
+                    </tree>
+                </field>
+
+                <footer>
+                    <button
+                        name="action_schedule_import_job"
+                        type="object"
+                        string="Schedule"
+                        class="btn-primary"
+                        data-hotkey="shift+p"
+                    />
+
+                    <button
+                        string="Cancel"
+                        class="btn-secondary"
+                        data-hotkey="z"
+                        special="cancel"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pyper_importer_provider_form" model="ir.ui.view">
+        <field name="name">pyper.importer.provider.form</field>
+        <field name="model">pyper.importer.provider</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        string="Schedule a run"
+                        type="object"
+                        name="button_schedule_run"
+                    />
+                </header>
+
+                <sheet>
+                    <div name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_view_queue_jobs">
+                            <field name="opened_queue_job_count" string="Opened jobs" widget="statinfo"/>
+                        </button>
+                    </div>
+
+                    <h1 class="mb32">
+                        <field name="name"/>
+                    </h1>
+
+                    <notebook>
+                        <page name="default_values" string="Default values">
+                            <group name="default_values_company" string="Companies">
+                                <field name="default_company_ids" widget="many2many_tags" options="{'no_create': True, 'no_edit': True}"/>
+                            </group>
+                        </page>
+
+                        <page name="technical_information" string="Technical information">
+                            <group name="import_provider" string="Import Provider">
+                                <field name="module_name"/>
+                                <field name="class_name"/>
+                            </group>
+
+                            <group name="configurable_provider" string="Configurable Provider">
+                                <field name="allow_update"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pyper_importer_provider_tree" model="ir.ui.view">
+        <field name="name">pyper.importer.provider.tree</field>
+        <field name="model">pyper.importer.provider</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="allow_update" optional="show"/>
+                <field name="class_name" optional="hide"/>
+                <field name="module_name" optional="hide"/>
+                <field name="default_company_ids" widget="many2many_tags" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="pyper_importer_provider_action" model="ir.actions.act_window">
+        <field name="name">Importer Providers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pyper.importer.provider</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_pyper_importer_provider"
+        action="pyper_importer_provider_action"
+        parent="pyper_queue_job.menu_pyper_queue_job_config"
+    />
+</odoo>

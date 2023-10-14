@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pyper_importer_endpoint_form" model="ir.ui.view">
+        <field name="name">pyper.importer.endpoint.form</field>
+        <field name="model">pyper.importer.endpoint</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="active" invisible="True"/>
+
+                <sheet>
+                    <h1>
+                        <field name="endpoint_base_url"
+                               placeholder="Endpoint URL, ex. https://pyper.cc/api"
+                               class="w-100"
+                        />
+                    </h1>
+
+                    <group name="config">
+                        <group string="Authentication">
+                            <field name="auth_type"/>
+                            <field name="auth_username"
+                                   invisible="auth_type != 'basic'"
+                                   required="auth_type == 'basic'"
+                            />
+                            <field name="auth_password"
+                                   password="True"
+                                   invisible="auth_type != 'basic'"
+                                   required="auth_type == 'basic'"
+                            />
+                        </group>
+
+                        <group string="Default values">
+                            <field name="default_batch_size"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pyper_importer_endpoint_tree" model="ir.ui.view">
+        <field name="name">pyper.importer.endpoint.tree</field>
+        <field name="model">pyper.importer.endpoint</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="endpoint_base_url"/>
+                <field name="auth_type"/>
+                <field name="auth_username" optional="hide"/>
+                <field name="default_batch_size" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="pyper_importer_endpoint_search" model="ir.ui.view">
+        <field name="name">pyper.importer.endpoint.search</field>
+        <field name="model">pyper.importer.endpoint</field>
+        <field eval="3" name="priority"/>
+        <field name="arch" type="xml">
+            <search string="Importer Endpoints">
+                <filter name="auth_none" string="Auth None" domain="[('auth_type', '=', 'none')]"/>
+                <filter name="auth_basic" string="Auth Basic" domain="[('auth_type', '=', 'basic')]"/>
+                <separator/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+
+                <group expand="0" string="Group By">
+                    <filter name="by_auth_type" string="Auth Type" domain="[]"  context="{'group_by': 'auth_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="pyper_importer_endpoint_action" model="ir.actions.act_window">
+        <field name="name">Importer Endpoints</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pyper.importer.endpoint</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_pyper_importer_endpoint"
+        action="pyper_importer_endpoint_action"
+        parent="pyper_queue_job.menu_pyper_queue_job_config"
+    />
+</odoo>

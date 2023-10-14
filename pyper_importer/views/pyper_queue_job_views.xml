@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pyper_queue_job_form" model="ir.ui.view">
+        <field name="name">pyper.queue.job.form.inherit</field>
+        <field name="model">pyper.queue.job</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="pyper_queue_job.pyper_queue_job_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet//button[@name='action_view_queue_job_successes']" position="after">
+                <button class="oe_stat_button" type="object" name="action_view_queue_job_skipped" invisible="[('log_skip_count', '=', 0)]">
+                    <field name="log_skip_count" string="Skipped" widget="statinfo"/>
+                </button>
+            </xpath>
+
+            <xpath expr="/form/sheet//notebook" position="inside">
+                <page name="pyper_importer" string="Importer" invisible="[('importer_provider_id', '=', False)]">
+                    <group name="importer_information">
+                        <group string="Config">
+                            <field name="importer_batch_size"/>
+                            <field name="importer_max_offset"/>
+                            <field name="importer_start_offset"/>
+                            <field name="importer_provider_id"/>
+                            <field name="importer_allow_update"/>
+                        </group>
+
+                        <group string="Tracking">
+                            <field name="importer_latest_offset"/>
+                            <field name="importer_success_count"/>
+                            <field name="importer_skip_count"/>
+                            <field name="importer_error_count"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="pyper_queue_job_tree" model="ir.ui.view">
+        <field name="name">pyper.queue.job.tree.inherit</field>
+        <field name="model">pyper.queue.job</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" ref="pyper_queue_job.pyper_queue_job_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='log_success_count']" position="after">
+                <field name="log_skip_count" optional="hide"/>
+            </xpath>
+
+            <xpath expr="//field[@name='state']" position="before">
+                <field name="importer_provider_id" optional="hide"/>
+                <field name="importer_batch_size" optional="hide"/>
+                <field name="importer_max_offset" optional="hide"/>
+                <field name="importer_start_offset" optional="hide"/>
+                <field name="importer_latest_offset" optional="hide"/>
+                <field name="importer_success_count" optional="hide"/>
+                <field name="importer_skip_count" optional="hide"/>
+                <field name="importer_error_count" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="pyper_queue_job_search" model="ir.ui.view">
+        <field name="name">pyper.queue.job.search.inherit</field>
+        <field name="model">pyper.queue.job</field>
+        <field name="inherit_id" ref="pyper_queue_job.pyper_queue_job_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search//filter[@name='log_success_count']" position="after">
+                <filter name="log_skip_count" string="Has skip log" domain="[('log_skip_count', '>', 0)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
