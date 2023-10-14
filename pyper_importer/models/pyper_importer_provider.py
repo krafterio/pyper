@@ -5,7 +5,8 @@ from odoo import api, fields, models, _
 
 from odoo.addons.pyper_queue_job.exceptions import QueueJobError
 
-from ..providers import AllowUpdateConfigurableProvider
+from ..exceptions import PyperImporterError
+from ..providers import AllowUpdateConfigurableProvider, BatchableProvider
 
 from datetime import datetime
 
@@ -279,3 +280,72 @@ class PyperImporterProvider(models.Model):
                 hash_val += str(kwarg).strip()
 
         return hash_val
+
+    @staticmethod
+    def queue_job_process(job):
+        importer_provider = job.importer_provider_id
+
+        if importer_provider.id is False:
+            raise PyperImporterError(_('Importer provider is not associated with the job'))
+
+        module = importlib.import_module('odoo.addons.' + importer_provider.module_name)
+        cls = getattr(module, importer_provider.class_name)
+
+        provider = cls(job.env, job)
+        config = job.env['ir.config_parameter'].sudo()
+
+        offset_start = job.importer_start_offset if job.importer_latest_offset == 0 else job.importer_latest_offset
+        offset_max = job.importer_max_offset
+        offset = offset_start
+        batchable = False
+        finish = False
+
+        if isinstance(provider, BatchableProvider):
+            batchable = True
+            provider.batch_size = job.importer_batch_size
+
+            if provider.batch_size <= 0:
+                provider.batch_size = int(config.get_param('pyper_importer.default_batch_size', 100))
+
+            if provider.batch_size > offset_max and offset > offset_start:
+                provider.batch_size = offset_max
+
+        while finish is False:
+            result = []
+
+            if job.importer_stop_required:
+                job.importer_latest_offset = offset
+                job.env.cr.commit()
+                break
+
+            try:
+                result = provider.extract(offset, job.date_started)
+                finish = len(result) == 0
+
+                if not finish or not batchable:
+                    transformed_items = provider.transform(result)
+                    provider.load(transformed_items)
+
+                    finish = not batchable
+                    # Update offset if ETL actions are successfully
+                    offset = job.importer_success_count + job.importer_skip_count + job.importer_error_count
+                    job.importer_latest_offset = max(offset, job.importer_latest_offset)
+                    job.env.cr.commit()
+
+            except Exception as err:
+                # Update offset if ETL actions raise exception
+                offset = offset + len(result)
+                job.importer_latest_offset = max(offset, job.importer_latest_offset)
+                job.env.cr.commit()
+                raise err
+
+            # Limit the last batch with the difference between current offset and the max offset
+            if offset_max > 0 and isinstance(provider, BatchableProvider):
+                next_batch_size = provider.batch_size
+                current_offset_max = offset + next_batch_size
+
+                if current_offset_max > offset_max:
+                    provider.batch_size = current_offset_max - offset_max
+
+                    if offset >= offset_max:
+                        finish = True
