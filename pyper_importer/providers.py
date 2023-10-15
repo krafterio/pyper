@@ -7,6 +7,8 @@ from abc import ABC, abstractmethod
 
 from datetime import datetime
 
+import copy
+
 
 class ExtractedItem:
     def __init__(self, origin_data: dict, payload=None):
@@ -253,3 +255,20 @@ class LoadByOdooModelIdentifiersHelper(BaseProvider, ABC):
         :return bool: check if the item is loaded or not (skipped)
         """
         pass
+
+
+def convert_extracted_items_to_transformed_items(extracted_items: list[ExtractedItem]) -> list[TransformedItem]:
+    transformed_items = []
+
+    for extracted_item in extracted_items:
+        transformed_items.append(convert_extracted_item_to_transformed_item(extracted_item))
+
+    return transformed_items
+
+
+def convert_extracted_item_to_transformed_item(extracted_item: ExtractedItem) -> TransformedItem:
+    return TransformedItem(
+        extracted_item.origin_data,
+        copy.deepcopy(extracted_item.origin_data),
+        {**extracted_item.payload}
+    )
