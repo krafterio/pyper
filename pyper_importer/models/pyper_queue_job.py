@@ -20,17 +20,22 @@ class PyperQueueJob(models.Model):
         ondelete='cascade',
     )
 
+    importer_endpoint_id = fields.Many2one(
+        'pyper.importer.endpoint',
+        'Endpoint',
+        readonly=True,
+        ondelete='cascade',
+    )
+
     importer_allow_update = fields.Boolean(
         'Importer allow update?',
         readonly=True,
         default=False,
     )
 
-    # TODO replace by endpoint config
     importer_batch_size = fields.Integer(
         'Importer batch size',
         readonly=True,
-        default=lambda self: int(self.env['ir.config_parameter'].sudo().get_param('pyper_importer.default_batch_size', 100)),
         help='If value is zero, no batch is applied',
     )
 
@@ -94,6 +99,14 @@ class PyperQueueJob(models.Model):
         for item in self:
             search_domain = [('queue_job_id', '=', item.id), ('type', '=', 'skip')]
             item.log_skip_count = item.log_ids.search_count(search_domain) if len(item.log_ids.ids) > 0 else 0
+
+    @api.onchange('importer_endpoint_id')
+    def _onchange_importer_endpoint_id(self):
+        self.importer_batch_size = self.importer_endpoint_id.default_batch_size
+
+        if self.importer_batch_size == 0:
+            self.importer_batch_size = int(self.env['ir.config_parameter'].sudo()
+                                           .get_param('pyper_importer.default_batch_size', 100))
 
     def _reset_values(self, relaunch: bool = False):
         super()._reset_values(relaunch)

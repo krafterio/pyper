@@ -8,6 +8,12 @@
                 <field name="importer_provider_count" invisible="True"/>
 
                 <group>
+                    <group string="Endpoint">
+                        <field name="importer_endpoint_id"/>
+                    </group>
+                </group>
+
+                <group>
                     <group string="Context">
                         <field name="scheduled_date"/>
                         <field name="user_id"/>

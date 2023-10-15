@@ -49,6 +49,12 @@ class PyperImporterProvider(models.Model):
         readonly=True,
     )
 
+    default_endpoint_id = fields.Many2one(
+        'pyper.importer.endpoint',
+        'Default endpoint',
+        help='Allows you to pre-fill the endpoint field in the wizard to launch an import',
+    )
+
     default_company_ids = fields.Many2many(
         'res.company',
         'res_company_pyper_importer_providers_rel',

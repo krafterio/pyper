@@ -27,6 +27,10 @@
 
                     <notebook>
                         <page name="default_values" string="Default values">
+                            <group name="default_values_endpoint" string="Import">
+                                <field name="default_endpoint_id" options="{'no_create': False, 'no_edit': True}"/>
+                            </group>
+
                             <group name="default_values_company" string="Companies">
                                 <field name="default_company_ids" widget="many2many_tags" options="{'no_create': True, 'no_edit': True}"/>
                             </group>

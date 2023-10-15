@@ -20,6 +20,7 @@
                             <field name="importer_max_offset"/>
                             <field name="importer_start_offset"/>
                             <field name="importer_provider_id"/>
+                            <field name="importer_endpoint_id"/>
                             <field name="importer_allow_update"/>
                         </group>
 

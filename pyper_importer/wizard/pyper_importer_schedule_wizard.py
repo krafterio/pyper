@@ -20,6 +20,12 @@ class PyperImportScheduleWizard(models.TransientModel):
         compute='_compute_importer_provider_count',
     )
 
+    importer_endpoint_id = fields.Many2one(
+        'pyper.importer.endpoint',
+        string='Importer Endpoint',
+        required=True,
+    )
+
     scheduled_date = fields.Datetime(
         'Scheduled date',
         help='Keep empty this field to run import as soon as possible',
@@ -88,9 +94,18 @@ class PyperImportScheduleWizard(models.TransientModel):
     def _onchange_importer_provider_ids(self):
         if self.importer_provider_count > 0:
             self.company_ids = self.importer_provider_ids.default_company_ids
+            self.importer_endpoint_id = self.importer_provider_ids.default_endpoint_id
 
         if len(self.company_ids.ids) == 0:
             self.company_ids = [self.env.company.id]
+
+    @api.onchange('importer_endpoint_id')
+    def _onchange_importer_endpoint_id(self):
+        self.batch_size = self.importer_endpoint_id.default_batch_size
+
+        if self.batch_size == 0:
+            self.batch_size = int(self.env['ir.config_parameter'].sudo()
+                                  .get_param('pyper_importer.default_batch_size', 100))
 
     def action_schedule_import_job(self):
         self.ensure_one()
@@ -117,6 +132,7 @@ class PyperImportScheduleWizard(models.TransientModel):
                     'date_enqueued': scheduled_date,
                     'importer_allow_update': importer_provider.allow_update and self.allow_update,
                     'importer_provider_id': importer_provider.id,
+                    'importer_endpoint_id': self.importer_endpoint_id.id,
                     'importer_batch_size': batch_size,
                     'importer_max_offset': self.max_offset,
                     'importer_start_offset': self.start_offset,
