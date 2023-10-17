@@ -398,6 +398,18 @@ class PyperQueueJob(models.Model):
 
             job.date_stopped = datetime.now()
 
+    def stop_and_schedule(self, date_enqueued: datetime = None):
+        for job in self:
+            if job.state not in ['doing']:
+                continue
+
+            job.date_done = False
+            job.date_cancelled = False
+            job.date_stopped = False
+            job.date_failed = False
+            job.date_started = False
+            job.date_enqueued = date_enqueued if date_enqueued else datetime.now()
+
     def relaunch(self):
         for job in self:
             if job.state not in ['stopped', 'failed']:
@@ -428,6 +440,14 @@ class PyperQueueJob(models.Model):
         if not relaunch:
             self.execution_time = 0
             self.log_ids = [Command.clear()]
+
+    def process_one(self):
+        self.ensure_one()
+        job = (self
+               .with_company(self.company_id)
+               .with_user(self.user_id)
+               .with_context(allowed_company_ids=[self.company_id.id]))
+        job._process()
 
     @api.model
     def runner(self):
