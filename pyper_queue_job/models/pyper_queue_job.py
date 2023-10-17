@@ -266,7 +266,7 @@ class PyperQueueJob(models.Model):
     @api.depends('log_ids')
     def _compute_log_success_count(self):
         for item in self:
-            search_domain = [('queue_job_id', '=', item.id), ('type', '=', 'info')]
+            search_domain = [('queue_job_id', '=', item.id), ('type', '=', 'success')]
             item.log_success_count = item.log_ids.search_count(search_domain) if len(item.log_ids.ids) > 0 else 0
 
     @api.depends('log_ids')
