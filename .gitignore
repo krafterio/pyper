@@ -3,6 +3,7 @@ _build/
 
 # dotfiles
 .*
+!gitmodules
 !.gitignore
 !.mailmap
 # compiled python files
