@@ -175,6 +175,24 @@ class LoadHelper(BaseProvider, ABC):
     def origin_identifier(self) -> str:
         pass
 
+    @property
+    def use_external_id(self) -> bool:
+        return False
+
+    @property
+    def external_identifier_module(self) -> str:
+        return 'pyper_importer'
+
+    def build_external_id_name(self, item: dict) -> str:
+        return (self.target_model.replace('.', '_')
+                + '__'
+                + str(item.get(self.origin_identifier)))
+
+    def build_external_id(self, item: dict) -> str:
+        return (self.external_identifier_module
+                + '.'
+                + self.build_external_id_name(item))
+
     def load(self, transformed_items: list[TransformedItem]):
         for transformed_item in transformed_items:
             if self.job.importer_stop_required:
@@ -183,14 +201,28 @@ class LoadHelper(BaseProvider, ABC):
             item = transformed_item.transformed_data
 
             try:
-                existing_item = self.importer.find_record(
-                    self.target_model,
-                    self.target_identifier,
-                    item.get(self.origin_identifier)
-                )
-                loaded = self._load_item(transformed_item, existing_item, existing_item.id is False)
+                if self.use_external_id:
+                    existing_item = self.env.ref(self.build_external_id(item), False)
 
-                if loaded:
+                    if existing_item is None:
+                        existing_item = self.env[self.target_model]
+                else:
+                    existing_item = self.importer.find_record(
+                        self.target_model,
+                        self.target_identifier,
+                        item.get(self.origin_identifier)
+                    )
+                loaded_id = self._load_item(transformed_item, existing_item, existing_item.id is False)
+
+                if loaded_id != 0:
+                    if self.use_external_id:
+                        self.env['ir.model.data'].create({
+                            'name': self.build_external_id_name(item),
+                            'model': self.target_model,
+                            'module': self.external_identifier_module,
+                            'res_id': loaded_id,
+                        })
+
                     self.job.log_success(
                         auto_commit=True,
                         payload=self.importer._create_log_payload(item, self.origin_identifier, existing_item)
@@ -205,13 +237,19 @@ class LoadHelper(BaseProvider, ABC):
                 self.importer._except_load_exception(self.job, err, item, self.origin_identifier)
 
     @abstractmethod
-    def _load_item(self, transformed_item: TransformedItem, existing_item, is_create: bool) -> bool:
+    def _load_item(self, transformed_item: TransformedItem, existing_item, is_create: bool) -> int:
         """
         :param transformed_item: TransformedItem
         :param existing_item (Model<*>): the existing record
-        :return bool: check if the item is loaded or not (skipped)
+        :return int: the item id if the item is loaded or 0 if not loaded (skipped)
         """
         pass
+
+
+class LoadByOdooExternalIdentifierHelper(LoadHelper, ABC):
+    @property
+    def use_external_id(self) -> bool:
+        return True
 
 
 class LoadByOdooModelIdentifiersHelper(BaseProvider, ABC):
@@ -229,12 +267,12 @@ class LoadByOdooModelIdentifiersHelper(BaseProvider, ABC):
             existing_item = self.env[target_model].browse(record_id)
 
             try:
-                loaded = False
+                loaded_id = 0
 
-                if existing_item.id is not False:
-                    loaded = self._load_item(transformed_item, existing_item, origin_found)
+                if existing_item:
+                    loaded_id = self._load_item(transformed_item, existing_item, origin_found)
 
-                if loaded:
+                if loaded_id != 0:
                     self.job.log_success(
                         auto_commit=True,
                         payload=self.importer._create_log_payload(item, origin_identifier, existing_item)
@@ -248,11 +286,11 @@ class LoadByOdooModelIdentifiersHelper(BaseProvider, ABC):
                 self.importer._except_load_exception(self.job, err, item, origin_identifier, existing_item)
 
     @abstractmethod
-    def _load_item(self, transformed_item: TransformedItem, existing_item, origin_found: bool) -> bool:
+    def _load_item(self, transformed_item: TransformedItem, existing_item, origin_found: bool) -> int:
         """
         :param transformed_item: TransformedItem
         :param existing_item (Model<*>): the existing record
-        :return bool: check if the item is loaded or not (skipped)
+        :return int: the item id if the item is loaded or 0 if not loaded (skipped)
         """
         pass
 
