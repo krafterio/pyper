@@ -41,7 +41,6 @@
             'pyper/static/src/core/**/*',
             'pyper/static/src/views/**/*.js',
             'pyper/static/src/views/**/*.xml',
-            'pyper/static/src/legacy/**/*.js',
             'pyper/static/src/webclient/**/*.scss',
         ],
     },
