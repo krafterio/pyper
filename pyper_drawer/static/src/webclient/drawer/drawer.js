@@ -59,7 +59,11 @@ export class Drawer extends Component {
         hideEmptyCategory: {
             type: Boolean,
             optional: true,
-        }
+        },
+        hideCategoryLabelMinified: {
+            type: Boolean,
+            optional: true,
+        },
     };
 
     static defaultProps = {
@@ -71,6 +75,7 @@ export class Drawer extends Component {
         closeAction: false,
         dragEndRatio: 0.25,
         hideEmptyCategory: false,
+        hideCategoryLabelMinified: false,
     };
 
     setup() {
@@ -177,6 +182,10 @@ export class Drawer extends Component {
 
     get isFixedTop() {
         return this.props.fixedTop && !this.isSmallScreen;
+    }
+
+    get displayCategoryName() {
+        return !this.isMinified || (this.isMinified && !this.props.hideCategoryLabelMinified)
     }
 
     get displayHeader() {

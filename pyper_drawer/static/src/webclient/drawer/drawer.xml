@@ -45,7 +45,7 @@
              role="menu"
         >
             <t t-foreach="categories" t-as="category" t-key="category.value">
-                <p class="text-muted small mt-4 mb-2 px-3">
+                <p class="text-muted small mt-4 mb-2 px-3" t-if="displayCategoryName">
                     <t t-esc="category.display_name"/>
                 </p>
 
