@@ -2,19 +2,18 @@
 <template xml:space="preserve">
 
     <t t-name="pyper.SliderField">
-        <input
-            t-att-id="props.id"
-            t-ref="input"
-            type="range"
-            class="w-100"
-            t-att-name="props.name"
-            t-att-value="props.value"
-            t-att-min="props.min"
-            t-att-max="props.max"
-            t-att-step="props.step"
-            t-att="{
-                disabled: props.readonly,
-            }"
-        />
+        <div class="slider">
+            <input
+                t-att-id="props.id"
+                t-ref="input"
+                type="range"
+                t-att-name="props.name"
+                t-att-value="props.value"
+                t-att-min="props.min"
+                t-att-max="props.max"
+                t-att-step="props.step"
+                t-att-disabled="props.readonly"
+            />
+        </div>
     </t>
 </template>
