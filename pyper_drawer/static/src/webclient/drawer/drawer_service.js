@@ -20,8 +20,11 @@ export const drawerService = {
                 cookie.set('drawer_mini', locked);
             },
 
-            restoreMinified() {
-                return (cookie.get('drawer_mini') || 'false') === 'true';
+            restoreMinified(defaultMinified) {
+                defaultMinified = !(defaultMinified in [undefined, 'false', false]);
+                const defaultValue = defaultMinified ? 'true' : 'false';
+
+                return (cookie.get('drawer_mini') || defaultValue) === 'true';
             },
         };
     },

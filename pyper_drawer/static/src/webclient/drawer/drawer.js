@@ -48,6 +48,10 @@ export class Drawer extends Component {
             type: Boolean,
             optional: true,
         },
+        initMinified: {
+            type: Boolean,
+            optional: true,
+        },
         closeAction: {
             type: Boolean,
             optional: true,
@@ -72,6 +76,7 @@ export class Drawer extends Component {
         alwaysHeader: false,
         alwaysFooter: false,
         minifiable: false,
+        initMinified: false,
         closeAction: false,
         dragEndRatio: 0.25,
         hideEmptyCategory: false,
@@ -92,7 +97,7 @@ export class Drawer extends Component {
         this.state = useState({
             opened: false,
             locked: this.drawerService.restoreLocked(),
-            mini: this.drawerService.restoreMinified(),
+            mini: this.drawerService.restoreMinified(this.props.initMinified),
             dragging: false,
             mounted: false,
         });
