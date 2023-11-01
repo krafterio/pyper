@@ -17,4 +17,9 @@
         'base_setup',
         'web',
     ],
+    'assets': {
+        'web.assets_backend': [
+            ('prepend', 'pyper_fonts_phosphor/static/src/scss/phosphor-regular.scss'),
+        ],
+    }
 }
