@@ -13,7 +13,7 @@
     cursor: default;
     user-select: none;
     border-left: none;
-    border-right: 1px solid transparent;
+    border-right: $o-drawer-border-width solid transparent;
 
     transform: translate3d(-$o-drawer-width, 0px, 0px);
 
@@ -176,7 +176,7 @@
     }
 
     &.o_drawer--fixed-top {
-        top: $o-navbar-height + 1px;
+        top: $o-navbar-height + $o-drawer-border-width;
 
         &.o_drawer--locked {
             + .o_navbar,
