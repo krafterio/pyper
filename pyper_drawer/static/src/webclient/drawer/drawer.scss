@@ -176,7 +176,7 @@
     }
 
     &.o_drawer--fixed-top {
-        top: $o-navbar-height;
+        top: $o-navbar-height + 1px;
 
         &.o_drawer--locked {
             + .o_navbar,

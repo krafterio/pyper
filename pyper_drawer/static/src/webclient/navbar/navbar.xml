@@ -6,6 +6,10 @@
             <Drawer fixedTop="true" showRootApp="true" minifiable="true"/>
         </xpath>
 
+        <xpath expr="//header[hasclass('o_navbar')]" position="attributes">
+            <attribute name="class" separator=" " add="border-bottom"/>
+        </xpath>
+
         <xpath expr="//t[@t-call='web.NavBar.AppsMenu']" position="after">
             <DrawerToggler useCaretIcon="true"/>
         </xpath>
