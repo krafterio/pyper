@@ -10,8 +10,12 @@
             <attribute name="class" remove="justify-content-lg-around" separator=" " add="justify-content-lg-end me-2"/>
         </xpath>
 
+        <xpath expr="//div[hasclass('o_control_panel')]" position="attributes">
+            <attribute name="class" separator=" " remove="pt-2 pb-3" add="py-3"/>
+        </xpath>
+
         <xpath expr="//div[hasclass('o_control_panel_main')]" position="attributes">
-            <attribute name="class" separator=" " remove="align-items-lg-start gap-3" add="align-items-center"></attribute>
+            <attribute name="class" separator=" " remove="align-items-lg-start gap-3" add="align-items-center"/>
         </xpath>
 
         <!-- Move Actions button -->
@@ -20,7 +24,7 @@
         </xpath>
 
         <xpath expr="//div[hasclass('o_control_panel_navigation')]" position="attributes">
-            <attribute name="class" separator=" " remove="gap-3 gap-lg-1 gap-xl-3" add="gap-1 gap-lg-1 gap-xl-2"/>
+            <attribute name="class" separator=" " remove="gap-3 gap-lg-1 gap-xl-3 pt-1" add="gap-1 gap-lg-1 gap-xl-2"/>
         </xpath>
 
          <xpath expr="//button[hasclass('o_switch_view')]" position="attributes">
