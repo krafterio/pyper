@@ -22,8 +22,8 @@
     ],
     'assets': {
         'web._assets_primary_variables': [
-            ('before', 'web/static/src/**/*.variables.scss', 'pyper/static/src/**/*.variables.scss'),
             ('before', 'web/static/src/scss/primary_variables.scss', 'pyper/static/src/scss/primary_variables.scss'),
+            ('before', 'web/static/src/**/*.variables.scss', 'pyper/static/src/**/*.variables.scss'),
         ],
         'web._assets_secondary_variables': [
             ('before', 'web/static/src/scss/secondary_variables.scss', 'pyper/static/src/scss/secondary_variables.scss'),
