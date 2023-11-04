@@ -19,6 +19,8 @@
     'data': [
         'data/bot.xml',
         'data/rules.xml',
+
+        'views/webclient_templates.xml',
     ],
     'assets': {
         'web.assets_backend': {
