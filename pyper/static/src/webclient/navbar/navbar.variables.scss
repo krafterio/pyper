@@ -19,7 +19,7 @@ $o-navbar-entry-color--hover: $o-gray-900 !default;
 $o-navbar-entry-bg--active: unset !default;
 $o-navbar-entry-color--active: unset !default;
 
-$o-navbar-dropdown-menu-border-top: 1px solid $o-border-color;
+$o-navbar-dropdown-menu-border-top: 1px solid $o-border-color !default;
 $o-navbar-dropdown-menu-border-radius: $o-border-radius !default;
 
 $o-navbar-brand-color: $o-gray-700 !default;
