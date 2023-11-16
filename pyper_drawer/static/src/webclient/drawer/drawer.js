@@ -56,6 +56,10 @@ export class Drawer extends Component {
             type: Boolean,
             optional: true,
         },
+        closeOnClick: {
+            type: Boolean,
+            optional: true,
+        },
         dragEndRatio: {
             type: Number,
             optional: true,
@@ -78,6 +82,7 @@ export class Drawer extends Component {
         minifiable: false,
         initMinified: false,
         closeAction: false,
+        closeOnClick: false,
         dragEndRatio: 0.25,
         hideEmptyCategory: false,
         hideCategoryLabelMinified: false,
@@ -355,6 +360,10 @@ export class Drawer extends Component {
     onNavBarDropdownItemSelection(menu) {
         if (menu) {
             this.menuService.selectMenu(menu);
+
+            if (this.props.closeOnClick) {
+                this.close();
+            }
         }
     }
 
