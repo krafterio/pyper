@@ -2,7 +2,7 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="pyper_drawer.DrawerToggler" owl="1">
-        <div t-att-class="classes">
+        <div t-if="display" t-att-class="classes">
             <button class="dropdown-toggle ps-0"
                     title="Toggle Drawer"
                     data-hotkey="d"

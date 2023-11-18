@@ -34,11 +34,13 @@ export class DrawerToggler extends Component {
         this.state = useState({
             drawerLocked: drawerRegistry.get('locked', false),
             drawerMini: drawerRegistry.get('mini', false),
+            disabledOnSmallScreen: drawerRegistry.get('disabledOnSmallScreen', false),
         });
 
         const drawerListener = () => {
             this.state.drawerLocked = drawerRegistry.get('locked', false);
             this.state.drawerMini = drawerRegistry.get('mini', false);
+            this.state.disabledOnSmallScreen = drawerRegistry.get('disabledOnSmallScreen', false);
         };
 
         drawerRegistry.addEventListener('UPDATE', drawerListener);
@@ -54,7 +56,6 @@ export class DrawerToggler extends Component {
             'dropdown': true,
             'o_drawer_toggler': true,
             'o-dropdown--no-caret': true,
-            'd-none': this.props.autoHide && this.state.drawerLocked,
             'o_drawer--locked': this.state.drawerLocked,
             'o_drawer--mini': this.state.drawerMini,
         };
@@ -66,6 +67,10 @@ export class DrawerToggler extends Component {
 
     get displayCaretIcon() {
         return this.props.useCaretIcon && this.state.drawerMini;
+    }
+
+    get display() {
+        return !(this.props.autoHide && this.state.drawerLocked) && !this.state.disabledOnSmallScreen;
     }
 
     onClick() {

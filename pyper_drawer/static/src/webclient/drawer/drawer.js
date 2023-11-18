@@ -82,6 +82,10 @@ export class Drawer extends Component {
             type: Boolean,
             optional: true,
         },
+        disabledOnSmallScreen: {
+            type: Boolean,
+            optional: true,
+        },
     };
 
     static defaultProps = {
@@ -98,6 +102,7 @@ export class Drawer extends Component {
         dragEndRatio: 0.25,
         hideEmptyCategory: false,
         hideCategoryLabelMinified: false,
+        disabledOnSmallScreen: false,
     };
 
     setup() {
@@ -145,6 +150,7 @@ export class Drawer extends Component {
             this.state.mounted = true;
             drawerRegistry.add('locked', this.isLocked, {force: true});
             drawerRegistry.add('mini', this.isMinified, {force: true});
+            drawerRegistry.add('disabledOnSmallScreen', this.props.disabledOnSmallScreen, {force: true});
         });
 
         useEffect(
@@ -157,6 +163,7 @@ export class Drawer extends Component {
         listenSizeChange(() => {
             drawerRegistry.add('locked', this.isLocked, {force: true});
             drawerRegistry.add('mini', this.isMinified, {force: true});
+            drawerRegistry.add('disabledOnSmallScreen', this.props.disabledOnSmallScreen, {force: true});
         });
     }
 
@@ -264,7 +271,7 @@ export class Drawer extends Component {
 
     open() {
         if (this.isSmallScreen) {
-            if (!this.isOpened) {
+            if (!this.isOpened && !this.props.disabledOnSmallScreen) {
                 this.state.opened = true;
                 this.root.el.style.transform = '';
             }
@@ -291,6 +298,7 @@ export class Drawer extends Component {
             this.root.el.style.transform = '';
             drawerRegistry.add('locked', this.isLocked, {force: true});
             drawerRegistry.add('mini', this.isMinified, {force: true});
+            drawerRegistry.add('disabledOnSmallScreen', this.props.disabledOnSmallScreen, {force: true});
             this.drawerService.saveLocked(this.state.locked);
             this.drawerService.saveMinified(this.state.mini);
 
@@ -326,6 +334,7 @@ export class Drawer extends Component {
             this.root.el.style.transform = '';
             drawerRegistry.add('locked', this.isLocked, {force: true});
             drawerRegistry.add('mini', this.isMinified, {force: true});
+            drawerRegistry.add('disabledOnSmallScreen', this.props.disabledOnSmallScreen, {force: true});
             this.drawerService.saveLocked(this.state.locked);
             this.drawerService.saveMinified(this.state.mini);
 
@@ -401,7 +410,7 @@ export class Drawer extends Component {
     }
 
     _onTouchStartDrag(ev) {
-        if (!this.isDraggable) {
+        if (!this.isDraggable || (this.isSmallScreen && this.props.disabledOnSmallScreen)) {
             return;
         }
 
