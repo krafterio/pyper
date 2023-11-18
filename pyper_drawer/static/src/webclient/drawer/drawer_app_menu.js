@@ -15,6 +15,17 @@ export class DrawerAppMenu extends Component {
 
     static template = 'pyper_drawer.DrawerAppMenu';
 
+    static props = {
+        minified: {
+            type: Boolean,
+            optional: true,
+        },
+    }
+
+    static defaultProps = {
+        minified: false,
+    }
+
     setup() {
         this.state = useState({
             drawerLocked: drawerRegistry.get('locked', false),
@@ -47,7 +58,7 @@ export class DrawerAppMenu extends Component {
     }
 
     get displayMinified() {
-        return this.isMinified || this.isSmallScreen;
+        return this.isMinified || this.isSmallScreen || this.props.minified;
     }
 
     get isSmallScreen() {
