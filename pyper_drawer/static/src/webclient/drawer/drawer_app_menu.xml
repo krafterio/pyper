@@ -12,7 +12,7 @@
         >
             <t t-if="displayMinified" t-slot="minified"></t>
 
-            <t t-if="!displayMinified" t-slot="locked"></t>
+            <t t-if="displayLocked" t-slot="locked"></t>
 
             <t t-slot="default"/>
         </div>

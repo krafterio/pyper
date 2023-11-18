@@ -148,9 +148,7 @@ export class Drawer extends Component {
 
         onMounted(() => {
             this.state.mounted = true;
-            drawerRegistry.add('locked', this.isLocked, {force: true});
-            drawerRegistry.add('mini', this.isMinified, {force: true});
-            drawerRegistry.add('disabledOnSmallScreen', this.props.disabledOnSmallScreen, {force: true});
+            this._refreshDrawerRegistry();
         });
 
         useEffect(
@@ -161,9 +159,7 @@ export class Drawer extends Component {
         );
 
         listenSizeChange(() => {
-            drawerRegistry.add('locked', this.isLocked, {force: true});
-            drawerRegistry.add('mini', this.isMinified, {force: true});
-            drawerRegistry.add('disabledOnSmallScreen', this.props.disabledOnSmallScreen, {force: true});
+            this._refreshDrawerRegistry();
         });
     }
 
@@ -296,9 +292,7 @@ export class Drawer extends Component {
             }
 
             this.root.el.style.transform = '';
-            drawerRegistry.add('locked', this.isLocked, {force: true});
-            drawerRegistry.add('mini', this.isMinified, {force: true});
-            drawerRegistry.add('disabledOnSmallScreen', this.props.disabledOnSmallScreen, {force: true});
+            this._refreshDrawerRegistry();
             this.drawerService.saveLocked(this.state.locked);
             this.drawerService.saveMinified(this.state.mini);
 
@@ -332,9 +326,7 @@ export class Drawer extends Component {
             }
 
             this.root.el.style.transform = '';
-            drawerRegistry.add('locked', this.isLocked, {force: true});
-            drawerRegistry.add('mini', this.isMinified, {force: true});
-            drawerRegistry.add('disabledOnSmallScreen', this.props.disabledOnSmallScreen, {force: true});
+            this._refreshDrawerRegistry();
             this.drawerService.saveLocked(this.state.locked);
             this.drawerService.saveMinified(this.state.mini);
 
@@ -407,6 +399,30 @@ export class Drawer extends Component {
         }
 
         return '#' + parts.join('&');
+    }
+
+    onItemMouseEnter(evt, item) {
+        if (this.props.popoverMinified && this.isMinifiable && this.isMinified) {
+            this.popover.open(evt.toElement, {
+                menu: item,
+                showRootApp: this.props.showRootApp,
+                onItemMouseLeave: this.onItemMouseLeave.bind(this),
+                onNavBarDropdownItemSelection: this.onNavBarDropdownItemSelection.bind(this),
+                getMenuItemHref: this.getMenuItemHref.bind(this),
+            });
+        }
+    }
+
+    onItemMouseLeave() {
+        this.popover.close();
+    }
+
+    _refreshDrawerRegistry() {
+        drawerRegistry.add('isSmallScreen', this.isSmallScreen, {force: true});
+        drawerRegistry.add('locked', this.isLocked, {force: true});
+        drawerRegistry.add('mini', this.isMinified, {force: true});
+        drawerRegistry.add('popoverMinified', this.props.popoverMinified, {force: true});
+        drawerRegistry.add('disabledOnSmallScreen', this.props.disabledOnSmallScreen, {force: true});
     }
 
     _onTouchStartDrag(ev) {
@@ -499,21 +515,5 @@ export class Drawer extends Component {
 
     _onTouchScroll() {
         this.dragScrolling = true;
-    }
-
-    onItemMouseEnter(evt, item) {
-        if (this.props.popoverMinified && this.isMinifiable && this.isMinified) {
-            this.popover.open(evt.toElement, {
-                menu: item,
-                showRootApp: this.props.showRootApp,
-                onItemMouseLeave: this.onItemMouseLeave.bind(this),
-                onNavBarDropdownItemSelection: this.onNavBarDropdownItemSelection.bind(this),
-                getMenuItemHref: this.getMenuItemHref.bind(this),
-            });
-        }
-    }
-
-    onItemMouseLeave() {
-        this.popover.close();
     }
 }
