@@ -58,7 +58,7 @@
                         <t t-set="hotkey" t-value="undefined" />
                     </t>
 
-                    <t t-if="isMinifiable and isMinified and props.popoverMinified" t-call="pyper_drawer.Drawer.Menu.ItemPopover">
+                    <t t-if="displayPopoverMinified" t-call="pyper_drawer.Drawer.Menu.ItemPopover">
                         <t t-set="menu" t-value="menu"/>
                         <t t-set="hotkey" t-value="hotkey"/>
                     </t>

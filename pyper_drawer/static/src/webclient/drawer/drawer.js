@@ -46,6 +46,10 @@ export class Drawer extends Component {
             type: Boolean,
             optional: true,
         },
+        alwaysMini: {
+            type: Boolean,
+            optional: true,
+        },
         minifiable: {
             type: Boolean,
             optional: true,
@@ -85,6 +89,7 @@ export class Drawer extends Component {
         fixedTop: false,
         alwaysHeader: false,
         alwaysFooter: false,
+        alwaysMini: false,
         minifiable: false,
         initMinified: false,
         popoverMinified: false,
@@ -177,11 +182,11 @@ export class Drawer extends Component {
     }
 
     get isMinifiable() {
-        return this.props.minifiable;
+        return this.props.minifiable || this.props.alwaysMini;
     }
 
     get isMinified() {
-        return this.state.mini && !this.isSmallScreen;
+        return (this.state.mini || this.props.alwaysMini) && !this.isSmallScreen;
     }
 
     get isHoverable() {
@@ -218,6 +223,10 @@ export class Drawer extends Component {
 
     get displayFooter() {
         return this.isSmallScreen || this.props.alwaysFooter;
+    }
+
+    get displayPopoverMinified() {
+        return this.isMinifiable && this.isMinified && this.props.popoverMinified;
     }
 
     get currentApp() {
