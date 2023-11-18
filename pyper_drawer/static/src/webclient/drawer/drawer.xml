@@ -73,23 +73,19 @@
     </t>
 
     <t t-name="pyper_drawer.Drawer.Menu.ItemPopover" owl="1">
-        <div
-            class="dropdown-item o_drawer--menu-item d-flex align-items-center"
-            t-on-mouseenter="(ev) => this.onItemMouseEnter(ev, menu)"
-            t-on-click="() => this.onNavBarDropdownItemSelection(menu)"
-            t-att-data-hotkey="hotkey"
-        >
+        <div class="dropdown-item o_drawer--menu-item">
             <t t-call="pyper_drawer.Drawer.Menu.ItemContent">
                 <t t-set="menu" t-value="menu"/>
                 <t t-set="showRootApp" t-value="props.showRootApp"/>
                 <t t-set="showLabel" t-value="false"/>
+                <t t-set="activeContent" t-value="true"/>
             </t>
         </div>
     </t>
 
     <t t-name="pyper_drawer.Drawer.Menu.Item" owl="1">
         <DropdownItem
-            class="{'o_drawer--menu-item': true, 'd-flex': true, 'align-items-center': true}"
+            class="{'o_drawer--menu-item': true}"
             href="getMenuItemHref(menu)"
             hotkey="hotkey"
             dataset="{menuXmlid: menu.xmlid, menu: menu.id, tooltip: isMinified ? menu.name : undefined, tooltipPosition: 'right'}"
@@ -104,21 +100,29 @@
     </t>
 
     <t t-name="pyper_drawer.Drawer.Menu.ItemContent" owl="1">
-        <div t-if="showRootApp and menu.font_icon" class="o_drawer--item-icon-empty rounded-3" t-att-style="'color: ' + (menu.font_icon_color || 'inherit') + ';'">
-            <i t-att-class="menu.font_icon"/>
-        </div>
+        <div
+            class="o_drawer--menu-item-content"
+            t-on-mouseenter="activeContent ? (ev) => this.onItemMouseEnter(ev, menu) : () => {}"
+            t-on-mouseleave="leaveContent ? (ev) => props.onItemMouseLeave(ev, props.menu) : () => {}"
+            t-on-click="activeContent ? () => this.onNavBarDropdownItemSelection(menu) : () => {}"
+            t-att-data-hotkey="activeContent ? hotkey : undefined"
+        >
+            <div t-if="showRootApp and menu.font_icon" class="o_drawer--item-icon-empty rounded-3" t-att-style="'color: ' + (menu.font_icon_color || 'inherit') + ';'">
+                <i t-att-class="menu.font_icon"/>
+            </div>
 
-        <img t-elif="showRootApp and menu.webIconData"
-            class="o_drawer--item-icon rounded-3"
-            t-attf-src="data:image/jpeg;base64, {{menu.webIconData}}"
-        />
+            <img t-elif="showRootApp and menu.webIconData"
+                class="o_drawer--item-icon rounded-3"
+                t-attf-src="data:image/jpeg;base64, {{menu.webIconData}}"
+            />
 
-        <div t-else="showRootApp" class="o_drawer--item-icon-empty rounded-3">
-            <i class="ph-light ph-cube"/>
-        </div>
+            <div t-else="showRootApp" class="o_drawer--item-icon-empty rounded-3">
+                <i class="ph-light ph-cube"/>
+            </div>
 
-        <div t-if="showLabel" class="o_drawer--item-label">
-            <t t-esc="menu.name"/>
+            <div t-if="showLabel" class="o_drawer--item-label">
+                <t t-esc="menu.name"/>
+            </div>
         </div>
     </t>
 

@@ -5,13 +5,13 @@
         <a
             class="dropdown-item o_drawer--menu-item d-flex align-items-center"
             t-att-href="props.getMenuItemHref(props.menu)"
-            t-on-mouseleave="(ev) => props.onItemMouseLeave(ev, props.menu)"
             t-on-click="() => props.onNavBarDropdownItemSelection(props.menu)"
         >
             <t t-call="pyper_drawer.Drawer.Menu.ItemContent">
                 <t t-set="menu" t-value="props.menu"/>
                 <t t-set="showRootApp" t-value="props.showRootApp"/>
                 <t t-set="showLabel" t-value="true"/>
+                <t t-set="leaveContent" t-value="true"/>
             </t>
         </a>
     </t>
