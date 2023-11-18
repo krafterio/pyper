@@ -15,6 +15,8 @@ $o-drawer-item-label-padding-h: $o-drawer-item-icon-width !default;
 $o-drawer-item-padding-v: 6px !default;
 $o-drawer-item-padding-h: ($o-drawer-mini-width - $o-drawer-item-icon-width) / 2 !default;
 
+$o-drawer-popover-item-border-radius: $o-border-radius;
+
 $o-drawer-toggler-locked-width: ($o-drawer-width - $o-navbar-apps-menu-width) !default;
 
 $o-drawer-swiper-zindex: $o-drawer-zindex + 1 !default;

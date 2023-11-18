@@ -3,7 +3,7 @@
 
     <t t-name="pyper_drawer.NavBar" t-inherit="web.NavBar" t-inherit-mode="extension" owl="1">
         <xpath expr="//header[hasclass('o_navbar')]" position="before">
-            <Drawer fixedTop="true" showRootApp="true" minifiable="true" closeOnClick="true"/>
+            <Drawer fixedTop="true" showRootApp="true" minifiable="true" popoverMinified="true" closeOnClick="true"/>
         </xpath>
 
         <xpath expr="//header[hasclass('o_navbar')]" position="attributes">

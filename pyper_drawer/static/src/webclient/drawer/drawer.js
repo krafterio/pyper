@@ -16,6 +16,8 @@ import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {listenSizeChange, SIZES, utils as uiUtils} from '@web/core/ui/ui_service';
 import {_t} from '@web/core/l10n/translation';
 import {getTransform} from '@pyper/core/ui/css';
+import {usePopover} from '@web/core/popover/popover_hook';
+import {DrawerPopoverItem} from './drawer_popover_item';
 
 
 const drawerRegistry = registry.category('drawer');
@@ -52,6 +54,10 @@ export class Drawer extends Component {
             type: Boolean,
             optional: true,
         },
+        popoverMinified: {
+            type: Boolean,
+            optional: true,
+        },
         closeAction: {
             type: Boolean,
             optional: true,
@@ -81,6 +87,7 @@ export class Drawer extends Component {
         alwaysFooter: false,
         minifiable: false,
         initMinified: false,
+        popoverMinified: false,
         closeAction: false,
         closeOnClick: false,
         dragEndRatio: 0.25,
@@ -99,6 +106,13 @@ export class Drawer extends Component {
         this.dragStartPosition = undefined;
         this.dragMaxWidth = undefined;
         this.dragDistance = 0;
+        this.popover = usePopover(DrawerPopoverItem, {
+            position: 'left-start',
+            animation: false,
+            arrow: false,
+            fixedPosition: true,
+            popoverClass: 'o_drawer--popover-item',
+        });
         this.state = useState({
             opened: false,
             locked: this.drawerService.restoreLocked(),
@@ -467,5 +481,21 @@ export class Drawer extends Component {
 
     _onTouchScroll() {
         this.dragScrolling = true;
+    }
+
+    onItemMouseEnter(evt, item) {
+        if (this.props.popoverMinified && this.isMinifiable && this.isMinified) {
+            this.popover.open(evt.toElement, {
+                menu: item,
+                showRootApp: this.props.showRootApp,
+                onItemMouseLeave: this.onItemMouseLeave.bind(this),
+                onNavBarDropdownItemSelection: this.onNavBarDropdownItemSelection.bind(this),
+                getMenuItemHref: this.getMenuItemHref.bind(this),
+            });
+        }
+    }
+
+    onItemMouseLeave() {
+        this.popover.close();
     }
 }

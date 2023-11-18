@@ -58,11 +58,31 @@
                         <t t-set="hotkey" t-value="undefined" />
                     </t>
 
-                    <t t-call="pyper_drawer.Drawer.Menu.Item">
+                    <t t-if="isMinifiable and isMinified and props.popoverMinified" t-call="pyper_drawer.Drawer.Menu.ItemPopover">
+                        <t t-set="menu" t-value="menu"/>
+                        <t t-set="hotkey" t-value="hotkey"/>
+                    </t>
+
+                    <t t-else="" t-call="pyper_drawer.Drawer.Menu.Item">
                         <t t-set="menu" t-value="menu"/>
                         <t t-set="hotkey" t-value="hotkey"/>
                     </t>
                 </t>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="pyper_drawer.Drawer.Menu.ItemPopover" owl="1">
+        <div
+            class="dropdown-item o_drawer--menu-item d-flex align-items-center"
+            t-on-mouseenter="(ev) => this.onItemMouseEnter(ev, menu)"
+            t-on-click="() => this.onNavBarDropdownItemSelection(menu)"
+            t-att-data-hotkey="hotkey"
+        >
+            <t t-call="pyper_drawer.Drawer.Menu.ItemContent">
+                <t t-set="menu" t-value="menu"/>
+                <t t-set="showRootApp" t-value="props.showRootApp"/>
+                <t t-set="showLabel" t-value="false"/>
             </t>
         </div>
     </t>
@@ -75,23 +95,31 @@
             dataset="{menuXmlid: menu.xmlid, menu: menu.id, tooltip: isMinified ? menu.name : undefined, tooltipPosition: 'right'}"
             onSelected="() => this.onNavBarDropdownItemSelection(menu)"
         >
-            <div t-if="props.showRootApp and menu.font_icon" class="o_drawer--item-icon-empty rounded-3" t-att-style="'color: ' + (menu.font_icon_color || 'inherit') + ';'">
-                <i t-att-class="menu.font_icon"/>
-            </div>
-
-            <img t-elif="props.showRootApp and menu.webIconData"
-                class="o_drawer--item-icon rounded-3"
-                t-attf-src="data:image/jpeg;base64, {{menu.webIconData}}"
-            />
-
-            <div t-else="props.showRootApp" class="o_drawer--item-icon-empty rounded-3">
-                <i class="ph-light ph-cube"/>
-            </div>
-
-            <div t-if="!isMinified" class="o_drawer--item-label">
-                <t t-esc="menu.name"/>
-            </div>
+            <t t-call="pyper_drawer.Drawer.Menu.ItemContent">
+                <t t-set="menu" t-value="menu"/>
+                <t t-set="showRootApp" t-value="props.showRootApp"/>
+                <t t-set="showLabel" t-value="!isMinified"/>
+            </t>
         </DropdownItem>
+    </t>
+
+    <t t-name="pyper_drawer.Drawer.Menu.ItemContent" owl="1">
+        <div t-if="showRootApp and menu.font_icon" class="o_drawer--item-icon-empty rounded-3" t-att-style="'color: ' + (menu.font_icon_color || 'inherit') + ';'">
+            <i t-att-class="menu.font_icon"/>
+        </div>
+
+        <img t-elif="showRootApp and menu.webIconData"
+            class="o_drawer--item-icon rounded-3"
+            t-attf-src="data:image/jpeg;base64, {{menu.webIconData}}"
+        />
+
+        <div t-else="showRootApp" class="o_drawer--item-icon-empty rounded-3">
+            <i class="ph-light ph-cube"/>
+        </div>
+
+        <div t-if="showLabel" class="o_drawer--item-label">
+            <t t-esc="menu.name"/>
+        </div>
     </t>
 
 </templates>
