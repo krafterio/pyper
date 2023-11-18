@@ -137,6 +137,11 @@
     }
 }
 
+.o_drawer--header,
+.o_drawer--footer {
+    padding: $o-horizontal-padding/2 0;
+}
+
 .o_drawer--swiper {
     position : fixed;
     z-index: $o-drawer-swiper-zindex;
@@ -150,23 +155,23 @@
 }
 
 .o_drawer--obfuscator {
-        position: fixed;
-        display: block;
-        z-index: -1;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        opacity: 0;
-        transition: opacity #{$o-drawer-obfuscator-duration} ease, z-index 0s linear;
-        transition-delay: 0s, #{$o-drawer-obfuscator-duration};
+    position: fixed;
+    display: block;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity #{$o-drawer-obfuscator-duration} ease, z-index 0s linear;
+    transition-delay: 0s, #{$o-drawer-obfuscator-duration};
 
-        .o_drawer--opened + & {
-            z-index: $o-drawer-obfuscator-zindex;
-            transition-delay: 0s, 0s;
-            opacity: 1;
-        }
+    .o_drawer--opened + & {
+        z-index: $o-drawer-obfuscator-zindex;
+        transition-delay: 0s, 0s;
+        opacity: 1;
     }
+}
 
 // = Drawer Theme
 // ============================================================================
