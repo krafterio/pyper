@@ -6,7 +6,7 @@ $o-drawer-mini-width: 72px !default;
 $o-drawer-zindex: 999 !default;
 $o-drawer-border-width: 1px !default;
 $o-drawer-border-color: $o-border-color !default;
-$o-drawer-bg: $o-navbar-background !default;
+$o-drawer-bg: $o-white !default;
 $o-drawer-shadow: 3px 0 4px rgba(0, 0, 0, 0.18) !default;
 
 $o-drawer-item-icon-width: 28px !default;
@@ -15,7 +15,7 @@ $o-drawer-item-label-padding-h: $o-drawer-item-icon-width !default;
 $o-drawer-item-padding-v: 6px !default;
 $o-drawer-item-padding-h: ($o-drawer-mini-width - $o-drawer-item-icon-width) / 2 !default;
 
-$o-drawer-popover-item-border-radius: $o-border-radius;
+$o-drawer-popover-item-border-radius: $o-border-radius !default;
 
 $o-drawer-toggler-locked-width: ($o-drawer-width - $o-navbar-apps-menu-width) !default;
 

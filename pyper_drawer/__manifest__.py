@@ -19,8 +19,8 @@
         'pyper_menu_icon',
     ],
     'assets': {
-        'web._assets_secondary_variables': [
-            ('after', 'web/static/src/scss/secondary_variables.scss', 'pyper_drawer/static/src/**/*.variables.scss'),
+        'web._assets_primary_variables': [
+            ('after', 'pyper/static/src/**/*.variables.scss', 'pyper_drawer/static/src/**/*.variables.scss'),
         ],
         'web.assets_backend': [
             'pyper_drawer/static/src/webclient/**/*',
