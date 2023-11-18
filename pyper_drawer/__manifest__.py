@@ -16,9 +16,7 @@
         'base',
         'web',
         'pyper',
-    ],
-    'data': [
-        'views/ir_ui_menu_views.xml',
+        'pyper_menu_icon',
     ],
     'assets': {
         'web._assets_secondary_variables': [
