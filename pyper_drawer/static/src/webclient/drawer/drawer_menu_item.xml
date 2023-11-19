@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pyper_drawer.DrawerMenuItem" owl="1">
+        <t t-if="isPopoverEnabled" t-call="pyper_drawer.DrawerMenuItem.Wrapper.PopoverItem"/>
+
+        <t t-else="" t-call="pyper_drawer.DrawerMenuItem.Wrapper.DropdownItem"/>
+    </t>
+
+    <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.PopoverItem" owl="1">
+        <div class="dropdown-item o_drawer--menu-item">
+            <t t-call="pyper_drawer.DrawerMenuItem.Content">
+                <t t-set="menuId" t-value="props.menuId"/>
+                <t t-set="menuAction" t-value="props.menuAction"/>
+                <t t-set="withHotkey" t-value="true"/>
+                <t t-set="hotkey" t-value="props.hotkey"/>
+                <t t-set="withIcon" t-value="props.withIcon"/>
+                <t t-set="iconData" t-value="props.iconData"/>
+                <t t-set="fontIcon" t-value="props.fontIcon"/>
+                <t t-set="fontIconColor" t-value="props.fontIconColor"/>
+                <t t-set="label" t-value="props.label"/>
+                <t t-set="showLabel" t-value="false"/>
+                <t t-set="onItemMouseEnterFct" t-value="this.onItemMouseEnter.bind(this)"/>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.DropdownItem" owl="1">
+        <DropdownItem
+            class="{'o_drawer--menu-item': true}"
+            href="menuItemHref"
+            hotkey="props.hotkey"
+            dataset="{menuXmlid: props.menuXmlid, menu: props.menuId, tooltip: drawerService.isMinified and !drawerService.isPopoverMinified ? props.label : undefined, tooltipPosition: 'right'}"
+            onSelected="() => this.onItemSelection()"
+        >
+            <t t-call="pyper_drawer.DrawerMenuItem.Content">
+                <t t-set="menuId" t-value="props.menuId"/>
+                <t t-set="menuAction" t-value="props.menuAction"/>
+                <t t-set="withHotkey" t-value="true"/>
+                <t t-set="hotkey" t-value="props.hotkey"/>
+                <t t-set="withIcon" t-value="props.withIcon"/>
+                <t t-set="iconData" t-value="props.iconData"/>
+                <t t-set="fontIcon" t-value="props.fontIcon"/>
+                <t t-set="fontIconColor" t-value="props.fontIconColor"/>
+                <t t-set="label" t-value="props.label"/>
+                <t t-set="showLabel" t-value="!drawerService.isMinified"/>
+            </t>
+        </DropdownItem>
+    </t>
+
+    <t t-name="pyper_drawer.DrawerMenuItem.Content" owl="1">
+        <div
+            class="o_drawer--menu-item-content"
+            t-on-mouseenter="onItemMouseEnterFct ? (ev) => onItemMouseEnterFct(ev) : () => {}"
+            t-on-mouseleave="onItemMouseLeaveFct ? (ev) => onItemMouseLeaveFct(ev) : () => {}"
+            t-on-click="onItemSelectionFct ? () => onItemSelectionFct() : () => {}"
+            t-att-data-hotkey="withHotkey ? hotkey : undefined"
+        >
+            <div t-if="fontIcon" class="o_drawer--item-icon-empty rounded-3" t-att-style="'color: ' + (fontIconColor || 'inherit') + ';'">
+                <i t-att-class="fontIcon"/>
+            </div>
+
+            <img t-elif="iconData"
+                class="o_drawer--item-icon rounded-3"
+                t-attf-src="data:image/jpeg;base64, {{iconData}}"
+            />
+
+            <div t-else="withIcon" class="o_drawer--item-icon-empty rounded-3">
+                <t t-slot="empty_icon">
+                    <i class="fa fa-cube"/>
+                </t>
+            </div>
+
+            <div t-if="showLabel and label" class="o_drawer--item-label">
+                <t t-esc="label"/>
+            </div>
+        </div>
+    </t>
+
+</templates>

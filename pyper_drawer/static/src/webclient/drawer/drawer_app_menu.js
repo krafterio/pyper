@@ -1,13 +1,8 @@
 /** @odoo-module **/
 
-import {
-    Component,
-    useState,
-    onWillUnmount,
-} from '@odoo/owl';
-import {registry} from '@web/core/registry';
+import {Component, useState} from '@odoo/owl';
+import {useService} from '@web/core/utils/hooks';
 
-const drawerRegistry = registry.category('drawer');
 
 export class DrawerAppMenu extends Component {
     static description = 'App menu of Drawer';
@@ -19,6 +14,10 @@ export class DrawerAppMenu extends Component {
             type: Boolean,
             optional: true,
         },
+        slots: {
+            type: Object,
+            optional: true,
+        },
     }
 
     static defaultProps = {
@@ -26,30 +25,14 @@ export class DrawerAppMenu extends Component {
     }
 
     setup() {
-        this.state = useState({
-            drawerLocked: drawerRegistry.get('locked', false),
-            drawerMini: drawerRegistry.get('mini', false),
-            drawerIsSmallScreen: drawerRegistry.get('isSmallScreen', false),
-        });
-
-        const drawerListener = () => {
-            this.state.drawerLocked = drawerRegistry.get('locked', false);
-            this.state.drawerMini = drawerRegistry.get('mini', false);
-            this.state.drawerIsSmallScreen = drawerRegistry.get('isSmallScreen', false);
-        };
-
-        drawerRegistry.addEventListener('UPDATE', drawerListener);
-
-        onWillUnmount(() => {
-            drawerRegistry.removeEventListener('UPDATE', drawerListener);
-        });
+        this.drawerService = useState(useService('drawer'));
     }
 
     get displayMinified() {
-        return this.state.drawerMini || this.state.drawerIsSmallScreen || this.props.minified;
+        return this.drawerService.isMinified || this.drawerService.disabledOnSmallScreen || this.props.minified;
     }
 
     get displayLocked() {
-        return !this.displayMinified && this.state.drawerLocked;
+        return !this.displayMinified && this.drawerService.isLocked;
     }
 }

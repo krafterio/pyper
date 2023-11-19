@@ -4,29 +4,28 @@ import {
     Component,
     onMounted,
     onWillDestroy,
+    onWillUpdateProps,
     useRef,
-    useState,
     useEffect,
     useExternalListener,
+    useState,
 } from '@odoo/owl';
-import {registry} from '@web/core/registry';
 import {useBus, useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
 import {DropdownItem} from '@web/core/dropdown/dropdown_item';
-import {listenSizeChange, SIZES, utils as uiUtils} from '@web/core/ui/ui_service';
 import {_t} from '@web/core/l10n/translation';
 import {getTransform} from '@pyper/core/ui/css';
 import {usePopover} from '@web/core/popover/popover_hook';
 import {DrawerPopoverItem} from './drawer_popover_item';
+import {DrawerMenuItem} from './drawer_menu_item';
 
-
-const drawerRegistry = registry.category('drawer');
 
 export class Drawer extends Component {
     static template = 'pyper_drawer.Drawer';
 
     static components = {
         DropdownItem: DropdownItem,
+        DrawerMenuItem: DrawerMenuItem,
     };
 
     static props = {
@@ -86,6 +85,10 @@ export class Drawer extends Component {
             type: Boolean,
             optional: true,
         },
+        slots: {
+            type: Object,
+            optional: true,
+        },
     };
 
     static defaultProps = {
@@ -106,7 +109,7 @@ export class Drawer extends Component {
     };
 
     setup() {
-        this.drawerService = useService('drawer');
+        this.drawerService = useState(useService('drawer'));
         this.menuService = useService('menu');
         this.root = useRef('root');
         this.appSubMenus = useRef('appSubMenus');
@@ -123,13 +126,8 @@ export class Drawer extends Component {
             fixedPosition: true,
             popoverClass: 'o_drawer--popover-item',
         });
-        this.state = useState({
-            opened: false,
-            locked: this.drawerService.restoreLocked(),
-            mini: this.drawerService.restoreMinified(this.props.initMinified),
-            dragging: false,
-            mounted: false,
-        });
+
+        this.drawerService.restoreMinified(this.props.initMinified);
 
         const debouncedAdapt = debounce(this.adapt.bind(this), 250);
         onWillDestroy(() => {
@@ -145,10 +143,12 @@ export class Drawer extends Component {
 
         useBus(this.env.bus, 'MENUS:APP-CHANGED', renderAndAdapt);
         useBus(this.env.bus, 'DRAWER:TOGGLE', this.toggle);
+        useBus(this.env.bus, 'DRAWER:SELECT-MENU', (evt) => {
+            this.selectMenu(evt.detail);
+        });
 
         onMounted(() => {
-            this.state.mounted = true;
-            this._refreshDrawerRegistry();
+            this.drawerService.mounted = true;
         });
 
         useEffect(
@@ -158,18 +158,20 @@ export class Drawer extends Component {
             () => [adaptCounter]
         );
 
-        listenSizeChange(() => {
-            this._refreshDrawerRegistry();
-        });
+        // Init and refresh values of drawer service
+        this.onWillUpdateProps(this.props);
+        onWillUpdateProps((nextProps) => this.onWillUpdateProps(nextProps));
     }
 
     get classes() {
         return {
             'o_drawer': true,
-            'o_drawer--ready': this.state.mounted,
+            'o_drawer--ready': this.drawerService.mounted,
             'o_drawer--opened': this.isOpened,
             'o_drawer--locked': this.isLocked,
             'o_drawer--mini': this.isMinified,
+            'o_drawer--always-mini': this.drawerService.alwaysMinified,
+            'o_drawer--popover-items': this.drawerService.isPopoverMinified,
             'o_drawer--fixed-top': this.isFixedTop,
             'o_drawer--hoverable': this.isHoverable,
             'o_drawer--dragging': this.isDragging,
@@ -177,43 +179,43 @@ export class Drawer extends Component {
     }
 
     get isSmallScreen() {
-        return uiUtils.getSize() <= SIZES.LG;
+        return this.drawerService.isSmallScreen;
     }
 
     get isLocked() {
-        return this.state.locked && !this.isSmallScreen;
+        return this.drawerService.isLocked;
     }
 
     get isMinifiable() {
-        return this.props.minifiable || this.props.alwaysMini;
+        return this.drawerService.isMinifiable;
     }
 
     get isMinified() {
-        return (this.state.mini || this.props.alwaysMini) && !this.isSmallScreen;
+        return this.drawerService.isMinified;
     }
 
     get isHoverable() {
-        return this.isSmallScreen || !this.state.locked;
+        return this.drawerService.isHoverable;
     }
 
     get isDraggable() {
-        return this.isHoverable;
+        return this.drawerService.isDraggable;
     }
 
     get isDragging() {
-        return this.state.dragging;
+        return this.drawerService.dragging;
     }
 
     get isOpened() {
-        return this.state.opened;
+        return this.drawerService.isOpened;
     }
 
     get isClosed() {
-        return !this.state.opened;
+        return this.drawerService.isClosed;
     }
 
     get isFixedTop() {
-        return this.props.fixedTop && !this.isSmallScreen;
+        return this.drawerService.isFixedTop;
     }
 
     get displayCategoryName() {
@@ -226,10 +228,6 @@ export class Drawer extends Component {
 
     get displayFooter() {
         return this.isSmallScreen || this.props.alwaysFooter;
-    }
-
-    get displayPopoverMinified() {
-        return this.isMinifiable && this.isMinified && this.props.popoverMinified;
     }
 
     get currentApp() {
@@ -268,33 +266,30 @@ export class Drawer extends Component {
     open() {
         if (this.isSmallScreen) {
             if (!this.isOpened && !this.props.disabledOnSmallScreen) {
-                this.state.opened = true;
+                this.drawerService.opened = true;
                 this.root.el.style.transform = '';
             }
         } else {
             if (this.isLocked && this.isMinifiable && this.isMinified) {
-                this.state.mini = false;
+                this.drawerService.minified = false;
             } else if (this.isLocked && this.isMinifiable && !this.isMinified) {
                 // Nothing do
             } else if (this.isLocked && !this.isMinifiable && this.isMinified) {
-                this.state.mini = false;
+                this.drawerService.minified = false;
             } else if (this.isLocked && !this.isMinifiable && !this.isMinified) {
                 // Nothing do
             } else if (!this.isLocked && this.isMinifiable && this.isMinified) {
-                this.state.locked = true;
+                this.drawerService.locked = true;
             } else if (!this.isLocked && this.isMinifiable && !this.isMinified) {
-                this.state.locked = true;
+                this.drawerService.locked = true;
             } else if (!this.isLocked && !this.isMinifiable && this.isMinified) {
-                this.state.locked = true;
-                this.state.mini = false;
+                this.drawerService.locked = true;
+                this.drawerService.minified = false;
             } else if (!this.isLocked && !this.isMinifiable && !this.isMinified) {
-                this.state.locked = true;
+                this.drawerService.locked = true;
             }
 
             this.root.el.style.transform = '';
-            this._refreshDrawerRegistry();
-            this.drawerService.saveLocked(this.state.locked);
-            this.drawerService.saveMinified(this.state.mini);
 
             debounce(() => window.dispatchEvent(new CustomEvent('resize')), 1)();
         }
@@ -303,32 +298,29 @@ export class Drawer extends Component {
     close() {
         if (this.isSmallScreen) {
             if (this.isOpened) {
-                this.state.opened = false;
+                this.drawerService.opened = false;
                 this.root.el.style.transform = '';
             }
         } else {
             if (this.isLocked && this.isMinifiable && this.isMinified) {
                 // Nothing do
             } else if (this.isLocked && this.isMinifiable && !this.isMinified) {
-                this.state.mini = true;
+                this.drawerService.minified = true;
             } else if (this.isLocked && !this.isMinifiable && this.isMinified) {
-                this.state.mini = false;
+                this.drawerService.minified = false;
             } else if (this.isLocked && !this.isMinifiable && !this.isMinified) {
-                this.state.locked = false;
+                this.drawerService.locked = false;
             } else if (!this.isLocked && this.isMinifiable && this.isMinified) {
-                this.state.mini = false;
+                this.drawerService.minified = false;
             } else if (!this.isLocked && this.isMinifiable && !this.isMinified) {
                 // Nothing do
             } else if (!this.isLocked && !this.isMinifiable && this.isMinified) {
-                this.state.mini = false;
+                this.drawerService.minified = false;
             } else if (!this.isLocked && !this.isMinifiable && !this.isMinified) {
                 // Nothing do
             }
 
             this.root.el.style.transform = '';
-            this._refreshDrawerRegistry();
-            this.drawerService.saveLocked(this.state.locked);
-            this.drawerService.saveMinified(this.state.mini);
 
             debounce(() => window.dispatchEvent(new CustomEvent('resize')), 1)();
         }
@@ -381,48 +373,22 @@ export class Drawer extends Component {
         return this.render();
     }
 
-    onNavBarDropdownItemSelection(menu) {
+    selectMenu(menu) {
         if (menu) {
-            this.menuService.selectMenu(menu);
+            this.menuService.selectMenu(menu).then();
 
-            if (this.props.closeOnClick) {
+            if (this.props.closeOnClick && this.drawerService.isSmallScreen) {
                 this.close();
             }
         }
     }
 
-    getMenuItemHref(payload) {
-        const parts = [`menu_id=${payload.id}`];
-
-        if (payload.actionID) {
-            parts.push(`action=${payload.actionID}`);
-        }
-
-        return '#' + parts.join('&');
-    }
-
-    onItemMouseEnter(evt, item) {
-        if (this.props.popoverMinified && this.isMinifiable && this.isMinified) {
-            this.popover.open(evt.toElement, {
-                menu: item,
-                showRootApp: this.props.showRootApp,
-                onItemMouseLeave: this.onItemMouseLeave.bind(this),
-                onNavBarDropdownItemSelection: this.onNavBarDropdownItemSelection.bind(this),
-                getMenuItemHref: this.getMenuItemHref.bind(this),
-            });
-        }
-    }
-
-    onItemMouseLeave() {
-        this.popover.close();
-    }
-
-    _refreshDrawerRegistry() {
-        drawerRegistry.add('isSmallScreen', this.isSmallScreen, {force: true});
-        drawerRegistry.add('locked', this.isLocked, {force: true});
-        drawerRegistry.add('mini', this.isMinified, {force: true});
-        drawerRegistry.add('popoverMinified', this.props.popoverMinified, {force: true});
-        drawerRegistry.add('disabledOnSmallScreen', this.props.disabledOnSmallScreen, {force: true});
+    onWillUpdateProps(nextProps) {
+        this.drawerService.fixedTop = nextProps.fixedTop;
+        this.drawerService.alwaysMinified = nextProps.alwaysMini;
+        this.drawerService.minifiable = nextProps.minifiable;
+        this.drawerService.popoverMinified = nextProps.popoverMinified;
+        this.drawerService.disabledOnSmallScreen = nextProps.disabledOnSmallScreen;
     }
 
     _onTouchStartDrag(ev) {
@@ -447,7 +413,7 @@ export class Drawer extends Component {
                 }
             );
 
-        this.state.dragging = true;
+        this.drawerService.dragging = true;
         this.dragStartX = ev.touches[0].clientX;
         this.dragStartPosition = getTransform(this.root.el, true).e;
         this.dragMaxWidth = this.root.el.getBoundingClientRect().width;
@@ -493,7 +459,7 @@ export class Drawer extends Component {
         const dragMaxWidth = this.dragMaxWidth;
         const dragActionable = !this.dragScrolling;
 
-        this.state.dragging = false;
+        this.drawerService.dragging = false;
         this.dragScrollables = undefined;
         this.dragScrolling = undefined;
         this.dragStartX = undefined;

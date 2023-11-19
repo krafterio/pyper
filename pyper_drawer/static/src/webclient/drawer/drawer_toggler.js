@@ -1,13 +1,8 @@
 /** @odoo-module **/
 
-import {
-    Component,
-    useState,
-    onWillUnmount,
-} from '@odoo/owl';
-import {registry} from '@web/core/registry';
+import {Component, useState} from '@odoo/owl';
+import {useService} from '@web/core/utils/hooks';
 
-const drawerRegistry = registry.category('drawer');
 
 export class DrawerToggler extends Component {
     static template = 'pyper_drawer.DrawerToggler';
@@ -31,23 +26,7 @@ export class DrawerToggler extends Component {
     }
 
     setup() {
-        this.state = useState({
-            drawerLocked: drawerRegistry.get('locked', false),
-            drawerMini: drawerRegistry.get('mini', false),
-            disabledOnSmallScreen: drawerRegistry.get('disabledOnSmallScreen', false),
-        });
-
-        const drawerListener = () => {
-            this.state.drawerLocked = drawerRegistry.get('locked', false);
-            this.state.drawerMini = drawerRegistry.get('mini', false);
-            this.state.disabledOnSmallScreen = drawerRegistry.get('disabledOnSmallScreen', false);
-        };
-
-        drawerRegistry.addEventListener('UPDATE', drawerListener);
-
-        onWillUnmount(() => {
-            drawerRegistry.removeEventListener('UPDATE', drawerListener);
-        });
+        this.drawerService = useState(useService('drawer'));
     }
 
     get classes() {
@@ -56,24 +35,25 @@ export class DrawerToggler extends Component {
             'dropdown': true,
             'o_drawer_toggler': true,
             'o-dropdown--no-caret': true,
-            'o_drawer--locked': this.state.drawerLocked,
-            'o_drawer--mini': this.state.drawerMini,
+            'o_drawer--locked': this.drawerService.isLocked,
+            'o_drawer--mini': this.drawerService.isMinified,
+            'o_drawer--fixed-top': this.drawerService.isFixedTop,
         };
     }
 
     get displayMenuIcon() {
-        return !this.props.useCaretIcon || (this.props.useCaretIcon && !this.state.drawerMini);
+        return !this.props.useCaretIcon || (this.props.useCaretIcon && !this.drawerService.isMinified);
     }
 
     get displayCaretIcon() {
-        return this.props.useCaretIcon && this.state.drawerMini;
+        return this.props.useCaretIcon && this.drawerService.isMinified;
     }
 
     get display() {
-        return !(this.props.autoHide && this.state.drawerLocked) && !this.state.disabledOnSmallScreen;
+        return !(this.props.autoHide && this.drawerService.isLocked) && !this.drawerService.disabledOnSmallScreen;
     }
 
     onClick() {
-        this.env.bus.trigger('DRAWER:TOGGLE');
+        this.drawerService.toggle();
     }
 }

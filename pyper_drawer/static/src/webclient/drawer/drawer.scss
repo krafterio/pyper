@@ -260,7 +260,9 @@
 
     .o_drawer_toggler {
         &.o_drawer--locked {
-            width: $o-drawer-toggler-locked-width;
+            &.o_drawer--fixed-top {
+                width: $o-drawer-toggler-locked-width;
+            }
 
             + .o_menu_brand {
                 padding-left: $o-horizontal-padding;
