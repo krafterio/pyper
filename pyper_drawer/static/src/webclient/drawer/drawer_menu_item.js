@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-import {Component, useState} from '@odoo/owl';
+import {Component, onWillUpdateProps, useRef, useState} from '@odoo/owl';
 import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {usePopover} from '@web/core/popover/popover_hook';
 import {useService} from '@web/core/utils/hooks';
@@ -66,6 +66,7 @@ export class DrawerMenuItem extends Component {
 
     setup() {
         this.drawerService = useState(useService('drawer'));
+        this.content = useRef('content');
 
         if (!this.drawerService.popover) {
             this.drawerService.popover = usePopover(DrawerPopoverItem, {
@@ -76,6 +77,8 @@ export class DrawerMenuItem extends Component {
                 popoverClass: 'o_drawer--popover-item',
             });
         }
+
+        onWillUpdateProps((nextProps) => this.onWillUpdateProps(nextProps));
     }
 
     get isPopoverEnabled() {
@@ -104,19 +107,30 @@ export class DrawerMenuItem extends Component {
         this.drawerService.selectMenu(this.props.menuId);
     }
 
-    onItemMouseEnter(evt) {
+    onItemMouseEnter() {
+        this.openPopover();
+    }
+
+    onItemMouseLeave() {
+        this.drawerService.popover.close();
+    }
+
+    onWillUpdateProps(nextProps) {
+        if (nextProps.active && this.drawerService.popover.isOpen) {
+            this.openPopover(nextProps);
+        }
+    }
+
+    openPopover(props) {
         if (this.isPopoverEnabled) {
-            this.drawerService.popover.open(evt.toElement, {
+            this.drawerService.popover.open(this.content.el, {
                 ...this.props,
+                ...(props || {}),
                 onItemMouseEnter: this.onItemMouseEnter.bind(this),
                 onItemMouseLeave: this.onItemMouseLeave.bind(this),
                 onItemSelection: this.onItemSelection.bind(this),
                 menuItemHref: this.menuItemHref,
             });
         }
-    }
-
-    onItemMouseLeave() {
-        this.drawerService.popover.close();
     }
 }

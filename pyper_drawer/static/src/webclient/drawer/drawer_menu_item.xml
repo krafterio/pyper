@@ -50,10 +50,11 @@
 
     <t t-name="pyper_drawer.DrawerMenuItem.Content" owl="1">
         <div
-            class="o_drawer--menu-item-content"
+            t-ref="content"
+            t-att-class="{'o_drawer--menu-item-content': true}"
             t-on-mouseenter="onItemMouseEnterFct ? (ev) => onItemMouseEnterFct(ev) : () => {}"
             t-on-mouseleave="onItemMouseLeaveFct ? (ev) => onItemMouseLeaveFct(ev) : () => {}"
-            t-on-click="onItemSelectionFct ? () => onItemSelectionFct() : () => {}"
+            t-on-click="onItemSelectionFct ? (ev) => onItemSelectionFct(ev) : () => {}"
             t-att-data-hotkey="withHotkey ? hotkey : undefined"
         >
             <div t-if="fontIcon" class="o_drawer--item-icon-empty" t-att-style="'color: ' + (fontIconColor || 'inherit') + ';'">
