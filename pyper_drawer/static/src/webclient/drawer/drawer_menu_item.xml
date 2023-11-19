@@ -21,6 +21,7 @@
                 <t t-set="label" t-value="props.label"/>
                 <t t-set="showLabel" t-value="false"/>
                 <t t-set="onItemMouseEnterFct" t-value="this.onItemMouseEnter.bind(this)"/>
+                <t t-set="onItemSelectionFct" t-value="this.onItemSelection.bind(this)"/>
             </t>
         </div>
     </t>
