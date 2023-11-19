@@ -85,6 +85,7 @@
     max-width: $o-drawer-item-icon-width;
     max-height: $o-drawer-item-icon-width;
     font-size: $o-drawer-item-icon-width;
+    border-radius: $o-drawer-item-icon-border-radius;
 }
 
 .o_drawer--item-icon-empty {
@@ -94,6 +95,7 @@
     width: $o-drawer-item-icon-width;
     height: $o-drawer-item-icon-width;
     font-size: $o-drawer-item-icon-font-width;
+    border-radius: $o-drawer-item-icon-border-radius;
 }
 
 .o_drawer--item-label {

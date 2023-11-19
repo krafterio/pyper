@@ -56,16 +56,16 @@
             t-on-click="onItemSelectionFct ? () => onItemSelectionFct() : () => {}"
             t-att-data-hotkey="withHotkey ? hotkey : undefined"
         >
-            <div t-if="fontIcon" class="o_drawer--item-icon-empty rounded-3" t-att-style="'color: ' + (fontIconColor || 'inherit') + ';'">
+            <div t-if="fontIcon" class="o_drawer--item-icon-empty" t-att-style="'color: ' + (fontIconColor || 'inherit') + ';'">
                 <i t-att-class="fontIcon"/>
             </div>
 
             <img t-elif="iconData"
-                class="o_drawer--item-icon rounded-3"
+                class="o_drawer--item-icon"
                 t-attf-src="data:image/jpeg;base64, {{iconData}}"
             />
 
-            <div t-else="withIcon" class="o_drawer--item-icon-empty rounded-3">
+            <div t-else="withIcon" class="o_drawer--item-icon-empty">
                 <t t-slot="empty_icon">
                     <i class="fa fa-cube"/>
                 </t>
