@@ -15,6 +15,11 @@ $o-drawer-item-label-padding-h: $o-drawer-item-icon-width !default;
 $o-drawer-item-padding-v: 6px !default;
 $o-drawer-item-padding-h: ($o-drawer-mini-width - $o-drawer-item-icon-width) / 2 !default;
 
+$o-drawer-item-active-color: $o-white !default;
+$o-drawer-item-active-bg: $o-brand-secondary !default;
+$o-drawer-item-active-hover-color: $o-white !default;
+$o-drawer-item-active-hover-bg: $o-brand-secondary !default;
+
 $o-drawer-popover-item-border-radius: $o-border-radius !default;
 $o-drawer-popover-item-box-shadow: 0px 4px 16px rgba($o-black, 0.12) !default;
 $o-drawer-popover-item-bg: $o-white !default;

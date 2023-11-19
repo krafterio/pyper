@@ -68,6 +68,7 @@
                         fontIcon="menu.font_icon"
                         fontIconColor="menu.font_icon_color"
                         label="menu.name"
+                        active="menuIsSelected(menu)"
                     />
                 </t>
             </t>

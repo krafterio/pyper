@@ -8,7 +8,7 @@
     </t>
 
     <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.PopoverItem" owl="1">
-        <div class="dropdown-item o_drawer--menu-item">
+        <div t-att-class="{'dropdown-item': true, 'o_drawer--menu-item': true, 'o_drawer--menu-item-active': props.active}">
             <t t-call="pyper_drawer.DrawerMenuItem.Content">
                 <t t-set="menuId" t-value="props.menuId"/>
                 <t t-set="menuAction" t-value="props.menuAction"/>
@@ -27,7 +27,7 @@
 
     <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.DropdownItem" owl="1">
         <DropdownItem
-            class="{'o_drawer--menu-item': true}"
+            class="{'o_drawer--menu-item': true, 'o_drawer--menu-item-active': props.active}"
             href="menuItemHref"
             hotkey="props.hotkey"
             dataset="{menuXmlid: props.menuXmlid, menu: props.menuId, tooltip: drawerService.isMinified and !drawerService.isPopoverMinified ? props.label : undefined, tooltipPosition: 'right'}"

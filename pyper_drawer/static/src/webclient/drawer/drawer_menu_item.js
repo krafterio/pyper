@@ -53,10 +53,15 @@ export class DrawerMenuItem extends Component {
             type: String,
             optional: true,
         },
+        active: {
+            type: Boolean,
+            optional: true,
+        },
     }
 
     static defaultProps = {
         withIcon: false,
+        active: false,
     }
 
     setup() {

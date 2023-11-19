@@ -3,7 +3,13 @@
 
     <t t-name="pyper_drawer.DrawerPopoverItem" owl="1">
         <a
-            class="dropdown-item o_drawer--menu-item d-flex align-items-center"
+            t-att-class="{
+                'dropdown-item': true,
+                'o_drawer--menu-item': true,
+                'o_drawer--menu-item-active': props.active,
+                'd-flex': true,
+                'align-items-center': true,
+            }"
             t-att-href="props.menuItemHref"
             t-on-click="() => props.onItemSelection()"
         >

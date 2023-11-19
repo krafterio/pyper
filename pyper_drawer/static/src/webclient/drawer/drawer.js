@@ -383,6 +383,18 @@ export class Drawer extends Component {
         }
     }
 
+    menuIsSelected(menu) {
+        if (this.currentApp && menu) {
+            menu = typeof menu === 'number' ? this.menuService.getMenu(menu) : menu;
+
+            if (menu.actionID) {
+                return menu.actionID === this.currentApp.actionID;
+            }
+        }
+
+        return false;
+    }
+
     onWillUpdateProps(nextProps) {
         this.drawerService.fixedTop = nextProps.fixedTop;
         this.drawerService.alwaysMinified = nextProps.alwaysMini;

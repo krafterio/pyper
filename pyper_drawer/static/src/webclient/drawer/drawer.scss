@@ -1,4 +1,3 @@
-
 // = Drawer
 // ============================================================================
 .o_drawer {
@@ -66,6 +65,7 @@
     }
 }
 
+// Drawer Menu Item
 .o_drawer--menu-item {
     display: flex;
     align-items: center;
@@ -101,6 +101,7 @@
     padding-right: $o-drawer-item-label-padding-h;
 }
 
+// Drawer Popover Item
 .o_drawer--popover-item {
     border: 0;
     border-radius: $o-drawer-popover-item-border-radius;
@@ -137,11 +138,13 @@
     }
 }
 
+// Drawer Header and Footer
 .o_drawer--header,
 .o_drawer--footer {
     padding: $o-horizontal-padding/2 0;
 }
 
+// Drawer Swiper
 .o_drawer--swiper {
     position : fixed;
     z-index: $o-drawer-swiper-zindex;
@@ -154,6 +157,7 @@
     user-select: none;
 }
 
+// Drawer Obfuscator
 .o_drawer--obfuscator {
     position: fixed;
     display: block;
@@ -183,6 +187,35 @@
     &.o_drawer--hoverable.o_drawer--opened,
     &.o_drawer--dragging {
         @include box-shadow($o-drawer-shadow);
+    }
+}
+
+// Active Drawer menu item
+.o_drawer--menu-item,
+.o_drawer--popover-item {
+    &.o_drawer--menu-item-active {
+        .o_drawer--item-icon,
+            o_drawer--item-icon-empty {
+                color: $o-drawer-item-active-color;
+            }
+
+        .o_drawer--menu-item-content {
+            color: $o-drawer-item-active-color;
+            background-color: $o-drawer-item-active-bg;
+        }
+
+        &:hover,
+        &:focus {
+            .o_drawer--item-icon,
+            .o_drawer--item-icon-empty {
+                color: $o-drawer-item-active-hover-color;
+            }
+
+            .o_drawer--menu-item-content {
+                color: $o-drawer-item-active-hover-color;
+                background-color: $o-drawer-item-active-hover-bg;
+            }
+        }
     }
 }
 
