@@ -66,6 +66,7 @@ export class DrawerMenuItem extends Component {
 
     setup() {
         this.drawerService = useState(useService('drawer'));
+        this.actionService = useService('action');
         this.content = useRef('content');
 
         if (!this.drawerService.popover) {
@@ -104,7 +105,13 @@ export class DrawerMenuItem extends Component {
     }
 
     onItemSelection() {
-        this.drawerService.selectMenu(this.props.menuId);
+        if (this.props.menuId) {
+            this.drawerService.selectMenu(this.props.menuId);
+        } else if (this.props.menuAction) {
+            this.actionService.doAction(this.props.menuAction, {
+                clearBreadcrumbs: true,
+            }).then();
+        }
     }
 
     onItemMouseEnter() {
