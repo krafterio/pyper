@@ -16,6 +16,9 @@ $o-drawer-item-label-padding-h: $o-drawer-item-icon-width !default;
 $o-drawer-item-padding-v: 6px !default;
 $o-drawer-item-padding-h: ($o-drawer-mini-width - $o-drawer-item-icon-width) / 2 !default;
 
+$o-drawer-item-hover-color: $o-gray-900 !default;
+$o-drawer-item-hover-bg: rgba($o-black, 0.08) !default;
+
 $o-drawer-item-active-color: $o-white !default;
 $o-drawer-item-active-bg: $o-brand-secondary !default;
 $o-drawer-item-active-hover-color: $o-white !default;

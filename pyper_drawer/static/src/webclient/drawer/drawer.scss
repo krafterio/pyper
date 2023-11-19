@@ -72,6 +72,17 @@
 
     &.dropdown-item {
         padding: 0;
+
+        &:hover,
+        &:focus {
+            background-color: inherit;
+            outline: none;
+
+            .o_drawer--menu-item-content {
+                color: $o-drawer-item-hover-color;
+                background-color: $o-drawer-item-hover-bg;
+            }
+        }
     }
 }
 
@@ -127,6 +138,10 @@
         &:focus {
             background-color: inherit;
             outline: none;
+
+            .o_drawer--menu-item-content {
+                background-color: $o-drawer-popover-item-bg;
+            }
         }
     }
 
