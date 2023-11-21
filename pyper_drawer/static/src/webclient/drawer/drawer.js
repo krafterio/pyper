@@ -15,8 +15,6 @@ import {debounce} from '@web/core/utils/timing';
 import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {_t} from '@web/core/l10n/translation';
 import {getTransform} from '@pyper/core/ui/css';
-import {usePopover} from '@web/core/popover/popover_hook';
-import {DrawerPopoverItem} from './drawer_popover_item';
 import {DrawerMenuItem} from './drawer_menu_item';
 
 
@@ -124,13 +122,6 @@ export class Drawer extends Component {
         this.dragStartPosition = undefined;
         this.dragMaxWidth = undefined;
         this.dragDistance = 0;
-        this.popover = usePopover(DrawerPopoverItem, {
-            position: 'left-start',
-            animation: false,
-            arrow: false,
-            fixedPosition: true,
-            popoverClass: 'o_drawer--popover-item',
-        });
 
         this.drawerService.restoreMinified(this.props.initMinified);
 
