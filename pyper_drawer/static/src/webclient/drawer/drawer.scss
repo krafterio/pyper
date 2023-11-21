@@ -73,6 +73,11 @@
     &.dropdown-item {
         padding: 0;
 
+        .o_drawer--menu-item-content {
+            color: $o-drawer-item-color;
+            background-color: $o-drawer-item-bg;
+        }
+
         &:hover,
         &:focus {
             background-color: inherit;
@@ -140,6 +145,7 @@
             outline: none;
 
             .o_drawer--menu-item-content {
+                color: $o-drawer-popover-item-color;
                 background-color: $o-drawer-popover-item-bg;
             }
         }
