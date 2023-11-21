@@ -7,5 +7,5 @@ export class DrawerPopoverItem extends Component {
 
     static props = {
         '*': {optional: true},
-    }
+    };
 }

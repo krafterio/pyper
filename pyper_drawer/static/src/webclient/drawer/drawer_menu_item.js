@@ -69,12 +69,13 @@ export class DrawerMenuItem extends Component {
         this.content = useRef('content');
 
         if (!this.drawerService.popover) {
+            const navCls = (this.drawerService.isNav ? ' o_drawer--popover-item-nav' : '');
             this.drawerService.popover = usePopover(DrawerPopoverItem, {
                 position: 'right-middle',
                 animation: false,
                 arrow: false,
                 fixedPosition: false,
-                popoverClass: 'o_drawer--popover-item',
+                popoverClass: 'o_drawer--popover-item' + navCls,
             });
         }
 

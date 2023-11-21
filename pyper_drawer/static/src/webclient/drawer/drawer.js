@@ -37,6 +37,10 @@ export class Drawer extends Component {
             type: Boolean,
             optional: true,
         },
+        nav: {
+            type: Boolean,
+            optional: true,
+        },
         alwaysHeader: {
             type: Boolean,
             optional: true,
@@ -93,6 +97,7 @@ export class Drawer extends Component {
 
     static defaultProps = {
         showRootApp: false,
+        nav: false,
         fixedTop: false,
         alwaysHeader: false,
         alwaysFooter: false,
@@ -172,6 +177,7 @@ export class Drawer extends Component {
             'o_drawer--mini': this.isMinified,
             'o_drawer--always-mini': this.drawerService.alwaysMinified,
             'o_drawer--popover-items': this.drawerService.isPopoverMinified,
+            'o_drawer--nav': this.isNav,
             'o_drawer--fixed-top': this.isFixedTop,
             'o_drawer--hoverable': this.isHoverable,
             'o_drawer--dragging': this.isDragging,
@@ -212,6 +218,10 @@ export class Drawer extends Component {
 
     get isClosed() {
         return this.drawerService.isClosed;
+    }
+
+    get isNav() {
+        return this.drawerService.isNav;
     }
 
     get isFixedTop() {
@@ -396,6 +406,7 @@ export class Drawer extends Component {
     }
 
     onWillUpdateProps(nextProps) {
+        this.drawerService.nav = nextProps.nav;
         this.drawerService.fixedTop = nextProps.fixedTop;
         this.drawerService.alwaysMinified = nextProps.alwaysMini;
         this.drawerService.minifiable = nextProps.minifiable;

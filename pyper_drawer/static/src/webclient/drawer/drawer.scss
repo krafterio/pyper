@@ -286,6 +286,58 @@
     background-color: $o-drawer-obfuscator-bg;
 }
 
+// Drawer Menu Nav Style
+.o_drawer.o_drawer--nav {
+    .o_drawer--menu {
+        padding-bottom: $o-drawer-item-padding-v * 4;
+    }
+
+    &.o_drawer--popover-items {
+        .o_drawer--menu-item-content {
+            width: auto;
+        }
+
+        &.o_drawer--mini {
+            .o_drawer--menu-item:not(.o_drawer--menu-item-active) {
+                &.dropdown-item {
+                    &:hover,
+                    &:focus {
+                        .o_drawer--menu-item-content {
+                            background-color: $o-drawer-item-bg;
+                        }
+                    }
+                }
+            }
+
+            .o_drawer--menu-item.o_drawer--menu-item-active {
+                &.dropdown-item {
+                    &:hover,
+                    &:focus {
+                        .o_drawer--menu-item-content {
+                            background-color: $o-drawer-item-active-bg;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.o_drawer.o_drawer--nav,
+.o_drawer--popover-item-nav {
+    .o_drawer--menu-item {
+        &.dropdown-item {
+            padding: $o-drawer-item-padding-v $o-drawer-item-padding-h;
+        }
+    }
+
+    .o_drawer--menu-item-content {
+        margin: -$o-drawer-item-padding-v (-$o-drawer-item-nav-padding-h);
+        padding: $o-drawer-item-padding-v $o-drawer-item-nav-padding-h;
+        border-radius: $o-drawer-popover-item-border-radius;
+    }
+}
+
 // = Container
 // ============================================================================
 

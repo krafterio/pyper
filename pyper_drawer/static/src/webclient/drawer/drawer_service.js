@@ -15,6 +15,7 @@ export class DrawerState {
 
     setup() {
         this.state = {
+            nav: false,
             fixedTop: false,
             opened: false,
             locked: (cookie.get('drawer_locked') || 'true') === 'true',
@@ -26,6 +27,14 @@ export class DrawerState {
             dragging: false,
             mounted: false,
         };
+    }
+
+    get nav() {
+        return this.state.nav;
+    }
+
+    set nav(nav) {
+        this.state.nav = nav;
     }
 
     get fixedTop() {
@@ -112,6 +121,10 @@ export class DrawerState {
 
     get isSmallScreen() {
         return this.uiService.size <= SIZES.LG;
+    }
+
+    get isNav() {
+        return this.nav;
     }
 
     get isLocked() {
