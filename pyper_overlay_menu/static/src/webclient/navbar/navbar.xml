@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Apps Menu -->
+    <t t-name="pyper_overlay_menu.NavBar.AppsMenu" t-inherit="web.NavBar.AppsMenu" t-inherit-mode="extension">
+        <xpath expr="//Dropdown" position="replace">
+            <OverlayMenuToggler/>
+        </xpath>
+    </t>
+
+</templates>

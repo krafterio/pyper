@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pyper_overlay_menu.WebClient" t-inherit="web.WebClient" t-inherit-mode="extension" owl="1">
+        <xpath expr="//MainComponentsContainer" position="after">
+            <OverlayMenu showRootApp="true"/>
+        </xpath>
+    </t>
+
+</templates>

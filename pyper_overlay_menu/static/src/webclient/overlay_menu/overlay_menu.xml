@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pyper_overlay_menu.OverlayMenu" owl="1">
+        <div
+            t-if="isOpened"
+            t-att-class="classes"
+            t-on-click="close"
+            t-ref="root"
+        >
+            <div class="o_overlay_menu--container">
+                <t t-slot="header"/>
+
+                <!-- Current App Sections -->
+                <t t-if="Object.keys(currentCategoryAppSections).length" t-call="pyper_overlay_menu.OverlayMenu.Menu">
+                    <t t-set="categories" t-value="Object.values(currentCategoryAppSections)"/>
+                </t>
+
+                <t t-slot="footer"/>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="pyper_overlay_menu.OverlayMenu.Menu" owl="1">
+        <div class="o_overlay_menu--menu"
+             t-ref="appSubMenus"
+             role="menu"
+        >
+            <t t-foreach="categories" t-as="category" t-key="category.value">
+                <div class="o_overlay_menu--category-label" t-if="displayCategoryName">
+                    <t t-esc="category.display_name"/>
+                </div>
+
+                <div class="o_overlay_menu--category-items">
+                    <t t-foreach="category.menus" t-as="menu" t-key="menu.id">
+                    <t t-call="pyper_overlay_menu.OverlayMenu.Menu.Item">
+                        <t t-set="menu" t-value="menu"/>
+                    </t>
+                </t>
+                </div>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="pyper_overlay_menu.OverlayMenu.Menu.Item">
+        <a
+            t-att-class="{'o_overlay_menu--item': true}"
+            t-att-data-menu-xmlid="menu.xmlid"
+            t-att-href="('#menu_id='+menu.id+'&amp;action_id='+menu.actionID)"
+            t-on-click.prevent="() => this.onItemSelection(menu)"
+        >
+            <div t-if="menu.font_icon" class="o_overlay_menu--item-icon-empty" t-att-style="'color: ' + (menu.font_icon_color || 'inherit') + ';'">
+                <i t-att-class="menu.font_icon"/>
+            </div>
+
+            <img t-elif="menu.webIconData"
+                class="o_overlay_menu--item-icon"
+                t-attf-src="data:image/jpeg;base64, {{menu.webIconData}}"
+            />
+
+            <div t-else="withIcon" class="o_overlay_menu--item-icon-empty">
+                <t t-slot="empty_icon">
+                    <i class="fa fa-cube"/>
+                </t>
+            </div>
+
+            <div  class="o_overlay_menu--item-label">
+                <t t-esc="menu.name"/>
+            </div>
+        </a>
+    </t>
+
+</templates>

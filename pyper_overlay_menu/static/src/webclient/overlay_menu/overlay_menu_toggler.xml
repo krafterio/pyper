@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pyper_overlay_menu.OverlayMenuToggler" owl="1">
+        <div t-att-class="classes">
+            <button class="dropdown-toggle"
+                    title="Toggle Overlay Menu"
+                    data-hotkey="a"
+                    tabindex="0"
+                    aria-expanded="false"
+                    t-on-click="onClick"
+            >
+                <t t-slot="icon_menu">
+                    <i class="oi oi-apps"/>
+                </t>
+            </button>
+        </div>
+    </t>
+
+</templates>

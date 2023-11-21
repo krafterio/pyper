@@ -1,0 +1,28 @@
+// Overlay Menu
+// ============================================================================
+.o_overlay_menu {
+    position: fixed !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    z-index: $o-overlay-menu-zindex;
+    background-color: $o-overlay-menu-bg;
+}
+
+.o_overlay_menu--category-items {
+    display: flex;
+    flex-direction: row;
+}
+
+// Overlay Menu Toggler
+// ============================================================================
+.o_overlay_menu_toggler {
+    i {
+        font-size: $o-overlay-menu-toggler-font-size;
+    }
+}
