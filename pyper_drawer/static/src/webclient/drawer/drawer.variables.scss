@@ -18,14 +18,18 @@ $o-drawer-item-padding-h: ($o-drawer-mini-width - $o-drawer-item-icon-width) / 2
 
 $o-drawer-item-color: inherit !default;
 $o-drawer-item-bg: inherit !default;
+$o-drawer-item-icon-color: inherit !default;
 
 $o-drawer-item-hover-color: $o-gray-900 !default;
 $o-drawer-item-hover-bg: rgba($o-black, 0.08) !default;
+$o-drawer-item-icon-hover-color: inherit !default;
 
 $o-drawer-item-active-color: $o-white !default;
 $o-drawer-item-active-bg: $o-black !default;
+$o-drawer-item-icon-active-color: $o-white !default;
 $o-drawer-item-active-hover-color: $o-white !default;
 $o-drawer-item-active-hover-bg: $o-black !default;
+$o-drawer-item-icon-active-hover-color: $o-white !default;
 
 $o-drawer-popover-item-border-radius: $o-border-radius !default;
 $o-drawer-popover-item-box-shadow: 0px 4px 16px rgba($o-black, 0.12) !default;

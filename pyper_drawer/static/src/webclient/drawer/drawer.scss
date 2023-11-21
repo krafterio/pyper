@@ -65,32 +65,6 @@
     }
 }
 
-// Drawer Menu Item
-.o_drawer--menu-item {
-    display: flex;
-    align-items: center;
-
-    &.dropdown-item {
-        padding: 0;
-
-        .o_drawer--menu-item-content {
-            color: $o-drawer-item-color;
-            background-color: $o-drawer-item-bg;
-        }
-
-        &:hover,
-        &:focus {
-            background-color: inherit;
-            outline: none;
-
-            .o_drawer--menu-item-content {
-                color: $o-drawer-item-hover-color;
-                background-color: $o-drawer-item-hover-bg;
-            }
-        }
-    }
-}
-
 .o_drawer--menu-item-content {
     display: flex;
     align-items: center;
@@ -113,11 +87,42 @@
     height: $o-drawer-item-icon-width;
     font-size: $o-drawer-item-icon-font-width;
     border-radius: $o-drawer-item-icon-border-radius;
+    color: $o-drawer-item-icon-color;
 }
 
 .o_drawer--item-label {
     padding-left: $o-drawer-item-label-padding-h;
     padding-right: $o-drawer-item-label-padding-h;
+}
+
+// Drawer Menu Item
+.o_drawer--menu-item {
+    display: flex;
+    align-items: center;
+
+    &.dropdown-item {
+        padding: 0;
+
+        .o_drawer--menu-item-content {
+            color: $o-drawer-item-color;
+            background-color: $o-drawer-item-bg;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: inherit;
+            outline: none;
+
+            .o_drawer--item-icon-empty {
+                color: $o-drawer-item-icon-hover-color !important;
+            }
+
+            .o_drawer--menu-item-content {
+                color: $o-drawer-item-hover-color;
+                background-color: $o-drawer-item-hover-bg;
+            }
+        }
+    }
 }
 
 // Drawer Popover Item
@@ -154,6 +159,10 @@
         &:focus {
             background-color: inherit;
             outline: none;
+
+            .o_drawer--item-icon-empty {
+                color: $o-drawer-item-icon-hover-color !important;
+            }
 
             .o_drawer--menu-item-content {
                 color: $o-drawer-popover-item-hover-color;
@@ -220,7 +229,7 @@
     &.o_drawer--menu-item-active {
         .o_drawer--item-icon,
             o_drawer--item-icon-empty {
-                color: $o-drawer-item-active-color;
+                color: $o-drawer-item-icon-active-color !important;
             }
 
         .o_drawer--menu-item-content {
@@ -232,7 +241,7 @@
         &:focus {
             .o_drawer--item-icon,
             .o_drawer--item-icon-empty {
-                color: $o-drawer-item-active-hover-color;
+                color: $o-drawer-item-icon-active-hover-color !important;
             }
 
             .o_drawer--menu-item-content {
