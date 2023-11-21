@@ -38,7 +38,6 @@ export class DrawerMenuItem extends Component {
             optional: true,
         },
         iconData: {
-            type: String,
             optional: true,
         },
         fontIcon: {
