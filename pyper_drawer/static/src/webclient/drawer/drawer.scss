@@ -69,7 +69,7 @@
     display: flex;
     align-items: center;
     padding: $o-drawer-item-padding-v $o-drawer-item-padding-h;
-    width: 100%;
+    width: $o-drawer-mini-width - $o-drawer-border-width;
 }
 
 .o_drawer--item-icon {
@@ -133,11 +133,13 @@
     background-color: inherit;
 
     &.o-popover-left {
-        margin-right: -$o-drawer-mini-width;
+        margin-right: 0;
+        right: 0 !important;
     }
 
     &.o-popover-right {
-        margin-left: -$o-drawer-mini-width;
+        margin-left: 0;
+        left: 0 !important;
     }
 
     .o_drawer--menu-item.dropdown-item {
@@ -149,6 +151,7 @@
             color: $o-drawer-popover-item-color;
             background-color: $o-drawer-popover-item-bg;
             border-radius: $o-drawer-popover-item-border-radius;
+            width: auto;
         }
 
         .o_drawer--item-label {

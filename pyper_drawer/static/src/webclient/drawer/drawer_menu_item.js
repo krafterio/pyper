@@ -70,10 +70,10 @@ export class DrawerMenuItem extends Component {
 
         if (!this.drawerService.popover) {
             this.drawerService.popover = usePopover(DrawerPopoverItem, {
-                position: 'left-start',
+                position: 'right-middle',
                 animation: false,
                 arrow: false,
-                fixedPosition: true,
+                fixedPosition: false,
                 popoverClass: 'o_drawer--popover-item',
             });
         }
