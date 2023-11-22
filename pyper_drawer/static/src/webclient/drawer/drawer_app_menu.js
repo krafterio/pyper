@@ -5,8 +5,6 @@ import {useService} from '@web/core/utils/hooks';
 
 
 export class DrawerAppMenu extends Component {
-    static description = 'App menu of Drawer';
-
     static template = 'pyper_drawer.DrawerAppMenu';
 
     static props = {

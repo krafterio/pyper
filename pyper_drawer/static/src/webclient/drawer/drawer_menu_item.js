@@ -8,8 +8,6 @@ import {DrawerPopoverItem} from './drawer_popover_item';
 
 
 export class DrawerMenuItem extends Component {
-    static description = 'Menu item of Drawer';
-
     static template = 'pyper_drawer.DrawerMenuItem';
 
     static components = {

@@ -7,8 +7,6 @@ import {useService} from '@web/core/utils/hooks';
 export class DrawerToggler extends Component {
     static template = 'pyper_drawer.DrawerToggler';
 
-    static description = 'Toggler of Drawer';
-
     static props = {
         autoHide: {
             type: Boolean,
