@@ -11,7 +11,7 @@
                 'align-items-center': true,
             }"
             t-att-href="props.menuItemHref"
-            t-on-click="() => props.onItemSelection()"
+            t-on-click.prevent="() => props.onItemSelection()"
         >
             <t t-call="pyper_drawer.DrawerMenuItem.Content">
                 <t t-set="menuId" t-value="props.menuId"/>
