@@ -134,12 +134,10 @@
 
     &.o-popover-left {
         margin-right: 0;
-        right: 0 !important;
     }
 
     &.o-popover-right {
         margin-left: 0;
-        left: 0 !important;
     }
 
     .o_drawer--menu-item.dropdown-item {
@@ -156,6 +154,10 @@
 
         .o_drawer--item-label {
             font-weight: $o-drawer-popover-item-font-weight;
+
+            &:first-child {
+                padding-left: 0;
+            }
         }
 
         &:hover,

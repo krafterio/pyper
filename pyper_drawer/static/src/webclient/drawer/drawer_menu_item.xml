@@ -8,7 +8,13 @@
     </t>
 
     <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.PopoverItem" owl="1">
-        <div t-att-class="{'dropdown-item': true, 'o_drawer--menu-item': true, 'o_drawer--menu-item-active': props.active}">
+        <DropdownItem
+            class="{'o_drawer--menu-item': true, 'o_drawer--menu-item-active': props.active}"
+            href="menuItemHref"
+            hotkey="props.hotkey"
+            dataset="{menuXmlid: props.menuXmlid, menu: props.menuId, tooltip: drawerService.isMinified and !drawerService.isPopoverMinified ? props.label : undefined, tooltipPosition: 'right'}"
+            onSelected="() => this.onItemSelection()"
+        >
             <t t-call="pyper_drawer.DrawerMenuItem.Content">
                 <t t-set="menuId" t-value="props.menuId"/>
                 <t t-set="menuAction" t-value="props.menuAction"/>
@@ -21,9 +27,10 @@
                 <t t-set="label" t-value="props.label"/>
                 <t t-set="showLabel" t-value="false"/>
                 <t t-set="onItemMouseEnterFct" t-value="this.onItemMouseEnter.bind(this)"/>
+                <t t-set="onItemMouseLeaveFct" t-value="this.onItemMouseLeave.bind(this)"/>
                 <t t-set="onItemSelectionFct" t-value="this.onItemSelection.bind(this)"/>
             </t>
-        </div>
+        </DropdownItem>
     </t>
 
     <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.DropdownItem" owl="1">
@@ -58,16 +65,16 @@
             t-on-click="onItemSelectionFct ? (ev) => onItemSelectionFct(ev) : () => {}"
             t-att-data-hotkey="withHotkey ? hotkey : undefined"
         >
-            <div t-if="fontIcon" class="o_drawer--item-icon-empty" t-att-style="'color: ' + (fontIconColor || 'inherit') + ';'">
+            <div t-if="withIcon and fontIcon" class="o_drawer--item-icon-empty" t-att-style="'color: ' + (fontIconColor || 'inherit') + ';'">
                 <i t-att-class="fontIcon"/>
             </div>
 
-            <img t-elif="iconData"
+            <img t-elif="withIcon and iconData"
                 class="o_drawer--item-icon"
                 t-attf-src="data:image/jpeg;base64, {{iconData}}"
             />
 
-            <div t-else="withIcon" class="o_drawer--item-icon-empty">
+            <div t-elif="withIcon" class="o_drawer--item-icon-empty">
                 <t t-slot="empty_icon">
                     <i class="fa fa-cube"/>
                 </t>

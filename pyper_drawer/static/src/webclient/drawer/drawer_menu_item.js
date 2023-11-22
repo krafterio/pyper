@@ -131,6 +131,7 @@ export class DrawerMenuItem extends Component {
             this.drawerService.popover.open(this.content.el, {
                 ...this.props,
                 ...(props || {}),
+                withIcon: false,
                 onItemMouseEnter: this.onItemMouseEnter.bind(this),
                 onItemMouseLeave: this.onItemMouseLeave.bind(this),
                 onItemSelection: this.onItemSelection.bind(this),
