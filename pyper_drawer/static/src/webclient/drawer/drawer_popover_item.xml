@@ -11,7 +11,13 @@
                 'align-items-center': true,
             }"
             t-att-href="props.menuItemHref"
+            t-att-title="props.label"
+            t-att-data-hotkey="props.hotkey"
+            t-att-data-menu-xmlid="props.menuXmlid"
+            t-att-data-menu="props.menuId"
             t-on-click.prevent="() => props.onItemSelection()"
+            role="menuitem"
+            tabindex="0"
         >
             <t t-call="pyper_drawer.DrawerMenuItem.Content">
                 <t t-set="menuId" t-value="props.menuId"/>
