@@ -69,7 +69,7 @@
     display: flex;
     align-items: center;
     padding: $o-drawer-item-padding-v $o-drawer-item-padding-h;
-    width: $o-drawer-mini-width - $o-drawer-border-width;
+    width: 100%;
 }
 
 .o_drawer--item-icon {
