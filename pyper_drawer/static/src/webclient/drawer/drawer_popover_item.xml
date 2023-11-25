@@ -2,7 +2,7 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="pyper_drawer.DrawerPopoverItem" owl="1">
-        <a
+        <div
             t-att-class="{
                 'dropdown-item': true,
                 'o_drawer--menu-item': true,
@@ -10,28 +10,16 @@
                 'd-flex': true,
                 'align-items-center': true,
             }"
-            t-att-href="props.menuItemHref"
-            t-att-title="props.label"
-            t-att-data-hotkey="props.hotkey"
-            t-att-data-menu-xmlid="props.menuXmlid"
-            t-att-data-menu="props.menuId"
-            t-on-click.prevent="() => props.onItemSelection()"
-            role="menuitem"
-            tabindex="0"
         >
             <t t-call="pyper_drawer.DrawerMenuItem.Content">
-                <t t-set="menuId" t-value="props.menuId"/>
-                <t t-set="menuAction" t-value="props.menuAction"/>
-                <t t-set="hotkey" t-value="props.hotkey"/>
-                <t t-set="withIcon" t-value="props.withIcon"/>
+                <t t-set="withIcon" t-value="props.displayIcon"/>
                 <t t-set="iconData" t-value="props.iconData"/>
                 <t t-set="fontIcon" t-value="props.fontIcon"/>
                 <t t-set="fontIconColor" t-value="props.fontIconColor"/>
                 <t t-set="label" t-value="props.label"/>
                 <t t-set="showLabel" t-value="true"/>
-                <t t-set="onItemMouseLeaveFct" t-value="props.onItemMouseLeave"/>
             </t>
-        </a>
+        </div>
     </t>
 
 </templates>

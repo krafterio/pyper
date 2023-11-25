@@ -18,9 +18,8 @@
             <t t-call="pyper_drawer.DrawerMenuItem.Content">
                 <t t-set="menuId" t-value="props.menuId"/>
                 <t t-set="menuAction" t-value="props.menuAction"/>
-                <t t-set="withHotkey" t-value="true"/>
                 <t t-set="hotkey" t-value="props.hotkey"/>
-                <t t-set="withIcon" t-value="props.withIcon"/>
+                <t t-set="withIcon" t-value="displayIcon"/>
                 <t t-set="iconData" t-value="props.iconData"/>
                 <t t-set="fontIcon" t-value="props.fontIcon"/>
                 <t t-set="fontIconColor" t-value="props.fontIconColor"/>
@@ -28,7 +27,6 @@
                 <t t-set="showLabel" t-value="false"/>
                 <t t-set="onItemMouseEnterFct" t-value="this.onItemMouseEnter.bind(this)"/>
                 <t t-set="onItemMouseLeaveFct" t-value="this.onItemMouseLeave.bind(this)"/>
-                <t t-set="onItemSelectionFct" t-value="this.onItemSelection.bind(this)"/>
             </t>
         </DropdownItem>
     </t>
@@ -44,9 +42,8 @@
             <t t-call="pyper_drawer.DrawerMenuItem.Content">
                 <t t-set="menuId" t-value="props.menuId"/>
                 <t t-set="menuAction" t-value="props.menuAction"/>
-                <t t-set="withHotkey" t-value="true"/>
                 <t t-set="hotkey" t-value="props.hotkey"/>
-                <t t-set="withIcon" t-value="props.withIcon"/>
+                <t t-set="withIcon" t-value="displayIcon"/>
                 <t t-set="iconData" t-value="props.iconData"/>
                 <t t-set="fontIcon" t-value="props.fontIcon"/>
                 <t t-set="fontIconColor" t-value="props.fontIconColor"/>
@@ -62,8 +59,6 @@
             t-att-class="{'o_drawer--menu-item-content': true}"
             t-on-mouseenter="onItemMouseEnterFct ? (ev) => onItemMouseEnterFct(ev) : () => {}"
             t-on-mouseleave="onItemMouseLeaveFct ? (ev) => onItemMouseLeaveFct(ev) : () => {}"
-            t-on-click="onItemSelectionFct ? (ev) => onItemSelectionFct(ev) : () => {}"
-            t-att-data-hotkey="withHotkey ? hotkey : undefined"
         >
             <div t-if="withIcon and fontIcon" class="o_drawer--item-icon-empty" t-att-style="'color: ' + (fontIconColor || 'inherit') + ';'">
                 <i t-att-class="fontIcon"/>
@@ -78,6 +73,9 @@
                 <t t-slot="empty_icon">
                     <i class="fa fa-cube"/>
                 </t>
+            </div>
+
+            <div t-else="" class="o_drawer--item-icon-empty">
             </div>
 
             <div t-if="showLabel and label" class="o_drawer--item-label">

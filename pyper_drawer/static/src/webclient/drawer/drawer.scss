@@ -73,7 +73,8 @@
 }
 
 .o_drawer--item-icon {
-    max-width: $o-drawer-item-icon-width;
+    margin-right: $o-drawer-item-padding-h;
+    width: $o-drawer-item-icon-width;
     max-height: $o-drawer-item-icon-width;
     font-size: $o-drawer-item-icon-width;
     border-radius: $o-drawer-item-icon-border-radius;
@@ -83,16 +84,36 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: $o-drawer-item-padding-h;
     width: $o-drawer-item-icon-width;
     height: $o-drawer-item-icon-width;
     font-size: $o-drawer-item-icon-font-width;
     border-radius: $o-drawer-item-icon-border-radius;
     color: $o-drawer-item-icon-color;
+
+    &:empty {
+        width: 0;
+        margin-right: 0;
+    }
 }
 
-.o_drawer--item-label {
-    padding-left: $o-drawer-item-label-padding-h;
-    padding-right: $o-drawer-item-label-padding-h;
+.o_drawer.o_drawer--mini {
+    .o_drawer--menu-item {
+        &.dropdown-item {
+            max-width: $o-drawer-mini-width - $o-drawer-border-width;
+
+            .o_drawer--menu-item-content {
+                padding-left: 0;
+                padding-right: 0;
+                justify-content: center;
+            }
+
+            .o_drawer--item-icon,
+            .o_drawer--item-icon-empty {
+                margin-right: inherit;
+            }
+        }
+    }
 }
 
 // Drawer Menu Item
@@ -128,7 +149,8 @@
 // Drawer Popover Item
 .o_drawer--popover-item {
     border: 0;
-    border-radius: $o-drawer-popover-item-border-radius;
+    border-top-right-radius: $o-drawer-item-icon-border-radius;
+    border-bottom-right-radius: $o-drawer-item-icon-border-radius;
     box-shadow: inherit;
     background-color: inherit;
 
@@ -141,15 +163,16 @@
     }
 
     .o_drawer--menu-item.dropdown-item {
-        border-radius: $o-drawer-popover-item-border-radius;
+        border-top-right-radius: $o-drawer-item-icon-border-radius;
+        border-bottom-right-radius: $o-drawer-item-icon-border-radius;
         cursor: pointer;
 
         .o_drawer--menu-item-content {
             box-shadow: $o-drawer-popover-item-box-shadow;
             color: $o-drawer-popover-item-color;
             background-color: $o-drawer-popover-item-bg;
-            border-radius: $o-drawer-popover-item-border-radius;
-            width: auto;
+            border-top-right-radius: $o-drawer-item-icon-border-radius;
+            border-bottom-right-radius: $o-drawer-item-icon-border-radius;
         }
 
         .o_drawer--item-label {
@@ -294,49 +317,32 @@
         padding-bottom: $o-drawer-item-padding-v * 4;
     }
 
-    &.o_drawer--popover-items {
-        .o_drawer--menu-item-content {
-            width: auto;
-        }
-
-        &.o_drawer--mini {
-            .o_drawer--menu-item:not(.o_drawer--menu-item-active) {
-                &.dropdown-item {
-                    &:hover,
-                    &:focus {
-                        .o_drawer--menu-item-content {
-                            background-color: $o-drawer-item-bg;
-                        }
-                    }
-                }
-            }
-
-            .o_drawer--menu-item.o_drawer--menu-item-active {
-                &.dropdown-item {
-                    &:hover,
-                    &:focus {
-                        .o_drawer--menu-item-content {
-                            background-color: $o-drawer-item-active-bg;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-.o_drawer.o_drawer--nav,
-.o_drawer--popover-item-nav {
     .o_drawer--menu-item {
         &.dropdown-item {
-            padding: $o-drawer-item-padding-v $o-drawer-item-padding-h;
+            padding: 0;
+            margin-left: $o-drawer-item-nav-margin-h;
+            margin-right: $o-drawer-item-nav-margin-h;
+            width: auto;
+
+            .o_drawer--menu-item-content {
+                border-radius: $o-drawer-item-icon-border-radius;
+                padding-left: $o-drawer-item-padding-h - ($o-drawer-item-nav-margin-h/2);
+                padding-right: $o-drawer-item-padding-h - ($o-drawer-item-nav-margin-h/2);
+            }
         }
     }
 
-    .o_drawer--menu-item-content {
-        margin: -$o-drawer-item-padding-v (-$o-drawer-item-nav-padding-h);
-        padding: $o-drawer-item-padding-v $o-drawer-item-nav-padding-h;
-        border-radius: $o-drawer-popover-item-border-radius;
+    &.o_drawer--mini {
+        .o_drawer--menu-item {
+            &.dropdown-item {
+                &:hover {
+                    .o_drawer--menu-item-content {
+                        border-top-right-radius: inherit;
+                        border-bottom-right-radius: inherit;
+                    }
+                }
+            }
+        }
     }
 }
 

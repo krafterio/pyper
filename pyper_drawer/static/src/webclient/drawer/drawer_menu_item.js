@@ -80,6 +80,10 @@ export class DrawerMenuItem extends Component {
         onWillUpdateProps((nextProps) => this.onWillUpdateProps(nextProps));
     }
 
+    get displayIcon() {
+        return this.props.withIcon || !!this.props.fontIcon;
+    }
+
     get isPopoverEnabled() {
         return this.drawerService.isMinified && this.drawerService.popoverMinified;
     }
@@ -131,7 +135,7 @@ export class DrawerMenuItem extends Component {
             this.drawerService.popover.open(this.content.el, {
                 ...this.props,
                 ...(props || {}),
-                withIcon: false,
+                displayIcon: false,
                 onItemMouseEnter: this.onItemMouseEnter.bind(this),
                 onItemMouseLeave: this.onItemMouseLeave.bind(this),
                 onItemSelection: this.onItemSelection.bind(this),
