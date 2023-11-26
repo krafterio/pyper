@@ -11,9 +11,19 @@
             <div class="o_overlay_menu--container">
                 <t t-slot="header"/>
 
+                <input
+                    t-ref="input"
+                    type="text"
+                    class="o_search_hidden visually-hidden w-auto"
+                    data-allow-hotkeys="true"
+                    t-on-input="_onInputSearch"
+                    t-on-blur="_onInputBlur"
+                    t-on-compositionstart="_onCompositionStart"
+                />
+
                 <!-- Current App Sections -->
-                <t t-if="Object.keys(currentCategoryAppSections).length" t-call="pyper_overlay_menu.OverlayMenu.Menu">
-                    <t t-set="categories" t-value="Object.values(currentCategoryAppSections)"/>
+                <t t-if="currentFilteredAppSections.length" t-call="pyper_overlay_menu.OverlayMenu.Menu">
+                    <t t-set="apps" t-value="currentFilteredAppSections"/>
                 </t>
 
                 <t t-slot="footer"/>
@@ -26,42 +36,42 @@
              t-ref="appSubMenus"
              role="menu"
         >
-            <t t-foreach="categories" t-as="category" t-key="category.value">
-                <div class="o_overlay_menu--category-label" t-if="displayCategoryName">
-                    <t t-esc="category.display_name"/>
-                </div>
+            <t t-set="app_index" t-value="0" />
 
-                <div class="o_overlay_menu--category-items">
-                    <t t-foreach="category.menus" t-as="menu" t-key="menu.id">
-                    <t t-call="pyper_overlay_menu.OverlayMenu.Menu.Item">
-                        <t t-set="menu" t-value="menu"/>
-                    </t>
+            <t t-foreach="apps" t-as="menu" t-key="menu.id">
+                <t t-call="pyper_overlay_menu.OverlayMenu.Menu.Item">
+                    <t t-set="menu" t-value="menu"/>
+                    <t t-set="app_index" t-value="app_index"/>
                 </t>
-                </div>
+
+                <t t-set="app_index" t-value="app_index + 1" />
             </t>
         </div>
     </t>
 
     <t t-name="pyper_overlay_menu.OverlayMenu.Menu.Item">
         <a
-            t-att-class="{'o_overlay_menu--item': true}"
+            t-att-class="{'o_overlay_menu--item': true, 'o_overlay_menu--item-focused': state.focusedIndex === app_index}"
             t-att-data-menu-xmlid="menu.xmlid"
             t-att-href="('#menu_id='+menu.id+'&amp;action_id='+menu.actionID)"
-            t-on-click.prevent="() => this.onItemSelection(menu)"
+            t-att-aria-selected="state.focusedIndex === app_index ? 'true' : 'false'"
+            t-on-click.prevent="() => this.selectMenu(menu)"
         >
-            <div t-if="menu.font_icon" class="o_overlay_menu--item-icon-empty" t-att-style="'color: ' + (menu.font_icon_color || 'inherit') + ';'">
-                <i t-att-class="menu.font_icon"/>
-            </div>
+            <div class="o_overlay_menu--item-header">
+                <div t-if="menu.font_icon" class="o_overlay_menu--item-icon-empty" t-att-style="'color: ' + (menu.font_icon_color || 'inherit') + ';'">
+                    <i t-att-class="menu.font_icon"/>
+                </div>
 
-            <img t-elif="menu.webIconData"
-                class="o_overlay_menu--item-icon"
-                t-attf-src="data:image/jpeg;base64, {{menu.webIconData}}"
-            />
+                <img t-elif="menu.webIconData"
+                    class="o_overlay_menu--item-icon"
+                    t-attf-src="data:image/jpeg;base64, {{menu.webIconData}}"
+                />
 
-            <div t-else="withIcon" class="o_overlay_menu--item-icon-empty">
-                <t t-slot="empty_icon">
-                    <i class="fa fa-cube"/>
-                </t>
+                <div t-else="withIcon" class="o_overlay_menu--item-icon-empty">
+                    <t t-slot="empty_icon">
+                        <i class="fa fa-cube"/>
+                    </t>
+                </div>
             </div>
 
             <div  class="o_overlay_menu--item-label">

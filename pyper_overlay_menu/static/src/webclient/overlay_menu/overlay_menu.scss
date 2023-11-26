@@ -10,13 +10,83 @@
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding: $o-overlay-menu-padding-v $o-overlay-menu-padding-h;
     z-index: $o-overlay-menu-zindex;
     background-color: $o-overlay-menu-bg;
 }
 
-.o_overlay_menu--category-items {
+.o_overlay_menu--container {
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+        max-width: $o-overlay-menu-container-size !important;
+    }
+}
+
+.o_overlay_menu--logo {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    margin-bottom: $o-overlay-menu-padding-v;
+}
+
+.o_overlay_menu--menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: $o-overlay-menu-item-gap;
+}
+
+.o_overlay_menu--item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: $o-overlay-menu-item-width;
+    padding: $o-overlay-menu-item-padding;
+    border-radius: $o-overlay-menu-item-border-radius;
+    border: $o-overlay-menu-item-border-width solid $o-overlay-menu-item-border-color;
+    background-color: $o-overlay-menu-item-border-bg;
+}
+
+.o_overlay_menu--item-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $o-overlay-menu-item-icon-size;
+    height: $o-overlay-menu-item-icon-size;
+}
+
+.o_overlay_menu--item-icon,
+.o_overlay_menu--item-icon-empty {
+    max-width: $o-overlay-menu-item-icon-size;
+    max-height: $o-overlay-menu-item-icon-size;
+    color: $o-overlay-menu-item-label-color;
+}
+
+.o_overlay_menu--item-label {
+    color: $o-overlay-menu-item-label-color;
+    margin-top: $o-overlay-menu-item-spacer;
+}
+
+.o_overlay_menu--item {
+    &.o_overlay_menu--item-focused,
+    &:hover,
+    &:focus {
+        border-color: $o-overlay-menu-item-border-hover-color;
+        background-color: $o-overlay-menu-item-border-hover-bg;
+
+        .o_overlay_menu--item-icon,
+        .o_overlay_menu--item-icon-empty {
+            color: $o-overlay-menu-item-label-hover-color;
+        }
+
+        .o_overlay_menu--item-label {
+            color: $o-overlay-menu-item-label-hover-color;
+        }
+    }
 }
 
 // Overlay Menu Toggler

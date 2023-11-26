@@ -1,7 +1,26 @@
 // = Overlay Menu Variables
 // ============================================================================
-$o-overlay-menu-zindex: 3000 !default;
-$o-overlay-menu-bg: rgba($o-white, 0.8) !default;
+$o-overlay-menu-zindex: 1054 !default;
+$o-overlay-menu-bg: rgba($o-white, 0.9) !default;
+$o-overlay-menu-container-size: 770px !default;
+$o-overlay-menu-padding-v: 70px !default;
+$o-overlay-menu-padding-h: 0 !default;
+
+$o-overlay-menu-item-width: 120px !default;
+$o-overlay-menu-item-gap: 10px !default;
+$o-overlay-menu-item-padding: 10px !default;
+$o-overlay-menu-item-spacer: $o-overlay-menu-item-padding*2 !default;
+$o-overlay-menu-item-border-radius: $o-border-radius-lg !default;
+$o-overlay-menu-item-border-width: 1px !default;
+$o-overlay-menu-item-border-color: transparent !default;
+$o-overlay-menu-item-border-bg: transparent !default;
+$o-overlay-menu-item-border-hover-color: $o-gray-500 !default;
+$o-overlay-menu-item-border-hover-bg: transparent !default;
+
+$o-overlay-menu-item-label-color: $o-gray-700 !default;
+$o-overlay-menu-item-label-hover-color: $o-gray-700 !default;
+
+$o-overlay-menu-item-icon-size: 50px !default;
 
 // = Overlay Menu Toggler Variables
 // ============================================================================
