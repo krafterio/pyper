@@ -45,11 +45,11 @@
              role="menu"
         >
             <t t-foreach="categories" t-as="category" t-key="category.value">
-                <p class="text-muted small mt-4 mb-2 px-3" t-if="displayCategoryName">
+                <p class="o_drawer--category-label" t-if="displayCategoryName">
                     <t t-esc="category.display_name"/>
                 </p>
 
-                <hr t-elif="displayCategorySection" class="my-0"/>
+                <hr t-elif="displayCategorySection" class="o_drawer--category-section"/>
 
                 <t t-foreach="category.menus" t-as="menu" t-key="menu.id">
                     <t t-if="section_index lt Math.min(10, currentAppSections.length)">
