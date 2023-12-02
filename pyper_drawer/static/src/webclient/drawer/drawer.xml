@@ -49,6 +49,8 @@
                     <t t-esc="category.display_name"/>
                 </p>
 
+                <hr t-elif="displayCategorySection" class="my-0"/>
+
                 <t t-foreach="category.menus" t-as="menu" t-key="menu.id">
                     <t t-if="section_index lt Math.min(10, currentAppSections.length)">
                         <t t-set="section_index" t-value="section_index + 1" />

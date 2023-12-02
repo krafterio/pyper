@@ -83,6 +83,10 @@ export class Drawer extends Component {
             type: Boolean,
             optional: true,
         },
+        showCategorySectionMinified: {
+            type: Boolean,
+            optional: true,
+        },
         disabledOnSmallScreen: {
             type: Boolean,
             optional: true,
@@ -221,6 +225,10 @@ export class Drawer extends Component {
 
     get displayCategoryName() {
         return !this.isMinified || (this.isMinified && !this.props.hideCategoryLabelMinified)
+    }
+
+    get displayCategorySection() {
+        return this.isMinified && this.props.hideCategoryLabelMinified && this.props.showCategorySectionMinified;
     }
 
     get displayHeader() {
