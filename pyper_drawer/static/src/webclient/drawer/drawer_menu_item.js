@@ -20,7 +20,7 @@ export class DrawerMenuItem extends Component {
             optional: true,
         },
         menuId: {
-            type: Number,
+            type: [Number, String],
             optional: true,
         },
         menuAction: {
@@ -64,6 +64,7 @@ export class DrawerMenuItem extends Component {
     setup() {
         this.drawerService = useState(useService('drawer'));
         this.actionService = useService('action');
+        this.menuService = useService('menu');
         this.content = useRef('content');
 
         if (!this.drawerService.popover) {
@@ -108,7 +109,18 @@ export class DrawerMenuItem extends Component {
 
     onItemSelection() {
         if (this.props.menuId) {
-            this.drawerService.selectMenu(this.props.menuId);
+            // Check if action is external identifier of menu
+            let menu = undefined;
+
+            if (typeof this.props.menuId === 'string') {
+                menu = this.menuService.getAll().find((item) => item.xmlid === this.props.menuId);
+            }
+
+            if (!menu) {
+                menu = this.props.menuId;
+            }
+
+            this.drawerService.selectMenu(menu);
         } else if (this.props.menuAction) {
             this.actionService.doAction(this.props.menuAction, {
                 clearBreadcrumbs: true,
