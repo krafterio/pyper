@@ -143,6 +143,14 @@
             background-color: $o-drawer-item-bg;
         }
 
+        .o_drawer--item-label {
+            &.hidden {
+                position: absolute;
+                opacity: 0;
+                z-index: -1;
+            }
+        }
+
         &:hover,
         &:focus {
             background-color: inherit;

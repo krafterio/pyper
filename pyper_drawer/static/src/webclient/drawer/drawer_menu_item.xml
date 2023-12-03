@@ -78,7 +78,7 @@
             <div t-else="" class="o_drawer--item-icon-empty">
             </div>
 
-            <div t-if="showLabel and label" class="o_drawer--item-label">
+            <div t-if="label" t-att-class="{'o_drawer--item-label': true, 'hidden': !showLabel}">
                 <t t-esc="label"/>
             </div>
         </div>
