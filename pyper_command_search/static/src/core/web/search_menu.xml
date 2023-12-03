@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+<t t-name="pyper_command_search.SearchMenu">
+    <DropdownItem
+        class="{'o-command-search-SearchSystray-class': true}"
+        href="'#'"
+        dataset="{tooltip: tooltip, tooltipPosition: 'bottom'}"
+        onSelected="() => this.onSelected()"
+    >
+        <div>
+            <i class="fa fa-lg fa-search" role="img" aria-label="Search"></i>
+        </div>
+    </DropdownItem>
+</t>
+
+</templates>

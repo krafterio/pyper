@@ -1,0 +1,20 @@
+.o-command-search-SearchSystray-class {
+    margin-top: - $o-navbar-padding-v; // cancel navbar padding
+    margin-bottom: - $o-navbar-padding-v; // cancel navbar padding
+
+    display: flex;
+    align-items: center;
+    padding: 0;
+
+    &:hover,
+    &.show {
+        background-color: rgba(0, 0, 0, 0.075);
+    }
+
+    > div {
+        margin-left: var(--NavBar-entry-margin-left, 1px);
+        margin-right: var(--NavBar-entry-margin-right, 1px);
+        padding-left: var(--NavBar-entry-padding-left, 0.63em);
+        padding-right: var(--NavBar-entry-padding-right, 0.63em);
+    }
+}
