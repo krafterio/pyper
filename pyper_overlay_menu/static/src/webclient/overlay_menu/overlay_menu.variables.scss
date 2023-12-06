@@ -4,7 +4,7 @@ $o-overlay-menu-zindex: 1054 !default;
 $o-overlay-menu-bg: rgba($o-white, 0.9) !default;
 $o-overlay-menu-container-size: 770px !default;
 $o-overlay-menu-padding-v: 70px !default;
-$o-overlay-menu-padding-h: 0 !default;
+$o-overlay-menu-padding-h: $o-horizontal-padding !default;
 
 $o-overlay-menu-item-width: 120px !default;
 $o-overlay-menu-item-gap: 10px !default;
