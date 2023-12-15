@@ -16,7 +16,6 @@ class IrUiMenu(models.Model):
             ('manager', 'Manager'),
         ],
         'Menu category',
-        default='global'
     )
 
     def load_web_menus(self, debug):

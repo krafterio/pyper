@@ -267,7 +267,6 @@ export class Drawer extends Component {
 
         if (this.props.hideEmptyCategory) {
             delete categories[undefined];
-            delete categories['global'];
         }
 
         return categories;
