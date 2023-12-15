@@ -378,11 +378,12 @@ class PyperQueueJob(models.Model):
         }
 
     def schedule_now(self):
+        now = datetime.now()
         for job in self:
             if job.state not in ['enqueued']:
                 continue
 
-            job.date_enqueued = datetime.now()
+            job.date_enqueued = now
 
     def cancel(self):
         for job in self:
@@ -399,6 +400,7 @@ class PyperQueueJob(models.Model):
             job.date_stopped = datetime.now()
 
     def stop_and_schedule(self, date_enqueued: datetime = None):
+        now = datetime.now()
         for job in self:
             if job.state not in ['doing']:
                 continue
@@ -408,7 +410,7 @@ class PyperQueueJob(models.Model):
             job.date_stopped = False
             job.date_failed = False
             job.date_started = False
-            job.date_enqueued = date_enqueued if date_enqueued else datetime.now()
+            job.date_enqueued = date_enqueued if date_enqueued else now
 
     def relaunch(self):
         for job in self:
@@ -418,11 +420,12 @@ class PyperQueueJob(models.Model):
             self._reset_values(True)
 
     def retry(self):
+        now = datetime.now()
         for job in self:
             if job.state not in ['cancelled', 'failed']:
                 continue
 
-            job.date_enqueued = datetime.now()
+            job.date_enqueued = now
             job._reset_values()
 
     def _reset_values(self, relaunch: bool = False):
