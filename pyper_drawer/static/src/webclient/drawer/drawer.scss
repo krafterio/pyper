@@ -187,6 +187,7 @@
     .o_drawer--menu-item.dropdown-item {
         border-top-right-radius: $o-drawer-item-icon-border-radius;
         border-bottom-right-radius: $o-drawer-item-icon-border-radius;
+        background-color: $o-drawer-bg;
         cursor: pointer;
 
         .o_drawer--menu-item-content {
@@ -207,7 +208,6 @@
 
         &:hover,
         &:focus {
-            background-color: inherit;
             outline: none;
 
             .o_drawer--item-icon-empty {
@@ -275,12 +275,12 @@
 }
 
 // Active Drawer menu item
-.o_drawer--menu-item {
+.o_drawer--menu-item.dropdown-item {
     &.o_drawer--menu-item-active {
         .o_drawer--item-icon,
-            o_drawer--item-icon-empty {
-                color: $o-drawer-item-icon-active-color !important;
-            }
+        .o_drawer--item-icon-empty {
+            color: $o-drawer-item-icon-active-color !important;
+        }
 
         .o_drawer--menu-item-content {
             color: $o-drawer-item-active-color;
@@ -302,12 +302,12 @@
     }
 }
 
-.o_drawer--popover-item {
+.o_drawer--popover-item.dropdown-item {
     &.o_drawer--menu-item-active {
         .o_drawer--item-icon,
-            o_drawer--item-icon-empty {
-                color: $o-drawer-item-active-color;
-            }
+        .o_drawer--item-icon-empty {
+            color: $o-drawer-item-active-color;
+        }
 
         .o_drawer--menu-item-content {
             color: $o-drawer-popover-item-active-color !important;
