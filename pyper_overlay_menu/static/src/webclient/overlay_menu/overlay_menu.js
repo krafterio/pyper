@@ -111,7 +111,7 @@ export class OverlayMenu extends Component {
 
         this.currentAppSections.forEach((menu) => {
             if (this.props.hideEmptyCategory) {
-                if (menu.category && 'global' !== menu.category) {
+                if (menu.category) {
                     apps.push(menu);
                 }
             } else {
