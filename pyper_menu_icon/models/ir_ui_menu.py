@@ -25,7 +25,7 @@ class IrUiMenu(models.Model):
         ids.remove('root')
 
         menu_values = self.search_read(
-            [('id', 'in', ids), '|', ('font_icon', '!=', False), ('menu_category', 'not in', [False, 'global'])],
+            [('id', 'in', ids), '|', ('font_icon', '!=', False), ('menu_category', '!=', False)],
             fields=['id', 'font_icon', 'font_icon_color', 'menu_category']
         )
 
