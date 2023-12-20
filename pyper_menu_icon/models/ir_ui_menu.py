@@ -30,12 +30,20 @@ class IrUiMenu(models.Model):
         )
 
         for menu_value in menu_values:
-            category = menu_value.get('menu_category') or 'global'
-            menus.get(menu_value.get('id')).update({
-                'font_icon': menu_value.get('font_icon'),
-                'font_icon_color': menu_value.get('font_icon_color'),
-                'category': category,
-                'category_display_name': dict(self._fields['menu_category'].selection).get(category),
-            })
+            category = menu_value.get('menu_category')
+            vals = {}
+
+            if menu_value.get('font_icon'):
+                vals['font_icon'] = menu_value.get('font_icon')
+
+            if menu_value.get('font_icon_color'):
+                vals['font_icon_color'] = menu_value.get('font_icon_color')
+
+            if category:
+                vals['category'] = category
+                vals['category_display_name'] = dict(self._fields['menu_category'].selection).get(category)
+
+            if vals:
+                menus.get(menu_value.get('id')).update(vals)
 
         return menus
