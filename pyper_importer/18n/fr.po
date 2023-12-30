@@ -1,0 +1,605 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_importer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-30 16:18+0000\n"
+"PO-Revision-Date: 2023-12-30 17:32+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.res_config_settings_view_form
+msgid "<span class=\"fa fa-lg fa-link\" aria-label=\"Number of active endpoints\"/>"
+msgstr "<span class=\"fa fa-lg fa-link\" aria-label=\"Nombre de points de terminaison actifs\"/>"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.res_config_settings_view_form
+msgid "<span class=\"fa fa-lg fa-server\" aria-label=\"Number of active providers\"/>"
+msgstr "<span class=\"fa fa-lg fa-server\" aria-label=\"Nombre de prestataires actifs\"/>"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.res_config_settings_view_form
+msgid "<span class=\"o_form_label d-block mt16\">Importer Configuration</span>"
+msgstr "<span class=\"o_form_label d-block mt16\">Configuration de l’importateur</span>"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\" invisible=\"active_pyper_importer_endpoint_count &gt; '1'\">\n"
+"                            Active Endpoint\n"
+"                        </span>\n"
+"\n"
+"                        <span class=\"o_form_label\" invisible=\"active_pyper_importer_endpoint_count &lt;= '1'\">\n"
+"                            Active Endpoints\n"
+"                        </span>\n"
+"\n"
+"                        <br/>"
+msgstr ""
+"<span class=\"o_form_label\" invisible=\"active_pyper_importer_endpoint_count &gt; '1'\">\n"
+"                            Point de terminaison actif\n"
+"                        </span>\n"
+"\n"
+"                        <span class=\"o_form_label\" invisible=\"active_pyper_importer_endpoint_count &lt;= '1'\">\n"
+"                            Points de terminaison actifs\n"
+"                        </span>\n"
+"\n"
+"                        <br/>"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\" invisible=\"active_pyper_importer_provider_count &gt; '1'\">\n"
+"                            Active Provider\n"
+"                        </span>\n"
+"\n"
+"                        <span class=\"o_form_label\" invisible=\"active_pyper_importer_provider_count &lt;= '1'\">\n"
+"                            Active Providers\n"
+"                        </span>\n"
+"\n"
+"                        <br/>"
+msgstr ""
+"<span class=\"o_form_label\" invisible=\"active_pyper_importer_provider_count &gt; '1'\">\n"
+"                            Provider Actif\n"
+"                        </span>\n"
+"\n"
+"                        <span class=\"o_form_label\" invisible=\"active_pyper_importer_provider_count &lt;= '1'\">\n"
+"                            Providers Actifs\n"
+"                        </span>\n"
+"\n"
+"                        <br/>"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_endpoint__active
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: pyper_importer
+#: model:ir.model.fields,help:pyper_importer.field_pyper_importer_schedule_wizard__allow_update
+msgid "Allow update existing record if provider is compatible with this feature"
+msgstr "Autoriser la mise à jour de l’enregistrement existant si le Provider est compatible avec cette fonctionnalité"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__allow_update
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__allow_update
+msgid "Allow update?"
+msgstr "Autoriser la mise à jour ?"
+
+#. module: pyper_importer
+#: model:ir.model.fields,help:pyper_importer.field_pyper_importer_provider__default_endpoint_id
+msgid "Allows you to pre-fill the endpoint field in the wizard to launch an import"
+msgstr "Permet de pré-remplir le champ endpoint dans l’assistant pour lancer un import"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_endpoint_search
+msgid "Archived"
+msgstr "Archivé"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_endpoint_search
+msgid "Auth Basic"
+msgstr "Authentification de base"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_endpoint_search
+msgid "Auth None"
+msgstr "Aucune authentification"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_endpoint__auth_password
+msgid "Auth Password"
+msgstr "Mot de passe d’authentification"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_endpoint__auth_type
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_endpoint_search
+msgid "Auth Type"
+msgstr "Type d’authentification"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_endpoint__auth_username
+msgid "Auth Username"
+msgstr "Nom d’utilisateur d’authentification"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_endpoint_form
+msgid "Authentication"
+msgstr "Authentification"
+
+#. module: pyper_importer
+#: model:ir.model.fields.selection,name:pyper_importer.selection__pyper_importer_endpoint__auth_type__basic
+msgid "Basic"
+msgstr "Basique"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__batch_size
+msgid "Batch size"
+msgstr "Taille du batch"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_schedule_wizard_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job__importer_stop_required
+msgid "Check if job must be stopped"
+msgstr "Vérifiez si le job doit être arrêté"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__class_name
+msgid "Class name"
+msgstr "Nom de la classe"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_provider_form
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: pyper_importer
+#: model:ir.model.fields,help:pyper_importer.field_pyper_importer_schedule_wizard__company_ids
+msgid "Companies used for selected import providers"
+msgstr "Sociétés utilisées pour les fournisseurs d’importation sélectionnés"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_schedule_wizard_form
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_queue_job_form
+msgid "Config"
+msgstr "Config"
+
+#. module: pyper_importer
+#: model:ir.model,name:pyper_importer.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_provider_form
+msgid "Configurable Provider"
+msgstr "Provider configurable"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.res_config_settings_view_form
+msgid "Configure et manage the importer."
+msgstr "Configurer et gérer l’Importer."
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_schedule_wizard_form
+msgid "Context"
+msgstr "Contexte"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__company_ids
+msgid "Context companies"
+msgstr "Sociétés du contexte"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__user_id
+msgid "Context user"
+msgstr "Utilisateur du contexte"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_endpoint__create_uid
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__create_uid
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_endpoint__create_date
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__create_date
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_endpoint__default_batch_size
+msgid "Default batch size"
+msgstr "Taille du batch par défaut"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__default_company_ids
+msgid "Default companies"
+msgstr "Sociétés par défaut"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__default_endpoint_id
+msgid "Default endpoint"
+msgstr "Endpoint par défaut"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_endpoint_form
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_provider_form
+msgid "Default values"
+msgstr "Valeurs par défaut"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__display_allow_update
+msgid "Display Allow update field?"
+msgstr "Afficher le champ Autoriser la mise à jour ?"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_endpoint__display_name
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__display_name
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job__importer_endpoint_id
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_schedule_wizard_form
+msgid "Endpoint"
+msgstr "Endpoint"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_endpoint__endpoint_base_url
+msgid "Endpoint Base URL"
+msgstr "Base de l’URL du Endpoint"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_endpoint_form
+msgid "Endpoint URL, ex. https://pyper.cc/api"
+msgstr "URL du Endpoint, ex. https://pyper.cc/api"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_endpoint_search
+msgid "Group By"
+msgstr "Grouper par"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_queue_job_search
+msgid "Has skip log"
+msgstr "A des log \"skip\""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_endpoint__id
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__id
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: pyper_importer
+#: model:ir.model.fields,help:pyper_importer.field_pyper_importer_provider__default_company_ids
+msgid "If this field is empty, all companies available for the import are used"
+msgstr "Si ce champ est vide, toutes les sociétés disponibles pour l’import sont utilisées"
+
+#. module: pyper_importer
+#: model:ir.model.fields,help:pyper_importer.field_pyper_queue_job__importer_batch_size
+msgid "If value is zero, no batch is applied"
+msgstr "Si la valeur est zéro, aucun batch n’est appliqué"
+
+#. module: pyper_importer
+#: model:ir.model.fields,help:pyper_importer.field_pyper_importer_schedule_wizard__max_offset
+#: model:ir.model.fields,help:pyper_importer.field_pyper_queue_job__importer_max_offset
+msgid "If value is zero, no limit is applied"
+msgstr "Si la valeur est zéro, aucune limite n’est appliquée"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_provider_form
+msgid "Import"
+msgstr "Import"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_provider_form
+msgid "Import Provider"
+msgstr "Provider d’Import"
+
+#. module: pyper_importer
+#. odoo-python
+#: code:addons/pyper/pyper_importer/models/pyper_importer_provider.py:0
+#: code:addons/pyper_importer/models/pyper_importer_provider.py:0
+#, python-format
+msgid "Import interrupted by unknown exception"
+msgstr "Importation interrompue par une exception inconnue"
+
+#. module: pyper_importer
+#. odoo-python
+#: code:addons/pyper/pyper_importer/wizard/pyper_importer_schedule_wizard.py:0
+#: code:addons/pyper_importer/wizard/pyper_importer_schedule_wizard.py:0
+#, python-format
+msgid "Import: %s for %s"
+msgstr "Import: %s pour %s"
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_queue_job_form
+msgid "Importer"
+msgstr "Importer"
+
+#. module: pyper_importer
+#: model:ir.model,name:pyper_importer.model_pyper_importer_endpoint
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__importer_endpoint_id
+msgid "Importer Endpoint"
+msgstr "Endpoint de l’Importer"
+
+#. module: pyper_importer
+#: model:ir.actions.act_window,name:pyper_importer.pyper_importer_endpoint_action
+#: model:ir.ui.menu,name:pyper_importer.menu_pyper_importer_endpoint
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_endpoint_search
+msgid "Importer Endpoints"
+msgstr "Endpoints de l’Importer"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__importer_provider_ids
+msgid "Importer Provider"
+msgstr "Provider de l’Importer"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__importer_provider_count
+msgid "Importer Provider Count"
+msgstr "Nombre de Provider de l’Importer"
+
+#. module: pyper_importer
+#: model:ir.actions.act_window,name:pyper_importer.pyper_importer_provider_action
+#: model:ir.ui.menu,name:pyper_importer.menu_pyper_importer_provider
+msgid "Importer Providers"
+msgstr "Providers de l’Importer"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job__importer_allow_update
+msgid "Importer allow update?"
+msgstr "L’importer autorise la mise à jour ?"
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job__importer_batch_size
+msgid "Importer batch size"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job__importer_error_count
+msgid "Importer error count"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job__importer_latest_offset
+msgid "Importer latest offset"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job__importer_max_offset
+msgid "Importer max offset"
+msgstr ""
+
+#. module: pyper_importer
+#. odoo-python
+#: code:addons/pyper/pyper_importer/models/pyper_importer_provider.py:0
+#: code:addons/pyper_importer/models/pyper_importer_provider.py:0
+#, python-format
+msgid "Importer provider is not associated with the job"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job__importer_skip_count
+msgid "Importer skip count"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job__importer_start_offset
+msgid "Importer start offset"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job__importer_success_count
+msgid "Importer success count"
+msgstr ""
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_schedule_wizard_form
+msgid "Importer used"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,help:pyper_importer.field_pyper_importer_schedule_wizard__scheduled_date
+msgid "Keep empty this field to run import as soon as possible"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_endpoint__write_uid
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__write_uid
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_endpoint__write_date
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__write_date
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job__log_skip_count
+msgid "Log skip count"
+msgstr ""
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.res_config_settings_view_form
+msgid "Manage Endpoints"
+msgstr ""
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.res_config_settings_view_form
+msgid "Manage Providers"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__max_offset
+msgid "Max offset"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__module_name
+msgid "Module name"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: pyper_importer
+#: model:ir.model.fields.selection,name:pyper_importer.selection__pyper_importer_endpoint__auth_type__none
+msgid "None"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_res_config_settings__active_pyper_importer_endpoint_count
+msgid "Number of Active Importer Endpoints"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_res_config_settings__active_pyper_importer_provider_count
+msgid "Number of Active Importer Providers"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job_log__offset
+msgid "Offset"
+msgstr ""
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_provider_form
+msgid "Opened jobs"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__opened_queue_job_count
+msgid "Opened queue job count"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job_log__origin_identifier
+msgid "Origin identifier"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job__importer_provider_id
+msgid "Provider"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model,name:pyper_importer.model_pyper_queue_job
+msgid "Queue Job"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model,name:pyper_importer.model_pyper_queue_job_log
+msgid "Queue Job Log"
+msgstr ""
+
+#. module: pyper_importer
+#. odoo-python
+#: code:addons/pyper/pyper_importer/models/pyper_importer_provider.py:0
+#: code:addons/pyper_importer/models/pyper_importer_provider.py:0
+#, python-format
+msgid "Queue Jobs"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__queue_job_ids
+msgid "Queue jobs"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model,name:pyper_importer.model_pyper_importer_provider
+msgid "Run import from a Provider"
+msgstr ""
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_schedule_wizard_form
+msgid "Schedule"
+msgstr ""
+
+#. module: pyper_importer
+#. odoo-python
+#: code:addons/pyper/pyper_importer/models/pyper_importer_provider.py:0
+#: code:addons/pyper_importer/models/pyper_importer_provider.py:0
+#: model:ir.actions.server,name:pyper_importer.action_importer_schedule_run
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_provider_form
+#, python-format
+msgid "Schedule a run"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__scheduled_date
+msgid "Scheduled date"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields.selection,name:pyper_importer.selection__pyper_queue_job_log__type__skip
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_queue_job_log_search
+msgid "Skip"
+msgstr ""
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_queue_job_form
+msgid "Skipped"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__start_offset
+msgid "Start offset"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job_log__target_identifier
+msgid "Target identifier"
+msgstr ""
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_importer_provider_form
+msgid "Technical information"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,help:pyper_importer.field_pyper_queue_job__importer_latest_offset
+msgid "The latest known offset"
+msgstr ""
+
+#. module: pyper_importer
+#: model_terms:ir.ui.view,arch_db:pyper_importer.pyper_queue_job_form
+msgid "Tracking"
+msgstr ""
+
+#. module: pyper_importer
+#: model:ir.model.fields,field_description:pyper_importer.field_pyper_queue_job_log__type
+msgid "Type"
+msgstr "Type"
+
+#. module: pyper_importer
+#: model:ir.model,name:pyper_importer.model_pyper_importer_schedule_wizard
+msgid "Wizard to schedule a job of Importer Provider"
+msgstr ""

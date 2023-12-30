@@ -1,0 +1,557 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_queue_job
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-30 16:38+0000\n"
+"PO-Revision-Date: 2023-12-30 17:52+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label d-block mt16\">Queue Job Execution "
+"Configuration</span>"
+msgstr ""
+"<span class=\"o_form_label d-block mt16\">Configuration du Queue Job "
+"Execution</span>"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job___allow_to_ping_api
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.res_config_settings_view_form
+msgid "Allow to ping API?"
+msgstr "Autoriser le ping de l’API ?"
+
+#. module: pyper_queue_job
+#: model:ir.actions.server,name:pyper_queue_job.action_queue_job_cancel
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job__state__cancelled
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "Cancelled"
+msgstr "Annulé"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__company_id
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "Company"
+msgstr "Société"
+
+#. module: pyper_queue_job
+#: model:ir.model,name:pyper_queue_job.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Context"
+msgstr "Contexte"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__date_created
+msgid "Created Date"
+msgstr "Date de création"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__date
+msgid "Date"
+msgstr "Date"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__date_enqueued
+msgid "Date Enqueued"
+msgstr "Date de mise en file d’attente"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__date_cancelled
+msgid "Date canceled"
+msgstr "Date d’annulation"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__date_done
+msgid "Date done"
+msgstr "Date de réalisation"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__date_failed
+msgid "Date failed"
+msgstr "Date d’échec"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__date_ping_api
+msgid "Date ping API"
+msgstr "Date du ping d’API"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_form
+msgid "Details"
+msgstr "Détails"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__display_name
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Do you really want to cancel the job?"
+msgstr "Voulez-vous vraiment annuler le job ?"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Do you really want to quit the job?"
+msgstr "Voulez-vous vraiment quitter le job ?"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Do you really want to relaunch the job?"
+msgstr "Voulez-vous vraiment relancer le job ?"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Do you really want to retry the job?"
+msgstr "Voulez-vous vraiment réessayer le job ?"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job__state__doing
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "Doing"
+msgstr "En cours"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job__state__done
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "Done"
+msgstr "Fait"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__date_ended
+msgid "End Date"
+msgstr "Date de fin"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job__state__enqueued
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "Enqueued"
+msgstr "Mis en file d’attente"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job_log__type__error
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
+msgid "Error"
+msgstr "Erreur"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Errors"
+msgstr "Erreurs"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__exception_name
+msgid "Exception"
+msgstr "Exception"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__exception_info
+msgid "Exception Info"
+msgstr "Info de l’Exception"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__exception_message
+msgid "Exception Message"
+msgstr "Message d’exception"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Exceptions"
+msgstr "Exceptions"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__execution_time
+msgid "Execution Time"
+msgstr "Durée d’exécution"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Execution dates"
+msgstr "Dates d’exécution"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job__state__failed
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "Failed"
+msgstr "Échoué"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "Group By"
+msgstr "Groupé par"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "Has error log"
+msgstr "A des log d’erreur"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "Has info log"
+msgstr "A des log d’info"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "Has log"
+msgstr "A des log"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "Has success log"
+msgstr "A des log de succès"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "Has warning log"
+msgstr "A des log de warning"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__id
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__id
+msgid "ID"
+msgstr "ID"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,help:pyper_queue_job.field_ir_cron__queue_job_runner
+msgid "If checked, the cron is considered to be a Queue Jobs Runner."
+msgstr ""
+"Si cette case est cochée, le cron est considéré comme un exécuteur de "
+"tâches de file d’attente."
+
+#. module: pyper_queue_job
+#. odoo-python
+#: code:addons/pyper/pyper_queue_job/models/pyper_queue_job.py:0
+#: code:addons/pyper_queue_job/models/pyper_queue_job.py:0
+#, python-format
+msgid "Impossible to ping the API"
+msgstr "Impossible de pinger l’API"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,help:pyper_queue_job.field_res_config_settings__queue_job_allow_to_ping_api
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.res_config_settings_view_form
+msgid ""
+"In order to prevent the hosting platforms from stopping the container "
+"because no network action is detected, this option allows you to perform "
+"public HTTP pings on the instance in order to simulate network activity "
+"when a job is running in progress"
+msgstr ""
+"Afin d’éviter que les plateformes d’hébergement n’arrêtent le conteneur car "
+"aucune action réseau n’est détectée, cette option permet d’effectuer des "
+"pings HTTP publics sur l’instance afin de simuler l’activité réseau "
+"lorsqu’un job est en cours d’exécution"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__info
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job_log__type__info
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
+msgid "Info"
+msgstr "Info"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Infos"
+msgstr "Infos"
+
+#. module: pyper_queue_job
+#. odoo-python
+#: code:addons/pyper/pyper_queue_job/models/pyper_queue_job.py:0
+#: code:addons/pyper_queue_job/models/pyper_queue_job.py:0
+#, python-format
+msgid "Job interrupted by unknown exception"
+msgstr "Travail interrompu par une exception inconnue"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__date_write
+msgid "Last Updated Date"
+msgstr "Date de la dernière mise à jour"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_form
+msgid "Log"
+msgstr "Log"
+
+#. module: pyper_queue_job
+#. odoo-python
+#: code:addons/pyper/pyper_queue_job/models/pyper_queue_job_log.py:0
+#: code:addons/pyper_queue_job/models/pyper_queue_job_log.py:0
+#, python-format
+msgid "Log #"
+msgstr "Log #"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__log_count
+msgid "Log count"
+msgstr "Nombre de log"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__log_error_count
+msgid "Log error count"
+msgstr "Nombre de log d’erreur"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__log_info_count
+msgid "Log info count"
+msgstr "Nombre de log d’info"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__log_success_count
+msgid "Log success count"
+msgstr "Nombre de log de succès"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__log_warning_count
+msgid "Log warning count"
+msgstr "Nombre de log de warning"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Logs"
+msgstr "Logs"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__message
+msgid "Message"
+msgstr "Message"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__model_name
+msgid "Model Name"
+msgstr "Nom du modèle"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__model_method
+msgid "Model method"
+msgstr "Méthode du modèle"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__name
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__name
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
+msgid "Name"
+msgstr "Nom"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job___ping_api_base_url
+msgid "Ping API Base URL"
+msgstr "Base de l’URL du Ping l’API"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job___ping_api_interval
+msgid "Ping API Interval"
+msgstr "Intervalle du Ping API"
+
+#. module: pyper_queue_job
+#: model:ir.model,name:pyper_queue_job.model_pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__queue_job_id
+msgid "Queue Job"
+msgstr "Queue Job"
+
+#. module: pyper_queue_job
+#: model:ir.model,name:pyper_queue_job.model_pyper_queue_job_log
+msgid "Queue Job Log"
+msgstr "Log du Queue Job"
+
+#. module: pyper_queue_job
+#. odoo-python
+#: code:addons/pyper/pyper_queue_job/models/pyper_queue_job.py:0
+#: code:addons/pyper_queue_job/models/pyper_queue_job.py:0
+#: model:ir.actions.act_window,name:pyper_queue_job.pyper_queue_job_log_action
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
+#, python-format
+msgid "Queue Job Logs"
+msgstr "Logs du Queue Job"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_res_config_settings__queue_job_allow_to_ping_api
+msgid "Queue Job Ping API?"
+msgstr "Faire un Ping API du Queue Job ?"
+
+#. module: pyper_queue_job
+#: model:ir.model,name:pyper_queue_job.model_pyper_queue_job_processor
+msgid "Queue Job Processor"
+msgstr "Queue Job Processor"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_ir_cron__queue_job_runner
+msgid "Queue Job Runner"
+msgstr "Queue Job Runner"
+
+#. module: pyper_queue_job
+#: model:ir.actions.act_window,name:pyper_queue_job.pyper_queue_job_action
+#: model:ir.ui.menu,name:pyper_queue_job.menu_pyper_queue_job
+#: model:ir.ui.menu,name:pyper_queue_job.menu_pyper_queue_job_config
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "Queue Jobs"
+msgstr "Queue Jobs"
+
+#. module: pyper_queue_job
+#: model:ir.actions.server,name:pyper_queue_job.queue_job_cron_ir_actions_server
+msgid "Queue Jobs Runner"
+msgstr "Queue Jobs Runner"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.res_config_settings_view_form
+msgid "Queue job"
+msgstr "Queue job"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__log_ids
+msgid "Queue job errors"
+msgstr "Erreurs du Queue job"
+
+#. module: pyper_queue_job
+#: model:ir.actions.server,name:pyper_queue_job.action_queue_job_relaunch
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Relaunch"
+msgstr "Relancer"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__result
+msgid "Result"
+msgstr "Résultat"
+
+#. module: pyper_queue_job
+#: model:ir.actions.server,name:pyper_queue_job.action_queue_job_retry
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Retry"
+msgstr "Relancer"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Schedule now"
+msgstr "Planifiez maintenant"
+
+#. module: pyper_queue_job
+#: model:ir.actions.server,name:pyper_queue_job.action_queue_job_run
+msgid "Schedule now future enqueued jobs"
+msgstr "Planifiez maintenant les futures tâches mises en file d’attente"
+
+#. module: pyper_queue_job
+#: model:ir.model,name:pyper_queue_job.model_ir_cron
+msgid "Scheduled Actions"
+msgstr "Actions planifiées"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Scheduled dates"
+msgstr "Dates prévues"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__date_started
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__state
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
+msgid "State"
+msgstr "État"
+
+#. module: pyper_queue_job
+#: model:ir.actions.server,name:pyper_queue_job.action_queue_job_stop
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Stop"
+msgstr "Arrêter"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job__state__stopped
+msgid "Stopped"
+msgstr "Arrêté"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__date_stopped
+msgid "Stopped Date"
+msgstr "Date d’arrêt"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job_log__type__success
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
+msgid "Success"
+msgstr "Succès"
+
+#. module: pyper_queue_job
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+msgid "Successes"
+msgstr "Succès"
+
+#. module: pyper_queue_job
+#. odoo-python
+#: code:addons/pyper/pyper_queue_job/models/pyper_queue_job.py:0
+#: code:addons/pyper_queue_job/models/pyper_queue_job.py:0
+#, python-format
+msgid "The model method does not exist in model"
+msgstr "La méthode n’existe pas dans le modèle"
+
+#. module: pyper_queue_job
+#. odoo-python
+#: code:addons/pyper/pyper_queue_job/models/pyper_queue_job.py:0
+#: code:addons/pyper_queue_job/models/pyper_queue_job.py:0
+#, python-format
+msgid "The model name does not exist"
+msgstr "Le nom du modèle n’existe pas"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,help:pyper_queue_job.field_pyper_queue_job__execution_time
+msgid "Time required to execute this job in seconds."
+msgstr "Temps requis pour exécuter ce travail en secondes."
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__type
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
+msgid "Type"
+msgstr "Type"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__user_id
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job_log__type__warning
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
+msgid "Warning"
+msgstr "Warning"

@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_menu_icon
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-30 16:33+0000\n"
+"PO-Revision-Date: 2023-12-30 17:34+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: pyper_menu_icon
+#: model:ir.model.fields,field_description:pyper_menu_icon.field_ir_ui_menu__font_icon
+msgid "Font icon"
+msgstr "Font icon"
+
+#. module: pyper_menu_icon
+#: model:ir.model.fields,field_description:pyper_menu_icon.field_ir_ui_menu__font_icon_color
+msgid "Font icon color"
+msgstr "Couleur Font icon"
+
+#. module: pyper_menu_icon
+#: model:ir.model.fields.selection,name:pyper_menu_icon.selection__ir_ui_menu__menu_category__global
+msgid "Global"
+msgstr "Global"
+
+#. module: pyper_menu_icon
+#: model:ir.model.fields.selection,name:pyper_menu_icon.selection__ir_ui_menu__menu_category__manager
+msgid "Manager"
+msgstr "Manager"
+
+#. module: pyper_menu_icon
+#: model:ir.model,name:pyper_menu_icon.model_ir_ui_menu
+msgid "Menu"
+msgstr "Menu"
+
+#. module: pyper_menu_icon
+#: model:ir.model.fields,field_description:pyper_menu_icon.field_ir_ui_menu__menu_category
+msgid "Menu category"
+msgstr "Catégorie de menu"
