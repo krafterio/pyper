@@ -192,7 +192,17 @@ class PyperImporterProvider(models.Model):
         }
 
         if payload:
+            if 'origin_identifier' in payload:
+                res.update({'origin_identifier': payload.get('origin_identifier')})
+
+            if 'target_identifier' in payload:
+                res.update({'target_identifier': payload.get('target_identifier')})
+
             log_payload = payload.copy()
+            if 'origin_identifier' in log_payload:
+                log_payload.pop('origin_identifier')
+            if 'target_identifier' in log_payload:
+                log_payload.pop('target_identifier')
             if 'offset' in log_payload:
                 log_payload.pop('offset')
             if 'started_date' in log_payload:
