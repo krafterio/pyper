@@ -176,6 +176,10 @@ class LoadHelper(BaseProvider, ABC):
         pass
 
     @property
+    def load_find_existing_domain(self) -> list | None:
+        return None
+
+    @property
     def use_external_id(self) -> bool:
         return False
 
@@ -211,7 +215,8 @@ class LoadHelper(BaseProvider, ABC):
                     existing_item = self.importer.find_record(
                         self.target_model,
                         self.target_identifier,
-                        item.get(self.origin_identifier)
+                        item.get(self.origin_identifier),
+                        self.load_find_existing_domain
                     )
                 loaded_id = self._load_item(transformed_item, existing_item, existing_item.id is False)
 
