@@ -7,6 +7,11 @@ from odoo import fields, models
 class PyperQueueJobLog(models.Model):
     _inherit = 'pyper.queue.job.log'
 
+    importer_provider_id = fields.Many2one(
+        related='queue_job_id.importer_provider_id',
+        store=True,
+    )
+
     type = fields.Selection(
         selection_add=[
             ('skip', 'Skip'),

@@ -67,6 +67,10 @@
             <xpath expr="//search//filter[@name='log_success_count']" position="after">
                 <filter name="log_skip_count" string="Has skip log" domain="[('log_skip_count', '>', 0)]"/>
             </xpath>
+
+            <xpath expr="//search//group/filter[@name='by_company_id']" position="after">
+                <filter name="by_importer_provider_id" string="Importer Provider" domain="[]"  context="{'group_by': 'importer_provider_id'}"/>
+            </xpath>
         </field>
     </record>
 </odoo>

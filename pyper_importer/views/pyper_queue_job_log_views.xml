@@ -20,6 +20,10 @@
         <field name="type">tree</field>
         <field name="inherit_id" ref="pyper_queue_job.pyper_queue_job_log_tree"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='queue_job_id']" position="after">
+                <field name="importer_provider_id" optional="hide"/>
+            </xpath>
+
             <xpath expr="//field[@name='type']" position="after">
                 <field name="offset"/>
                 <field name="origin_identifier" optional="hide"/>
@@ -33,8 +37,16 @@
         <field name="model">pyper.queue.job.log</field>
         <field name="inherit_id" ref="pyper_queue_job.pyper_queue_job_log_search"/>
         <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='queue_job_id']" position="after">
+                <field name="importer_provider_id"/>
+            </xpath>
+
             <xpath expr="//search//filter[@name='type_success']" position="after">
                 <filter name="type_skip" string="Skip" domain="[('type', '=', 'skip')]"/>
+            </xpath>
+
+            <xpath expr="//search//group/filter[@name='by_queue_job']" position="after">
+                <filter name="by_importer_provider_id" string="Importer Provider" domain="[]"  context="{'group_by': 'importer_provider_id'}"/>
             </xpath>
         </field>
     </record>
