@@ -212,7 +212,8 @@ class PyperImporterProvider(models.Model):
 
         return res
 
-    def find_record(self, model: str, identifier_field: str, identifier_value, domain: list = None, context: dict = None, sudo: bool = False):
+    def find_record(self, model: str, identifier_field: str, identifier_value, domain: list = None,
+                    context: dict = None, sudo: bool = False, order: str = None):
         """
         :return: models.Model
         """
@@ -238,10 +239,11 @@ class PyperImporterProvider(models.Model):
         if sudo:
             env_model = env_model.sudo()
 
-        return env_model.search(domain, limit=1)
+        return env_model.search(domain, limit=1, order=order)
 
-    def find_record_id(self, model: str, identifier_field: str, identifier_value, domain: list = None, context: dict = None, sudo: bool = False):
-        return self.find_record(model, identifier_field, identifier_value, domain, context, sudo).id
+    def find_record_id(self, model: str, identifier_field: str, identifier_value, domain: list = None,
+                       context: dict = None, sudo: bool = False, order: str = None):
+        return self.find_record(model, identifier_field, identifier_value, domain, context, sudo, order).id
 
     @staticmethod
     def upsert(item, vals: dict, context: dict = None):
