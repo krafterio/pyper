@@ -6,6 +6,8 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form>
+                <field name="active" invisible="True"/>
+
                 <header>
                     <button
                         string="Schedule a run"
