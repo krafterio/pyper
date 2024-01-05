@@ -199,6 +199,7 @@ class LoadHelper(BaseProvider, ABC):
                 break
 
             item = transformed_item.transformed_data
+            payload = transformed_item.payload
 
             try:
                 if self.use_external_id:
@@ -225,13 +226,13 @@ class LoadHelper(BaseProvider, ABC):
 
                     self.job.log_success(
                         auto_commit=True,
-                        payload=self.importer._create_log_payload(item, self.origin_identifier, existing_item)
+                        payload=self.importer._create_log_payload(item, self.origin_identifier, existing_item, payload)
                     )
                 else:
                     self.job.log_skip(
                         auto_commit=True,
                         message='Skipped record',
-                        payload=self.importer._create_log_payload(item, self.origin_identifier, existing_item)
+                        payload=self.importer._create_log_payload(item, self.origin_identifier, existing_item, payload)
                     )
 
             except Exception as err:
@@ -264,6 +265,7 @@ class LoadByOdooModelIdentifiersHelper(BaseProvider, ABC):
             record_id = transformed_item.payload.get('target_id')
             origin_found = transformed_item.payload.get('origin_found', False)
             item = transformed_item.transformed_data
+            payload = transformed_item.payload
 
             existing_item = self.env[target_model].browse(record_id)
 
@@ -276,13 +278,13 @@ class LoadByOdooModelIdentifiersHelper(BaseProvider, ABC):
                 if loaded_id != 0:
                     self.job.log_success(
                         auto_commit=True,
-                        payload=self.importer._create_log_payload(item, origin_identifier, existing_item)
+                        payload=self.importer._create_log_payload(item, origin_identifier, existing_item, payload)
                     )
                 else:
                     self.job.log_skip(
                         auto_commit=True,
                         message='Skipped record',
-                        payload=self.importer._create_log_payload(item, origin_identifier, existing_item)
+                        payload=self.importer._create_log_payload(item, origin_identifier, existing_item, payload)
                     )
             except Exception as err:
                 self.importer._except_load_exception(self.job, err, item, origin_identifier, existing_item)

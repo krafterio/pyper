@@ -142,6 +142,9 @@ class PyperQueueJob(models.Model):
         if payload and 'item' in payload:
             info = (info + "\n\n" if info else '') + yaml_dump({'Item': payload.get('item')})
 
+        if payload and 'payload' in payload:
+            info = (info + "\n\n" if info else '') + yaml_dump({'Payload': payload.get('payload')})
+
         vals = super()._create_log_vals(log_type, name, message, info, payload)
         vals.update({
             'offset': self.importer_latest_offset,

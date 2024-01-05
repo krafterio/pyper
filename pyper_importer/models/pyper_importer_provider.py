@@ -160,18 +160,28 @@ class PyperImporterProvider(models.Model):
         )
 
     @staticmethod
-    def _create_log_payload(item: dict, origin_identifier: str, existing_item=False) -> dict:
+    def _create_log_payload(item: dict, origin_identifier: str, existing_item=False, payload: dict = False) -> dict:
         """
         :param item:             dict        The origin item
         :param origin_identifier str         The origin identifier name
         :param existing_item:    model.Model The existing record
         :return: dict
         """
-        return {
+        res = {
             'item': item,
             'origin_identifier': item.get(origin_identifier, False),
             'target_identifier': existing_item.id if existing_item is not False else False,
         }
+
+        if payload:
+            log_payload = payload.copy()
+            if 'offset' in log_payload:
+                log_payload.pop('offset')
+            if 'started_date' in log_payload:
+                log_payload.pop('started_date')
+            res['payload'] = log_payload
+
+        return res
 
     def find_record(self, model: str, identifier_field: str, identifier_value, domain: list = None, context: dict = None, sudo: bool = False):
         """
