@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-30 16:38+0000\n"
-"PO-Revision-Date: 2023-12-30 17:52+0100\n"
+"POT-Creation-Date: 2024-01-05 15:24+0000\n"
+"PO-Revision-Date: 2024-01-05 16:26+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -242,7 +242,7 @@ msgstr "A des log de warning"
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__id
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,help:pyper_queue_job.field_ir_cron__queue_job_runner
@@ -278,12 +278,12 @@ msgstr ""
 #: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job_log__type__info
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
 msgid "Info"
-msgstr "Info"
+msgstr ""
 
 #. module: pyper_queue_job
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
 msgid "Infos"
-msgstr "Infos"
+msgstr ""
 
 #. module: pyper_queue_job
 #. odoo-python
@@ -311,7 +311,7 @@ msgstr "Dernière mise à jour le"
 #. module: pyper_queue_job
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_form
 msgid "Log"
-msgstr "Log"
+msgstr ""
 
 #. module: pyper_queue_job
 #. odoo-python
@@ -319,7 +319,7 @@ msgstr "Log"
 #: code:addons/pyper_queue_job/models/pyper_queue_job_log.py:0
 #, python-format
 msgid "Log #"
-msgstr "Log #"
+msgstr ""
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__log_count
@@ -349,12 +349,13 @@ msgstr "Nombre de log de warning"
 #. module: pyper_queue_job
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
 msgid "Logs"
-msgstr "Logs"
+msgstr ""
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__message
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
 msgid "Message"
-msgstr "Message"
+msgstr ""
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__model_name
@@ -386,8 +387,9 @@ msgstr "Intervalle du Ping API"
 #. module: pyper_queue_job
 #: model:ir.model,name:pyper_queue_job.model_pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__queue_job_id
+#: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
 msgid "Queue Job"
-msgstr "Queue Job"
+msgstr ""
 
 #. module: pyper_queue_job
 #: model:ir.model,name:pyper_queue_job.model_pyper_queue_job_log
@@ -399,6 +401,7 @@ msgstr "Log du Queue Job"
 #: code:addons/pyper/pyper_queue_job/models/pyper_queue_job.py:0
 #: code:addons/pyper_queue_job/models/pyper_queue_job.py:0
 #: model:ir.actions.act_window,name:pyper_queue_job.pyper_queue_job_log_action
+#: model:ir.ui.menu,name:pyper_queue_job.menu_pyper_queue_job_log
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
 #, python-format
 msgid "Queue Job Logs"
@@ -412,12 +415,12 @@ msgstr "Faire un Ping API du Queue Job ?"
 #. module: pyper_queue_job
 #: model:ir.model,name:pyper_queue_job.model_pyper_queue_job_processor
 msgid "Queue Job Processor"
-msgstr "Queue Job Processor"
+msgstr ""
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_ir_cron__queue_job_runner
 msgid "Queue Job Runner"
-msgstr "Queue Job Runner"
+msgstr ""
 
 #. module: pyper_queue_job
 #: model:ir.actions.act_window,name:pyper_queue_job.pyper_queue_job_action
@@ -425,17 +428,17 @@ msgstr "Queue Job Runner"
 #: model:ir.ui.menu,name:pyper_queue_job.menu_pyper_queue_job_config
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
 msgid "Queue Jobs"
-msgstr "Queue Jobs"
+msgstr ""
 
 #. module: pyper_queue_job
 #: model:ir.actions.server,name:pyper_queue_job.queue_job_cron_ir_actions_server
 msgid "Queue Jobs Runner"
-msgstr "Queue Jobs Runner"
+msgstr ""
 
 #. module: pyper_queue_job
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.res_config_settings_view_form
 msgid "Queue job"
-msgstr "Queue job"
+msgstr ""
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__log_ids
@@ -542,7 +545,7 @@ msgstr "Temps requis pour exécuter ce travail en secondes."
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__type
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
 msgid "Type"
-msgstr "Type"
+msgstr ""
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__user_id
@@ -554,4 +557,4 @@ msgstr "Utilisateur"
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
 msgid "Warning"
-msgstr "Warning"
+msgstr ""

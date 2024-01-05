@@ -156,6 +156,11 @@
         <field eval="3" name="priority"/>
         <field name="arch" type="xml">
             <search string="Queue Jobs">
+                <field name="name"/>
+                <field name="exception_name"/>
+                <field name="exception_info"/>
+                <field name="exception_message"/>
+
                 <filter name="state_enqueued" string="Enqueued" domain="[('state', '=', 'enqueued')]"/>
                 <filter name="state_doing" string="Doing" domain="[('state', '=', 'doing')]"/>
                 <filter name="state_failed" string="Failed" domain="[('state', '=', 'failed')]"/>
