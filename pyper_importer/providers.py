@@ -151,10 +151,11 @@ class TransformHelper(BaseProvider, ABC):
                 if not transformed_item.skipped:
                     transformed_items.append(transformed_item)
                 elif transformed_item.payload.get('log_skipped', True):
-                    self.job.log_skip(name='TransformItemSkip', auto_commit=True)
+                    self.job.log_skip(name='TransformItemSkip', auto_commit=True, payload=transformed_item.payload)
             except Exception as err:
                 origin_identifier = self.origin_identifier if hasattr(self, 'origin_identifier') else 'id'
-                self.importer._except_load_exception(self.job, err, origin_data, origin_identifier)
+                self.importer._except_load_exception(self.job, err, origin_data, origin_identifier,
+                                                     extracted_item.payload)
 
         return transformed_items
 
@@ -245,7 +246,7 @@ class LoadHelper(BaseProvider, ABC):
                     )
 
             except Exception as err:
-                self.importer._except_load_exception(self.job, err, item, self.origin_identifier)
+                self.importer._except_load_exception(self.job, err, item, self.origin_identifier, payload=payload)
 
     @abstractmethod
     def _load_item(self, transformed_item: TransformedItem, existing_item, is_create: bool) -> int:
@@ -296,7 +297,8 @@ class LoadByOdooModelIdentifiersHelper(BaseProvider, ABC):
                         payload=self.importer._create_log_payload(item, origin_identifier, existing_item, payload)
                     )
             except Exception as err:
-                self.importer._except_load_exception(self.job, err, item, origin_identifier, existing_item)
+                self.importer._except_load_exception(self.job, err, item, origin_identifier, existing_item,
+                                                     payload=payload)
 
     @abstractmethod
     def _load_item(self, transformed_item: TransformedItem, existing_item, origin_found: bool) -> int:

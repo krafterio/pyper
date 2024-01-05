@@ -151,7 +151,8 @@ class PyperImporterProvider(models.Model):
         self.ensure_one()
         return self.action_schedule_run()
 
-    def _except_load_exception(self, job, err: Exception, item: dict, origin_identifier: str, existing_item=False):
+    def _except_load_exception(self, job, err: Exception, item: dict, origin_identifier: str, existing_item=False,
+                               payload: dict = False):
         """
         :param job (Model<pyper.queue.job>): the queue job
         """
@@ -173,7 +174,7 @@ class PyperImporterProvider(models.Model):
             msg,
             fail_tracback,
             auto_commit=True,
-            payload=self._create_log_payload(item, origin_identifier, existing_item)
+            payload=self._create_log_payload(item, origin_identifier, existing_item, payload)
         )
 
     @staticmethod
