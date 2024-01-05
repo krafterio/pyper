@@ -276,7 +276,7 @@ class PyperImporterProvider(models.Model):
 
     @staticmethod
     def format_value(value, default_value=False):
-        if value.__class__ is int or value.__class__ is float:
+        if value.__class__ is int or value.__class__ is float or value.__class__ is bool:
             return value
 
         if value.__class__ is str:
