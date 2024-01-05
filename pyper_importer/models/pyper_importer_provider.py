@@ -325,7 +325,7 @@ class PyperImporterProvider(models.Model):
             if provider.batch_size <= 0:
                 provider.batch_size = int(config.get_param('pyper_importer.default_batch_size', 100))
 
-            if provider.batch_size > offset_max and offset > offset_start:
+            if provider.batch_size > offset_max and offset >= offset_start:
                 provider.batch_size = offset_max
 
         while finish is False:
