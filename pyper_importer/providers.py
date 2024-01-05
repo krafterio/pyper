@@ -230,6 +230,7 @@ class LoadHelper(BaseProvider, ABC):
                 else:
                     self.job.log_skip(
                         auto_commit=True,
+                        message='Skipped record',
                         payload=self.importer._create_log_payload(item, self.origin_identifier, existing_item)
                     )
 
@@ -280,6 +281,7 @@ class LoadByOdooModelIdentifiersHelper(BaseProvider, ABC):
                 else:
                     self.job.log_skip(
                         auto_commit=True,
+                        message='Skipped record',
                         payload=self.importer._create_log_payload(item, origin_identifier, existing_item)
                     )
             except Exception as err:
