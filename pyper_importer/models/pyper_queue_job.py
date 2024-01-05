@@ -3,6 +3,8 @@
 
 from odoo import api, fields, models
 
+from yaml import dump as yaml_dump
+
 
 class PyperQueueJob(models.Model):
     _inherit = 'pyper.queue.job'
@@ -137,6 +139,9 @@ class PyperQueueJob(models.Model):
         super().log_error(error_name, error_message, error_info, payload, auto_commit)
 
     def _create_log_vals(self, log_type, name=False, message=False, info=False, payload=False):
+        if payload and 'item' in payload:
+            info = (info + "\n\n" if info else '') + yaml_dump({'Item': payload.get('item')})
+
         vals = super()._create_log_vals(log_type, name, message, info, payload)
         vals.update({
             'offset': self.importer_latest_offset,

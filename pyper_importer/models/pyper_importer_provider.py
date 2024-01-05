@@ -168,6 +168,7 @@ class PyperImporterProvider(models.Model):
         :return: dict
         """
         return {
+            'item': item,
             'origin_identifier': item.get(origin_identifier, False),
             'target_identifier': existing_item.id if existing_item is not False else False,
         }
