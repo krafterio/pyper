@@ -318,6 +318,10 @@ class PyperImporterProvider(models.Model):
         batchable = False
         finish = False
 
+        # Init latest offset in job
+        if job.viper_latest_offset == 0:
+            job.viper_latest_offset = offset
+
         if isinstance(provider, BatchableProvider):
             batchable = True
             provider.batch_size = job.importer_batch_size
