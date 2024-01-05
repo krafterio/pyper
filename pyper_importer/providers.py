@@ -57,6 +57,10 @@ class AllowUpdateConfigurableProvider(BaseProvider, ABC):
     pass
 
 
+class SkippedRecordsLoggableProvider(BaseProvider, ABC):
+    pass
+
+
 class ExtractByOdooModelIdentifiersHelper(BatchableProvider, ABC):
     """
     Helper to iterate into an Odoo model (target) to retrieve the external identifiers and extract all data from remote
@@ -236,7 +240,7 @@ class LoadHelper(BaseProvider, ABC):
                 else:
                     self.job.log_skip(
                         auto_commit=True,
-                        message='Skipped record',
+                        message='Skipped record' if self.importer.log_skipped_records else False,
                         payload=self.importer._create_log_payload(item, self.origin_identifier, existing_item, payload)
                     )
 
@@ -288,7 +292,7 @@ class LoadByOdooModelIdentifiersHelper(BaseProvider, ABC):
                 else:
                     self.job.log_skip(
                         auto_commit=True,
-                        message='Skipped record',
+                        message='Skipped record' if self.importer.log_skipped_records else False,
                         payload=self.importer._create_log_payload(item, origin_identifier, existing_item, payload)
                     )
             except Exception as err:

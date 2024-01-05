@@ -6,7 +6,7 @@ from odoo import api, fields, models, _
 from odoo.addons.pyper_queue_job.exceptions import QueueJobError
 
 from ..exceptions import PyperImporterError
-from ..providers import AllowUpdateConfigurableProvider, BatchableProvider
+from ..providers import AllowUpdateConfigurableProvider, BatchableProvider, SkippedRecordsLoggableProvider
 
 from datetime import datetime
 
@@ -83,6 +83,12 @@ class PyperImporterProvider(models.Model):
         compute='_compute_allow_update',
     )
 
+    log_skipped_records = fields.Boolean(
+        'Log skipped records?',
+        store=True,
+        compute='_compute_log_skipped_records'
+    )
+
     @api.depends('queue_job_ids')
     def _compute_opened_queue_job_count(self):
         for item in self:
@@ -90,6 +96,17 @@ class PyperImporterProvider(models.Model):
                 ('importer_provider_id', '=', item.id),
                 ('state', 'in', ['enqueued', 'doing', 'stopped']),
             ])
+
+    @api.depends('module_name', 'class_name')
+    def _compute_log_skipped_records(self):
+        for item in self:
+            try:
+                module = importlib.import_module('odoo.addons.' + item.module_name)
+                cls = getattr(module, item.class_name)
+                provider = cls(self.env, self.env['pyper.queue.job'])
+                item.log_skipped_records = isinstance(provider, SkippedRecordsLoggableProvider)
+            except Exception:
+                item.log_skipped_records = False
 
     @api.depends('module_name', 'class_name')
     def _compute_allow_update(self):
