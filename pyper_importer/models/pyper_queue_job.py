@@ -137,7 +137,7 @@ class PyperQueueJob(models.Model):
         super().log_error(error_name, error_message, error_info, payload, auto_commit)
 
     def _create_log_vals(self, log_type, name=False, message=False, info=False, payload=False):
-        vals = super()._create_log_vals(log_type, name, message, info)
+        vals = super()._create_log_vals(log_type, name, message, info, payload)
         vals.update({
             'offset': self.importer_latest_offset,
         })
