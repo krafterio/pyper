@@ -16,6 +16,12 @@
                         />
                     </h1>
 
+                    <group name="global_config">
+                        <group string="Security">
+                            <field name="disable_ssl_verification"/>
+                        </group>
+                    </group>
+
                     <group name="config">
                         <group string="Authentication">
                             <field name="auth_type"/>

@@ -19,6 +19,10 @@ class PyperImporterEndpoint(models.Model):
         required=True,
     )
 
+    disable_ssl_verification = fields.Boolean(
+        'Disable SSL verification',
+    )
+
     default_batch_size = fields.Char(
         'Default batch size',
     )
