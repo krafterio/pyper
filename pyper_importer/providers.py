@@ -150,7 +150,11 @@ class TransformHelper(BaseProvider, ABC):
 
                 if not transformed_item.skipped:
                     transformed_items.append(transformed_item)
+                elif transformed_item.payload.get('log_skipped_count', False):
+                    # Increment skip value only
+                    self.job.log_skip(auto_commit=True, payload=transformed_item.payload)
                 elif transformed_item.payload.get('log_skipped', True):
+                    # Increment skip value and log skip details
                     self.job.log_skip(name='TransformItemSkip', auto_commit=True, payload=transformed_item.payload)
             except Exception as err:
                 origin_identifier = self.origin_identifier if hasattr(self, 'origin_identifier') else 'id'
