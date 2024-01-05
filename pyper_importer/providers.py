@@ -159,7 +159,7 @@ class TransformHelper(BaseProvider, ABC):
             except Exception as err:
                 origin_identifier = self.origin_identifier if hasattr(self, 'origin_identifier') else 'id'
                 self.importer._except_load_exception(self.job, err, origin_data, origin_identifier,
-                                                     extracted_item.payload)
+                                                     payload=extracted_item.payload)
 
         return transformed_items
 
