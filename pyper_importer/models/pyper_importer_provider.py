@@ -179,7 +179,8 @@ class PyperImporterProvider(models.Model):
                 log_payload.pop('offset')
             if 'started_date' in log_payload:
                 log_payload.pop('started_date')
-            res['payload'] = log_payload
+            if len(log_payload) > 0:
+                res['payload'] = log_payload
 
         return res
 
