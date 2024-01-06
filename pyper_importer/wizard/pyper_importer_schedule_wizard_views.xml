@@ -34,6 +34,7 @@
                         name="company_ids"
                         widget="many2many_tags"
                         options="{'no_create': True, 'no_edit': True}"
+                        groups="base.group_multi_company"
                     />
                 </group>
 

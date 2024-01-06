@@ -33,7 +33,7 @@
                                 <field name="default_endpoint_id" options="{'no_create': False, 'no_edit': True}"/>
                             </group>
 
-                            <group name="default_values_company" string="Companies">
+                            <group name="default_values_company" string="Companies" groups="base.group_multi_company">
                                 <field name="default_company_ids" widget="many2many_tags" options="{'no_create': True, 'no_edit': True}"/>
                             </group>
                         </page>
@@ -65,7 +65,7 @@
                 <field name="allow_update" optional="show"/>
                 <field name="class_name" optional="hide"/>
                 <field name="module_name" optional="hide"/>
-                <field name="default_company_ids" widget="many2many_tags" optional="hide"/>
+                <field name="default_company_ids" widget="many2many_tags" optional="hide" groups="base.group_multi_company"/>
             </tree>
         </field>
     </record>
