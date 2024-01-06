@@ -34,7 +34,8 @@ class PyperImportScheduleWizard(models.TransientModel):
     batch_size = fields.Integer(
         'Batch size',
         required=True,
-        default=lambda self: int(self.env['ir.config_parameter'].sudo().get_param('pyper_importer.default_batch_size', 100)),
+        default=lambda self: int(self.env['ir.config_parameter'].sudo()
+                                 .get_param('pyper_importer.default_batch_size', 100)),
     )
 
     max_offset = fields.Integer(
@@ -102,13 +103,14 @@ class PyperImportScheduleWizard(models.TransientModel):
     @api.onchange('importer_endpoint_id')
     def _onchange_importer_endpoint_id(self):
         self.batch_size = self.importer_endpoint_id.default_batch_size
+        ICP = self.env['ir.config_parameter'].sudo()
 
         if self.batch_size == 0:
-            self.batch_size = int(self.env['ir.config_parameter'].sudo()
-                                  .get_param('pyper_importer.default_batch_size', 100))
+            self.batch_size = int(ICP.get_param('pyper_importer.default_batch_size', 100))
 
     def action_schedule_import_job(self):
         self.ensure_one()
+        ICP = self.env['ir.config_parameter'].sudo()
 
         scheduled_date = self.scheduled_date if self.scheduled_date is not False \
             and self.scheduled_date > datetime.now() else datetime.now()
@@ -116,28 +118,52 @@ class PyperImportScheduleWizard(models.TransientModel):
         batch_size = self.batch_size
 
         if batch_size <= 0:
-            batch_size = int(self.env['ir.config_parameter'].sudo().get_param('pyper_importer.default_batch_size', 100))
+            batch_size = int(ICP.get_param('pyper_importer.default_batch_size', 100))
 
-        companies = []
+        jobs_vals = []
         for company in self.company_ids:
-            companies.append(company)
+            for extra_vals in self._create_extra_jobs_vals(scheduled_date, batch_size, company):
+                for importer_provider in self.importer_provider_ids:
+                    jobs_vals.append(self._create_job_vals(
+                        scheduled_date,
+                        batch_size,
+                        company,
+                        importer_provider,
+                        extra_vals,
+                    ))
 
-        for importer_provider in self.importer_provider_ids:
-            for company in companies:
-                self.env['pyper.queue.job'].create({
-                    'name': _('Import: %s for %s', importer_provider.name, company.name),
-                    'model_name': importer_provider._name,
-                    'user_id': self.user_id.id,
-                    'company_id': company.id,
-                    'date_enqueued': scheduled_date,
-                    'importer_allow_update': importer_provider.allow_update and self.allow_update,
-                    'importer_provider_id': importer_provider.id,
-                    'importer_endpoint_id': self.importer_endpoint_id.id,
-                    'importer_batch_size': batch_size,
-                    'importer_max_offset': self.max_offset,
-                    'importer_start_offset': self.start_offset,
-                })
+        for job_vals in jobs_vals:
+            self.env['pyper.queue.job'].create(job_vals)
 
         return {
             'type': 'ir.actions.act_window_close',
+        }
+
+    def _create_extra_jobs_vals(self, scheduled_date: datetime, batch_size: int, company) -> list[dict]:
+        """
+        Allow to add a new jobs vals with additional values in addition to the providers and companies.
+        """
+        return [{}]
+
+    def _create_job_vals(self, scheduled_date: datetime, batch_size: int, company, importer_provider,
+                         extra_vals: dict = None):
+        name = _('Import: %s for %s', importer_provider.name, company.name)
+
+        if extra_vals and '+name' in extra_vals:
+            name += extra_vals['+name']
+            extra_vals.pop('+name')
+
+        return {
+            'name': name,
+            'model_name': importer_provider._name,
+            'user_id': self.user_id.id,
+            'company_id': company.id,
+            'date_enqueued': scheduled_date,
+            'importer_allow_update': importer_provider.allow_update and self.allow_update,
+            'importer_provider_id': importer_provider.id,
+            'importer_endpoint_id': self.importer_endpoint_id.id,
+            'importer_batch_size': batch_size,
+            'importer_max_offset': self.max_offset,
+            'importer_start_offset': self.start_offset,
+            **(extra_vals if extra_vals else {})
         }
