@@ -97,6 +97,12 @@ class PyperImportScheduleWizard(models.TransientModel):
             self.company_ids = self.importer_provider_ids.default_company_ids
             self.importer_endpoint_id = self.importer_provider_ids.default_endpoint_id
 
+        if not self.importer_endpoint_id:
+            endpoints = self.env['pyper.importer.endpoint'].search([], limit=2)
+
+            if len(endpoints) == 1:
+                self.importer_endpoint_id = endpoints[0]
+
         if len(self.company_ids.ids) == 0:
             self.company_ids = [self.env.company.id]
 
