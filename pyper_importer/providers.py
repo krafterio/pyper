@@ -209,9 +209,12 @@ class LoadHelper(BaseProvider, ABC):
         return '__importer_data__'
 
     def build_external_id_name(self, item: dict) -> str:
-        return (self.target_model.replace('.', '_')
-                + '__'
-                + str(item.get(self.origin_identifier.replace('.', '_'))))
+        name = str(property_path(item, self.origin_identifier))
+
+        for char in ['.', ' ']:
+            name = name.replace(char, '_')
+
+        return self.target_model.replace('.', '_') + '__' + name
 
     def build_external_id(self, item: dict) -> str:
         return (self.external_identifier_module
