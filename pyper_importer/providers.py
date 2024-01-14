@@ -201,8 +201,12 @@ class LoadHelper(BaseProvider, ABC):
         return False
 
     @property
+    def generate_external_id(self) -> bool:
+        return self.use_external_id
+
+    @property
     def external_identifier_module(self) -> str:
-        return 'pyper_importer'
+        return '__importer_data__'
 
     def build_external_id_name(self, item: dict) -> str:
         return (self.target_model.replace('.', '_')
@@ -238,7 +242,7 @@ class LoadHelper(BaseProvider, ABC):
                 loaded_id = self._load_item(transformed_item, existing_item, existing_item.id is False)
 
                 if loaded_id != 0:
-                    if self.use_external_id:
+                    if self.generate_external_id:
                         self.env['ir.model.data'].create({
                             'name': self.build_external_id_name(item),
                             'model': self.target_model,
@@ -251,6 +255,17 @@ class LoadHelper(BaseProvider, ABC):
                         payload=self.importer._create_log_payload(item, self.origin_identifier, existing_item, payload)
                     )
                 else:
+                    if self.generate_external_id:
+                        ext_id = self.env.ref(self.build_external_id(item), False)
+
+                        if not ext_id:
+                            self.env['ir.model.data'].create({
+                                'name': self.build_external_id_name(item),
+                                'model': self.target_model,
+                                'module': self.external_identifier_module,
+                                'res_id': loaded_id,
+                            })
+
                     self.job.log_skip(
                         auto_commit=True,
                         message='Skipped record' if self.importer.log_skipped_records else False,
