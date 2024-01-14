@@ -268,6 +268,47 @@ class PyperImporterProvider(models.Model):
 
         return item
 
+    def override_log_access(self,
+                            record: models.Model,
+                            create_uid: models.Model | int = None,
+                            create_date: datetime = None,
+                            write_uid: models.Model | int = None,
+                            write_date: datetime = None
+                            ):
+        record_id = record.id
+        record_table = record._table
+        sets = []
+        params = {}
+
+        if isinstance(create_uid, models.Model):
+            create_uid = create_uid.id
+
+        if isinstance(write_uid, models.Model):
+            write_uid = write_uid.id
+
+        if create_uid:
+            sets.append("create_uid=%(create_uid)s")
+            params['create_uid'] = create_uid
+
+        if create_date:
+            sets.append("create_date=%(create_date)s")
+            params['create_date'] = fields.Datetime.to_string(create_date)
+
+        if write_uid:
+            sets.append("write_uid=%(write_uid)s")
+            params['write_uid'] = write_uid
+
+        if write_date:
+            sets.append("write_date=%(write_date)s")
+            params['write_date'] = fields.Datetime.to_string(write_date)
+
+        if sets:
+            params['id'] = record_id
+            self.env.cr.execute(
+                "UPDATE " + record_table + " SET " + ", ".join(sets) + " WHERE id = %(id)s",
+                params
+            )
+
     @staticmethod
     def format_datetime(value: str | bool) -> datetime | bool:
         if isinstance(value, bool):
