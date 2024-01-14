@@ -7,6 +7,8 @@ from abc import ABC, abstractmethod
 
 from datetime import datetime
 
+from .tools import property_path
+
 import copy
 
 
@@ -82,6 +84,9 @@ class ExtractByOdooModelIdentifiersHelper(BatchableProvider, ABC):
     @property
     @abstractmethod
     def origin_identifier(self) -> str:
+        """
+        The origin identifier compatible with the property path string separated by dot.
+        """
         pass
 
     @property
@@ -112,7 +117,7 @@ class ExtractByOdooModelIdentifiersHelper(BatchableProvider, ABC):
         origin_data_list = self._extract_by_identifiers(list_identifiers)
 
         for origin_data in origin_data_list:
-            map_res[origin_data[self.origin_identifier]] = origin_data
+            map_res[property_path(origin_data, self.origin_identifier)] = origin_data
 
         # Create list of record and origin data
         result = []
@@ -182,6 +187,9 @@ class LoadHelper(BaseProvider, ABC):
     @property
     @abstractmethod
     def origin_identifier(self) -> str:
+        """
+        The origin identifier compatible with the property path string separated by dot.
+        """
         pass
 
     @property
@@ -199,7 +207,7 @@ class LoadHelper(BaseProvider, ABC):
     def build_external_id_name(self, item: dict) -> str:
         return (self.target_model.replace('.', '_')
                 + '__'
-                + str(item.get(self.origin_identifier)))
+                + str(item.get(self.origin_identifier.replace('.', '_'))))
 
     def build_external_id(self, item: dict) -> str:
         return (self.external_identifier_module
@@ -224,7 +232,7 @@ class LoadHelper(BaseProvider, ABC):
                     existing_item = self.importer.find_record(
                         self.target_model,
                         self.target_identifier,
-                        item.get(self.origin_identifier),
+                        property_path(item, self.origin_identifier),
                         self.load_find_existing_domain
                     )
                 loaded_id = self._load_item(transformed_item, existing_item, existing_item.id is False)

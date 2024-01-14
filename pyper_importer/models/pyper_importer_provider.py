@@ -7,6 +7,7 @@ from odoo.addons.pyper_queue_job.exceptions import QueueJobError
 
 from ..exceptions import PyperImporterError
 from ..providers import AllowUpdateConfigurableProvider, BatchableProvider, SkippedRecordsLoggableProvider
+from ..tools import property_path
 
 from datetime import datetime
 
@@ -187,7 +188,7 @@ class PyperImporterProvider(models.Model):
         """
         res = {
             'item': item,
-            'origin_identifier': item.get(origin_identifier, False),
+            'origin_identifier': property_path(item, origin_identifier, False),
             'target_identifier': existing_item.id if existing_item is not False else False,
         }
 
