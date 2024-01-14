@@ -1,6 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
+from datetime import datetime
+
+from dateutil import parser
+
 from odoo import api, fields, models, _
 
 from odoo.addons.pyper_queue_job.exceptions import QueueJobError
@@ -8,8 +12,6 @@ from odoo.addons.pyper_queue_job.exceptions import QueueJobError
 from ..exceptions import PyperImporterError
 from ..providers import AllowUpdateConfigurableProvider, BatchableProvider, SkippedRecordsLoggableProvider
 from ..tools import property_path
-
-from datetime import datetime
 
 import importlib
 
@@ -265,6 +267,13 @@ class PyperImporterProvider(models.Model):
             item.with_context(**context).write(vals)
 
         return item
+
+    @staticmethod
+    def format_datetime(value: str | bool) -> datetime | bool:
+        if isinstance(value, bool):
+            return value
+
+        return parser.parse(value)
 
     @staticmethod
     def format_date(value, date_format: str = None, default_value=False):
