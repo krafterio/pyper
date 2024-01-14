@@ -5,6 +5,10 @@ from datetime import datetime
 
 from dateutil import parser
 
+from io import StringIO
+
+from html.parser import HTMLParser
+
 from odoo import api, fields, models, _
 
 from odoo.addons.pyper_queue_job.exceptions import QueueJobError
@@ -16,6 +20,19 @@ from ..tools import property_path
 import importlib
 
 import traceback
+
+
+class HtmlStripper(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.reset()
+        self.strict = False
+        self.convert_charrefs= True
+        self.text = StringIO()
+    def handle_data(self, d):
+        self.text.write(d)
+    def get_data(self):
+        return self.text.getvalue()
 
 
 class PyperImporterProvider(models.Model):
@@ -367,6 +384,14 @@ class PyperImporterProvider(models.Model):
                 return value
 
         return default_value
+
+    def strip_html_tag(self, html: str | bool, default_value=False) -> str | bool:
+        if html:
+            stripper = HtmlStripper()
+            stripper.feed(html)
+            html = stripper.get_data()
+
+        return self.format_value(html, default_value)
 
     @staticmethod
     def hash_value(*kwargs) -> str:
