@@ -290,6 +290,10 @@ class LoadByOdooExternalIdentifierHelper(LoadHelper, ABC):
     def use_external_id(self) -> bool:
         return True
 
+    @property
+    def target_identifier(self) -> str:
+        return self.origin_identifier
+
 
 class LoadByOdooModelIdentifiersHelper(BaseProvider, ABC):
     def load(self, transformed_items: list[TransformedItem]):
