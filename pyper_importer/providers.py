@@ -224,11 +224,12 @@ class LoadHelper(BaseProvider, ABC):
                 break
 
             item = transformed_item.transformed_data
+            item_external_id = self.build_external_id(item)
             payload = transformed_item.payload
 
             try:
                 if self.use_external_id:
-                    existing_item = self.env.ref(self.build_external_id(item), False)
+                    existing_item = self.env.ref(item_external_id, False)
 
                     if existing_item is None:
                         existing_item = self.env[self.target_model]
@@ -242,7 +243,7 @@ class LoadHelper(BaseProvider, ABC):
                 loaded_id = self._load_item(transformed_item, existing_item, existing_item.id is False)
 
                 if loaded_id != 0:
-                    if self.generate_external_id:
+                    if self.generate_external_id and not self.env.ref(item_external_id, False):
                         self.env['ir.model.data'].create({
                             'name': self.build_external_id_name(item),
                             'model': self.target_model,
@@ -256,14 +257,14 @@ class LoadHelper(BaseProvider, ABC):
                     )
                 else:
                     if self.generate_external_id:
-                        ext_id = self.env.ref(self.build_external_id(item), False)
+                        ext_id = self.env.ref(item_external_id, False)
 
                         if not ext_id:
                             self.env['ir.model.data'].create({
                                 'name': self.build_external_id_name(item),
                                 'model': self.target_model,
                                 'module': self.external_identifier_module,
-                                'res_id': loaded_id,
+                                'res_id': existing_item.id,
                             })
 
                     self.job.log_skip(
