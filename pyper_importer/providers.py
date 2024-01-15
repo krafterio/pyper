@@ -143,6 +143,11 @@ class ExtractByOdooModelIdentifiersHelper(BatchableProvider, ABC):
         pass
 
 
+class BypassTransformHelper(BaseProvider, ABC):
+    def transform(self, extracted_items: list[ExtractedItem]) -> list[TransformedItem]:
+        return convert_extracted_items_to_transformed_items(extracted_items)
+
+
 class TransformHelper(BaseProvider, ABC):
     def transform(self, extracted_items: list[ExtractedItem]) -> list[TransformedItem]:
         transformed_items = []
