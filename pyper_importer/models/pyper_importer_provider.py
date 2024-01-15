@@ -326,17 +326,41 @@ class PyperImporterProvider(models.Model):
                 params
             )
 
+    def find_record_by_ext_id(self, external_id: str | bool) -> models.Model | bool:
+        if isinstance(external_id, bool):
+            return False
+
+        return self.env.ref(external_id, False)
+
+    def find_record_by_gen_ext_id(self, model: str, identifier: str | bool, module: str = None) -> models.Model | bool:
+        ext_id = PyperImporterProvider.generate_external_id(model, identifier, module)
+
+        return self.find_record_by_ext_id(ext_id)
+
+    def find_record_id_by_ext_id(self, external_id: str | bool) -> models.Model | bool:
+        res = self.find_record_by_ext_id(external_id)
+
+        return res.id if res else False
+
+    def find_record_id_by_gen_ext_id(self, model: str, identifier: str | bool, module: str = None) -> models.Model | bool:
+        res = self.find_record_by_gen_ext_id(model, identifier, module)
+
+        return res.id if res else False
+
     @staticmethod
     def generate_external_id_module(module: str = None) -> str:
         if module is None:
             module = '__importer_data__'
 
-        return module.strip().replace(' ', '_').lower()
+        return str(module).strip().replace(' ', '_').lower()
 
     @staticmethod
-    def generate_external_id_name(model: str, identifier: str) -> str:
-        model = model.strip().replace('.', '_')
-        identifier = identifier.strip()
+    def generate_external_id_name(model: str, identifier: str | bool) -> str | bool:
+        if isinstance(identifier, bool):
+            return False
+
+        model = str(model).strip().replace('.', '_')
+        identifier = str(identifier).strip()
 
         for char in ['.', ' ']:
             identifier = identifier.replace(char, '_')
@@ -344,11 +368,13 @@ class PyperImporterProvider(models.Model):
         return model.lower() + '__' + identifier.lower()
 
     @staticmethod
-    def generate_external_id(model: str, identifier: str, module: str = None) -> str:
-        return (PyperImporterProvider.generate_external_id_module(module)
-                + '.'
-                + PyperImporterProvider.generate_external_id_name(model, identifier)
-                )
+    def generate_external_id(model: str, identifier: str | bool, module: str = None) -> str | bool:
+        name = PyperImporterProvider.generate_external_id_name(model, identifier)
+
+        if isinstance(name, bool):
+            return name
+
+        return PyperImporterProvider.generate_external_id_module(module) + '.' + name
 
     @staticmethod
     def format_datetime(value: str | bool) -> datetime | bool:
