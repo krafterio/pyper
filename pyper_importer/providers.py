@@ -193,6 +193,13 @@ class LoadHelper(BaseProvider, ABC):
         pass
 
     @property
+    def external_id_identifier(self) -> str:
+        """
+        The external id identifier compatible with the property path string separated by dot.
+        """
+        return self.origin_identifier
+
+    @property
     def load_find_existing_domain(self) -> list | None:
         return None
 
@@ -209,7 +216,7 @@ class LoadHelper(BaseProvider, ABC):
         return '__importer_data__'
 
     def build_external_id_name(self, item: dict) -> str:
-        name = str(property_path(item, self.origin_identifier))
+        name = str(property_path(item, self.external_id_identifier))
 
         for char in ['.', ' ']:
             name = name.replace(char, '_')
