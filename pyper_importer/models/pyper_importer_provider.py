@@ -327,6 +327,30 @@ class PyperImporterProvider(models.Model):
             )
 
     @staticmethod
+    def generate_external_id_module(module: str = None) -> str:
+        if module is None:
+            module = '__importer_data__'
+
+        return module.strip().replace(' ', '_').lower()
+
+    @staticmethod
+    def generate_external_id_name(model: str, identifier: str) -> str:
+        model = model.strip().replace('.', '_')
+        identifier = identifier.strip()
+
+        for char in ['.', ' ']:
+            identifier = identifier.replace(char, '_')
+
+        return model.lower() + '__' + identifier.lower()
+
+    @staticmethod
+    def generate_external_id(model: str, identifier: str, module: str = None) -> str:
+        return (PyperImporterProvider.generate_external_id_module(module)
+                + '.'
+                + PyperImporterProvider.generate_external_id_name(model, identifier)
+                )
+
+    @staticmethod
     def format_datetime(value: str | bool) -> datetime | bool:
         if isinstance(value, bool):
             return value

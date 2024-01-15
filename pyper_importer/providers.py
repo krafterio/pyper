@@ -212,21 +212,21 @@ class LoadHelper(BaseProvider, ABC):
         return self.use_external_id
 
     @property
-    def external_identifier_module(self) -> str:
-        return '__importer_data__'
+    def external_identifier_module(self) -> str | None:
+        return None
 
     def build_external_id_name(self, item: dict) -> str:
-        name = str(property_path(item, self.external_id_identifier))
-
-        for char in ['.', ' ']:
-            name = name.replace(char, '_')
-
-        return self.target_model.replace('.', '_') + '__' + name
+        return self.importer.generate_external_id_name(
+            self.target_model,
+            str(property_path(item, self.external_id_identifier))
+        )
 
     def build_external_id(self, item: dict) -> str:
-        return (self.external_identifier_module
-                + '.'
-                + self.build_external_id_name(item))
+        return self.importer.generate_external_id(
+            self.target_model,
+            str(property_path(item, self.external_id_identifier)),
+            self.external_identifier_module
+        )
 
     def load(self, transformed_items: list[TransformedItem]):
         for transformed_item in transformed_items:
@@ -257,7 +257,7 @@ class LoadHelper(BaseProvider, ABC):
                         self.env['ir.model.data'].create({
                             'name': self.build_external_id_name(item),
                             'model': self.target_model,
-                            'module': self.external_identifier_module,
+                            'module': self.importer.generate_external_id_module(self.external_identifier_module),
                             'res_id': loaded_id,
                         })
 
@@ -273,7 +273,7 @@ class LoadHelper(BaseProvider, ABC):
                             self.env['ir.model.data'].create({
                                 'name': self.build_external_id_name(item),
                                 'model': self.target_model,
-                                'module': self.external_identifier_module,
+                                'module': self.importer.generate_external_id_module(self.external_identifier_module),
                                 'res_id': existing_item.id,
                             })
 
