@@ -506,7 +506,7 @@ class PyperImporterProvider(models.Model):
 
                     finish = not batchable
                     # Update offset if ETL actions are successfully
-                    offset = offset_start
+                    offset = job.importer_start_offset
                     offset += job.importer_success_count + job.importer_skip_count + job.importer_error_count
                     job.importer_latest_offset = max(offset, job.importer_latest_offset)
                     job.env.cr.commit()
