@@ -2,10 +2,8 @@
 <templates xml:space="preserve">
 
     <t t-name="pyper_control_panel.CogMenu" t-inherit="web.CogMenu" t-inherit-mode="extension">
-        <xpath expr="//t[@t-set-slot='toggler']//i[hasclass('fa-cog')]" position="replace">
-            <div class="btn btn-panel btn-panel-white text-nowrap btn rounded-0">
-                <i class="fa fa-cog"/>
-            </div>
+        <xpath expr="//i[hasclass('fa-cog')]" position="replace">
+            <i class="fa fa-ellipsis-v"/>
         </xpath>
 
         <xpath expr="//div[hasclass('o_cp_action_menus')]" position="attributes">
