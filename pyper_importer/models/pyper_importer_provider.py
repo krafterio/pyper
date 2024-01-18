@@ -232,8 +232,8 @@ class PyperImporterProvider(models.Model):
 
         return res
 
-    def find_record(self, model: str, identifier_field: str, identifier_value, domain: list = None,
-                    context: dict = None, sudo: bool = False, order: str = None):
+    def search_record(self, model: str, domain: list = None, context: dict = None, sudo: bool = False,
+                      order: str = None):
         """
         :return: models.Model
         """
@@ -248,18 +248,32 @@ class PyperImporterProvider(models.Model):
         if 'active' in env_model._fields:
             domain.append(('active', 'in', [True, False]))
 
+        if sudo:
+            env_model = env_model.sudo()
+
+        return env_model.search(domain, limit=1, order=order)
+
+    def search_record_id(self, model: str, domain: list = None, context: dict = None, sudo: bool = False,
+                         order: str = None):
+        return self.search_record(model, domain, context, sudo, order)
+
+    def find_record(self, model: str, identifier_field: str, identifier_value, domain: list = None,
+                    context: dict = None, sudo: bool = False, order: str = None):
+        """
+        :return: models.Model
+        """
+        if domain is None:
+            domain = []
+
         if identifier_value.__class__ is str:
             identifier_value = identifier_value.strip()
 
         domain.append((identifier_field, '=', identifier_value))
 
         if not identifier_value:
-            return env_model
+            return self.env[model]
 
-        if sudo:
-            env_model = env_model.sudo()
-
-        return env_model.search(domain, limit=1, order=order)
+        return self.search_record(model, domain, context, sudo, order)
 
     def find_record_id(self, model: str, identifier_field: str, identifier_value, domain: list = None,
                        context: dict = None, sudo: bool = False, order: str = None):
