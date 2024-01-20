@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-06 14:46+0000\n"
-"PO-Revision-Date: 2024-01-06 15:48+0100\n"
+"POT-Creation-Date: 2024-01-20 17:18+0000\n"
+"PO-Revision-Date: 2024-01-20 18:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -33,6 +33,16 @@ msgid "Allow to ping API?"
 msgstr "Autoriser le ping de l’API ?"
 
 #. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__auto_unlink
+msgid "Auto unlink"
+msgstr "Suppression auto"
+
+#. module: pyper_queue_job
+#: model:ir.model,name:pyper_queue_job.model_base
+msgid "Base"
+msgstr ""
+
+#. module: pyper_queue_job
 #: model:ir.actions.server,name:pyper_queue_job.action_queue_job_cancel
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
 msgid "Cancel"
@@ -53,9 +63,10 @@ msgstr "Société"
 #. module: pyper_queue_job
 #: model:ir.model,name:pyper_queue_job.model_res_config_settings
 msgid "Config Settings"
-msgstr "Paramètres de configuration"
+msgstr ""
 
 #. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__context
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
 msgid "Context"
 msgstr "Contexte"
@@ -104,6 +115,12 @@ msgstr "Date d’échec"
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__date_ping_api
 msgid "Date ping API"
 msgstr "Date du ping d’API"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,help:pyper_queue_job.field_pyper_queue_job__auto_unlink
+msgid "Delete the job after done only if it does not have any log"
+msgstr ""
+"Supprimez le travail une fois terminé uniquement s’il n’a aucun journal"
 
 #. module: pyper_queue_job
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
@@ -239,6 +256,11 @@ msgid "Has warning log"
 msgstr "A des log de warning"
 
 #. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__hide_advanced_context
+msgid "Hide Advanced Context"
+msgstr "Masquer le contexte avancé"
+
+#. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__id
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__id
 msgid "ID"
@@ -286,12 +308,38 @@ msgid "Infos"
 msgstr ""
 
 #. module: pyper_queue_job
+#: model:ir.model.fields,help:pyper_queue_job.field_pyper_queue_job__recordset_ids
+msgid "Initial ids used to restore the recordset used by the processor"
+msgstr ""
+"ID initiaux utilisés pour restaurer le recordset utilisé par le processeur"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,help:pyper_queue_job.field_pyper_queue_job__payload
+msgid "Initial payload of job used by the processor"
+msgstr "Payload initial du job utilisée par le processeur"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__display_recordset_ids
+msgid "Job Recordset Ids"
+msgstr "Recordset Ids du Job"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__display_context
+msgid "Job context"
+msgstr "Contexte du job"
+
+#. module: pyper_queue_job
 #. odoo-python
 #: code:addons/pyper/pyper_queue_job/models/pyper_queue_job.py:0
 #: code:addons/pyper_queue_job/models/pyper_queue_job.py:0
 #, python-format
 msgid "Job interrupted by unknown exception"
 msgstr "Travail interrompu par une exception inconnue"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__display_payload
+msgid "Job payload"
+msgstr "Payload du job"
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__date_write
@@ -375,6 +423,11 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__payload
+msgid "Payload"
+msgstr ""
+
+#. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job___ping_api_base_url
 msgid "Ping API Base URL"
 msgstr "Base de l’URL du Ping l’API"
@@ -446,6 +499,11 @@ msgid "Queue job errors"
 msgstr "Erreurs du Queue job"
 
 #. module: pyper_queue_job
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__recordset_ids
+msgid "Recordset"
+msgstr ""
+
+#. module: pyper_queue_job
 #: model:ir.actions.server,name:pyper_queue_job.action_queue_job_relaunch
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
 msgid "Relaunch"
@@ -461,6 +519,11 @@ msgstr "Résultat"
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
 msgid "Retry"
 msgstr "Réessayer"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields,help:pyper_queue_job.field_pyper_queue_job__context
+msgid "Saved data by the queue job processor during the process"
+msgstr "Données enregistrées par le queue job processor pendant le processus"
 
 #. module: pyper_queue_job
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
@@ -527,6 +590,14 @@ msgstr "Succès"
 #, python-format
 msgid "The model method does not exist in model"
 msgstr "La méthode n’existe pas dans le modèle"
+
+#. module: pyper_queue_job
+#. odoo-python
+#: code:addons/pyper/pyper_queue_job/models/pyper_queue_job.py:0
+#: code:addons/pyper_queue_job/models/pyper_queue_job.py:0
+#, python-format
+msgid "The model method is not callable attribute"
+msgstr "La méthode du modèle n’est pas un attribut appelable"
 
 #. module: pyper_queue_job
 #. odoo-python
