@@ -75,8 +75,17 @@ class PyperQueueJob(models.Model):
         help='Delete the job after done only if it does not have any log',
     )
 
+    recordset_ids = fields.Json(
+        help='Initial ids used to restore the recordset used by the processor',
+    )
+
+    display_recordset_ids = fields.Text(
+        'Job Recordset Ids',
+        compute='_compute_display_recordset_ids',
+    )
+
     payload = fields.Json(
-        help='Initial payload of job using by the processor',
+        help='Initial payload of job used by the processor',
     )
 
     display_payload = fields.Text(
@@ -227,6 +236,10 @@ class PyperQueueJob(models.Model):
         copy=False,
     )
 
+    hide_advanced_context = fields.Boolean(
+        compute='_compute_hide_advanced_context',
+    )
+
     _allow_to_ping_api = fields.Boolean(
         'Allow to ping API?',
         default=False,
@@ -246,6 +259,11 @@ class PyperQueueJob(models.Model):
         store=False,
         readonly=True,
     )
+
+    @api.depends('recordset_ids')
+    def _compute_display_recordset_ids(self):
+        for job in self:
+            job.display_recordset_ids = json.dumps(job.recordset_ids) if job.recordset_ids else False
 
     @api.depends('payload')
     def _compute_display_payload(self):
@@ -293,6 +311,11 @@ class PyperQueueJob(models.Model):
                 job.date_ended = job.date_failed
             else:
                 job.date_ended = False
+
+    @api.depends('recordset_ids', 'context', 'payload')
+    def _compute_hide_advanced_context(self):
+        for job in self:
+            job.hide_advanced_context = not job.recordset_ids and not job.context and not job.payload
 
     @api.depends('log_ids')
     def _compute_log_count(self):
@@ -601,16 +624,16 @@ class PyperQueueJob(models.Model):
             if self.model_name not in self.env:
                 raise QueueJobProcessError(_('The model name does not exist'))
 
-            model = self.env[self.model_name]
+            recordset = self.env[self.model_name]
             ids = self.get_payload('_ids', [])
 
-            if ids:
-                model = model.browse(ids)
+            if self.recordset_ids:
+                recordset = recordset.browse(self.recordset_ids)
 
-            if not hasattr(model, self.model_method):
+            if not hasattr(recordset, self.model_method):
                 raise QueueJobProcessError(_('The model method does not exist in model'))
 
-            call = getattr(model, self.model_method)
+            call = getattr(recordset, self.model_method)
             call_init_args = self.payload if self.payload else {}
             call_args = {}
 

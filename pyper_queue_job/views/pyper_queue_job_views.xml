@@ -94,12 +94,20 @@
                         <page name="results" string="Details">
                             <group>
                                 <group name="row_context" string="Context">
-                                    <field name="company_id"/>
-                                    <field name="user_id"/>
-                                    <field name="payload" invisible="True"/>
-                                    <field name="display_payload" invisible="payload == False"/>
-                                    <field name="context" invisible="True"/>
-                                    <field name="display_context" invisible="context == False"/>
+                                    <group>
+                                        <field name="company_id"/>
+                                        <field name="user_id"/>
+                                        <field name="hide_advanced_context" invisible="True"/>
+                                    </group>
+
+                                    <group name="advanced_context" invisible="hide_advanced_context">
+                                        <field name="recordset_ids" invisible="True"/>
+                                        <field name="display_recordset_ids" invisible="hide_advanced_context"/>
+                                        <field name="payload" invisible="True"/>
+                                        <field name="display_payload" invisible="hide_advanced_context"/>
+                                        <field name="context" invisible="True"/>
+                                        <field name="display_context" invisible="hide_advanced_context"/>
+                                    </group>
                                 </group>
 
                                 <group name="row_exceptions" string="Exceptions" invisible="exception_name == False and exception_message == False and exception_info == False">
@@ -130,6 +138,7 @@
         <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree create="False">
+                <field name="hide_advanced_context" column_invisible="True"/>
                 <field name="name"/>
                 <field name="date_created" optional="hide"/>
                 <field name="date_write" optional="hide"/>
@@ -144,8 +153,9 @@
                 <field name="exception_info" optional="hide"/>
                 <field name="user_id" optional="hide"/>
                 <field name="company_id" optional="hide"/>
-                <field name="display_payload" optional="hide"/>
-                <field name="display_context" optional="hide"/>
+                <field name="display_recordset_ids" optional="hide" invisible="hide_advanced_context"/>
+                <field name="display_payload" optional="hide" invisible="hide_advanced_context"/>
+                <field name="display_context" optional="hide" invisible="hide_advanced_context"/>
                 <field name="log_count" optional="hide"/>
                 <field name="log_success_count" optional="hide"/>
                 <field name="log_info_count" optional="hide"/>

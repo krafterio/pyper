@@ -61,14 +61,11 @@ class Delayable(object):
         if self.method_name is None:
             pass
 
-        # Keep ids of the recordset
-        if self.recordset.ids:
-            kwargs.update({'_ids': self.recordset.ids})
-
         job_vals = {
             **self.job_config,
             'model_name': self.recordset._name,
             'model_method': self.method_name,
+            'recordset_ids': self.recordset.ids if self.recordset.ids else False,
             'payload': kwargs,
         }
 
