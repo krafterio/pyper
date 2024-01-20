@@ -127,9 +127,11 @@ class PyperImportScheduleWizard(models.TransientModel):
             batch_size = int(ICP.get_param('pyper_importer.default_batch_size', 100))
 
         jobs_vals = []
+        importer_map = {}
         for company in self.company_ids:
             for extra_vals in self._create_extra_jobs_vals(scheduled_date, batch_size, company):
                 for importer_provider in self.importer_provider_ids:
+                    importer_map[importer_provider.id] = importer_provider
                     jobs_vals.append(self._create_job_vals(
                         scheduled_date,
                         batch_size,
@@ -139,7 +141,7 @@ class PyperImportScheduleWizard(models.TransientModel):
                     ))
 
         for job_vals in jobs_vals:
-            self.env['pyper.queue.job'].create(job_vals)
+            importer_map[job_vals.get('importer_provider_id')].with_delay(**job_vals).queue_job_process()
 
         return {
             'type': 'ir.actions.act_window_close',
@@ -161,7 +163,7 @@ class PyperImportScheduleWizard(models.TransientModel):
 
         return {
             'name': name,
-            'model_name': importer_provider._name,
+            'auto_unlink': False,
             'user_id': self.user_id.id,
             'company_id': company.id,
             'date_enqueued': scheduled_date,

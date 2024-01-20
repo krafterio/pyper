@@ -13,6 +13,7 @@ from odoo import api, fields, models, _
 
 from odoo.addons.pyper_queue_job.exceptions import QueueJobError
 
+from ..models.pyper_queue_job import PyperQueueJob
 from ..exceptions import PyperImporterError
 from ..providers import AllowUpdateConfigurableProvider, BatchableProvider, SkippedRecordsLoggableProvider
 from ..tools import property_path
@@ -38,7 +39,6 @@ class HtmlStripper(HTMLParser):
 class PyperImporterProvider(models.Model):
     _name = 'pyper.importer.provider'
     _description = 'Run import from a Provider'
-    _inherit = ['pyper.queue.job.processor']
     _order = 'sequence asc, id asc'
 
     active = fields.Boolean(
@@ -469,15 +469,12 @@ class PyperImporterProvider(models.Model):
 
         return hash_val
 
-    @staticmethod
-    def queue_job_process(job):
-        importer_provider = job.importer_provider_id
-
-        if importer_provider.id is False:
+    def queue_job_process(self, job: PyperQueueJob):
+        if not job.importer_provider_id or job.importer_provider_id != self:
             raise PyperImporterError(_('Importer provider is not associated with the job'))
 
-        module = importlib.import_module('odoo.addons.' + importer_provider.module_name)
-        cls = getattr(module, importer_provider.class_name)
+        module = importlib.import_module('odoo.addons.' + self.module_name)
+        cls = getattr(module, self.class_name)
 
         provider = cls(job.env, job)
         config = job.env['ir.config_parameter'].sudo()

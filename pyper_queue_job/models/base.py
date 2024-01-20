@@ -11,7 +11,7 @@ class Base(models.AbstractModel):
 
     def with_delay(
         self,
-        job_name: str = None,
+        name: str = None,
         user_id: models.Model | int = None,
         company_id: models.Model | int = None,
         auto_unlink: bool = None,
@@ -26,7 +26,7 @@ class Base(models.AbstractModel):
         The ids of the recordset are automatically restored in the model instance instancied by the job process.
         By default, the current user and current company are restored in the model instance instancied by the job
         process.
-        :param job_name: The custom job name
+        :param name: The custom job name
         :param user_id: The user used for the job
         :param company_id: The active company used for the job
         :param auto_unlink: Defined if the job is deleted when it is done successfully without log
@@ -36,7 +36,7 @@ class Base(models.AbstractModel):
                             future with a queue job
         """
         return Delayable(self, **{
-            'name': job_name,
+            'name': name,
             'user_id': user_id,
             'company_id': company_id,
             'auto_unlink': auto_unlink,
