@@ -1,6 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
+from . import base
 from . import ir_cron
 from . import pyper_queue_job
 from . import pyper_queue_job_log

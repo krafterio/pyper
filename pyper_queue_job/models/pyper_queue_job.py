@@ -1,15 +1,17 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from odoo import api, fields, models, Command, _
-
 from datetime import datetime, timedelta
-
-from ..exceptions import QueueJobProcessError, QueueJobError
-
+from inspect import signature
+import json
+import traceback
+from typing import Any
 import xmlrpc
 
-import traceback
+
+from odoo import api, fields, models, Command, _
+
+from ..exceptions import QueueJobProcessError, QueueJobError
 
 
 class PyperQueueJob(models.Model):
@@ -65,6 +67,30 @@ class PyperQueueJob(models.Model):
         index=True,
         readonly=True,
         default=lambda self: self.env.company
+    )
+
+    auto_unlink = fields.Boolean(
+        'Auto unlink',
+        default=False,
+        help='Delete the job after done only if it does not have any log',
+    )
+
+    payload = fields.Json(
+        help='Initial payload of job using by the processor',
+    )
+
+    display_payload = fields.Text(
+        'Job payload',
+        compute='_compute_display_payload',
+    )
+
+    context = fields.Json(
+        help='Saved data by the queue job processor during the process',
+    )
+
+    display_context = fields.Text(
+        'Job context',
+        compute='_compute_display_context',
     )
 
     exception_name = fields.Char(
@@ -221,6 +247,16 @@ class PyperQueueJob(models.Model):
         readonly=True,
     )
 
+    @api.depends('payload')
+    def _compute_display_payload(self):
+        for job in self:
+            job.display_payload = json.dumps(job.payload, indent=4) if job.payload else False
+
+    @api.depends('context')
+    def _compute_display_context(self):
+        for job in self:
+            job.display_context = json.dumps(job.context, indent=4) if job.context else False
+
     @api.depends('date_enqueued', 'date_started', 'date_stopped', 'date_done', 'date_cancelled', 'date_failed')
     def _compute_state(self):
         for job in self:
@@ -292,6 +328,52 @@ class PyperQueueJob(models.Model):
             'date_write': self.env.cr.now()
         })
         return super().write(values)
+
+    def get_payload(self, path: str, default: Any = False) -> Any:
+        self.ensure_one()
+
+        paths = path.split('.')
+        value = self.payload if self.payload else {}
+
+        for key in paths:
+            if key in value:
+                value = value[key]
+            else:
+                return default
+
+        return value
+
+    def set_payload(self, path: str, value: Any):
+        self.ensure_one()
+
+        payload = self.payload
+
+        if not payload:
+            payload = {}
+
+        paths = path.split('.')
+        nested_payload = payload
+
+        for key in paths[:-1]:
+            nested_payload = nested_payload.setdefault(key, {})
+
+        nested_payload[paths[-1]] = value
+        self.payload = payload
+
+    def get_context(self, key: str, default: Any = False) -> Any:
+        self.ensure_one()
+        values = self.context if self.context else {}
+
+        return values.get(key, default)
+
+    def set_context(self, key: str, value: Any, auto_commit: bool = False):
+        self.ensure_one()
+        values = self.context if self.context else {}
+        values[key] = value
+        self.context = values
+
+        if auto_commit:
+            self.env.cr.commit()
 
     def action_view_queue_job_successes(self):
         return self.action_view_queue_job_logs('success')
@@ -441,6 +523,7 @@ class PyperQueueJob(models.Model):
         self.exception_info = False
 
         if not relaunch:
+            self.context = False
             self.execution_time = 0
             self.log_ids = [Command.clear()]
 
@@ -519,12 +602,32 @@ class PyperQueueJob(models.Model):
                 raise QueueJobProcessError(_('The model name does not exist'))
 
             model = self.env[self.model_name]
+            ids = self.get_payload('_ids', [])
+
+            if ids:
+                model = model.browse(ids)
 
             if not hasattr(model, self.model_method):
                 raise QueueJobProcessError(_('The model method does not exist in model'))
 
-            getattr(model, self.model_method)(self)
+            call = getattr(model, self.model_method)
+            call_init_args = self.payload if self.payload else {}
+            call_args = {}
+
+            if not callable(call):
+                raise QueueJobProcessError(_('The model method is not callable attribute'))
+
+            call_sig = signature(call)
+
+            for arg in call_init_args.keys():
+                if arg in call_sig.parameters and not arg.startswith('_'):
+                    call_args[arg] = call_init_args[arg]
+
+            call(self, **call_args)
             self._done()
+
+            if self.auto_unlink and not self.log_count and self.state in ['done', 'cancelled']:
+                self.unlink()
         except Exception as err:
             msg = _('Job interrupted by unknown exception')
             fail_tracback = traceback.format_exc() if not isinstance(err, QueueJobError) else False

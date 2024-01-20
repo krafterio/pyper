@@ -96,6 +96,10 @@
                                 <group name="row_context" string="Context">
                                     <field name="company_id"/>
                                     <field name="user_id"/>
+                                    <field name="payload" invisible="True"/>
+                                    <field name="display_payload" invisible="payload == False"/>
+                                    <field name="context" invisible="True"/>
+                                    <field name="display_context" invisible="context == False"/>
                                 </group>
 
                                 <group name="row_exceptions" string="Exceptions" invisible="exception_name == False and exception_message == False and exception_info == False">
@@ -140,6 +144,8 @@
                 <field name="exception_info" optional="hide"/>
                 <field name="user_id" optional="hide"/>
                 <field name="company_id" optional="hide"/>
+                <field name="display_payload" optional="hide"/>
+                <field name="display_context" optional="hide"/>
                 <field name="log_count" optional="hide"/>
                 <field name="log_success_count" optional="hide"/>
                 <field name="log_info_count" optional="hide"/>
