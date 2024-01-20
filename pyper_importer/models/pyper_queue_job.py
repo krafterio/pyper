@@ -89,6 +89,14 @@ class PyperQueueJob(models.Model):
         compute='_compute_importer_stop_required',
     )
 
+    @api.depends('recordset_ids', 'context', 'payload')
+    def _compute_hide_advanced_context(self):
+        super(PyperQueueJob, self)._compute_hide_advanced_context()
+
+        for job in self:
+            if job.importer_provider_id:
+                job.hide_advanced_context = True
+
     @api.depends('state', 'importer_latest_offset', 'importer_start_offset', 'importer_max_offset')
     def _compute_importer_stop_required(self):
         for item in self:
