@@ -623,7 +623,11 @@ class PyperQueueJob(models.Model):
                 if arg in call_sig.parameters and not arg.startswith('_'):
                     call_args[arg] = call_init_args[arg]
 
-            call(self, **call_args)
+            for job_arg in ['job', 'queue_job']:
+                if job_arg in call_sig.parameters:
+                    call_args[job_arg] = self
+
+            call(**call_args)
             self._done()
 
             if self.auto_unlink and not self.log_count and self.state in ['done', 'cancelled']:
