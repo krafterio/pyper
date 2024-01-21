@@ -156,10 +156,11 @@ class PyperImportScheduleWizard(models.TransientModel):
     def _create_job_vals(self, scheduled_date: datetime, batch_size: int, company, importer_provider,
                          extra_vals: dict = None):
         name = _('Import: %s for %s', importer_provider.name, company.name)
+        extra = dict(extra_vals if extra_vals else {})
 
-        if extra_vals and '+name' in extra_vals:
-            name += extra_vals['+name']
-            extra_vals.pop('+name')
+        if extra and '+name' in extra:
+            name += extra['+name']
+            extra.pop('+name')
 
         return {
             'name': name,
@@ -173,5 +174,5 @@ class PyperImportScheduleWizard(models.TransientModel):
             'importer_batch_size': batch_size,
             'importer_max_offset': self.max_offset,
             'importer_start_offset': self.start_offset,
-            **(extra_vals if extra_vals else {})
+            **extra
         }
