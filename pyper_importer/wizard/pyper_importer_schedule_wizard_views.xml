@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="pyper_importer_schedule_wizard_form" model="ir.ui.view">
+    <record id="view_pyper_importer_schedule_wizard" model="ir.ui.view">
         <field name="name">pyper.importer.schedule_wizard.form</field>
         <field name="model">pyper.importer.schedule_wizard</field>
         <field name="arch" type="xml">

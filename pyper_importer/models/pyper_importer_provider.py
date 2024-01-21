@@ -160,7 +160,7 @@ class PyperImporterProvider(models.Model):
             'res_model': 'pyper.importer.schedule_wizard',
             'view_mode': 'form',
             'target': 'new',
-            'view_id': self.env.ref('pyper_importer.pyper_importer_schedule_wizard_form', False).id,
+            'view_id': self.env.ref('pyper_importer.view_pyper_importer_schedule_wizard', False).id,
             'context': {**self.env.context, **{
                 'dialog_size': 'large',
                 'default_importer_provider_ids': self.ids,
