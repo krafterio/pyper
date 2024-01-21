@@ -346,7 +346,8 @@ class PyperImporterProvider(models.Model):
 
         return self.env.ref(external_id, False)
 
-    def find_record_by_gen_ext_id(self, model: str, identifier: str | bool, module: str = None) -> models.Model | bool:
+    def find_record_by_gen_ext_id(self, model: str, identifier: str | int | bool, module: str = None
+                                  ) -> models.Model | bool:
         ext_id = PyperImporterProvider.generate_external_id(model, identifier, module)
 
         return self.find_record_by_ext_id(ext_id)
@@ -356,7 +357,8 @@ class PyperImporterProvider(models.Model):
 
         return res.id if res else False
 
-    def find_record_id_by_gen_ext_id(self, model: str, identifier: str | bool, module: str = None) -> models.Model | bool:
+    def find_record_id_by_gen_ext_id(self, model: str, identifier: str | int | bool, module: str = None
+                                     ) -> models.Model | bool:
         res = self.find_record_by_gen_ext_id(model, identifier, module)
 
         return res.id if res else False
@@ -369,7 +371,7 @@ class PyperImporterProvider(models.Model):
         return str(module).strip().replace(' ', '_').lower()
 
     @staticmethod
-    def generate_external_id_name(model: str, identifier: str | bool) -> str | bool:
+    def generate_external_id_name(model: str, identifier: str | int | bool) -> str | bool:
         if isinstance(identifier, bool):
             return False
 
@@ -382,7 +384,7 @@ class PyperImporterProvider(models.Model):
         return model.lower() + '__' + identifier.lower()
 
     @staticmethod
-    def generate_external_id(model: str, identifier: str | bool, module: str = None) -> str | bool:
+    def generate_external_id(model: str, identifier: str | int | bool, module: str = None) -> str | bool:
         name = PyperImporterProvider.generate_external_id_name(model, identifier)
 
         if isinstance(name, bool):
