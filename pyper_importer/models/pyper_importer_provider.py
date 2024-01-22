@@ -420,6 +420,18 @@ class PyperImporterProvider(models.Model):
             return default_value
 
     @staticmethod
+    def format_bool(value, default_value=False):
+        val = PyperImporterProvider.format_value(value, default_value)
+
+        if val == default_value:
+            return val
+
+        try:
+            return bool(val)
+        except ValueError:
+            return default_value
+
+    @staticmethod
     def format_int(value, default_value=False):
         val = PyperImporterProvider.format_value(value, default_value)
 
