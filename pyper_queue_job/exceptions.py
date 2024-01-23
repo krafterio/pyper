@@ -23,3 +23,16 @@ class QueueJobProcessError(QueueJobError):
         :param message: exception message and frontend exception info in job
         """
         super().__init__(message)
+
+
+def create_error(class_name, message: str):
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+        QueueJobError.__init__(self, message)
+
+    new_class = type(class_name, (QueueJobError,), {'__init__': __init__})
+
+    return new_class

@@ -11,7 +11,7 @@ import xmlrpc
 
 from odoo import api, fields, models, Command, _
 
-from ..exceptions import QueueJobProcessError, QueueJobError
+from ..exceptions import create_error as queue_create_error, QueueJobProcessError, QueueJobError
 
 
 class PyperQueueJob(models.Model):
@@ -481,6 +481,10 @@ class PyperQueueJob(models.Model):
             'message': message,
             'info': info,
         }
+
+    @staticmethod
+    def create_error(error_name: str, error_message: str) -> QueueJobProcessError:
+        return queue_create_error(error_name, error_message)
 
     def schedule_now(self):
         now = datetime.now()
