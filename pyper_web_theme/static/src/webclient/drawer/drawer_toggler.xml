@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="pyper_web_theme.DrawerToggler" t-inherit="pyper_drawer.DrawerToggler" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-slot='icon_menu']/i" position="replace">
+            <i class="ph-light ph-list"/>
+        </xpath>
+
+        <xpath expr="//t[@t-slot='icon_caret']/i" position="replace">
+            <i class="ph-light ph-caret-right"/>
+        </xpath>
+    </t>
+
+</templates>

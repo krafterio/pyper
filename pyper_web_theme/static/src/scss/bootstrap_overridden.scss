@@ -1,0 +1,117 @@
+// Color system
+$prevent-backend-colors-alteration: true;
+
+$light: #f8fafc;
+$dark: #18181b;
+$warning: rgb(251, 146, 60);
+$danger: #b91c1c;
+
+
+// Options
+$enable-shadows: false;
+
+// Typography
+$h1-font-size: $o-font-size-base * 2.4;
+$h2-font-size: $o-font-size-base * 1.5;
+$h3-font-size: $o-font-size-base * 1.3;
+$h4-font-size: $o-font-size-base * 1.2;
+$h5-font-size: $o-font-size-base * 1.1;
+
+// Border
+$border-color: #e2e8f0;
+
+// Form
+$input-border-color: $o-gray-200;
+
+$input-box-shadow: 0;
+
+$input-line-height: 2;
+
+$input-focus-bg: $o-white;
+$input-focus-box-shadow: 0;
+$input-focus-border-color: mix($o-extra-action-color, $o-gray-200);
+
+$form-check-input-checked-color: $o-white;
+$form-check-input-checked-border-color: $o-extra-action-color;
+$form-check-input-checked-bg-color: $o-extra-action-color;
+$form-check-input-border-radius: 4px;
+$form-check-input-width: 1.3em;
+$form-check-input-width: 1.3em;
+$form-check-input-checked-color: $o-white;
+$form-check-input-checked-bg-color: $o-brand-primary;
+$form-check-input-checked-border-color: $o-brand-primary;
+
+$form-select-focus-box-shadow: 0;
+
+$form-range-track-box-shadow: 0;
+
+$custom-checkbox-indicator-border-radius: 1px; // Just a slight smoothing.
+
+// Table
+$table-cell-padding-y-sm: 0.3em;
+$table-cell-vertical-align:middle;
+
+$table-active-bg-factor: .1;
+$table-active-bg: rgba($o-brand-primary, $table-active-bg-factor);
+$table-striped-bg-factor: 0;
+
+$table-hover-bg-factor: .075;
+$table-hover-bg: rgba($o-brand-primary, $table-hover-bg-factor);
+
+// Component
+$component-active-color: $o-brand-primary;
+$component-active-bg: mix($o-brand-primary, $o-white, 10%);
+
+// Nav
+$nav-tabs-border-radius: 0;
+$nav-tabs-link-active-color: $o-main-headings-color;
+$nav-tabs-link-active-bg: transparent;
+
+$nav-pills-border-radius: 0;
+
+$nav-link-color: $o-main-text-color;
+
+// Card
+$card-border-radius: 0;
+$accordion-border-radius: 0;
+
+// Toast
+$toast-border-radius: 0;
+
+// Badge
+$badge-border-radius: $o-border-radius;
+$badge-font-weight: normal;
+
+// Progress
+$progress-border-radius: 0;
+$progress-box-shadow: 0;
+
+// List group
+$list-group-border-radius: 0;
+$list-group-active-color: $o-extra-action-color;
+$list-group-active-bg: $component-active-bg;
+$list-group-active-border-color: $o-extra-action-color;
+
+// Image thumbnail
+$thumbnail-border-radius: 0;
+$thumbnail-box-shadow: 0;
+
+// Button
+$btn-transition: none;
+$input-btn-line-height: 2;
+$btn-padding-x: 16px;
+
+$btn-box-shadow: 0;
+$btn-active-box-shadow: 0;
+$btn-focus-box-shadow: 0;
+
+// Dropdown
+$dropdown-box-shadow: 0 .3rem 1rem rgba(#000, .1);
+
+// Alert
+$alert-border-width: 0;
+$alert-border-radius: 0;
+
+// Breadcrumb
+$breadcrumb-active-color: $o-main-text-color;
+$breadcrumb-divider-color: $o-main-color-muted;

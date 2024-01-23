@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="pyper_web_theme.Chatter.attachFiles" t-inherit="mail.Chatter.attachFiles" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('o-mail-Chatter-attachFiles')]" position="replace"/>
+    </t>
+
+    <t t-name="pyper_web_theme.Chatter" t-inherit="mail.Chatter" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o-mail-AttachmentBox')]" position="attributes">
+            <attribute name="t-if" remove="state.isAttachmentBoxOpened"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Chatter-top')]" position="attributes">
+            <attribute name="class" separator=" " add="p-3 pb-0"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-AttachmentBox')]/div[1]" position="attributes">
+            <attribute name="class" add="d-none" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Chatter')]" position="attributes">
+            <attribute name="class" add="p-0 border-start" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Chatter-topbar')]/div/button[2]" position="replace"/>
+
+        <xpath expr="//span[hasclass('o-mail-Chatter-topbarGrow')]" position="replace"/>
+
+        <xpath expr="//div[hasclass('o-mail-Chatter-topbar')]" position="attributes">
+            <attribute name="class">o-mail-Chatter-topbar px-0 d-flex align-items-center</attribute>
+        </xpath>
+
+        <xpath expr="//button[hasclass('o-mail-Chatter-logNote')]" position="replace"/>
+
+        <xpath expr="//button[hasclass('o-mail-Chatter-sendMessage')]" position="replace">
+           <button t-if="props.hasMessageList" class="o-mail-Chatter-sendMessage btn btn-secondary btn-quick p-0 me-2 text-nowrap" t-att-disabled="!state.thread.hasWriteAccess and !(state.thread.hasReadAccess and state.thread.canPostOnReadonly) and props.threadId" data-hotkey="m" t-on-click="() => this.toggleComposer('message')">
+               <i class="ph ph-chat-centered-text"/>
+               <i class="btn-quick-counter fa fa-plus bg-success"></i>
+            </button>
+        </xpath>
+
+        <xpath expr="//button[hasclass('o-mail-Chatter-activity')]" position="replace">
+           <button t-if="props.hasActivities" class="o-mail-Chatter-activity btn btn-secondary me-2 text-nowrap"  data-hotkey="shift+a" t-on-click="scheduleActivity">
+               <i class="ph ph-calendar-check fs-2 lh-lg"/>
+           </button>
+
+            <Dropdown t-if="props.hasFollowers" position="'bottom-end'" disabled="isDisabled" class="'o-mail-Followers d-flex position-relative'" menuClass="'o-mail-Followers-dropdown flex-column'" menuDisplay="'d-flex'" title="followerButtonLabel" togglerClass="'o-mail-Followers-button btn btn-secondary btn-quick me-2 position-relative text-nowrap'">
+                <t t-set-slot="toggler">
+                    <i class="ph ph-users-three fs-2 lh-lg"></i>
+                    <i t-if="state.thread.id and state.thread.followersCount === undefined" class="fa fa-circle-o-notch fa-spin"/>
+                    <span t-else="" class="o-mail-Followers-counter" t-esc="state.thread.followersCount ?? 0"/>
+                </t>
+                <t t-set-slot="default">
+                    <FollowerList onAddFollowers.bind="onAddFollowers" onFollowerChanged.bind="onFollowerChanged" thread="state.thread"/>
+                </t>
+            </Dropdown>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Chatter-topbar')]/div/Dropdown[2]" position="replace"/>
+
+        <xpath expr="//button[hasclass('o-mail-Chatter-sendMessage')]" position="after">
+            <FileUploader
+                multiUpload="true"
+
+                fileUploadClass="'o-mail-Chatter-fileUploader'"
+                onUploaded.bind="onUploaded"
+                onClick="(ev) => this.onClickAttachFile(ev)"
+            >
+                <t t-set-slot="toggler">
+                    <button class="o-mail-Chatter-uploadFile btn btn-secondary btn-quick p-0 me-2 text-nowrap"  type="button" t-att-disabled="!state.thread.hasWriteAccess">
+                        <i class="ph ph-upload"/>
+                        <i class="btn-quick-counter fa fa-plus bg-success"></i>
+                    </button>
+                </t>
+            </FileUploader>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-AttachmentBox')]//FileUploader" position="replace"/>
+
+        <xpath expr="//button[@t-on-click='onClickFollow']" position="replace"/>
+        <xpath expr="//button[@t-on-click='onClickUnfollow']" position="replace">
+            <button t-if="props.hasFollowers and state.thread.selfFollower" class="btn btn-secondary btn-quick text-nowrap" t-att-class="{ 'text-primary': !unfollowHover.isHover}" t-att-disabled="!props.threadId" t-on-click="onClickUnfollow" t-ref="unfollow">
+                <i class="ph-fill ph-toggle-right"/>
+            </button>
+            <button t-if="!state.thread.selfFollower" class="o-mail-Chatter-follow btn btn-secondary btn-quick text-nowrap" t-on-click="onClickFollow">
+                <i class="ph-fill ph-toggle-left"/>
+            </button>
+        </xpath>
+
+
+        <xpath expr="//div[hasclass('o-mail-AttachmentBox')]//div[2]" position="attributes">
+            <attribute name="class" add="px-3 my-2" separator=" "/>
+        </xpath>
+
+    </t>
+
+</templates>

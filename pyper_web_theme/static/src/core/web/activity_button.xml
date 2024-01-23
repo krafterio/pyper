@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_web_theme.ActivityButton" t-inherit="mail.ActivityButton" t-inherit-mode="extension">
+        <xpath expr="//a[hasclass('o-mail-ActivityButton')]" position="attributes">
+            <attribute name="class" separator=" " add="me-2"/>
+        </xpath>
+    </t>
+</templates>

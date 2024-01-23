@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="smasjr.DrawerMenuItem.Content" t-inherit="pyper_drawer.DrawerMenuItem.Content" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-slot='empty_icon']/i" position="replace">
+            <i class="ph-light ph-cube"/>
+        </xpath>
+    </t>
+
+</templates>
