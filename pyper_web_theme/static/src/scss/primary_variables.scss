@@ -1,143 +1,84 @@
 // Color
-$o-white: #FFF;
-$o-black: #000;
+$o-white: #FFF !default;
+$o-black: #000 !default;
 
-$o-gray-50: #f9fafb;
-$o-gray-100: #f3f4f6;
-$o-gray-200: #e5e7eb;
-$o-gray-300: #d1d5db;
-$o-gray-400: #9ca3af;
-$o-gray-500: #6b7280;
-$o-gray-600: #4b5563;
-$o-gray-700: #374151;
-$o-gray-800: #1f2937;
-$o-gray-900: #111827;
+$o-gray-50: #f9fafb !default;
+$o-gray-100: #f3f4f6 !default;
+$o-gray-200: #e5e7eb !default;
+$o-gray-300: #d1d5db !default;
+$o-gray-400: #9ca3af !default;
+$o-gray-500: #6b7280 !default;
+$o-gray-600: #4b5563 !default;
+$o-gray-700: #374151 !default;
+$o-gray-800: #1f2937 !default;
+$o-gray-900: #111827 !default;
 
-$o-extra-color: #374151;
-$o-extra-action-color: $o-white;
+$o-extra-color: #374151 !default;
+$o-extra-action-color: $o-white !default;
 
-$o-opacity-disabled: .5;
-$o-opacity-muted: .76;
+$o-opacity-disabled: .5 !default;
+$o-opacity-muted: .76 !default;
 
-$o-brand-odoo: $o-extra-color;
-$o-brand-primary: $o-brand-odoo;
-$o-brand-primary-dark: #20a99d;
-$o-brand-secondary: #94a3b8;
-$o-brand-lightsecondary: $o-gray-100;
-$border-color: #e5e7eb;
+$o-brand-odoo: $o-extra-color !default;
+$o-brand-primary: $o-brand-odoo !default;
+$o-brand-primary-dark: #20a99d !default;
+$o-brand-secondary: #94a3b8 !default;
+$o-brand-lightsecondary: $o-gray-100 !default;
+$border-color: #e5e7eb !default;
 
 $o-success: $o-brand-primary !default;
 $o-info: #3eafb0 !default;
 $o-warning: #ffac00 !default;
 $o-danger: #e06561 !default;
 
-$o-theme-text-colors: (
-    "success": $o-brand-primary,
-    "info": $o-info,
-    "warning": $o-warning,
-    "danger": $o-danger,
-);
-
-$o-action: $o-extra-action-color;
-$o-main-text-color: $o-gray-700;
-$o-main-link-color: $o-gray-400;
+$o-action: $o-extra-action-color !default;
+$o-main-text-color: $o-gray-700 !default;
+$o-main-link-color: $o-gray-400 !default;
 $o-main-color-muted: rgba($o-main-text-color, $o-opacity-muted);
 
-$o-mail-Chatter-minWidth: 540px;
+$o-mail-Chatter-minWidth: 540px !default;
 
 // Typography
-$o-system-fonts: ('Heebo', Arial, sans-serif, "Apple Color Emoji");
-$font-size-base: 0.875rem;
-
-$o-headings-font-family: o-add-unicode-support-font(('Heebo', $o-system-fonts));
+$font-size-base: 0.875rem !default;
 
 // Component
-$o-component-active-color: $o-gray-900;
-$o-component-active-bg: mix($o-action, $o-white, 10%);
-$o-component-active-border: $o-action;
+$o-component-active-color: $o-gray-900 !default;
+$o-component-active-bg: mix($o-action, $o-white, 10%) !default;
+$o-component-active-border: $o-action !default;
 
 // List group
-$o-list-group-header-color: $o-gray-900;
-$o-list-footer-color: $o-gray-900;
-$o-list-footer-bg-color: transparent;
-$o-list-footer-font-weight: 500;
+$o-list-group-header-color: $o-gray-900 !default;
+$o-list-footer-color: $o-gray-900 !default;
+$o-list-footer-bg-color: transparent !default;
+$o-list-footer-font-weight: 500 !default;
 
 // Form
-$o-input-padding-y: 1px;
-$o-input-padding-x: 0;
-$o-input-border-required: $o-gray-900;
-$o-form-view-sheet-max-width: 100%;
-$o-control-panel-background-color: $o-white;
+$o-input-padding-y: 1px !default;
+$o-input-padding-x: 0 !default;
+$o-input-border-required: $o-gray-900 !default;
+$o-form-view-sheet-max-width: 100% !default;
+$o-control-panel-background-color: $o-white !default;
 
 // Badge
-$o-badge-min-width: 2.7ch;
+$o-badge-min-width: 2.7ch !default;
 
 // Button
-$o-btns-bs-override: (
-    "primary": (
-        background: $o-brand-primary,
-        border: $o-brand-primary,
-        color: $o-white,
-        hover-background: darken($o-brand-primary, 5%),
-        hover-border: darken($o-brand-primary, 10%),
-        hover-color: $o-white,
-        active-background: mix($o-brand-primary, $o-white, 10%),
-        active-border: $o-brand-primary,
-        active-color:$o-brand-primary,
-    ),
-    "secondary": (
-        background: $o-white,
-        border: $o-gray-200,
-        color: $o-gray-700,
-        hover-background: $o-gray-100,
-        hover-border: $o-gray-300,
-        hover-color: $o-gray-700,
-        active-background: $o-brand-primary,
-        active-border: $o-brand-primary,
-        active-color: $o-white,
-    ),
-    "light": (
-        background: $o-gray-100,
-        border: $o-gray-100,
-        color: $o-gray-800,
-        hover-background: $o-gray-200,
-        hover-border: $o-gray-200,
-        hover-color: $o-gray-900,
-        active-background: $o-component-active-bg,
-        active-border: $o-component-active-border,
-        active-color: $o-component-active-color,
-    ),
-);
-
-$o-btns-bs-outline-override: (
-    "secondary": (
-        background: transparent,
-        border: $o-gray-200,
-        color: $o-gray-700,
-        hover-background: $o-gray-200,
-        hover-border: $o-gray-300,
-        hover-color: $o-gray-800,
-        active-background: mix($o-extra-action-color, $o-white, 10%),
-        active-border: $o-extra-action-color,
-        active-color: $o-gray-900,
-    ),
-);
-$btn-padding-y-sm: 0.1rem;
-$btn-padding-x-sm:0.5rem;
+$btn-padding-y-sm: 0.1rem !default;
+$btn-padding-x-sm:0.5rem !default;
 
 // Kanban
-$o-kanban-background : $o-gray-50;
-$o-kanban-inside-hgutter: 18px;
-$o-kanban-group-padding: 18px;
-$o-kanban-progressbar-height: 0.5rem;
+$o-kanban-background : $o-gray-50 !default;
+$o-kanban-inside-hgutter: 18px !default;
+$o-kanban-group-padding: 18px !default;
+$o-kanban-progressbar-height: 0.5rem !default;
 
-$o-statusbar-height: 40px;
+$o-statusbar-height: 40px !default;
 
 // Fields
-$o-main-favorite-color: $o-brand-primary;
+$o-main-favorite-color: $o-brand-primary !default;
 
 // Drawer
-$o-drawer-item-padding-v: 11px;
+$o-drawer-item-padding-v: 11px !default;
 
 // Cards
-$card-border-color: $border-color;
+$card-border-color: $border-color !default;
