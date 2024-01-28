@@ -217,18 +217,22 @@ class LoadHelper(BaseProvider, ABC):
         return self.use_external_id
 
     @property
+    def external_identifier_id_prefix(self) -> str:
+        return ''
+
+    @property
     def external_identifier_module(self) -> str | None:
         return None
 
     def build_external_id_name(self, item: dict) -> str:
         return self.importer.generate_external_id_name(
             self.target_model,
-            str(property_path(item, self.external_id_identifier))
+            self.external_identifier_id_prefix + str(property_path(item, self.external_id_identifier))
         )
 
     def build_external_id(self, item: dict) -> str:
         return self.importer.generate_external_id(
-            self.target_model,
+            self.external_identifier_id_prefix + self.target_model,
             str(property_path(item, self.external_id_identifier)),
             self.external_identifier_module
         )
