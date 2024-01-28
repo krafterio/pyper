@@ -398,9 +398,9 @@ class PyperImporterProvider(models.Model):
         return PyperImporterProvider.generate_external_id_module(module) + '.' + name
 
     @staticmethod
-    def format_datetime(value: str | bool, ignoretz: bool = True) -> datetime | bool:
-        if isinstance(value, bool):
-            return value
+    def format_datetime(value: str | bool, ignoretz: bool = True, default_value=False) -> datetime | bool:
+        if isinstance(value, bool) or value is None:
+            return default_value
 
         return parser.parse(value, ignoretz=ignoretz)
 
