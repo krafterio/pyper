@@ -259,7 +259,9 @@ class LoadHelper(BaseProvider, ABC):
                         property_path(item, self.origin_identifier),
                         self.load_find_existing_domain
                     )
-                loaded_id = self._load_item(transformed_item, existing_item, existing_item.id is False)
+
+                is_create = existing_item.id is False
+                loaded_id = self._load_item(transformed_item, existing_item, is_create)
 
                 if loaded_id != 0:
                     if self.generate_external_id and not self.env.ref(item_external_id, False):
@@ -274,6 +276,8 @@ class LoadHelper(BaseProvider, ABC):
                         auto_commit=True,
                         payload=self.importer._create_log_payload(item, self.origin_identifier, existing_item, payload)
                     )
+
+                    self._post_load_item(transformed_item, existing_item.browse(loaded_id), is_create)
                 else:
                     if self.generate_external_id:
                         ext_id = self.env.ref(item_external_id, False)
@@ -302,6 +306,9 @@ class LoadHelper(BaseProvider, ABC):
         :param existing_item (Model<*>): the existing record
         :return int: the item id if the item is loaded or 0 if not loaded (skipped)
         """
+        pass
+
+    def _post_load_item(self, transformed_item: TransformedItem, existing_item, is_create: bool) -> None:
         pass
 
 
