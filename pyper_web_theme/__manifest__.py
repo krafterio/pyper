@@ -13,9 +13,6 @@
         'Krafter SAS',
     ],
     'website': 'https://krafter.io',
-    'auto_install': [
-        'web',
-    ],
     'depends': [
         'web',
         'base',
