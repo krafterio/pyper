@@ -32,8 +32,10 @@ class HtmlStripper(HTMLParser):
         self.strict = False
         self.convert_charrefs= True
         self.text = StringIO()
+
     def handle_data(self, d):
         self.text.write(d)
+
     def get_data(self):
         return self.text.getvalue()
 
