@@ -605,11 +605,6 @@ class PyperQueueJob(models.Model):
 
             row = self.env.cr.fetchone()
             job = self.browse(row and row[0])
-            # Process the job with the defined company and user in job
-            job = job\
-                .with_company(job.company_id)\
-                .with_user(job.user_id)\
-                .with_context(allowed_company_ids=[job.company_id.id])
 
             return job
         except Exception:
@@ -629,10 +624,15 @@ class PyperQueueJob(models.Model):
                 raise QueueJobProcessError(_('The model name does not exist'))
 
             recordset = self.env[self.model_name]
-            ids = self.get_payload('_ids', [])
 
             if self.recordset_ids:
                 recordset = recordset.browse(self.recordset_ids)
+
+            # Process the job with the defined company and user in job
+            recordset = recordset \
+                .with_company(self.company_id) \
+                .with_user(self.user_id) \
+                .with_context(allowed_company_ids=[self.company_id.id])
 
             if not hasattr(recordset, self.model_method):
                 raise QueueJobProcessError(_('The model method does not exist in model'))

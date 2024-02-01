@@ -90,4 +90,4 @@ class Delayable(object):
         if job_vals.get('auto_unlink', None) is None:
             job_vals['auto_unlink'] = True
 
-        self.recordset.env['pyper.queue.job'].create(job_vals)
+        self.recordset.env['pyper.queue.job'].sudo().create(job_vals)
