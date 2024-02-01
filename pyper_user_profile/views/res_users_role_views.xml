@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="res_user_role_tree_view" model="ir.ui.view">
+        <field name="name">res.users.role.tree.view</field>
+        <field name="model">res.users.role</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_user_role_form_view" model="ir.ui.view">
+        <field name="name">res.users.role.form.view</field>
+        <field name="model">res.users.role</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page name="groups" string="Default groups">
+                            <field name="group_ids">
+                                <tree create="False" edit="False">
+                                    <field name="full_name"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="users" string="Users">
+                            <field name="user_ids">
+                                <tree create="False" edit="False">
+                                    <field name="complete_name"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="notes" string="Internal notes">
+                            <field name="notes" widget="text"/>
+                        </page>    
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="res_users_role_action" model="ir.actions.act_window">
+        <field name="name">User roles</field>
+        <field name="res_model">res.users.role</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="menu_users_role" name="User roles" 
+        parent="base.menu_users" action="res_users_role_action" sequence="2"/>
+</odoo>

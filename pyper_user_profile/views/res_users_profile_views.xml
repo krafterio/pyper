@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="res_user_profile_tree_view" model="ir.ui.view">
+        <field name="name">res.users.profile.tree.view</field>
+        <field name="model">res.users.profile</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="is_default_profile"/>
+                <field name="user_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_user_profile_form_view" model="ir.ui.view">
+        <field name="name">res.users.profile.form.view</field>
+        <field name="model">res.users.profile</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" class="fw-bold" placeholder="Name of the profile"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="is_default_profile"/>
+                    </group>
+                    <notebook>
+                        <page name="roles" string="Default roles">
+                            <field name="role_ids"/>
+                        </page>
+                        <page name="groups" string="Default groups">
+                            <field name="group_ids"/>                        
+                        </page>
+                        <page name="users" string="Users">
+                            <field name="user_ids" options="{'no_create':True, 'no_edit': True}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="res_users_profile_action" model="ir.actions.act_window">
+        <field name="name">User profiles</field>
+        <field name="res_model">res.users.profile</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="menu_users_profile" name="User profiles" 
+        parent="base.menu_users" action="res_users_profile_action" sequence="2"/>
+</odoo>

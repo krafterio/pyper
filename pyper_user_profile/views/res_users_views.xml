@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_users_simple_form" model="ir.ui.view">
+        <field name="name">view.users.simple.form.inherit.pyper.user.profile</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='login']" position="before">
+                <group>
+                    <field name="user_profile_id" options="{'no_create': True, 'no_edit': True}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_users_form" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.pyper.user.profile</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='login']" position="before">
+                <group>
+                    <field name="user_profile_id" options="{'no_create': True, 'no_edit': True}"/>
+                </group>
+            </xpath>
+            <xpath expr="//page[@name='access_rights']" position="before">
+                <page name="roles" string="Roles">
+                    <field name="user_role_ids"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

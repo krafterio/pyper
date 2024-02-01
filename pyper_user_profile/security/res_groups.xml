@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="user_role_manager_group" model="res.groups">
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="name">Can create/edit User roles</field>
+    </record>
+
+    <record id="user_profile_manager_group" model="res.groups">
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="name">Can create/edit User profiles</field>
+    </record>
+</odoo>

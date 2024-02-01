@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+    <record id="admin_profile" model="res.users.profile">
+        <field name="name">Administrator</field>
+        <field name="role_ids" eval="[
+                (4, ref('pyper_user_profile.manage_user_profiles_role')),
+                (4, ref('pyper_user_profile.internal_user_role')),
+            ]"/>
+        <field name="user_ids" eval="[
+                (4, ref('base.user_admin')),
+            ]"/>
+    </record>
+</odoo>
