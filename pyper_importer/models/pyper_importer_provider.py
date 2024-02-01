@@ -255,7 +255,7 @@ class PyperImporterProvider(models.Model):
 
     def search_record_id(self, model: str, domain: list = None, context: dict = None, sudo: bool = False,
                          order: str = None):
-        return self.search_record(model, domain, context, sudo, order)
+        return self.search_record(model, domain, context, sudo, order).id
 
     def find_record(self, model: str, identifier_field: str, identifier_value, domain: list = None,
                     context: dict = None, sudo: bool = False, order: str = None):
