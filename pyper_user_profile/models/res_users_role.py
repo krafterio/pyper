@@ -14,6 +14,9 @@ class Users(models.Model):
     user_ids = fields.Many2many(
         'res.users', relation='res_users_res_users_role_rel', column1='role_id', column2='user_id'
     )
+    profile_ids = fields.Many2many(
+        'res.users.profile', relation='res_users_profile_res_users_role_rel', column1='role_id', column2='profile_id',
+    )
 
     def write(self, vals):
         old_groups = {

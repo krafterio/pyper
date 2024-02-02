@@ -14,7 +14,13 @@ class Users(models.Model):
     
     group_ids = fields.Many2many('res.groups', string='Default rights', compute='_compute_group_ids')
 
-    role_ids = fields.Many2many('res.users.role', string='Default roles')
+    role_ids = fields.Many2many(
+        'res.users.role', 
+        relation='res_users_profile_res_users_role_rel', 
+        column1='profile_id', 
+        column2='role_id', 
+        string='Default roles'
+    )
 
     user_ids = fields.One2many(
         'res.users', 'user_profile_id',
