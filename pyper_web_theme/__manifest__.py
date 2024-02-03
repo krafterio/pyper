@@ -8,7 +8,7 @@
     'version': '1.0',
     'author': 'Krafter SAS',
     'installable': True,
-    'application': True,
+    'application': False,
     'maintainer': [
         'Krafter SAS',
     ],
