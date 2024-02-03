@@ -98,7 +98,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_provider__allow_update
 #: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__allow_update
 msgid "Allow update?"
-msgstr "Autoriser la mise à jour ?"
+msgstr "Autoriser la mise à jour ?"
 
 #. module: pyper_importer
 #: model:ir.model.fields,help:pyper_importer.field_pyper_importer_provider__default_endpoint_id
@@ -266,7 +266,7 @@ msgstr "Désactiver la vérification SSL"
 #. module: pyper_importer
 #: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_schedule_wizard__display_allow_update
 msgid "Display Allow update field?"
-msgstr "Afficher le champ Autoriser la mise à jour ?"
+msgstr "Afficher le champ Autoriser la mise à jour ?"
 
 #. module: pyper_importer
 #: model:ir.model.fields,field_description:pyper_importer.field_pyper_importer_endpoint__display_name
