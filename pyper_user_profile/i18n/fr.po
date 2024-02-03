@@ -183,14 +183,14 @@ msgstr "Profile utilisateur"
 #. module: pyper_user_profile
 #: model:ir.actions.act_window,name:pyper_user_profile.res_users_profile_action
 #: model:ir.ui.menu,name:pyper_user_profile.menu_users_profile
-msgid "User profiles"
-msgstr "Profiles utilisateurs"
+msgid "Profiles"
+msgstr "Profils"
 
 #. module: pyper_user_profile
 #: model:ir.actions.act_window,name:pyper_user_profile.res_users_role_action
 #: model:ir.ui.menu,name:pyper_user_profile.menu_users_role
-msgid "User roles"
-msgstr "Rôles utilisateurs"
+msgid "Roles"
+msgstr "Rôles"
 
 #. module: pyper_user_profile
 #: model_terms:ir.ui.view,arch_db:pyper_user_profile.res_user_profile_form_view

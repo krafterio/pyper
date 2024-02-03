@@ -55,6 +55,11 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_users_role" name="User roles" 
-        parent="base.menu_users" action="res_users_role_action" sequence="2"/>
+    <menuitem
+        id="menu_users_role"
+        name="Roles"
+        parent="base.menu_users"
+        action="res_users_role_action"
+        sequence="3"
+    />
 </odoo>

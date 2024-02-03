@@ -56,7 +56,7 @@
 
     <menuitem
         id="menu_users_profile"
-        name="User profiles"
+        name="Profiles"
         parent="base.menu_users"
         action="res_users_profile_action"
         sequence="2"
