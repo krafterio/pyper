@@ -24,16 +24,20 @@
                             <field name="name" class="fw-bold" placeholder="Name of the profile"/>
                         </h1>
                     </div>
+
                     <group>
                         <field name="is_default_profile"/>
                     </group>
+
                     <notebook>
                         <page name="roles" string="Default roles">
                             <field name="role_ids"/>
                         </page>
+
                         <page name="groups" string="Default groups">
                             <field name="group_ids"/>                        
                         </page>
+
                         <page name="users" string="Users">
                             <field name="user_ids" options="{'no_create':True, 'no_edit': True}"/>
                         </page>
@@ -50,6 +54,11 @@
     </record>
 
 
-    <menuitem id="menu_users_profile" name="User profiles" 
-        parent="base.menu_users" action="res_users_profile_action" sequence="2"/>
+    <menuitem
+        id="menu_users_profile"
+        name="User profiles"
+        parent="base.menu_users"
+        action="res_users_profile_action"
+        sequence="2"
+    />
 </odoo>

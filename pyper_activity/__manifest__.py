@@ -17,8 +17,4 @@
         'pyper',
         'mail',
     ],
-    'data': [
-    ],
-    'assets': {
-    },
 }

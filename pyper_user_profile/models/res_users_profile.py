@@ -4,15 +4,23 @@
 from odoo import _, fields, models, api
 from odoo.exceptions import ValidationError
 
+
 class Users(models.Model):
     _name = 'res.users.profile'
     _description = 'Profile for users defining their default access rights'
 
     name = fields.Char(required=True)
 
-    is_default_profile = fields.Boolean('Is default profile', help='Is the default profile for newly created users')
+    is_default_profile = fields.Boolean(
+        'Is default profile',
+        help='Is the default profile for newly created users',
+    )
     
-    group_ids = fields.Many2many('res.groups', string='Default rights', compute='_compute_group_ids')
+    group_ids = fields.Many2many(
+        'res.groups',
+        string='Default rights',
+        compute='_compute_group_ids',
+    )
 
     role_ids = fields.Many2many(
         'res.users.role', 
@@ -23,7 +31,8 @@ class Users(models.Model):
     )
 
     user_ids = fields.One2many(
-        'res.users', 'user_profile_id',
+        'res.users',
+        'user_profile_id',
     )
 
     def _compute_group_ids(self):
@@ -32,12 +41,14 @@ class Users(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        if any([vals.get('is_default_profile') for vals in vals_list]) \
-                and self.search_count([('is_default_profile', '=', True)]):
+        if (any([vals.get('is_default_profile') for vals in vals_list])
+                and self.search_count([('is_default_profile', '=', True)])):
             raise ValidationError(_('There is already a default profile. Please deactivate it first'))
+
         return super().create(vals_list)
 
     def write(self, vals):
         if vals.get('is_default_profile') and self.search_count([('is_default_profile', '=', True)]):
             raise ValidationError(_('There is already a default profile. Please deactivate it first'))
+
         return super().write(vals)

@@ -20,6 +20,7 @@
                     <group>
                         <field name="name"/>
                     </group>
+
                     <notebook>
                         <page name="groups" string="Default groups">
                             <field name="group_ids">
@@ -28,6 +29,7 @@
                                 </tree>
                             </field>
                         </page>
+
                         <page name="users" string="Users">
                             <field name="user_ids">
                                 <tree create="False" edit="False">
@@ -35,6 +37,7 @@
                                 </tree>
                             </field>
                         </page>
+
                         <page name="notes" string="Internal notes">
                             <field name="notes" widget="text"/>
                         </page>    
@@ -49,7 +52,6 @@
         <field name="res_model">res.users.role</field>
         <field name="view_mode">tree,form</field>
     </record>
-
 
     <menuitem id="menu_users_role" name="User roles" 
         parent="base.menu_users" action="res_users_role_action" sequence="2"/>

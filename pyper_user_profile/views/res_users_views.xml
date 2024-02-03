@@ -23,6 +23,7 @@
                     <field name="user_profile_id" options="{'no_create': True, 'no_edit': True}"/>
                 </group>
             </xpath>
+
             <xpath expr="//page[@name='access_rights']" position="before">
                 <page name="roles" string="Roles">
                     <field name="user_role_ids"/>

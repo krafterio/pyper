@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper access rights',
+    'name': 'Pyper Access Rights',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Pyper addons dedicated to enhancing access rights handling.',
@@ -15,9 +15,6 @@
     'installable': True,
     'depends': [
         'base',
+        'web',
     ],
-    'data': [
-    ],
-    'assets': {
-    },
 }

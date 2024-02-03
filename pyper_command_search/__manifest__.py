@@ -21,8 +21,6 @@
         'web',
         'pyper',
     ],
-    'data': [
-    ],
     'assets': {
         'web.assets_backend': [
             'pyper_command_search/static/src/core/web/**/*',
