@@ -35,8 +35,13 @@ class BaseProvider:
         :param job (Model<pyper.queue.job>): the queue job
         """
         self.env = env
+        # Job has the allowed companies context but the user is the same as the user used by the CRON action
         self.job = job
-        self.importer = job.importer_provider_id
+        # Force context in importer because many actions must be used with the company and the user contexts
+        self.importer = (job.importer_provider_id
+                         .with_company(job.company_id)
+                         .with_user(job.user_id)
+                         .with_context(allowed_company_ids=[job.company_id.id]))
 
     @abstractmethod
     def extract(self, offset: int, started_date: datetime) -> list[ExtractedItem]:

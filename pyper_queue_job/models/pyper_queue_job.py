@@ -605,6 +605,13 @@ class PyperQueueJob(models.Model):
 
             row = self.env.cr.fetchone()
             job = self.browse(row and row[0])
+            # Process the job with the defined company in job but keep the user used by the cron action. Otherwise,
+            # it's the current company that used or no company if it is run in CRON, and it isn't that is
+            # expected behavior. The actions called in job must be accessible in write mode (offset, logs, etc.),
+            # and the user defined to run the queued action may not have the access rights to edit the job.
+            job = (job
+                   .with_company(job.company_id)
+                   .with_context(allowed_company_ids=[job.company_id.id]))
 
             return job
         except Exception:

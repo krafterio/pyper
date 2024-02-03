@@ -500,8 +500,8 @@ class PyperImporterProvider(models.Model):
         module = importlib.import_module('odoo.addons.' + self.module_name)
         cls = getattr(module, self.class_name)
 
-        provider = cls(job.env, job)
-        config = job.env['ir.config_parameter'].sudo()
+        provider = cls(self.env, job)
+        config = self.env['ir.config_parameter'].sudo()
 
         offset_start = job.importer_start_offset if job.importer_latest_offset == 0 else job.importer_latest_offset
         offset_max = job.importer_max_offset
