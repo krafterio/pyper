@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-03 12:03+0000\n"
-"PO-Revision-Date: 2024-02-03 12:03+0000\n"
+"POT-Creation-Date: 2024-02-03 12:38+0000\n"
+"PO-Revision-Date: 2024-02-03 12:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: pyper_user_profile
+#: model:res.users.profile,name:pyper_user_profile.admin_profile
+msgid "Administrator"
+msgstr "Administrateur"
 
 #. module: pyper_user_profile
 #: model:res.groups,name:pyper_user_profile.user_profile_manager_group
@@ -68,6 +73,11 @@ msgid "ID"
 msgstr ""
 
 #. module: pyper_user_profile
+#: model:res.users.role,name:pyper_user_profile.internal_user_role
+msgid "Internal User"
+msgstr "Utilisateur interne"
+
+#. module: pyper_user_profile
 #: model_terms:ir.ui.view,arch_db:pyper_user_profile.res_user_role_form_view
 msgid "Internal notes"
 msgstr "Notes internes"
@@ -95,6 +105,11 @@ msgid "Last Updated on"
 msgstr "Dernière modification le"
 
 #. module: pyper_user_profile
+#: model:res.users.role,name:pyper_user_profile.manage_user_profiles_role
+msgid "Manage user profiles"
+msgstr "Gérer les profils utilisateur"
+
+#. module: pyper_user_profile
 #: model:ir.model.fields,field_description:pyper_user_profile.field_res_users_profile__name
 #: model:ir.model.fields,field_description:pyper_user_profile.field_res_users_role__name
 msgid "Name"
@@ -104,6 +119,11 @@ msgstr "Nom"
 #: model_terms:ir.ui.view,arch_db:pyper_user_profile.res_user_profile_form_view
 msgid "Name of the profile"
 msgstr "Nom du profil"
+
+#. module: pyper_user_profile
+#: model_terms:ir.ui.view,arch_db:pyper_user_profile.res_user_role_form_view
+msgid "Name of the role"
+msgstr "Nom du rôle"
 
 #. module: pyper_user_profile
 #: model:ir.model.fields,field_description:pyper_user_profile.field_res_users_role__notes
@@ -176,4 +196,4 @@ msgstr "Rôles utilisateurs"
 #: model_terms:ir.ui.view,arch_db:pyper_user_profile.res_user_profile_form_view
 #: model_terms:ir.ui.view,arch_db:pyper_user_profile.res_user_role_form_view
 msgid "Users"
-msgstr ""
+msgstr "Utilisateurs"

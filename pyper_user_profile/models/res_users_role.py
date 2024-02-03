@@ -10,6 +10,7 @@ class Users(models.Model):
 
     name = fields.Char(
         required=True,
+        translate=True,
     )
 
     notes = fields.Char()

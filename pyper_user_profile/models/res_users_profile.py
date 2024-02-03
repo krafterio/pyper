@@ -9,7 +9,10 @@ class Users(models.Model):
     _name = 'res.users.profile'
     _description = 'Profile for users defining their default access rights'
 
-    name = fields.Char(required=True)
+    name = fields.Char(
+        required=True,
+        translate=True,
+    )
 
     is_default_profile = fields.Boolean(
         'Is default profile',
