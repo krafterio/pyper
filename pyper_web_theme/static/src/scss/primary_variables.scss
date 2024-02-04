@@ -24,7 +24,7 @@ $o-brand-primary: $o-brand-odoo !default;
 $o-brand-primary-dark: #20a99d !default;
 $o-brand-secondary: #94a3b8 !default;
 $o-brand-lightsecondary: $o-gray-100 !default;
-$border-color: #e5e7eb !default;
+$border-color: $o-gray-300 !default;
 
 $o-success: $o-brand-primary !default;
 $o-info: #3eafb0 !default;
@@ -34,7 +34,7 @@ $o-danger: #e06561 !default;
 $o-action: $o-extra-action-color !default;
 $o-main-text-color: $o-gray-700 !default;
 $o-main-link-color: $o-gray-400 !default;
-$o-main-color-muted: rgba($o-main-text-color, $o-opacity-muted);
+$o-main-color-muted: rgba($o-main-text-color, $o-opacity-muted) !default;
 
 $o-mail-Chatter-minWidth: 540px !default;
 

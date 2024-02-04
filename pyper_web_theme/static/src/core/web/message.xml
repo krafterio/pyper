@@ -1,36 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-
     <t t-name="pyper_web_theme.Message" t-inherit="mail.Message" t-inherit-mode="extension">
-      <xpath expr="//div[hasclass('o-mail-Message-bubble')]" position="attributes">
-          <attribute name="t-att-class">{
-              'border': state.isEditing
-              and !message.isNote,
-              'bg-light border border-light text-dark': !message.isSelfAuthored
-              and !message.isNote
-              and !message.isHighlightedFromMention,
-              'bg-primary border border-primary': message.isSelfAuthored
-              and !message.isNote
-              and !message.isHighlightedFromMention,
-              'bg-warning-light border border-warning opacity-50': message.isHighlightedFromMention,
-          }</attribute>
-      </xpath>
+        <xpath expr="//div[hasclass('o-mail-Message-bubble')]" position="attributes">
+            <attribute name="t-att-class">{
+                'border': state.isEditing and !message.isNote,
+                'bg-light border border-light text-dark': !message.isSelfAuthored and !message.isNote and !message.isHighlightedFromMention,
+                'bg-primary border border-primary': message.isSelfAuthored and !message.isNote and !message.isHighlightedFromMention,
+                'bg-warning-light border border-warning opacity-50': message.isHighlightedFromMention,
+            }</attribute>
+        </xpath>
 
         <xpath expr="//img[hasclass('o-mail-Message-avatar')]" position="attributes">
-        <attribute name="class" remove="rounded" separator=" " add="rounded-pill"/>
-      </xpath>
+            <attribute name="class" remove="rounded" separator=" " add="rounded-pill"/>
+        </xpath>
 
         <xpath expr="//div[hasclass('o-mail-Message-body')]" position="attributes">
-          <attribute name="t-att-class">{
-              'p-1': message.isNote,
-              'mb-0 py-2 px-3': !message.isNote,
-              'align-self-start rounded-end-3 rounded-bottom-3': !state.isEditing and !message.isNote,
-              'text-dark': !message.isSelfAuthored,
-              'text-white': message.isSelfAuthored,
-              'o-mail-Message-editable flex-grow-1': state.isEditing,
-          }</attribute>
+            <attribute name="t-att-class">{
+                'p-1': message.isNote,
+                'mb-0 py-2 px-3': !message.isNote,
+                'align-self-start rounded-end-3 rounded-bottom-3': !state.isEditing and !message.isNote,
+                'text-dark': !message.isSelfAuthored,
+                'text-white': message.isSelfAuthored,
+                'o-mail-Message-editable flex-grow-1': state.isEditing,
+            }</attribute>
       </xpath>
     </t>
-
-
 </templates>

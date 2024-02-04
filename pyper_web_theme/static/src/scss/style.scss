@@ -1,12 +1,13 @@
-.fw-bold > input, .fw-bold textarea{
+.fw-bold > input,
+.fw-bold textarea {
     font-weight:600
 }
 
-.w-33{
+.w-33 {
     width: 33%;
 }
 
-.w-67{
+.w-67 {
     width: 67%;
 }
 
@@ -15,7 +16,8 @@ hr {
     opacity: 1;
 }
 
-small, .small {
+small,
+.small {
     font-size: 0.70rem;
 }
 
@@ -26,46 +28,56 @@ small, .small {
 
 //== Badges
 .badge {
-    &.text-bg-default, &.bg-light, &.text-bg-light, &.bg-default, &.text-primary{
+    &.text-bg-default,
+    &.bg-light,
+    &.text-bg-light,
+    &.bg-default,
+    &.text-primary {
         outline: medium none;
     }
 }
 
-.o-mail-Message-body{
+.o-mail-Message-body {
     .o_mail_redirect {
         color: $o-white;
         font-weight: bold;
     }
 }
 
-.o_main_navbar .o_menu_brand:hover,
-.o_main_navbar .o_nav_entry:hover,
-.o_main_navbar .dropdown-toggle:hover,
-.o_main_navbar .o_menu_brand:focus,
-.o_main_navbar .o_nav_entry:focus,
-.o_main_navbar .dropdown-toggle:focus,
-.o_main_navbar .focus.o_menu_brand,
-.o_main_navbar .focus.o_nav_entry,
-.o_main_navbar .focus.dropdown-toggle {
-  color: #fff;
+.o_main_navbar {
+    .o_menu_brand:hover,
+    .o_nav_entry:hover,
+    .dropdown-toggle:hover,
+    .o_menu_brand:focus,
+    .o_nav_entry:focus,
+    .dropdown-toggle:focus,
+    .focus.o_menu_brand,
+    .focus.o_nav_entry,
+    .focus.dropdown-toggle {
+      color: #fff;
+    }
 }
 
 .o_main_navbar {
     .o_menu_systray {
-        button.dropdown-toggle:hover,  button.dropdown-toggle:focus,  button.dropdown-toggle:active {
-            color:$o-gray-400
+        button.dropdown-toggle:hover,
+        button.dropdown-toggle:focus,
+        button.dropdown-toggle:active {
+            color:$o-gray-400;
         }
 
-        .dropdown-toggle{
-            margin: 0px;
-            padding: 0px;
+        .dropdown-toggle {
+            margin: 0;
+            padding: 0;
             border: medium none;
         }
     }
 
     .o_drawer_toggler {
-         button.dropdown-toggle:hover,  button.dropdown-toggle:focus,  button.dropdown-toggle:active {
-            color:$o-gray-400
+         button.dropdown-toggle:hover,
+         button.dropdown-toggle:focus,
+         button.dropdown-toggle:active {
+            color: $o-gray-400;
         }
     }
 }
@@ -83,42 +95,42 @@ small, .small {
     border-color: $border-color;
 }
 
-.nav-bar-icon{
+.nav-bar-icon {
     font-size:18px;
 }
 
-.o-mail-Message-tracking{
+.o-mail-Message-tracking {
     list-style: none;
 }
 
 div.o-mail-Message-textContent {
-    ul{
+    ul {
         padding-left: 0 !important;
     }
 
-    .text-info{
+    .text-info {
         color:#374151 !important;
     }
 }
 
-.o_field_partner_quick_link{
+.o_field_partner_quick_link {
     margin-bottom: 0 !important;
 }
 
-.o-mail-Message-tracking{
+.o-mail-Message-tracking {
     font-size: 0.9rem;
 }
 
-.o-mail-Message-tracking  {
+.o-mail-Message-tracking {
     .o-mail-Message-trackingOld,
-    .o-mail-Message-trackingNew{
-        &.fw-bold{
+    .o-mail-Message-trackingNew {
+        &.fw-bold {
             font-weight: 400 !important;
         }
     }
 }
 
-.btn-quick{
+.btn-quick {
     width: 54px;
     height: 54px;
     display: flex;
@@ -136,7 +148,8 @@ div.o-mail-Message-textContent {
     }
 }
 
-.o-mail-Followers-counter, .btn-quick-counter {
+.o-mail-Followers-counter,
+.btn-quick-counter {
     position: absolute;
     top:8px;
     right:8px;
@@ -148,6 +161,6 @@ div.o-mail-Message-textContent {
     color:#fff;
 }
 
-i.btn-quick-counter{
+i.btn-quick-counter {
     font-size: 0.5rem !important;
 }

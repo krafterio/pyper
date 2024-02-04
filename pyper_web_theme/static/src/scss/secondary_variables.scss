@@ -1,38 +1,8 @@
-// Color
-$o-colors: #a2a2a2, #ee2d2d, #dc8534, #e8bb1d, #5794dd, #9f628f, #db8865,
-           #41a9a2, #304be0, #ee2f8a, #61c36e, #9872e6;
-
-$o-colors-secondary: #aa4b6b, #30C381, #97743a, #F7CD1F, #4285F4, #8E24AA,
-                     #D6145F, #173e43, #348F50, #AA3A38, #795548, #5e0231,
-                     #6be585, #999966, #e9d362, #b56969, #bdc3c7, #649173,
-                     #ea00ff, #ff0026, #8bcc00, #00bfaf, #006aff, #af00bf,
-                     #bf001d, #bf6300, #8cff00, #00f2ff, #004ab3, #ff00d0,
-                     #ffa600, #3acc00, #00b6bf, #0048ff, #bf7c00, #04ff00,
-                     #00d0ff, #0036bf, #ff008c, #00bf49, #0092b3, #0004ff,
-                     #b20062, #649173;
-
-$o-colors-complete: join(
-    $o-colors,
-    $o-colors-secondary
-);
-
 // Webclient
-$o-webclient-background-color: $o-white;
-
-// Sheet
-$o-sheet-cancel-hpadding: $o-horizontal-padding;
-$o-sheet-cancel-bpadding: $o-horizontal-padding;
+$o-webclient-background-color: $o-white !default;
 
 // Form
-$o-form-sheet-min-width: 990px;
-$o-form-separator-color: invert($o-view-background-color, 10%);
-
-// List
-$o-list-footer-color: null;
-$o-list-group-header-color: lighten($o-brand-lightsecondary, 10%);
+$o-form-lightsecondary: $o-gray-200 !default;
 
 // Statusbar
-$o-statusbar-disabled-bg: lighten($o-brand-lightsecondary, 7%);
-
-// Datepicker
-$o-datepicker-week-bg-color: lighten($o-datepicker-week-color, 30%);
+$o-statusbar-disabled-bg: lighten($o-brand-lightsecondary, 7%) !default;

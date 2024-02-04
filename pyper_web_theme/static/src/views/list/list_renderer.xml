@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-
     <t t-name="pyper_web_theme.ListRenderer" t-inherit="web.ListRenderer" t-inherit-mode="extension">
         <!-- Override table default css class -->
         <xpath expr="//table[contains(@t-attf-class, 'o_list_table')]" position="attributes">
@@ -8,11 +7,10 @@
         </xpath>
     </t>
 
-    <t t-name="ListRenderer.RecordRow" t-inherit="web.ListRenderer.RecordRow" t-inherit-mode="extension">
+    <t t-name="pyper_web_theme.ListRenderer.RecordRow" t-inherit="web.ListRenderer.RecordRow" t-inherit-mode="extension">
         <!-- Override table default css class -->
         <xpath expr="//ViewButton" position="attributes">
-            <attribute name="onClick"></attribute>
+            <attribute name="onClick"/>
         </xpath>
     </t>
-
 </templates>

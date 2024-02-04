@@ -6,7 +6,7 @@
         </xpath>
 
         <xpath expr="//Dropdown[1]/t[@t-set-slot='toggler']" position="replace">
-             <t t-set-slot="toggler">
+            <t t-set-slot="toggler">
                  <div class="btn rounded-0 navbar-square border-0">
                     <img class="o_avatar o_user_avatar rounded-pill" t-att-src="source" alt="User"/>
                     <small class="oe_topbar_name d-none ms-2 text-start smaller lh-1 text-truncate"

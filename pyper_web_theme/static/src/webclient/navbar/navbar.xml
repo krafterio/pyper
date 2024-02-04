@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-
     <t t-name="pyper_web_theme.NavBar" t-inherit="web.NavBar" t-inherit-mode="extension">
         <xpath expr="//header[hasclass('o_navbar')]/nav[hasclass('o_main_navbar')]" position="attributes">
             <attribute name="class">o_main_navbar</attribute>
@@ -48,21 +47,21 @@
         </xpath>
     </t>
 
-    <t t-name="kapsule_website.ActivityMenu" t-inherit="mail.ActivityMenu" t-inherit-mode="extension">
+    <t t-name="pyper_web_theme.ActivityMenu" t-inherit="mail.ActivityMenu" t-inherit-mode="extension">
         <xpath expr="//i[hasclass('fa-clock-o')]" position="attributes">
             <attribute name="class" separator=" " remove="fa fa-lg fa-clock-o"
                        add="ph ph-check-square nav-bar-icon mx-2"/>
         </xpath>
     </t>
 
-    <t t-name="kapsule_website.MessagingMenu" t-inherit="mail.MessagingMenu" t-inherit-mode="extension">
+    <t t-name="pyper_web_theme.MessagingMenu" t-inherit="mail.MessagingMenu" t-inherit-mode="extension">
         <xpath expr="//i[hasclass('fa-comments')]" position="attributes">
             <attribute name="class" separator=" " remove="fa fa-lg fa-comments"
                        add="ph ph-chat-text nav-bar-icon mx-2"/>
         </xpath>
     </t>
 
-    <t t-name="kapsule_website.DebugMenu" t-inherit="web.DebugMenu" t-inherit-mode="extension">
+    <t t-name="pyper_web_theme.DebugMenu" t-inherit="web.DebugMenu" t-inherit-mode="extension">
          <xpath expr="//i[hasclass('fa-bug')]" position="attributes">
             <attribute name="class" add="ph ph-bug nav-bar-icon mx-2" separator=" " remove="fa fa-bug"/>
         </xpath>
@@ -73,7 +72,6 @@
             <attribute name="class" separator=" " add="btn-primary me-2"/>
         </xpath>
     </t>
-
 
     <t t-name="pyper_web_theme.SearchMenu" t-inherit="pyper_command_search.SearchMenu" t-inherit-mode="extension">
         <xpath expr="//div[1]" position="attributes">

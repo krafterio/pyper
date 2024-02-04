@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<template xml:space="preserve">
-
-    <t t-name="pyper_web_theme.ProgressCircularKendama" t-inherit="pyper.ProgressCircular" t-inherit-mode="primary">
-        <xpath expr="." position="inside"></xpath>
-    </t>
-
-</template>

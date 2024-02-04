@@ -1,74 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
+    <t t-name="pyper_web_theme.Activity" t-inherit="mail.Activity" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o-mail-Activity')]" position="attributes">
+            <attribute name="class" separator=" " remove="py-1 mb-2" add="py-3 border-top border-bottom bg-light"/>
+        </xpath>
 
-<t t-name="mail.Activity">
-    <t t-set="activity" t-value="props.data"/>
-    <div class="o-mail-Activity d-flex px-3 py-3 border-top border-bottom bg-light">
-        <div class="o-mail-Activity-sidebar flex-shrink-0 position-relative">
-            <img class="w-100 h-100 rounded  rounded-pill cursor-pointer" t-attf-src="/web/image/res.users/{{activity.user_id[0]}}/avatar_128" t-on-click.stop.prevent="onClickAvatar"/>
-                <div
-                    class="o-mail-Activity-iconContainer position-absolute top-100 start-100 translate-middle d-flex align-items-center justify-content-center mt-n1 ms-n1 rounded-circle w-50 h-50"
-                    t-att-class="{
-                            'text-bg-success': activity.state === 'planned',
-                            'text-bg-warning': activity.state === 'today',
-                            'text-bg-danger': activity.state === 'overdue',
-                        }"
-                >
-                    <i class="fa small" t-attf-class="{{ activity.icon }}"/>
-                </div>
-        </div>
-        <div class="flex-grow px-3">
-            <div class="o-mail-Activity-info lh-1">
-                <span class="fw-bold text-success" t-if="delay === 1">Tomorrow</span>
-                <span class="fw-bold text-success" t-elif="delay gt 0">Due in <t t-esc="delay"/> days</span>
-                <span class="fw-bold text-danger" t-elif="delay === -1">Yesterday</span>
-                <span class="fw-bold text-danger" t-elif="delay lt 0"><t t-esc="-delay"/> days overdue</span>
-                <span class="fw-bold text-warning" t-else="">Today</span>
-                <i class="fa fa-info-circle btn-link btn-primary cursor-pointer ms-1" role="img" title="Info" aria-label="Info" t-on-click="toggleDetails"></i>
+        <xpath expr="//div[hasclass('o-mail-Activity')]//img[hasclass('cursor-pointer')]" position="attributes">
+            <attribute name="class" separator=" " remove="rounded" add="rounded-pill"/>
+        </xpath>
 
-                <span class="fw-bolder d-block text-break mt-1"><t t-esc="displayName"/></span>
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[1]" position="attributes">
+            <attribute name="class" separator=" " remove="fw-bolder" add="fw-bold"/>
+        </xpath>
 
-                <div class="d-flex small align-items-center">
-                       <span class="o-mail-Activity-user mt-2"><t t-esc="activity.user_id[1]"/></span>
-                </div>
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[2]" position="attributes">
+            <attribute name="class" separator=" " remove="fw-bolder" add="fw-bold"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[3]" position="attributes">
+            <attribute name="class" separator=" " remove="fw-bolder" add="fw-bold"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[4]" position="attributes">
+            <attribute name="class" separator=" " remove="fw-bolder" add="fw-bold"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[5]" position="attributes">
+            <attribute name="class" separator=" " remove="fw-bolder" add="fw-bold"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[6]" position="attributes">
+            <attribute name="class" separator=" " remove="fw-bolder" add="fw-bold d-none"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[hasclass('o-mail-Activity-user')]" position="attributes">
+            <attribute name="class" separator=" " add="d-none"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]//i" position="after">
+            <span class="fw-bold d-block text-break mt-1"><t t-esc="displayName"/></span>
+
+            <div class="d-flex small align-items-center">
+                <span class="o-mail-Activity-user mt-2"><t t-esc="activity.user_id[1]"/></span>
             </div>
-            <div t-if="state.showDetails">
-                <table class="o-mail-Activity-details table table-sm mt-3">
-                    <tbody>
-                        <tr><td class="text-end fw-bolder">Activity type</td><td><t t-esc="activity.activity_type_id[1]"/></td></tr>
-                        <tr><td class="text-end fw-bolder">Created</td><td><t t-esc="activity.create_date"/> by <t t-esc="activity.create_uid[1]"/></td></tr>
-                        <tr><td class="text-end fw-bolder">Assigned to</td><td><t t-esc="activity.user_id[1]"/></td></tr>
-                        <tr><td class="text-end fw-bolder">Due on</td><td><t t-esc="activity.date_deadline"/></td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div t-if="activity.note" class="o-mail-Activity-note text-break mt-2" t-out="activity.note"/>
-            <div t-if="activity.mail_template_ids.length > 0" class="o-mail-Activity-mailTemplates">
-                <ActivityMailTemplate activity="activity" onUpdate="props.onUpdate"/>
-            </div>
+        </xpath>
 
-            <div t-if="activity.can_write" class="lh-lg mt-2">
-                <t name="tools">
-                    <span class="o-mail-Activity-markDone btn btn-sm btn-primary" t-on-click="onClickMarkAsDone">
-                        <i class="ph ph-check"/>
-                    </span>
+        <xpath expr="//table[hasclass('o-mail-Activity-details')]" position="attributes">
+            <attribute name="class" separator=" " remove="mt-2" add="mt-3"/>
+        </xpath>
 
-                    <FileUploader t-if="activity.activity_category === 'upload_file'" onUploaded.bind="onFileUploaded">
-                        <t t-set-slot="toggler">
-                            <span class="btn btn-link btn btn-sm btn-light"><t t-out="' ' + activity.display_name"/></span>
-                        </t>
-                    </FileUploader>
-                    <span class="o-mail-Activity-edit btn btn-sm btn-light ms-2" t-on-click="edit">
-                        <i class="ph ph-pencil"/>
-                    </span>
-                    <span class="btn btn-sm btn-light ms-2" t-on-click="unlink">
-                        <i class="ph ph-x"/>
-                    </span>
-                </t>
-            </div>
-        </div>
-    </div>
+        <xpath expr="//div[hasclass('o-mail-Activity-note')]" position="attributes">
+            <attribute name="class" separator=" " add="mt-2"/>
+        </xpath>
 
-</t>
+        <xpath expr="//div[hasclass('lh-lg')]" position="attributes">
+            <attribute name="class" separator=" " add="mt-2"/>
+        </xpath>
 
+        <xpath expr="//span[hasclass('o-mail-Activity-markDone')]" position="replace">
+            <span class="o-mail-Activity-markDone btn btn-sm btn-primary" t-on-click="onClickMarkAsDone">
+                <i class="ph ph-check"/>
+            </span>
+        </xpath>
+
+        <xpath expr="//t[@t-set-slot='toggler']/span[hasclass('btn')]" position="attributes">
+            <attribute name="class" separator=" " remove="btn-link text-action p-0 me-3" add="btn btn-sm btn-light"/>
+        </xpath>
+
+        <xpath expr="//span[hasclass('o-mail-Activity-edit')]" position="replace">
+            <span class="o-mail-Activity-edit btn btn-sm btn-light ms-2" t-on-click="edit">
+                <i class="ph ph-pencil"/>
+            </span>
+        </xpath>
+
+        <xpath expr="//span[@t-on-click='unlink']" position="replace">
+            <span class="btn btn-sm btn-light ms-2" t-on-click="unlink">
+                <i class="ph ph-x"/>
+            </span>
+        </xpath>
+    </t>
 </templates>

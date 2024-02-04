@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
+      <t t-name="pyper_web_theme.DateSection" t-inherit="mail.DateSection" t-inherit-mode="extension">
+            <xpath expr="//div[hasclass('o-mail-DateSection')]" position="attributes">
+                  <attribute name="class" remove="fw-bolder" add="pt-2" separator=" "/>
+            </xpath>
 
-<t t-name="pyper_web_theme.DateSection" t-inherit="mail.DateSection" t-inherit-mode="extension">
-      <xpath expr="//div[hasclass('o-mail-DateSection')]" position="attributes">
-            <attribute name="class" remove="fw-bolder" add="pt-2" separator=" "/>
-      </xpath>
+            <xpath expr="//div[hasclass('o-mail-DateSection')]" position="attributes">
+                  <attribute name="t-attf-class" remove="{{ props.className }}"/>
+            </xpath>
 
-      <xpath expr="//div[hasclass('o-mail-DateSection')]" position="attributes">
-            <attribute name="t-attf-class" remove="{{ props.className }}"/>
-      </xpath>
+            <xpath expr="//hr[1]" position="replace"/>
 
-      <xpath expr="//hr[1]" position="replace"/>
-      <xpath expr="//hr[1]" position="replace"/>
-</t>
+            <xpath expr="//hr[1]" position="replace"/>
+      </t>
 </templates>
