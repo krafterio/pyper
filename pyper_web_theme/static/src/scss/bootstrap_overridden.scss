@@ -24,10 +24,13 @@ $input-box-shadow: 0 !default;
 
 $input-line-height: 2 !default;
 
-$input-focus-bg: $o-white;
+$input-focus-bg: $o-white !default;
 $input-focus-box-shadow: 0 !default;
 $input-focus-border-color: mix($o-extra-action-color, $o-gray-200) !default;
 
+$form-check-input-checked-color: $o-white !default;
+$form-check-input-checked-border-color: $o-brand-primary !default;
+$form-check-input-checked-bg-color: $o-brand-primary !default;
 $form-check-input-border-radius: 4px !default;
 $form-check-input-width: 1.3em !default;
 $form-check-input-width: 1.3em !default;

@@ -34,16 +34,16 @@
     'assets': {
         'web._assets_primary_variables': [
             ('before', 'pyper/static/src/**/*.variables.scss', 'pyper_web_theme/static/src/**/*.variables.scss'),
-            ('before', 'web/static/src/scss/primary_variables.scss', 'pyper_web_theme/static/src/scss/primary_variables.scss'),
+            ('before', 'pyper/static/src/scss/primary_variables.scss', 'pyper_web_theme/static/src/scss/primary_variables.scss'),
         ],
         'web._assets_secondary_variables': [
-            ('before', 'web/static/src/scss/secondary_variables.scss', 'pyper_web_theme/static/src/scss/secondary_variables.scss'),
+            ('before', 'pyper/static/src/scss/secondary_variables.scss', 'pyper_web_theme/static/src/scss/secondary_variables.scss'),
         ],
         'web._assets_frontend_helpers': [
             ('prepend', 'pyper_web_theme/static/src/scss/bootstrap_overridden.scss'),
         ],
         'web._assets_backend_helpers': [
-            ('before', 'web/static/src/scss/bootstrap_overridden.scss', 'pyper_web_theme/static/src/scss/bootstrap_overridden.scss'),
+            ('before', 'pyper/static/src/scss/bootstrap_overridden.scss', 'pyper_web_theme/static/src/scss/bootstrap_overridden.scss'),
         ],
         'web.assets_frontend': [
             'pyper_web_theme/static/src/scss/style.scss',
