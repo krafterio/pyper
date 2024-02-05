@@ -18,7 +18,9 @@ class Model(models.AbstractModel):
             if attrib_groups and not self.user_has_groups(attrib_groups):
                 attrib_group_action = node.attrib.get('options') \
                     and safe_eval(node.attrib.get('options')).get('group_action')
-                if attrib_group_action == 'readonly':
+                if attrib_group_action == 'required':
+                    node.set('required', 'True')
+                elif attrib_group_action == 'readonly':
                     node.set('readonly', 'True')
                 else:
                     node.getparent().remove(node)
