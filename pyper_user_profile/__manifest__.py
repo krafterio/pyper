@@ -16,6 +16,7 @@
     'depends': [
         'base',
         'web',
+        'mail',
     ],
     'data': [
         # Security
