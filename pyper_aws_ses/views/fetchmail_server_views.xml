@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="fetchmail_server_view_form" model="ir.ui.view">
+        <field name="name">fetchmail.server.view.form.inherit</field>
+        <field name="model">fetchmail.server</field>
+        <field name="inherit_id" ref="mail.view_email_server_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='server_login_details']//field[@name='server']" position="attributes">
+                <attribute name="invisible">server_type == 'aws_ses_s3'</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='server_login_details']//field[@name='port']" position="attributes">
+                <attribute name="invisible">server_type == 'aws_ses_s3'</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='server_login_details']//field[@name='is_ssl']" position="attributes">
+                <attribute name="invisible">server_type == 'aws_ses_s3'</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='server_login_details']//field[@name='user']" position="attributes">
+                <attribute name="invisible">server_type == 'aws_ses_s3'</attribute>
+            </xpath>
+
+            <field name="is_ssl" position="after">
+                <field name="aws_ses_s3_bucket"
+                       invisible="server_type != 'aws_ses_s3'"
+                       required="server_type == 'aws_ses_s3'"
+                />
+                <field name="aws_ses_s3_region"
+                       invisible="server_type != 'aws_ses_s3'"
+                       required="server_type == 'aws_ses_s3'"
+                />
+                <field name="aws_ses_s3_object_prefix"
+                       invisible="server_type != 'aws_ses_s3'"
+                />
+            </field>
+
+            <field name="user" position="after">
+                <field name="aws_ses_s3_session_token" invisible="True"/>
+
+                <field name="aws_ses_s3_access_id"
+                       invisible="server_type != 'aws_ses_s3'"
+                       required="server_type == 'aws_ses_s3'"
+                />
+                <field name="aws_ses_s3_access_secret"
+                       invisible="server_type != 'aws_ses_s3'"
+                       required="server_type == 'aws_ses_s3'"
+                       password="True"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
