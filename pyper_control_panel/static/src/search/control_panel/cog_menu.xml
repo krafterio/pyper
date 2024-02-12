@@ -1,38 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
+    <!-- Cog Menu -->
     <t t-name="pyper_control_panel.CogMenu" t-inherit="web.CogMenu" t-inherit-mode="extension">
-        <xpath expr="//i[hasclass('fa-cog')]" position="replace">
-            <i class="fa fa-ellipsis-v"/>
-        </xpath>
-
         <xpath expr="//div[hasclass('o_cp_action_menus')]" position="attributes">
-            <attribute name="class">o_cp_action_menus</attribute>
+            <attribute name="class" separator=" " remove="pe-2"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o_cp_action_menus')]//Dropdown" position="attributes">
-            <attribute name="togglerClass" remove="ms-1" separator=" "/>
+        <xpath expr="//div[hasclass('o_cp_action_menus')]/Dropdown[1]" position="attributes">
+            <attribute name="togglerClass">'btn btn-secondary px-2'</attribute>
+        </xpath>
+
+        <xpath expr="//t[@t-set-slot='toggler']/i" position="attributes">
+            <attribute name="class" separator=" " remove="fa fa-cog" add="fa fa-ellipsis-v fa-fw"/>
         </xpath>
     </t>
 
+    <!-- Action Menus -->
     <t t-name="pyper_control_panel.ActionMenus" t-inherit="web.ActionMenus" t-inherit-mode="extension">
-        <xpath expr="//div[hasclass('o_cp_action_menus')]" position="attributes">
-            <attribute name="class">o_cp_action_menus</attribute>
+        <xpath expr="div[hasclass('o_cp_action_menus')]/Dropdown[2]/t[@t-set-slot='toggler']/i" position="attributes">
+            <attribute name="class" separator=" " remove="fa fa-cog me-1" add="fa fa-ellipsis-v fa-fw"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o_cp_action_menus')]/Dropdown[2]" position="attributes">
-            <attribute name="togglerClass">'btn btn-secondary'</attribute>
+        <xpath expr="//div[hasclass('o_cp_action_menus')]/Dropdown[2]/t[@t-set-slot='toggler']/span" position="attributes">
+            <attribute name="class" separator=" " add="d-none"/>
         </xpath>
-
-        <xpath expr="//div[hasclass('o_cp_action_menus')]/Dropdown[2]" position="attributes">
-            <attribute name="togglerClass">'btn btn-secondary ms-2 text-nowrap'</attribute>
-        </xpath>
-
-        <xpath expr="//div[hasclass('o_cp_action_menus')]/Dropdown[2]/t[@t-set-slot='toggler']/i" position="replace">
-            <i class="fa fa-cog"/>
-        </xpath>
-
-        <xpath expr="//div[hasclass('o_cp_action_menus')]/Dropdown[2]/t[@t-set-slot='toggler']/span" position="replace"/>
     </t>
 
 </templates>

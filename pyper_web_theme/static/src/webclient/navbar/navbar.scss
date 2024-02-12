@@ -1,0 +1,7 @@
+// Fix menu brand color
+.o_overlay_menu_toggler .dropdown-toggle,
+.o_menu_brand {
+    &:hover {
+        color: inherit !important;
+    }
+}

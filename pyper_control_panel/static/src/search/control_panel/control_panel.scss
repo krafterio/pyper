@@ -1,35 +1,9 @@
-$control-panel-btn-height: auto !default;
-
-.o_pager_previous, .o_pager_next{
-    height: $control-panel-btn-height;
-}
-
 .o_control_panel {
     .o_control_panel_breadcrumbs {
         min-width: auto;
     }
 
     .o_control_panel_actions {
-        flex-grow: 1000;
-    }
-
-    .o_list_selection_box {
-        .list-group-item {
-            height: $control-panel-btn-height;
-        }
-    }
-
-    .o_form_status_indicator_buttons {
-        .o_form_button_save,
-        .o_form_button_cancel {
-            background-color: transparent;
-            border-color: transparent;
-        }
-    }
-
-    @include media-breakpoint-up(lg) {
-        .o_control_panel_breadcrumbs, .o_control_panel_navigation {
-            flex: initial;
-        }
+        width: 100% !important;
     }
 }

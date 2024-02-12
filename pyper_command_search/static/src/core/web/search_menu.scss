@@ -6,8 +6,13 @@
     align-items: center;
     padding: 0;
 
+    color: var(--NavBar-entry-color, rgba(255, 255, 255, 0.9));
+
     &:hover,
+    &:focus,
+    &:active,
     &.show {
+        color: var(--NavBar-entry-color, rgba(255, 255, 255, 0.9));
         background-color: rgba(0, 0, 0, 0.075);
     }
 

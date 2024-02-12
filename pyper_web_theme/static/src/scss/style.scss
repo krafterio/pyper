@@ -1,3 +1,11 @@
+.oi:not(.o_external_button) {
+    line-height: $input-line-height;
+}
+
+.btn.o_searchview_facet_label {
+    line-height: $input-line-height * 0.9;
+}
+
 .fw-bold > input,
 .fw-bold textarea {
     font-weight:600
@@ -45,31 +53,11 @@ small,
 }
 
 .o_main_navbar {
-    .o_menu_brand:hover,
-    .o_nav_entry:hover,
-    .dropdown-toggle:hover,
-    .o_menu_brand:focus,
-    .o_nav_entry:focus,
-    .dropdown-toggle:focus,
-    .focus.o_menu_brand,
-    .focus.o_nav_entry,
-    .focus.dropdown-toggle {
-      color: #fff;
-    }
-}
-
-.o_main_navbar {
     .o_menu_systray {
         button.dropdown-toggle:hover,
         button.dropdown-toggle:focus,
         button.dropdown-toggle:active {
             color:$o-gray-400;
-        }
-
-        .dropdown-toggle {
-            margin: 0;
-            padding: 0;
-            border: medium none;
         }
     }
 
@@ -89,10 +77,6 @@ small,
         background-color: $o-brand-primary;
         color:$o-white;
     }
-}
-
-.o_switch_view {
-    border-color: $border-color;
 }
 
 .nav-bar-icon {

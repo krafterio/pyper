@@ -10,8 +10,8 @@
             <xpath expr="//widget[@name='res_config_edition']" position="replace">
                 <Setting addLabel="false">
                     <div class="user-heading">
-                        <h3 class="px-0">
-                            Made with love by Krafter
+                        <h3 class="px-0" id="edition-title">
+                            <span>Made with love by Krafter</span>
                         </h3>
                     </div>
 

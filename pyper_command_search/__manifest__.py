@@ -12,14 +12,9 @@
         'Krafter SAS',
     ],
     'website': 'https://krafter.io',
-    'auto_install': [
-        'web',
-        'pyper',
-    ],
     'depends': [
         'base',
         'web',
-        'pyper',
     ],
     'assets': {
         'web.assets_backend': [

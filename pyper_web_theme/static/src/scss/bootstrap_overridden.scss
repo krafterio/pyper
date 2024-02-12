@@ -26,7 +26,7 @@ $input-line-height: 2 !default;
 
 $input-focus-bg: $o-white !default;
 $input-focus-box-shadow: 0 !default;
-$input-focus-border-color: mix($o-extra-action-color, $o-gray-200) !default;
+$input-focus-border-color: mix($o-action, $o-gray-200) !default;
 
 $form-check-input-checked-color: $o-white !default;
 $form-check-input-checked-border-color: $o-brand-primary !default;
@@ -82,9 +82,9 @@ $progress-box-shadow: 0 !default;
 
 // List group
 $list-group-border-radius: 0 !default;
-$list-group-active-color: $o-extra-action-color !default;
+$list-group-active-color: $o-action !default;
 $list-group-active-bg: $component-active-bg !default;
-$list-group-active-border-color: $o-extra-action-color !default;
+$list-group-active-border-color: $o-action !default;
 
 // Image thumbnail
 $thumbnail-border-radius: 0 !default;
@@ -92,7 +92,7 @@ $thumbnail-box-shadow: 0 !default;
 
 // Button
 $btn-transition: none !default;
-$input-btn-line-height: 2 !default;
+$input-btn-line-height: $input-line-height !default;
 $btn-padding-x: 16px !default;
 
 $btn-box-shadow: 0 !default;

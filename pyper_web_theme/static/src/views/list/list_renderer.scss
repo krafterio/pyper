@@ -3,12 +3,11 @@
 
 .o_list_renderer {
     --ListRenderer-thead-padding-y: #{map-get($spacers, 3)};
-    --ListRenderer-thead-bg-color:  transparent;
 
     .o_list_table {
         thead {
             th {
-                padding-top: 12px;
+                padding-top: $table-cell-padding-y;
             }
         }
 
@@ -43,9 +42,5 @@
 
     .o_data_row.o_selected_row > .o_data_cell.o_invalid_cell:not(.o_readonly_modifier) {
         border-bottom: 1px solid $danger;
-    }
-
-    .o_data_row.o_data_row_selected > .o_data_cell {
-        border-bottom-width: 0;
     }
 }

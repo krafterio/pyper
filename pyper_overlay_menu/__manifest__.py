@@ -15,14 +15,13 @@
     'depends': [
         'base',
         'web',
-        'pyper',
         'pyper_menu_icon',
     ],
     'data': [
     ],
     'assets': {
         'web._assets_primary_variables': [
-            ('after', 'pyper/static/src/**/*.variables.scss', 'pyper_overlay_menu/static/src/**/*.variables.scss'),
+            ('before', 'web/static/src/**/*.variables.scss', 'pyper_overlay_menu/static/src/**/*.variables.scss'),
         ],
         'web.assets_backend': [
             'pyper_overlay_menu/static/src/webclient/**/*',

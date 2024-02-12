@@ -21,8 +21,6 @@
             <attribute name="class" add="p-0 border-start" separator=" "/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o-mail-Chatter-topbar')]/div/button[2]" position="replace"/>
-
         <xpath expr="//span[hasclass('o-mail-Chatter-topbarGrow')]" position="replace"/>
 
         <xpath expr="//div[hasclass('o-mail-Chatter-topbar')]" position="attributes">
@@ -42,20 +40,7 @@
            <button t-if="props.hasActivities" class="o-mail-Chatter-activity btn btn-secondary me-2 text-nowrap"  data-hotkey="shift+a" t-on-click="scheduleActivity">
                <i class="ph ph-calendar-check fs-2 lh-lg"/>
            </button>
-
-            <Dropdown t-if="props.hasFollowers" position="'bottom-end'" disabled="isDisabled" class="'o-mail-Followers d-flex position-relative'" menuClass="'o-mail-Followers-dropdown flex-column'" menuDisplay="'d-flex'" title="followerButtonLabel" togglerClass="'o-mail-Followers-button btn btn-secondary btn-quick me-2 position-relative text-nowrap'">
-                <t t-set-slot="toggler">
-                    <i class="ph ph-users-three fs-2 lh-lg"></i>
-                    <i t-if="state.thread.id and state.thread.followersCount === undefined" class="fa fa-circle-o-notch fa-spin"/>
-                    <span t-else="" class="o-mail-Followers-counter" t-esc="state.thread.followersCount ?? 0"/>
-                </t>
-                <t t-set-slot="default">
-                    <FollowerList onAddFollowers.bind="onAddFollowers" onFollowerChanged.bind="onFollowerChanged" thread="state.thread"/>
-                </t>
-            </Dropdown>
         </xpath>
-
-        <xpath expr="//div[hasclass('o-mail-Chatter-topbar')]/div/Dropdown[2]" position="replace"/>
 
         <xpath expr="//button[hasclass('o-mail-Chatter-sendMessage')]" position="after">
             <FileUploader
@@ -72,6 +57,14 @@
                     </button>
                 </t>
             </FileUploader>
+        </xpath>
+
+        <xpath expr="//Dropdown[@t-if='props.hasFollowers']" position="attributes">
+            <attribute name="togglerClass">'o-mail-Followers-button btn btn-secondary btn-quick me-2 position-relative text-nowrap'</attribute>
+        </xpath>
+
+        <xpath expr="//button[@t-on-click='onClickUnfollow']" position="after">
+            <xpath expr="//button[@t-on-click='onClickSearch']" position="move"/>
         </xpath>
 
         <xpath expr="//div[hasclass('o-mail-AttachmentBox')]//FileUploader" position="replace"/>

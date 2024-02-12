@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-name="pyper_web_theme.NavBar" t-inherit="web.NavBar" t-inherit-mode="extension">
-        <xpath expr="//header[hasclass('o_navbar')]/nav[hasclass('o_main_navbar')]" position="attributes">
-            <attribute name="class">o_main_navbar</attribute>
-        </xpath>
-
         <xpath expr="//header[hasclass('o_navbar')]//DropdownItem[@t-if='currentApp']" position="attributes">
             <attribute name="class">'o_menu_brand d-none d-md-flex fw-bolder'</attribute>
         </xpath>
@@ -93,12 +89,6 @@
         <xpath expr="//button[hasclass('o_form_button_cancel')]" position="attributes">
             <attribute name="class" add="btn-light" separator=" "
                        remove="btn-light o_form_button_cancel px-1 py-0 lh-sm rounded-0"/>
-        </xpath>
-    </t>
-
-    <t t-name="pyper_web_theme.CogMenu" t-inherit="web.CogMenu" t-inherit-mode="extension">
-        <xpath expr="//div[hasclass('o_cp_action_menus')]/Dropdown[1]" position="attributes">
-            <attribute name="togglerClass">'btn btn-secondary'</attribute>
         </xpath>
     </t>
 </templates>

@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="pyper_web_theme.UserMenu" t-inherit="web.UserMenu" t-inherit-mode="extension">
-        <xpath expr="//Dropdown[1]" position="attributes">
-            <attribute name="class">'o_user_menu d-none d-md-flex align-items-center border-0'</attribute>
-        </xpath>
-
-        <xpath expr="//Dropdown[1]/t[@t-set-slot='toggler']" position="replace">
-            <t t-set-slot="toggler">
-                 <div class="btn rounded-0 navbar-square border-0">
-                    <img class="o_avatar o_user_avatar rounded-pill" t-att-src="source" alt="User"/>
-                    <small class="oe_topbar_name d-none ms-2 text-start smaller lh-1 text-truncate"
-                           t-att-class="{'d-lg-inline-block' : env.debug}"
-                           style="max-width: 200px"
-                    >
-                        <t t-esc="user.name"/>
-                        <mark class="d-block font-monospace text-truncate">
-                            <i class="fa fa-database oi-small me-1"/><t t-esc="user.db.name"/>
-                        </mark>
-                    </small>
-                 </div>
-            </t>
+        <xpath expr="//Dropdown[1]/t[@t-set-slot='toggler']/img[hasclass('o_user_avatar')]" position="attributes">
+            <attribute name="class" separator=" " remove="rounded" add="rounded-pill"/>
         </xpath>
     </t>
 </templates>

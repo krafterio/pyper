@@ -20,7 +20,7 @@
     ],
     'assets': {
         'web._assets_primary_variables': [
-            ('after', 'pyper/static/src/**/*.variables.scss', 'pyper_drawer/static/src/**/*.variables.scss'),
+            ('before', 'web/static/src/**/*.variables.scss', 'pyper_drawer/static/src/**/*.variables.scss'),
         ],
         'web.assets_backend': [
             'pyper_drawer/static/src/webclient/**/*',

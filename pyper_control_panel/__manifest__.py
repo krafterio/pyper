@@ -15,14 +15,14 @@
     'depends': [
         'base',
         'web',
-        'pyper',
     ],
     'assets': {
         'web.assets_backend': [
             ('after', 'web/static/src/search/control_panel/control_panel.xml','pyper_control_panel/static/src/search/control_panel/control_panel.xml'),
             ('after', 'web/static/src/search/control_panel/control_panel.scss','pyper_control_panel/static/src/search/control_panel/control_panel.scss'),
             ('after', 'web/static/src/search/cog_menu/cog_menu.xml', 'pyper_control_panel/static/src/search/control_panel/cog_menu.xml'),
-            ('after', 'web/static/src/views/list/list_controller.xml','pyper_control_panel/static/src/views/list/list_controller.xml'),
+            ('after', 'web/static/src/views/form/form_status_indicator/form_status_indicator.xml', 'pyper_control_panel/static/src/views/form/form_status_indicator/form_status_indicator.xml'),
+            ('after', 'web/static/src/views/form/form_controller.xml', 'pyper_control_panel/static/src/views/form/form_controller.xml'),
         ],
     },
 }
