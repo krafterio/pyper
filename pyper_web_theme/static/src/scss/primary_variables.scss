@@ -20,6 +20,7 @@ $o-brand-primary: $o-gray-700 !default;
 $o-brand-secondary: #94a3b8 !default;
 $o-brand-lightsecondary: $o-gray-100 !default;
 $o-brand-odoo: $o-brand-primary !default;
+$o-community-color: $o-brand-primary !default;
 $o-enterprise-color: $o-brand-primary !default;
 $border-color: $o-gray-200 !default;
 
@@ -29,6 +30,8 @@ $o-warning: #ffac00 !default;
 $o-danger: #e06561 !default;
 
 $o-action: $o-gray-500 !default;
+$o-enterprise-action-color: $o-action !default;
+
 $o-main-text-color: $o-gray-700 !default;
 $o-main-link-color: $o-gray-400 !default;
 $o-main-color-muted: rgba($o-main-text-color, $o-opacity-muted) !default;
