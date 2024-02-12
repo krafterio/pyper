@@ -37,7 +37,8 @@
 
             # TODO Remove deprecated Pyper assets
             ('remove', 'pyper/static/src/scss/primary_variables.scss'),
-            # ('remove', 'pyper/static/src/**/*.variables.scss'),
+            ('remove', 'pyper/static/src/**/*.variables.scss'),
+            ('before', 'web/static/src/**/*.variables.scss', 'pyper/static/src/views/fields/**/*.variables.scss'),
         ],
         'web._assets_secondary_variables': [
             ('before', 'web/static/src/scss/secondary_variables.scss', 'pyper_web_theme/static/src/scss/secondary_variables.scss'),
