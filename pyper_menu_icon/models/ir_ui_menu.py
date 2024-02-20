@@ -18,6 +18,16 @@ class IrUiMenu(models.Model):
         'Menu category',
     )
 
+    def write(self, vals):
+        res = super().write(vals)
+
+        for item in self:
+            # Force remove menu category value if menu item is a sub menu item
+            if item.parent_id and item.menu_category:
+                item.menu_category = False
+
+        return res
+
     def load_web_menus(self, debug):
         menus = super().load_web_menus(debug)
 
