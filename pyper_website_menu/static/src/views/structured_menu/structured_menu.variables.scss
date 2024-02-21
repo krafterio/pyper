@@ -1,5 +1,6 @@
+$pyper-structured-menu-columns: 4 !default;
 $pyper-structured-menu-padding: 32px !default;
-$pyper-structured-menu-gap: 2em !default;
+$pyper-structured-menu-gap: 16px !default;
 $pyper-structured-menu-justify-content: flex-start !default;
 $pyper-structured-menu-bg: $o-navbar-background !default;
 $pyper-structured-menu-border-color: $o-border-color !default;
@@ -22,8 +23,6 @@ $pyper-structured-menu-content-item-icon-padding: 0 !default;
 $pyper-structured-menu-content-item-icon-size: 32px !default;
 
 $pyper-structured-menu-content-item-text-padding: 0 !default;
-$pyper-structured-menu-content-item-text-min-width: 140px !default;
-$pyper-structured-menu-content-item-text-width: 140px !default;
 
 $pyper-structured-menu-content-item-name-font-size: 1rem !default;
 $pyper-structured-menu-content-item-desc-font-size: 0.85rem !default;

@@ -10,11 +10,12 @@
     max-height: 90vh !important;
 }
 
-
 .o_structured_menu--content {
+    --o-structured-menu-gap: #{$pyper-structured-menu-gap};
+    --o-structured-menu-columns: #{$pyper-structured-menu-columns};
     display: flex;
     flex-wrap: wrap;
-    gap: $pyper-structured-menu-gap;
+    gap: var(--o-structured-menu-gap);
     padding: $pyper-structured-menu-padding;
     justify-content: $pyper-structured-menu-justify-content;
 }
@@ -23,6 +24,7 @@
     display: flex;
     flex-direction: row;
     gap: $pyper-structured-menu-content-item-gap;
+    width: calc((100% / var(--o-structured-menu-columns)) - var(--o-structured-menu-gap) + (var(--o-structured-menu-gap) / var(--o-structured-menu-columns)));
     min-height: $pyper-structured-menu-content-item-min-height;
     border-radius: $pyper-structured-menu-content-item-border-radius;
     padding: $pyper-structured-menu-content-item-padding;
@@ -61,8 +63,6 @@
 
 .o_structured_menu--item-text {
     padding: $pyper-structured-menu-content-item-text-padding;
-    min-width: $pyper-structured-menu-content-item-text-min-width;
-    width: $pyper-structured-menu-content-item-text-width;
 }
 
 .o_structured_menu--item-name,
