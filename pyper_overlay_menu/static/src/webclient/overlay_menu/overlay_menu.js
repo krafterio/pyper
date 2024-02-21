@@ -127,7 +127,7 @@ export class OverlayMenu extends Component {
     }
 
     get maxLineItemNumber() {
-        const items = this.appSubMenus.el.children;
+        const items = this.appSubMenus.el ? this.appSubMenus.el.children : [];
         let countItemPerLine = 0;
         let firstTop = undefined;
 
