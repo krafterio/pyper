@@ -99,3 +99,28 @@
         }
     }
 }
+
+// Override navbar mobile style
+.o_navbar_mobile {
+    .dropdown-menu[data-bs-popper],
+    .o_dropdown_menu[data-bs-popper] {
+        &.o_structured_menu {
+            top: auto;
+
+            .o_structured_menu--content {
+                --o-structured-menu-gap: #{$pyper-structured-menu-gap / 2};
+                --o-structured-menu-columns: 1;
+
+                &.container,
+                &.container-fluid {
+                    padding-top: 0;
+                }
+            }
+
+            .o_structured_menu--item {
+                min-height: auto;
+                padding: $pyper-structured-menu-content-item-padding / 2;
+            }
+        }
+    }
+}
