@@ -106,21 +106,38 @@
     .o_dropdown_menu[data-bs-popper] {
         &.o_structured_menu {
             top: auto;
-
-            .o_structured_menu--content {
-                --o-structured-menu-gap: #{$pyper-structured-menu-gap / 2};
-                --o-structured-menu-columns: 1;
-
-                &.container,
-                &.container-fluid {
-                    padding-top: 0;
-                }
-            }
-
-            .o_structured_menu--item {
-                min-height: auto;
-                padding: $pyper-structured-menu-content-item-padding / 2;
-            }
         }
+    }
+
+    .o_structured_menu--content {
+        --o-structured-menu-gap: #{$pyper-structured-menu-gap--mobile};
+        --o-structured-menu-columns: 1;
+
+        &.container,
+        &.container-fluid {
+            padding-top: 0;
+        }
+    }
+
+    .o_structured_menu--item {
+        min-height: auto;
+        padding: $pyper-structured-menu-content-item-padding--mobile;
+    }
+
+    .o_structured_menu--item-icon {
+        padding: $pyper-structured-menu-content-item-icon-padding--mobile;
+        width: $pyper-structured-menu-content-item-icon-size--mobile;
+
+        i {
+            font-size: $pyper-structured-menu-content-item-icon-size--mobile;
+        }
+    }
+
+    .o_structured_menu--item-name {
+        font-size: $pyper-structured-menu-content-item-name-font-size--mobile;
+    }
+
+    .o_structured_menu--item-desc {
+        font-size: $pyper-structured-menu-content-item-desc-font-size--mobile;
     }
 }
