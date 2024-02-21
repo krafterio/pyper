@@ -21,7 +21,7 @@
 </template>
 
 <template id="pyper_structured_menu" name="Pyper Structured Menu" groups="base.group_user">
-    <section class="o_structured_menu--content container">
+    <section class="o_structured_menu--content container" t-att-style="'--o-structured-menu-columns: ' + str(submenu.structured_menu_columns) + ';' if submenu.structured_menu_columns != 0 else ''">
         <t t-foreach="submenu.child_id" t-as="submenu">
             <a t-att-href="submenu._clean_url()"
                 t-attf-class="o_structured_menu--item #{submenu._is_active() and 'active'}"

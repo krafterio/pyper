@@ -16,6 +16,11 @@ class WebsiteMenu(models.Model):
         related='parent_id.is_structured_menu',
     )
 
+    structured_menu_columns = fields.Integer(
+        'Number of columns',
+        help='Override the number of columns in the structured menu defined in theme',
+    )
+
     font_icon = fields.Char('Font icon')
 
     font_icon_color = fields.Char('Font icon color')
@@ -32,6 +37,9 @@ class WebsiteMenu(models.Model):
             if menu.is_structured_menu and menu.is_mega_menu:
                 menu.is_mega_menu = False
 
+            if not menu.is_structured_menu and menu.structured_menu_columns != 0:
+                menu.structured_menu_columns = 0
+
         return res
 
     @api.onchange('is_structured_menu')
@@ -39,3 +47,6 @@ class WebsiteMenu(models.Model):
         for menu in self:
             if menu.is_structured_menu and menu.is_mega_menu:
                 menu.is_mega_menu = False
+
+            if not menu.is_structured_menu and menu.structured_menu_columns != 0:
+                menu.structured_menu_columns = 0

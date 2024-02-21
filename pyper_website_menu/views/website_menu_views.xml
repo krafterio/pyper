@@ -11,6 +11,7 @@
             </xpath>
 
             <xpath expr="//form//group//field[@name='name']" position="after">
+                <field name="structured_menu_columns" invisible="parent_is_structured_menu"/>
                 <field name="description" invisible="not parent_is_structured_menu"/>
                 <field name="font_icon" invisible="not parent_is_structured_menu"/>
                 <field name="font_icon_color" widget="color" invisible="not parent_is_structured_menu"/>
