@@ -26,6 +26,10 @@
             'pyper_website_menu/static/src/views/**/*.variables.scss'
         ],
 
+        'website.assets_editor': [
+            'pyper_website_menu/static/src/components/dialog/**/*',
+        ],
+
         'web.assets_frontend': [
             'pyper_website_menu/static/src/views/structured_menu/**/*',
         ],
