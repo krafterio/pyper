@@ -25,6 +25,33 @@
         </xpath>
 
         <xpath expr="//WebsiteDialog" position="inside">
+            <div t-if="props.parentIsStructuredMenu" class="mb-3 row">
+                <label class="col-form-label col-md-3">
+                    Description
+                </label>
+                <div class="col-md-9">
+                    <input id="description_input" t-ref="description-input" type="text" t-model="description.input.value" class="form-control" t-att-class="{ 'is-invalid': description.input.hasError }"/>
+                </div>
+            </div>
+
+            <div t-if="props.parentIsStructuredMenu" class="mb-3 row">
+                <label class="col-form-label col-md-3">
+                    Font icon
+                </label>
+                <div class="col-md-9">
+                    <input id="font_icon_input" t-ref="font-icon-input" type="text" t-model="fontIcon.input.value" class="form-control" t-att-class="{ 'is-invalid': fontIcon.input.hasError }"/>
+                </div>
+            </div>
+
+            <div t-if="props.parentIsStructuredMenu" class="mb-3 row">
+                <label class="col-form-label col-md-3">
+                    Font icon color
+                </label>
+                <div class="col-md-9">
+                    <input id="font_icon_color_input" t-ref="font-icon-color-input" type="text" t-model="fontIconColor.input.value" class="form-control" t-att-class="{ 'is-invalid': fontIconColor.input.hasError }"/>
+                </div>
+            </div>
+
             <div t-if="props.isStructuredMenu" class="mb-3 row">
                 <label class="col-form-label col-md-3">
                     Number of columns

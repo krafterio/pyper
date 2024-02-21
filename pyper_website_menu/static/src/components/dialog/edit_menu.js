@@ -33,11 +33,21 @@ patch(MenuDialog.prototype, {
     setup() {
         super.setup();
         this.structuredMenuColumns = useControlledInput(this.props.structuredMenuColumns, value => !!value);
+        this.description = useControlledInput(this.props.description, value => value);
+        this.fontIcon = useControlledInput(this.props.fontIcon, value => value);
+        this.fontIconColor = useControlledInput(this.props.fontIconColor, value => value);
     },
 
     onClickOk() {
-        if (this.name.isValid() && this.props.isStructuredMenu) {
-            this.props.save(this.name.input.value, this.url.input.value, this.structuredMenuColumns.input.value);
+        if (this.name.isValid() && (this.props.isStructuredMenu || this.props.parentIsStructuredMenu)) {
+            this.props.save(
+                this.name.input.value,
+                this.url.input.value,
+                this.structuredMenuColumns.input.value,
+                this.description.input.value,
+                this.fontIcon.input.value,
+                this.fontIconColor.input.value
+            );
             this.props.close();
         } else {
             super.onClickOk();
@@ -47,6 +57,10 @@ patch(MenuDialog.prototype, {
 
 MenuDialog.props.isStructuredMenu = {type: Boolean, optional: true};
 MenuDialog.props.structuredMenuColumns = {type: Number, optional: true};
+MenuDialog.props.parentIsStructuredMenu = {type: Boolean, optional: true};
+MenuDialog.props.description = {type: String, optional: true};
+MenuDialog.props.fontIcon = {type: String, optional: true};
+MenuDialog.props.fontIconColor = {type: String, optional: true};
 
 patch(EditMenuDialog.prototype, {
     addStructuredMenu() {
@@ -75,22 +89,43 @@ patch(EditMenuDialog.prototype, {
     editMenu(id) {
         const menuToEdit = this.map.get(id);
         const isStructuredMenu = menuToEdit.fields['is_structured_menu']
+        const parentIsStructuredMenu = menuToEdit.fields['parent_is_structured_menu']
 
-        if (isStructuredMenu) {
+        if (isStructuredMenu || parentIsStructuredMenu) {
             this.dialogs.add(MenuDialog, {
                 name: menuToEdit.fields['name'],
                 url: menuToEdit.fields['url'],
                 isStructuredMenu: isStructuredMenu,
                 structuredMenuColumns: menuToEdit.fields['structured_menu_columns'],
-                save: (name, url, structuredMenuColumns) => {
+                parentIsStructuredMenu: parentIsStructuredMenu,
+                description: menuToEdit.fields['description'],
+                fontIcon: menuToEdit.fields['font_icon'],
+                fontIconColor: menuToEdit.fields['font_icon_color'],
+                save: (name, url, structuredMenuColumns, description, fontIcon, fontIconColor) => {
                     menuToEdit.fields['name'] = name;
                     menuToEdit.fields['url'] = url;
-                    menuToEdit.fields['structured_menu_columns'] = structuredMenuColumns
+                    menuToEdit.fields['structured_menu_columns'] = structuredMenuColumns;
+                    menuToEdit.fields['description'] = description;
+                    menuToEdit.fields['font_icon'] = fontIcon;
+                    menuToEdit.fields['font_icon_color'] = fontIconColor;
                 },
             });
         } else {
             super.editMenu(id);
         }
+    },
+
+    _moveMenu({element, parent}) {
+        super._moveMenu(...arguments);
+
+        // Define parent_is_structured_menu value when item is moved
+        const menuId = this._getMenuIdForElement(element);
+        const menu = this.map.get(menuId);
+
+        const parentId = menu.fields['parent_id'] || this.state.rootMenu.fields['id'];
+        let parentMenu = this.map.get(parentId);
+
+        menu.fields['parent_is_structured_menu'] = !!parentMenu.fields['is_structured_menu'];
     },
 
     _isAllowedMove(current, elementSelector) {

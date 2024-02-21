@@ -76,6 +76,13 @@ class WebsiteMenu(models.Model):
                     'is_structured_menu': menu.is_structured_menu,
                     'structured_menu_columns': menu.structured_menu_columns,
                 })
+            else:
+                node.get('fields').update({
+                    'parent_is_structured_menu': menu.parent_is_structured_menu,
+                    'description': menu.description,
+                    'font_icon': menu.font_icon,
+                    'font_icon_color': menu.font_icon_color,
+                })
 
             for child in children:
                 update_tree(child)
