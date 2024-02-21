@@ -100,6 +100,42 @@
     }
 }
 
+// Override navbar extra menu style
+.o_extra_menu_items {
+    .o_structured_menu--content {
+        --o-structured-menu-gap: #{$pyper-structured-menu-gap--extra};
+        --o-structured-menu-columns: 1;
+
+        &.container,
+        &.container-fluid {
+            padding-top: 0;
+        }
+    }
+
+    .o_structured_menu--item {
+        min-height: auto;
+        padding: $pyper-structured-menu-content-item-padding--extra;
+        gap: $pyper-structured-menu-content-item-gap--extra;
+    }
+
+    .o_structured_menu--item-icon {
+        padding: $pyper-structured-menu-content-item-icon-padding--extra;
+        width: $pyper-structured-menu-content-item-icon-size--extra;
+
+        i {
+            font-size: $pyper-structured-menu-content-item-icon-size--extra;
+        }
+    }
+
+    .o_structured_menu--item-name {
+        font-size: $pyper-structured-menu-content-item-name-font-size--extra;
+    }
+
+    .o_structured_menu--item-desc {
+        font-size: $pyper-structured-menu-content-item-desc-font-size--extra;
+    }
+}
+
 // Override navbar mobile style
 .o_navbar_mobile {
     .dropdown-menu[data-bs-popper],
