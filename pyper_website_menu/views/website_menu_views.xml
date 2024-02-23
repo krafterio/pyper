@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//form//field[@name='is_mega_menu']" position="after">
                 <field name="is_structured_menu"/>
-                <field name="parent_is_structured_menu"/>
+                <field name="parent_is_structured_menu" invisible="True"/>
             </xpath>
 
             <xpath expr="//form//group//field[@name='name']" position="after">

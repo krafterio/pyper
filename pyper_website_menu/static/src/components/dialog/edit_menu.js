@@ -32,7 +32,7 @@ const useControlledInput = (initialValue, validate) => {
 patch(MenuDialog.prototype, {
     setup() {
         super.setup();
-        this.structuredMenuColumns = useControlledInput(this.props.structuredMenuColumns, value => !!value);
+        this.structuredMenuColumns = useControlledInput(this.props.structuredMenuColumns, value => value);
         this.description = useControlledInput(this.props.description, value => value);
         this.fontIcon = useControlledInput(this.props.fontIcon, value => value);
         this.fontIconColor = useControlledInput(this.props.fontIconColor, value => value);
