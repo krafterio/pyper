@@ -16,6 +16,7 @@
                     <t t-set="submenu" t-value="submenu"/>
                 </t>
             </ul>
+            <div class="o_structured_menu--obfuscator" t-if="submenu.structured_menu_obfuscator"></div>
         </li>
     </xpath>
 </template>

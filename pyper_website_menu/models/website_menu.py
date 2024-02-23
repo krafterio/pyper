@@ -11,6 +11,10 @@ class WebsiteMenu(models.Model):
         'Is Structured Menu',
     )
 
+    structured_menu_obfuscator = fields.Boolean(
+        'Use obfuscator?',
+    )
+
     parent_is_structured_menu = fields.Boolean(
         'Parent is Structured Menu',
         related='parent_id.is_structured_menu',
@@ -75,6 +79,7 @@ class WebsiteMenu(models.Model):
                 node.get('fields').update({
                     'is_structured_menu': menu.is_structured_menu,
                     'structured_menu_columns': menu.structured_menu_columns,
+                    'structured_menu_obfuscator': menu.structured_menu_obfuscator,
                 })
             else:
                 node.get('fields').update({

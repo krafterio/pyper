@@ -78,6 +78,21 @@
     font-size: $pyper-structured-menu-content-item-desc-font-size;
 }
 
+.o_structured_menu--obfuscator {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: -100vh; // Allow to display obfuscator when navbar is affixed and content is scrolled
+    left: 0;
+    right: 0;
+    z-index: $pyper-structured-menu-obfuscator-zindex;
+    background-color: $pyper-structured-menu-obfuscator-bg;
+
+    .o_structured_menu.show + & {
+        display: block;
+    }
+}
+
 // Override navbar style
 .navbar-light {
     a.o_structured_menu--item {

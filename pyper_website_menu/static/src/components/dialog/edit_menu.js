@@ -33,6 +33,7 @@ patch(MenuDialog.prototype, {
     setup() {
         super.setup();
         this.structuredMenuColumns = useControlledInput(this.props.structuredMenuColumns, value => value);
+        this.structuredMenuObfuscator = useControlledInput(this.props.structuredMenuObfuscator, value => !!value);
         this.description = useControlledInput(this.props.description, value => value);
         this.fontIcon = useControlledInput(this.props.fontIcon, value => value);
         this.fontIconColor = useControlledInput(this.props.fontIconColor, value => value);
@@ -44,6 +45,7 @@ patch(MenuDialog.prototype, {
                 this.name.input.value,
                 this.url.input.value,
                 this.structuredMenuColumns.input.value,
+                this.structuredMenuObfuscator.input.value,
                 this.description.input.value,
                 this.fontIcon.input.value,
                 this.fontIconColor.input.value
@@ -57,6 +59,7 @@ patch(MenuDialog.prototype, {
 
 MenuDialog.props.isStructuredMenu = {type: Boolean, optional: true};
 MenuDialog.props.structuredMenuColumns = {type: Number, optional: true};
+MenuDialog.props.structuredMenuObfuscator = {type: Number, optional: true};
 MenuDialog.props.parentIsStructuredMenu = {type: Boolean, optional: true};
 MenuDialog.props.description = {type: String, optional: true};
 MenuDialog.props.fontIcon = {type: String, optional: true};
@@ -97,14 +100,16 @@ patch(EditMenuDialog.prototype, {
                 url: menuToEdit.fields['url'],
                 isStructuredMenu: isStructuredMenu,
                 structuredMenuColumns: menuToEdit.fields['structured_menu_columns'],
+                structuredMenuObfuscator: menuToEdit.fields['structured_menu_obfuscator'],
                 parentIsStructuredMenu: parentIsStructuredMenu,
                 description: menuToEdit.fields['description'],
                 fontIcon: menuToEdit.fields['font_icon'],
                 fontIconColor: menuToEdit.fields['font_icon_color'],
-                save: (name, url, structuredMenuColumns, description, fontIcon, fontIconColor) => {
+                save: (name, url, structuredMenuColumns, structuredMenuObfuscator, description, fontIcon, fontIconColor) => {
                     menuToEdit.fields['name'] = name;
                     menuToEdit.fields['url'] = url;
                     menuToEdit.fields['structured_menu_columns'] = structuredMenuColumns;
+                    menuToEdit.fields['structured_menu_obfuscator'] = structuredMenuObfuscator;
                     menuToEdit.fields['description'] = description;
                     menuToEdit.fields['font_icon'] = fontIcon;
                     menuToEdit.fields['font_icon_color'] = fontIconColor;

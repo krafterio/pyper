@@ -61,6 +61,18 @@
                     <small class="form-text">Use value '0' to use default value of theme</small>
                 </div>
             </div>
+
+            <div t-if="props.isStructuredMenu" class="mb-3 row">
+                <label class="col-form-label col-md-3">
+                    Use obfuscator?
+                </label>
+                <div class="col-md-9">
+                    <div class="form-check">
+                        <input id="structured_menu_obfuscator_input" t-ref="structured-menu-obfuscator-input" type="checkbox" t-model="structuredMenuObfuscator.input.value" class="form-check-input" t-att-class="{ 'is-invalid': structuredMenuObfuscator.input.hasError }"/>
+                    </div>
+                    <small class="form-text">Display a obfuscator layout under the displayed structured menu</small>
+                </div>
+            </div>
         </xpath>
     </t>
 </template>
