@@ -2,8 +2,28 @@
 <templates xml:space="preserve">
     <t t-name="pyper_control_panel.ControlPanel" t-inherit="web.ControlPanel" t-inherit-mode="extension">
         <!-- Move Create/New button -->
+        <xpath expr="//div[hasclass('o_control_panel_main_buttons')][1]" position="attributes">
+            <attribute name="class" separator=" " add="d-none"/>
+        </xpath>
+
         <xpath expr="//t[@t-slot='control-panel-navigation-additional']" position="after">
-            <xpath expr="//div[hasclass('o_control_panel_main_buttons')]" position="move"/>
+            <div class="o_control_panel_main_buttons d-flex gap-1 d-empty-none d-print-none" t-ref="mainButtons" t-on-keydown="onMainButtonsKeydown">
+                <div class="btn-group d-xl-none o_control_panel_collapsed_create">
+                    <t t-slot="control-panel-create-button"/>
+                    <button t-att-class="{invisible: display.disableDropdown}" type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split o_control_panel_collapsed_create" data-bs-toggle="dropdown" aria-expanded="false">
+                         <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu o_control_panel_collapsed_create">
+                        <t t-slot="layout-buttons"/>
+                        <t t-slot="control-panel-always-buttons"/>
+                    </ul>
+                </div>
+                <div class="d-none d-xl-inline-flex gap-1">
+                    <t t-slot="control-panel-create-button"/>
+                    <t t-slot="layout-buttons"/>
+                    <t t-slot="control-panel-always-buttons"/>
+                </div>
+            </div>
         </xpath>
 
         <xpath expr="//div[hasclass('o_control_panel')]" position="attributes">
