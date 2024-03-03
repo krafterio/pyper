@@ -21,7 +21,7 @@
             <t t-set-slot="header">
                 <div class="o_main_navbar">
                     <DrawerAppMenu minified="true">
-                        <img src="/pyper_web_theme/static/img/icon.png" width="50" height="50" class="rounded-3"/>
+                        <img src="/pyper_web_theme/static/img/icon.svg" width="50" height="50" class="rounded-3"/>
                     </DrawerAppMenu>
                 </div>
             </t>
