@@ -24,6 +24,8 @@ class PyperSaas:
         'include_minimal_addons': True,
         # Define the addon paths in self directory to add all addons in each path
         'available_addon_paths': [],
+        # Define excluded addons when it is found in the 'available_addon_paths'
+        'excluded_available_addons': [],
         # Define manually the available addons
         'available_addons': [],
         # Define manually the uninstallable addons (used when addon is required by invalid dependency,
@@ -69,24 +71,38 @@ class PyperSaas:
                 with tools.file_open(pyper_file, mode='r') as f:
                     p_pyper = ast.literal_eval(f.read())
 
+                    # Update excluded available addons
+                    pyper_excluded_available_addons = list(pyper.get('excluded_available_addons', []))
+                    p_excluded_available_addons = list(p_pyper.get('excluded_available_addons', []))
+
+                    for excluded_available_addon in p_excluded_available_addons:
+                        if excluded_available_addon not in pyper_excluded_available_addons:
+                            pyper_excluded_available_addons.append(excluded_available_addon)
+
+                    pyper.update({'excluded_available_addons': pyper_excluded_available_addons})
+
+                    # Add addons defined in self directory
                     if p_pyper.get('include_self_addons', False):
                         p_available_addons = list(p_pyper.get('available_addons', []))
 
                         for sub_addon in os.listdir(addon_path):
                             sub_addon_manifest = addon_path + '/' + sub_addon + '/__manifest__.py'
 
-                            if os.path.isfile(sub_addon_manifest) and sub_addon not in p_available_addons:
+                            if os.path.isfile(sub_addon_manifest) and sub_addon not in p_available_addons \
+                                    and sub_addon not in pyper_excluded_available_addons:
                                 p_available_addons.append(sub_addon)
 
                         p_pyper.update({'available_addons': p_available_addons})
 
+                    # Add addons defined in available addon paths
                     for av_addon_path in p_pyper.get('available_addon_paths', []):
                         sub_addon_path = addon_path + '/' + av_addon_path
 
                         for sub_addon in os.listdir(sub_addon_path):
                             sub_addon_manifest = sub_addon_path + '/' + sub_addon + '/__manifest__.py'
 
-                            if os.path.isfile(sub_addon_manifest) and sub_addon not in p_available_addons:
+                            if os.path.isfile(sub_addon_manifest) and sub_addon not in p_available_addons \
+                                    and sub_addon not in pyper_excluded_available_addons:
                                 p_available_addons.append(sub_addon)
 
                     pyper.update(PyperSaas._merge(pyper, p_pyper))
