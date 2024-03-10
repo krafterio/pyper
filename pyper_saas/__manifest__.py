@@ -16,6 +16,7 @@
     'depends': [
         'web',
     ],
+    'post_load': 'post_load',
     'data': [
         'data/bot.xml',
         'data/rules.xml',
