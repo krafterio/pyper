@@ -16,10 +16,18 @@ _original_load_manifest = modules.module.load_manifest
 
 class PyperSaas:
     _DEFAULT_PYPER = {
+        # Check if restrict addons is enabled
         'enable': None,
+        # Check if all addons defined in the self directory of __pyper_saas__.py file must be added
         'include_self_addons': False,
+        # Check if minimal odoo addons must be added automatically
         'include_minimal_addons': True,
+        # Define the addon paths in self directory to add all addons in each path
+        'available_addon_paths': [],
+        # Define manually the available addons
         'available_addons': [],
+        # Define manually the uninstallable addons (used when addon is required by invalid dependency,
+        # ex. ref xml defined in other addon)
         'uninstallable_addons': [],
     }
 
@@ -71,6 +79,15 @@ class PyperSaas:
                                 p_available_addons.append(sub_addon)
 
                         p_pyper.update({'available_addons': p_available_addons})
+
+                    for av_addon_path in p_pyper.get('available_addon_paths', []):
+                        sub_addon_path = addon_path + '/' + av_addon_path
+
+                        for sub_addon in os.listdir(sub_addon_path):
+                            sub_addon_manifest = sub_addon_path + '/' + sub_addon + '/__manifest__.py'
+
+                            if os.path.isfile(sub_addon_manifest) and sub_addon not in p_available_addons:
+                                p_available_addons.append(sub_addon)
 
                     pyper.update(PyperSaas._merge(pyper, p_pyper))
 
