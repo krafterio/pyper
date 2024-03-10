@@ -17,6 +17,7 @@ _original_load_manifest = modules.module.load_manifest
 class PyperSaas:
     _DEFAULT_PYPER = {
         'enable': None,
+        'include_self_addons': False,
         'include_minimal_addons': True,
         'available_addons': [],
         'uninstallable_addons': [],
@@ -58,7 +59,20 @@ class PyperSaas:
 
             if os.path.isfile(pyper_file):
                 with tools.file_open(pyper_file, mode='r') as f:
-                    pyper.update(PyperSaas._merge(pyper, ast.literal_eval(f.read())))
+                    p_pyper = ast.literal_eval(f.read())
+
+                    if p_pyper.get('include_self_addons', False):
+                        p_available_addons = list(p_pyper.get('available_addons', []))
+
+                        for sub_addon in os.listdir(addon_path):
+                            sub_addon_manifest = addon_path + '/' + sub_addon + '/__manifest__.py'
+
+                            if os.path.isfile(sub_addon_manifest) and sub_addon not in p_available_addons:
+                                p_available_addons.append(sub_addon)
+
+                        p_pyper.update({'available_addons': p_available_addons})
+
+                    pyper.update(PyperSaas._merge(pyper, p_pyper))
 
         if pyper.get('enable', None) is None:
             pyper.update({'enable': len(pyper.get('available_addons', [])) > 0})
