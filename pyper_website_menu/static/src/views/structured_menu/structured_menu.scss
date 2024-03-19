@@ -96,7 +96,7 @@
 // Override navbar style
 .navbar-light {
     a.o_structured_menu--item {
-        color: $pyper-structured-menu-content-color;
+        color: $pyper-structured-menu-content-color !important;
 
         &:hover,
         &:focus {
