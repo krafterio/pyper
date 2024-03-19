@@ -93,6 +93,20 @@
     }
 }
 
+// Override overlay header navbar when structured menu is opened
+#wrapwrap.o_header_overlay {
+    > header:not(.o_header_affixed):not(.o_top_menu_collapse_shown):not(.o_header_sidebar) {
+        > .navbar {
+            &.o_colored_level {
+                &.o_structured_menu--navbar {
+                    background-color: $pyper-structured-menu-bg !important;
+                    border-color: $pyper-structured-menu-bg !important;
+                }
+            }
+        }
+    }
+}
+
 // Override navbar style
 .navbar-light {
     a.o_structured_menu--item {

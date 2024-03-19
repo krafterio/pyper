@@ -32,6 +32,7 @@
 
         'web.assets_frontend': [
             'pyper_website_menu/static/src/views/structured_menu/**/*',
+            'pyper_website_menu/static/src/libs/bootstrap/**/*',
         ],
     },
 }
