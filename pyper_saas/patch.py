@@ -194,9 +194,12 @@ def _overload_load_manifest(pyper: PyperSaas, module, mod_path=None):
 
 
 def post_load():
-    _logger.info('Applying module patches for SaaS...')
-
     pyper = PyperSaas(config.get('addons_path', '').strip().split(','))
+
+    if not pyper.enable:
+        return
+
+    _logger.info('Applying module patches for SaaS...')
 
     def __overload_module_get_modules():
         return _overload_module_get_modules(pyper)
