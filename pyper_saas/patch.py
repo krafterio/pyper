@@ -186,7 +186,7 @@ def _overload_load_manifest(pyper: PyperSaas, module, mod_path=None):
     res = _original_load_manifest(module, mod_path=mod_path)
     installable = res.get('installable', False)
 
-    if installable and pyper.is_uninstallable_module(module):
+    if pyper.enable and installable and pyper.is_uninstallable_module(module):
         res['installable'] = False
         res['to_buy'] = True
 
