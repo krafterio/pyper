@@ -1,0 +1,80 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_recaptcha_login
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-21 21:25+0000\n"
+"PO-Revision-Date: 2024-03-21 21:25+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pyper_recaptcha_login
+#: model_terms:ir.ui.view,arch_db:pyper_recaptcha_login.res_config_settings_view_form
+msgid ""
+"<i class=\"oi oi-arrow-right\"/>\n"
+"                                    <span>Generate reCAPTCHA v3 keys</span>"
+msgstr ""
+"<i class=\"oi oi-arrow-right\"/>\n"
+"                                    <span>Générer des clés reCAPTCHA v3</span>"
+
+#. module: pyper_recaptcha_login
+#: model:ir.model,name:pyper_recaptcha_login.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: pyper_recaptcha_login
+#: model_terms:ir.ui.view,arch_db:pyper_recaptcha_login.res_config_settings_view_form
+msgid "Enable reCAPTCHA on login"
+msgstr "Activer reCAPTCHA lors de la connexion"
+
+#. module: pyper_recaptcha_login
+#: model:ir.model.fields,field_description:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_enabled
+msgid "Enabled reCAPTCHA login lockdown"
+msgstr "Activer le verrouillage de l’authentification reCAPTCHA"
+
+#. module: pyper_recaptcha_login
+#: model:ir.model.fields,field_description:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_max_error_attempt
+msgid "Max Error Attempt"
+msgstr "Tentative d’erreur maximale"
+
+#. module: pyper_recaptcha_login
+#: model:ir.model.fields,help:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_private_key
+msgid "The Private Key of your reCAPTCHA"
+msgstr "La clé privée de votre reCAPTCHA"
+
+#. module: pyper_recaptcha_login
+#: model:ir.model.fields,help:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_site_key
+msgid "The Site Key of your reCAPTCHA"
+msgstr "La clé du site de votre reCAPTCHA"
+
+#. module: pyper_recaptcha_login
+#: model:ir.model.fields,help:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_max_error_attempt
+msgid "The maximum number of attempts before locking the login"
+msgstr "Le nombre maximum de tentatives avant de bloquer l’authentification"
+
+#. module: pyper_recaptcha_login
+#: model_terms:ir.ui.view,arch_db:pyper_recaptcha_login.res_config_settings_view_form
+msgid "Use Google reCAPTCHA on the login pages"
+msgstr "Utilisez Google reCAPTCHA sur les pages d’authentification"
+
+#. module: pyper_recaptcha_login
+#: model_terms:ir.ui.view,arch_db:pyper_recaptcha_login.res_config_settings_view_form
+msgid "reCAPTCHA Login"
+msgstr ""
+
+#. module: pyper_recaptcha_login
+#: model:ir.model.fields,field_description:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_private_key
+msgid "reCAPTCHA Private Key"
+msgstr "Clé privée reCAPTCHA"
+
+#. module: pyper_recaptcha_login
+#: model:ir.model.fields,field_description:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_site_key
+msgid "reCAPTCHA Site Key"
+msgstr "Clé du site reCAPTCHA"

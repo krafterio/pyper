@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+     <template id="login" inherit_id="web.login">
+         <xpath expr="//button[@type='submit']" position="before">
+             <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"/>
+
+             <div class="pyper_recaptcha_login form-group field-password" t-if ="recaptcha_security_enabel">
+                 <hr/>
+                 <div class="g-recaptcha" t-att-data-sitekey="env['ir.config_parameter'].sudo().get_param('pyper_recaptcha_login.site_key')"/>
+             </div>
+         </xpath>
+    </template>
+</odoo>
