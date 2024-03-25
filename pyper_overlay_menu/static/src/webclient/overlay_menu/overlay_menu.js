@@ -214,6 +214,10 @@ export class OverlayMenu extends Component {
             [
                 'Enter',
                 () => {
+                    if (!this.overlayMenuService.isOpened) {
+                        return;
+                    }
+
                     const menu = this.currentFilteredAppSections[this.state.focusedIndex];
 
                     if (menu) {
@@ -250,6 +254,10 @@ export class OverlayMenu extends Component {
      * @param {string} cmd
      */
     _updateFocusedIndex(cmd) {
+        if (!this.overlayMenuService.isOpened) {
+            return;
+        }
+
         const nbrApps = this.currentFilteredAppSections.length;
         const lastIndex = nbrApps - 1;
         const focusedIndex = this.state.focusedIndex;
