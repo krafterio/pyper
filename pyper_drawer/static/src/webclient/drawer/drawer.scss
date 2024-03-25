@@ -400,9 +400,9 @@
 
         &.o_drawer--mini {
             + .o_navbar,
-        + .o_drawer--obfuscator + .o_navbar {
-            margin-left: $o-drawer-mini-width;
-        }
+            + .o_drawer--obfuscator + .o_navbar {
+                margin-left: $o-drawer-mini-width;
+            }
         }
     }
 
@@ -450,6 +450,48 @@
 
             &.o_drawer--mini {
                 width: auto;
+            }
+        }
+    }
+}
+
+
+// = Website
+// ============================================================================
+
+.editor_has_snippets_hide_backend_navbar {
+    .o_drawer {
+        display: none !important;
+
+        &.o_drawer--locked {
+            + .o_action_manager,
+            + .o_navbar + .o_action_manager,
+            + .o_drawer--obfuscator + .o_action_manager,
+            + .o_drawer--obfuscator + .o_navbar + .o_action_manager {
+                margin-left: 0;
+            }
+
+            &.o_drawer--mini {
+                + .o_action_manager,
+                + .o_navbar + .o_action_manager,
+                + .o_drawer--obfuscator + .o_action_manager,
+                + .o_drawer--obfuscator + .o_navbar + .o_action_manager {
+                    margin-left: 0;
+                }
+            }
+        }
+
+        &.o_drawer--locked {
+            + .o_navbar,
+            + .o_drawer--obfuscator + .o_navbar {
+                margin-left: 0;
+            }
+
+            &.o_drawer--mini {
+                + .o_navbar,
+                + .o_drawer--obfuscator + .o_navbar {
+                    margin-left: 0;
+                }
             }
         }
     }
