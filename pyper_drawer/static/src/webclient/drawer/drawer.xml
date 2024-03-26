@@ -46,7 +46,7 @@
         >
             <t t-foreach="categories" t-as="category" t-key="category.value">
                 <p class="o_drawer--category-label" t-if="displayCategoryName">
-                    <t t-esc="category.display_name"/>
+                    <t t-out="category.display_name"/>
                 </p>
 
                 <hr t-elif="displayCategorySection" class="o_drawer--category-section"/>

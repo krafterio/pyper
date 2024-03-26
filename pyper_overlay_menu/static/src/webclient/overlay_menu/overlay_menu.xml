@@ -75,7 +75,7 @@
             </div>
 
             <div  class="o_overlay_menu--item-label">
-                <t t-esc="menu.name"/>
+                <t t-out="menu.name"/>
             </div>
         </a>
     </t>

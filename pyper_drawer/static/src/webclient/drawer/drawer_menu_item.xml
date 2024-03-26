@@ -79,7 +79,7 @@
             </div>
 
             <div t-if="label" t-att-class="{'o_drawer--item-label': true, 'hidden': !showLabel}">
-                <t t-esc="label"/>
+                <t t-out="label"/>
             </div>
         </div>
     </t>

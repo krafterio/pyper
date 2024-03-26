@@ -38,10 +38,10 @@
         </xpath>
 
         <xpath expr="//div[hasclass('o-mail-Activity-info')]//i" position="after">
-            <span class="fw-bold d-block text-break mt-1"><t t-esc="displayName"/></span>
+            <span class="fw-bold d-block text-break mt-1"><t t-out="displayName"/></span>
 
             <div class="d-flex small align-items-center">
-                <span class="o-mail-Activity-user mt-2"><t t-esc="activity.user_id[1]"/></span>
+                <span class="o-mail-Activity-user mt-2"><t t-out="activity.user_id[1]"/></span>
             </div>
         </xpath>
 

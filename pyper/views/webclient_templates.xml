@@ -26,8 +26,8 @@
                 filter: none;
             }
             .card button {
-                background-color: <t t-esc="bg_color"/>;
-                border: 1px solid <t t-esc="bg_color"/>;
+                background-color: <t t-out="bg_color"/>;
+                border: 1px solid <t t-out="bg_color"/>;
             }
         </xpath>
 
@@ -38,7 +38,7 @@
         </xpath>
 
         <xpath expr="//div[hasclass('card')]/p" position="replace">
-            <p>Check your network connection and come back here. <t t-esc="app_name"/> will load as soon as you're back online.</p>
+            <p>Check your network connection and come back here. <t t-out="app_name"/> will load as soon as you're back online.</p>
         </xpath>
     </template>
 </odoo>

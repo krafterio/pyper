@@ -40,7 +40,7 @@
 
             <t t-slot="default" value="value" normalizedValue="normalizedValue">
                 <div class="progress-circular--content">
-                    <t t-if="props.displayValue" t-esc="formattedValue"/>
+                    <t t-if="props.displayValue" t-out="formattedValue"/>
                 </div>
             </t>
         </div>
