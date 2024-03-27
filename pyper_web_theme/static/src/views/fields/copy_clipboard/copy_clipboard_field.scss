@@ -1,0 +1,7 @@
+.o_clipboard_button {
+    &.o_btn_char_copy {
+        span:last-child {
+            display: none !important;
+        }
+    }
+}
