@@ -4,6 +4,7 @@ import {
     Component,
     onMounted,
     onWillDestroy,
+    onWillStart,
     onWillUpdateProps,
     useRef,
     useEffect,
@@ -14,6 +15,7 @@ import {useBus, useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
 import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {_t} from '@web/core/l10n/translation';
+import {evaluateExpr} from '@web/core/py_js/py';
 import {getTransform} from '@pyper/core/ui/css';
 import {DrawerMenuItem} from './drawer_menu_item';
 
@@ -98,6 +100,24 @@ export class Drawer extends Component {
     };
 
     static defaultProps = {
+        showRootApp: undefined,
+        nav: undefined,
+        fixedTop: undefined,
+        alwaysHeader: undefined,
+        alwaysFooter: undefined,
+        alwaysMini: undefined,
+        minifiable: undefined,
+        initMinified: undefined,
+        popoverMinified: undefined,
+        closeAction: undefined,
+        closeOnClick: undefined,
+        dragEndRatio: undefined,
+        hideEmptyCategory: undefined,
+        hideCategoryLabelMinified: undefined,
+        disabledOnSmallScreen: undefined,
+    };
+
+    static configurableDefaultProps = {
         showRootApp: false,
         nav: false,
         fixedTop: false,
@@ -115,7 +135,10 @@ export class Drawer extends Component {
         disabledOnSmallScreen: false,
     };
 
+    static SETTINGS_KEY_PREFIX = 'pyper_drawer.drawer_props.';
+
     setup() {
+        this.orm = useService('orm');
         this.drawerService = useState(useService('drawer'));
         this.menuService = useService('menu');
         this.root = useRef('root');
@@ -126,8 +149,31 @@ export class Drawer extends Component {
         this.dragStartPosition = undefined;
         this.dragMaxWidth = undefined;
         this.dragDistance = 0;
+        this.initialSettings = useState({});
+        this.settings = useState({});
 
-        this.drawerService.restoreMinified(this.props.initMinified);
+        onWillStart(async () => {
+            const params = await this.orm.searchRead(
+                'ir.config_parameter',
+                [['key', 'like', Drawer.SETTINGS_KEY_PREFIX + '%']],
+                ['key', 'value']
+            );
+            const paramsMap = {};
+
+            params.forEach((param) => {
+                paramsMap[param.key.substring(Drawer.SETTINGS_KEY_PREFIX.length)] = evaluateExpr(param.value);
+            });
+
+            Object.keys(Drawer.configurableDefaultProps).forEach((props) => {
+                if (paramsMap.hasOwnProperty(props)) {
+                    this.initialSettings[props] = paramsMap[props];
+                }
+
+                this.settings[props] = this._getConfigurablePropsValue(props);
+            });
+
+            this._refreshDrawerService();
+        });
 
         const debouncedAdapt = debounce(this.adapt.bind(this), 250);
         onWillDestroy(() => {
@@ -159,7 +205,6 @@ export class Drawer extends Component {
         );
 
         // Init and refresh values of drawer service
-        this.onWillUpdateProps(this.props);
         onWillUpdateProps((nextProps) => this.onWillUpdateProps(nextProps));
     }
 
@@ -224,19 +269,19 @@ export class Drawer extends Component {
     }
 
     get displayCategoryName() {
-        return !this.isMinified || (this.isMinified && !this.props.hideCategoryLabelMinified)
+        return !this.isMinified || (this.isMinified && !this.settings.hideCategoryLabelMinified)
     }
 
     get displayCategorySection() {
-        return this.isMinified && this.props.hideCategoryLabelMinified && this.props.showCategorySectionMinified;
+        return this.isMinified && this.settings.hideCategoryLabelMinified && this.settings.showCategorySectionMinified;
     }
 
     get displayHeader() {
-        return this.isSmallScreen || this.props.alwaysHeader;
+        return this.isSmallScreen || this.settings.alwaysHeader;
     }
 
     get displayFooter() {
-        return this.isSmallScreen || this.props.alwaysFooter;
+        return this.isSmallScreen || this.settings.alwaysFooter;
     }
 
     get currentApp() {
@@ -244,7 +289,7 @@ export class Drawer extends Component {
     }
 
     get currentAppSections() {
-        const currentId = this.currentApp && !this.props.showRootApp ? this.currentApp.id : 'root';
+        const currentId = this.currentApp && !this.settings.showRootApp ? this.currentApp.id : 'root';
         const menu = this.menuService.getMenuAsTree(currentId);
 
         return menu.childrenTree || [];
@@ -265,7 +310,7 @@ export class Drawer extends Component {
             categories[menu.category]['menus'].push(menu);
         });
 
-        if (this.props.hideEmptyCategory) {
+        if (this.settings.hideEmptyCategory) {
             delete categories[undefined];
         }
 
@@ -291,7 +336,7 @@ export class Drawer extends Component {
 
     open() {
         if (this.isSmallScreen) {
-            if (!this.isOpened && !this.props.disabledOnSmallScreen) {
+            if (!this.isOpened && !this.settings.disabledOnSmallScreen) {
                 this.drawerService.opened = true;
                 this.root.el.style.transform = '';
             }
@@ -403,7 +448,7 @@ export class Drawer extends Component {
         if (menu) {
             this.menuService.selectMenu(menu).then();
 
-            if (this.props.closeOnClick && this.drawerService.isSmallScreen) {
+            if (this.settings.closeOnClick && this.drawerService.isSmallScreen) {
                 this.close();
             }
         }
@@ -422,16 +467,15 @@ export class Drawer extends Component {
     }
 
     onWillUpdateProps(nextProps) {
-        this.drawerService.nav = nextProps.nav;
-        this.drawerService.fixedTop = nextProps.fixedTop;
-        this.drawerService.alwaysMinified = nextProps.alwaysMini;
-        this.drawerService.minifiable = nextProps.minifiable;
-        this.drawerService.popoverMinified = nextProps.popoverMinified;
-        this.drawerService.disabledOnSmallScreen = nextProps.disabledOnSmallScreen;
+        Object.keys(Drawer.configurableDefaultProps).forEach((props) => {
+            this.settings[props] = this._getConfigurablePropsValue(props, nextProps);
+        });
+
+        this._refreshDrawerService();
     }
 
     _onTouchStartDrag(ev) {
-        if (!this.isDraggable || (this.isSmallScreen && this.props.disabledOnSmallScreen)) {
+        if (!this.isDraggable || (this.isSmallScreen && this.settings.disabledOnSmallScreen)) {
             return;
         }
 
@@ -507,7 +551,7 @@ export class Drawer extends Component {
         this.dragDistance = 0;
         this.root.el.style.transition = '';
 
-        if (dragActionable && Math.abs(dragDistance) >= (dragMaxWidth * this.props.dragEndRatio)) {
+        if (dragActionable && Math.abs(dragDistance) >= (dragMaxWidth * this.settings.dragEndRatio)) {
             if (this.isOpened) {
                 this.close();
             } else if (this.isClosed) {
@@ -520,5 +564,29 @@ export class Drawer extends Component {
 
     _onTouchScroll() {
         this.dragScrolling = true;
+    }
+
+    _refreshDrawerService() {
+        this.drawerService.nav = this.settings.nav;
+        this.drawerService.fixedTop = this.settings.fixedTop;
+        this.drawerService.alwaysMinified = this.settings.alwaysMini;
+        this.drawerService.minifiable = this.settings.minifiable;
+        this.drawerService.popoverMinified = this.settings.popoverMinified;
+        this.drawerService.disabledOnSmallScreen = this.settings.disabledOnSmallScreen;
+        this.drawerService.restoreMinified(this.settings.initMinified);
+    }
+
+    _getConfigurablePropsValue(props, nextProps) {
+        const allProps = nextProps || this.props;
+
+        if (undefined !== allProps[props]) {
+            return allProps[props];
+        }
+
+        if (this.initialSettings.hasOwnProperty(props) && ![null, '', undefined].includes(this.initialSettings[props])) {
+            return this.initialSettings[props];
+        }
+
+        return Drawer.configurableDefaultProps[props];
     }
 }

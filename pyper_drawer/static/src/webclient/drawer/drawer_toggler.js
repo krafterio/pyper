@@ -1,7 +1,8 @@
 /** @odoo-module **/
 
-import {Component, useState} from '@odoo/owl';
+import {Component, onWillStart, onWillUpdateProps, useState} from '@odoo/owl';
 import {useService} from '@web/core/utils/hooks';
+import {evaluateExpr} from '@web/core/py_js/py';
 
 
 export class DrawerToggler extends Component {
@@ -16,15 +17,52 @@ export class DrawerToggler extends Component {
             type: Boolean,
             optional: true,
         },
-    }
+    };
 
     static defaultProps = {
+        autoHide: undefined,
+        useCaretIcon: undefined,
+    };
+
+    static configurableDefaultProps = {
         autoHide: false,
         useCaretIcon: false,
-    }
+    };
+
+    static SETTINGS_KEY_PREFIX = 'pyper_drawer.drawer_toggler_props.';
 
     setup() {
+        this.orm = useService('orm');
         this.drawerService = useState(useService('drawer'));
+        this.initialSettings = useState({});
+        this.settings = useState({});
+
+        onWillStart(async () => {
+            const params = await this.orm.searchRead(
+                'ir.config_parameter',
+                [['key', 'like', DrawerToggler.SETTINGS_KEY_PREFIX + '%']],
+                ['key', 'value']
+            );
+            const paramsMap = {};
+
+            params.forEach((param) => {
+                paramsMap[param.key.substring(DrawerToggler.SETTINGS_KEY_PREFIX.length)] = evaluateExpr(param.value);
+            });
+
+            Object.keys(DrawerToggler.configurableDefaultProps).forEach((props) => {
+                if (paramsMap.hasOwnProperty(props)) {
+                    this.initialSettings[props] = paramsMap[props];
+                }
+
+                this.settings[props] = this._getConfigurablePropsValue(props);
+            });
+        });
+
+        onWillUpdateProps((nextProps) => {
+            Object.keys(DrawerToggler.configurableDefaultProps).forEach((props) => {
+                this.settings[props] = this._getConfigurablePropsValue(props, nextProps);
+            });
+        });
     }
 
     get classes() {
@@ -40,18 +78,32 @@ export class DrawerToggler extends Component {
     }
 
     get displayMenuIcon() {
-        return !this.props.useCaretIcon || (this.props.useCaretIcon && !this.drawerService.isMinified);
+        return !this.settings.useCaretIcon || (this.settings.useCaretIcon && !this.drawerService.isMinified);
     }
 
     get displayCaretIcon() {
-        return this.props.useCaretIcon && this.drawerService.isMinified;
+        return this.settings.useCaretIcon && this.drawerService.isMinified;
     }
 
     get display() {
-        return !(this.props.autoHide && this.drawerService.isLocked) && !this.drawerService.disabledOnSmallScreen;
+        return !(this.settings.autoHide && this.drawerService.isLocked) && !this.drawerService.disabledOnSmallScreen;
     }
 
     onClick() {
         this.drawerService.toggle();
+    }
+
+    _getConfigurablePropsValue(props, nextProps) {
+        const allProps = nextProps || this.props;
+
+        if (undefined !== allProps[props]) {
+            return allProps[props];
+        }
+
+        if (this.initialSettings.hasOwnProperty(props) && ![null, '', undefined].includes(this.initialSettings[props])) {
+            return this.initialSettings[props];
+        }
+
+        return DrawerToggler.configurableDefaultProps[props];
     }
 }
