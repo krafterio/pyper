@@ -272,6 +272,23 @@ export class Drawer extends Component {
         return categories;
     }
 
+    get mainCategoryAppSections() {
+        const categories = {...this.currentCategoryAppSections};
+        delete categories['drawer_footer'];
+
+        return categories;
+    }
+
+    get footerAppSections() {
+        if (this.currentCategoryAppSections['drawer_footer']
+            && this.currentCategoryAppSections['drawer_footer']['menus'].length > 0
+        ) {
+            return this.currentCategoryAppSections['drawer_footer']['menus'];
+        }
+
+        return [];
+    }
+
     open() {
         if (this.isSmallScreen) {
             if (!this.isOpened && !this.props.disabledOnSmallScreen) {

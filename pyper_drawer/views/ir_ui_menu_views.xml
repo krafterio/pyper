@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <record model="ir.ui.menu" id="base.menu_administration">
+        <field name="menu_category">drawer_footer</field>
+    </record>
+</odoo>

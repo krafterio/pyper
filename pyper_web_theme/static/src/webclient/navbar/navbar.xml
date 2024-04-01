@@ -25,16 +25,6 @@
                     </DrawerAppMenu>
                 </div>
             </t>
-
-            <t t-set-slot="footer">
-                <div class="o_drawer--footer">
-                    <DrawerMenuItem
-                        menuId="'base.menu_administration'"
-                        fontIcon="'ph ph-gear'"
-                        label="'Administration'"
-                    />
-                </div>
-            </t>
         </xpath>
 
         <xpath expr="//DrawerToggler" position="attributes">

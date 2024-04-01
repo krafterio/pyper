@@ -20,12 +20,18 @@
             <t t-call="pyper_drawer.Drawer.TopAction"/>
 
             <!-- Current App Sections -->
-            <t t-if="Object.keys(currentCategoryAppSections).length" t-call="pyper_drawer.Drawer.Menu">
-                <t t-set="categories" t-value="Object.values(currentCategoryAppSections)"/>
+            <t t-call="pyper_drawer.Drawer.Menu">
+                <t t-set="categories" t-value="Object.values(mainCategoryAppSections)"/>
             </t>
 
             <!-- Bottom Action -->
             <t t-call="pyper_drawer.Drawer.BottomAction"/>
+
+            <div class="o_drawer--footer" t-if="displayFooter">
+                <t t-call="pyper_drawer.Drawer.FooterMenu">
+                    <t t-set="menus" t-value="Object.values(footerAppSections)"/>
+                </t>
+            </div>
 
             <t t-slot="footer" t-if="displayFooter"/>
         </div>
@@ -75,6 +81,33 @@
                 </t>
             </t>
         </div>
+    </t>
+
+    <t t-name="pyper_drawer.Drawer.FooterMenu" owl="1">
+        <t t-set="section_index" t-value="0" />
+
+        <t t-foreach="menus" t-as="menu" t-key="menu.id">
+            <t t-if="section_index lt Math.min(10, menus.length)">
+                <t t-set="section_index" t-value="section_index + 1" />
+                <t t-set="hotkey" t-value="'alt+shift+' + (section_index % 10).toString()" />
+            </t>
+            <t t-else="">
+                <t t-set="hotkey" t-value="undefined" />
+            </t>
+
+            <DrawerMenuItem
+                menuXmlid="menu.xmlid"
+                menuId="menu.id"
+                menuAction="menu.actionID"
+                hotkey="hotkey"
+                withIcon="props.showRootApp"
+                iconData="menu.webIconData"
+                fontIcon="menu.font_icon"
+                fontIconColor="menu.font_icon_color"
+                label="menu.name"
+                active="menuIsSelected(menu)"
+            />
+        </t>
     </t>
 
 </templates>

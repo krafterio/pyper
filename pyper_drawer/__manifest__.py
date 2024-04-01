@@ -18,6 +18,9 @@
         'pyper',
         'pyper_menu_icon',
     ],
+    'data': [
+        'views/ir_ui_menu_views.xml',
+    ],
     'assets': {
         'web._assets_primary_variables': [
             ('before', 'web/static/src/**/*.variables.scss', 'pyper_drawer/static/src/**/*.variables.scss'),

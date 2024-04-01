@@ -226,6 +226,10 @@
 .o_drawer--header,
 .o_drawer--footer {
     padding: $o-horizontal-padding/2 0;
+
+    &:empty {
+        display: none;
+    }
 }
 
 // Drawer Swiper
