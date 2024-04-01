@@ -32,7 +32,7 @@
         <xpath expr="//button[hasclass('o-mail-Chatter-sendMessage')]" position="replace">
            <button t-if="props.hasMessageList" class="o-mail-Chatter-sendMessage btn btn-secondary btn-quick p-0 me-2 text-nowrap" t-att-disabled="!state.thread.hasWriteAccess and !(state.thread.hasReadAccess and state.thread.canPostOnReadonly) and props.threadId" data-hotkey="m" t-on-click="() => this.toggleComposer('message')">
                <i class="ph ph-chat-centered-text"/>
-               <i class="btn-quick-counter fa fa-plus bg-success"></i>
+               <i class="btn-quick-counter fa fa-plus"></i>
             </button>
         </xpath>
 
@@ -53,7 +53,7 @@
                 <t t-set-slot="toggler">
                     <button class="o-mail-Chatter-uploadFile btn btn-secondary btn-quick p-0 me-2 text-nowrap"  type="button" t-att-disabled="!state.thread.hasWriteAccess">
                         <i class="ph ph-upload"/>
-                        <i class="btn-quick-counter fa fa-plus bg-success"></i>
+                        <i class="btn-quick-counter fa fa-plus"></i>
                     </button>
                 </t>
             </FileUploader>
