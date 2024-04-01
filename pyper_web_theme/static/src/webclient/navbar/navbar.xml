@@ -5,31 +5,20 @@
             <attribute name="class">'o_menu_brand d-none d-md-flex fw-bolder'</attribute>
         </xpath>
 
-        <xpath expr="//Drawer" position="attributes">
-            <attribute name="nav">true</attribute>
-            <attribute name="fixedTop">false</attribute>
-            <attribute name="hideEmptyCategory">true</attribute>
-            <attribute name="hideCategoryLabelMinified">true</attribute>
-            <attribute name="showCategorySectionMinified">false</attribute>
-            <attribute name="alwaysMini">true</attribute>
-            <attribute name="alwaysHeader">true</attribute>
-            <attribute name="alwaysFooter">true</attribute>
-            <attribute name="disabledOnSmallScreen">true</attribute>
-        </xpath>
-
         <xpath expr="//Drawer" position="inside">
             <t t-set-slot="header">
                 <div class="o_main_navbar">
-                    <DrawerAppMenu minified="true">
-                        <img src="/pyper_web_theme/static/img/icon.svg" width="50" height="50" class="rounded-3"/>
+                    <DrawerAppMenu>
+                        <t t-set-slot="minified">
+                            <img src="/pyper_web_theme/static/img/icon.svg" width="50" height="50" class="rounded-3"/>
+                        </t>
+
+                        <t t-set-slot="locked">
+                            <img src="/pyper_web_theme/static/img/icon.svg" width="50" height="50" class="rounded-3"/>
+                        </t>
                     </DrawerAppMenu>
                 </div>
             </t>
-        </xpath>
-
-        <xpath expr="//DrawerToggler" position="attributes">
-            <attribute name="autoHide">true</attribute>
-            <attribute name="useCaretIcon">false</attribute>
         </xpath>
     </t>
 

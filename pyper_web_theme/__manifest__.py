@@ -7,12 +7,13 @@
     'description': 'Add pyper web theme with clean back office theme',
     'version': '1.0',
     'author': 'Krafter SAS',
-    'installable': True,
-    'application': False,
+    'website': 'https://krafter.io',
     'maintainer': [
         'Krafter SAS',
     ],
-    'website': 'https://krafter.io',
+    'installable': True,
+    'application': False,
+    'post_init_hook': 'post_init_hook',
     'depends': [
         'base',
         'base_setup',
