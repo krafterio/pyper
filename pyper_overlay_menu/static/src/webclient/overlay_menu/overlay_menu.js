@@ -3,6 +3,8 @@
 import {
     Component,
     onMounted,
+    onWillStart,
+    onWillUpdateProps,
     onWillDestroy,
     useEffect,
     useExternalListener,
@@ -13,6 +15,7 @@ import {useBus, useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
 import {isMobileOS} from '@web/core/browser/feature_detection';
 import {useHotkey} from '@web/core/hotkeys/hotkey_hook';
+import {evaluateExpr} from '@web/core/py_js/py';
 import {OverlayFooter} from './overlay_footer';
 
 
@@ -35,11 +38,19 @@ export class OverlayMenu extends Component {
     };
 
     static defaultProps = {
+        showRootApp: undefined,
+        hideEmptyCategory: undefined,
+    };
+
+    static configurableDefaultProps = {
         showRootApp: false,
         hideEmptyCategory: false,
     };
 
+    static SETTINGS_KEY_PREFIX = 'pyper_overlay_menu.overlay_menu_props.';
+
     setup() {
+        this.orm = useService('orm');
         this.overlayMenuService = useState(useService('overlay_menu'));
         this.menuService = useService('menu');
         this.command = useService('command');
@@ -48,9 +59,38 @@ export class OverlayMenu extends Component {
         this.appSubMenus = useRef('appSubMenus');
         this.inputRef = useRef('input');
         this.compositionStart = false;
+        this.initialSettings = useState({});
+        this.settings = useState({});
 
         this.state = useState({
             focusedIndex: null,
+        });
+
+        onWillStart(async () => {
+            const params = await this.orm.searchRead(
+                'ir.config_parameter',
+                [['key', 'like', OverlayMenu.SETTINGS_KEY_PREFIX + '%']],
+                ['key', 'value']
+            );
+            const paramsMap = {};
+
+            params.forEach((param) => {
+                paramsMap[param.key.substring(OverlayMenu.SETTINGS_KEY_PREFIX.length)] = evaluateExpr(param.value);
+            });
+
+            Object.keys(OverlayMenu.configurableDefaultProps).forEach((props) => {
+                if (paramsMap.hasOwnProperty(props)) {
+                    this.initialSettings[props] = paramsMap[props];
+                }
+
+                this.settings[props] = this._getConfigurablePropsValue(props);
+            });
+        });
+
+        onWillUpdateProps((nextProps) => {
+            Object.keys(OverlayMenu.configurableDefaultProps).forEach((props) => {
+                this.settings[props] = this._getConfigurablePropsValue(props, nextProps);
+            });
         });
 
         const debouncedAdapt = debounce(this.adapt.bind(this), 250);
@@ -100,7 +140,7 @@ export class OverlayMenu extends Component {
     }
 
     get currentAppSections() {
-        const currentId = this.currentApp && !this.props.showRootApp ? this.currentApp.id : 'root';
+        const currentId = this.currentApp && !this.settings.showRootApp ? this.currentApp.id : 'root';
         const menu = this.menuService.getMenuAsTree(currentId);
 
         return menu.childrenTree || [];
@@ -110,7 +150,7 @@ export class OverlayMenu extends Component {
         const apps = [];
 
         this.currentAppSections.forEach((menu) => {
-            if (this.props.hideEmptyCategory) {
+            if (this.settings.hideEmptyCategory) {
                 if (menu.category) {
                     apps.push(menu);
                 }
@@ -363,5 +403,19 @@ export class OverlayMenu extends Component {
 
     _onCompositionStart() {
         this.compositionStart = true;
+    }
+
+    _getConfigurablePropsValue(props, nextProps) {
+        const allProps = nextProps || this.props;
+
+        if (undefined !== allProps[props]) {
+            return allProps[props];
+        }
+
+        if (this.initialSettings.hasOwnProperty(props) && ![null, '', undefined].includes(this.initialSettings[props])) {
+            return this.initialSettings[props];
+        }
+
+        return OverlayMenu.configurableDefaultProps[props];
     }
 }

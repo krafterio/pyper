@@ -12,12 +12,15 @@
         'Krafter SAS',
     ],
     'website': 'https://krafter.io',
+    'post_init_hook': 'post_init_hook',
     'depends': [
         'base',
         'web',
         'pyper_menu_icon',
+        'pyper_setup',
     ],
     'data': [
+        'views/res_config_settings_views.xml',
     ],
     'assets': {
         'web._assets_primary_variables': [
