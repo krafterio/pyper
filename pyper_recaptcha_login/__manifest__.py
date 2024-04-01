@@ -15,6 +15,7 @@
     'installable': True,
     'depends': [
         'auth_signup',
+        'pyper_setup',
     ],
     'data': [
         # Views

@@ -15,6 +15,7 @@
     'installable': True,
     'depends': [
         'base',
+        'pyper_setup',
         'web',
     ],
     'data': [
