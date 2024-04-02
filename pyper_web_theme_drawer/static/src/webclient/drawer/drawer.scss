@@ -1,0 +1,20 @@
+// = Drawer
+// ============================================================================
+
+.o_drawer--mini {
+    .o_drawer--category-label {
+        text-align: center;
+    }
+}
+
+.o_main_navbar {
+    .o_drawer_toggler {
+        button.dropdown-toggle {
+            &:hover,
+            &:focus,
+            &:active {
+                color: $o-gray-400;
+            }
+        }
+    }
+}

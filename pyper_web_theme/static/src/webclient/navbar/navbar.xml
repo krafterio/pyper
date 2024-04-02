@@ -4,22 +4,6 @@
         <xpath expr="//header[hasclass('o_navbar')]//DropdownItem[@t-if='currentApp']" position="attributes">
             <attribute name="class">'o_menu_brand d-none d-md-flex fw-bolder'</attribute>
         </xpath>
-
-        <xpath expr="//Drawer" position="inside">
-            <t t-set-slot="header">
-                <div class="o_main_navbar">
-                    <DrawerAppMenu>
-                        <t t-set-slot="minified">
-                            <img src="/pyper_web_theme/static/img/icon.svg" width="50" height="50" class="rounded-3"/>
-                        </t>
-
-                        <t t-set-slot="locked">
-                            <img src="/pyper_web_theme/static/img/icon.svg" width="50" height="50" class="rounded-3"/>
-                        </t>
-                    </DrawerAppMenu>
-                </div>
-            </t>
-        </xpath>
     </t>
 
     <t t-name="pyper_web_theme.ActivityMenu" t-inherit="mail.ActivityMenu" t-inherit-mode="extension">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <t t-name="pyper_web_theme.DrawerToggler" t-inherit="pyper_drawer.DrawerToggler" t-inherit-mode="extension">
+    <t t-name="pyper_web_theme_drawer.DrawerToggler" t-inherit="pyper_drawer.DrawerToggler" t-inherit-mode="extension">
         <xpath expr="//t[@t-slot='icon_menu']/i" position="attributes">
             <attribute name="class" separator=" " remove="fa fa-bars" add="ph-light ph-list"/>
         </xpath>

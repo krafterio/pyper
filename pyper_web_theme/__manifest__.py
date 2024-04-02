@@ -13,7 +13,6 @@
     ],
     'installable': True,
     'application': False,
-    'post_init_hook': 'post_init_hook',
     'depends': [
         'base',
         'base_setup',
@@ -23,7 +22,6 @@
         'pyper_activity',
         'pyper_command_search',
         'pyper_control_panel',
-        'pyper_drawer',
         'pyper_fonts_phosphor',
         'pyper_overlay_menu',
     ],
@@ -34,7 +32,6 @@
     'assets': {
         'web._assets_primary_variables': [
             ('before', 'web/static/src/scss/primary_variables.scss', 'pyper_web_theme/static/src/scss/primary_variables.scss'),
-            ('before', 'pyper_drawer/static/src/**/*.variables.scss', 'pyper_web_theme/static/src/webclient/drawer/**/*.variables.scss'),
             ('before', 'web/static/src/**/*.variables.scss', 'pyper_web_theme/static/src/**/*.variables.scss'),
 
             # TODO Remove deprecated Pyper assets
