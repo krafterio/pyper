@@ -87,6 +87,11 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='pyper_drawer.drawer_props.disabledOnSmallScreen',
     )
 
+    drawer_hide_navbar_apps_menu = fields.Boolean(
+        'Hide apps menu in navbar?',
+        config_parameter='pyper_drawer.drawer_props.hideNavbarAppsMenu',
+    )
+
     drawer_toggler_auto_hide = fields.Boolean(
         'Auto hide the toggler?',
         config_parameter='pyper_drawer.drawer_toggler_props.autoHide',

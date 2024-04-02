@@ -69,6 +69,10 @@
                     </setting>
 
                     <setting>
+                        <field name="drawer_hide_navbar_apps_menu"/>
+                    </setting>
+
+                    <setting>
                         <field name="drawer_drag_end_ratio"/>
                     </setting>
                 </block>

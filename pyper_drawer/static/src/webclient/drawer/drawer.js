@@ -93,6 +93,10 @@ export class Drawer extends Component {
             type: Boolean,
             optional: true,
         },
+        hideNavbarAppsMenu: {
+            type: Boolean,
+            optional: true,
+        },
         slots: {
             type: Object,
             optional: true,
@@ -115,6 +119,7 @@ export class Drawer extends Component {
         hideEmptyCategory: undefined,
         hideCategoryLabelMinified: undefined,
         disabledOnSmallScreen: undefined,
+        hideNavbarAppsMenu: undefined,
     };
 
     static configurableDefaultProps = {
@@ -133,6 +138,7 @@ export class Drawer extends Component {
         hideEmptyCategory: false,
         hideCategoryLabelMinified: false,
         disabledOnSmallScreen: false,
+        hideNavbarAppsMenu: false,
     };
 
     static SETTINGS_KEY_PREFIX = 'pyper_drawer.drawer_props.';
@@ -174,6 +180,12 @@ export class Drawer extends Component {
         const debouncedAdapt = debounce(this.adapt.bind(this), 250);
         onWillDestroy(() => {
             debouncedAdapt.cancel();
+
+            const menuEl = document.querySelector('.o_navbar .o_main_navbar .o_navbar_apps_menu');
+
+            if (menuEl) {
+                menuEl.classList.remove('o_navbar_apps_menu--hide');
+            }
         });
         useExternalListener(window, 'resize', debouncedAdapt);
 
@@ -191,6 +203,14 @@ export class Drawer extends Component {
 
         onMounted(() => {
             this.drawerService.mounted = true;
+
+            if (this.settings.hideNavbarAppsMenu) {
+                const menuEl = document.querySelector('.o_navbar .o_main_navbar .o_navbar_apps_menu');
+
+                if (menuEl) {
+                    menuEl.classList.add('o_navbar_apps_menu--hide');
+                }
+            }
         });
 
         useEffect(

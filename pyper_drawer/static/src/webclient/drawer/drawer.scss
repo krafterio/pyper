@@ -433,6 +433,11 @@
             width: $o-drawer-mini-width;
         }
 
+        &.o_navbar_apps_menu--hide {
+            display: none;
+        }
+
+        &.o_navbar_apps_menu--hide,
         &:empty {
             width: auto !important;
 

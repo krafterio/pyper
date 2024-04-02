@@ -30,6 +30,9 @@ def post_init_hook(env):
     if icp.get_param('pyper_drawer.drawer_props.disabledOnSmallScreen', None) is None:
         icp.set_param('pyper_drawer.drawer_props.disabledOnSmallScreen', 'True')
 
+    if icp.get_param('pyper_drawer.drawer_props.hideNavbarAppsMenu', None) is None:
+        icp.set_param('pyper_drawer.drawer_props.hideNavbarAppsMenu', 'True')
+
     # Drawer Toggler
     if icp.get_param('pyper_drawer.drawer_toggler_props.autoHide', None) is None:
         icp.set_param('pyper_drawer.drawer_toggler_props.autoHide', 'True')
