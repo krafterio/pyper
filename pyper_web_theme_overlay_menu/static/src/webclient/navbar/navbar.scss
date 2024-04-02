@@ -1,0 +1,14 @@
+// Fix overlay menu toggler color
+.o_main_navbar {
+    .o_overlay_menu_toggler {
+        .dropdown-toggle {
+            &,
+            &:hover {
+                &,
+                & i {
+                    color: inherit !important;
+                }
+            }
+        }
+    }
+}
