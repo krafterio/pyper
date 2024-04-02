@@ -4,3 +4,22 @@
         color: inherit !important;
     }
 }
+
+// Fix navbar apps menu color
+.o_main_navbar {
+    .o_navbar_apps_menu {
+        .dropdown-toggle {
+            &,
+            & i {
+                color: inherit !important;
+            }
+
+            &:hover {
+                &,
+                & i {
+                    color: inherit !important;
+                }
+            }
+        }
+    }
+}
