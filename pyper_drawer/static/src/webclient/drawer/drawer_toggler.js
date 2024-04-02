@@ -32,17 +32,13 @@ export class DrawerToggler extends Component {
     static SETTINGS_KEY_PREFIX = 'pyper_drawer.drawer_toggler_props.';
 
     setup() {
-        this.orm = useService('orm');
+        this.rpc = useService('rpc');
         this.drawerService = useState(useService('drawer'));
         this.initialSettings = useState({});
         this.settings = useState({});
 
         onWillStart(async () => {
-            const params = await this.orm.searchRead(
-                'ir.config_parameter',
-                [['key', 'like', DrawerToggler.SETTINGS_KEY_PREFIX + '%']],
-                ['key', 'value']
-            );
+            const params = await this.rpc('/drawer/settings', {});
             const paramsMap = {};
 
             params.forEach((param) => {

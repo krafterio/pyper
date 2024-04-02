@@ -50,7 +50,7 @@ export class OverlayMenu extends Component {
     static SETTINGS_KEY_PREFIX = 'pyper_overlay_menu.overlay_menu_props.';
 
     setup() {
-        this.orm = useService('orm');
+        this.rpc = useService('rpc');
         this.overlayMenuService = useState(useService('overlay_menu'));
         this.menuService = useService('menu');
         this.command = useService('command');
@@ -67,11 +67,7 @@ export class OverlayMenu extends Component {
         });
 
         onWillStart(async () => {
-            const params = await this.orm.searchRead(
-                'ir.config_parameter',
-                [['key', 'like', OverlayMenu.SETTINGS_KEY_PREFIX + '%']],
-                ['key', 'value']
-            );
+            const params = await this.rpc('/overlay_menu/settings', {});
             const paramsMap = {};
 
             params.forEach((param) => {
