@@ -18,8 +18,11 @@
         'sale_management',
     ],
     'data': [
+        # Views
+        'views/res_partner_views.xml',
         'views/sale_order_views.xml',
 
+        # Reports
         'report/sale_order_report_template.xml',
     ],
 }
