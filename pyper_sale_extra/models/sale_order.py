@@ -15,6 +15,7 @@ class SaleOrder(models.Model):
         help='Number of days corresponding to the validity period',
     )
 
+    @api.depends('validity_date', 'date_order')
     def _compute_validity_days(self):
         for sale in self:
             sale.validity_days = (sale.validity_date - sale.date_order.date()).days
