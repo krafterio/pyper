@@ -137,7 +137,7 @@ msgstr "Afficher la section de catégorie en mini ?"
 
 #. module: pyper_drawer
 #: model:ir.model.fields,field_description:pyper_drawer.field_res_config_settings__drawer_show_root_app
-msgid "Show only root menu items?"
+msgid "Show only root menu items in Drawer?"
 msgstr "Afficher uniquement les menu racines ?"
 
 #. module: pyper_drawer

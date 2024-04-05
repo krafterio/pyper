@@ -8,7 +8,7 @@ class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
     drawer_show_root_app = fields.Boolean(
-        'Show only root menu items?',
+        'Show only root menu items in Drawer?',
         config_parameter='pyper_drawer.drawer_props.showRootApp',
     )
 

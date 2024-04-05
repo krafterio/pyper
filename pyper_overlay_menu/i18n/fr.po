@@ -48,5 +48,5 @@ msgstr ""
 
 #. module: pyper_overlay_menu
 #: model:ir.model.fields,field_description:pyper_overlay_menu.field_res_config_settings__overlay_menu_show_root_app
-msgid "Show only root menu items?"
+msgid "Show only root menu items in Overlay Menu?"
 msgstr "Afficher uniquement les menu racines ?"
