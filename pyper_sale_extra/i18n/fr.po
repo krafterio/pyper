@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_sale_extra
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-30 15:25+0000\n"
+"PO-Revision-Date: 2023-11-30 16:26+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
+msgid ""
+"<span class=\"ms-1\">days</span>\n"
+"                <span class=\"ms-1\">(</span>"
+msgstr ""
+"<span class=« ms-1 »>jours</span>\n"
+"                <span class=« ms-1 »>(</span>"
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
+msgid "<span>)</span>"
+msgstr "<span>)</span>"
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
+msgid "<strong>Period of validity:</strong>"
+msgstr "<strong>Durée de validité :</strong>"
+
+#. module: pyper_sale_extra
+#: model:ir.model.fields,help:pyper_sale_extra.field_sale_order__validity_days
+msgid "Number of days corresponding to the validity period"
+msgstr "Nombre de jours correspondant à la période de validité"
+
+#. module: pyper_sale_extra
+#: model:ir.model,name:pyper_sale_extra.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order__validity_days
+msgid "Validity days"
+msgstr "Durée de validité"
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.view_order_form
+msgid "days"
+msgstr "jours"

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@name='expiration_date']/strong" position="replace">
+            <strong>Period of validity:</strong>
+        </xpath>
+
+        <xpath expr="//div[@name='expiration_date']/span[@t-field='doc.validity_date']" position="replace">
+            <span class="m-0">
+                <span t-field="doc.validity_days"/>
+                <span class="ms-1">days</span>
+                <span class="ms-1">(</span>
+                <span t-field="doc.validity_date"/>
+                <span>)</span>
+            </span>
+        </xpath>
+    </template>
+</odoo>
