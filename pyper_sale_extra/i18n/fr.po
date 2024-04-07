@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0-20240324\n"
+"Project-Id-Version: Odoo Server 17.0-20240407\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-07 12:07+0000\n"
-"PO-Revision-Date: 2024-04-07 12:07+0000\n"
+"POT-Creation-Date: 2024-04-07 15:26+0000\n"
+"PO-Revision-Date: 2024-04-07 15:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -70,6 +70,11 @@ msgid "Contact"
 msgstr ""
 
 #. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order__display_bank_account_on_document
+msgid "Display Bank Account On Document"
+msgstr "Afficher le compte bancaire sur le document"
+
+#. module: pyper_sale_extra
 #: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
 msgid "IBAN Number"
 msgstr "Numéro IBAN"
@@ -84,6 +89,11 @@ msgstr "Compte bancaire principal"
 #: model:ir.model.fields,help:pyper_sale_extra.field_sale_order__validity_days
 msgid "Number of days corresponding to the validity period"
 msgstr "Nombre de jours correspondant à la période de validité"
+
+#. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order__payment_method_id
+msgid "Payment method"
+msgstr "Méthode de paiement"
 
 #. module: pyper_sale_extra
 #: model:ir.model,name:pyper_sale_extra.model_sale_order
