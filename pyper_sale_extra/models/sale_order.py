@@ -37,11 +37,9 @@ class SaleOrder(models.Model):
 
     @api.depends('payment_method_id')
     def _compute_display_bank_account_on_document(self):
-        display = self.env['ir.config_parameter'].sudo().get_param('pyper_sale_extra.bank_account_in_report')
-
         for order in self:
             order.display_bank_account_on_document = (
-                display
+                order.company_id.sale_bank_account_in_report
                 and order.payment_method_id.payment_method_ids.filtered(lambda m: m.code == 'wire_transfer')
                 and order.payment_method_id.journal_id.bank_account_id
             )

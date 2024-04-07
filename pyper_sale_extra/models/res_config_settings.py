@@ -9,7 +9,8 @@ class ResConfigSettings(models.TransientModel):
 
     sale_bank_account_in_report = fields.Boolean(
         'Bank account in sale order document?',
-        config_parameter='pyper_sale_extra.bank_account_in_report',
+        related='company_id.sale_bank_account_in_report',
+        readonly=False,
     )
 
     sale_signature_information_in_report = fields.Boolean(
