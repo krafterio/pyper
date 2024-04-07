@@ -4,11 +4,9 @@
 from odoo import fields, models
 
 
-class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+class ResCompany(models.Model):
+    _inherit = 'res.company'
 
     invoice_bank_account_in_report = fields.Boolean(
         'Bank account in invoice document?',
-        related='company_id.invoice_bank_account_in_report',
-        readonly=False,
     )

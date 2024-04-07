@@ -13,7 +13,8 @@ class AccountMove(models.Model):
 
     @api.depends('partner_bank_id')
     def _compute_display_bank_account_on_document(self):
-        display = self.env['ir.config_parameter'].sudo().get_param('pyper_account_extra.bank_account_in_report')
-
         for move in self:
-            move.display_bank_account_on_document = display and move.partner_bank_id
+            move.display_bank_account_on_document = (
+                move.company_id.invoice_bank_account_in_report
+                and move.partner_bank_id
+            )
