@@ -13,6 +13,7 @@
     ],
     'website': 'https://krafter.io',
     'depends': [
+        'base_setup',
         'web',
         'sale',
         'sale_management',

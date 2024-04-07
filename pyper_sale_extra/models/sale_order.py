@@ -31,6 +31,10 @@ class SaleOrder(models.Model):
         compute='_compute_display_bank_account_on_document',
     )
 
+    display_signature_information_on_document = fields.Boolean(
+        compute='_compute_display_signature_information_on_document',
+    )
+
     @api.depends('payment_method_id')
     def _compute_display_bank_account_on_document(self):
         display = self.env['ir.config_parameter'].sudo().get_param('pyper_sale_extra.bank_account_in_report')
@@ -40,6 +44,15 @@ class SaleOrder(models.Model):
                 display
                 and order.payment_method_id.payment_method_ids.filtered(lambda m: m.code == 'wire_transfer')
                 and order.payment_method_id.journal_id.bank_account_id
+            )
+
+    @api.depends('company_id')
+    def _compute_display_signature_information_on_document(self):
+        for order in self:
+            order.display_signature_information_on_document = (
+                    not order.signature
+                    and order.company_id.sale_signature_information_in_report
+                    and order.company_id.sale_signature_information_text_in_report
             )
 
     @api.depends('validity_date', 'date_order')

@@ -11,3 +11,16 @@ class ResConfigSettings(models.TransientModel):
         'Bank account in sale order document?',
         config_parameter='pyper_sale_extra.bank_account_in_report',
     )
+
+    sale_signature_information_in_report = fields.Boolean(
+        'Signature information in sale order document?',
+        related='company_id.sale_signature_information_in_report',
+        readonly=False,
+    )
+
+    sale_signature_information_text_in_report = fields.Text(
+        'Text for signature information in sale order document',
+        related='company_id.sale_signature_information_text_in_report',
+        readonly=False,
+        translate=True,
+    )

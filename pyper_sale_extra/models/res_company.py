@@ -1,0 +1,17 @@
+# Copyright Krafter SAS <hey@krafter.io>
+# Krafter Proprietary License (see LICENSE file).
+
+from odoo import fields, models
+
+
+class ResCompany(models.Model):
+    _inherit = 'res.company'
+
+    sale_signature_information_in_report = fields.Boolean(
+        'Signature information in sale order document?',
+    )
+
+    sale_signature_information_text_in_report = fields.Text(
+        'Text for signature information in sale order document',
+        translate=True,
+    )

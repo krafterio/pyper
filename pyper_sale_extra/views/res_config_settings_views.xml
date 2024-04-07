@@ -10,6 +10,20 @@
                 <setting>
                     <field name="sale_bank_account_in_report"/>
                 </setting>
+
+                <setting help="Add custom text for dedicated signature section in sale order report"
+                         company_dependent="1"
+                >
+                    <field name="sale_signature_information_in_report"/>
+                    <label for="sale_signature_information_text_in_report"
+                           invisible="not sale_signature_information_in_report"
+                    />
+                    <field name="sale_signature_information_text_in_report"
+                           class="w-100"
+                           invisible="not sale_signature_information_in_report"
+                           required="sale_signature_information_in_report"
+                    />
+                </setting>
             </xpath>
         </field>
     </record>

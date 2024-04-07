@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20240407\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-07 15:26+0000\n"
-"PO-Revision-Date: 2024-04-07 15:26+0000\n"
+"POT-Creation-Date: 2024-04-07 15:55+0000\n"
+"PO-Revision-Date: 2024-04-07 15:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -50,6 +50,13 @@ msgid "<strong>Period of validity:</strong>"
 msgstr "<strong>Durée de validité :</strong>"
 
 #. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.res_config_settings_view_form
+msgid "Add custom text for dedicated signature section in sale order report"
+msgstr ""
+"Ajouter un texte personnalisé pour la section dédiée de la signature dans le"
+" document de commande de vente"
+
+#. module: pyper_sale_extra
 #: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
 msgid "BIC Number"
 msgstr "Numéro BIC"
@@ -58,6 +65,11 @@ msgstr "Numéro BIC"
 #: model:ir.model.fields,field_description:pyper_sale_extra.field_res_config_settings__sale_bank_account_in_report
 msgid "Bank account in sale order document?"
 msgstr "Compte bancaire sur le document de vente ?"
+
+#. module: pyper_sale_extra
+#: model:ir.model,name:pyper_sale_extra.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
 
 #. module: pyper_sale_extra
 #: model:ir.model,name:pyper_sale_extra.model_res_config_settings
@@ -99,6 +111,18 @@ msgstr "Méthode de paiement"
 #: model:ir.model,name:pyper_sale_extra.model_sale_order
 msgid "Sales Order"
 msgstr "Bon de commande"
+
+#. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_res_config_settings__sale_signature_information_in_report
+msgid "Signature information in sale order document?"
+msgstr "Informations de signature dans le document de commande de vente ?"
+
+#. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_res_company__sale_signature_information_text_in_report
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_res_config_settings__sale_signature_information_text_in_report
+msgid "Text for signature information in sale order document"
+msgstr ""
+"Texte de l’informations de signature dans le document de commande de vente"
 
 #. module: pyper_sale_extra
 #: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order__validity_days
