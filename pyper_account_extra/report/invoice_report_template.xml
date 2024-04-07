@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='right-elements']" position="attributes">
+            <attribute name="t-attf-class" separator=" " remove="ms-5"/>
+        </xpath>
+
+        <xpath expr="//div[@id='right-elements']" position="before">
+            <div id="left-elements" t-attf-class="#{'col-6' if report_type != 'html' else 'col-12 col-md-6'} d-inline-block">
+                <table
+                    t-if="o.display_bank_account_on_document"
+                    class="table table-sm"
+                    style="text-wrap: nowrap; border-color: transparent !important;"
+                >
+                    <tr class="o_subtotal" style="border-color: transparent !important;">
+                        <td colspan="2" style="border-color: transparent !important;">
+                            <strong class="me-3">Bank account</strong>
+                        </td>
+                    </tr>
+
+                    <tr class="o_subtotal" style="border-color: transparent !important;">
+                        <td style="border-color: transparent !important;" width="1px;">
+                            <strong class="me-3">IBAN</strong>
+                        </td>
+
+                        <td style="border-color: transparent !important;">
+                            <span t-out="o.partner_bank_id.acc_number">IBAN Number</span>
+                        </td>
+                    </tr>
+
+                    <tr class="o_subtotal" style="border-color: transparent !important;">
+                        <td style="border-color: transparent !important;">
+                            <strong class="me-3">BIC</strong>
+                        </td>
+
+                        <td style="border-color: transparent !important;">
+                            <span t-out="o.partner_bank_id.bank_bic">BIC Number</span>
+                        </td>
+                    </tr>
+
+                    <tr style="display: none">
+                        <!-- Hide black last lign -->
+                    </tr>
+                </table>
+            </div>
+        </xpath>
+    </template>
+</odoo>

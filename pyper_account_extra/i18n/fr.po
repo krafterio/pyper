@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_account_extra
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20240407\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-07 15:29+0000\n"
+"PO-Revision-Date: 2024-04-07 15:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pyper_account_extra
+#: model_terms:ir.ui.view,arch_db:pyper_account_extra.report_invoice_document
+msgid "<strong class=\"me-3\">BIC</strong>"
+msgstr ""
+
+#. module: pyper_account_extra
+#: model_terms:ir.ui.view,arch_db:pyper_account_extra.report_invoice_document
+msgid "<strong class=\"me-3\">Bank account</strong>"
+msgstr "<strong class=\"me-3\">Compte bancaire</strong>"
+
+#. module: pyper_account_extra
+#: model_terms:ir.ui.view,arch_db:pyper_account_extra.report_invoice_document
+msgid "<strong class=\"me-3\">IBAN</strong>"
+msgstr ""
+
+#. module: pyper_account_extra
+#: model_terms:ir.ui.view,arch_db:pyper_account_extra.report_invoice_document
+msgid "BIC Number"
+msgstr "Numéro BIC"
+
+#. module: pyper_account_extra
+#: model:ir.model.fields,field_description:pyper_account_extra.field_res_config_settings__invoice_bank_account_in_report
+msgid "Bank account in invoice document?"
+msgstr "Compte bancaire dans le document de facturation ?"
+
+#. module: pyper_account_extra
+#: model:ir.model,name:pyper_account_extra.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: pyper_account_extra
+#: model:ir.model.fields,field_description:pyper_account_extra.field_account_bank_statement_line__display_bank_account_on_document
+#: model:ir.model.fields,field_description:pyper_account_extra.field_account_move__display_bank_account_on_document
+#: model:ir.model.fields,field_description:pyper_account_extra.field_account_payment__display_bank_account_on_document
+msgid "Display Bank Account On Document"
+msgstr "Afficher le compte bancaire sur le document"
+
+#. module: pyper_account_extra
+#: model_terms:ir.ui.view,arch_db:pyper_account_extra.report_invoice_document
+msgid "IBAN Number"
+msgstr "Numéro IBAN"
+
+#. module: pyper_account_extra
+#: model:ir.model,name:pyper_account_extra.model_account_move
+msgid "Journal Entry"
+msgstr "Pièce comptable"
