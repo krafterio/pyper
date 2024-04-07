@@ -72,6 +72,11 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='pyper_drawer.drawer_props.hideEmptyCategory',
     )
 
+    drawer_hide_category_label_full = fields.Boolean(
+        'Hide category label in full?',
+        config_parameter='pyper_drawer.drawer_props.hideCategoryLabelFull',
+    )
+
     drawer_hide_category_label_minified = fields.Boolean(
         'Hide category label in mini?',
         config_parameter='pyper_drawer.drawer_props.hideCategoryLabelMinified',

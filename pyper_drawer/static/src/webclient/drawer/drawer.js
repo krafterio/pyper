@@ -81,6 +81,10 @@ export class Drawer extends Component {
             type: Boolean,
             optional: true,
         },
+        hideCategoryLabelFull: {
+            type: Boolean,
+            optional: true,
+        },
         hideCategoryLabelMinified: {
             type: Boolean,
             optional: true,
@@ -117,6 +121,7 @@ export class Drawer extends Component {
         closeOnClick: undefined,
         dragEndRatio: undefined,
         hideEmptyCategory: undefined,
+        hideCategoryLabelFull: undefined,
         hideCategoryLabelMinified: undefined,
         disabledOnSmallScreen: undefined,
         hideNavbarAppsMenu: undefined,
@@ -136,6 +141,7 @@ export class Drawer extends Component {
         closeOnClick: false,
         dragEndRatio: 0.25,
         hideEmptyCategory: false,
+        hideCategoryLabelFull: false,
         hideCategoryLabelMinified: false,
         disabledOnSmallScreen: false,
         hideNavbarAppsMenu: false,
@@ -285,7 +291,10 @@ export class Drawer extends Component {
     }
 
     get displayCategoryName() {
-        return !this.isMinified || (this.isMinified && !this.settings.hideCategoryLabelMinified)
+        return (!this.isMinified && !this.settings.hideCategoryLabelFull)
+            ||
+            (this.isMinified && !this.settings.hideCategoryLabelMinified)
+        ;
     }
 
     get displayCategorySection() {

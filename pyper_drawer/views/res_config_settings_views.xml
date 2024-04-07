@@ -57,6 +57,10 @@
                     </setting>
 
                     <setting>
+                        <field name="drawer_hide_category_label_full"/>
+                    </setting>
+
+                    <setting>
                         <field name="drawer_hide_category_label_minified"/>
                     </setting>
 
