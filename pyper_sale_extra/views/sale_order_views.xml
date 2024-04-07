@@ -11,6 +11,10 @@
                     <field name="validity_days" class="oe_inline"/> days
                 </div>
             </xpath>
+
+            <xpath expr="//group[@name='order_details']/field[@name='payment_term_id']" position="after">
+                <field name="payment_method_id" options="{'no_create': True, 'no_edit': True}"/>
+            </xpath>
         </field>
     </record>
 </odoo>

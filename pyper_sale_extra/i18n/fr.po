@@ -4,18 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0-20240324\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-30 15:25+0000\n"
-"PO-Revision-Date: 2023-11-30 16:26+0100\n"
+"POT-Creation-Date: 2024-04-07 12:07+0000\n"
+"PO-Revision-Date: 2024-04-07 12:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4.1\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: pyper_sale_extra
 #: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
@@ -23,18 +21,64 @@ msgid ""
 "<span class=\"ms-1\">days</span>\n"
 "                <span class=\"ms-1\">(</span>"
 msgstr ""
-"<span class=« ms-1 »>jours</span>\n"
-"                <span class=« ms-1 »>(</span>"
+"<span class=\"ms-1\">jours</span>\n"
+"                <span class=\"ms-1\">(</span>"
 
 #. module: pyper_sale_extra
 #: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
 msgid "<span>)</span>"
-msgstr "<span>)</span>"
+msgstr ""
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
+msgid "<strong class=\"me-3\">BIC</strong>"
+msgstr ""
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
+msgid "<strong class=\"me-3\">Bank account</strong>"
+msgstr "<strong class=\"me-3\">Compte bancaire</strong>"
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
+msgid "<strong class=\"me-3\">IBAN</strong>"
+msgstr ""
 
 #. module: pyper_sale_extra
 #: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
 msgid "<strong>Period of validity:</strong>"
 msgstr "<strong>Durée de validité :</strong>"
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
+msgid "BIC Number"
+msgstr "Numéro BIC"
+
+#. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_res_config_settings__sale_bank_account_in_report
+msgid "Bank account in sale order document?"
+msgstr "Compte bancaire sur le document de vente ?"
+
+#. module: pyper_sale_extra
+#: model:ir.model,name:pyper_sale_extra.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: pyper_sale_extra
+#: model:ir.model,name:pyper_sale_extra.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
+msgid "IBAN Number"
+msgstr "Numéro IBAN"
+
+#. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_res_partner__main_bank_account_id
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_res_users__main_bank_account_id
+msgid "Main bank account"
+msgstr "Compte bancaire principal"
 
 #. module: pyper_sale_extra
 #: model:ir.model.fields,help:pyper_sale_extra.field_sale_order__validity_days

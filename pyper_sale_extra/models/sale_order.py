@@ -15,6 +15,33 @@ class SaleOrder(models.Model):
         help='Number of days corresponding to the validity period',
     )
 
+    payment_method_id = fields.Many2one(
+        'payment.provider',
+        'Payment method',
+        domain="[('payment_method_ids.active', '=', True)]",
+        default=lambda self: self.env['payment.provider'].search(
+            [('payment_method_ids.active', '=', True)],
+            order='sequence ASC',
+            limit=1,
+        ),
+        required=True,
+    )
+
+    display_bank_account_on_document = fields.Boolean(
+        compute='_compute_display_bank_account_on_document',
+    )
+
+    @api.depends('payment_method_id')
+    def _compute_display_bank_account_on_document(self):
+        display = self.env['ir.config_parameter'].sudo().get_param('pyper_sale_extra.bank_account_in_report')
+
+        for order in self:
+            order.display_bank_account_on_document = (
+                display
+                and order.payment_method_id.payment_method_ids.filtered(lambda m: m.code == 'wire_transfer')
+                and order.payment_method_id.journal_id.bank_account_id
+            )
+
     @api.depends('validity_date', 'date_order')
     def _compute_validity_days(self):
         for sale in self:
