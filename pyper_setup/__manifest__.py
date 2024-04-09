@@ -21,4 +21,9 @@
     'data': [
         'views/res_config_settings_views.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'pyper_setup/static/src/webclient/**/*',
+        ],
+    },
 }
