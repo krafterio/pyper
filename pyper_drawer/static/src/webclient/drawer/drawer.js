@@ -15,7 +15,6 @@ import {useBus, useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
 import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {_t} from '@web/core/l10n/translation';
-import {evaluateExpr} from '@web/core/py_js/py';
 import {getTransform} from '@pyper/core/ui/css';
 import {DrawerMenuItem} from './drawer_menu_item';
 
@@ -147,10 +146,11 @@ export class Drawer extends Component {
         hideNavbarAppsMenu: false,
     };
 
-    static SETTINGS_KEY_PREFIX = 'pyper_drawer.drawer_props.';
+    static SETUP_PREFIX = 'pyper_drawer.drawer_props.';
 
     setup() {
         this.rpc = useService('rpc');
+        this.pyperSetupService = useService('pyper_setup');
         this.drawerService = useState(useService('drawer'));
         this.menuService = useService('menu');
         this.root = useRef('root');
@@ -161,30 +161,15 @@ export class Drawer extends Component {
         this.dragStartPosition = undefined;
         this.dragMaxWidth = undefined;
         this.dragDistance = 0;
-        this.initialSettings = useState({});
-        this.settings = useState({});
 
         onWillStart(async () => {
-            const params = await this.rpc('/drawer/settings', {});
-            const paramsMap = {};
-
-            params.forEach((param) => {
-                paramsMap[param.key.substring(Drawer.SETTINGS_KEY_PREFIX.length)] = evaluateExpr(param.value);
-            });
-
-            Object.keys(Drawer.configurableDefaultProps).forEach((props) => {
-                if (paramsMap.hasOwnProperty(props)) {
-                    this.initialSettings[props] = paramsMap[props];
-                }
-
-                this.settings[props] = this._getConfigurablePropsValue(props);
-            });
-
+            await this.pyperSetupService.register(Drawer.SETUP_PREFIX, Drawer.configurableDefaultProps);
             this._refreshDrawerService();
         });
 
         const debouncedAdapt = debounce(this.adapt.bind(this), 250);
         onWillDestroy(() => {
+            this.pyperSetupService.unregister(Drawer.SETUP_PREFIX);
             debouncedAdapt.cancel();
 
             const menuEl = document.querySelector('.o_navbar .o_main_navbar .o_navbar_apps_menu');
@@ -228,6 +213,10 @@ export class Drawer extends Component {
 
         // Init and refresh values of drawer service
         onWillUpdateProps((nextProps) => this.onWillUpdateProps(nextProps));
+    }
+
+    get settings() {
+        return this.pyperSetupService.settings[Drawer.SETUP_PREFIX];
     }
 
     get classes() {
@@ -492,10 +481,7 @@ export class Drawer extends Component {
     }
 
     onWillUpdateProps(nextProps) {
-        Object.keys(Drawer.configurableDefaultProps).forEach((props) => {
-            this.settings[props] = this._getConfigurablePropsValue(props, nextProps);
-        });
-
+        this.pyperSetupService.onWillUpdateProps(Drawer.SETUP_PREFIX, nextProps);
         this._refreshDrawerService();
     }
 
@@ -599,19 +585,5 @@ export class Drawer extends Component {
         this.drawerService.popoverMinified = this.settings.popoverMinified;
         this.drawerService.disabledOnSmallScreen = this.settings.disabledOnSmallScreen;
         this.drawerService.restoreMinified(this.settings.initMinified);
-    }
-
-    _getConfigurablePropsValue(props, nextProps) {
-        const allProps = nextProps || this.props;
-
-        if (undefined !== allProps[props]) {
-            return allProps[props];
-        }
-
-        if (this.initialSettings.hasOwnProperty(props) && ![null, '', undefined].includes(this.initialSettings[props])) {
-            return this.initialSettings[props];
-        }
-
-        return Drawer.configurableDefaultProps[props];
     }
 }

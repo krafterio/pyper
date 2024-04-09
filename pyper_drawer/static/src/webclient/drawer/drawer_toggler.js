@@ -1,8 +1,7 @@
 /** @odoo-module **/
 
-import {Component, onWillStart, onWillUpdateProps, useState} from '@odoo/owl';
+import {Component, onWillStart, onWillUpdateProps, onWillDestroy, useState} from '@odoo/owl';
 import {useService} from '@web/core/utils/hooks';
-import {evaluateExpr} from '@web/core/py_js/py';
 
 
 export class DrawerToggler extends Component {
@@ -29,36 +28,27 @@ export class DrawerToggler extends Component {
         useCaretIcon: false,
     };
 
-    static SETTINGS_KEY_PREFIX = 'pyper_drawer.drawer_toggler_props.';
+    static SETUP_PREFIX = 'pyper_drawer.drawer_toggler_props.';
 
     setup() {
-        this.rpc = useService('rpc');
+        this.pyperSetupService = useService('pyper_setup');
         this.drawerService = useState(useService('drawer'));
-        this.initialSettings = useState({});
-        this.settings = useState({});
 
         onWillStart(async () => {
-            const params = await this.rpc('/drawer/settings', {});
-            const paramsMap = {};
+            await this.pyperSetupService.register(DrawerToggler.SETUP_PREFIX, DrawerToggler.configurableDefaultProps);
+        });
 
-            params.forEach((param) => {
-                paramsMap[param.key.substring(DrawerToggler.SETTINGS_KEY_PREFIX.length)] = evaluateExpr(param.value);
-            });
-
-            Object.keys(DrawerToggler.configurableDefaultProps).forEach((props) => {
-                if (paramsMap.hasOwnProperty(props)) {
-                    this.initialSettings[props] = paramsMap[props];
-                }
-
-                this.settings[props] = this._getConfigurablePropsValue(props);
-            });
+        onWillDestroy(() => {
+            this.pyperSetupService.unregister(DrawerToggler.SETUP_PREFIX);
         });
 
         onWillUpdateProps((nextProps) => {
-            Object.keys(DrawerToggler.configurableDefaultProps).forEach((props) => {
-                this.settings[props] = this._getConfigurablePropsValue(props, nextProps);
-            });
+            this.pyperSetupService.onWillUpdateProps(DrawerToggler.SETUP_PREFIX, nextProps);
         });
+    }
+
+    get settings() {
+        return this.pyperSetupService.settings[DrawerToggler.SETUP_PREFIX] || {};
     }
 
     get classes() {
@@ -87,19 +77,5 @@ export class DrawerToggler extends Component {
 
     onClick() {
         this.drawerService.toggle();
-    }
-
-    _getConfigurablePropsValue(props, nextProps) {
-        const allProps = nextProps || this.props;
-
-        if (undefined !== allProps[props]) {
-            return allProps[props];
-        }
-
-        if (this.initialSettings.hasOwnProperty(props) && ![null, '', undefined].includes(this.initialSettings[props])) {
-            return this.initialSettings[props];
-        }
-
-        return DrawerToggler.configurableDefaultProps[props];
     }
 }
