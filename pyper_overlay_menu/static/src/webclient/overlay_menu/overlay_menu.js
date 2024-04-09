@@ -15,7 +15,6 @@ import {useBus, useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
 import {isMobileOS} from '@web/core/browser/feature_detection';
 import {useHotkey} from '@web/core/hotkeys/hotkey_hook';
-import {evaluateExpr} from '@web/core/py_js/py';
 import {OverlayFooter} from './overlay_footer';
 
 
@@ -47,10 +46,10 @@ export class OverlayMenu extends Component {
         hideEmptyCategory: false,
     };
 
-    static SETTINGS_KEY_PREFIX = 'pyper_overlay_menu.overlay_menu_props.';
+    static SETUP_PREFIX = 'pyper_overlay_menu.overlay_menu_props.';
 
     setup() {
-        this.rpc = useService('rpc');
+        this.pyperSetupService = useService('pyper_setup');
         this.overlayMenuService = useState(useService('overlay_menu'));
         this.menuService = useService('menu');
         this.command = useService('command');
@@ -59,38 +58,22 @@ export class OverlayMenu extends Component {
         this.appSubMenus = useRef('appSubMenus');
         this.inputRef = useRef('input');
         this.compositionStart = false;
-        this.initialSettings = useState({});
-        this.settings = useState({});
 
         this.state = useState({
             focusedIndex: null,
         });
 
         onWillStart(async () => {
-            const params = await this.rpc('/overlay_menu/settings', {});
-            const paramsMap = {};
-
-            params.forEach((param) => {
-                paramsMap[param.key.substring(OverlayMenu.SETTINGS_KEY_PREFIX.length)] = evaluateExpr(param.value);
-            });
-
-            Object.keys(OverlayMenu.configurableDefaultProps).forEach((props) => {
-                if (paramsMap.hasOwnProperty(props)) {
-                    this.initialSettings[props] = paramsMap[props];
-                }
-
-                this.settings[props] = this._getConfigurablePropsValue(props);
-            });
+            await this.pyperSetupService.register(OverlayMenu.SETUP_PREFIX, OverlayMenu.configurableDefaultProps);
         });
 
         onWillUpdateProps((nextProps) => {
-            Object.keys(OverlayMenu.configurableDefaultProps).forEach((props) => {
-                this.settings[props] = this._getConfigurablePropsValue(props, nextProps);
-            });
+            this.pyperSetupService.onWillUpdateProps(DrawerToggler.SETUP_PREFIX, nextProps);
         });
 
         const debouncedAdapt = debounce(this.adapt.bind(this), 250);
         onWillDestroy(() => {
+            this.pyperSetupService.unregister(OverlayMenu.SETUP_PREFIX);
             debouncedAdapt.cancel();
         });
         useExternalListener(window, 'resize', debouncedAdapt);
@@ -121,6 +104,10 @@ export class OverlayMenu extends Component {
             },
             () => [adaptCounter]
         );
+    }
+
+    get settings() {
+        return this.pyperSetupService.settings[OverlayMenu.SETUP_PREFIX] || {};
     }
 
     get classes() {
@@ -399,19 +386,5 @@ export class OverlayMenu extends Component {
 
     _onCompositionStart() {
         this.compositionStart = true;
-    }
-
-    _getConfigurablePropsValue(props, nextProps) {
-        const allProps = nextProps || this.props;
-
-        if (undefined !== allProps[props]) {
-            return allProps[props];
-        }
-
-        if (this.initialSettings.hasOwnProperty(props) && ![null, '', undefined].includes(this.initialSettings[props])) {
-            return this.initialSettings[props];
-        }
-
-        return OverlayMenu.configurableDefaultProps[props];
     }
 }
