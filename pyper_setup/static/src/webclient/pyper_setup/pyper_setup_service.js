@@ -40,10 +40,16 @@ export class PyperSetupService {
         });
 
         params.forEach((param) => {
-            paramsMap[param.key.substring(prefix.length)] = evaluateExpr(param.value);
+            let value = param.value;
+
+            try {
+                value = evaluateExpr(value);
+            } catch (e) {}
+
+            paramsMap[param.key.substring(prefix.length)] = value;
         });
 
-        Object.keys(defaultProps || {}).forEach((propsName) => {
+        Object.keys(defaultProps || paramsMap).forEach((propsName) => {
             this.settings[prefix][propsName] = paramsMap[propsName] || defaultProps[propsName];
         });
 
