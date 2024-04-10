@@ -23,6 +23,7 @@
         'pyper_command_search',
         'pyper_control_panel',
         'pyper_fonts_phosphor',
+        'pyper_setup',
     ],
     'data': [
         'views/res_config_settings_views.xml',
