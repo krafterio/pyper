@@ -1,0 +1,99 @@
+// = Navbar Root Menu
+// ============================================================================
+
+.o-navbar-root-menu-nav {
+    --Dropdown_menu-margin-y: 0;
+
+    display: flex;
+    min-width: min-content;
+    padding-top: $o-navbar-root-menu-padding-top;
+    padding-bottom: $o-navbar-root-menu-padding-bottom;
+    border-bottom: $o-navbar-root-menu-border-bottom;
+    background: $o-navbar-background;
+    font-size: $o-navbar-font-size;
+
+    // = Reset browsers defaults
+    // --------------------------------------------------------------------------
+    > ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    // = General components & behaviours
+    // --------------------------------------------------------------------------
+
+    .dropdown-item.o_nav_entry,
+    .dropdown-toggle {
+        --NavBar-entry-margin-left: #{$o-navbar-root-menu-entry-margin-h};
+        --NavBar-entry-margin-right: #{$o-navbar-root-menu-entry-margin-h};
+        --NavBar-entry-padding-left: #{$o-navbar-root-menu-entry-padding-h};
+        --NavBar-entry-padding-right: #{$o-navbar-root-menu-entry-padding-h};
+
+        @extend %-main-navbar-entry-base;
+        @extend %-main-navbar-entry-spacing;
+        border-color: transparent;
+        padding-top: $o-navbar-root-menu-entry-padding-v;
+        padding-bottom: $o-navbar-root-menu-entry-padding-v - $o-navbar-root-menu-entry-border-bottom-width;
+        border: none;
+        border-bottom: $o-navbar-root-menu-entry-border-bottom-width solid transparent;
+        border-radius: 0;
+
+        // Override Navbar Entry Base with custom text color
+        @include o-hover-text-color(
+            var(--NavBar-entry-color, #{$o-navbar-root-menu-entry-color}),
+            var(--NavBar-entry-color--hover, #{$o-navbar-root-menu-entry-color--hover})
+        );
+
+        &:hover,
+        &:focus {
+            border-bottom-color: $o-navbar-root-menu-entry-hover-border-bottom-color;
+        }
+    }
+
+    .o_nav_entry--active {
+        &.dropdown-item.o_nav_entry,
+        &.o-dropdown .dropdown-toggle {
+            border-bottom-color: $o-navbar-root-menu-entry-active-border-bottom-color;
+        }
+    }
+
+    .dropdown-menu {
+        border-top-left-radius: $o-navbar-root-menu-dropdown-menu-border-top-radius;
+        border-top-right-radius: $o-navbar-root-menu-dropdown-menu-border-top-radius;
+
+        .disabled {
+            cursor: default;
+        }
+    }
+
+    .dropdown-header.dropdown-menu_group {
+      margin-top: 0;
+    }
+
+    .dropdown-item + .dropdown-header:not(.o_more_dropdown_section_group) {
+      margin-top: .3em;
+    }
+
+    .o_dropdown_menu_group_entry.dropdown-item {
+        padding-left: $o-dropdown-hpadding * 1.5;
+
+        + .dropdown-item:not(.o_dropdown_menu_group_entry) {
+            margin-top: .8em;
+        }
+    }
+
+    // = Navbar Sections & Children
+    // --------------------------------------------------------------------------
+
+    .o_menu_sections {
+        .o_more_dropdown_section_group {
+            margin-top: .8em;
+
+            &:first-child {
+                margin-top: $dropdown-padding-y * -1;
+                padding-top: $dropdown-padding-y * 1.5;
+            }
+        }
+    }
+}
