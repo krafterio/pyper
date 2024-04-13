@@ -50,7 +50,10 @@ export class PyperSetupService {
         });
 
         Object.keys(defaultProps || paramsMap).forEach((propsName) => {
-            this.settings[prefix][propsName] = paramsMap[propsName] || defaultProps[propsName];
+            // Always check if prefix is registered when settings is updated and unregister is called in same time
+            if (!!this._registeredPrefixes[prefix]) {
+                this.settings[prefix][propsName] = paramsMap[propsName] || defaultProps[propsName];
+            }
         });
 
         return this.settings[prefix];
