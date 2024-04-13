@@ -6,8 +6,8 @@ const originalStart = menuService.start;
 
 menuService.start = async function (env) {
     const resStart = await originalStart(env);
-    const originalSelectMenu = resStart.selectMenu;
-    const originalSetCurrentMenu = resStart.setCurrentMenu;
+    const originalSelectMenu = resStart.selectMenu.bind(resStart);
+    const originalSetCurrentMenu = resStart.setCurrentMenu.bind(resStart);
 
     resStart.currentMenuId = undefined;
 
