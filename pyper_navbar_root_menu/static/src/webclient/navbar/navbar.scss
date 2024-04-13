@@ -1,6 +1,17 @@
 // = Navbar Root Menu
 // ============================================================================
 
+.o_menu_systray--root-menu {
+    .dropdown-item {
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: -16px;
+        margin-bottom: -16px;
+        display: flex;
+        align-items: center;
+    }
+}
+
 .o-navbar-root-menu-nav {
     --Dropdown_menu-margin-y: 0;
 
