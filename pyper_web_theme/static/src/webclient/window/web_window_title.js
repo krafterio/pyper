@@ -9,11 +9,11 @@ patch(WebClient.prototype, {
     setup() {
         super.setup();
         this.pyperSetupService = useService('pyper_setup');
-        this.title.setParts({zopenerp: undefined});
+        this.title.setParts({zopenerp: this.defaultTitle});
 
         onWillStart(async () => {
             await this.pyperSetupService.register('web.');
-            this.title.setParts({zopenerp: this.pyperSetupService.settings['web.'].web_app_name || this.getDefaultTitle()});
+            this.title.setParts({zopenerp: this.pyperSetupService.settings['web.'].web_app_name || this.defaultTitle});
         });
 
         onWillDestroy(() => {
@@ -21,7 +21,7 @@ patch(WebClient.prototype, {
         });
     },
 
-    getDefaultTitle() {
+    get defaultTitle() {
         return 'Pyper';
     },
 });

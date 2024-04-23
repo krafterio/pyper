@@ -6,6 +6,7 @@ import {patch} from '@web/core/utils/patch';
 patch(WebClient.prototype, {
     setup() {
         super.setup();
-        this.title.setParts({zopenerp: 'Pyper'});
+        // Use defaultTitle property if it exists
+        this.title.setParts({zopenerp: this.defaultTitle || 'Pyper'});
     }
 });
