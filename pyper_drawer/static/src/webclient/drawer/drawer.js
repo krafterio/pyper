@@ -122,6 +122,7 @@ export class Drawer extends Component {
         hideEmptyCategory: undefined,
         hideCategoryLabelFull: undefined,
         hideCategoryLabelMinified: undefined,
+        showCategorySectionMinified: undefined,
         disabledOnSmallScreen: undefined,
         hideNavbarAppsMenu: undefined,
     };
@@ -142,6 +143,7 @@ export class Drawer extends Component {
         hideEmptyCategory: false,
         hideCategoryLabelFull: false,
         hideCategoryLabelMinified: false,
+        showCategorySectionMinified: false,
         disabledOnSmallScreen: false,
         hideNavbarAppsMenu: false,
     };
