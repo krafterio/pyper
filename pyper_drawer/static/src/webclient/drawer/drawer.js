@@ -185,6 +185,11 @@ export class Drawer extends Component {
         let adaptCounter = 0;
         const renderAndAdapt = () => {
             adaptCounter++;
+
+            if (!this.drawerService.mounted) {
+                this.drawerService.mounted = true;
+            }
+
             this.render();
         };
 
@@ -195,7 +200,7 @@ export class Drawer extends Component {
         });
 
         onMounted(() => {
-            this.drawerService.mounted = true;
+            this.onWillUpdateProps(this.props);
 
             if (this.settings.hideNavbarAppsMenu) {
                 const menuEl = document.querySelector('.o_navbar .o_main_navbar .o_navbar_apps_menu');
@@ -235,6 +240,10 @@ export class Drawer extends Component {
             'o_drawer--hoverable': this.isHoverable,
             'o_drawer--dragging': this.isDragging,
         };
+    }
+
+    get isMounted() {
+        return this.drawerService.mounted;
     }
 
     get isSmallScreen() {

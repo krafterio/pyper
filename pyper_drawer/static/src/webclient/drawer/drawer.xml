@@ -17,18 +17,18 @@
             <t t-slot="header" t-if="displayHeader"/>
 
             <!-- Top Action -->
-            <t t-call="pyper_drawer.Drawer.TopAction"/>
+            <t t-call="pyper_drawer.Drawer.TopAction" t-if="isMounted"/>
 
             <!-- Current App Sections -->
-            <t t-call="pyper_drawer.Drawer.Menu">
+            <t t-call="pyper_drawer.Drawer.Menu" t-if="isMounted">
                 <t t-set="categories" t-value="Object.values(mainCategoryAppSections)"/>
             </t>
 
             <!-- Bottom Action -->
-            <t t-call="pyper_drawer.Drawer.BottomAction"/>
+            <t t-call="pyper_drawer.Drawer.BottomAction" t-if="isMounted"/>
 
             <div class="o_drawer--footer" t-if="displayFooter">
-                <t t-call="pyper_drawer.Drawer.FooterMenu">
+                <t t-call="pyper_drawer.Drawer.FooterMenu" t-if="isMounted">
                     <t t-set="menus" t-value="Object.values(footerAppSections)"/>
                 </t>
             </div>
