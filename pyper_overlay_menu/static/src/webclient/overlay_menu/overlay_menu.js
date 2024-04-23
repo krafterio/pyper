@@ -68,7 +68,7 @@ export class OverlayMenu extends Component {
         });
 
         onWillUpdateProps((nextProps) => {
-            this.pyperSetupService.onWillUpdateProps(DrawerToggler.SETUP_PREFIX, nextProps);
+            this.pyperSetupService.onWillUpdateProps(OverlayMenu.SETUP_PREFIX, nextProps);
         });
 
         const debouncedAdapt = debounce(this.adapt.bind(this), 250);
@@ -81,6 +81,11 @@ export class OverlayMenu extends Component {
         let adaptCounter = 0;
         const renderAndAdapt = () => {
             adaptCounter++;
+
+            if (!this.overlayMenuService.mounted) {
+                this.overlayMenuService.mounted = true;
+            }
+
             this.render();
         };
 
@@ -95,7 +100,7 @@ export class OverlayMenu extends Component {
         });
 
         onMounted(() => {
-            this.overlayMenuService.mounted = true;
+            this.pyperSetupService.onWillUpdateProps(OverlayMenu.SETUP_PREFIX, this.props);
         });
 
         useEffect(
@@ -107,7 +112,7 @@ export class OverlayMenu extends Component {
     }
 
     get settings() {
-        return this.pyperSetupService.settings[OverlayMenu.SETUP_PREFIX] || {};
+        return this.pyperSetupService.settings[OverlayMenu.SETUP_PREFIX];
     }
 
     get classes() {
