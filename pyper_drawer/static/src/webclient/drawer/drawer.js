@@ -6,6 +6,7 @@ import {
     onWillDestroy,
     onWillStart,
     onWillUpdateProps,
+    onPatched,
     useRef,
     useEffect,
     useExternalListener,
@@ -185,11 +186,6 @@ export class Drawer extends Component {
         let adaptCounter = 0;
         const renderAndAdapt = () => {
             adaptCounter++;
-
-            if (!this.drawerService.mounted) {
-                this.drawerService.mounted = true;
-            }
-
             this.render();
         };
 
@@ -209,8 +205,12 @@ export class Drawer extends Component {
                     menuEl.classList.add('o_navbar_apps_menu--hide');
                 }
             }
+        });
 
-            renderAndAdapt();
+        onPatched(() => {
+            if (!this.drawerService.mounted) {
+                this.drawerService.mounted = true;
+            }
         });
 
         useEffect(
@@ -231,7 +231,7 @@ export class Drawer extends Component {
     get classes() {
         return {
             'o_drawer': true,
-            'o_drawer--ready': this.drawerService.mounted,
+            'o_drawer--ready': this.isMounted,
             'o_drawer--opened': this.isOpened,
             'o_drawer--locked': this.isLocked,
             'o_drawer--mini': this.isMinified,
