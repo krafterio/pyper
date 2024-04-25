@@ -209,6 +209,8 @@ export class Drawer extends Component {
                     menuEl.classList.add('o_navbar_apps_menu--hide');
                 }
             }
+
+            renderAndAdapt();
         });
 
         useEffect(
