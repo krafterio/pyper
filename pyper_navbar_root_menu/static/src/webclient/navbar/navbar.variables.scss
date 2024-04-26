@@ -2,7 +2,7 @@
 // ============================================================================
 
 $o-navbar-root-menu-height: 47px !default;
-$o-navbar-root-menu-border-bottom: 1px solid $o-border-color !default;
+$o-navbar-root-menu-border-bottom: 1px !default;
 $o-navbar-root-menu-padding-top: 5px !default;
 $o-navbar-root-menu-padding-bottom: 0 !default;
 
@@ -17,3 +17,5 @@ $o-navbar-root-menu-entry-hover-border-bottom-color: rgba(0, 0, 0, 0.08) !defaul
 $o-navbar-root-menu-entry-active-border-bottom-color: $o-brand-primary !default;
 
 $o-navbar-root-menu-dropdown-menu-border-top-radius: 0 !default;
+
+$o-navbar-root-menu-border-bottom-gap: -1px !default;
