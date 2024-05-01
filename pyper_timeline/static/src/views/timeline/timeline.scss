@@ -1,0 +1,40 @@
+.o_timeline_view {
+    .o_content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .o_timeline_renderer {
+        flex-grow: 1;
+    }
+
+    .vis-timeline {
+        border: none !important;
+
+        .vis-grid {
+            &.vis-saturday,
+            &.vis-sunday {
+                background: $pyper-timeline-bg;
+            }
+        }
+
+        .vis-item {
+            &:hover {
+                background-color: $pyper-timeline-bg-hover !important;
+                cursor: pointer !important;
+            }
+
+            .vis-item-overflow {
+                overflow: visible;
+            }
+
+            .vis-item-content {
+                padding: $pyper-timeline-item-content-padding !important;
+
+                &:hover {
+                    background-color: $pyper-timeline-bg-hover !important;
+                }
+            }
+        }
+    }
+}

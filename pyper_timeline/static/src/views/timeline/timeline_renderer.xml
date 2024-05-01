@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_timeline.TimelineRenderer">
+        <div
+            class="o_timeline_renderer o_renderer"
+            tabindex="-1"
+            t-ref="timeline"
+        />
+    </t>
+</templates>
