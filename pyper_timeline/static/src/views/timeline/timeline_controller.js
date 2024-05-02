@@ -26,6 +26,21 @@ export const SCALE_LABELS = {
     year: _t('Year'),
 };
 
+export const SCALE_DURATIONS = {
+    day: {'days': 1},
+    '2days': {'days': 2},
+    '3days': {'days': 3},
+    week: {'weeks': 1},
+    month: {'mouth': 1},
+    year: {'years': 1},
+};
+
+export const MOVE_ACTIONS = {
+    next: 'next',
+    previous: 'previous',
+    today: 'today',
+};
+
 export class TimelineController extends Component {
     static template = 'pyper_timeline.TimelineView';
 
@@ -164,16 +179,17 @@ export class TimelineController extends Component {
     }
 
     async setDate(move) {
+        const duration = Object.assign({}, SCALE_DURATIONS[this.model.scale] || SCALE_DURATIONS.day);
         let date = null;
 
         switch (move) {
-            case 'next':
-                date = this.model.date.plus({[`${this.model.scale}s`]: 1});
+            case MOVE_ACTIONS.next:
+                date = this.model.date.plus(duration);
                 break;
-            case 'previous':
-                date = this.model.date.minus({[`${this.model.scale}s`]: 1});
+            case MOVE_ACTIONS.previous:
+                date = this.model.date.minus(duration);
                 break;
-            case 'today':
+            case MOVE_ACTIONS.today:
                 date = DateTime.local().startOf('day');
                 break;
         }
