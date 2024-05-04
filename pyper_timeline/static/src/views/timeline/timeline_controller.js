@@ -48,7 +48,7 @@ export const SCALES = {
     },
     month: {
         description: _t('Month'),
-        duration: {'mouth': 1},
+        duration: {'months': 1},
         zoom: 1000 * 60 * 60 * 24 * 31, // About 31 days in milliseconds
         clustering: true,
         force_weekends_visibility: false,
