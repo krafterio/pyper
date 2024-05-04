@@ -100,6 +100,10 @@ export class TimelineRenderer extends Component {
         }, () => [this.timelineOptions]);
 
         useEffect(() => {
+            this.timeline.setWindow(this.props.model.rangeStart.toJSDate(), this.props.model.rangeEnd.toJSDate(), {animation: false});
+        }, () => [this.props.model.rangeStart, this.props.model.rangeEnd]);
+
+        useEffect(() => {
             this.onItemsChange();
         }, () => [this.props.model.groups, this.props.model.items]);
     }
@@ -280,8 +284,8 @@ export class TimelineRenderer extends Component {
             zoomKey: this.props.model.archInfo.zoomKey,
             zoomMin,
             zoomMax,
-            start: this.props.model.rangeStart.toJSDate(),
-            end: this.props.model.rangeEnd.toJSDate(),
+            start: undefined,
+            end: undefined,
         });
     }
 

@@ -72,14 +72,7 @@ export class TimelineModel extends Model {
     }
 
     set scale(value) {
-        // Prevent picking a scale that is not supported by the view
-        if (!this.archInfo.scales.includes(value)) {
-            value = this.archInfo.scales[0];
-        }
-
-        this.meta.customRangeStart = null;
-        this.meta.customRangeEnd = null;
-        this.meta.scale = value;
+        Object.assign(this.meta, this._prepareSetScale(value));
         this.data.range = this.computeRange();
     }
 
@@ -88,14 +81,7 @@ export class TimelineModel extends Model {
     }
 
     set date(value) {
-        this.meta.date = value;
-
-        if (this.scale === 'custom' && this.meta.customRangeStart && this.meta.customRangeEnd) {
-            const duration = this.meta.customRangeEnd - this.meta.customRangeStart;
-            this.meta.customRangeStart = this.meta.date;
-            this.meta.customRangeEnd = this.meta.customRangeStart.plus(duration);
-        }
-
+        Object.assign(this.meta, this._prepareSetDate(value));
         this.data.range = this.computeRange();
     }
 
@@ -135,40 +121,43 @@ export class TimelineModel extends Model {
 
     async load(params) {
         params = params || {};
+        const meta = {};
 
         if (params.date) {
-            this.date = params.date;
+            Object.assign(meta, this._prepareSetDate(params.date));
             delete params.date;
         }
 
         if (params.scale) {
-            this.scale = params.scale;
+            Object.assign(meta, this._prepareSetScale(params.scale));
             delete params.scale;
         }
 
         if (params.rangeStart || params.rangeEnd) {
-            this.meta.scale = 'custom';
-            this.meta.customRangeStart = params.rangeStart || DateTime.local();
-            this.meta.customRangeEnd = params.rangeEnd || DateTime.local();
+            Object.assign(meta, {
+                scale: 'custom',
+                customRangeStart: params.rangeStart || DateTime.local(),
+                customRangeEnd: params.rangeEnd || DateTime.local(),
+            });
 
             if (!this.date) {
-                this.date = this.meta.customRangeStart;
+                Object.assign(meta, this._prepareSetDate(this.meta.customRangeStart));
             }
 
             delete params.rangeStart;
             delete params.rangeEnd;
         }
 
-        Object.assign(this.meta, params);
-
         if (!this.date) {
             // Initialize the date with initial_date in context or use current time
-            this.date = params.context && params.context.initial_date
+            const initDate = params.context && params.context.initial_date
                 ? deserializeDateTime(params.context.initial_date)
                 : DateTime.local();
+            Object.assign(meta, this._prepareSetDate(initDate));
         }
 
         const data = {...this.data};
+        Object.assign(Object.assign(this.meta, meta), params);
 
         await this.keepLast.add(this.updateData(data));
 
@@ -345,5 +334,32 @@ export class TimelineModel extends Model {
         }
 
         return {start, end};
+    }
+
+    _prepareSetScale(value) {
+        // Prevent picking a scale that is not supported by the view
+        if (!this.archInfo.scales.includes(value)) {
+            value = this.archInfo.scales[0];
+        }
+
+        return {
+            customRangeStart: null,
+            customRangeEnd: null,
+            scale: value,
+        };
+    }
+
+    _prepareSetDate(value) {
+        const meta = {
+            date: value,
+        };
+
+        if (this.scale === 'custom' && this.meta.customRangeStart && this.meta.customRangeEnd) {
+            const duration = this.meta.customRangeEnd.diff(this.meta.customRangeStart);
+            meta.customRangeStart = meta.date;
+            meta.customRangeEnd = meta.customRangeStart.plus(duration);
+        }
+
+        return meta;
     }
 }
