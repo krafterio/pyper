@@ -19,19 +19,24 @@
         }
 
         .vis-item {
-            &:hover {
-                background-color: $pyper-timeline-bg-hover !important;
-                cursor: pointer !important;
-            }
-
             .vis-item-overflow {
-                overflow: visible;
+                overflow: $pyper-timeline-item-overflow;
             }
 
             .vis-item-content {
                 padding: $pyper-timeline-item-content-padding !important;
+            }
 
-                &:hover {
+            &:hover {
+                cursor: pointer !important;
+                z-index: $pyper-timeline-item-overflow-zindex;
+                background-color: $pyper-timeline-bg-hover !important;
+
+                .vis-item-overflow {
+                    overflow: $pyper-timeline-item-overflow-hover;
+                }
+
+                .vis-item-content {
                     background-color: $pyper-timeline-bg-hover !important;
                 }
             }

@@ -1,13 +1,16 @@
 /** @odoo-module **/
 
 import {_t} from '@web/core/l10n/translation';
-import {deserializeDateTime, serializeDateTime} from '@web/core/l10n/dates';
+import {deserializeDate, deserializeDateTime, serializeDateTime} from '@web/core/l10n/dates';
 import {localization} from '@web/core/l10n/localization';
 import {KeepLast} from '@web/core/utils/concurrency';
 import {Model} from '@web/model/model';
 import {extractFieldsFromArchInfo} from '@web/model/relational_model/utils';
 import {orderByToString} from '@web/search/utils/order_by';
 import {Domain} from '@web/core/domain';
+import {useState} from '@odoo/owl';
+
+const {DateTime} = luxon;
 
 export class TimelineModel extends Model {
     static services = ['user'];
@@ -21,19 +24,18 @@ export class TimelineModel extends Model {
         const fieldNodes = params.archInfo.fieldNodes;
         const {activeFields, fields} = extractFieldsFromArchInfo({fieldNodes}, params.fields);
 
-        this.meta = {
+        this.meta = useState({
             ...params,
             activeFields,
             fields,
             firstDayOfWeek: (localization.weekStart || 0) % 7,
             formViewId: params.archInfo.formViewId || formViewIdFromConfig,
-            get scale() {
-                return params.archInfo.scale;
-            },
-            set scale(value) {
-                params.archInfo.scale = value;
-            }
-        };
+            scale: params.archInfo.scales.includes(params.archInfo.scale)
+                ? params.archInfo.scale
+                : params.archInfo.scales[0],
+            customRangeStart: null,
+            customRangeEnd: null,
+        });
 
         this.data = {
             hasCreateRight: null,
@@ -49,32 +51,52 @@ export class TimelineModel extends Model {
         return this.meta;
     }
 
+    get archInfo() {
+        return this.meta.archInfo;
+    }
+
     get canCreate() {
-        return this.meta.archInfo.activeActions.create && this.data.hasCreateRight;
+        return this.archInfo.activeActions.create && this.data.hasCreateRight;
     }
 
     get canWrite() {
-        return this.meta.archInfo.activeActions.edit && this.data.hasWriteRight;
+        return this.archInfo.activeActions.edit && this.data.hasWriteRight;
     }
 
     get canUnlink() {
-        return this.meta.archInfo.activeActions.delete && this.data.hasUnlinkRight;
+        return this.archInfo.activeActions.delete && this.data.hasUnlinkRight;
     }
 
     get scale() {
-        return this.meta.archInfo.scale;
+        return this.meta.scale;
     }
 
-    get scales() {
-        return this.meta.archInfo.scales;
-    }
+    set scale(value) {
+        // Prevent picking a scale that is not supported by the view
+        if (!this.archInfo.scales.includes(value)) {
+            value = this.archInfo.scales[0];
+        }
 
-    get zoomKey() {
-        return this.meta.archInfo.zoomKey;
+        this.meta.customRangeStart = null;
+        this.meta.customRangeEnd = null;
+        this.meta.scale = value;
+        this.data.range = this.computeRange();
     }
 
     get date() {
         return this.meta.date;
+    }
+
+    set date(value) {
+        this.meta.date = value;
+
+        if (this.scale === 'custom' && this.meta.customRangeStart && this.meta.customRangeEnd) {
+            const duration = this.meta.customRangeEnd - this.meta.customRangeStart;
+            this.meta.customRangeStart = this.meta.date;
+            this.meta.customRangeEnd = this.meta.customRangeStart.plus(duration);
+        }
+
+        this.data.range = this.computeRange();
     }
 
     get rangeStart() {
@@ -83,6 +105,24 @@ export class TimelineModel extends Model {
 
     get rangeEnd() {
         return this.data.range?.end;
+    }
+
+    get weekends() {
+        const weekends = [];
+
+        if (this.date) {
+            const currentWeekOffset = (this.date.weekday - this.meta.firstDayOfWeek + 7) % 7;
+            const weekStart = this.date.minus({days: currentWeekOffset}).startOf('day');
+
+            // Saturday, Sunday
+            if (currentWeekOffset > 0) {
+                weekends.push(weekStart.plus({weeks: 1, days: -2}), weekStart.plus({weeks: 1, days: -1}));
+            } else {
+                weekends.push(weekStart, weekStart.plus({weeks: 1, days: -1}));
+            }
+        }
+
+        return weekends;
     }
 
     get groups() {
@@ -94,17 +134,38 @@ export class TimelineModel extends Model {
     }
 
     async load(params) {
-        Object.assign(this.meta, params || {});
+        params = params || {};
 
-        if (!this.meta.date) {
-            this.meta.date = params.context && params.context.initial_date
-                ? deserializeDateTime(params.context.initial_date)
-                : luxon.DateTime.local();
+        if (params.date) {
+            this.date = params.date;
+            delete params.date;
         }
 
-        // Prevent picking a scale that is not supported by the view
-        if (!this.meta.archInfo.scales.includes(this.meta.archInfo.scale)) {
-            this.meta.archInfo.scale = this.meta.archInfo.scales[0];
+        if (params.scale) {
+            this.scale = params.scale;
+            delete params.scale;
+        }
+
+        if (params.rangeStart || params.rangeEnd) {
+            this.meta.scale = 'custom';
+            this.meta.customRangeStart = params.rangeStart || DateTime.local();
+            this.meta.customRangeEnd = params.rangeEnd || DateTime.local();
+
+            if (!this.date) {
+                this.date = this.meta.customRangeStart;
+            }
+
+            delete params.rangeStart;
+            delete params.rangeEnd;
+        }
+
+        Object.assign(this.meta, params);
+
+        if (!this.date) {
+            // Initialize the date with initial_date in context or use current time
+            this.date = params.context && params.context.initial_date
+                ? deserializeDateTime(params.context.initial_date)
+                : DateTime.local();
         }
 
         const data = {...this.data};
@@ -132,23 +193,23 @@ export class TimelineModel extends Model {
 
         const domainRange = Domain.or([
             Domain.and([
-                [[this.meta.archInfo.fieldDateStart, '>=', serializeDateTime(data.range.start)]],
-                [[this.meta.archInfo.fieldDateStart, '<=', serializeDateTime(data.range.end)]],
+                [[this.archInfo.fieldDateStart, '>=', serializeDateTime(data.range.start)]],
+                [[this.archInfo.fieldDateStart, '<=', serializeDateTime(data.range.end)]],
             ]),
             Domain.and([
-                [[this.meta.archInfo.fieldDateEnd, '>=', serializeDateTime(data.range.start)]],
-                [[this.meta.archInfo.fieldDateEnd, '<=', serializeDateTime(data.range.end)]],
+                [[this.archInfo.fieldDateEnd, '>=', serializeDateTime(data.range.start)]],
+                [[this.archInfo.fieldDateEnd, '<=', serializeDateTime(data.range.end)]],
             ]),
         ]);
         const domain = Domain.and([this.meta.domain, domainRange]).toList(this.meta.context);
 
-        const res = await this.orm.searchRead(this.meta.resModel, domain, this.meta.archInfo.fieldNames, {
-            order: orderByToString(this.meta.orderBy || this.meta.archInfo.defaultOrderBy || []),
-            limit: this.meta.archInfo.limit,
+        const res = await this.orm.searchRead(this.meta.resModel, domain, this.archInfo.fieldNames, {
+            order: orderByToString(this.meta.orderBy || this.archInfo.defaultOrderBy || []),
+            limit: this.archInfo.limit,
             context: {...this.user.context},
         });
 
-        const groupBys = this.meta.groupBy.length > 0 ? this.meta.groupBy : this.meta.archInfo.defaultGroupBy;
+        const groupBys = this.meta.groupBy.length > 0 ? this.meta.groupBy : this.archInfo.defaultGroupBy;
         const groups = {};
         const items = [];
         let hasUnassigned = false;
@@ -190,11 +251,26 @@ export class TimelineModel extends Model {
                 hasUnassigned = true;
             }
 
+            Object.keys(item).forEach((property) => {
+                const type = this.meta.fields[property]?.type;
+
+                switch (type) {
+                    case 'datetime':
+                        item[property] = deserializeDateTime(item[property]);
+                        break;
+                    case 'date':
+                        item[property] = deserializeDate(item[property]);
+                        break;
+                    default:
+                        break;
+                }
+            });
+
             items.push({
                 id: item.id,
                 group: group,
-                start: deserializeDateTime(item[this.meta.archInfo.fieldDateStart]).toJSDate(),
-                end: deserializeDateTime(item[this.meta.archInfo.fieldDateEnd]).toJSDate(),
+                start: item[this.archInfo.fieldDateStart].toJSDate(),
+                end: item[this.archInfo.fieldDateEnd].toJSDate(),
                 type: 'range',
                 record: {
                     resId: item.id,
@@ -225,30 +301,48 @@ export class TimelineModel extends Model {
     }
 
     computeRange() {
-        const {date, firstDayOfWeek} = this.meta;
-        const {scale} = this.meta.archInfo;
+        const {date, firstDayOfWeek, scale, customRangeStart, customRangeEnd} = this.meta;
         let start = date;
         let end = date;
 
-        if (!['2days', '3days', 'week'].includes(scale)) {
+        if (!['2days', '3days', 'week', 'custom'].includes(scale)) {
             // startOf('week') does not depend on locale and will always give the
             // "Monday" of the week...
             start = start.startOf(scale);
             end = end.endOf(scale);
         }
 
-        if (['week', 'month'].includes(scale)) {
-            const currentWeekOffset = (start.weekday - firstDayOfWeek + 7) % 7;
-            start = start.minus({days: currentWeekOffset});
-            end = start.plus({weeks: scale === 'week' ? 1 : 6, days: -1});
-        } else if (['2days', '3days'].includes(scale)) {
-            const currentWeekOffset = (start.weekday - firstDayOfWeek + 7) % 7;
+        const currentWeekOffset = (start.weekday - firstDayOfWeek + 7) % 7;
+
+        if (scale === '2days') {
             start = start.startOf('day');
-            end = start.plus({days: scale === '3days' ? 2 : 1});
+            end = start.plus({days: 1});
+        } else if (scale === '3days') {
+            start = start.startOf('day');
+            end = start.plus({days: 2});
+        } else if (scale === 'week') {
+            start = start.minus({days: currentWeekOffset});
+            end = start.plus({weeks: 1, days: -1});
+        } else if (scale === 'month') {
+            start = start.minus({days: currentWeekOffset});
+            end = end.endOf('week');
+        } else if (scale === 'custom') {
+            start = customRangeStart;
+            end = customRangeEnd;
+
+            if (!start) {
+                start = date;
+            }
+
+            if (!end) {
+                end = DateTime.fromJSDate(start.toJSDate());
+            }
         }
 
-        start = start.startOf('day');
-        end = end.endOf('day');
+        if (scale !== 'custom') {
+            start = start.startOf('day');
+            end = end.endOf('day');
+        }
 
         return {start, end};
     }

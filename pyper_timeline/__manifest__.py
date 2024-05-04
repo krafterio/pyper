@@ -15,8 +15,10 @@
     'installable': True,
     'depends': [
         'web',
+        'pyper_setup',
     ],
     'data': [
+        'views/res_config_settings_views.xml',
     ],
     'assets': {
         'web._assets_primary_variables': [

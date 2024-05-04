@@ -13,27 +13,63 @@ import {browser} from '@web/core/browser/browser';
 import {ViewScaleSelector} from '@web/views/view_components/view_scale_selector';
 import {getWeekNumber} from '@web/views/calendar/utils';
 import {ConfirmationDialog, deleteConfirmationMessage} from '@web/core/confirmation_dialog/confirmation_dialog';
-import {Component, onWillStart} from '@odoo/owl';
+import {Component, onWillStart, useState} from '@odoo/owl';
 
 const {DateTime} = luxon;
 
-export const SCALE_LABELS = {
-    day: _t('Day'),
-    '2days': _t('2 Days'),
-    '3days': _t('3 Days'),
-    week: _t('Week'),
-    month: _t('Month'),
-    year: _t('Year'),
+export const SCALES = {
+    day: {
+        description: _t('Day'),
+        duration: {'days': 1},
+        zoom: 1000 * 60 * 60 * 24, // About 1 day in milliseconds
+        clustering: false,
+        force_weekends_visibility: true,
+    },
+    '2days': {
+        description: _t('2 days'),
+        duration: {'days': 2},
+        zoom: 1000 * 60 * 60 * 24 * 2, // About 2 days in milliseconds
+        clustering: false,
+        force_weekends_visibility: true,
+    },
+    '3days': {
+        description: _t('3 days'),
+        duration: {'days': 3},
+        zoom: 1000 * 60 * 60 * 24 * 3, // About 3 days in milliseconds
+        clustering: false,
+        force_weekends_visibility: true,
+    },
+    week: {
+        description: _t('Week'),
+        duration: {'weeks': 1},
+        zoom: 1000 * 60 * 60 * 24 * 7, // About 7 days in milliseconds
+        clustering: false,
+        force_weekends_visibility: false,
+    },
+    month: {
+        description: _t('Month'),
+        duration: {'mouth': 1},
+        zoom: 1000 * 60 * 60 * 24 * 31, // About 31 days in milliseconds
+        clustering: true,
+        force_weekends_visibility: false,
+    },
+    year: {
+        description: _t('Year'),
+        duration: {'years': 1},
+        zoom: 1000 * 60 * 60 * 24 * 365, // About 365 days in milliseconds
+        clustering: true,
+        force_weekends_visibility: false,
+    },
+    custom: {
+        description: _t('Custom'),
+        duration: null,
+        zoom: null,
+        clustering: false,
+        force_weekends_visibility: false,
+    },
 };
 
-export const SCALE_DURATIONS = {
-    day: {'days': 1},
-    '2days': {'days': 2},
-    '3days': {'days': 3},
-    week: {'weeks': 1},
-    month: {'mouth': 1},
-    year: {'years': 1},
-};
+export const AVAILABLE_SCALES = Object.keys(SCALES).filter((k) => k !== 'custom');
 
 export const MOVE_ACTIONS = {
     next: 'next',
@@ -55,7 +91,7 @@ export class TimelineController extends Component {
         this.action = useService('action');
 
         /** @type {typeof TimelineModel} */
-        this.model = useModelWithSampleData(
+        this.model = useState(useModelWithSampleData(
             this.props.Model,
             {
                 archInfo: this.props.archInfo,
@@ -66,10 +102,13 @@ export class TimelineController extends Component {
             {
                 onWillStart: this.onWillStartModel.bind(this),
             }
-        );
+        ));
 
-        useSetupView({
-            getLocalState: () => this.model.exportedState,
+        this.state = useState({
+            // Use the same configuration between calendar and timeline components
+            isWeekendVisible: browser.localStorage.getItem('calendar.isWeekendVisible') != null
+                ? JSON.parse(browser.localStorage.getItem('calendar.isWeekendVisible'))
+                : true,
         });
 
         useSetupView({
@@ -87,11 +126,10 @@ export class TimelineController extends Component {
     }
 
     get currentDate() {
-        const meta = this.model.meta;
-        const scale = meta.archInfo.scale;
+        const scale = this.model.scale;
 
         if (this.env.isSmall && ['week', 'month'].includes(scale)) {
-            const date = meta.date || DateTime.now();
+            const date = this.model.date || DateTime.now();
             let text = '';
 
             if (scale === 'week') {
@@ -129,17 +167,25 @@ export class TimelineController extends Component {
         return `${this.date.toFormat('d')} ${this.date.toFormat('MMMM')} ${this.date.year}`;
     }
 
+    get daysHeader() {
+        const {rangeStart, rangeEnd} = this.model;
+
+        if (rangeStart.year !== rangeEnd.year) {
+            return `${rangeStart.toFormat('d')} ${rangeStart.toFormat('MMMM')} ${rangeStart.year} - ${rangeEnd.toFormat('d')} ${rangeEnd.toFormat('MMMM')} ${rangeEnd.year}`;
+        } else if (rangeStart.month !== rangeEnd.month) {
+            return `${rangeStart.toFormat('d')} ${rangeStart.toFormat('MMMM')} - ${rangeEnd.toFormat('d')} ${rangeEnd.toFormat('MMMM')} ${rangeStart.year}`;
+        }
+
+        return `${rangeStart.toFormat('d')} - ${rangeEnd.toFormat('d')} ${rangeStart.toFormat('MMMM')} ${rangeStart.year}`;
+    }
+
     get weekHeader() {
         const {rangeStart, rangeEnd} = this.model;
 
         if (rangeStart.year !== rangeEnd.year) {
-            return `${rangeStart.toFormat('MMMM')} ${rangeStart.year} - ${rangeEnd.toFormat(
-                'MMMM'
-            )} ${rangeEnd.year}`;
+            return `${rangeStart.toFormat('MMMM')} ${rangeStart.year} - ${rangeEnd.toFormat('MMMM')} ${rangeEnd.year}`;
         } else if (rangeStart.month !== rangeEnd.month) {
-            return `${rangeStart.toFormat('MMMM')} - ${rangeEnd.toFormat('MMMM')} ${
-                rangeStart.year
-            }`;
+            return `${rangeStart.toFormat('MMMM')} - ${rangeEnd.toFormat('MMMM')} ${rangeStart.year}`;
         }
 
         return `${rangeStart.toFormat('MMMM')} ${rangeStart.year}`;
@@ -159,28 +205,39 @@ export class TimelineController extends Component {
     get rendererProps() {
         return {
             model: this.model,
+            isWeekendVisible: this.state.isWeekendVisible || SCALES[this.model.scale]?.force_weekends_visibility,
+            setRange: this.setRange.bind(this),
             createRecord: this.createRecord.bind(this),
             editRecord: this.editRecord.bind(this),
             deleteRecord: this.deleteRecord.bind(this),
-            setDate: this.setDate.bind(this),
-            onItemClick: this.openRecords.bind(this), //TODO keep?
+            openRecords: this.openRecords.bind(this),
         };
     }
 
     get scales() {
-        return Object.fromEntries(
-            this.model.scales.map((s) => [s, {description: SCALE_LABELS[s]}])
-        );
+        return Object.fromEntries(this.model.archInfo.scales.map((s) => {
+            return [s, {...SCALES[s]}];
+        }));
     }
 
     async setScale(scale) {
+        if ('custom' === scale) {
+            // Custom scale can only set by the timeline
+            return;
+        }
+
         await this.model.load({scale});
         browser.sessionStorage.setItem('timeline-scale', this.model.scale);
     }
 
     async setDate(move) {
-        const duration = Object.assign({}, SCALE_DURATIONS[this.model.scale] || SCALE_DURATIONS.day);
+        let duration = Object.assign({}, SCALES[this.model.scale]?.duration || SCALES['day']?.duration);
         let date = null;
+
+        if ('custom' === this.model.scale) {
+            const rangeEnd = this.model.rangeEnd || this.model.date || DateTime.local().startOf('day');
+            duration = rangeEnd.diff(this.model.date);
+        }
 
         switch (move) {
             case MOVE_ACTIONS.next:
@@ -197,14 +254,24 @@ export class TimelineController extends Component {
         await this.model.load({date});
     }
 
-    onWillStartModel() {}
+    async setRange(start, end) {
+        await this.model.load({
+            rangeStart: start,
+            rangeEnd: end,
+        });
+    }
+
+    toggleWeekendVisibility() {
+        this.state.isWeekendVisible = !this.state.isWeekendVisible;
+        browser.localStorage.setItem('calendar.isWeekendVisible', this.state.isWeekendVisible);
+    }
 
     createRecord(record) {
         if (!this.model.canCreate) {
             return;
         }
 
-        //TODO
+        //TODO createRecord
         console.log('createRecord', record);
     }
 
@@ -213,7 +280,7 @@ export class TimelineController extends Component {
             return;
         }
 
-        //TODO
+        //TODO editRecord
         console.log('editRecord', record, context, shouldFetchFormViewId);
     }
 
@@ -238,7 +305,7 @@ export class TimelineController extends Component {
      * @param {number[]} ids
      */
     openRecords(ids) {
-        //TODO keep?
+        //TODO openRecords
         if (ids.length > 1) {
             this.action.doAction({
                 type: 'ir.actions.act_window',
@@ -256,4 +323,6 @@ export class TimelineController extends Component {
             });
         }
     }
+
+    onWillStartModel() {}
 }

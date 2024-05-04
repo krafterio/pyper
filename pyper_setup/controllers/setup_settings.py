@@ -2,6 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 from odoo.http import Controller, route, request
+from odoo.osv.expression import OR
 
 
 class SetupSettings(Controller):
@@ -10,7 +11,13 @@ class SetupSettings(Controller):
         if not prefix:
             return []
 
+        prefixes = prefix.split('|')
+        domains = []
+
+        for prefix in prefixes:
+            domains.append([('key', 'like', str(prefix) + '%')])
+
         return request.env['ir.config_parameter'].sudo().search_read(
-            [('key', 'like', str(prefix) + '%')],
+            OR(domains),
             ['key', 'value'],
         )

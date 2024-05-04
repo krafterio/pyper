@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="1024"/>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='pyper_settings']" position="inside">
+                <block title="Timeline" name="pyper_timeline_settings">
+                    <setting string="Default visible time range">
+                        <group>
+                            <field name="timeline_visible_time_range_start" string="Start" widget="float_time"/>
+                            <field name="timeline_visible_time_range_end" string="End" widget="float_time"/>
+                        </group>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

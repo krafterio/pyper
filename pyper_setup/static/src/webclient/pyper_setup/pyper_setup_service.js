@@ -39,14 +39,20 @@ export class PyperSetupService {
             'prefix': prefix,
         });
 
-        params.forEach((param) => {
-            let value = param.value;
+        const prefixes = prefix.split('|');
 
-            try {
-                value = evaluateExpr(value);
-            } catch (e) {}
+        prefixes.forEach((lPrefix) => {
+            params.forEach((param) => {
+                if (param.key.startsWith(lPrefix)) {
+                    let value = param.value;
 
-            paramsMap[param.key.substring(prefix.length)] = value;
+                    try {
+                        value = evaluateExpr(value);
+                    } catch (e) {}
+
+                    paramsMap[param.key.substring(lPrefix.length)] = value;
+                }
+            });
         });
 
         Object.keys(defaultProps || paramsMap).forEach((propsName) => {

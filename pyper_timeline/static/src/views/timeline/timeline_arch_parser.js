@@ -5,17 +5,9 @@ import {visitXML} from '@web/core/utils/xml';
 import {getGroupBy} from '@web/search/utils/group_by';
 import {stringToOrderBy} from '@web/search/utils/order_by';
 import {Field} from '@web/views/fields/field';
-import {getActiveActions} from '@web/views/utils';
+import {archParseBoolean, getActiveActions} from '@web/views/utils';
 import {Widget} from '@web/views/widgets/widget';
-
-const SCALES = [
-    'day',
-    '2days',
-    '3days',
-    'week',
-    'month',
-    'year',
-];
+import {AVAILABLE_SCALES} from './timeline_controller';
 
 export class TimelineParseArchError extends Error {}
 
@@ -28,11 +20,12 @@ export class TimelineArchParser {
         let widgetNextId = 0;
         const sessionScale = browser.sessionStorage.getItem('timeline-scale');
         let jsClass = null;
-        let scales = [...SCALES];
+        let scales = [...AVAILABLE_SCALES];
         let scale = sessionScale || null;
         let activeActions = {};
         let formViewId = false;
         let zoomKey = 'ctrlKey';
+        let zoomable = true;
         let limit = null;
         let fieldDateStart = null;
         let fieldDateEnd = null;
@@ -56,7 +49,7 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('scales')) {
                         const scalesAttr = node.getAttribute('scales');
-                        scales = scalesAttr.split(',').filter((scale) => SCALES.includes(scale));
+                        scales = scalesAttr.split(',').filter((scale) => AVAILABLE_SCALES.includes(scale));
                     }
 
                     if (!scale && node.hasAttribute('mode')) {
@@ -77,6 +70,10 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('zoom_key')) {
                         zoomKey = node.getAttribute('zoom_key');
+                    }
+
+                    if (node.hasAttribute('zoomable')) {
+                        zoomable = archParseBoolean(node.getAttribute('zoomable'), zoomable);
                     }
 
                     if (node.hasAttribute('default_group_by')) {
@@ -174,6 +171,10 @@ export class TimelineArchParser {
             }
         });
 
+        if (zoomable) {
+            scales.push('custom');
+        }
+
         if (!scale) {
             scale = scales.includes('week') ? 'week' : scales[0];
         }
@@ -187,6 +188,7 @@ export class TimelineArchParser {
             scale,
             scales,
             zoomKey,
+            zoomable,
             limit,
             fieldDateStart,
             fieldDateEnd,
