@@ -234,6 +234,7 @@ export class TimelineController extends Component {
         }
 
         this.state.customIsWeekendVisible = null;
+
         await this.model.load({scale});
         browser.sessionStorage.setItem('timeline-scale', this.model.scale);
     }
@@ -260,6 +261,7 @@ export class TimelineController extends Component {
         }
 
         this.state.customIsWeekendVisible = null;
+
         await this.model.load({date});
     }
 
@@ -267,15 +269,14 @@ export class TimelineController extends Component {
         this.state.customIsWeekendVisible = this.state.isWeekendVisible
             || SCALES[this.model.scale]?.force_weekends_visibility;
 
-        await this.model.load({
-            rangeStart: start,
-            rangeEnd: end,
-        });
+        await this.model.load({rangeStart: start, rangeEnd: end});
     }
 
-    toggleWeekendVisibility() {
+    async toggleWeekendVisibility() {
         this.state.isWeekendVisible = !this.state.isWeekendVisible;
         browser.localStorage.setItem('calendar.isWeekendVisible', this.state.isWeekendVisible);
+
+        await this.model.load();
     }
 
     createRecord(record) {
