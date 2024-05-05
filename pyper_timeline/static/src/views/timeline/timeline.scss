@@ -6,38 +6,112 @@
 
     .o_timeline_renderer {
         flex-grow: 1;
+
+        &.timeline-loading {
+            .vis-panel {
+                &.vis-left,
+                &.vis-right,
+                &.vis-center {
+                    opacity: 0 !important;
+                }
+            }
+        }
     }
 
     .vis-timeline {
+        background: $pyper-timeline-bg;
         border: none !important;
 
         .vis-grid {
+            &.vis-odd {
+                background: $pyper-timeline-time-axis-odd-bg;
+            }
+
+            &.vis-even {
+                background: $pyper-timeline-time-axis-even-bg;
+            }
+
             &.vis-saturday,
             &.vis-sunday {
-                background: $pyper-timeline-bg;
+                background: $pyper-timeline-weekends-bg;
+            }
+        }
+
+        .vis-time-axis {
+            .vis-grid {
+                &.vis-major {
+                    border-color: $pyper-timeline-time-axis-major-border-color;
+                }
+            }
+        }
+
+        .vis-labelset .vis-label,
+        .vis-foreground .vis-group {
+            border-color: $pyper-timeline-line-bottom-border-color;
+        }
+
+        .vis-panel {
+            &.vis-top {
+                background: $pyper-timeline-panel-top-bg;
+                border-color: $pyper-timeline-panel-border-color;
+            }
+
+            &.vis-bottom {
+                background: $pyper-timeline-panel-bottom-bg;
+                border-color: $pyper-timeline-panel-border-color;
+            }
+
+            &.vis-left {
+                background: $pyper-timeline-panel-left-bg;
+                border-color: $pyper-timeline-panel-border-color;
+            }
+
+            &.vis-right {
+                background: $pyper-timeline-panel-right-bg;
+                border-color: $pyper-timeline-panel-border-color;
+            }
+
+            &.vis-center {
+                background: $pyper-timeline-panel-center-bg;
+                border-color: $pyper-timeline-panel-border-color;
             }
         }
 
         .vis-item {
+            color: $pyper-timeline-item-color;
+            border-width: $pyper-timeline-item-border-width;
+            border-color: $pyper-timeline-item-border-color;
+            background-color: $pyper-timeline-item-bg;
+
+            &.vis-range {
+                border-radius: $pyper-timeline-item-border-radius;
+            }
+
             .vis-item-overflow {
                 overflow: $pyper-timeline-item-overflow;
             }
 
             .vis-item-content {
                 padding: $pyper-timeline-item-content-padding !important;
+                outline-width: $pyper-timeline-item-border-width;
+                outline-style: solid;
+                outline-color: $pyper-timeline-item-border-color;
+                border-radius: $pyper-timeline-item-border-radius;
+                min-width: 100%;
             }
 
             &:hover {
                 cursor: pointer !important;
                 z-index: $pyper-timeline-item-overflow-zindex;
-                background-color: $pyper-timeline-bg-hover !important;
+                background-color: $pyper-timeline-item-bg-hover !important;
 
                 .vis-item-overflow {
                     overflow: $pyper-timeline-item-overflow-hover;
                 }
 
                 .vis-item-content {
-                    background-color: $pyper-timeline-bg-hover !important;
+                    background-color: $pyper-timeline-item-bg-hover !important;
+                    box-shadow: $pyper-timeline-item-box-shadow-hover;
                 }
             }
         }

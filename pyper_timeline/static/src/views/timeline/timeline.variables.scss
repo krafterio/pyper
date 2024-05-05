@@ -1,5 +1,26 @@
-$pyper-timeline-bg: $o-gray-100 !default;
-$pyper-timeline-bg-hover: linen !default;
+$pyper-timeline-bg: transparent !default;
+
+$pyper-timeline-time-axis-odd-bg: $o-white !default;
+$pyper-timeline-time-axis-even-bg: lighten($o-gray-50, 1%) !default;
+$pyper-timeline-time-axis-major-border-color: $o-gray-400 !default;
+$pyper-timeline-line-bottom-border-color: $border-color !default;
+
+$pyper-timeline-panel-border-color: $border-color !default;
+$pyper-timeline-panel-top-bg: transparent !default;
+$pyper-timeline-panel-bottom-bg: transparent !default;
+$pyper-timeline-panel-left-bg: transparent !default;
+$pyper-timeline-panel-right-bg: transparent !default;
+$pyper-timeline-panel-center-bg: transparent !default;
+
+$pyper-timeline-weekends-bg: $o-gray-100 !default;
+
+$pyper-timeline-item-color: $o-main-text-color !default;
+$pyper-timeline-item-border-width: 1px !default;
+$pyper-timeline-item-border-color: darken($border-color, 5%) !default;
+$pyper-timeline-item-border-radius: $o-border-radius !default;
+$pyper-timeline-item-bg: $o-view-background-color !default;
+$pyper-timeline-item-bg-hover: $o-view-background-color !default;
+$pyper-timeline-item-box-shadow-hover: 1px 1px 6px -1px rgba(0,0,0,0.3)!default;
 
 $pyper-timeline-item-overflow: hidden !default;
 $pyper-timeline-item-overflow-hover: visible !default;

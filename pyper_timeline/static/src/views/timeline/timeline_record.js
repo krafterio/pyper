@@ -7,7 +7,6 @@ import {fileTypeMagicWordMap, imageCacheKey} from '@web/views/fields/image/image
 import {Widget} from '@web/views/widgets/widget';
 
 
-
 export class TimelineRecord extends Component {
     static template = 'pyper_timeline.TimelineRecord';
 
@@ -20,7 +19,9 @@ export class TimelineRecord extends Component {
         'archInfo',
         'Compiler?',
         'readonly?',
+        'label?',
         'record',
+        'templateName?',
         'templates',
     ];
 
@@ -28,11 +29,16 @@ export class TimelineRecord extends Component {
         return JSON;
     }
 
+    get templateName() {
+        return this.props.templateName || 'itemTemplate';
+    }
+
     get renderingContext() {
         return {
             JSON,
             timeline_image: (...args) => this.getImageSrcFromItemInfo(this.props.record, ...args),
             luxon,
+            label: this.props.label,
             record: this.props.record,
             user_context: this.constructor.env.services.user.context,
             //widget: this.dataState.widget, //TODO

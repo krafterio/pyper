@@ -5,7 +5,7 @@
             role="article"
             t-att-data-id="props.record.data.id"
         >
-            <t t-call="{{ props.templates['itemTemplate'] }}" t-call-context="renderingContext"/>
+            <t t-call="{{ props.templates[templateName] }}" t-call-context="renderingContext"/>
         </div>
     </t>
 </templates>

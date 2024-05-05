@@ -8,15 +8,16 @@ import {Model} from '@web/model/model';
 import {extractFieldsFromArchInfo} from '@web/model/relational_model/utils';
 import {orderByToString} from '@web/search/utils/order_by';
 import {Domain} from '@web/core/domain';
-import {useState} from '@odoo/owl';
+import {useState, reactive} from '@odoo/owl';
 
 const {DateTime} = luxon;
 
 export class TimelineModel extends Model {
-    static services = ['user'];
+    static services = ['user', 'field'];
 
-    setup(params, {user, orm}) {
-        this.user = user;
+    setup(params, services) {
+        this.user = services.user;
+        this.field = services.field;
         this.keepLast = new KeepLast();
 
         const formViewFromConfig = (this.env.config.views || []).find((view) => view[1] === 'form');
@@ -44,11 +45,16 @@ export class TimelineModel extends Model {
             range: null,
             groups: [],
             items: [],
+            loading: false,
         };
     }
 
     get exportedState() {
         return this.meta;
+    }
+
+    get loading() {
+        return this.data.loading;
     }
 
     get archInfo() {
@@ -65,6 +71,10 @@ export class TimelineModel extends Model {
 
     get canUnlink() {
         return this.archInfo.activeActions.delete && this.data.hasUnlinkRight;
+    }
+
+    get groupBy() {
+        return this.meta.groupBy.length > 0 ? this.meta.groupBy : this.archInfo.defaultGroupBy;
     }
 
     get scale() {
@@ -120,6 +130,7 @@ export class TimelineModel extends Model {
     }
 
     async load(params) {
+        this.data.loading = true;
         params = params || {};
         const meta = {};
 
@@ -199,20 +210,35 @@ export class TimelineModel extends Model {
         });
 
         const groupBys = this.meta.groupBy.length > 0 ? this.meta.groupBy : this.archInfo.defaultGroupBy;
+        const groupByField = groupBys.length > 0 ? groupBys[0] : null;
+        const groupByModel = this.meta.archInfo.groupModels[groupByField] || null;
+        const groupByFieldNames = this.meta.archInfo.groupFieldNames[groupByField] || null;
+        let groupFields = {};
         const groups = {};
         const items = [];
         let hasUnassigned = false;
 
+        if (groupByField && groupByModel) {
+            Object.assign(groupFields, await this.field.loadFields(groupByModel) || {});
+        }
+
+        const emptyGroupLabel = _t('Unassigned');
         groups[-1] = {
             id: -1,
-            content: _t('Unassigned'),
+            content: emptyGroupLabel,
+            record: {
+                label: emptyGroupLabel,
+            },
+            record: this.generateRecord(undefined, -1, groupFields, {
+                id: -1,
+                label: emptyGroupLabel,
+            }),
         };
 
         res.forEach((item) => {
             let group = -1;
 
-            if (groupBys.length > 0) {
-                const groupByField = groupBys[0];
+            if (groupByField && groupByModel) {
                 const groupByValue = item[groupByField];
 
                 if (undefined !== groupByValue) {
@@ -231,6 +257,10 @@ export class TimelineModel extends Model {
                             id: groupById,
                             content: groupByContent,
                             order: Object.values(groups).length,
+                            record: this.generateRecord(groupByModel, groupById, groupFields, {
+                                id: groupById,
+                                label: groupByContent,
+                            }),
                         };
                     }
                 }
@@ -261,22 +291,8 @@ export class TimelineModel extends Model {
                 start: item[this.archInfo.fieldDateStart].toJSDate(),
                 end: item[this.archInfo.fieldDateEnd].toJSDate(),
                 type: 'range',
-                record: {
-                    resId: item.id,
-                    resModel: this.meta.resModel,
-                    model: this,
-                    setInvalidField: (fieldName) => {},
-                    isFieldInvalid: (fieldName) => false,
-                    resetFieldValidity: (fieldName) => {},
-                    update: (data) => {},
-                    isNew: false,
-                    isInEdition: false,
-                    isValid: true,
-                    evalContext: {},
-                    evalContextWithVirtualIds: {},
-                    fields: this.meta.fields,
-                    data: item,
-                },
+                content: item.display_name || item.id,
+                record: this.generateRecord(this.meta.resModel, item.id, this.meta.fields, item),
             });
         });
 
@@ -285,8 +301,46 @@ export class TimelineModel extends Model {
             delete groups[-1];
         }
 
+        // Search records of groups
+        const groupIds = Object.keys(groups);
+
+        if (groupByField && groupByModel && groupByFieldNames) {
+            const groupDomain = [['id', 'in', groupIds]];
+            const groupRes = await this.orm.searchRead(groupByModel, groupDomain, groupByFieldNames, {
+                order: 'id',
+                limit: undefined,
+                context: {...this.user.context},
+            });
+
+            groupRes.forEach(group => {
+                if (groups[group.id]) {
+                    groups[group.id].record = this.generateRecord(groupByModel, group.id, groupFields, group);
+                }
+            });
+        }
+
         data.groups = Object.values(groups);
         data.items = items;
+        data.loading = false;
+    }
+
+    generateRecord(resModel, resId, fields, data) {
+        return {
+            resId,
+            resModel,
+            model: this,
+            setInvalidField: (fieldName) => {},
+            isFieldInvalid: (fieldName) => false,
+            resetFieldValidity: (fieldName) => {},
+            update: (updateData) => {},
+            isNew: false,
+            isInEdition: false,
+            isValid: true,
+            evalContext: {},
+            evalContextWithVirtualIds: {},
+            fields,
+            data: reactive(data),
+        };
     }
 
     computeRange() {

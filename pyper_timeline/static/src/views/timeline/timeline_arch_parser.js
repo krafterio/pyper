@@ -9,6 +9,15 @@ import {archParseBoolean, getActiveActions} from '@web/views/utils';
 import {Widget} from '@web/views/widgets/widget';
 import {AVAILABLE_SCALES} from './timeline_controller';
 
+function changeTag(el, newTagName) {
+    const newEl = document.createElement(newTagName);
+    [...el.children].forEach(o => newEl.appendChild(o));
+    [...el.attributes].forEach(o => newEl.attributes.setNamedItem(o.cloneNode()));
+    el.parentNode.replaceChild(newEl, el);
+
+    return newEl;
+}
+
 export class TimelineParseArchError extends Error {}
 
 export class TimelineArchParser {
@@ -31,6 +40,9 @@ export class TimelineArchParser {
         let fieldDateEnd = null;
         let defaultGroupBy = ['id'];
         let defaultOrderBy = null;
+        const groupModels = {};
+        const groupFieldNextIds = {};
+        let groupTemplates = {};
         let itemTemplate = null;
 
         visitXML(arch, (node) => {
@@ -91,35 +103,84 @@ export class TimelineArchParser {
 
                     break;
                 case 'field':
+                case 'group-field':
                     // In timeline, we display many2many fields as tags by default
-                    const widget = node.getAttribute("widget");
+                    const widget = node.getAttribute('widget');
 
-                    if (!widget && models[modelName][node.getAttribute('name')].type === 'many2many') {
+                    // Restore the field tag (group-field is used because view xml convert validates fields of root model)
+                    if (node.tagName === 'group-field') {
+                        node = changeTag(node, 'field');
+                    }
+
+                    if (!widget && fields[node.getAttribute('name')]?.type === 'many2many') {
                         node.setAttribute('widget', 'many2many_tags');
                     }
 
-                    const fieldInfo = Field.parseFieldNode(
-                        node,
-                        models,
-                        modelName,
-                        'timeline',
-                        jsClass
-                    );
+                    const parentGroup = node.closest('[t-name=timeline-group]');
+                    const fieldForGroup = !!parentGroup;
 
-                    if (!node.hasAttribute('force_save')) {
-                        // Force save is true by default on kanban views:
-                        // this allows to write on any field regardless of its modifiers.
-                        fieldInfo.forceSave = true;
+                    if (fieldForGroup) {
+                        // Group Field
+                        const fieldGroupBy = parentGroup.getAttribute('group_by') || 'default';
+                        const groupFieldInfo = {
+                            name: node.getAttribute('name'),
+                            type: undefined,
+                            viewType: 'timeline',
+                            widget: node.getAttribute('widget'),
+                            field: undefined,
+                            context: '{}',
+                            string: undefined,
+                            help: undefined,
+                            onChange: false,
+                            forceSave: false,
+                            options: {},
+                            decorations: {},
+                            attrs: {},
+                            domain: undefined,
+                        }
+                        const name = groupFieldInfo.name;
+
+                        // Init group categories
+                        if (!groupModels[fieldGroupBy]) {
+                            groupModels[fieldGroupBy] = fields[fieldGroupBy]?.relation;
+                        }
+
+                        if (!groupFieldNextIds[fieldGroupBy]) {
+                            groupFieldNextIds[fieldGroupBy] = {};
+                        }
+
+                        // Configure node
+                        if (!(groupFieldInfo.name in groupFieldNextIds[fieldGroupBy])) {
+                            groupFieldNextIds[fieldGroupBy][name] = 0;
+                        }
+
+                        const groupFieldId = `${groupFieldInfo.name}_${groupFieldNextIds[fieldGroupBy][groupFieldInfo.name]++}`;
+                        node.setAttribute('field_id', groupFieldId);
+                    } else {
+                        // Item Field
+                        const fieldInfo = Field.parseFieldNode(
+                            node,
+                            models,
+                            modelName,
+                            'timeline',
+                            jsClass
+                        );
+
+                        if (!node.hasAttribute('force_save')) {
+                            // Force save is true by default on kanban views:
+                            // this allows to write on any field regardless of its modifiers.
+                            fieldInfo.forceSave = true;
+                        }
+
+                        const name = fieldInfo.name;
+                        if (!(fieldInfo.name in fieldNextIds)) {
+                            fieldNextIds[name] = 0;
+                        }
+
+                        const fieldId = `${fieldInfo.name}_${fieldNextIds[fieldInfo.name]++}`;
+                        fieldNodes[fieldId] = fieldInfo;
+                        node.setAttribute('field_id', fieldId);
                     }
-
-                    const name = fieldInfo.name;
-                    if (!(fieldInfo.name in fieldNextIds)) {
-                        fieldNextIds[name] = 0;
-                    }
-
-                    const fieldId = `${fieldInfo.name}_${fieldNextIds[fieldInfo.name]++}`;
-                    fieldNodes[fieldId] = fieldInfo;
-                    node.setAttribute('field_id', fieldId);
 
                     break;
                 case 'widget':
@@ -147,7 +208,25 @@ export class TimelineArchParser {
 
                     break;
                 case 'templates':
-                    itemTemplate = node.querySelector('[t-name=timeline-box]') || null;
+                    // Group templates
+                    const queryGroupTemplates = node.querySelectorAll('[t-name=timeline-group]') || [];
+
+                    if (queryGroupTemplates.length > 0) {
+                        queryGroupTemplates.forEach((gtEl) => {
+                            const groupByName = gtEl.getAttribute('group_by') || 'default';
+
+                            if (groupTemplates[groupByName]) {
+                                throw new TimelineParseArchError(
+                                    `Timeline group for the grouped field "${groupByName}" must be defined only one time`
+                                );
+                            }
+
+                            groupTemplates[groupByName] = gtEl;
+                        });
+                    }
+
+                    // Item template
+                    itemTemplate = node.querySelector('[t-name=timeline-item]') || null;
 
                     if (itemTemplate) {
                         itemTemplate.removeAttribute('t-name');
@@ -179,9 +258,15 @@ export class TimelineArchParser {
             scale = scales.includes('week') ? 'week' : scales[0];
         }
 
+        const groupFieldNames = {};
+
+        Object.keys(groupFieldNextIds).forEach(groupField => {
+            groupFieldNames[groupField] = [...Object.keys(groupFieldNextIds[groupField])]
+        })
+
         return {
             activeActions,
-            fieldNames: Object.keys(fieldNextIds),
+            fieldNames: [...Object.keys(fieldNextIds)],
             fieldNodes,
             widgetNodes,
             formViewId, //TODO
@@ -194,6 +279,9 @@ export class TimelineArchParser {
             fieldDateEnd,
             defaultGroupBy,
             defaultOrderBy,
+            groupModels,
+            groupFieldNames,
+            groupTemplates,
             itemTemplate,
         };
     }

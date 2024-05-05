@@ -63,13 +63,20 @@ export class TimelineRenderer extends Component {
         this.notificationService = useService('notification');
         this.timelineRef = useRef('timeline');
         this.timeline = null;
-        this.rendererItems = new Map();
-        this.toRendererItems = new Map();
+        this.rendererRecords = new Map();
+        this.toRendererRecords = new Map();
 
         this.redraw = debounce(this.redraw, 0, false);
 
-        const {itemTemplate} = this.props.model.archInfo;
+        const {groupTemplates, itemTemplate} = this.props.model.archInfo;
+        const mapGroupTemplates = {};
+
+        Object.keys(groupTemplates).forEach(groupName => {
+            mapGroupTemplates['groupTemplate_' + groupName] = groupTemplates[groupName];
+        });
+
         this.timelineTemplates = useViewCompiler(TimelineCompiler, {
+            ...mapGroupTemplates,
             itemTemplate,
         });
 
@@ -84,7 +91,7 @@ export class TimelineRenderer extends Component {
         });
 
         onWillUnmount(() => {
-            this.resetRendererItems();
+            this.resetRendererRecords();
             this.timeline.off('changed', this.onTimelineChanged.bind(this));
             this.timeline.off('rangechanged', this.onTimelineRangeChanged.bind(this));
             this.timeline.destroy();
@@ -100,7 +107,11 @@ export class TimelineRenderer extends Component {
         }, () => [this.timelineOptions]);
 
         useEffect(() => {
-            this.timeline.setWindow(this.props.model.rangeStart.toJSDate(), this.props.model.rangeEnd.toJSDate(), {animation: false});
+            this.timeline.setWindow(
+                this.props.model.rangeStart.toJSDate(),
+                this.props.model.rangeEnd.toJSDate(),
+                {animation: false},
+            );
         }, () => [this.props.model.rangeStart, this.props.model.rangeEnd]);
 
         useEffect(() => {
@@ -179,7 +190,7 @@ export class TimelineRenderer extends Component {
             groupHeightMode: 'auto', //TODO
             groupOrder: 'sequence', //TODO
             groupOrderSwap: undefined, //TODO
-            groupTemplate: undefined, //TODO
+            groupTemplate: this.renderTemplateGroup.bind(this),
             hiddenDates,
             itemsAlwaysDraggable: {
                 item: false, //TODO
@@ -289,6 +300,35 @@ export class TimelineRenderer extends Component {
         });
     }
 
+    renderTemplateGroup(group, element) {
+        let tplName = undefined;
+
+        if (this.props.model.groupBy.length > 0) {
+            tplName = 'groupTemplate_' + this.props.model.groupBy[0];
+
+            if (!this.timelineTemplates[tplName]) {
+                tplName = undefined;
+            }
+        }
+
+        if (!tplName) {
+            tplName = 'groupTemplate_default';
+
+            if (!this.timelineTemplates[tplName]) {
+                tplName = undefined;
+            }
+        }
+
+        if (!tplName) {
+            return group.content;
+        }
+
+        this.renderTemplateRecord(group, element, tplName, true);
+
+        // Return empty string to avoid to display the id value displayed by default
+        return '';
+    }
+
     renderTemplateItem(item, element) {
         // Render clustered items
         if (item.uiItems) {
@@ -296,7 +336,12 @@ export class TimelineRenderer extends Component {
         }
 
         // Render single item
-        if (!this.rendererItems.has(element)) {
+        const readonly = !this.props.model.canEdit;
+        this.renderTemplateRecord(item, element, 'itemTemplate', readonly);
+    }
+
+    renderTemplateRecord(item, element, templateName, readonly) {
+        if (!this.rendererRecords.has(element)) {
             const rendererItem = {
                 item,
                 mounted: false,
@@ -305,45 +350,47 @@ export class TimelineRenderer extends Component {
                     props: {
                         archInfo: this.props.model.archInfo,
                         Compiler: TimelineCompiler,
-                        readonly: false, //TODO
-                        record: item.record,
+                        readonly,
+                        label: item?.content,
+                        record: item?.record || {},
+                        templateName,
                         templates: this.timelineTemplates,
                     },
                     templates: templates,
                 }),
             };
 
-            this.rendererItems.set(element, rendererItem);
-            this.toRendererItems.set(element, rendererItem);
+            this.rendererRecords.set(element, rendererItem);
+            this.toRendererRecords.set(element, rendererItem);
         }
     }
 
-    resetRendererItems() {
-        this.rendererItems.forEach((rendererItem, element) => {
+    resetRendererRecords() {
+        this.rendererRecords.forEach((rendererItem, element) => {
             if (rendererItem.app && rendererItem.mounted) {
                 rendererItem.app.destroy();
                 element.innerHTML = '';
             }
         });
 
-        this.rendererItems.clear();
-        this.toRendererItems.clear();
+        this.rendererRecords.clear();
+        this.toRendererRecords.clear();
     }
 
-    async renderElements() {
-        const renderedElements = [];
+    async renderRecords() {
+        const renderedRecords = [];
         const parallelPromises = [];
 
-        this.toRendererItems.forEach((rendererItem, element) => {
-            if (!rendererItem.mounted && document.contains(element)) {
-                parallelPromises.push(rendererItem.app.mount(element).then(this.redraw.bind(this)));
-                rendererItem.mounted = true;
-                renderedElements.push(element);
+        this.toRendererRecords.forEach((rendererRecord, element) => {
+            if (!rendererRecord.mounted && document.contains(element)) {
+                parallelPromises.push(rendererRecord.app.mount(element).then(this.redraw.bind(this)));
+                rendererRecord.mounted = true;
+                renderedRecords.push(element);
             }
         });
 
-        renderedElements.forEach((element) => {
-            this.toRendererItems.delete(element);
+        renderedRecords.forEach((element) => {
+            this.toRendererRecords.delete(element);
         });
 
         return Promise.all(parallelPromises);
@@ -360,11 +407,11 @@ export class TimelineRenderer extends Component {
     }
 
     async onTimelineChanged() {
-        return await this.renderElements();
+        return await this.renderRecords();
     }
 
     onItemsChange() {
-        this.resetRendererItems();
+        this.resetRendererRecords();
         this.timeline.setData({
             groups: new vis.DataSet(this.props.model.groups),
             items: new vis.DataSet(this.props.model.items),
