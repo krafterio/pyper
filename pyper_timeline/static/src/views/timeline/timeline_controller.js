@@ -109,6 +109,7 @@ export class TimelineController extends Component {
             isWeekendVisible: browser.localStorage.getItem('calendar.isWeekendVisible') != null
                 ? JSON.parse(browser.localStorage.getItem('calendar.isWeekendVisible'))
                 : true,
+            customIsWeekendVisible: null,
         });
 
         useSetupView({
@@ -199,13 +200,19 @@ export class TimelineController extends Component {
         return getWeekNumber(this.model.rangeStart);
     }
 
+    get rendererIsWeekendVisible() {
+        return this.state.customIsWeekendVisible
+            || this.state.isWeekendVisible
+            || SCALES[this.model.scale]?.force_weekends_visibility;
+    }
+
     /**
      * @returns {any}
      */
     get rendererProps() {
         return {
             model: this.model,
-            isWeekendVisible: this.state.isWeekendVisible || SCALES[this.model.scale]?.force_weekends_visibility,
+            isWeekendVisible: this.rendererIsWeekendVisible,
             setRange: this.setRange.bind(this),
             createRecord: this.createRecord.bind(this),
             editRecord: this.editRecord.bind(this),
@@ -226,6 +233,7 @@ export class TimelineController extends Component {
             return;
         }
 
+        this.state.customIsWeekendVisible = null;
         await this.model.load({scale});
         browser.sessionStorage.setItem('timeline-scale', this.model.scale);
     }
@@ -251,10 +259,14 @@ export class TimelineController extends Component {
                 break;
         }
 
+        this.state.customIsWeekendVisible = null;
         await this.model.load({date});
     }
 
     async setRange(start, end) {
+        this.state.customIsWeekendVisible = this.state.isWeekendVisible
+            || SCALES[this.model.scale]?.force_weekends_visibility;
+
         await this.model.load({
             rangeStart: start,
             rangeEnd: end,
