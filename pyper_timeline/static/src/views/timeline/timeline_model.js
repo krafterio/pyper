@@ -223,7 +223,7 @@ export class TimelineModel extends Model {
         }
 
         const emptyGroupLabel = _t('Unassigned');
-        groups[-1] = {
+        groups[-1] = this.createGroup({
             id: -1,
             content: emptyGroupLabel,
             record: {
@@ -233,7 +233,7 @@ export class TimelineModel extends Model {
                 id: -1,
                 label: emptyGroupLabel,
             }),
-        };
+        });
 
         res.forEach((item) => {
             let group = -1;
@@ -253,7 +253,7 @@ export class TimelineModel extends Model {
                     group = groupById;
 
                     if (!groups[groupById]) {
-                        groups[groupById] = {
+                        groups[groupById] = this.createGroup({
                             id: groupById,
                             content: groupByContent,
                             order: Object.values(groups).length,
@@ -261,7 +261,7 @@ export class TimelineModel extends Model {
                                 id: groupById,
                                 label: groupByContent,
                             }),
-                        };
+                        });
                     }
                 }
             }
@@ -285,7 +285,7 @@ export class TimelineModel extends Model {
                 }
             });
 
-            items.push({
+            items.push(this.createItem({
                 id: item.id,
                 group: group,
                 start: item[this.archInfo.fieldDateStart].toJSDate(),
@@ -293,7 +293,7 @@ export class TimelineModel extends Model {
                 type: 'range',
                 content: item.display_name || item.id,
                 record: this.generateRecord(this.meta.resModel, item.id, this.meta.fields, item),
-            });
+            }));
         });
 
         // Remove unassigned group if it is empty
@@ -315,6 +315,7 @@ export class TimelineModel extends Model {
             groupRes.forEach(group => {
                 if (groups[group.id]) {
                     groups[group.id].record = this.generateRecord(groupByModel, group.id, groupFields, group);
+                    group[group.id] = this.updateRecordGroup(group);
                 }
             });
         }
@@ -322,6 +323,39 @@ export class TimelineModel extends Model {
         data.groups = Object.values(groups);
         data.items = items;
         data.loading = false;
+    }
+
+    /**
+     * Allow to override values of created timeline group object.
+     *
+     * @param {Object} group
+     *
+     * @returns {Object}
+     */
+    createGroup(group) {
+        return group;
+    }
+
+    /**
+     * Allow to override values of updated record of timeline group object.
+     *
+     * @param {Object} group
+     *
+     * @returns {Object}
+     */
+    updateRecordGroup(group) {
+        return group;
+    }
+
+    /**
+     * Allow to override values of created timeline item object.
+     *
+     * @param {Object} item
+     *
+     * @returns {Object}
+     */
+    createItem(item) {
+        return item;
     }
 
     generateRecord(resModel, resId, fields, data) {
