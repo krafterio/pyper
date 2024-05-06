@@ -107,6 +107,35 @@
                 border-radius: $pyper-timeline-item-border-radius;
                 min-width: 100%;
             }
+
+            .vis-delete {
+                right: -32px;
+            }
+
+            .vis-delete-rtl {
+                left: -32px;
+            }
+
+            .vis-delete,
+            .vis-delete-rtl {
+                background-color: $pyper-timeline-delete-bg;
+                border-radius: $pyper-timeline-delete-border-radius;
+                line-height: 26px;
+
+                &:after {
+                    color: $o-danger;
+                }
+
+                &:hover,
+                &:focus,
+                &:active {
+                    background-color: $o-danger;
+
+                    &:after {
+                        color: $o-white;
+                    }
+                }
+            }
         }
     }
 
