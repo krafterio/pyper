@@ -110,7 +110,10 @@ export class TimelineModel extends Model {
 
         if (this.date) {
             const currentWeekOffset = (this.date.weekday - this.meta.firstDayOfWeek + 7) % 7;
-            const weekStart = this.date.minus({days: currentWeekOffset}).startOf('day');
+            const weekStart = this.date.minus({days: currentWeekOffset}).startOf('day').setZone('UTC', {
+                keepLocalTime: true,
+                keepCalendarTime: true,
+            });
 
             // Saturday, Sunday
             if (currentWeekOffset > 0) {
