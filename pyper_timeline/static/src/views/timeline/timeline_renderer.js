@@ -265,16 +265,16 @@ export class TimelineRenderer extends Component {
             moveable: this.props.model.archInfo.moveable,
             multiselect: this.props.model.archInfo.multiselect,
             multiselectPerGroup: this.props.model.archInfo.multiselectPerGroup,
-            onAdd: undefined, //TODO
-            onAddGroup: undefined, //TODO
-            onDropObjectOnItem: undefined, //TODO
-            onInitialDrawComplete: undefined, //TODO
-            onMove: undefined, //TODO
-            onMoveGroup: undefined, //TODO
-            onMoving: undefined, //TODO
-            onRemove: undefined, //TODO
-            onRemoveGroup: undefined, //TODO
-            onUpdate: undefined, //TODO
+            onAdd: this.onTimelineAdd.bind(this),
+            onAddGroup: undefined,
+            onDropObjectOnItem: undefined,
+            onInitialDrawComplete: undefined,
+            onMove: this.onTimelineMove.bind(this),
+            onMoveGroup: undefined,
+            onMoving: this.onTimelineMoving.bind(this),
+            onRemove: this.onTimelineRemove.bind(this),
+            onRemoveGroup: undefined,
+            onUpdate: this.onTimelineUpdate.bind(this),
             order: undefined, // Custom ordering is not suitable for large amounts of items.
             orientation: {
                 axis: this.props.model.archInfo.orientationAxis,
@@ -458,5 +458,35 @@ export class TimelineRenderer extends Component {
             groups: new vis.DataSet(this.props.model.groups),
             items: new vis.DataSet(this.props.model.items),
         });
+    }
+
+    async onTimelineAdd(item, callback) {
+        //TODO Use item in callback to validate action or null to cancel
+        console.log('onTimelineAdd', item);
+        callback(null);
+    }
+
+    async onTimelineMove(item, callback) {
+        //TODO Use item in callback to validate action or null to cancel
+        console.log('onTimelineMove', item);
+        callback(item);
+    }
+
+    async onTimelineMoving(item, callback) {
+        //TODO Use item in callback to validate action or null to cancel
+        console.log('onTimelineMoving', item);
+        callback(item);
+    }
+
+    async onTimelineRemove(item, callback) {
+        //TODO Use item in callback to validate action or null to cancel
+        console.log('onTimelineRemove', item);
+        callback(item);
+    }
+
+    async onTimelineUpdate(item, callback) {
+        //TODO Use item in callback to validate action or null to cancel
+        console.log('onTimelineUpdate', item);
+        callback(item);
     }
 }
