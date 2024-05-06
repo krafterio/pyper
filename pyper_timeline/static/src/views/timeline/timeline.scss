@@ -101,19 +101,26 @@
                 border-radius: $pyper-timeline-item-border-radius;
                 min-width: 100%;
             }
+        }
+    }
 
-            &:hover {
-                cursor: pointer !important;
-                z-index: $pyper-timeline-item-overflow-zindex;
-                background-color: $pyper-timeline-item-bg-hover !important;
-
-                .vis-item-overflow {
-                    overflow: $pyper-timeline-item-overflow-hover;
-                }
-
-                .vis-item-content {
+    .o_timeline_renderer.overflow-visibility {
+        .vis-timeline {
+            .vis-item {
+                &:hover {
+                    cursor: pointer !important;
+                    z-index: $pyper-timeline-item-overflow-zindex;
                     background-color: $pyper-timeline-item-bg-hover !important;
-                    box-shadow: $pyper-timeline-item-box-shadow-hover;
+
+                    .vis-item-overflow {
+                        overflow: $pyper-timeline-item-overflow-hover;
+                    }
+
+                    .vis-item-content {
+                        z-index: 0;
+                        background-color: $pyper-timeline-item-bg-hover !important;
+                        box-shadow: $pyper-timeline-item-box-shadow-hover;
+                    }
                 }
             }
         }

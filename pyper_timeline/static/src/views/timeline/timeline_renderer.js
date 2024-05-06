@@ -45,6 +45,7 @@ export const DEFAULT_XSS_FILTER_OPTIONS = {
         'strong': true,
         'i': true,
         'b': true,
+        'br': true,
         'div': ['class', 'style'],
         'p': ['class', 'style'],
         'span': ['class', 'style'],
@@ -161,6 +162,12 @@ export class TimelineRenderer extends Component {
 
     get settings() {
         return this.pyperSetupService.settings[this.constructor.SETUP_PREFIX];
+    }
+
+    get timelineClasses() {
+        return {
+            'overflow-visibility': this.props.model.archInfo.itemOverflowVisible,
+        }
     }
 
     get visibleTimeRangeStart() {

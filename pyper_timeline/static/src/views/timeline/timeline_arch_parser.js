@@ -48,6 +48,7 @@ export class TimelineArchParser {
         let groupHeightMode = 'auto';
         let itemsAlwaysDraggableItem = false;
         let itemsAlwaysDraggableRange = false;
+        let itemOverflowVisible = false;
         let longSelectPressTime = undefined;
         let marginAxis = 4;
         let marginItemHorizontal = 10;
@@ -171,6 +172,10 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('items_always_draggable_range')) {
                         itemsAlwaysDraggableRange = archParseBoolean(node.getAttribute('items_always_draggable_range'), itemsAlwaysDraggableRange);
+                    }
+
+                    if (node.hasAttribute('item_overflow_visible')) {
+                        itemOverflowVisible = archParseBoolean(node.getAttribute('item_overflow_visible'), itemOverflowVisible);
                     }
 
                     if (node.hasAttribute('long_select_press_time')) {
@@ -535,6 +540,7 @@ export class TimelineArchParser {
             groupHeightMode,
             itemsAlwaysDraggableItem,
             itemsAlwaysDraggableRange,
+            itemOverflowVisible,
             longSelectPressTime,
             marginAxis,
             marginItemHorizontal,

@@ -3,6 +3,7 @@
     <t t-name="pyper_timeline.TimelineRenderer">
         <div
             class="o_timeline_renderer o_renderer"
+            t-att-class="timelineClasses"
             tabindex="-1"
             t-ref="timeline"
         />
