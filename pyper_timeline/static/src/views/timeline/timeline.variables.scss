@@ -16,13 +16,15 @@ $pyper-timeline-panel-center-bg: transparent !default;
 
 $pyper-timeline-weekends-bg: $o-gray-100 !default;
 
+$pyper-timeline-label-padding: 4px !default;
+
 $pyper-timeline-item-color: $o-main-text-color !default;
 $pyper-timeline-item-border-width: 1px !default;
 $pyper-timeline-item-border-color: darken($border-color, 5%) !default;
 $pyper-timeline-item-border-radius: $o-border-radius !default;
 $pyper-timeline-item-bg: $o-view-background-color !default;
 $pyper-timeline-item-bg-hover: $o-view-background-color !default;
-$pyper-timeline-item-box-shadow-hover: 1px 1px 6px -1px rgba(0,0,0,0.3)!default;
+$pyper-timeline-item-box-shadow-hover: 1px 1px 6px -1px rgba(0,0,0,0.3) !default;
 
 $pyper-timeline-item-overflow: hidden !default;
 $pyper-timeline-item-overflow-hover: visible !default;

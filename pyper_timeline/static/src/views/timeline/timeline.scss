@@ -50,6 +50,12 @@
             border-color: $pyper-timeline-line-bottom-border-color;
         }
 
+        .vis-labelset {
+            .vis-label {
+                padding: $pyper-timeline-label-padding;
+            }
+        }
+
         .vis-panel {
             &.vis-top {
                 background: $pyper-timeline-panel-top-bg;
