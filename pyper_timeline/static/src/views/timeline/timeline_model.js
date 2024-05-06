@@ -65,11 +65,11 @@ export class TimelineModel extends Model {
         return this.archInfo.activeActions.create && this.data.hasCreateRight;
     }
 
-    get canWrite() {
+    get canEdit() {
         return this.archInfo.activeActions.edit && this.data.hasWriteRight;
     }
 
-    get canUnlink() {
+    get canDelete() {
         return this.archInfo.activeActions.delete && this.data.hasUnlinkRight;
     }
 

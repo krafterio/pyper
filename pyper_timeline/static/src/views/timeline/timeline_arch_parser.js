@@ -33,8 +33,6 @@ export class TimelineArchParser {
         let scale = sessionScale || null;
         let activeActions = {};
         let formViewId = false;
-        let zoomKey = 'ctrlKey';
-        let zoomable = true;
         let limit = null;
         let fieldDateStart = null;
         let fieldDateEnd = null;
@@ -44,6 +42,58 @@ export class TimelineArchParser {
         const groupFieldNextIds = {};
         let groupTemplates = {};
         let itemTemplate = null;
+        let align = 'auto';
+        let autoResize = true;
+        let clickToUse = false;
+        let groupHeightMode = 'auto';
+        let itemsAlwaysDraggableItem = false;
+        let itemsAlwaysDraggableRange = false;
+        let longSelectPressTime = undefined;
+        let marginAxis = 4;
+        let marginItemHorizontal = 10;
+        let marginItemVertical = 10;
+        let max = undefined;
+        let maxMinorChars = 7;
+        let min = undefined;
+        let moveable = true;
+        let multiselect = false;
+        let multiselectPerGroup = false;
+        let orientationAxis = 'top';
+        let orientationItem = 'top';
+        let preferZoom = false;
+        let rollingModeFollow = false;
+        let rollingModeOffset = 0.5;
+        let rtl = false;
+        let selectable = false;
+        let sequentialSelection = false;
+        let showCurrentTime = true;
+        let showMajorLabels = true;
+        let showMinorLabels = true;
+        let showWeekScale = true;
+        let showTooltips = true;
+        let stack = false;
+        let stackSubgroups = true;
+        let clusterMaxItems = -1;
+        let clusterTitleTemplate = undefined;
+        let clusterShowStipes = false;
+        let clusterFitOnDoubleClick = true;
+        let timeAxisScale = undefined;
+        let timeAxisStep = 1;
+        let type = undefined;
+        let tooltipFollowMouse = false;
+        let tooltipOverflowMethod = 'flip';
+        let tooltipDelay = 500;
+        let xssDisabled = false;
+        let xssFilterOptions = undefined;
+        let width = '100%';
+        let height = '100%';
+        let minHeight = undefined;
+        let maxHeight = undefined;
+        let horizontalScroll = false;
+        let verticalScroll = true;
+        let zoomable = true;
+        let zoomFriction = 40;
+        let zoomKey = 'ctrlKey';
 
         visitXML(arch, (node) => {
             switch (node.tagName) {
@@ -99,6 +149,204 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('default_order')) {
                         defaultOrderBy = stringToOrderBy(node.getAttribute('default_order'));
+                    }
+
+                    align = node.getAttribute('align') || align;
+
+                    if (node.hasAttribute('auto_resize')) {
+                        autoResize = archParseBoolean(node.getAttribute('auto_resize'), autoResize);
+                    }
+
+                    if (node.hasAttribute('click_to_use')) {
+                        clickToUse = archParseBoolean(node.getAttribute('click_to_use'), clickToUse);
+                    }
+
+                    if (node.hasAttribute('group_height_mode')) {
+                        groupHeightMode = archParseBoolean(node.getAttribute('group_height_mode'), groupHeightMode);
+                    }
+
+                    if (node.hasAttribute('items_always_draggable_item')) {
+                        itemsAlwaysDraggableItem = archParseBoolean(node.getAttribute('items_always_draggable_item'), itemsAlwaysDraggableItem);
+                    }
+
+                    if (node.hasAttribute('items_always_draggable_range')) {
+                        itemsAlwaysDraggableRange = archParseBoolean(node.getAttribute('items_always_draggable_range'), itemsAlwaysDraggableRange);
+                    }
+
+                    if (node.hasAttribute('long_select_press_time')) {
+                        longSelectPressTime = parseInt(node.getAttribute('long_select_press_time'), 10);
+                    }
+
+                    if (node.hasAttribute('margin_axis')) {
+                        marginAxis = parseInt(node.getAttribute('margin_axis'), 10);
+                    }
+
+                    if (node.hasAttribute('margin_item_horizontal')) {
+                        marginItemHorizontal = parseInt(node.getAttribute('margin_item_horizontal'), 10);
+                    }
+
+                    if (node.hasAttribute('margin_item_vertical')) {
+                        marginItemVertical = parseInt(node.getAttribute('margin_item_vertical'), 10);
+                    }
+
+                    if (node.hasAttribute('max')) {
+                        max = node.getAttribute('max');
+                    }
+
+                    if (node.hasAttribute('max_minor_chars')) {
+                        maxMinorChars = parseInt(node.getAttribute('max_minor_chars'), 10);
+                    }
+
+                    if (node.hasAttribute('min')) {
+                        min = node.getAttribute('min');
+                    }
+
+                    if (node.hasAttribute('moveable')) {
+                        moveable = archParseBoolean(node.getAttribute('moveable'), moveable);
+                    }
+
+                    if (node.hasAttribute('multiselect')) {
+                        multiselect = archParseBoolean(node.getAttribute('multiselect'), multiselect);
+                    }
+
+                    if (node.hasAttribute('multiselect_per_group')) {
+                        multiselectPerGroup = archParseBoolean(node.getAttribute('multiselect_per_group'), multiselectPerGroup);
+                    }
+
+                    if (node.hasAttribute('orientation_axis')) {
+                        orientationAxis = node.getAttribute('orientation_axis');
+                    }
+
+                    if (node.hasAttribute('orientation_item')) {
+                        orientationItem = node.getAttribute('orientation_item');
+                    }
+
+                    if (node.hasAttribute('prefer_zoom')) {
+                        preferZoom = archParseBoolean(node.getAttribute('prefer_zoom'), preferZoom);
+                    }
+
+                    if (node.hasAttribute('rolling_mode_follow')) {
+                        rollingModeFollow = archParseBoolean(node.getAttribute('rolling_mode_follow'), rollingModeFollow);
+                    }
+
+                    if (node.hasAttribute('rolling_mode_offset')) {
+                        rollingModeOffset = parseFloat(node.getAttribute('rolling_mode_offset'));
+                    }
+
+                    if (node.hasAttribute('rtl')) {
+                        rtl = archParseBoolean(node.getAttribute('rtl'), rtl);
+                    }
+
+                    if (node.hasAttribute('selectable')) {
+                        selectable = archParseBoolean(node.getAttribute('selectable'), selectable);
+                    }
+
+                    if (node.hasAttribute('sequential_selection')) {
+                        sequentialSelection = archParseBoolean(node.getAttribute('sequential_selection'), sequentialSelection);
+                    }
+
+                    if (node.hasAttribute('show_current_time')) {
+                        showCurrentTime = archParseBoolean(node.getAttribute('show_current_time'), showCurrentTime);
+                    }
+
+                    if (node.hasAttribute('show_major_labels')) {
+                        showMajorLabels = archParseBoolean(node.getAttribute('show_major_labels'), showMajorLabels);
+                    }
+
+                    if (node.hasAttribute('show_minor_labels')) {
+                        showMinorLabels = archParseBoolean(node.getAttribute('show_minor_labels'), showMinorLabels);
+                    }
+
+                    if (node.hasAttribute('show_week_scale')) {
+                        showWeekScale = archParseBoolean(node.getAttribute('show_week_scale'), showWeekScale);
+                    }
+
+                    if (node.hasAttribute('show_tooltips')) {
+                        showTooltips = archParseBoolean(node.getAttribute('show_tooltips'), showTooltips);
+                    }
+
+                    if (node.hasAttribute('stack')) {
+                        stack = archParseBoolean(node.getAttribute('stack'), stack);
+                    }
+
+                    if (node.hasAttribute('stack_subgroups')) {
+                        stackSubgroups = archParseBoolean(node.getAttribute('stack_subgroups'), stackSubgroups);
+                    }
+
+                    if (node.hasAttribute('cluster_max_items')) {
+                        clusterMaxItems = parseInt(node.getAttribute('cluster_max_items'), 10);
+                    }
+
+                    if (node.hasAttribute('cluster_title_template')) {
+                        clusterTitleTemplate = node.getAttribute('cluster_title_template');
+                    }
+
+                    if (node.hasAttribute('cluster_show_stipes')) {
+                        clusterShowStipes = archParseBoolean(node.getAttribute('cluster_show_stipes'), clusterShowStipes);
+                    }
+
+                    if (node.hasAttribute('cluster_fit_on_double_click')) {
+                        clusterFitOnDoubleClick = archParseBoolean(node.getAttribute('cluster_fit_on_double_click'), clusterFitOnDoubleClick);
+                    }
+
+                    if (node.hasAttribute('time_axis_scale')) {
+                        timeAxisScale = node.getAttribute('time_axis_scale');
+                    }
+
+                    if (node.hasAttribute('time_axis_step')) {
+                        timeAxisStep = parseInt(node.getAttribute('time_axis_step'), 10);
+                    }
+
+                    if (node.hasAttribute('type')) {
+                        type = node.getAttribute('type');
+                    }
+
+                    if (node.hasAttribute('tooltip_follow_mouse')) {
+                        tooltipFollowMouse = archParseBoolean(node.getAttribute('tooltip_follow_mouse'), tooltipFollowMouse);
+                    }
+
+                    if (node.hasAttribute('tooltip_overflow_method')) {
+                        tooltipOverflowMethod = node.getAttribute('tooltip_overflow_method');
+                    }
+
+                    if (node.hasAttribute('tooltip_delay')) {
+                        tooltipDelay = parseInt(node.getAttribute('tooltip_delay'), 10);
+                    }
+
+                    if (node.hasAttribute('xss_disabled')) {
+                        xssDisabled = archParseBoolean(node.getAttribute('xss_disabled'), xssDisabled);
+                    }
+
+                    if (node.hasAttribute('xss_filter_options')) {
+                        xssFilterOptions = JSON.parse(node.getAttribute('xss_filter_options'));
+                    }
+
+                    if (node.hasAttribute('width')) {
+                        width = node.getAttribute('width');
+                    }
+
+                    if (node.hasAttribute('height')) {
+                        height = node.getAttribute('height');
+                    }
+
+                    if (node.hasAttribute('min_height')) {
+                        minHeight = node.getAttribute('min_height');
+                    }
+
+                    if (node.hasAttribute('max_height')) {
+                        maxHeight = node.getAttribute('max_height');
+                    }
+
+                    if (node.hasAttribute('horizontal_scroll')) {
+                        horizontalScroll = archParseBoolean(node.getAttribute('horizontal_scroll'), horizontalScroll);
+                    }
+
+                    if (node.hasAttribute('vertical_scroll')) {
+                        verticalScroll = archParseBoolean(node.getAttribute('vertical_scroll'), verticalScroll);
+                    }
+
+                    if (node.hasAttribute('zoom_friction')) {
+                        zoomFriction = parseInt(node.getAttribute('zoom_friction'), 10);
                     }
 
                     break;
@@ -272,8 +520,6 @@ export class TimelineArchParser {
             formViewId, //TODO
             scale,
             scales,
-            zoomKey,
-            zoomable,
             limit,
             fieldDateStart,
             fieldDateEnd,
@@ -283,6 +529,58 @@ export class TimelineArchParser {
             groupFieldNames,
             groupTemplates,
             itemTemplate,
+            align,
+            autoResize,
+            clickToUse,
+            groupHeightMode,
+            itemsAlwaysDraggableItem,
+            itemsAlwaysDraggableRange,
+            longSelectPressTime,
+            marginAxis,
+            marginItemHorizontal,
+            marginItemVertical,
+            max,
+            maxMinorChars,
+            min,
+            moveable,
+            multiselect,
+            multiselectPerGroup,
+            orientationAxis,
+            orientationItem,
+            preferZoom,
+            rollingModeFollow,
+            rollingModeOffset,
+            rtl,
+            selectable,
+            sequentialSelection,
+            showCurrentTime,
+            showMajorLabels,
+            showMinorLabels,
+            showWeekScale,
+            showTooltips,
+            stack,
+            stackSubgroups,
+            clusterMaxItems,
+            clusterTitleTemplate,
+            clusterShowStipes,
+            clusterFitOnDoubleClick,
+            timeAxisScale,
+            timeAxisStep,
+            type,
+            tooltipFollowMouse,
+            tooltipOverflowMethod,
+            tooltipDelay,
+            xssDisabled,
+            xssFilterOptions,
+            width,
+            height,
+            minHeight,
+            maxHeight,
+            horizontalScroll,
+            verticalScroll,
+            zoomable,
+            zoomFriction,
+            zoomKey,
         };
     }
 }

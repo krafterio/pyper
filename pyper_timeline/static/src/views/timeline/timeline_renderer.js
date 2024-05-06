@@ -24,6 +24,34 @@ function removeNestedUndefined(obj) {
     return obj;
 }
 
+function deepMerge(obj1, obj2) {
+    const result = {...obj1};
+
+    for (let key in obj2) {
+        if (obj2.hasOwnProperty(key)) {
+            if (obj2[key] instanceof Object && obj1[key] instanceof Object) {
+                result[key] = deepMerge(obj1[key], obj2[key]);
+            } else {
+                result[key] = obj2[key];
+            }
+        }
+    }
+
+    return result;
+}
+
+export const DEFAULT_XSS_FILTER_OPTIONS = {
+    'allowList': {
+        'strong': true,
+        'i': true,
+        'b': true,
+        'div': ['class', 'style'],
+        'p': ['class', 'style'],
+        'span': ['class', 'style'],
+        'img': ['class', 'style', 'src', 'title', 'alt', 'width', 'height'],
+    },
+};
+
 export class TimelineRenderer extends Component {
     static template = 'pyper_timeline.TimelineRenderer';
 
@@ -174,45 +202,54 @@ export class TimelineRenderer extends Component {
         let zoomMin = SCALES[availableScales[0] || 'day']?.zoom || undefined;
         let zoomMax = SCALES[availableScales[availableScales.length - 1] || 'year']?.zoom || undefined;
 
+        // All options with undefined values and so without arch parser values indicates that the options are not
+        // useful for Owl integration. On the other hand and if necessary, it is always possible to use a "js_class"
+        // and override the Timeline options.
         return removeNestedUndefined({
-            align: 'auto', //TODO
-            autoResize: true, //TODO
-            clickToUse: false, //TODO
-            configure: false, //TODO
-            dataAttributes: [], //TODO
-            editable: false,
-            format: undefined, //TODO
+            align: this.props.model.archInfo.align,
+            autoResize: this.props.model.archInfo.autoResize,
+            clickToUse: this.props.model.archInfo.clickToUse,
+            configure: false,
+            dataAttributes: [],
+            editable: {
+                add: this.props.model.canCreate,
+                remove: this.props.model.canDelete,
+                updateGroup: this.props.model.canEdit,
+                updateTime: this.props.model.canEdit,
+                overrideItems: this.props.model.canEdit,
+            },
+            format: undefined,
             groupEditable: {
-                add: false, //TODO
-                remove: false, //TODO
+                add: false,
+                remove: false,
                 order: false,
             },
-            groupHeightMode: 'auto', //TODO
-            groupOrder: 'sequence', //TODO
-            groupOrderSwap: undefined, //TODO
+            groupHeightMode: this.props.model.archInfo.groupHeightMode,
+            groupOrder: undefined,
+            groupOrderSwap: undefined,
             groupTemplate: this.renderTemplateGroup.bind(this),
             hiddenDates,
             itemsAlwaysDraggable: {
-                item: false, //TODO
-                range: false, //TODO
+                item: this.props.model.archInfo.itemsAlwaysDraggableItem,
+                range: this.props.model.archInfo.itemsAlwaysDraggableRange,
             },
-            locale: undefined, //TODO
-            locales: undefined, //TODO
-            longSelectPressTime: 251, //TODO
+            locale: undefined,
+            locales: undefined,
+            longSelectPressTime: this.props.model.archInfo.longSelectPressTime,
             moment: vis.moment,
             margin: {
-                axis: 20, //TODO
+                axis: this.props.model.archInfo.marginAxis,
                 item: {
-                    horizontal: 10, //TODO
-                    vertical: 10, //TODO
+                    horizontal: this.props.model.archInfo.marginItemHorizontal,
+                    vertical: this.props.model.archInfo.marginItemVertical,
                 },
             },
-            max: undefined, //TODO
-            maxMinorChars: 7, //TODO
-            min: undefined, //TODO
-            moveable: true, //TODO
-            multiselect: false, //TODO
-            multiselectPerGroup: false, //TODO
+            max: this.props.model.archInfo.max,
+            maxMinorChars: this.props.model.archInfo.maxMinorChars,
+            min: this.props.model.archInfo.min,
+            moveable: this.props.model.archInfo.moveable,
+            multiselect: this.props.model.archInfo.multiselect,
+            multiselectPerGroup: this.props.model.archInfo.multiselectPerGroup,
             onAdd: undefined, //TODO
             onAddGroup: undefined, //TODO
             onDropObjectOnItem: undefined, //TODO
@@ -225,73 +262,63 @@ export class TimelineRenderer extends Component {
             onUpdate: undefined, //TODO
             order: undefined, // Custom ordering is not suitable for large amounts of items.
             orientation: {
-                axis: 'top', //TODO
-                item: 'top', //TODO
+                axis: this.props.model.archInfo.orientationAxis,
+                item: this.props.model.archInfo.orientationItem,
             },
-            preferZoom: false, //TODO
+            preferZoom: this.props.model.archInfo.preferZoom,
             rollingMode: {
-                follow: false, //TODO
-                offset: 0.5, //TODO
+                follow: this.props.model.archInfo.rollingModeFollow,
+                offset: this.props.model.archInfo.rollingModeOffset,
             },
-            rtl: false, //TODO
-            selectable: false, //TODO
-            sequentialSelection: false, //TODO
-            showCurrentTime: true, //TODO
-            showMajorLabels: true, //TODO
-            showMinorLabels: true, //TODO
-            showWeekScale: true, //TODO
-            showTooltips: true, //TODO
-            stack: false, //TODO
-            stackSubgroups: true, //TODO
+            rtl: this.props.model.archInfo.rtl,
+            selectable: this.props.model.archInfo.selectable,
+            sequentialSelection: this.props.model.archInfo.sequentialSelection,
+            showCurrentTime: this.props.model.archInfo.showCurrentTime,
+            showMajorLabels: this.props.model.archInfo.showMajorLabels,
+            showMinorLabels: this.props.model.archInfo.showMinorLabels,
+            showWeekScale: this.props.model.archInfo.showWeekScale,
+            showTooltips: this.props.model.archInfo.showTooltips,
+            stack: this.props.model.archInfo.stack,
+            stackSubgroups: this.props.model.archInfo.stackSubgroups,
             cluster: {
-                maxItems: -1, //TODO
-                titleTemplate: undefined, //TODO
-                clusterCriteria: (firstItem, secondItem) => {
+                maxItems: this.props.model.archInfo.clusterMaxItems,
+                titleTemplate: this.props.model.archInfo.clusterTitleTemplate,
+                clusterCriteria: (/* firstItem, secondItem */) => {
                     return SCALES[this.props.model.scale]?.clustering || false;
-                }, //TODO allow to use custom clusterCriteria (return undefined to use default value)
-                showStipes: false, //TODO
-                fitOnDoubleClick: true, //TODO
+                },
+                showStipes: this.props.model.archInfo.clusterShowStipes,
+                fitOnDoubleClick: this.props.model.archInfo.clusterFitOnDoubleClick,
             },
-            snap: undefined, //TODO
+            snap: undefined,
             template: this.renderTemplateItem.bind(this),
-            loadingScreenTemplate: undefined,//TODO
-            visibleFrameTemplate: undefined, //TODO
+            loadingScreenTemplate: undefined,
+            visibleFrameTemplate: undefined,
             timeAxis: {
-                scale: undefined, //TODO
-                step: 1, //TODO
+                scale: this.props.model.archInfo.timeAxisScale,
+                step: this.props.model.archInfo.timeAxisStep,
             },
-            type: undefined, //TODO
+            type: this.props.model.archInfo.type,
             tooltip: {
-                followMouse: false, //TODO
-                overflowMethod: 'flip', //TODO
-                delay: 500, //TODO
-                template: undefined, //TODO
+                followMouse: this.props.model.archInfo.tooltipFollowMouse,
+                overflowMethod: this.props.model.archInfo.tooltipOverflowMethod,
+                delay: this.props.model.archInfo.tooltipDelay,
+                template: undefined,
             },
             tooltipOnItemUpdateTime: {
-                template: undefined, //TODO
+                template: undefined,
             },
             xss: {
-                disabled: false, //TODO
-                filterOptions: { //TODO merge
-                    'allowList': {
-                        'strong': true,
-                        'i': true,
-                        'b': true,
-                        'div': ['class', 'style'],
-                        'p': ['class', 'style'],
-                        'span': ['class', 'style'],
-                        'img': ['class', 'style', 'src', 'title', 'alt', 'width', 'height'],
-                    },
-                },
+                disabled: this.props.model.archInfo.xssDisabled,
+                filterOptions: deepMerge(DEFAULT_XSS_FILTER_OPTIONS, this.props.model.archInfo.xssFilterOptions || {}),
             },
-            width: '100%', //TODO
-            height: '100%', //TODO
-            minHeight: undefined, //TODO
-            maxHeight: undefined, //TODO
-            horizontalScroll: false, //TODO
-            verticalScroll: true, //TODO
+            width: this.props.model.archInfo.width,
+            height: this.props.model.archInfo.height,
+            minHeight: this.props.model.archInfo.minHeight,
+            maxHeight: this.props.model.archInfo.maxHeight,
+            horizontalScroll: this.props.model.archInfo.horizontalScroll,
+            verticalScroll: this.props.model.archInfo.verticalScroll,
             zoomable: this.props.model.archInfo.zoomable,
-            zoomFriction: 40, //TODO
+            zoomFriction: this.props.model.archInfo.zoomFriction,
             zoomKey: this.props.model.archInfo.zoomKey,
             zoomMin,
             zoomMax,

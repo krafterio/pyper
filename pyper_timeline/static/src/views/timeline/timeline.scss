@@ -64,6 +64,8 @@
             &.vis-left {
                 background: $pyper-timeline-panel-left-bg;
                 border-color: $pyper-timeline-panel-border-color;
+                min-width: $pyper-timeline-panel-left-min-width;
+                max-width: $pyper-timeline-panel-left-max-width;
             }
 
             &.vis-right {
