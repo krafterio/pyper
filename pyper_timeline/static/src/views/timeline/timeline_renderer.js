@@ -171,6 +171,14 @@ export class TimelineRenderer extends Component {
         return formatFloatTime(this.settings.visibleTimeRangeEnd, {displaySeconds: true}) || undefined;
     }
 
+    get timelineSelectable() {
+        return this.props.model.archInfo.selectable
+            || this.props.model.canCreate
+            || this.props.model.canEdit
+            || this.props.model.canRemove
+        ;
+    }
+
     get timelineOptions() {
         const hiddenDates = [];
 
@@ -271,7 +279,7 @@ export class TimelineRenderer extends Component {
                 offset: this.props.model.archInfo.rollingModeOffset,
             },
             rtl: this.props.model.archInfo.rtl,
-            selectable: this.props.model.archInfo.selectable,
+            selectable: this.timelineSelectable,
             sequentialSelection: this.props.model.archInfo.sequentialSelection,
             showCurrentTime: this.props.model.archInfo.showCurrentTime,
             showMajorLabels: this.props.model.archInfo.showMajorLabels,

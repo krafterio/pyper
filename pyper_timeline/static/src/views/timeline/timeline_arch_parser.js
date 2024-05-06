@@ -64,7 +64,7 @@ export class TimelineArchParser {
         let rollingModeFollow = false;
         let rollingModeOffset = 0.5;
         let rtl = false;
-        let selectable = false;
+        let selectable = undefined;
         let sequentialSelection = false;
         let showCurrentTime = true;
         let showMajorLabels = true;
