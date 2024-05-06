@@ -1,6 +1,16 @@
 /** @odoo-module **/
 
-import {App, Component, onMounted, onWillStart, onWillUnmount, onWillDestroy, useEffect, useRef} from '@odoo/owl';
+import {
+    App,
+    Component,
+    onMounted,
+    onWillStart,
+    onWillUnmount,
+    onWillDestroy,
+    useEffect,
+    useRef,
+    useState,
+} from '@odoo/owl';
 import {templates} from '@web/core/assets';
 import {useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
@@ -106,6 +116,9 @@ export class TimelineRenderer extends Component {
         this.timeline = null;
         this.rendererRecords = new Map();
         this.toRendererRecords = new Map();
+        this.state = useState({
+            loading: true,
+        });
 
         this.redraw = debounce(this.redraw, 0, false);
 
@@ -128,12 +141,14 @@ export class TimelineRenderer extends Component {
         onMounted(() => {
             this.timeline = new vis.Timeline(this.timelineRef.el, [], [], this.timelineOptions);
             this.timeline.on('changed', this.onTimelineChanged.bind(this));
+            this.timeline.on('rangechange', this.onTimelineRangeChange.bind(this));
             this.timeline.on('rangechanged', this.onTimelineRangeChanged.bind(this));
         });
 
         onWillUnmount(() => {
             this.resetRendererRecords();
             this.timeline.off('changed', this.onTimelineChanged.bind(this));
+            this.timeline.off('rangechange', this.onTimelineRangeChange.bind(this));
             this.timeline.off('rangechanged', this.onTimelineRangeChanged.bind(this));
             this.timeline.destroy();
             this.timeline = null;
@@ -158,6 +173,12 @@ export class TimelineRenderer extends Component {
         useEffect(() => {
             this.onItemsChange();
         }, () => [this.props.model.groups, this.props.model.items]);
+
+        useEffect(() => {
+            if (this.props.model.loading) {
+                this.state.loading = true;
+            }
+        }, () => [this.props.model.loading]);
     }
 
     get settings() {
@@ -166,6 +187,7 @@ export class TimelineRenderer extends Component {
 
     get timelineClasses() {
         return {
+            'timeline-loading': this.state.loading,
             'overflow-visibility': this.props.model.archInfo.itemOverflowVisible,
         }
     }
@@ -440,6 +462,11 @@ export class TimelineRenderer extends Component {
 
     redraw() {
         this.timeline?.redraw();
+        this.state.loading = false;
+    }
+
+    async onTimelineRangeChange(range) {
+        this.state.loading = true;
     }
 
     async onTimelineRangeChanged(range) {
