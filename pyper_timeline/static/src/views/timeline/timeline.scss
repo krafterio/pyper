@@ -89,6 +89,12 @@
                 border-radius: $pyper-timeline-item-border-radius;
             }
 
+            &.vis-selected {
+                border-color: $pyper-timeline-item-selected-border-color;
+                background-color: $pyper-timeline-item-selected-bg;
+                outline: $pyper-timeline-item-selected-outline-width solid $pyper-timeline-item-selected-border-color;
+            }
+
             .vis-item-overflow {
                 overflow: $pyper-timeline-item-overflow;
             }

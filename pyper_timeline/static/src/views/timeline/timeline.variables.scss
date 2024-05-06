@@ -28,3 +28,7 @@ $pyper-timeline-item-overflow: hidden !default;
 $pyper-timeline-item-overflow-hover: visible !default;
 $pyper-timeline-item-overflow-zindex: 10 !default;
 $pyper-timeline-item-content-padding: 0 3px !default;
+
+$pyper-timeline-item-selected-border-color: $o-gray-500 !default;
+$pyper-timeline-item-selected-bg: $pyper-timeline-item-bg !default;
+$pyper-timeline-item-selected-outline-width: 1px !default;
