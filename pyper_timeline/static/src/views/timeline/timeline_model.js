@@ -12,6 +12,8 @@ import {useState, reactive} from '@odoo/owl';
 
 const {DateTime} = luxon;
 
+export const UNASSIGNED_ID = -1;
+
 export class TimelineModel extends Model {
     static services = ['user', 'field'];
 
@@ -223,20 +225,20 @@ export class TimelineModel extends Model {
         }
 
         const emptyGroupLabel = _t('Unassigned');
-        groups[-1] = this.createGroup({
-            id: -1,
+        groups[UNASSIGNED_ID] = this.createGroup({
+            id: UNASSIGNED_ID,
             content: emptyGroupLabel,
             record: {
                 label: emptyGroupLabel,
             },
-            record: this.generateRecord(undefined, -1, groupFields, {
-                id: -1,
+            record: this.generateRecord(undefined, UNASSIGNED_ID, groupFields, {
+                id: UNASSIGNED_ID,
                 label: emptyGroupLabel,
             }),
         });
 
         res.forEach((item) => {
-            let group = -1;
+            let group = UNASSIGNED_ID;
 
             if (groupByField && groupByModel) {
                 const groupByValue = item[groupByField];
@@ -248,6 +250,10 @@ export class TimelineModel extends Model {
                     if (Array.isArray(groupByValue)) {
                         groupById = groupByValue[0];
                         groupByContent = groupByValue[1] || groupById;
+                    }
+
+                    if (false === groupById) {
+                        return;
                     }
 
                     group = groupById;
@@ -266,7 +272,7 @@ export class TimelineModel extends Model {
                 }
             }
 
-            if (group === -1) {
+            if (group === UNASSIGNED_ID) {
                 hasUnassigned = true;
             }
 
@@ -298,11 +304,11 @@ export class TimelineModel extends Model {
 
         // Remove unassigned group if it is empty
         if (!hasUnassigned) {
-            delete groups[-1];
+            delete groups[UNASSIGNED_ID];
         }
 
         // Search records of groups
-        const groupIds = Object.keys(groups);
+        const groupIds = Object.keys(groups).map(g => parseInt(g, 10));
 
         if (groupByField && groupByModel && groupByFieldNames) {
             const groupDomain = [['id', 'in', groupIds]];
