@@ -12,6 +12,18 @@ import {AVAILABLE_SCALES, SCALES} from './timeline_controller';
 
 const {DateTime} = luxon;
 
+function removeNestedUndefined(obj) {
+    for (const key in obj) {
+        if (obj[key] === undefined) {
+            delete obj[key];
+        } else if (typeof obj[key] === 'object') {
+            removeNestedUndefined(obj[key]);
+        }
+    }
+
+    return obj;
+}
+
 export class TimelineRenderer extends Component {
     static template = 'pyper_timeline.TimelineRenderer';
 
@@ -161,18 +173,6 @@ export class TimelineRenderer extends Component {
         const availableScales = AVAILABLE_SCALES.filter(s => this.props.model.archInfo.scales.includes(s));
         let zoomMin = SCALES[availableScales[0] || 'day']?.zoom || undefined;
         let zoomMax = SCALES[availableScales[availableScales.length - 1] || 'year']?.zoom || undefined;
-
-        function removeNestedUndefined(obj) {
-            for (const key in obj) {
-                if (obj[key] === undefined) {
-                    delete obj[key];
-                } else if (typeof obj[key] === 'object') {
-                    removeNestedUndefined(obj[key]);
-                }
-            }
-
-            return obj;
-        }
 
         return removeNestedUndefined({
             align: 'auto', //TODO

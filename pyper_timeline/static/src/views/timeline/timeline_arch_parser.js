@@ -9,7 +9,7 @@ import {archParseBoolean, getActiveActions} from '@web/views/utils';
 import {Widget} from '@web/views/widgets/widget';
 import {AVAILABLE_SCALES} from './timeline_controller';
 
-function changeTag(el, newTagName) {
+function replaceTag(el, newTagName) {
     const newEl = document.createElement(newTagName);
     [...el.children].forEach(o => newEl.appendChild(o));
     [...el.attributes].forEach(o => newEl.attributes.setNamedItem(o.cloneNode()));
@@ -109,7 +109,7 @@ export class TimelineArchParser {
 
                     // Restore the field tag (group-field is used because view xml convert validates fields of root model)
                     if (node.tagName === 'group-field') {
-                        node = changeTag(node, 'field');
+                        node = replaceTag(node, 'field');
                     }
 
                     if (!widget && fields[node.getAttribute('name')]?.type === 'many2many') {
