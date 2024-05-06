@@ -196,16 +196,21 @@ export class TimelineModel extends Model {
 
         data.range = this.computeRange();
 
-        const domainRange = Domain.or([
-            Domain.and([
-                [[this.archInfo.fieldDateStart, '>=', serializeDateTime(data.range.start)]],
-                [[this.archInfo.fieldDateStart, '<=', serializeDateTime(data.range.end)]],
-            ]),
-            Domain.and([
-                [[this.archInfo.fieldDateEnd, '>=', serializeDateTime(data.range.start)]],
-                [[this.archInfo.fieldDateEnd, '<=', serializeDateTime(data.range.end)]],
-            ]),
+        let domainRange = Domain.and([
+            [[this.archInfo.fieldDateStart, '>=', serializeDateTime(data.range.start)]],
+            [[this.archInfo.fieldDateStart, '<=', serializeDateTime(data.range.end)]],
         ]);
+
+        if (this.archInfo.fieldDateEnd) {
+            domainRange = Domain.or([
+                domainRange,
+                Domain.and([
+                    [[this.archInfo.fieldDateEnd, '>=', serializeDateTime(data.range.start)]],
+                    [[this.archInfo.fieldDateEnd, '<=', serializeDateTime(data.range.end)]],
+                ]),
+            ]);
+        }
+
         const domain = Domain.and([this.meta.domain, domainRange]).toList(this.meta.context);
 
         const res = await this.orm.searchRead(this.meta.resModel, domain, this.archInfo.fieldNames, {
@@ -298,8 +303,8 @@ export class TimelineModel extends Model {
                 id: item.id,
                 group: group,
                 start: item[this.archInfo.fieldDateStart].toJSDate(),
-                end: item[this.archInfo.fieldDateEnd].toJSDate(),
-                type: 'range',
+                end: item[this.archInfo.fieldDateEnd]?.toJSDate(),
+                type: this.archInfo.fieldDateEnd ? this.archInfo.itemRangeType : this.archInfo.itemType,
                 content: item.display_name || item.id,
                 record: this.generateRecord(this.meta.resModel, item.id, this.meta.fields, item),
             }));

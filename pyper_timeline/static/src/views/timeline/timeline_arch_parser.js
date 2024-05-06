@@ -42,6 +42,8 @@ export class TimelineArchParser {
         const groupFieldNextIds = {};
         let groupTemplates = {};
         let itemTemplate = null;
+        let itemPointType = 'box';
+        let itemRangeType = 'range';
         let align = 'auto';
         let autoResize = true;
         let clickToUse = false;
@@ -150,6 +152,14 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('default_order')) {
                         defaultOrderBy = stringToOrderBy(node.getAttribute('default_order'));
+                    }
+
+                    if (node.hasAttribute('item_point_type')) {
+                        itemPointType = node.getAttribute('item_point_type');
+                    }
+
+                    if (node.hasAttribute('item_range_type')) {
+                        itemRangeType = node.getAttribute('item_range_type');
                     }
 
                     align = node.getAttribute('align') || align;
@@ -534,6 +544,8 @@ export class TimelineArchParser {
             groupFieldNames,
             groupTemplates,
             itemTemplate,
+            itemPointType,
+            itemRangeType,
             align,
             autoResize,
             clickToUse,
