@@ -52,7 +52,9 @@
 
         .vis-labelset {
             .vis-label {
-                padding: $pyper-timeline-label-padding;
+                .vis-inner {
+                    padding: $pyper-timeline-label-padding;
+                }
             }
         }
 
