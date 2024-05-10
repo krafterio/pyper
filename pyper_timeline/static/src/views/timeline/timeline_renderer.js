@@ -482,8 +482,8 @@ export class TimelineRenderer extends Component {
     onItemsChange() {
         this.resetRendererRecords();
         this.timeline.setData({
-            groups: new vis.DataSet(this.props.model.groups),
-            items: new vis.DataSet(this.props.model.items),
+            groups: this.props.model.groups,
+            items: this.props.model.items,
         });
     }
 
