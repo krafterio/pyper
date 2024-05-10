@@ -124,14 +124,19 @@ export class TimelineRenderer extends Component {
 
         const {groupTemplates, itemTemplate} = this.props.model.archInfo;
         const mapGroupTemplates = {};
+        const templates = {};
 
         Object.keys(groupTemplates).forEach(groupName => {
             mapGroupTemplates['groupTemplate_' + groupName] = groupTemplates[groupName];
         });
 
+        if (itemTemplate) {
+            templates['itemTemplate'] = itemTemplate;
+        }
+
         this.timelineTemplates = useViewCompiler(TimelineCompiler, {
             ...mapGroupTemplates,
-            itemTemplate,
+            ...templates,
         });
 
         onWillStart(async () => {
@@ -394,8 +399,8 @@ export class TimelineRenderer extends Component {
     }
 
     renderTemplateItem(item, element) {
-        // Render clustered items
-        if (item.uiItems) {
+        // Render clustered items or single item without template
+        if (item.uiItems || !this.timelineTemplates['itemTemplate']) {
             return item.content;
         }
 
