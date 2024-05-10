@@ -42,6 +42,7 @@ export class TimelineArchParser {
         const groupFieldNextIds = {};
         let groupTemplates = {};
         let itemTemplate = null;
+        let tooltipTemplate = undefined;
         let itemPointType = 'box';
         let itemRangeType = 'range';
         let align = 'auto';
@@ -495,6 +496,13 @@ export class TimelineArchParser {
                         itemTemplate.removeAttribute('t-name');
                     }
 
+                    // Tooltip template
+                    tooltipTemplate = node.querySelector('[t-name=timeline-tooltip]') || null;
+
+                    if (tooltipTemplate) {
+                        tooltipTemplate.removeAttribute('t-name');
+                    }
+
                     break;
             }
         });
@@ -544,6 +552,7 @@ export class TimelineArchParser {
             groupFieldNames,
             groupTemplates,
             itemTemplate,
+            tooltipTemplate,
             itemPointType,
             itemRangeType,
             align,

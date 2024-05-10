@@ -14,6 +14,7 @@ import {
 import {templates} from '@web/core/assets';
 import {useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
+import {renderToElement} from '@web/core/utils/render';
 import {formatFloatTime} from '@web/views/fields/formatters';
 import {useViewCompiler} from '@web/views/view_compiler';
 import {TimelineCompiler} from './timeline_compiler';
@@ -122,7 +123,7 @@ export class TimelineRenderer extends Component {
 
         this.redraw = debounce(this.redraw, 0, false);
 
-        const {groupTemplates, itemTemplate} = this.props.model.archInfo;
+        const {groupTemplates, itemTemplate, tooltipTemplate} = this.props.model.archInfo;
         const mapGroupTemplates = {};
         const templates = {};
 
@@ -132,6 +133,10 @@ export class TimelineRenderer extends Component {
 
         if (itemTemplate) {
             templates['itemTemplate'] = itemTemplate;
+        }
+
+        if (tooltipTemplate) {
+            templates['tooltipTemplate'] = tooltipTemplate;
         }
 
         this.timelineTemplates = useViewCompiler(TimelineCompiler, {
@@ -344,7 +349,7 @@ export class TimelineRenderer extends Component {
                 followMouse: this.props.model.archInfo.tooltipFollowMouse,
                 overflowMethod: this.props.model.archInfo.tooltipOverflowMethod,
                 delay: this.props.model.archInfo.tooltipDelay,
-                template: undefined,
+                template: this.renderTemplateTooltip.bind(this),
             },
             tooltipOnItemUpdateTime: {
                 template: undefined,
@@ -367,6 +372,14 @@ export class TimelineRenderer extends Component {
             start: undefined,
             end: undefined,
         });
+    }
+
+    renderTemplateTooltip(item, updatedData) {
+        if (this.timelineTemplates['tooltipTemplate']) {
+            return renderToElement(this.timelineTemplates['tooltipTemplate'], {
+                ...updatedData,
+            });
+        }
     }
 
     renderTemplateGroup(group, element) {
