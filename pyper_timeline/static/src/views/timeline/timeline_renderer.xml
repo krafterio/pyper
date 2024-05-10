@@ -8,4 +8,16 @@
             t-ref="timeline"
         />
     </t>
+
+    <t t-name="pyper_timeline.TimelineRenderer.TooltipUpdate">
+        <div t-if="luxonStart">
+            <strong>Start:</strong>
+            <span class="ms-2" t-out="formatDateTime(luxonStart)"/>
+        </div>
+
+        <div t-if="luxonEnd">
+            <strong>End:</strong>
+            <span class="ms-2" t-out="formatDateTime(luxonEnd)"/>
+        </div>
+    </t>
 </templates>

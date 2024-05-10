@@ -43,6 +43,7 @@ export class TimelineArchParser {
         let groupTemplates = {};
         let itemTemplate = null;
         let tooltipTemplate = undefined;
+        let tooltipUpdateTemplate = undefined;
         let itemPointType = 'box';
         let itemRangeType = 'range';
         let align = 'auto';
@@ -87,6 +88,7 @@ export class TimelineArchParser {
         let tooltipFollowMouse = false;
         let tooltipOverflowMethod = 'flip';
         let tooltipDelay = 500;
+        let tooltipOnItemUpdateTime = false;
         let xssDisabled = false;
         let xssFilterOptions = undefined;
         let width = '100%';
@@ -329,6 +331,10 @@ export class TimelineArchParser {
                         tooltipDelay = parseInt(node.getAttribute('tooltip_delay'), 10);
                     }
 
+                    if (node.hasAttribute('tooltip_on_item_update_time')) {
+                        tooltipOnItemUpdateTime = archParseBoolean(node.getAttribute('tooltip_on_item_update_time'), tooltipOnItemUpdateTime);
+                    }
+
                     if (node.hasAttribute('xss_disabled')) {
                         xssDisabled = archParseBoolean(node.getAttribute('xss_disabled'), xssDisabled);
                     }
@@ -503,6 +509,13 @@ export class TimelineArchParser {
                         tooltipTemplate.removeAttribute('t-name');
                     }
 
+                    // Tooltip update template
+                    tooltipUpdateTemplate = node.querySelector('[t-name=timeline-tooltip-update]') || null;
+
+                    if (tooltipUpdateTemplate) {
+                        tooltipUpdateTemplate.removeAttribute('t-name');
+                    }
+
                     break;
             }
         });
@@ -553,6 +566,7 @@ export class TimelineArchParser {
             groupTemplates,
             itemTemplate,
             tooltipTemplate,
+            tooltipUpdateTemplate,
             itemPointType,
             itemRangeType,
             align,
@@ -597,6 +611,7 @@ export class TimelineArchParser {
             tooltipFollowMouse,
             tooltipOverflowMethod,
             tooltipDelay,
+            tooltipOnItemUpdateTime,
             xssDisabled,
             xssFilterOptions,
             width,

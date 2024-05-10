@@ -12,9 +12,10 @@ import {
     useState,
 } from '@odoo/owl';
 import {templates} from '@web/core/assets';
+import {formatDateTime} from '@web/core/l10n/dates';
 import {useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
-import {renderToElement} from '@web/core/utils/render';
+import {renderToElement, renderToString} from '@web/core/utils/render';
 import {formatFloatTime} from '@web/views/fields/formatters';
 import {useViewCompiler} from '@web/views/view_compiler';
 import {TimelineCompiler} from './timeline_compiler';
@@ -123,7 +124,7 @@ export class TimelineRenderer extends Component {
 
         this.redraw = debounce(this.redraw, 0, false);
 
-        const {groupTemplates, itemTemplate, tooltipTemplate} = this.props.model.archInfo;
+        const {groupTemplates, itemTemplate, tooltipTemplate, tooltipUpdateTemplate} = this.props.model.archInfo;
         const templates = {};
 
         Object.keys(groupTemplates).forEach(groupName => {
@@ -136,6 +137,10 @@ export class TimelineRenderer extends Component {
 
         if (tooltipTemplate) {
             templates['tooltipTemplate'] = tooltipTemplate;
+        }
+
+        if (tooltipUpdateTemplate) {
+            templates['tooltipUpdateTemplate'] = tooltipUpdateTemplate;
         }
 
         this.timelineTemplates = useViewCompiler(TimelineCompiler, templates);
@@ -347,8 +352,8 @@ export class TimelineRenderer extends Component {
                 delay: this.props.model.archInfo.tooltipDelay,
                 template: this.renderTemplateTooltip.bind(this),
             },
-            tooltipOnItemUpdateTime: {
-                template: undefined,
+            tooltipOnItemUpdateTime: !this.props.model.archInfo.tooltipOnItemUpdateTime ? false : {
+                template: this.renderTemplateTooltipOnItemUpdateTime.bind(this),
             },
             xss: {
                 disabled: this.props.model.archInfo.xssDisabled,
@@ -376,6 +381,19 @@ export class TimelineRenderer extends Component {
                 ...updatedData,
             });
         }
+    }
+
+    renderTemplateTooltipOnItemUpdateTime(item) {
+        const template = this.timelineTemplates['tooltipUpdateTemplate']
+            ? this.timelineTemplates['tooltipUpdateTemplate']
+            : 'pyper_timeline.TimelineRenderer.TooltipUpdate';
+
+        return renderToString(template, {
+            ...item,
+            formatDateTime,
+            luxonStart: DateTime.fromJSDate(item.start),
+            luxonEnd: item.end ? DateTime.fromJSDate(item.end) : undefined,
+        });
     }
 
     renderTemplateGroup(group, element) {
