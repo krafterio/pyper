@@ -124,11 +124,10 @@ export class TimelineRenderer extends Component {
         this.redraw = debounce(this.redraw, 0, false);
 
         const {groupTemplates, itemTemplate, tooltipTemplate} = this.props.model.archInfo;
-        const mapGroupTemplates = {};
         const templates = {};
 
         Object.keys(groupTemplates).forEach(groupName => {
-            mapGroupTemplates['groupTemplate_' + groupName] = groupTemplates[groupName];
+            templates['groupTemplate_' + groupName] = groupTemplates[groupName];
         });
 
         if (itemTemplate) {
@@ -139,10 +138,7 @@ export class TimelineRenderer extends Component {
             templates['tooltipTemplate'] = tooltipTemplate;
         }
 
-        this.timelineTemplates = useViewCompiler(TimelineCompiler, {
-            ...mapGroupTemplates,
-            ...templates,
-        });
+        this.timelineTemplates = useViewCompiler(TimelineCompiler, templates);
 
         onWillStart(async () => {
             await this.pyperSetupService.register(this.constructor.SETUP_PREFIX, this.constructor.defaultSettings);
