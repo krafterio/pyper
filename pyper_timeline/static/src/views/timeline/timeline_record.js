@@ -41,7 +41,6 @@ export class TimelineRecord extends Component {
             label: this.props.label,
             record: this.props.record,
             user_context: this.constructor.env.services.user.context,
-            //widget: this.dataState.widget, //TODO
             __comp__: Object.assign(Object.create(this), {this: this}),
         }
     }
