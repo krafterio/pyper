@@ -3,7 +3,7 @@
 import {_t} from '@web/core/l10n/translation';
 import {deserializeDate, deserializeDateTime, serializeDateTime} from '@web/core/l10n/dates';
 import {localization} from '@web/core/l10n/localization';
-import {KeepLast} from '@web/core/utils/concurrency';
+import {KeepLast, Mutex} from '@web/core/utils/concurrency';
 import {Model} from '@web/model/model';
 import {extractFieldsFromArchInfo} from '@web/model/relational_model/utils';
 import {orderByToString} from '@web/search/utils/order_by';
@@ -21,6 +21,7 @@ export class TimelineModel extends Model {
         this.user = services.user;
         this.field = services.field;
         this.keepLast = new KeepLast();
+        this.mutex = new Mutex();
 
         const formViewFromConfig = (this.env.config.views || []).find((view) => view[1] === 'form');
         const formViewIdFromConfig = formViewFromConfig ? formViewFromConfig[0] : false;

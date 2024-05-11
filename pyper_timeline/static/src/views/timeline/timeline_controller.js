@@ -318,7 +318,6 @@ export class TimelineController extends Component {
      * @param {number[]} ids
      */
     openRecords(ids) {
-        //TODO openRecords
         if (ids.length > 1) {
             this.action.doAction({
                 type: 'ir.actions.act_window',

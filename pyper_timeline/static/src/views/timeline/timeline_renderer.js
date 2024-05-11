@@ -13,12 +13,16 @@ import {
 } from '@odoo/owl';
 import {templates} from '@web/core/assets';
 import {formatDateTime} from '@web/core/l10n/dates';
+import {localization} from '@web/core/l10n/localization';
+import {_t} from '@web/core/l10n/translation';
+import {usePopover} from '@web/core/popover/popover_hook';
 import {useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
 import {renderToElement, renderToString} from '@web/core/utils/render';
 import {formatFloatTime} from '@web/views/fields/formatters';
 import {useViewCompiler} from '@web/views/view_compiler';
 import {TimelineCompiler} from './timeline_compiler';
+import {TimelinePopover} from './timeline_popover';
 import {TimelineRecord} from './timeline_record';
 import {AVAILABLE_SCALES, SCALES} from './timeline_controller';
 
@@ -68,6 +72,10 @@ export const DEFAULT_XSS_FILTER_OPTIONS = {
 export class TimelineRenderer extends Component {
     static template = 'pyper_timeline.TimelineRenderer';
 
+    static components = {
+        Popover: TimelinePopover,
+    };
+
     static props = {
         model: {
             type: Object,
@@ -97,7 +105,6 @@ export class TimelineRenderer extends Component {
             optional: true,
         },
         openRecords: {
-            //TODO props.openRecords
             type: Function,
             optional: true,
         },
@@ -124,7 +131,15 @@ export class TimelineRenderer extends Component {
 
         this.redraw = debounce(this.redraw, 0, false);
 
-        const {groupTemplates, itemTemplate, tooltipTemplate, tooltipUpdateTemplate} = this.props.model.archInfo;
+        this.popover = usePopover(this.constructor.components.Popover, this.popoverOptions);
+
+        const {
+            groupTemplates,
+            itemTemplate,
+            popoverTemplate,
+            tooltipTemplate,
+            tooltipUpdateTemplate,
+        } = this.props.model.archInfo;
         const templates = {};
 
         Object.keys(groupTemplates).forEach(groupName => {
@@ -133,6 +148,10 @@ export class TimelineRenderer extends Component {
 
         if (itemTemplate) {
             templates['itemTemplate'] = itemTemplate;
+        }
+
+        if (popoverTemplate) {
+            templates['popoverTemplate'] = popoverTemplate;
         }
 
         if (tooltipTemplate) {
@@ -154,6 +173,7 @@ export class TimelineRenderer extends Component {
             this.timeline.on('changed', this.onTimelineChanged.bind(this));
             this.timeline.on('rangechange', this.onTimelineRangeChange.bind(this));
             this.timeline.on('rangechanged', this.onTimelineRangeChanged.bind(this));
+            this.timeline.on('click', this.onClick.bind(this));
         });
 
         onWillUnmount(() => {
@@ -161,6 +181,7 @@ export class TimelineRenderer extends Component {
             this.timeline.off('changed', this.onTimelineChanged.bind(this));
             this.timeline.off('rangechange', this.onTimelineRangeChange.bind(this));
             this.timeline.off('rangechanged', this.onTimelineRangeChanged.bind(this));
+            this.timeline.off('click', this.onClick.bind(this));
             this.timeline.destroy();
             this.timeline = null;
         });
@@ -375,6 +396,39 @@ export class TimelineRenderer extends Component {
         });
     }
 
+    get popoverOptions() {
+        return {
+            position: localization.direction === 'rtl' ? 'bottom' : 'right',
+            animation: false,
+        };
+    }
+
+    getPopoverProps(item) {
+        const {record} = item;
+        const displayName = record.data.display_name;
+        const canEdit = this.props.model.canEdit;
+        const {fieldDateStart, fieldDateEnd} = this.props.model.archInfo;
+
+        return {
+            archInfo: this.props.model.archInfo,
+            Compiler: TimelineCompiler,
+            title: displayName,
+            record,
+            context: {
+                name: displayName,
+                start: record.data[fieldDateStart].toFormat('f'),
+                end: record.data[fieldDateEnd]?.toFormat('f'),
+            },
+            template: this.timelineTemplates['popoverTemplate'],
+            button: {
+                text: canEdit ? _t('Edit') : _t('View'),
+                onClick: () => {
+                    return this.props.model.mutex.exec(() => this.props.openRecords([record.data.id]));
+                },
+            },
+        };
+    }
+
     renderTemplateTooltip(item, updatedData) {
         if (this.timelineTemplates['tooltipTemplate']) {
             return renderToElement(this.timelineTemplates['tooltipTemplate'], {
@@ -505,6 +559,17 @@ export class TimelineRenderer extends Component {
         if (range.byUser && this.props.setRange) {
             await this.props.setRange(DateTime.fromJSDate(range.start), DateTime.fromJSDate(range.end));
         }
+    }
+
+    onClick(eventProps) {
+        if (this.popover.isOpen || !eventProps.item) {
+            return;
+        }
+
+        const item = this.timeline.itemsData.get(eventProps.item);
+        const popoverTarget = eventProps.event.target.closest('.vis-item');
+
+        this.popover.open(popoverTarget, this.getPopoverProps(item));
     }
 
     async onTimelineChanged() {

@@ -42,6 +42,7 @@ export class TimelineArchParser {
         const groupFieldNextIds = {};
         let groupTemplates = {};
         let itemTemplate = null;
+        let popoverTemplate = undefined;
         let tooltipTemplate = undefined;
         let tooltipUpdateTemplate = undefined;
         let itemPointType = 'box';
@@ -502,6 +503,13 @@ export class TimelineArchParser {
                         itemTemplate.removeAttribute('t-name');
                     }
 
+                    // Popover template
+                    popoverTemplate = node.querySelector('[t-name=timeline-popover]') || null;
+
+                    if (popoverTemplate) {
+                        popoverTemplate.removeAttribute('t-name');
+                    }
+
                     // Tooltip template
                     tooltipTemplate = node.querySelector('[t-name=timeline-tooltip]') || null;
 
@@ -565,6 +573,7 @@ export class TimelineArchParser {
             groupFieldNames,
             groupTemplates,
             itemTemplate,
+            popoverTemplate,
             tooltipTemplate,
             tooltipUpdateTemplate,
             itemPointType,
