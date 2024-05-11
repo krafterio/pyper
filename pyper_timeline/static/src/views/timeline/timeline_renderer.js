@@ -412,14 +412,15 @@ export class TimelineRenderer extends Component {
         return {
             archInfo: this.props.model.archInfo,
             Compiler: TimelineCompiler,
-            title: displayName,
+            label: displayName,
             record,
             context: {
                 name: displayName,
                 start: record.data[fieldDateStart].toFormat('f'),
                 end: record.data[fieldDateEnd]?.toFormat('f'),
             },
-            template: this.timelineTemplates['popoverTemplate'],
+            templateName: this.timelineTemplates['popoverTemplate'] ? 'popoverTemplate' : undefined,
+            templates: this.timelineTemplates,
             button: {
                 text: canEdit ? _t('Edit') : _t('View'),
                 onClick: () => {

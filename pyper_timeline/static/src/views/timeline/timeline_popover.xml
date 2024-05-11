@@ -4,9 +4,11 @@
         <div style="max-width: 320px;">
             <!-- the chosen value is rather arbitrary: the idea was to have enough space (but not too much) for some particular known cases-->
             <div class="popover-header d-flex justify-content-between py-2 pe-2">
-                <h4 class="p-0 pt-1">
-                    <t t-esc="props.title" />
+                <h4 t-if="props.label" class="p-0 pt-1">
+                    <t t-esc="props.label" />
                 </h4>
+
+                <span t-else=""/>
 
                 <span class="ms-4 mt-1 me-2 cursor-pointer" t-on-click.stop="props.close">
                     <i class="fa fa-close" />
@@ -14,7 +16,7 @@
             </div>
 
             <div class="popover-body">
-                <t t-call="{{ props.template }}" t-call-context="renderingContext" />
+                <t t-call="{{ computedTemplate }}" t-call-context="renderingContext"/>
             </div>
 
             <t t-if="props.button">

@@ -48,15 +48,45 @@ export class TimelineRecord extends Component {
         Widget,
     };
 
-    static props = [
-        'archInfo',
-        'Compiler?',
-        'readonly?',
-        'label?',
-        'record',
-        'templateName?',
-        'templates',
-    ];
+    static props = {
+        archInfo: {
+            type: Object,
+            optional: false,
+        },
+        Compiler: {
+            type: Function,
+            optional: true,
+        },
+        readonly: {
+            type: Boolean,
+            optional: true,
+        },
+        label: {
+            type: String,
+            optional: true,
+        },
+        record: {
+            type: Object,
+            optional: false,
+        },
+        context: {
+            type: Object,
+            optional: true,
+        },
+        templateName: {
+            type: String,
+            optional: true,
+        },
+        templates: {
+            type: Object,
+            optional: false,
+        },
+    };
+
+    defaultProps = {
+        readonly: false,
+        context: {},
+    }
 
     get JSON() {
         return JSON;
@@ -66,8 +96,13 @@ export class TimelineRecord extends Component {
         return this.props.templateName || 'itemTemplate';
     }
 
+    get computedTemplate() {
+        return this.props.templates[this.templateName];
+    }
+
     get renderingContext() {
         return {
+            ...(this.props.context || {}),
             JSON,
             timeline_image: (...args) => getImageSrcFromItemInfo(this.props.record, ...args),
             luxon,
