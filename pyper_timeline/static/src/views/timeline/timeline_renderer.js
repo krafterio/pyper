@@ -12,7 +12,7 @@ import {
     useState,
 } from '@odoo/owl';
 import {templates} from '@web/core/assets';
-import {formatDateTime} from '@web/core/l10n/dates';
+import {formatDateTime, serializeDateTime} from '@web/core/l10n/dates';
 import {localization} from '@web/core/l10n/localization';
 import {_t} from '@web/core/l10n/translation';
 import {usePopover} from '@web/core/popover/popover_hook';
@@ -86,16 +86,6 @@ export class TimelineRenderer extends Component {
             optional: true,
         },
         setRange: {
-            type: Function,
-            optional: true,
-        },
-        createRecord: {
-            //TODO props.createRecord
-            type: Function,
-            optional: true,
-        },
-        editRecord: {
-            //TODO props.editRecord
             type: Function,
             optional: true,
         },
@@ -607,10 +597,25 @@ export class TimelineRenderer extends Component {
         });
     }
 
-    async onTimelineAdd(item, callback) {
-        //TODO Use item in callback to validate action or null to cancel
-        console.log('onTimelineAdd', item);
-        callback(null);
+    onTimelineAdd(item, callback) {
+        const context = {};
+        const ctxFieldStart = 'default_' + this.props.model.archInfo.fieldDateStart;
+
+        context[ctxFieldStart] = serializeDateTime(DateTime.fromJSDate(item.start));
+
+        if (item.group && this.props.model.groupBy.length > 0) {
+            context['default_' + this.props.model.groupBy[0]] = item.group;
+        }
+
+        this.props.openDialog({
+            context,
+            onRecordSaved: async () => {
+                await this.props.model.load();
+            },
+            onRecordDiscarded: async () => {
+                callback(null);
+            }
+        });
     }
 
     async onTimelineMove(item, callback) {

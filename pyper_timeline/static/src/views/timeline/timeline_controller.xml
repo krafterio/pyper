@@ -3,6 +3,12 @@
     <t t-name="pyper_timeline.TimelineView">
         <div t-att-class="props.className">
             <Layout display="props.display">
+                <t t-set-slot="control-panel-create-button">
+                    <button t-if="model.canCreate" class="o_timeline_button_add btn btn-primary" data-hotkey="r" t-on-click="onAddClicked">
+                        New
+                    </button>
+                </t>
+
                 <t t-set-slot="control-panel-additional-actions">
                     <CogMenu/>
                 </t>
