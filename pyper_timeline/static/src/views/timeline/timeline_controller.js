@@ -297,20 +297,22 @@ export class TimelineController extends Component {
 
     async deleteRecord(resId) {
         const {canDelete} = this.model;
-        const {resModel} = this.model.archInfo;
+        const {resModel} = this.model.meta;
 
         return new Promise((resolve) => {
             if (canDelete && resId) {
                 this.dialogService.add(ConfirmationDialog, {
                     body: _t('Are you sure to delete this record?'),
                     confirm: async () => {
-                        await this.orm.unlink(resModel, [resId]);
-                        resolve();
+                        const res = await this.orm.unlink(resModel, [resId]);
+                        resolve(res);
                     },
-                    cancel: () => {},
+                    cancel: () => {
+                        resolve(false);
+                    },
                 });
             } else {
-                resolve();
+                resolve(false);
             }
         });
     }

@@ -433,8 +433,7 @@ export class TimelineRenderer extends Component {
             deleteButton: canDelete ? {
                 text: _t('Delete'),
                 onClick: async () => {
-                    await this.props.deleteRecord(item.id);
-                    await this.props.model.load();
+                    await this._deleteRecord(item.id);
                 },
             } : undefined,
         };
@@ -649,7 +648,10 @@ export class TimelineRenderer extends Component {
 
         const res = await this.props.editRecord(record);
         this.state.saving = false;
-        await this.props.model.load();
+
+        if (res) {
+            await this.props.model.load();
+        }
 
         callback(res ? item : null);
     }
@@ -663,8 +665,19 @@ export class TimelineRenderer extends Component {
     }
 
     async onTimelineRemove(item, callback) {
-        await this.props.deleteRecord(item.id);
-        await this.props.model.load();
-        callback(item);
+        const res = await this._deleteRecord(item.id);
+        callback(res ? item : null);
+    }
+
+    async _deleteRecord(id) {
+        this.state.saving = true;
+        const res = await this.props.deleteRecord(id);
+        this.state.saving = false;
+
+        if (res) {
+            await this.props.model.load();
+        }
+
+        return res;
     }
 }
