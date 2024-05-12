@@ -565,7 +565,7 @@ export class TimelineRenderer extends Component {
         this.state.loading = false;
     }
 
-    async onTimelineRangeChange(range) {
+    async onTimelineRangeChange() {
         this.state.loading = true;
     }
 

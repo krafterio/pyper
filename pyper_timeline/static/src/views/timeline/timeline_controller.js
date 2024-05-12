@@ -376,7 +376,7 @@ export class TimelineController extends Component {
 
     onWillStartModel() {}
 
-    onAddClicked(ev) {
+    onAddClicked() {
         this.openDialog({});
     }
 }
