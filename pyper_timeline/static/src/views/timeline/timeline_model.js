@@ -238,6 +238,7 @@ export class TimelineModel extends Model {
             id: UNASSIGNED_ID,
             content: emptyGroupLabel,
             groupByField: false,
+            order: 0,
             record: {
                 label: emptyGroupLabel,
             },
@@ -272,7 +273,6 @@ export class TimelineModel extends Model {
                         groups[groupById] = this.createGroup({
                             id: groupById,
                             content: groupByContent,
-                            order: Object.values(groups).length,
                             record: this.generateRecord(groupByModel, groupById, groupFields, {
                                 id: groupById,
                                 label: groupByContent,
@@ -323,15 +323,19 @@ export class TimelineModel extends Model {
         if (groupByField && groupByModel && groupByFieldNames) {
             const groupDomain = [['id', 'in', groupIds]];
             const groupRes = await this.orm.searchRead(groupByModel, groupDomain, groupByFieldNames, {
-                order: 'id',
+                order: orderByToString(this.archInfo.groupOrderBy || []),
                 limit: undefined,
                 context: {...this.user.context},
             });
+            let groupOrder = 1;
 
             groupRes.forEach(group => {
                 if (groups[group.id]) {
+                    groups[group.id].order = groupOrder;
                     groups[group.id].record = this.generateRecord(groupByModel, group.id, groupFields, group);
                     group[group.id] = this.updateRecordGroup(group);
+
+                    ++groupOrder;
                 }
             });
         }

@@ -38,6 +38,7 @@ export class TimelineArchParser {
         let fieldDateEnd = null;
         let defaultGroupBy = ['id'];
         let defaultOrderBy = null;
+        let groupOrderBy = null;
         let useTimelineDelete = false;
         let forceEmptyGroup = false;
         let dialogSize = 'fs';
@@ -159,6 +160,10 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('default_order')) {
                         defaultOrderBy = stringToOrderBy(node.getAttribute('default_order'));
+                    }
+
+                    if (node.hasAttribute('group_order')) {
+                        groupOrderBy = stringToOrderBy(node.getAttribute('group_order'));
                     }
 
                     if (node.hasAttribute('use_timeline_delete')) {
@@ -584,6 +589,7 @@ export class TimelineArchParser {
             fieldDateEnd,
             defaultGroupBy,
             defaultOrderBy,
+            groupOrderBy,
             useTimelineDelete,
             forceEmptyGroup,
             dialogSize,
