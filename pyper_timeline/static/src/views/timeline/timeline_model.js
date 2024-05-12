@@ -12,8 +12,6 @@ import {useState, reactive} from '@odoo/owl';
 
 const {DateTime} = luxon;
 
-export const UNASSIGNED_ID = -1;
-
 export class TimelineModel extends Model {
     static services = ['user', 'field'];
 
@@ -135,6 +133,16 @@ export class TimelineModel extends Model {
         return this.data.items;
     }
 
+    getGroupRecordId(groupId) {
+        for (const group of this.groups) {
+            if (group.id === groupId) {
+                return group.record.resId;
+            }
+        }
+
+        return false;
+    }
+
     async load(params) {
         this.data.loading = true;
         params = params || {};
@@ -217,131 +225,200 @@ export class TimelineModel extends Model {
 
         // Add group by fields if fields are not defined in template
         this.groupBy.forEach((f) => {
-            if (!readFieldNames.includes(f)) {
-                readFieldNames.push(f);
+            const n = f.split(':')[0];
+
+            if (!readFieldNames.includes(n)) {
+                readFieldNames.push(n);
             }
         });
-
-        const res = await this.orm.searchRead(this.meta.resModel, domain, readFieldNames, {
-            order: orderByToString(this.meta.orderBy || this.archInfo.defaultOrderBy || []),
-            limit: this.archInfo.limit,
-            context: {...this.user.context},
-        });
-
-        const groupBys = this.meta.groupBy.length > 0 ? this.meta.groupBy : this.archInfo.defaultGroupBy;
-        const groupByField = groupBys.length > 0 ? groupBys[0] : null;
-        const groupByModel = this.meta.archInfo.groupModels[groupByField] || null;
-        const groupByFieldNames = this.meta.archInfo.groupFieldNames[groupByField] || null;
-        let groupFields = {};
-        const groups = {};
-        const items = [];
-        let hasUnassigned = false;
-
-        if (groupByField && groupByModel) {
-            Object.assign(groupFields, await this.field.loadFields(groupByModel) || {});
-        }
 
         const emptyGroupLabel = _t('Unassigned');
-        groups[UNASSIGNED_ID] = this.createGroup({
-            id: UNASSIGNED_ID,
-            content: emptyGroupLabel,
-            groupByField: false,
-            order: 0,
-            record: {
-                label: emptyGroupLabel,
-            },
-            record: this.generateRecord(undefined, UNASSIGNED_ID, groupFields, {
-                id: UNASSIGNED_ID,
-                label: emptyGroupLabel,
-            }),
-        });
+        let emptyGroupId = -1;
+        const groupBys = this.meta.groupBy.length > 0 ? this.meta.groupBy : this.archInfo.defaultGroupBy;
+        const groupByField = groupBys.length > 0 ? groupBys[0] : null;
+        let groupByModel = undefined;
+        const groupByFieldNames = this.meta.archInfo.groupFieldNames[groupByField] || null;
+        let groupFields = {};
+        let groupByFieldInfo = undefined;
+        let groupIds = false;
+        const groups = {};
+        const items = [];
+        let res = [];
 
-        res.forEach((item) => {
-            let group = UNASSIGNED_ID;
+        // Search items
+        if (!groupByField) {
+            // Search items without groups
+            res = [await this.orm.searchRead(this.meta.resModel, domain, readFieldNames, {
+                order: orderByToString(this.meta.orderBy || this.archInfo.defaultOrderBy || []),
+                limit: this.archInfo.limit,
+                context: {...this.user.context},
+            })];
+        } else {
+            // Search items with groups
+            groupByFieldInfo = this.meta.fields[groupByField];
 
-            if (groupByField) {
-                const groupByValue = item[groupByField];
+            const groupRes = await this.orm.readGroup(this.meta.resModel, domain, readFieldNames, [groupByField], {
+                limit: this.archInfo.limit,
+                context: {...this.user.context},
+            });
+            const allPromises = [];
 
-                if (undefined !== groupByValue) {
-                    let groupById = groupByValue;
-                    let groupByContent = groupById;
+            for (const i in groupRes) {
+                // Prepare search items for each group
+                allPromises.push(new Promise((resolve, reject) => {
+                    this.orm.searchRead(this.meta.resModel, groupRes[i].__domain, readFieldNames, {
+                        order: orderByToString(this.meta.orderBy || this.archInfo.defaultOrderBy || []),
+                        limit: this.archInfo.limit,
+                        context: {...this.user.context},
+                    }).then(result => {
+                        resolve(result);
+                    }).catch((e) => reject(e));
+                }));
 
-                    if (Array.isArray(groupByValue)) {
-                        groupById = groupByValue[0];
-                        groupByContent = groupByValue[1] || groupById;
-                    }
+                // Add group
+                let groupByContent = groupRes[i][groupByField];
+                const groupByPosition = parseInt(i, 10);
 
-                    if (false === groupById) {
-                        groupById = UNASSIGNED_ID;
-                    }
+                switch (groupByFieldInfo?.type) {
+                    case 'selection':
+                        for (const selection of (groupByFieldInfo?.selection || [])) {
+                            if (groupByContent === selection[0]) {
+                                groupByContent = selection[1];
+                                break;
+                            }
+                        }
 
-                    group = groupById;
+                        if (groupByContent === false) {
+                            emptyGroupId = groupByPosition;
+                            groupByContent = emptyGroupLabel;
+                        }
 
-                    if (!groups[groupById]) {
-                        groups[groupById] = this.createGroup({
-                            id: groupById,
-                            content: groupByContent,
-                            record: this.generateRecord(groupByModel, groupById, groupFields, {
-                                id: groupById,
-                                label: groupByContent,
-                            }),
-                        });
-                    }
-                }
-            }
-
-            if (group === UNASSIGNED_ID) {
-                hasUnassigned = true;
-            }
-
-            Object.keys(item).forEach((property) => {
-                const type = this.meta.fields[property]?.type;
-
-                switch (type) {
-                    case 'datetime':
-                        item[property] = deserializeDateTime(item[property]);
                         break;
-                    case 'date':
-                        item[property] = deserializeDate(item[property]);
+                    case 'boolean':
+                        emptyGroupId = groupByPosition;
+                        groupByContent = groupByContent ? _t('Yes') : _t('No');
+                        break;
+                    case 'one2many':
+                    case 'many2many':
+                        if (this.archInfo.groupTemplates[groupByField]) {
+                            groupByModel = groupByFieldInfo?.relation;
+                            groupIds = {};
+                        }
+
+                        if (Array.isArray(groupByContent)) {
+                            groupByContent = groupByContent[1] || groupByContent[0];
+                        } else if (groupByContent === false) {
+                            emptyGroupId = groupByPosition;
+                            groupByContent = emptyGroupLabel;
+                        }
+
+                        break;
+                    case 'many2one':
+                        if (this.archInfo.groupTemplates[groupByField]) {
+                            groupByModel = groupByFieldInfo?.relation;
+                            groupIds = {};
+                        }
+
+                        if (Array.isArray(groupByContent)) {
+                            groupByContent = groupByContent[1] || groupByContent[0];
+                        } else if (groupByContent === false) {
+                            emptyGroupId = groupByPosition;
+                            groupByContent = emptyGroupLabel;
+                        }
+
                         break;
                     default:
+                        if (groupByContent === false) {
+                            emptyGroupId = groupByPosition;
+                            groupByContent = emptyGroupLabel;
+                        }
+
                         break;
                 }
-            });
 
-            items.push(this.createItem({
-                id: item.id,
-                group: group,
-                start: item[this.archInfo.fieldDateStart].toJSDate(),
-                end: item[this.archInfo.fieldDateEnd]?.toJSDate(),
-                type: this.archInfo.fieldDateEnd ? this.archInfo.itemRangeType : this.archInfo.itemType,
-                content: item.display_name || item.id,
-                record: this.generateRecord(this.meta.resModel, item.id, this.meta.fields, item),
-            }));
-        });
+                groups[groupByPosition] = this.createGroup({
+                    id: groupByPosition,
+                    content: groupByContent,
+                    groupByField: emptyGroupId !== -1 ? false : undefined,
+                    order: 0,
+                    record: this.generateRecord(groupByModel, groupByPosition, groupFields, {
+                        id: groupByPosition,
+                        label: groupByContent,
+                    }),
+                });
+            }
 
-        // Remove unassigned group if it is empty
-        if (!hasUnassigned && !this.archInfo.forceEmptyGroup) {
-            delete groups[UNASSIGNED_ID];
+            if (groupByField && groupByModel) {
+                Object.assign(groupFields, await this.field.loadFields(groupByModel) || {});
+            }
+
+            res = await Promise.all(allPromises);
         }
 
-        // Search records of groups
-        const groupIds = Object.keys(groups).map(g => parseInt(g, 10));
+        // Add unassigned group if it is not defined and force option is enabled
+        if (!groups[emptyGroupId] && this.archInfo.forceEmptyGroup) {
+            groups[emptyGroupId] = this.createGroup({
+                id: emptyGroupId,
+                content: emptyGroupLabel,
+                groupByField: false,
+                order: 0,
+                record: this.generateRecord(undefined, false, groupFields, {
+                    id: false,
+                    label: emptyGroupLabel,
+                }),
+            });
+        }
 
-        if (groupByField && groupByModel) {
-            const groupDomain = [['id', 'in', groupIds]];
+        for (const i in res) {
+            const resItems = res[i];
+            const groupByPosition = parseInt(i, 10);
+
+            for (const item of resItems) {
+                Object.keys(item).forEach((property) => {
+                    const type = this.meta.fields[property]?.type;
+
+                    switch (type) {
+                        case 'datetime':
+                            item[property] = deserializeDateTime(item[property]);
+                            break;
+                        case 'date':
+                            item[property] = deserializeDate(item[property]);
+                            break;
+                        default:
+                            break;
+                    }
+                });
+
+                if (groupIds !== false && Array.isArray(item[groupByField]) && !groupIds[item[groupByField][0]]) {
+                    groupIds[item[groupByField][0]] = groupByPosition;
+                }
+
+                items.push(this.createItem({
+                    id: item.id,
+                    group: groupByPosition,
+                    start: item[this.archInfo.fieldDateStart].toJSDate(),
+                    end: item[this.archInfo.fieldDateEnd]?.toJSDate(),
+                    type: this.archInfo.fieldDateEnd ? this.archInfo.itemRangeType : this.archInfo.itemType,
+                    content: item.display_name || item.id,
+                    record: this.generateRecord(this.meta.resModel, item.id, this.meta.fields, item),
+                }));
+            }
+        }
+
+        if (groupByModel && groupIds && Object.keys(groupIds).length > 0) {
+            const groupDomain = [['id', 'in', Object.keys(groupIds)]];
             const groupRes = await this.orm.searchRead(groupByModel, groupDomain, groupByFieldNames || ['display_name'], {
-                order: orderByToString(this.archInfo.groupOrderBy || []),
+                order: orderByToString(this.archInfo.groupOrderBy[groupByField] || []),
                 limit: undefined,
                 context: {...this.user.context},
             });
             let groupOrder = 1;
 
             groupRes.forEach(group => {
-                if (groups[group.id]) {
-                    groups[group.id].order = groupOrder;
-                    groups[group.id].record = this.generateRecord(groupByModel, group.id, groupFields, group);
-                    group[group.id] = this.updateRecordGroup(group);
+                if (groups[groupIds[group.id]]) {
+                    groups[groupIds[group.id]].order = groupOrder;
+                    groups[groupIds[group.id]].record = this.generateRecord(groupByModel, group.id, groupFields, group);
+                    groups[groupIds[group.id]] = this.updateRecordGroup(groups[groupIds[group.id]]);
 
                     ++groupOrder;
                 }

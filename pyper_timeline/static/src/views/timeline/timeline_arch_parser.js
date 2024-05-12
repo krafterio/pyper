@@ -38,11 +38,10 @@ export class TimelineArchParser {
         let fieldDateEnd = null;
         let defaultGroupBy = [];
         let defaultOrderBy = null;
-        let groupOrderBy = null;
+        let groupOrderBy = {};
         let useTimelineDelete = false;
         let forceEmptyGroup = false;
         let dialogSize = 'fs';
-        const groupModels = {};
         const groupFieldNextIds = {};
         let groupTemplates = {};
         let itemTemplate = null;
@@ -120,12 +119,6 @@ export class TimelineArchParser {
                     fieldDateEnd = node.getAttribute('field_date_end');
                     jsClass = node.getAttribute('js_class');
 
-                    for (const fieldName in fields) {
-                        if (fields[fieldName]?.relation) {
-                            groupModels[fieldName] = fields[fieldName]?.relation;
-                        }
-                    }
-
                     if (node.hasAttribute('scales')) {
                         const scalesAttr = node.getAttribute('scales');
                         scales = scalesAttr.split(',').filter((scale) => AVAILABLE_SCALES.includes(scale));
@@ -166,10 +159,6 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('default_order')) {
                         defaultOrderBy = stringToOrderBy(node.getAttribute('default_order'));
-                    }
-
-                    if (node.hasAttribute('group_order')) {
-                        groupOrderBy = stringToOrderBy(node.getAttribute('group_order'));
                     }
 
                     if (node.hasAttribute('use_timeline_delete')) {
@@ -438,10 +427,6 @@ export class TimelineArchParser {
                         const name = groupFieldInfo.name;
 
                         // Init group categories
-                        if (!groupModels[fieldGroupBy]) {
-                            groupModels[fieldGroupBy] = fields[fieldGroupBy]?.relation;
-                        }
-
                         if (!groupFieldNextIds[fieldGroupBy]) {
                             groupFieldNextIds[fieldGroupBy] = {};
                         }
@@ -511,6 +496,7 @@ export class TimelineArchParser {
                     if (queryGroupTemplates.length > 0) {
                         queryGroupTemplates.forEach((gtEl) => {
                             const groupByName = gtEl.getAttribute('group_by') || 'default';
+                            const groupByOrder = gtEl.getAttribute('order') || undefined;
 
                             if (groupTemplates[groupByName]) {
                                 throw new TimelineParseArchError(
@@ -519,6 +505,10 @@ export class TimelineArchParser {
                             }
 
                             groupTemplates[groupByName] = gtEl;
+
+                            if (groupByName !== 'default' && groupByOrder) {
+                                groupOrderBy[groupByName] = stringToOrderBy(groupByOrder);
+                            }
                         });
                     }
 
@@ -580,7 +570,7 @@ export class TimelineArchParser {
 
         Object.keys(groupFieldNextIds).forEach(groupField => {
             groupFieldNames[groupField] = [...Object.keys(groupFieldNextIds[groupField])]
-        })
+        });
 
         return {
             activeActions,
@@ -599,7 +589,6 @@ export class TimelineArchParser {
             useTimelineDelete,
             forceEmptyGroup,
             dialogSize,
-            groupModels,
             groupFieldNames,
             groupTemplates,
             itemTemplate,

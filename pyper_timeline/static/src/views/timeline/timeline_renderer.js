@@ -25,7 +25,6 @@ import {TimelineCompiler} from './timeline_compiler';
 import {TimelinePopover} from './timeline_popover';
 import {TimelineRecord} from './timeline_record';
 import {AVAILABLE_SCALES, SCALES} from './timeline_controller';
-import {UNASSIGNED_ID} from './timeline_model';
 
 const {DateTime} = luxon;
 
@@ -635,8 +634,10 @@ export class TimelineRenderer extends Component {
 
         context[ctxFieldStart] = serializeDateTime(DateTime.fromJSDate(item.start));
 
-        if (item.group !== UNASSIGNED_ID && this.props.model.groupBy.length > 0) {
-            context['default_' + this.props.model.groupBy[0]] = item.group;
+        const groupId = this.props.model.getGroupRecordId(item.group);
+
+        if (groupId && this.props.model.groupBy.length > 0) {
+            context['default_' + this.props.model.groupBy[0]] = groupId;
         }
 
         this.props.model.mutex.exec(() => this.props.openDialog({
@@ -668,7 +669,7 @@ export class TimelineRenderer extends Component {
         }
 
         if (this.props.model.groupBy.length > 0) {
-            record[this.props.model.groupBy[0]] = item.group === UNASSIGNED_ID ? false : item.group;
+            record[this.props.model.groupBy[0]] = this.props.model.getGroupRecordId(item.group);
         }
 
         const res = await this.props.editRecord(record);
