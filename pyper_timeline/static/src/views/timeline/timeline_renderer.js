@@ -457,6 +457,10 @@ export class TimelineRenderer extends Component {
     }
 
     renderTemplateGroup(group, element) {
+        if (!group) {
+            return '';
+        }
+
         let tplName = undefined;
 
         if (group.groupByField !== false && this.props.model.groupBy.length > 0) {
