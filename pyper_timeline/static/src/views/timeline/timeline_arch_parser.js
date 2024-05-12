@@ -36,7 +36,7 @@ export class TimelineArchParser {
         let limit = null;
         let fieldDateStart = null;
         let fieldDateEnd = null;
-        let defaultGroupBy = ['id'];
+        let defaultGroupBy = [];
         let defaultOrderBy = null;
         let groupOrderBy = null;
         let useTimelineDelete = false;
@@ -119,6 +119,12 @@ export class TimelineArchParser {
                     fieldDateStart = node.getAttribute('field_date_start');
                     fieldDateEnd = node.getAttribute('field_date_end');
                     jsClass = node.getAttribute('js_class');
+
+                    for (const fieldName in fields) {
+                        if (fields[fieldName]?.relation) {
+                            groupModels[fieldName] = fields[fieldName]?.relation;
+                        }
+                    }
 
                     if (node.hasAttribute('scales')) {
                         const scalesAttr = node.getAttribute('scales');

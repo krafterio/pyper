@@ -16,6 +16,16 @@
                 }
             }
         }
+
+        &:not(.timeline-grouped) {
+            .vis-timeline {
+                .vis-panel {
+                    &.vis-left {
+                        display: none;
+                    }
+                }
+            }
+        }
     }
 
     .vis-timeline {

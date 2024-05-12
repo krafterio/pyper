@@ -213,8 +213,16 @@ export class TimelineModel extends Model {
         }
 
         const domain = Domain.and([this.meta.domain, domainRange]).toList(this.meta.context);
+        const readFieldNames = [...this.archInfo.fieldNames];
 
-        const res = await this.orm.searchRead(this.meta.resModel, domain, this.archInfo.fieldNames, {
+        // Add group by fields if fields are not defined in template
+        this.groupBy.forEach((f) => {
+            if (!readFieldNames.includes(f)) {
+                readFieldNames.push(f);
+            }
+        });
+
+        const res = await this.orm.searchRead(this.meta.resModel, domain, readFieldNames, {
             order: orderByToString(this.meta.orderBy || this.archInfo.defaultOrderBy || []),
             limit: this.archInfo.limit,
             context: {...this.user.context},
@@ -320,9 +328,9 @@ export class TimelineModel extends Model {
         // Search records of groups
         const groupIds = Object.keys(groups).map(g => parseInt(g, 10));
 
-        if (groupByField && groupByModel && groupByFieldNames) {
+        if (groupByField && groupByModel) {
             const groupDomain = [['id', 'in', groupIds]];
-            const groupRes = await this.orm.searchRead(groupByModel, groupDomain, groupByFieldNames, {
+            const groupRes = await this.orm.searchRead(groupByModel, groupDomain, groupByFieldNames || ['display_name'], {
                 order: orderByToString(this.archInfo.groupOrderBy || []),
                 limit: undefined,
                 context: {...this.user.context},

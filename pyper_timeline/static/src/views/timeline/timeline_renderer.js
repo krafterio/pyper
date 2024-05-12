@@ -222,6 +222,7 @@ export class TimelineRenderer extends Component {
         return {
             'timeline-loading': this.state.loading,
             'overflow-visibility': this.props.model.archInfo.itemOverflowVisible,
+            'timeline-grouped': this.props.model.groupBy.length > 0,
         }
     }
 
