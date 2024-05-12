@@ -611,7 +611,7 @@ export class TimelineRenderer extends Component {
 
         context[ctxFieldStart] = serializeDateTime(DateTime.fromJSDate(item.start));
 
-        if (item.group && this.props.model.groupBy.length > 0) {
+        if (item.group !== UNASSIGNED_ID && this.props.model.groupBy.length > 0) {
             context['default_' + this.props.model.groupBy[0]] = item.group;
         }
 
