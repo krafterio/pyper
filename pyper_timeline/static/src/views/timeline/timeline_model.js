@@ -237,6 +237,7 @@ export class TimelineModel extends Model {
         groups[UNASSIGNED_ID] = this.createGroup({
             id: UNASSIGNED_ID,
             content: emptyGroupLabel,
+            groupByField: false,
             record: {
                 label: emptyGroupLabel,
             },
@@ -262,7 +263,7 @@ export class TimelineModel extends Model {
                     }
 
                     if (false === groupById) {
-                        return;
+                        groupById = UNASSIGNED_ID;
                     }
 
                     group = groupById;
