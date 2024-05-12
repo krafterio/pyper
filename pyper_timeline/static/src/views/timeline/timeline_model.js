@@ -259,7 +259,7 @@ export class TimelineModel extends Model {
         res.forEach((item) => {
             let group = UNASSIGNED_ID;
 
-            if (groupByField && groupByModel) {
+            if (groupByField) {
                 const groupByValue = item[groupByField];
 
                 if (undefined !== groupByValue) {
