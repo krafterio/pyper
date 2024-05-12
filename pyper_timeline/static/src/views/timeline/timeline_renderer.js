@@ -426,8 +426,8 @@ export class TimelineRenderer extends Component {
             templates: this.timelineTemplates,
             editButton: {
                 text: canEdit ? _t('Edit') : _t('View'),
-                onClick: () => {
-                    this.props.model.mutex.exec(() => this.props.openDialog({
+                onClick: async () => {
+                    return await this.props.model.mutex.exec(() => this.props.openDialog({
                         resId: record.data.id,
                         onRecordSaved: async () => {
                             await this.props.model.load();
@@ -585,6 +585,19 @@ export class TimelineRenderer extends Component {
             return;
         }
 
+        // Open edit dialog
+        if (eventProps.event.shiftKey) {
+            this.props.model.mutex.exec(() => this.props.openDialog({
+                resId: eventProps.item,
+                onRecordSaved: async () => {
+                    await this.props.model.load();
+                },
+            }));
+
+            return;
+        }
+
+        // Show popover
         const item = this.timeline.itemsData.get(eventProps.item);
         const popoverTarget = eventProps.event.target.closest('.vis-item');
 
@@ -620,7 +633,7 @@ export class TimelineRenderer extends Component {
             context['default_' + this.props.model.groupBy[0]] = item.group;
         }
 
-        this.props.openDialog({
+        this.props.model.mutex.exec(() => this.props.openDialog({
             context,
             onRecordSaved: async () => {
                 callback(null);
@@ -629,7 +642,7 @@ export class TimelineRenderer extends Component {
             onRecordDiscarded: async () => {
                 callback(null);
             },
-        });
+        }));
     }
 
     async onTimelineMove(item, callback) {
