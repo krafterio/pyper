@@ -11,8 +11,9 @@ import {useSearchBarToggler} from '@web/search/search_bar/search_bar_toggler';
 import {CogMenu} from '@web/search/cog_menu/cog_menu';
 import {browser} from '@web/core/browser/browser';
 import {ViewScaleSelector} from '@web/views/view_components/view_scale_selector';
+import {FormViewDialog} from '@web/views/view_dialogs/form_view_dialog';
 import {getWeekNumber} from '@web/views/calendar/utils';
-import {ConfirmationDialog, deleteConfirmationMessage} from '@web/core/confirmation_dialog/confirmation_dialog';
+import {ConfirmationDialog} from '@web/core/confirmation_dialog/confirmation_dialog';
 import {Component, onWillStart, useState} from '@odoo/owl';
 
 const {DateTime} = luxon;
@@ -88,7 +89,9 @@ export class TimelineController extends Component {
     };
 
     setup() {
-        this.action = useService('action');
+        this.actionService = useService('action');
+        this.dialogService = useService('dialog');
+        this.orm = useService('orm');
 
         /** @type {typeof TimelineModel} */
         this.model = useState(useModelWithSampleData(
@@ -218,6 +221,7 @@ export class TimelineController extends Component {
             editRecord: this.editRecord.bind(this),
             deleteRecord: this.deleteRecord.bind(this),
             openRecords: this.openRecords.bind(this),
+            openDialog: this.openDialog.bind(this),
         };
     }
 
@@ -297,19 +301,57 @@ export class TimelineController extends Component {
         console.log('editRecord', record, context, shouldFetchFormViewId);
     }
 
-    deleteRecord(record) {
-        this.displayDialog(ConfirmationDialog, {
-            title: _t('Bye-bye, record!'),
-            body: deleteConfirmationMessage,
-            confirm: () => {
-                this.model.unlinkRecord(record.id);
-            },
-            confirmLabel: _t('Delete'),
-            cancel: () => {
-                // `ConfirmationDialog` needs this prop to display the cancel button, but we do nothing on cancel.
-            },
-            cancelLabel: _t('No, keep it'),
+    async deleteRecord(resId) {
+        const {canDelete} = this.model;
+        const {resModel} = this.model.archInfo;
+
+        return new Promise((resolve) => {
+            if (canDelete && resId) {
+                this.dialogService.add(ConfirmationDialog, {
+                    body: _t('Are you sure to delete this record?'),
+                    confirm: async () => {
+                        await this.orm.unlink(resModel, [resId]);
+                        resolve();
+                    },
+                    cancel: () => {},
+                });
+            } else {
+                resolve();
+            }
         });
+    }
+
+    openDialog(props, options = {}) {
+        const {canDelete, canEdit} = this.model;
+        const {dialogSize, formViewId: viewId} = this.model.archInfo;
+        const {resModel} = this.model.meta;
+        const title = props.title || (props.resId ? _t('Open') : _t('Create'));
+        let removeRecord;
+
+        if (canDelete && props.resId) {
+            removeRecord = async () => await this.deleteRecord(props.resId);
+        }
+
+        this.closeDialog = this.dialogService.add(
+            FormViewDialog,
+            {
+                title,
+                resModel,
+                viewId,
+                resId: props.resId,
+                mode: canEdit ? 'edit' : 'readonly',
+                context: props.context,
+                size: dialogSize,
+                removeRecord,
+            },
+            {
+                ...options,
+                onClose: async () => {
+                    this.closeDialog = null;
+                    await this.model.load();
+                },
+            }
+        );
     }
 
     /**
@@ -319,7 +361,7 @@ export class TimelineController extends Component {
      */
     openRecords(ids) {
         if (ids.length > 1) {
-            this.action.doAction({
+            this.actionService.doAction({
                 type: 'ir.actions.act_window',
                 name: this.env.config.getDisplayName() || _t('Untitled'),
                 views: [
@@ -330,7 +372,7 @@ export class TimelineController extends Component {
                 domain: [['id', 'in', ids]],
             });
         } else {
-            this.action.switchView('form', {
+            this.actionService.switchView('form', {
                 resId: ids[0],
             });
         }

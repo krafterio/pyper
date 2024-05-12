@@ -19,9 +19,11 @@
                 <t t-call="{{ computedTemplate }}" t-call-context="renderingContext"/>
             </div>
 
-            <t t-if="props.button">
+            <t t-if="props.editButton || props.deleteButton">
                 <div class="popover-footer border-top p-3">
-                    <button class="btn btn-primary btn-sm" t-on-click="onClick" t-esc="props.button.text"/>
+                    <button t-if="props.editButton" class="btn btn-primary btn-sm" t-on-click="onEditClick" t-esc="props.editButton.text"/>
+
+                    <button t-if="props.deleteButton" class="btn btn-danger btn-sm" t-on-click="onDeleteClick" t-esc="props.deleteButton.text"/>
                 </div>
             </t>
         </div>

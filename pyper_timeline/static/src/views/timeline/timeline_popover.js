@@ -12,7 +12,11 @@ export class TimelinePopover extends TimelineRecord {
                 type: Function,
                 optional: false,
             },
-            button: {
+            editButton: {
+                type: Object,
+                optional: true,
+            },
+            deleteButton: {
                 type: Object,
                 optional: true,
             },
@@ -31,8 +35,13 @@ export class TimelinePopover extends TimelineRecord {
         return super.computedTemplate;
     }
 
-    onClick() {
-        this.props.button.onClick();
+    onEditClick() {
+        this.props.editButton.onClick();
+        this.props.close();
+    }
+
+    onDeleteClick() {
+        this.props.deleteButton.onClick();
         this.props.close();
     }
 }

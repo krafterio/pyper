@@ -100,7 +100,10 @@ export class TimelineRenderer extends Component {
             optional: true,
         },
         deleteRecord: {
-            //TODO props.deleteRecord
+            type: Function,
+            optional: true,
+        },
+        openDialog: {
             type: Function,
             optional: true,
         },
@@ -174,6 +177,7 @@ export class TimelineRenderer extends Component {
             this.timeline.on('rangechange', this.onTimelineRangeChange.bind(this));
             this.timeline.on('rangechanged', this.onTimelineRangeChanged.bind(this));
             this.timeline.on('click', this.onClick.bind(this));
+            this.timeline.on('doubleClick', this.doubleClick.bind(this));
         });
 
         onWillUnmount(() => {
@@ -182,6 +186,7 @@ export class TimelineRenderer extends Component {
             this.timeline.off('rangechange', this.onTimelineRangeChange.bind(this));
             this.timeline.off('rangechanged', this.onTimelineRangeChanged.bind(this));
             this.timeline.off('click', this.onClick.bind(this));
+            this.timeline.off('doubleClick', this.doubleClick.bind(this));
             this.timeline.destroy();
             this.timeline = null;
         });
@@ -282,7 +287,7 @@ export class TimelineRenderer extends Component {
             dataAttributes: [],
             editable: {
                 add: this.props.model.canCreate,
-                remove: this.props.model.canDelete,
+                remove: this.props.model.canDelete && this.props.model.archInfo.useTimelineDelete,
                 updateGroup: this.props.model.canEdit,
                 updateTime: this.props.model.canEdit,
                 overrideItems: this.props.model.canEdit,
@@ -397,16 +402,19 @@ export class TimelineRenderer extends Component {
     }
 
     get popoverOptions() {
+        const deleteBtn = this.props.model.archInfo.useTimelineDelete;
+
         return {
-            position: localization.direction === 'rtl' ? 'bottom' : 'right',
+            position: deleteBtn || localization.direction === 'rtl' ? 'bottom' : 'right',
             animation: false,
+            popoverClass: 'o_timeline_item_popover',
         };
     }
 
     getPopoverProps(item) {
         const {record} = item;
         const displayName = record.data.display_name;
-        const canEdit = this.props.model.canEdit;
+        const {canEdit, canDelete} = this.props.model;
         const {fieldDateStart, fieldDateEnd} = this.props.model.archInfo;
 
         return {
@@ -421,12 +429,19 @@ export class TimelineRenderer extends Component {
             },
             templateName: this.timelineTemplates['popoverTemplate'] ? 'popoverTemplate' : undefined,
             templates: this.timelineTemplates,
-            button: {
+            editButton: {
                 text: canEdit ? _t('Edit') : _t('View'),
                 onClick: () => {
-                    return this.props.model.mutex.exec(() => this.props.openRecords([record.data.id]));
+                    this.props.model.mutex.exec(() => this.props.openDialog({resId: record.data.id}));
                 },
             },
+            deleteButton: canDelete ? {
+                text: _t('Delete'),
+                onClick: async () => {
+                    await this.props.deleteRecord(item.id);
+                    await this.props.model.load();
+                },
+            } : undefined,
         };
     }
 
@@ -573,6 +588,13 @@ export class TimelineRenderer extends Component {
         this.popover.open(popoverTarget, this.getPopoverProps(item));
     }
 
+    doubleClick(eventProps) {
+        if (eventProps.what === 'item' && eventProps.item) {
+            // Value of eventProps.item is Integer
+            this.props.model.mutex.exec(() => this.props.openRecords([eventProps.item]));
+        }
+    }
+
     async onTimelineChanged() {
         return await this.renderRecords();
     }
@@ -604,8 +626,8 @@ export class TimelineRenderer extends Component {
     }
 
     async onTimelineRemove(item, callback) {
-        //TODO Use item in callback to validate action or null to cancel
-        console.log('onTimelineRemove', item);
+        await this.props.deleteRecord(item.id);
+        await this.props.model.load();
         callback(item);
     }
 

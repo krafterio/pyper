@@ -38,6 +38,8 @@ export class TimelineArchParser {
         let fieldDateEnd = null;
         let defaultGroupBy = ['id'];
         let defaultOrderBy = null;
+        let useTimelineDelete = false;
+        let dialogSize = 'fs';
         const groupModels = {};
         const groupFieldNextIds = {};
         let groupTemplates = {};
@@ -156,6 +158,14 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('default_order')) {
                         defaultOrderBy = stringToOrderBy(node.getAttribute('default_order'));
+                    }
+
+                    if (node.hasAttribute('use_timeline_delete')) {
+                        useTimelineDelete = archParseBoolean(node.getAttribute('use_timeline_delete'), useTimelineDelete);
+                    }
+
+                    if (node.hasAttribute('dialog_size')) {
+                        dialogSize = archParseBoolean(node.getAttribute('dialog_size'), dialogSize);
                     }
 
                     if (node.hasAttribute('item_point_type')) {
@@ -561,7 +571,7 @@ export class TimelineArchParser {
             fieldNames: [...Object.keys(fieldNextIds)],
             fieldNodes,
             widgetNodes,
-            formViewId, //TODO
+            formViewId,
             scale,
             scales,
             limit,
@@ -569,6 +579,8 @@ export class TimelineArchParser {
             fieldDateEnd,
             defaultGroupBy,
             defaultOrderBy,
+            useTimelineDelete,
+            dialogSize,
             groupModels,
             groupFieldNames,
             groupTemplates,
