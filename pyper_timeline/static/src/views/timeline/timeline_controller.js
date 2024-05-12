@@ -217,6 +217,7 @@ export class TimelineController extends Component {
             model: this.model,
             isWeekendVisible: this.rendererIsWeekendVisible,
             setRange: this.setRange.bind(this),
+            editRecord: this.editRecord.bind(this),
             deleteRecord: this.deleteRecord.bind(this),
             openRecords: this.openRecords.bind(this),
             openDialog: this.openDialog.bind(this),
@@ -279,6 +280,19 @@ export class TimelineController extends Component {
         browser.localStorage.setItem('calendar.isWeekendVisible', this.state.isWeekendVisible);
 
         await this.model.load();
+    }
+
+    async editRecord(record) {
+        const {resModel} = this.model.meta;
+
+        try {
+            await this.orm.write(resModel, [record.id], record);
+
+            return true;
+        } catch (e) {
+            console.error('[Timeline Edit Error] ' + e.message);
+            return false;
+        }
     }
 
     async deleteRecord(resId) {

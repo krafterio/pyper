@@ -25,6 +25,7 @@ import {TimelineCompiler} from './timeline_compiler';
 import {TimelinePopover} from './timeline_popover';
 import {TimelineRecord} from './timeline_record';
 import {AVAILABLE_SCALES, SCALES} from './timeline_controller';
+import {UNASSIGNED_ID} from './timeline_model';
 
 const {DateTime} = luxon;
 
@@ -89,6 +90,10 @@ export class TimelineRenderer extends Component {
             type: Function,
             optional: true,
         },
+        editRecord: {
+            type: Function,
+            optional: true,
+        },
         deleteRecord: {
             type: Function,
             optional: true,
@@ -120,6 +125,7 @@ export class TimelineRenderer extends Component {
         this.toRendererRecords = new Map();
         this.state = useState({
             loading: true,
+            saving : false,
         });
 
         this.redraw = debounce(this.redraw, 0, false);
@@ -323,7 +329,6 @@ export class TimelineRenderer extends Component {
             onMoving: this.onTimelineMoving.bind(this),
             onRemove: this.onTimelineRemove.bind(this),
             onRemoveGroup: undefined,
-            onUpdate: this.onTimelineUpdate.bind(this),
             order: undefined, // Custom ordering is not suitable for large amounts of items.
             orientation: {
                 axis: this.props.model.archInfo.orientationAxis,
@@ -572,7 +577,7 @@ export class TimelineRenderer extends Component {
     }
 
     onClick(eventProps) {
-        if (this.popover.isOpen || !eventProps.item) {
+        if (this.popover.isOpen || !eventProps.item || this.state.saving) {
             return;
         }
 
@@ -623,26 +628,43 @@ export class TimelineRenderer extends Component {
     }
 
     async onTimelineMove(item, callback) {
-        //TODO Use item in callback to validate action or null to cancel
-        console.log('onTimelineMove', item);
-        callback(item);
+        this.state.saving = true;
+
+        if (this.popover?.isOpen) {
+            this.popover.close();
+        }
+
+        const record = {
+            id: item.id,
+            [this.props.model.archInfo.fieldDateStart]: serializeDateTime(DateTime.fromJSDate(item.start)),
+        };
+
+        if (this.props.model.archInfo.fieldDateEnd) {
+            record[this.props.model.archInfo.fieldDateEnd] = item.end ? serializeDateTime(DateTime.fromJSDate(item.end)) : false;
+        }
+
+        if (this.props.model.groupBy.length > 0) {
+            record[this.props.model.groupBy[0]] = item.group === UNASSIGNED_ID ? false : item.group;
+        }
+
+        const res = await this.props.editRecord(record);
+        this.state.saving = false;
+        await this.props.model.load();
+
+        callback(res ? item : null);
     }
 
     async onTimelineMoving(item, callback) {
-        //TODO Use item in callback to validate action or null to cancel
-        console.log('onTimelineMoving', item);
+        if (this.popover?.isOpen) {
+            this.popover.close();
+        }
+
         callback(item);
     }
 
     async onTimelineRemove(item, callback) {
         await this.props.deleteRecord(item.id);
         await this.props.model.load();
-        callback(item);
-    }
-
-    async onTimelineUpdate(item, callback) {
-        //TODO Use item in callback to validate action or null to cancel
-        console.log('onTimelineUpdate', item);
         callback(item);
     }
 }
