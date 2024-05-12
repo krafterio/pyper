@@ -39,6 +39,7 @@ export class TimelineArchParser {
         let defaultGroupBy = ['id'];
         let defaultOrderBy = null;
         let useTimelineDelete = false;
+        let forceEmptyGroup = false;
         let dialogSize = 'fs';
         const groupModels = {};
         const groupFieldNextIds = {};
@@ -162,6 +163,10 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('use_timeline_delete')) {
                         useTimelineDelete = archParseBoolean(node.getAttribute('use_timeline_delete'), useTimelineDelete);
+                    }
+
+                    if (node.hasAttribute('force_empty_group')) {
+                        forceEmptyGroup = archParseBoolean(node.getAttribute('force_empty_group'), forceEmptyGroup);
                     }
 
                     if (node.hasAttribute('dialog_size')) {
@@ -580,6 +585,7 @@ export class TimelineArchParser {
             defaultGroupBy,
             defaultOrderBy,
             useTimelineDelete,
+            forceEmptyGroup,
             dialogSize,
             groupModels,
             groupFieldNames,

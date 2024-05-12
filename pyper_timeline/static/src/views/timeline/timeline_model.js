@@ -313,7 +313,7 @@ export class TimelineModel extends Model {
         });
 
         // Remove unassigned group if it is empty
-        if (!hasUnassigned) {
+        if (!hasUnassigned && !this.archInfo.forceEmptyGroup) {
             delete groups[UNASSIGNED_ID];
         }
 
