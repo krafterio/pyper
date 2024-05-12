@@ -585,14 +585,10 @@ export class TimelineRenderer extends Component {
             return;
         }
 
-        // Open edit dialog
+        // Open record in target main
         if (eventProps.event.shiftKey) {
-            this.props.model.mutex.exec(() => this.props.openDialog({
-                resId: eventProps.item,
-                onRecordSaved: async () => {
-                    await this.props.model.load();
-                },
-            }));
+            // Value of eventProps.item is Integer
+            this.props.model.mutex.exec(() => this.props.openRecords([eventProps.item]));
 
             return;
         }
@@ -605,9 +601,18 @@ export class TimelineRenderer extends Component {
     }
 
     doubleClick(eventProps) {
+        if (this.popover?.isOpen) {
+            this.popover.close();
+        }
+
         if (eventProps.what === 'item' && eventProps.item) {
             // Value of eventProps.item is Integer
-            this.props.model.mutex.exec(() => this.props.openRecords([eventProps.item]));
+            this.props.model.mutex.exec(() => this.props.openDialog({
+                resId: eventProps.item,
+                onRecordSaved: async () => {
+                    await this.props.model.load();
+                },
+            }));
         }
     }
 
