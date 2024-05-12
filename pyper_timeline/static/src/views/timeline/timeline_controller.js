@@ -88,6 +88,10 @@ export class TimelineController extends Component {
         ViewScaleSelector,
     };
 
+    static props = {
+        '*': true,
+    };
+
     setup() {
         this.actionService = useService('action');
         this.dialogService = useService('dialog');
