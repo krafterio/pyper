@@ -339,12 +339,13 @@ export class TimelineController extends Component {
                 context: props.context,
                 size: dialogSize,
                 removeRecord,
+                onRecordSaved: props.onRecordSaved,
+                onRecordDiscarded: props.onRecordDiscarded,
             },
             {
                 ...options,
-                onClose: async () => {
+                onClose: () => {
                     this.closeDialog = null;
-                    await this.model.load();
                 },
             }
         );

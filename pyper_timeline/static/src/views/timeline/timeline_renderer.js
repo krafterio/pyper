@@ -427,7 +427,12 @@ export class TimelineRenderer extends Component {
             editButton: {
                 text: canEdit ? _t('Edit') : _t('View'),
                 onClick: () => {
-                    this.props.model.mutex.exec(() => this.props.openDialog({resId: record.data.id}));
+                    this.props.model.mutex.exec(() => this.props.openDialog({
+                        resId: record.data.id,
+                        onRecordSaved: async () => {
+                            await this.props.model.load();
+                        },
+                    }));
                 },
             },
             deleteButton: canDelete ? {
@@ -618,11 +623,12 @@ export class TimelineRenderer extends Component {
         this.props.openDialog({
             context,
             onRecordSaved: async () => {
+                callback(null);
                 await this.props.model.load();
             },
             onRecordDiscarded: async () => {
                 callback(null);
-            }
+            },
         });
     }
 
