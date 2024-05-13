@@ -472,7 +472,7 @@ export class TimelineRenderer extends Component {
 
         let tplName = undefined;
 
-        if (group.groupByField !== false && this.props.model.groupBy.length > 0) {
+        if (!group.notUseGroupTemplate && this.props.model.groupBy.length > 0) {
             tplName = 'groupTemplate_' + this.props.model.groupBy[0];
 
             if (!this.timelineTemplates[tplName]) {

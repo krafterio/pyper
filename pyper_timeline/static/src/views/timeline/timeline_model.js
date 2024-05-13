@@ -290,6 +290,7 @@ export class TimelineModel extends Model {
 
                 // Add group
                 let groupByContent = groupRes[i][groupByField];
+                let groupById = false;
                 const groupByPosition = parseInt(i, 10);
 
                 switch (groupByFieldInfo?.type) {
@@ -320,7 +321,8 @@ export class TimelineModel extends Model {
                         }
 
                         if (Array.isArray(groupByContent)) {
-                            groupByContent = groupByContent[1] || groupByContent[0];
+                            groupById = groupByContent[0];
+                            groupByContent = groupByContent[1] || groupById;
                         } else if (groupByContent === false) {
                             emptyGroupId = groupByPosition;
                             groupByContent = emptyGroupLabel;
@@ -339,10 +341,10 @@ export class TimelineModel extends Model {
                 groups[groupByPosition] = this.createGroup({
                     id: groupByPosition,
                     content: groupByContent,
-                    groupByField: emptyGroupId !== EMPTY_GROUP_ID ? false : undefined,
+                    notUseGroupTemplate: emptyGroupId === EMPTY_GROUP_ID,
                     order: 0,
-                    record: this.generateRecord(groupByModel, emptyGroupId !== groupByPosition ? groupByPosition : false, groupFields, {
-                        id: groupByPosition,
+                    record: this.generateRecord(groupByModel, groupById, groupFields, {
+                        id: groupById,
                         label: groupByContent,
                     }),
                 });
@@ -360,7 +362,7 @@ export class TimelineModel extends Model {
             groups[emptyGroupId] = this.createGroup({
                 id: emptyGroupId,
                 content: emptyGroupLabel,
-                groupByField: false,
+                notUseGroupTemplate: false,
                 order: emptyGroupId,
                 record: this.generateRecord(undefined, false, groupFields, {
                     id: false,
