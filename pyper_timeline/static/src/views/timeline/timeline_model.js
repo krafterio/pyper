@@ -12,6 +12,8 @@ import {useState, reactive} from '@odoo/owl';
 
 const {DateTime} = luxon;
 
+export const EMPTY_GROUP_ID = -1;
+
 export class TimelineModel extends Model {
     static services = ['user', 'field'];
 
@@ -237,7 +239,7 @@ export class TimelineModel extends Model {
         });
 
         const emptyGroupLabel = _t('Unassigned');
-        let emptyGroupId = -1;
+        let emptyGroupId = EMPTY_GROUP_ID;
         const groupBys = this.meta.groupBy.length > 0 ? this.meta.groupBy : this.archInfo.defaultGroupBy;
         const groupByField = groupBys.length > 0 ? groupBys[0] : null;
         let groupByModel = undefined;
@@ -304,19 +306,6 @@ export class TimelineModel extends Model {
                         break;
                     case 'one2many':
                     case 'many2many':
-                        if (this.archInfo.groupTemplates[groupByField]) {
-                            groupByModel = groupByFieldInfo?.relation;
-                            groupIds = {};
-                        }
-
-                        if (Array.isArray(groupByContent)) {
-                            groupByContent = groupByContent[1] || groupByContent[0];
-                        } else if (groupByContent === false) {
-                            emptyGroupId = groupByPosition;
-                            groupByContent = emptyGroupLabel;
-                        }
-
-                        break;
                     case 'many2one':
                         if (this.archInfo.groupTemplates[groupByField]) {
                             groupByModel = groupByFieldInfo?.relation;
@@ -343,7 +332,7 @@ export class TimelineModel extends Model {
                 groups[groupByPosition] = this.createGroup({
                     id: groupByPosition,
                     content: groupByContent,
-                    groupByField: emptyGroupId !== -1 ? false : undefined,
+                    groupByField: emptyGroupId !== EMPTY_GROUP_ID ? false : undefined,
                     order: 0,
                     record: this.generateRecord(groupByModel, groupByPosition, groupFields, {
                         id: groupByPosition,
@@ -365,7 +354,7 @@ export class TimelineModel extends Model {
                 id: emptyGroupId,
                 content: emptyGroupLabel,
                 groupByField: false,
-                order: 0,
+                order: emptyGroupId,
                 record: this.generateRecord(undefined, false, groupFields, {
                     id: false,
                     label: emptyGroupLabel,
@@ -398,8 +387,8 @@ export class TimelineModel extends Model {
                 }
 
                 items.push(this.createItem({
-                    id: item.id,
-                    group: groupByPosition,
+                    id: groupByPosition + '_' + item.id,
+                    group: groupByField ? groupByPosition : EMPTY_GROUP_ID,
                     start: item[this.archInfo.fieldDateStart].toJSDate(),
                     end: item[this.archInfo.fieldDateEnd]?.toJSDate(),
                     type: this.archInfo.fieldDateEnd ? this.archInfo.itemRangeType : this.archInfo.itemType,
