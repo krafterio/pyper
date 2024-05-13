@@ -78,6 +78,10 @@ export class TimelineModel extends Model {
         return this.meta.groupBy.length > 0 ? this.meta.groupBy : this.archInfo.defaultGroupBy;
     }
 
+    get isGroupByMovable() {
+        return this.meta.groupBy.length > 0 ? this.meta.groupBy[0].split(':').length === 1 : true;
+    }
+
     get scale() {
         return this.meta.scale;
     }

@@ -284,7 +284,7 @@ export class TimelineRenderer extends Component {
             editable: {
                 add: this.props.model.canCreate,
                 remove: this.props.model.canDelete && this.props.model.archInfo.useTimelineDelete,
-                updateGroup: this.props.model.canEdit,
+                updateGroup: this.props.model.canEdit && this.props.model.isGroupByMovable,
                 updateTime: this.props.model.canEdit,
                 overrideItems: this.props.model.canEdit,
             },
@@ -668,7 +668,7 @@ export class TimelineRenderer extends Component {
             record[this.props.model.archInfo.fieldDateEnd] = item.end ? serializeDateTime(DateTime.fromJSDate(item.end)) : false;
         }
 
-        if (this.props.model.groupBy.length > 0) {
+        if (this.props.model.groupBy.length > 0 && this.props.model.isGroupByMovable) {
             record[this.props.model.groupBy[0]] = this.props.model.getGroupRecordId(item.group);
         }
 
