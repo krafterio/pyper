@@ -425,6 +425,15 @@ export class TimelineModel extends Model {
             });
         }
 
+        // Order of group must be greater than or equal zero
+        if (groups[EMPTY_GROUP_ID]) {
+            Object.values(groups).forEach(group => {
+                if (typeof group.order === 'number') {
+                    ++group.order;
+                }
+            });
+        }
+
         data.groups = Object.values(groups);
         data.items = items;
         data.loading = false;
