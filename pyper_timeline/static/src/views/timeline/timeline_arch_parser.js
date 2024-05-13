@@ -80,7 +80,8 @@ export class TimelineArchParser {
         let showMinorLabels = true;
         let showWeekScale = true;
         let showTooltips = true;
-        let stack = false;
+        let defaultStack = false;
+        let stack = undefined;
         let stackSubgroups = true;
         let clusterMaxItems = -1;
         let clusterTitleTemplate = undefined;
@@ -297,6 +298,10 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('show_tooltips')) {
                         showTooltips = archParseBoolean(node.getAttribute('show_tooltips'), showTooltips);
+                    }
+
+                    if (node.hasAttribute('default_stack')) {
+                        defaultStack = archParseBoolean(node.getAttribute('default_stack'), defaultStack);
                     }
 
                     if (node.hasAttribute('stack')) {
@@ -627,6 +632,7 @@ export class TimelineArchParser {
             showMinorLabels,
             showWeekScale,
             showTooltips,
+            defaultStack,
             stack,
             stackSubgroups,
             clusterMaxItems,

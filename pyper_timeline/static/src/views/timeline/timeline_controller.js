@@ -117,6 +117,9 @@ export class TimelineController extends Component {
                 ? JSON.parse(browser.localStorage.getItem('calendar.isWeekendVisible'))
                 : true,
             customIsWeekendVisible: null,
+            stack : browser.localStorage.getItem('pyper_timeline.stack') != null
+                ? JSON.parse(browser.localStorage.getItem('pyper_timeline.stack'))
+                : this.model.archInfo.defaultStack,
         });
 
         useSetupView({
@@ -213,6 +216,18 @@ export class TimelineController extends Component {
             || SCALES[this.model.scale]?.force_weekends_visibility;
     }
 
+    get isStacked() {
+        if (!this.isStackable) {
+            return this.model.archInfo.stack;
+        }
+
+        return this.state.stack;
+    }
+
+    get isStackable() {
+        return undefined === this.model.archInfo.stack;
+    }
+
     /**
      * @returns {any}
      */
@@ -220,6 +235,7 @@ export class TimelineController extends Component {
         return {
             model: this.model,
             isWeekendVisible: this.rendererIsWeekendVisible,
+            isStacked: this.isStacked,
             setRange: this.setRange.bind(this),
             editRecord: this.editRecord.bind(this),
             deleteRecord: this.deleteRecord.bind(this),
@@ -282,6 +298,17 @@ export class TimelineController extends Component {
     async toggleWeekendVisibility() {
         this.state.isWeekendVisible = !this.state.isWeekendVisible;
         browser.localStorage.setItem('calendar.isWeekendVisible', this.state.isWeekendVisible);
+
+        await this.model.load();
+    }
+
+    async toggleStack() {
+        if (!this.isStackable) {
+            return;
+        }
+
+        this.state.stack = !this.state.stack;
+        browser.localStorage.setItem('pyper_timeline.stack', this.state.stack);
 
         await this.model.load();
     }

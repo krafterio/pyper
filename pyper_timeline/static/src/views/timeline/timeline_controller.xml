@@ -46,6 +46,19 @@
                         </button>
                     </div>
 
+                    <button
+                        t-if="this.isStackable"
+                        class="btn o_timeline_button_stack order-2 order-lg-0 ms-auto ms-lg-0"
+                        t-att-class="{
+                            'btn-sm btn-light': env.isSmall,
+                            'btn-secondary': !env.isSmall,
+                            'btn-dark': this.isStacked
+                        }"
+                        t-on-click.stop="() => this.toggleStack()"
+                    >
+                        <i class="fa fa-list-ul"/>
+                    </button>
+
                     <ViewScaleSelector
                         scales="scales"
                         currentScale="model.scale"

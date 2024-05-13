@@ -85,6 +85,10 @@ export class TimelineRenderer extends Component {
             type: Boolean,
             optional: true,
         },
+        isStacked: {
+            type: Boolean,
+            optional: true,
+        },
         setRange: {
             type: Function,
             optional: true,
@@ -347,7 +351,7 @@ export class TimelineRenderer extends Component {
             showMinorLabels: this.props.model.archInfo.showMinorLabels,
             showWeekScale: this.props.model.archInfo.showWeekScale,
             showTooltips: this.props.model.archInfo.showTooltips,
-            stack: this.props.model.archInfo.stack,
+            stack: this.props.isStacked,
             stackSubgroups: this.props.model.archInfo.stackSubgroups,
             cluster: {
                 maxItems: this.props.model.archInfo.clusterMaxItems,
