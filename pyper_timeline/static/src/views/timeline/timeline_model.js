@@ -362,7 +362,7 @@ export class TimelineModel extends Model {
             groups[emptyGroupId] = this.createGroup({
                 id: emptyGroupId,
                 content: emptyGroupLabel,
-                notUseGroupTemplate: false,
+                notUseGroupTemplate: emptyGroupId === EMPTY_GROUP_ID,
                 order: emptyGroupId,
                 record: this.generateRecord(undefined, false, groupFields, {
                     id: false,
