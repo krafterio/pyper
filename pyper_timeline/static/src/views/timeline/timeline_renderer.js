@@ -127,7 +127,7 @@ export class TimelineRenderer extends Component {
             saving : false,
         });
 
-        this.redraw = debounce(this.redraw, 0, false);
+        this.redraw = debounce(this.redraw, 100, false);
 
         this.popover = usePopover(this.constructor.components.Popover, this.popoverOptions);
 
@@ -675,11 +675,15 @@ export class TimelineRenderer extends Component {
         const res = await this.props.editRecord(record);
         this.state.saving = false;
 
-        if (res) {
+        if (res === true) {
             await this.props.model.load();
         }
 
-        callback(res ? item : null);
+        callback(res === true ? item : null);
+
+        if (res instanceof Error) {
+            throw res;
+        }
     }
 
     async onTimelineMoving(item, callback) {

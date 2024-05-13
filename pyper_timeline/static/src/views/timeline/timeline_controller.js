@@ -294,8 +294,7 @@ export class TimelineController extends Component {
 
             return true;
         } catch (e) {
-            console.error('[Timeline Edit Error] ' + e.message);
-            return false;
+            return e;
         }
     }
 
