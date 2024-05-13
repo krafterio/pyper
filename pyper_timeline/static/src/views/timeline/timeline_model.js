@@ -121,7 +121,7 @@ export class TimelineModel extends Model {
             });
 
             // Saturday, Sunday
-            if (currentWeekOffset > 0) {
+            if (this.meta.firstDayOfWeek > 0) {
                 weekends.push(weekStart.plus({weeks: 1, days: -2}), weekStart.plus({weeks: 1, days: -1}));
             } else {
                 weekends.push(weekStart, weekStart.plus({weeks: 1, days: -1}));
@@ -139,6 +139,13 @@ export class TimelineModel extends Model {
         return this.data.items;
     }
 
+    /**
+     * Get record id from group id.
+     *
+     * @param {Number|String} groupId
+     *
+     * @returns {Integer|Boolean}
+     */
     getGroupRecordId(groupId) {
         for (const group of this.groups) {
             if (group.id === groupId) {
@@ -249,7 +256,7 @@ export class TimelineModel extends Model {
         let groupIds = false;
         const groups = {};
         const items = [];
-        let res = [];
+        let res;
 
         // Search items
         if (!groupByField) {
@@ -334,7 +341,7 @@ export class TimelineModel extends Model {
                     content: groupByContent,
                     groupByField: emptyGroupId !== EMPTY_GROUP_ID ? false : undefined,
                     order: 0,
-                    record: this.generateRecord(groupByModel, groupByPosition, groupFields, {
+                    record: this.generateRecord(groupByModel, emptyGroupId !== groupByPosition ? groupByPosition : false, groupFields, {
                         id: groupByPosition,
                         label: groupByContent,
                     }),
@@ -465,7 +472,7 @@ export class TimelineModel extends Model {
             isFieldInvalid: (/* fieldName */) => false,
             resetFieldValidity: (/* fieldName */) => {},
             update: (/* updateData */) => {},
-            isNew: false,
+            isNew: resId === false,
             isInEdition: false,
             isValid: true,
             evalContext: {},

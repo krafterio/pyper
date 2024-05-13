@@ -127,7 +127,7 @@ export class TimelineRenderer extends Component {
             saving : false,
         });
 
-        this.redraw = debounce(this.redraw, 100, false);
+        this.redraw = debounce(this.redraw, 150, false);
 
         this.popover = usePopover(this.constructor.components.Popover, this.popoverOptions);
 
@@ -428,7 +428,7 @@ export class TimelineRenderer extends Component {
                 text: canEdit ? _t('Edit') : _t('View'),
                 onClick: async () => {
                     return await this.props.model.mutex.exec(() => this.props.openDialog({
-                        resId: record.data.id,
+                        resId: record.resId,
                         onRecordSaved: async () => {
                             await this.props.model.load();
                         },
@@ -438,7 +438,7 @@ export class TimelineRenderer extends Component {
             deleteButton: canDelete ? {
                 text: _t('Delete'),
                 onClick: async () => {
-                    await this._deleteRecord(item.id);
+                    await this._deleteRecord(item.record.resId);
                 },
             } : undefined,
         };
@@ -581,20 +581,24 @@ export class TimelineRenderer extends Component {
     }
 
     onClick(eventProps) {
-        if (this.popover.isOpen || !eventProps.item || this.state.saving) {
+        const item = this.timeline.itemsData.get(eventProps.item);
+
+        if (eventProps.what !== 'item' || !item || this.state.saving) {
             return;
         }
 
         // Open record in target main
         if (eventProps.event.shiftKey) {
-            // Value of eventProps.item is Integer
-            this.props.model.mutex.exec(() => this.props.openRecords([eventProps.item]));
+            this.props.model.mutex.exec(() => this.props.openRecords([item.record.resId]));
 
             return;
         }
 
+        if (this.popover.isOpen) {
+            return;
+        }
+
         // Show popover
-        const item = this.timeline.itemsData.get(eventProps.item);
         const popoverTarget = eventProps.event.target.closest('.vis-item');
 
         this.popover.open(popoverTarget, this.getPopoverProps(item));
@@ -605,10 +609,11 @@ export class TimelineRenderer extends Component {
             this.popover.close();
         }
 
-        if (eventProps.what === 'item' && eventProps.item) {
-            // Value of eventProps.item is Integer
+        const item = this.timeline.itemsData.get(eventProps.item);
+
+        if (eventProps.what === 'item' && item) {
             this.props.model.mutex.exec(() => this.props.openDialog({
-                resId: eventProps.item,
+                resId: item.record.resId,
                 onRecordSaved: async () => {
                     await this.props.model.load();
                 },
@@ -660,7 +665,7 @@ export class TimelineRenderer extends Component {
         }
 
         const record = {
-            id: item.id,
+            id: item.record.resId,
             [this.props.model.archInfo.fieldDateStart]: serializeDateTime(DateTime.fromJSDate(item.start)),
         };
 
@@ -695,7 +700,7 @@ export class TimelineRenderer extends Component {
     }
 
     async onTimelineRemove(item, callback) {
-        const res = await this._deleteRecord(item.id);
+        const res = await this._deleteRecord(item.record.resId);
         callback(res ? item : null);
     }
 

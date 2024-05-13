@@ -85,7 +85,7 @@ export class TimelineArchParser {
         let clusterMaxItems = -1;
         let clusterTitleTemplate = undefined;
         let clusterShowStipes = false;
-        let clusterFitOnDoubleClick = true;
+        let clusterFitOnDoubleClick = false;
         let timeAxisScale = undefined;
         let timeAxisStep = 1;
         let type = undefined;

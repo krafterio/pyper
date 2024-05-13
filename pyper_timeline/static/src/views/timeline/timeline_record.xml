@@ -3,7 +3,7 @@
     <t t-name="pyper_timeline.TimelineRecord">
         <div
             role="article"
-            t-att-data-id="props.record.data.id"
+            t-att-data-id="props.record.resId"
         >
             <t t-call="{{ computedTemplate }}" t-call-context="renderingContext"/>
         </div>

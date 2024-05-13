@@ -328,7 +328,10 @@ export class TimelineController extends Component {
         let removeRecord;
 
         if (canDelete && props.resId) {
-            removeRecord = async () => await this.deleteRecord(props.resId);
+            removeRecord = async () => {
+                await this.deleteRecord(props.resId);
+                await this.model.load();
+            };
         }
 
         this.closeDialog = this.dialogService.add(
