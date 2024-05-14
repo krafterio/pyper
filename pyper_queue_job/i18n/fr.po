@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-21 16:06+0000\n"
-"PO-Revision-Date: 2024-01-21 16:06+0000\n"
+"POT-Creation-Date: 2024-05-14 21:59+0000\n"
+"PO-Revision-Date: 2024-05-15 00:00+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -116,9 +116,10 @@ msgstr "Date du ping d’API"
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,help:pyper_queue_job.field_pyper_queue_job__auto_unlink
-msgid "Delete the job after done only if it does not have any log"
+msgid ""
+"Delete the job after done only (Done) or done/fail/cancel (Fail) or none"
 msgstr ""
-"Supprimez le travail une fois terminé uniquement s’il n’a aucun journal"
+"Supprimez le travail une fois terminé uniquement (Fait) ou Fait/Echec/Annulé ou jamais"
 
 #. module: pyper_queue_job
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_form
@@ -159,7 +160,10 @@ msgid "Doing"
 msgstr "En cours"
 
 #. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job__auto_unlink__done
 #: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job__state__done
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job_batch_mixin__state__done
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__res_partner_drop_contact_batch__state__done
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
 msgid "Done"
 msgstr "Fait"
@@ -171,6 +175,8 @@ msgstr "Date de fin"
 
 #. module: pyper_queue_job
 #: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job__state__enqueued
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job_batch_mixin__state__enqueued
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__res_partner_drop_contact_batch__state__enqueued
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
 msgid "Enqueued"
 msgstr "En attente"
@@ -188,16 +194,19 @@ msgstr "Erreurs"
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__exception_name
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_batch_mixin__exception_name
 msgid "Exception"
 msgstr ""
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__exception_info
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_batch_mixin__exception_info
 msgid "Exception Info"
 msgstr "Info de l’Exception"
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__exception_message
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_batch_mixin__exception_message
 msgid "Exception Message"
 msgstr "Message d’exception"
 
@@ -218,9 +227,16 @@ msgstr "Dates d’exécution"
 
 #. module: pyper_queue_job
 #: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job__state__failed
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job_batch_mixin__state__failed
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__res_partner_drop_contact_batch__state__failed
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
 msgid "Failed"
 msgstr "Échoué"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job__auto_unlink__full
+msgid "Full"
+msgstr "Complet"
 
 #. module: pyper_queue_job
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
@@ -292,6 +308,12 @@ msgstr ""
 "aucune action réseau n’est détectée, cette option permet d’effectuer des "
 "pings HTTP publics sur l’instance afin de simuler l’activité réseau "
 "lorsqu’un job est en cours d’exécution"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job_batch_mixin__state__in_progress
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__res_partner_drop_contact_batch__state__in_progress
+msgid "In progress"
+msgstr "En cours"
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_log__info
@@ -421,6 +443,11 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job__auto_unlink__none
+msgid "None"
+msgstr "Jamais"
+
+#. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__payload
 msgid "Payload"
 msgstr ""
@@ -441,6 +468,11 @@ msgstr "Intervalle du Ping API"
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_log_search
 msgid "Queue Job"
 msgstr "Job en file d’attente"
+
+#. module: pyper_queue_job
+#: model:ir.model,name:pyper_queue_job.model_pyper_queue_job_batch_mixin
+msgid "Queue Job Batch Mixin"
+msgstr ""
 
 #. module: pyper_queue_job
 #: model:ir.model,name:pyper_queue_job.model_pyper_queue_job_log
@@ -545,6 +577,7 @@ msgstr "Date de début"
 
 #. module: pyper_queue_job
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__state
+#: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job_batch_mixin__state
 #: model_terms:ir.ui.view,arch_db:pyper_queue_job.pyper_queue_job_search
 msgid "State"
 msgstr "État"
@@ -615,6 +648,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:pyper_queue_job.field_pyper_queue_job__user_id
 msgid "User"
 msgstr "Utilisateur"
+
+#. module: pyper_queue_job
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job_batch_mixin__state__waiting
+#: model:ir.model.fields.selection,name:pyper_queue_job.selection__res_partner_drop_contact_batch__state__waiting
+msgid "Waiting"
+msgstr "En attente"
 
 #. module: pyper_queue_job
 #: model:ir.model.fields.selection,name:pyper_queue_job.selection__pyper_queue_job_log__type__warning
