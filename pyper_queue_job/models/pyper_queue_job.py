@@ -13,6 +13,12 @@ from odoo import api, fields, models, Command, _
 
 from ..exceptions import create_error as queue_create_error, QueueJobProcessError, QueueJobError
 
+DELAY_AUTO_UNLINK_NONE = 'none'
+
+DELAY_AUTO_UNLINK_DONE = 'done'
+
+DELAY_AUTO_UNLINK_FULL = 'full'
+
 
 class PyperQueueJob(models.Model):
     _name = 'pyper.queue.job'
@@ -69,10 +75,15 @@ class PyperQueueJob(models.Model):
         default=lambda self: self.env.company
     )
 
-    auto_unlink = fields.Boolean(
+    auto_unlink = fields.Selection(
+        [
+            (DELAY_AUTO_UNLINK_NONE, 'None'),
+            (DELAY_AUTO_UNLINK_DONE, 'Done'),
+            (DELAY_AUTO_UNLINK_FULL, 'Full'),
+        ],
         'Auto unlink',
-        default=False,
-        help='Delete the job after done only if it does not have any log',
+        default=DELAY_AUTO_UNLINK_NONE,
+        help='Delete the job after done only (Done) or done/fail/cancel (Fail) or none',
     )
 
     recordset_ids = fields.Json(
@@ -664,16 +675,22 @@ class PyperQueueJob(models.Model):
             call(**call_args)
             self._done()
 
-            if self.auto_unlink and not self.log_count and self.state in ['done', 'cancelled']:
+            if (self.auto_unlink == DELAY_AUTO_UNLINK_DONE
+                    and not self.log_count and self.state in ['done', 'cancelled']):
+                self.unlink()
+            elif self.auto_unlink == DELAY_AUTO_UNLINK_FULL:
                 self.unlink()
         except Exception as err:
-            msg = _('Job interrupted by unknown exception')
-            fail_tracback = traceback.format_exc() if not isinstance(err, QueueJobError) else False
+            if self.auto_unlink == DELAY_AUTO_UNLINK_FULL:
+                self.unlink()
+            else:
+                msg = _('Job interrupted by unknown exception')
+                fail_tracback = traceback.format_exc() if not isinstance(err, QueueJobError) else False
 
-            if str(err):
-                msg = str(err)
+                if str(err):
+                    msg = str(err)
 
-            self._fail(type(err).__name__, msg, fail_tracback)
+                self._fail(type(err).__name__, msg, fail_tracback)
 
     def ping_api(self):
         if not self._ping_api_base_url:

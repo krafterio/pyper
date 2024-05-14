@@ -5,6 +5,8 @@ from datetime import datetime
 
 from odoo import models
 
+from .pyper_queue_job import DELAY_AUTO_UNLINK_NONE, DELAY_AUTO_UNLINK_DONE, DELAY_AUTO_UNLINK_FULL
+
 
 class Base(models.AbstractModel):
     _inherit = 'base'
@@ -14,13 +16,13 @@ class Base(models.AbstractModel):
         name: str = None,
         user_id: models.Model | int = None,
         company_id: models.Model | int = None,
-        auto_unlink: bool = None,
+        auto_unlink: str = None,
         date_enqueued: datetime = None,
         **payload
     ):
         """
         Allow to execute function asynchronously and use it simply like this:::
-            self.with_delay(auto_unlink=False).action_done()
+            self.with_delay(auto_unlink='none').action_done()
         ``with_delay()`` accepts job properties which specify how the job will
         be executed.
         The ids of the recordset are automatically restored in the model instance instancied by the job process.
@@ -29,7 +31,7 @@ class Base(models.AbstractModel):
         :param name: The custom job name
         :param user_id: The user used for the job
         :param company_id: The active company used for the job
-        :param auto_unlink: Defined if the job is deleted when it is done successfully without log
+        :param auto_unlink: Defined if the job is deleted after done only (Done) or done/fail/cancel (Fail) or none
         :param date_enqueued: Date when the job is planned
         :param payload: The payload for the job
         :return: Delayable: The wrapper to delay the called method just after the method with_delay() to run in the
@@ -88,6 +90,6 @@ class Delayable(object):
             job_vals['date_enqueued'] = datetime.now()
 
         if job_vals.get('auto_unlink', None) is None:
-            job_vals['auto_unlink'] = True
+            job_vals['auto_unlink'] = DELAY_AUTO_UNLINK_FULL
 
-        self.recordset.env['pyper.queue.job'].sudo().create(job_vals)
+        return self.recordset.env['pyper.queue.job'].sudo().create(job_vals)

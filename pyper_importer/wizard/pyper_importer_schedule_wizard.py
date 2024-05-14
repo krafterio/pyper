@@ -5,6 +5,8 @@ from odoo import api, fields, models, _
 
 from datetime import datetime
 
+from odoo.addons.pyper_queue_job.models.pyper_queue_job import DELAY_AUTO_UNLINK_NONE
+
 
 class PyperImportScheduleWizard(models.TransientModel):
     _name = 'pyper.importer.schedule_wizard'
@@ -164,7 +166,7 @@ class PyperImportScheduleWizard(models.TransientModel):
 
         return {
             'name': name,
-            'auto_unlink': False,
+            'auto_unlink': DELAY_AUTO_UNLINK_NONE,
             'user_id': self.user_id.id,
             'company_id': company.id,
             'date_enqueued': scheduled_date,
