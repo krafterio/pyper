@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "pyper"
+version = "1.0.0"
+description = "A set of reusable addons dedicated to build an web application"
+authors = ["Krafter SAS <hey@krafter.io>"]
+license = "Proprietary"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+pyyaml = ">=6.0.1"
+boto3 = ">=1.34.37"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
