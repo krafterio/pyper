@@ -37,7 +37,7 @@
         </xpath>
 
         <xpath expr="//button[hasclass('o-mail-Chatter-activity')]" position="replace">
-           <button t-if="props.hasActivities" class="o-mail-Chatter-activity btn btn-secondary me-2 text-nowrap"  data-hotkey="shift+a" t-on-click="scheduleActivity">
+           <button t-if="props.hasActivities" class="o-mail-Chatter-activity btn btn-secondary btn-quick me-2 text-nowrap"  data-hotkey="shift+a" t-on-click="scheduleActivity">
                <i class="ph ph-calendar-check fs-2 lh-lg"/>
            </button>
         </xpath>
