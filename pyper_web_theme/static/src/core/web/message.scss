@@ -1,4 +1,11 @@
-.o-mail-Message-bubble--self-authored {
-    color: $p-mail-message-bubble-self-authored-color;
-    background-color: $p-mail-message-bubble-self-authored-bg;
+.o-mail-Message-bubble.o-mail-Message-bubble--self-authored {
+    color:$p-mail-message-bubble-self-authored-color;
+    background-color:$p-mail-message-bubble-self-authored-bg;
+    height: calc(100% - 8px) !important;
+}
+
+.o-mail-Message-bubble {
+    color:$p-mail-message-bubble-color;
+    background-color:$p-mail-message-bubble-bg;
+    height: calc(100% - 8px) !important;
 }

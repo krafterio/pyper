@@ -4,7 +4,7 @@
         <xpath expr="//div[hasclass('o-mail-Message-bubble')]" position="attributes">
             <attribute name="t-att-class">{
                 'border': state.isEditing and !message.isNote,
-                'bg-light border border-light text-dark': !message.isSelfAuthored and !message.isNote and !message.isHighlightedFromMention,
+                'border border-light text-dark': !message.isSelfAuthored and !message.isNote and !message.isHighlightedFromMention,
                 'o-mail-Message-bubble--self-authored': message.isSelfAuthored and !message.isNote and !message.isHighlightedFromMention,
                 'bg-warning-light border border-warning opacity-50': message.isHighlightedFromMention,
             }</attribute>
