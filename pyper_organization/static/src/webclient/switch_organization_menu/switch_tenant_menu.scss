@@ -1,0 +1,55 @@
+.o_switch_organization_menu {
+    .o_avatar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: $o-switcher-organization-menu-border-radius;
+        overflow: hidden;
+        width: 34px;
+        height: 34px;
+        font-weight: $o-switcher-organization-menu-initials-weight;
+        border: $o-switcher-organization-menu-border-width solid $o-switcher-organization-menu-border-color;
+        color: $o-switcher-organization-menu-initials-color;
+        background-color: $o-switcher-organization-menu-border-bg;
+
+        img {
+            position: absolute;
+            min-width: 100%;
+            min-height: 100%;
+        }
+    }
+}
+
+.o_switcher_organization_item--logo {
+    width: $o-switcher-organization-menu-item-logo-width;
+    height: $o-switcher-organization-menu-item-logo-width;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: $o-switcher-organization-menu-item-logo-border-radius;
+    font-weight: $o-switcher-organization-menu-initials-weight;
+    color: $o-switcher-organization-menu-initials-color;
+    background-color: $o-switcher-organization-menu-border-bg;
+    margin: 0 $o-switcher-organization-menu-item-logo-margin-h;
+    align-self: center;
+
+    img {
+        position: absolute;
+        min-width: 100%;
+        min-height: 100%;
+        width: 100%;
+        height: 100%;
+    }
+
+    .o_switcher_organization_menu--badge {
+        top: $o-switcher-organization-menu-item-logo-margin-h;
+        left: $o-switcher-organization-menu-item-logo-margin-h;
+        min-width: calc(100% - #{$o-switcher-organization-menu-item-logo-margin-h * 2});
+        min-height: calc(100% - #{$o-switcher-organization-menu-item-logo-margin-h * 2});
+        width: calc(100% - #{$o-switcher-organization-menu-item-logo-margin-h * 2});
+        height: calc(100% - #{$o-switcher-organization-menu-item-logo-margin-h * 2});
+    }
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+            <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="pyper_web_theme.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form//div[@id='companies']" position="after">
+                <div id="organizations" invisible="True">
+                    <block title="Organizations" name="organizations_setting_container">
+                        <field name="organization_id" invisible="True"/>
+                        <div></div>
+                    </block>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
