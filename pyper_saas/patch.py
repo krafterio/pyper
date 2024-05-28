@@ -122,11 +122,13 @@ class PyperSaas:
 
     @staticmethod
     def _get_available_addons(pyper: dict):
+        pyper_excluded_available_addons = list(pyper.get('excluded_available_addons', []))
         available_addons = []
 
         if pyper.get('include_minimal_addons', True):
             for min_addon in PyperSaas._MINIMAL_AVAILABLE_ADDONS:
-                available_addons.append(min_addon)
+                if min_addon not in pyper_excluded_available_addons:
+                    available_addons.append(min_addon)
 
         for p_addon in pyper.get('available_addons', []):
             if p_addon not in available_addons:
