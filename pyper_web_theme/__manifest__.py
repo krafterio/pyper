@@ -17,9 +17,7 @@
         'base',
         'base_setup',
         'web',
-        'mail',
         'pyper',
-        'pyper_activity',
         'pyper_command_search',
         'pyper_control_panel',
         'pyper_fonts_phosphor',
@@ -27,7 +25,6 @@
     ],
     'data': [
         'views/res_config_settings_views.xml',
-        'views/mail_message_views.xml',
     ],
     'assets': {
         'web._assets_primary_variables': [
