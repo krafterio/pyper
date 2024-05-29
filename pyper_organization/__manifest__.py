@@ -16,6 +16,7 @@
     'depends': [
         'base',
         'web',
+        'pyper_web_theme',
     ],
     'data': [
         # Security
