@@ -1,0 +1,29 @@
+# Copyright Krafter SAS <hey@krafter.io>
+# Odoo Proprietary License (see LICENSE file).
+
+{
+    'name': 'Pyper purchase Manager',
+    'category': 'Hidden/Tools',
+    'license': 'Other proprietary',
+    'description': 'Override of default purchase addon.',
+    'summary': 'Install all addons required for Revalo.',
+    'version': '17.0.0.0',
+    'author': 'Krafter SAS',
+    'maintainer': [
+        'Krafter SAS',
+    ],
+    'website': 'https://krafter.io',
+    'installable': True,
+    'depends': [
+        'purchase',
+    ],
+    'data': [
+        # Views
+        'views/purchase_views.xml',
+    ],
+    'assets': {
+        'web.assets_backend': [
+            'pyper_purchase_manager/static/src/scss/style.scss',
+        ],
+    }
+}
