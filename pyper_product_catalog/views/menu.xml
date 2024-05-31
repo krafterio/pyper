@@ -23,11 +23,18 @@
     />
 
     <menuitem
+        id="product_import_root"
+        name="Import"
+        parent="pyper_product_catalog.product_catalog_root"
+        sequence="1"
+    />
+
+    <menuitem
         id="product_categories"
         name="Products categories"
         parent="pyper_product_catalog.product_catalog_root"
         action="product.product_category_action_form"
-        sequence="1"
+        sequence="2"
     />
 
     <record model="ir.ui.menu" id="pyper_product_catalog.product_catalog_root">

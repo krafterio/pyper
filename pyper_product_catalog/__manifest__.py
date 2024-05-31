@@ -23,4 +23,9 @@
         'views/product_manufacturer_views.xml',
         'views/menu.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'pyper_product_catalog/static/src/scss/style.scss',
+        ],
+    }
 }
