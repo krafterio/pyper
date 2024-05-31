@@ -54,10 +54,11 @@
                             </header>
 
                             <div class="py-4 px-5">
-                                <div class="doc-title mb-4">
+                                <div class="doc-title oe_title mb-4">
                                     <label for="name" string="Product Name"/>
                                     <h1>
                                         <div class="d-flex">
+                                            <field name="priority" invisible="True"/>
                                             <field class="text-break" name="name" options="{'line_breaks': False}"
                                                    widget="text" placeholder="e.g. Cheese Burger"/>
                                         </div>
