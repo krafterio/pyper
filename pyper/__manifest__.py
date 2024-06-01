@@ -37,6 +37,7 @@
         'web.assets_backend': [
             'pyper/static/src/core/ui/**/*',
             'pyper/static/src/views/fields/**/*',
+            'pyper/static/src/views/form/**/*',
 
             # TODO Remove deprecated assets
             ('before', 'web/static/src/legacy/scss/fields.scss', 'pyper/static/src/legacy/scss/fields.scss'),
