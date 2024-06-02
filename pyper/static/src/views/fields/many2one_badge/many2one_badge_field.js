@@ -2,11 +2,36 @@
 
 import {registry} from '@web/core/registry';
 import {Many2OneField, many2OneField} from '@web/views/fields/many2one/many2one_field';
-import {useSpecialData} from '@web/views/fields/relational_utils';
+import {Many2XAutocomplete, useSpecialData} from '@web/views/fields/relational_utils';
 import {useService} from '@web/core/utils/hooks';
+
+export class BadgeMany2XAutocomplete extends Many2XAutocomplete {
+    mapRecordToOption(result) {
+        console.log('mapRecordToOption', this.props.resModel);
+
+        return {
+            ...super.mapRecordToOption(result),
+            resModel: this.props.resModel,
+            color: result.length > 2 ? result[2] : undefined,
+            icon: result.length > 3 ? result[3] : undefined,
+        };
+    }
+
+    get optionsSource() {
+        return {
+            ...super.optionsSource,
+            optionTemplate: 'pyper.BadgeMany2XAutocomplete',
+        };
+    }
+}
 
 export class Many2OneBadgeField extends Many2OneField {
     static template = 'pyper.Many2OneFieldBadge';
+
+    static components = {
+        ...Many2OneField.components,
+        'Many2XAutocomplete': BadgeMany2XAutocomplete,
+    }
 
     static props = {
         ...Many2OneField.props,
@@ -84,6 +109,13 @@ export class Many2OneBadgeField extends Many2OneField {
         return {
             'o_badge_icon': true,
             [this.value[3]]: !!this.value[3],
+        };
+    }
+
+    get Many2XAutocompleteProps() {
+        return {
+            ...super.Many2XAutocompleteProps,
+            //TODO
         };
     }
 }

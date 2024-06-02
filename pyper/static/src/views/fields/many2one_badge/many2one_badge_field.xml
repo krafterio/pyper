@@ -32,4 +32,11 @@
             <i t-if="value[3] and !props.noIcon" t-att-class="iconClasses"/>
         </xpath>
     </t>
+
+    <t t-name="pyper.BadgeMany2XAutocomplete">
+        <span class="o_badge_many2x_autocomplete d-flex align-items-center">
+            <i t-att-class="'o_badge_icon ' + option.icon"/>
+            <t t-out="option.label" />
+        </span>
+    </t>
 </templates>
