@@ -22,9 +22,10 @@
     ],
     'assets': {
         'web._assets_primary_variables': [
+            ('before', 'web/static/src/**/*.variables.scss', 'pyper/static/src/**/*.variables.scss'),
+
             # TODO Remove deprecated assets
             ('before', 'web/static/src/scss/primary_variables.scss', 'pyper/static/src/scss/primary_variables.scss'),
-            ('before', 'web/static/src/**/*.variables.scss', 'pyper/static/src/**/*.variables.scss'),
         ],
         'web._assets_secondary_variables': [
             # TODO Remove deprecated assets
