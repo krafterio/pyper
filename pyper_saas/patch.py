@@ -34,7 +34,9 @@ class PyperSaas:
     }
 
     _MINIMAL_AVAILABLE_ADDONS = [
+        'auth_signup',
         'auth_totp',
+        'auth_totp_mail',
         'base',
         'base_automation',
         'base_import',
