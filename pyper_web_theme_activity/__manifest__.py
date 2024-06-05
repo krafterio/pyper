@@ -23,6 +23,9 @@
         'views/mail_message_views.xml',
     ],
     'assets': {
+        'web._assets_secondary_variables': [
+            'pyper_web_theme_activity/static/src/core/**/*.variables.scss',
+        ],
         'web.assets_backend': [
             'pyper_web_theme_activity/static/src/core/**/*',
             'pyper_web_theme_activity/static/src/mail/**/*',
