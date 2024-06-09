@@ -228,7 +228,6 @@ export class TimelineModel extends Model {
                 domainRange,
                 Domain.and([
                     [[this.archInfo.fieldDateEnd, '>=', serializeDateTime(data.range.start)]],
-                    [[this.archInfo.fieldDateEnd, '<=', serializeDateTime(data.range.end)]],
                 ]),
             ]);
         }
