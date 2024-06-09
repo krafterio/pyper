@@ -353,7 +353,7 @@ export class TimelineRenderer extends Component {
             showTooltips: this.props.model.archInfo.showTooltips,
             stack: this.props.isStacked,
             stackSubgroups: this.props.model.archInfo.stackSubgroups,
-            cluster: {
+            cluster: this.props.model.archInfo.cluster ? {
                 maxItems: this.props.model.archInfo.clusterMaxItems,
                 titleTemplate: this.props.model.archInfo.clusterTitleTemplate,
                 clusterCriteria: (/* firstItem, secondItem */) => {
@@ -361,7 +361,7 @@ export class TimelineRenderer extends Component {
                 },
                 showStipes: this.props.model.archInfo.clusterShowStipes,
                 fitOnDoubleClick: this.props.model.archInfo.clusterFitOnDoubleClick,
-            },
+            } : false,
             snap: undefined,
             template: this.renderTemplateItem.bind(this),
             loadingScreenTemplate: undefined,

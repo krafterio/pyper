@@ -83,6 +83,7 @@ export class TimelineArchParser {
         let defaultStack = false;
         let stack = undefined;
         let stackSubgroups = true;
+        let cluster = false;
         let clusterMaxItems = -1;
         let clusterTitleTemplate = undefined;
         let clusterShowStipes = false;
@@ -310,6 +311,10 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('stack_subgroups')) {
                         stackSubgroups = archParseBoolean(node.getAttribute('stack_subgroups'), stackSubgroups);
+                    }
+
+                    if (node.hasAttribute('cluster')) {
+                        cluster = archParseBoolean(node.getAttribute('cluster'), stackSubgroups);
                     }
 
                     if (node.hasAttribute('cluster_max_items')) {
@@ -635,6 +640,7 @@ export class TimelineArchParser {
             defaultStack,
             stack,
             stackSubgroups,
+            cluster,
             clusterMaxItems,
             clusterTitleTemplate,
             clusterShowStipes,
