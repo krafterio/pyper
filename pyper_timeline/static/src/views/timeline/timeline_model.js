@@ -8,7 +8,7 @@ import {Model} from '@web/model/model';
 import {extractFieldsFromArchInfo} from '@web/model/relational_model/utils';
 import {orderByToString} from '@web/search/utils/order_by';
 import {Domain} from '@web/core/domain';
-import {useState, reactive} from '@odoo/owl';
+import {markup, useState, reactive} from '@odoo/owl';
 
 const {DateTime} = luxon;
 
@@ -395,6 +395,9 @@ export class TimelineModel extends Model {
                     const type = this.meta.fields[property]?.type;
 
                     switch (type) {
+                        case 'html':
+                            item[property] = item[property] ? markup(item[property]) : false;
+                            break;
                         case 'datetime':
                             const valDateTime = deserializeDateTime(item[property]);
                             item[property] = valDateTime.invalid ? undefined : valDateTime;
