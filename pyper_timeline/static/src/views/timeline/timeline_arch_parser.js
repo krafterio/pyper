@@ -128,7 +128,7 @@ export class TimelineArchParser {
                     if (!scale && node.hasAttribute('mode')) {
                         const mode = node.getAttribute('mode');
 
-                        if (scales.includes(scale)) {
+                        if (scales.includes(mode)) {
                             scale = mode;
                         }
                     }
