@@ -225,9 +225,25 @@ export class TimelineModel extends Model {
 
         if (this.archInfo.fieldDateEnd) {
             domainRange = Domain.or([
-                domainRange,
                 Domain.and([
+                    [[this.archInfo.fieldDateStart, '!=', false]],
+                    [[this.archInfo.fieldDateEnd, '=', false]],
+                    [[this.archInfo.fieldDateStart, '>=', serializeDateTime(data.range.start)]],
+                    [[this.archInfo.fieldDateStart, '<=', serializeDateTime(data.range.end)]],
+                ]),
+                Domain.and([
+                    [[this.archInfo.fieldDateStart, '=', false]],
+                    [[this.archInfo.fieldDateEnd, '!=', false]],
                     [[this.archInfo.fieldDateEnd, '>=', serializeDateTime(data.range.start)]],
+                    [[this.archInfo.fieldDateEnd, '<=', serializeDateTime(data.range.end)]],
+                ]),
+                Domain.and([
+                    [[this.archInfo.fieldDateStart, '!=', false]],
+                    [[this.archInfo.fieldDateEnd, '!=', false]],
+                    Domain.or([
+                        domainRange,
+                        [[this.archInfo.fieldDateEnd, '>=', serializeDateTime(data.range.start)]],
+                    ]),
                 ]),
             ]);
         }
