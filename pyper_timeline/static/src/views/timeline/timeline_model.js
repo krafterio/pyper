@@ -380,10 +380,12 @@ export class TimelineModel extends Model {
 
                     switch (type) {
                         case 'datetime':
-                            item[property] = deserializeDateTime(item[property]);
+                            const valDateTime = deserializeDateTime(item[property]);
+                            item[property] = valDateTime.invalid ? undefined : valDateTime;
                             break;
                         case 'date':
-                            item[property] = deserializeDate(item[property]);
+                            const valDate = deserializeDate(item[property]);
+                            item[property] = valDate.invalid ? undefined : valDate;
                             break;
                         default:
                             break;
@@ -394,12 +396,21 @@ export class TimelineModel extends Model {
                     groupIds[item[groupByField][0]] = groupByPosition;
                 }
 
+                let itemStartDate = item[this.archInfo.fieldDateStart]?.toJSDate();
+                let itemEndDate = item[this.archInfo.fieldDateEnd]?.toJSDate();
+
+                // Timeline required the start date
+                if (!itemStartDate && itemEndDate) {
+                    itemStartDate = itemEndDate;
+                    itemEndDate = undefined;
+                }
+
                 items.push(this.createItem({
                     id: groupByPosition + '_' + item.id,
                     group: groupByField ? groupByPosition : EMPTY_GROUP_ID,
-                    start: item[this.archInfo.fieldDateStart].toJSDate(),
-                    end: item[this.archInfo.fieldDateEnd]?.toJSDate(),
-                    type: this.archInfo.fieldDateEnd ? this.archInfo.itemRangeType : this.archInfo.itemType,
+                    start: itemStartDate,
+                    end: itemEndDate,
+                    type: itemEndDate ? this.archInfo.itemRangeType : this.archInfo.itemType,
                     content: item.display_name || item.id,
                     record: this.generateRecord(this.meta.resModel, item.id, this.meta.fields, item),
                 }));

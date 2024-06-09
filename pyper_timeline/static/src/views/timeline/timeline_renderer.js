@@ -423,7 +423,7 @@ export class TimelineRenderer extends Component {
             record,
             context: {
                 name: displayName,
-                start: record.data[fieldDateStart].toFormat('f'),
+                start: record.data[fieldDateStart]?.toFormat('f'),
                 end: record.data[fieldDateEnd]?.toFormat('f'),
             },
             templateName: this.timelineTemplates['popoverTemplate'] ? 'popoverTemplate' : undefined,
@@ -675,6 +675,12 @@ export class TimelineRenderer extends Component {
 
         if (this.props.model.archInfo.fieldDateEnd) {
             record[this.props.model.archInfo.fieldDateEnd] = item.end ? serializeDateTime(DateTime.fromJSDate(item.end)) : false;
+        }
+
+        // Restore value of end date field
+        if (!item.record.data[this.props.model.archInfo.fieldDateStart] && item.record.data[this.props.model.archInfo.fieldDateEnd]) {
+            record[this.props.model.archInfo.fieldDateEnd] = record[this.props.model.archInfo.fieldDateStart];
+            record[this.props.model.archInfo.fieldDateStart] = false;
         }
 
         if (this.props.model.groupBy.length > 0 && this.props.model.isGroupByMovable) {
