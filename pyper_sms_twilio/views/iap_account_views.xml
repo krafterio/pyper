@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="iap_account_view_form" model="ir.ui.view">
+        <field name="model">iap.account</field>
+        <field name="inherit_id" ref="iap.iap_account_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='account']" position="after">
+                <group
+                    string="Twilio Account"
+                    name="twilio"
+                    invisible="provider != 'sms_twilio'"
+                >
+                    <field name="twilio_account_sid" required="provider == 'sms_twilio'" />
+                    <field name="twilio_auth_token" required="provider == 'sms_twilio'" />
+                    <field name="twilio_phone_number" required="provider == 'sms_twilio'" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
