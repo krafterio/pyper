@@ -1,0 +1,29 @@
+# Copyright Krafter SAS <hey@krafter.io>
+# Odoo Proprietary License (see LICENSE file).
+
+{
+    'name': 'Pyper partner Manager',
+    'category': 'Hidden/Tools',
+    'license': 'Other proprietary',
+    'description': 'Override of default sale addon.',
+    'version': '17.0.0.0',
+    'author': 'Krafter SAS',
+    'maintainer': [
+        'Krafter SAS',
+    ],
+    'website': 'https://krafter.io',
+    'installable': True,
+    'depends': [
+        'base',
+        'mail',
+    ],
+    'data': [
+        # Views
+        'views/res_partner_views.xml',
+    ],
+    'assets': {
+        'web.assets_backend': [
+            'pyper_partner_manager/static/src/scss/style.scss',
+        ],
+    }
+}
