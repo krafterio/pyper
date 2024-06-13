@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_actions_server_view_form" model="ir.ui.view">
+        <field name="model">ir.actions.server</field>
+        <field name="inherit_id" ref="sms.ir_actions_server_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sms_template_id']" position="before">
+                <field name="sms_number_field_domain" invisible="True"/>
+                <field name="sms_country_field_domain" invisible="True"/>
+                <field name="sms_number_field" invisible="state != 'sms'" domain="sms_number_field_domain"/>
+                <field name="sms_country_field" invisible="state != 'sms'" domain="sms_country_field_domain"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
