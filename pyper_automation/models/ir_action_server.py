@@ -27,6 +27,11 @@ class IrActionServer(models.Model):
         compute='_compute_sms_country_field_domain',
     )
 
+    sms_disable_partner_link = fields.Boolean(
+        'Phone disable partner link',
+        help='Do not associate partner of record when SMS message is sent with saved note',
+    )
+
     @api.depends('model_id')
     def _compute_sms_number_field_domain(self):
         for record in self:
@@ -52,6 +57,12 @@ class IrActionServer(models.Model):
     def _onchange_model_id_sms_number_field(self):
         for record in self:
             record.sms_country_field = False
+            record.sms_disable_partner_link = False
+
+    @api.onchange('sms_method')
+    def _onchange_sms_method(self):
+        for record in self:
+            record.sms_disable_partner_link = False
 
     def _run_action_sms_multi(self, eval_context=None):
         # Override action sms to add custom number field of base automation in composer
@@ -72,6 +83,7 @@ class IrActionServer(models.Model):
                 default_mass_keep_log=self.sms_method == 'note',
                 default_number_field_name=self.sms_number_field.name,
                 sms_country_field_name=self.sms_country_field.name,
+                sms_disable_partner_link=self.sms_disable_partner_link,
             ).create({})
             composer.action_send_sms()
             return False

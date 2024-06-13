@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from odoo import models
+from odoo import api, models
 
 
 class BaseModel(models.AbstractModel):
@@ -18,3 +18,10 @@ class BaseModel(models.AbstractModel):
             country = self[sms_country_field_name]
 
         return super()._phone_format(fname, number, country, force_format, raise_exception)
+
+    @api.model
+    def _mail_get_partner_fields(self, introspect_fields=False):
+        if self.env.context.get('sms_disable_partner_link', False):
+            return []
+
+        return super()._mail_get_partner_fields(introspect_fields)

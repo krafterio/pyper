@@ -8,7 +8,8 @@
                 <field name="sms_number_field_domain" invisible="True"/>
                 <field name="sms_country_field_domain" invisible="True"/>
                 <field name="sms_number_field" invisible="state != 'sms'" domain="sms_number_field_domain"/>
-                <field name="sms_country_field" invisible="state != 'sms'" domain="sms_country_field_domain"/>
+                <field name="sms_country_field" invisible="state != 'sms' or not sms_number_field" domain="sms_country_field_domain"/>
+                <field name="sms_disable_partner_link" invisible="state != 'sms' or sms_method == 'sms'"/>
             </xpath>
         </field>
     </record>
