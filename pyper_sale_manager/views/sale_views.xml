@@ -176,7 +176,7 @@
                                 Locked
                             </div>
 
-                            <notebook>
+                            <notebook class="mt-4">
                                 <page string="Order Lines" name="order_lines">
                                     <field
                                         name="order_line"
