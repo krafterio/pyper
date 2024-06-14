@@ -45,7 +45,8 @@
 
                                 <div class="mb-2" name="block_field_user_id">
                                     <label for="user_id"/>
-                                    <field name="user_id" placeholder="Select salesman" widget="many2one_avatar_user" domain="[('share', '=', False)]"/>
+                                    <field name="user_id" placeholder="Select salesman" widget="many2one_avatar_user"
+                                           domain="[('share', '=', False)]"/>
                                 </div>
 
                             </div>
@@ -311,24 +312,23 @@
                                     </div>
                                 </page>
                                 <page name='sales_purchases' string="Sales &amp; Purchase">
-                                    <div class="pt-4 px-5">
-                                        <group name="container_row_2">
-                                        <group string="Sales" name="sale" priority="1">
-                                            <field name="user_id" widget="many2one_avatar_user"
-                                                   domain="[('share', '=', False)]"/>
+                                    <group name="container_row_2" class="pt-4 px-5">
+                                            <group string="Sales" name="sale" priority="1">
+                                                <field name="user_id" widget="many2one_avatar_user"
+                                                       domain="[('share', '=', False)]"/>
+                                            </group>
+                                            <group string="Purchase" name="purchase" priority="2">
+                                            </group>
+                                            <group name="misc" string="Misc">
+                                                <field name="company_registry" invisible="parent_id"/>
+                                                <field name="ref" string="Reference"/>
+                                                <field name="company_id" groups="base.group_multi_company"
+                                                       options="{'no_create': True}" readonly="parent_id"
+                                                       force_save="1"/>
+                                                <field name="industry_id" invisible="not is_company"
+                                                       options="{'no_create': True}"/>
+                                            </group>
                                         </group>
-                                        <group string="Purchase" name="purchase" priority="2">
-                                        </group>
-                                        <group name="misc" string="Misc">
-                                            <field name="company_registry" invisible="parent_id"/>
-                                            <field name="ref" string="Reference"/>
-                                            <field name="company_id" groups="base.group_multi_company"
-                                                   options="{'no_create': True}" readonly="parent_id" force_save="1"/>
-                                            <field name="industry_id" invisible="not is_company"
-                                                   options="{'no_create': True}"/>
-                                        </group>
-                                    </group>
-                                    </div>
                                 </page>
                                 <page name='internal_notes' string="Internal Notes">
                                     <div class="pt-4 px-5">
