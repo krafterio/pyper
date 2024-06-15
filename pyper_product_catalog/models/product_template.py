@@ -11,6 +11,10 @@ class ProductTemplate(models.Model):
         'Manufacturer',
     )
 
+    product_manufacturer_logo = fields.Image(
+        related="product_manufacturer_id.image_1920"
+    )
+
     ean_upc = fields.Char(
         'EAN/UPC',
     )

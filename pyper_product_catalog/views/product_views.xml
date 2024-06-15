@@ -45,6 +45,10 @@
                                        options="{'preview_image': 'image_512'}"/>
                             </div>
 
+                            <div class="text-center pt-4 px-4" invisible="not product_manufacturer_logo">
+                                <field name="product_manufacturer_logo" class="product_image" widget="image"
+                                       options="{'preview_image': 'product_manufacturer_logo'}"/>
+                            </div>
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-9 col-xl-10 bg-white m-0 p-0">

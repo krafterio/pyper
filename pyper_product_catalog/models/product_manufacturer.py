@@ -9,6 +9,7 @@ class ProductManufacturer(models.Model):
     _name = 'product.manufacturer'
     _description = 'Product manufacturer'
     _order = "name ASC"
+    _inherit = ['image.mixin']
 
     name = fields.Char(
         string='Name'
