@@ -15,6 +15,7 @@
     'installable': True,
     'depends': [
         'iap',
+        'pyper_iap',
         'sms',
     ],
     'data': [

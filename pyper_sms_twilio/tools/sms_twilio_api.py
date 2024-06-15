@@ -48,6 +48,7 @@ class SmsTwilioApi:
                             'uuid': number.get('uuid'),
                             'state': 'success',
                             'credit': '0 Credits',
+                            'count': message.get('count', 0),
                         })
                     else:
                         data = response.json()

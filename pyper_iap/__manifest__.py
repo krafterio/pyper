@@ -20,7 +20,11 @@
         'iap',
     ],
     'data': [
+        # Security
+        'security/ir.model.access.csv',
+
         # Views
         'views/iap_account_views.xml',
+        'wizard/iap_account_update_balance_wizard.xml',
     ],
 }

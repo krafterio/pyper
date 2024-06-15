@@ -2,6 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 from odoo import fields, models
+from odoo.tools.config import config
 
 
 class IapAccount(models.Model):
@@ -28,5 +29,14 @@ class IapAccount(models.Model):
     )
 
     def _get_service_from_provider(self):
-        if self.provider == 'sms_twilio':
-            return 'sms'
+        return 'sms' if self.provider == 'sms_twilio' else super()._get_service_from_provider()
+
+    def _check_provider_balance_enable(self):
+        return True if self.provider == 'sms_twilio' else super()._check_provider_balance_enable()
+
+    def _get_provider_unit_name(self):
+        return 'SMS' if self.provider == 'sms_twilio' else super()._get_provider_unit_name()
+
+    def _get_force_allowed_add_balance_users(self):
+        return (super()._get_force_allowed_add_balance_users()
+                + config.get('sms_twilio_update_balance_allowed_users', '').split(','))

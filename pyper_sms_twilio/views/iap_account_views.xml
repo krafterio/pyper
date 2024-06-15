@@ -4,17 +4,40 @@
         <field name="model">iap.account</field>
         <field name="inherit_id" ref="iap.iap_account_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='account']" position="after">
+            <group name="account" position="after">
                 <group
                     string="Twilio Account"
                     name="twilio"
                     invisible="provider != 'sms_twilio'"
                 >
-                    <field name="twilio_account_sid" required="provider == 'sms_twilio'" />
-                    <field name="twilio_auth_token" required="provider == 'sms_twilio'" />
-                    <field name="twilio_phone_number" required="provider == 'sms_twilio'" />
+                    <group>
+                        <field name="twilio_account_sid" required="provider == 'sms_twilio'" />
+
+                        <field name="show_token" invisible="1" />
+                        <label for="twilio_auth_token" />
+                        <div class="o_row">
+                            <field name="twilio_auth_token" password="False"
+                                invisible="not show_token"/>
+                            <field name="twilio_auth_token" password="True"
+                                invisible="show_token"/>
+                            <button name="action_toggle_show_token" icon="fa-eye"
+                                type="object"
+                                class="oe_stat_button"
+                                invisible="show_token"
+                                title="Show Token"/>
+                            <button name="action_toggle_show_token" icon="fa-eye-slash"
+                                type="object"
+                                class="oe_stat_button"
+                                invisible="not show_token"
+                                title="Hide Token"/>
+                        </div>
+                    </group>
+
+                    <group>
+                        <field name="twilio_phone_number" required="provider == 'sms_twilio'" />
+                    </group>
                 </group>
-            </xpath>
+            </group>
         </field>
     </record>
 </odoo>

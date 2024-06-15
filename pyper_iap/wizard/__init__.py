@@ -1,5 +1,4 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from . import models
-from . import wizard
+from . import iap_account_update_balance_wizard
