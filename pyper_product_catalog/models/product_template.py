@@ -10,3 +10,11 @@ class ProductTemplate(models.Model):
         'product.manufacturer',
         'Manufacturer',
     )
+
+    ean_upc = fields.Char(
+        'EAN/UPC',
+    )
+
+    gtin = fields.Char(
+        'GTIN',
+    )
