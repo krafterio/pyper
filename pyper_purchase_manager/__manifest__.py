@@ -6,7 +6,7 @@
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Override of default purchase addon.',
-    'summary': 'Install all addons required for Revalo.',
+    'summary': 'Override default purchase templates.',
     'version': '17.0.0.0',
     'author': 'Krafter SAS',
     'maintainer': [
