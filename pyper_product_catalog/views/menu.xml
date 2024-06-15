@@ -30,12 +30,28 @@
     />
 
     <menuitem
-        id="product_categories"
-        name="Products categories"
+        id="product_settings_menu"
+        name="Settings"
         parent="pyper_product_catalog.product_catalog_root"
-        action="product.product_category_action_form"
-        sequence="2"
-    />
+    >
+        <menuitem
+            id="product_categories"
+            name="Products categories"
+            action="product.product_category_action_form"
+            sequence="10"
+        />
+
+        <menuitem
+            id="product_attributes"
+            name="Product attributes"
+            action="product.attribute_action"
+            sequence="11"
+            groups="product.group_product_variant"
+        />
+    </menuitem>
+
+
+
 
     <record model="ir.ui.menu" id="pyper_product_catalog.product_catalog_root">
         <field name="font_icon">ph ph-package</field>
