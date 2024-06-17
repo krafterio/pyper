@@ -122,3 +122,12 @@
         }
     }
 }
+
+// = Website
+// ============================================================================
+
+.editor_has_snippets_hide_backend_navbar {
+    .o-navbar-root-menu-nav {
+        display: none !important;
+    }
+}
