@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_website_maintenance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20240410\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-17 19:27+0000\n"
+"PO-Revision-Date: 2024-06-17 19:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pyper_website_maintenance
+#: model:ir.model,name:pyper_website_maintenance.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: pyper_website_maintenance
+#: model:ir.model.fields,help:pyper_website_maintenance.field_res_config_settings__is_under_maintenance
+#: model:ir.model.fields,help:pyper_website_maintenance.field_website__is_under_maintenance
+msgid "Enable or disable to show maintenance page"
+msgstr "Activer ou désactiver l’affichage de la page de maintenance"
+
+#. module: pyper_website_maintenance
+#: model:ir.model,name:pyper_website_maintenance.model_ir_http
+msgid "HTTP Routing"
+msgstr "Routage HTTP"
+
+#. module: pyper_website_maintenance
+#: model:ir.model.fields,help:pyper_website_maintenance.field_res_config_settings__under_maintenance_page
+#: model:ir.model.fields,help:pyper_website_maintenance.field_website__under_maintenance_page
+msgid ""
+"The published and no indexed website page used to display the maintenance "
+"page"
+msgstr ""
+"La page Web publiée et non indexée utilisée pour afficher la page de "
+"maintenance"
+
+#. module: pyper_website_maintenance
+#: model_terms:ir.ui.view,arch_db:pyper_website_maintenance.res_config_settings_view_form
+msgid ""
+"The published and no indexed website page used to display the maintenance "
+"page."
+msgstr ""
+"La page Web publiée et non indexée utilisée pour afficher la page de "
+"maintenance."
+
+#. module: pyper_website_maintenance
+#: model:ir.model.fields,field_description:pyper_website_maintenance.field_res_config_settings__is_under_maintenance
+#: model:ir.model.fields,field_description:pyper_website_maintenance.field_website__is_under_maintenance
+#: model_terms:ir.ui.view,arch_db:pyper_website_maintenance.res_config_settings_view_form
+msgid "Under Maintenance"
+msgstr "En maintenance"
+
+#. module: pyper_website_maintenance
+#: model:ir.model.fields,field_description:pyper_website_maintenance.field_res_config_settings__under_maintenance_page
+#: model:ir.model.fields,field_description:pyper_website_maintenance.field_website__under_maintenance_page
+msgid "Under Maintenance Page"
+msgstr "Page de maintenance"
+
+#. module: pyper_website_maintenance
+#: model:ir.model,name:pyper_website_maintenance.model_website
+msgid "Website"
+msgstr "Site Web"
+
+#. module: pyper_website_maintenance
+#: model_terms:ir.ui.view,arch_db:pyper_website_maintenance.res_config_settings_view_form
+msgid "Website Maintenance"
+msgstr "Maintenance Site Web"
