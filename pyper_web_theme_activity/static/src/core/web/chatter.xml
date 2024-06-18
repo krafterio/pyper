@@ -21,6 +21,10 @@
             <attribute name="class" add="p-0 border-start" separator=" "/>
         </xpath>
 
+        <xpath expr="//div[hasclass('o-mail-Chatter')]" position="attributes">
+            <attribute name="class" remove="w-100" separator=" "/>
+        </xpath>
+
         <xpath expr="//span[hasclass('o-mail-Chatter-topbarGrow')]" position="replace"/>
 
         <xpath expr="//div[hasclass('o-mail-Chatter-topbar')]" position="attributes">
