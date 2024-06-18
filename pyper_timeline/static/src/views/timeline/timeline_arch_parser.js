@@ -60,8 +60,8 @@ export class TimelineArchParser {
         let itemOverflowVisible = false;
         let longSelectPressTime = undefined;
         let marginAxis = 4;
-        let marginItemHorizontal = 10;
-        let marginItemVertical = 10;
+        let marginItemHorizontal = 0;
+        let marginItemVertical = 0;
         let max = undefined;
         let maxMinorChars = 7;
         let min = undefined;
