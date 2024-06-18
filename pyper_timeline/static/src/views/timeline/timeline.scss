@@ -188,3 +188,36 @@
         gap: $card-spacer-x;
     }
 }
+
+// ===============  Generate color classes ===============
+@for $i from 1 through length($o-colors-complete) {
+    $color: nth($o-colors-complete, $i);
+    $color-subtle: mix($o-white, $color, 55%);
+
+    .o_timeline_view .vis-item {
+        &.o_timeline_color_#{$i - 1} {
+            .vis-item-content {
+                background-color: $color-subtle;
+            }
+        }
+    }
+
+    // Overflow visibility
+    .o_timeline_view {
+        .o_timeline_renderer.overflow-visibility {
+            .vis-timeline {
+                .vis-item {
+                    &.o_timeline_color_#{$i - 1} {
+                        &:hover {
+                            background-color: $color-subtle !important;
+                        }
+
+                        .vis-item-content {
+                            background-color: $color-subtle !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

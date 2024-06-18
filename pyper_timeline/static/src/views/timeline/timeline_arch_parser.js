@@ -36,6 +36,7 @@ export class TimelineArchParser {
         let limit = null;
         let fieldDateStart = null;
         let fieldDateEnd = null;
+        let fieldColor = null;
         let defaultGroupBy = [];
         let defaultOrderBy = null;
         let groupOrderBy = {};
@@ -120,6 +121,7 @@ export class TimelineArchParser {
                     activeActions = getActiveActions(node);
                     fieldDateStart = node.getAttribute('field_date_start');
                     fieldDateEnd = node.getAttribute('field_date_end');
+                    fieldColor = node.getAttribute('field_color');
                     jsClass = node.getAttribute('js_class');
 
                     if (node.hasAttribute('scales')) {
@@ -610,6 +612,7 @@ export class TimelineArchParser {
             limit,
             fieldDateStart,
             fieldDateEnd,
+            fieldColor,
             defaultGroupBy,
             defaultOrderBy,
             groupOrderBy,

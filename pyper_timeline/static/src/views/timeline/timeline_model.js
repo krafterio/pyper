@@ -417,6 +417,11 @@ export class TimelineModel extends Model {
 
                 let itemStartDate = item[this.archInfo.fieldDateStart]?.toJSDate();
                 let itemEndDate = item[this.archInfo.fieldDateEnd]?.toJSDate();
+                let className = '';
+
+                if (this.archInfo.fieldColor && item[this.archInfo.fieldColor]) {
+                    className += 'o_timeline_color_' + item[this.archInfo.fieldColor];
+                }
 
                 // Timeline required the start date
                 if (!itemStartDate && itemEndDate) {
@@ -432,6 +437,7 @@ export class TimelineModel extends Model {
                     type: itemEndDate ? this.archInfo.itemRangeType : this.archInfo.itemType,
                     content: item.display_name || item.id,
                     record: this.generateRecord(this.meta.resModel, item.id, this.meta.fields, this.meta.archInfo.fieldNames, item),
+                    className,
                 }));
             }
         }
