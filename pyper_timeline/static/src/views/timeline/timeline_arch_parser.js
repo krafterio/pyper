@@ -48,6 +48,7 @@ export class TimelineArchParser {
         let popoverTemplate = undefined;
         let tooltipTemplate = undefined;
         let tooltipUpdateTemplate = undefined;
+        let templateRendererModes = {};
         let itemPointType = 'box';
         let itemRangeType = 'range';
         let align = 'auto';
@@ -402,9 +403,11 @@ export class TimelineArchParser {
                 case 'group-field':
                     // In timeline, we display many2many fields as tags by default
                     const widget = node.getAttribute('widget');
+                    let groupTag = false;
 
                     // Restore the field tag (group-field is used because view xml convert validates fields of root model)
                     if (node.tagName === 'group-field') {
+                        groupTag = true;
                         node = replaceTag(node, 'field');
                     }
 
@@ -413,11 +416,23 @@ export class TimelineArchParser {
                     }
 
                     const parentGroup = node.closest('[t-name=timeline-group]');
-                    const fieldForGroup = !!parentGroup;
+                    const fieldForGroup = !!parentGroup || groupTag;
 
                     if (fieldForGroup) {
                         // Group Field
-                        const fieldGroupBy = parentGroup.getAttribute('group_by') || 'default';
+                        let fieldGroupBy = parentGroup?.getAttribute('group_by');
+
+                        if (!fieldGroupBy && groupTag) {
+                            fieldGroupBy = node.getAttribute('group_by');
+                        }
+
+                        if (!fieldGroupBy && groupTag) {
+                            throw new TimelineParseArchError('The "group_by" attribute on "group-field" tag is ' +
+                                'required when "group-field" tag is not child of the Timeline ' +
+                                'template "timeline-group"');
+                        }
+
+                        fieldGroupBy = fieldGroupBy || 'default';
                         const groupFieldInfo = {
                             name: node.getAttribute('name'),
                             type: undefined,
@@ -515,6 +530,7 @@ export class TimelineArchParser {
                             }
 
                             groupTemplates[groupByName] = gtEl;
+                            templateRendererModes['groupTemplate_' + groupByName] = gtEl.getAttribute('renderer_mode') || 'static';
 
                             if (groupByName !== 'default' && groupByOrder) {
                                 groupOrderBy[groupByName] = stringToOrderBy(groupByOrder);
@@ -527,6 +543,7 @@ export class TimelineArchParser {
 
                     if (itemTemplate) {
                         itemTemplate.removeAttribute('t-name');
+                        templateRendererModes['itemTemplate'] = itemTemplate.getAttribute('renderer_mode') || 'static';
                     }
 
                     // Popover template
@@ -605,6 +622,7 @@ export class TimelineArchParser {
             popoverTemplate,
             tooltipTemplate,
             tooltipUpdateTemplate,
+            templateRendererModes,
             itemPointType,
             itemRangeType,
             align,

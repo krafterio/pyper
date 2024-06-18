@@ -18,13 +18,14 @@ import {_t} from '@web/core/l10n/translation';
 import {usePopover} from '@web/core/popover/popover_hook';
 import {useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
-import {renderToElement, renderToString} from '@web/core/utils/render';
+import {renderToElement, renderToFragment, renderToString} from '@web/core/utils/render';
 import {formatFloatTime} from '@web/views/fields/formatters';
 import {useViewCompiler} from '@web/views/view_compiler';
 import {TimelineCompiler} from './timeline_compiler';
 import {TimelinePopover} from './timeline_popover';
-import {TimelineRecord} from './timeline_record';
+import {getImageSrcFromItemInfo, TimelineRecord} from './timeline_record';
 import {AVAILABLE_SCALES, SCALES} from './timeline_controller';
+import {getFormattedRecord} from '@web/views/kanban/kanban_record';
 
 const {DateTime} = luxon;
 
@@ -138,6 +139,7 @@ export class TimelineRenderer extends Component {
         const {
             groupTemplates,
             itemTemplate,
+            templateRendererModes,
             popoverTemplate,
             tooltipTemplate,
             tooltipUpdateTemplate,
@@ -164,7 +166,13 @@ export class TimelineRenderer extends Component {
             templates['tooltipUpdateTemplate'] = tooltipUpdateTemplate;
         }
 
+        this.hasDynamicRenderer = -1 < Object.values(templateRendererModes).indexOf('dynamic');
+        this.templateRendererModes = templateRendererModes;
         this.timelineTemplates = useViewCompiler(TimelineCompiler, templates);
+
+        if (!this.hasDynamicRenderer) {
+            this.state.loading = false;
+        }
 
         onWillStart(async () => {
             await this.pyperSetupService.register(this.constructor.SETUP_PREFIX, this.constructor.defaultSettings);
@@ -212,7 +220,9 @@ export class TimelineRenderer extends Component {
 
         useEffect(() => {
             if (this.props.model.loading) {
-                this.state.loading = true;
+                if (this.hasDynamicRenderer) {
+                    this.state.loading = true;
+                }
             }
         }, () => [this.props.model.loading]);
     }
@@ -496,10 +506,7 @@ export class TimelineRenderer extends Component {
             return group.content;
         }
 
-        this.renderTemplateRecord(group, element, tplName, true);
-
-        // Return empty string to avoid to display the id value displayed by default
-        return '';
+        return this.renderTemplateRecord(group, element, tplName, true);
     }
 
     renderTemplateItem(item, element) {
@@ -510,10 +517,38 @@ export class TimelineRenderer extends Component {
 
         // Render single item
         const readonly = !this.props.model.canEdit;
-        this.renderTemplateRecord(item, element, 'itemTemplate', readonly);
+
+        return this.renderTemplateRecord(item, element, 'itemTemplate', readonly);
     }
 
     renderTemplateRecord(item, element, templateName, readonly) {
+        if ('static' === this.templateRendererModes[templateName]) {
+            const record = item?.record ? getFormattedRecord(item.record) : {};
+
+            try {
+                const resEl = renderToFragment(this.timelineTemplates[templateName], {
+                    JSON,
+                    timeline_image: (...args) => getImageSrcFromItemInfo(record, ...args),
+                    luxon,
+                    label: item?.content,
+                    record,
+                    user_context: this.env.services.user.context,
+                });
+
+                if (resEl.children.length > 1) {
+                    const rootEl = document.createElement('div');
+                    rootEl.append(resEl);
+
+                    return rootEl;
+                }
+
+                return resEl.children[0];
+            } catch (e) {
+                console.error(_t('An error occurred to render the static Timeline template "%s"', templateName), e);
+                return '';
+            }
+        }
+
         if (!this.rendererRecords.has(element)) {
             const rendererItem = {
                 item,
@@ -536,6 +571,9 @@ export class TimelineRenderer extends Component {
             this.rendererRecords.set(element, rendererItem);
             this.toRendererRecords.set(element, rendererItem);
         }
+
+        // Return empty string to avoid to display the id value displayed by default
+        return '';
     }
 
     resetRendererRecords() {
@@ -571,11 +609,16 @@ export class TimelineRenderer extends Component {
 
     redraw() {
         this.timeline?.redraw();
-        this.state.loading = false;
+
+        if (this.hasDynamicRenderer) {
+            this.state.loading = false;
+        }
     }
 
     async onTimelineRangeChange() {
-        this.state.loading = true;
+        if (this.hasDynamicRenderer) {
+            this.state.loading = true;
+        }
     }
 
     async onTimelineRangeChanged(range) {

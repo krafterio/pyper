@@ -358,7 +358,7 @@ export class TimelineModel extends Model {
                     content: groupByContent,
                     notUseGroupTemplate: emptyGroupId !== EMPTY_GROUP_ID,
                     order: 0,
-                    record: this.generateRecord(groupByModel, groupById, groupFields, {
+                    record: this.generateRecord(groupByModel, groupById, groupFields, groupByFieldNames, {
                         id: groupById,
                         label: groupByContent,
                     }),
@@ -379,7 +379,7 @@ export class TimelineModel extends Model {
                 content: emptyGroupLabel,
                 notUseGroupTemplate: emptyGroupId === EMPTY_GROUP_ID,
                 order: emptyGroupId,
-                record: this.generateRecord(undefined, false, groupFields, {
+                record: this.generateRecord(undefined, false, groupFields, groupByFieldNames, {
                     id: false,
                     label: emptyGroupLabel,
                 }),
@@ -431,7 +431,7 @@ export class TimelineModel extends Model {
                     end: itemEndDate,
                     type: itemEndDate ? this.archInfo.itemRangeType : this.archInfo.itemType,
                     content: item.display_name || item.id,
-                    record: this.generateRecord(this.meta.resModel, item.id, this.meta.fields, item),
+                    record: this.generateRecord(this.meta.resModel, item.id, this.meta.fields, this.meta.archInfo.fieldNames, item),
                 }));
             }
         }
@@ -448,7 +448,7 @@ export class TimelineModel extends Model {
             groupRes.forEach(group => {
                 if (groups[groupIds[group.id]]) {
                     groups[groupIds[group.id]].order = groupOrder;
-                    groups[groupIds[group.id]].record = this.generateRecord(groupByModel, group.id, groupFields, group);
+                    groups[groupIds[group.id]].record = this.generateRecord(groupByModel, group.id, groupFields, groupByFieldNames, group);
                     groups[groupIds[group.id]] = this.updateRecordGroup(groups[groupIds[group.id]]);
 
                     ++groupOrder;
@@ -503,7 +503,7 @@ export class TimelineModel extends Model {
         return item;
     }
 
-    generateRecord(resModel, resId, fields, data) {
+    generateRecord(resModel, resId, fields, fieldNames, data) {
         return {
             resId,
             resModel,
@@ -518,6 +518,7 @@ export class TimelineModel extends Model {
             evalContext: {},
             evalContextWithVirtualIds: {},
             fields,
+            fieldNames,
             data: reactive(data),
         };
     }
