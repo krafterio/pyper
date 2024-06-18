@@ -373,7 +373,7 @@ export class TimelineModel extends Model {
         }
 
         // Add unassigned group if it is not defined and force option is enabled
-        if (!groups[emptyGroupId] && this.archInfo.forceEmptyGroup) {
+        if (!groups[emptyGroupId] && this.archInfo.forceEmptyGroup && res.length > 0) {
             groups[emptyGroupId] = this.createGroup({
                 id: emptyGroupId,
                 content: emptyGroupLabel,

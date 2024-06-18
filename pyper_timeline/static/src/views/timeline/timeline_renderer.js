@@ -523,15 +523,13 @@ export class TimelineRenderer extends Component {
 
     renderTemplateRecord(item, element, templateName, readonly) {
         if ('static' === this.templateRendererModes[templateName]) {
-            const record = item?.record ? getFormattedRecord(item.record) : {};
-
             try {
                 const resEl = renderToFragment(this.timelineTemplates[templateName], {
                     JSON,
-                    timeline_image: (...args) => getImageSrcFromItemInfo(record, ...args),
+                    timeline_image: (...args) => getImageSrcFromItemInfo(item?.record || {}, ...args),
                     luxon,
                     label: item?.content,
-                    record,
+                    record: item?.record ? getFormattedRecord(item.record) : {},
                     user_context: this.env.services.user.context,
                 });
 
