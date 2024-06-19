@@ -29,11 +29,13 @@
 
         # Security
         'security/ir.model.access.csv',
+        'security/product_security.xml',
 
         # Views
         'views/product_attribute_views.xml',
         'views/product_template_views.xml',
         'views/product_condition_views.xml',
+        'views/conf_setting_views.xml',
 
         'views/menu.xml',
     ],

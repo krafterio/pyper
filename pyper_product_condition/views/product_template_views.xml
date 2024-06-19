@@ -5,6 +5,14 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//label[@for='list_price']" position="attributes">
+                <attribute name="groups">pyper_product_condition.group_product_show_variant_list_price</attribute>
+            </xpath>
+
+            <xpath expr="//div[@name='pricing']" position="attributes">
+                <attribute name="groups">pyper_product_condition.group_product_show_variant_list_price</attribute>
+            </xpath>
+
             <xpath expr="//field[@name='description_sale']" position="after">
                 <field name="count_child_ids" invisible="True"/>
                 <field name="child_ids" mode="kanban" invisible="count_child_ids in [0,1]">
@@ -17,7 +25,8 @@
                         <kanban>
                             <templates>
                                 <t t-name="kanban-box">
-                                    <div t-att-class="'oe_kanban_content oe_kanban_global_click' +  (record.qty_available.raw_value == 0.0 ? ' opacity-50' : '')">
+                                    <div
+                                        t-att-class="'oe_kanban_content oe_kanban_global_click' +  (record.qty_available.raw_value == 0.0 ? ' opacity-50' : '')">
                                         <div
                                             class="o_kanban_record_body"
                                         >
@@ -33,8 +42,20 @@
                                                     widget="integer"
                                                 />
                                             </div>
-                                            <field name="standard_price" class="text-muted variant_price"
-                                                   widget="monetary"/>
+
+                                            <div
+                                                class="d-flex align-items-center text-muted mt-1"
+                                                name="show_variant_standard_price"
+                                                groups="pyper_product_condition.group_product_show_variant_standard_price"
+                                            >
+                                                <i class="fa fa-line-chart me-1" title="Cost"/>
+                                                <field
+                                                    name="standard_price"
+                                                    class="variant_price"
+                                                    widget="monetary"
+                                                />
+                                            </div>
+
                                             <field name="currency_id" invisible="True"/>
                                         </div>
                                     </div>
@@ -48,4 +69,14 @@
         </field>
     </record>
 
+    <record id="view_product_template_tree" model="ir.ui.view">
+        <field name="name">product.template.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='list_price']" position="attributes">
+                <attribute name="groups">pyper_product_condition.group_product_show_variant_list_price</attribute>
+            </xpath>
+        </field>
+    </record>
 </odoo>
