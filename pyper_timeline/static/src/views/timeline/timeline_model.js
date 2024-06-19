@@ -514,6 +514,20 @@ export class TimelineModel extends Model {
     }
 
     generateRecord(resModel, resId, fields, fieldNames, data) {
+        // Generate fields and fieldNames for empty group item
+        if (null === fieldNames) {
+            if (0 === Object.keys(fields).length) {
+                Object.keys(data).forEach((key) => {
+                    fields[key] = {
+                        name: key,
+                        type: key === 'id' ? 'number' : 'char',
+                    };
+                });
+            }
+
+            fieldNames = Object.keys(fields);
+        }
+
         return {
             resId,
             resModel,
