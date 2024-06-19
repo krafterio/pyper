@@ -112,7 +112,6 @@
             &.vis-selected {
                 border-color: $pyper-timeline-item-selected-border-color;
                 background-color: $pyper-timeline-item-selected-bg;
-                outline: $pyper-timeline-item-selected-outline-width solid $pyper-timeline-item-selected-border-color;
             }
 
             .vis-item-overflow {
@@ -121,9 +120,6 @@
 
             .vis-item-content {
                 padding: $pyper-timeline-item-content-padding !important;
-                outline-width: $pyper-timeline-item-border-width;
-                outline-style: solid;
-                outline-color: $pyper-timeline-item-border-color;
                 border-radius: $pyper-timeline-item-border-radius;
                 min-width: 100%;
             }
@@ -175,6 +171,20 @@
                         z-index: 0;
                         background-color: $pyper-timeline-item-bg-hover !important;
                         box-shadow: $pyper-timeline-item-box-shadow-hover;
+                        outline: $pyper-timeline-item-border-width solid $pyper-timeline-item-border-color;
+
+                        // Fix item height with hover and overflow visibility
+                        &:after {
+                            display: block;
+                            content: "";
+                            height: 1px;
+                        }
+                    }
+
+                    &.vis-selected {
+                        .vis-item-content {
+                            outline-color: $pyper-timeline-item-selected-border-color;
+                        }
                     }
                 }
             }
@@ -192,10 +202,19 @@
 // ===============  Generate color classes ===============
 @for $i from 1 through length($o-colors-complete) {
     $color: nth($o-colors-complete, $i);
+    $color-subtle-border: mix($o-white, $color, 35%);
     $color-subtle: mix($o-white, $color, 55%);
 
     .o_timeline_view .vis-item {
         &.o_timeline_color_#{$i - 1} {
+            border-color: $color-subtle-border;
+            background-color: $color-subtle;
+
+            &.vis-selected {
+                border-color: $color;
+                background-color: $color-subtle;
+            }
+
             .vis-item-content {
                 background-color: $color-subtle;
             }
@@ -209,11 +228,16 @@
                 .vis-item {
                     &.o_timeline_color_#{$i - 1} {
                         &:hover {
-                            background-color: $color-subtle !important;
-                        }
+                            .vis-item-content {
+                                background-color: $color-subtle !important;
+                                outline-color: $color-subtle-border;
+                            }
 
-                        .vis-item-content {
-                            background-color: $color-subtle !important;
+                            &.vis-selected {
+                                .vis-item-content {
+                                    outline-color: $color;
+                                }
+                            }
                         }
                     }
                 }
