@@ -100,6 +100,7 @@
         }
 
         .vis-item {
+            box-shadow: $pyper-timeline-item-spliter-width 0 0 0 $pyper-timeline-item-spliter-color;
             color: $pyper-timeline-item-color;
             border-width: $pyper-timeline-item-border-width;
             border-color: $pyper-timeline-item-border-color;
