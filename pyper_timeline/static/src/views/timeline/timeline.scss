@@ -131,6 +131,7 @@
                 padding: $pyper-timeline-item-content-padding !important;
                 border-radius: $pyper-timeline-item-border-radius;
                 min-width: 100%;
+                min-height: $pyper-timeline-item-min-height;
             }
 
             .vis-delete {

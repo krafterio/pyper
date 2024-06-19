@@ -18,6 +18,7 @@ $pyper-timeline-weekends-bg: $o-gray-100 !default;
 
 $pyper-timeline-label-padding: 4px !default;
 
+$pyper-timeline-item-min-height: 22px !default;
 $pyper-timeline-item-color: $o-main-text-color !default;
 $pyper-timeline-item-border-width: 1px !default;
 $pyper-timeline-item-border-color: darken($border-color, 5%) !default;
@@ -33,7 +34,7 @@ $pyper-timeline-item-spliter-color: $o-webclient-background-color !default;
 $pyper-timeline-item-overflow: hidden !default;
 $pyper-timeline-item-overflow-hover: visible !default;
 $pyper-timeline-item-overflow-zindex: 10 !default;
-$pyper-timeline-item-content-padding: 0 3px !default;
+$pyper-timeline-item-content-padding: 5px !default;
 
 $pyper-timeline-item-selected-border-color: $o-gray-500 !default;
 $pyper-timeline-item-selected-bg: $pyper-timeline-item-bg !default;
