@@ -429,6 +429,10 @@ export class TimelineModel extends Model {
                     itemEndDate = undefined;
                 }
 
+                if ((itemEndDate && DateTime.now() >= itemEndDate) || (undefined === itemEndDate && DateTime.now() >= itemStartDate)) {
+                    className += ' o_timeline_past_item';
+                }
+
                 items.push(this.createItem({
                     id: groupByPosition + '_' + item.id,
                     group: groupByField ? groupByPosition : EMPTY_GROUP_ID,

@@ -105,6 +105,10 @@
             border-color: $pyper-timeline-item-border-color;
             background-color: $pyper-timeline-item-bg;
 
+            &.o_timeline_past_item {
+                opacity: $pyper-timeline-item-past-opacity;
+            }
+
             &.vis-range {
                 border-radius: $pyper-timeline-item-border-radius;
             }
@@ -112,6 +116,10 @@
             &.vis-selected {
                 border-color: $pyper-timeline-item-selected-border-color;
                 background-color: $pyper-timeline-item-selected-bg;
+
+                &.o_timeline_past_item {
+                    opacity: 1;
+                }
             }
 
             .vis-item-overflow {
@@ -162,6 +170,10 @@
                     cursor: pointer !important;
                     z-index: $pyper-timeline-item-overflow-zindex;
                     background-color: $pyper-timeline-item-bg-hover !important;
+
+                    &.o_timeline_past_item {
+                        opacity: 1;
+                    }
 
                     .vis-item-overflow {
                         overflow: $pyper-timeline-item-overflow-hover;
