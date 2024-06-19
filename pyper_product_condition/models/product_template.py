@@ -11,3 +11,14 @@ class ProductTemplate(models.Model):
         'product_tmpl_id',
         'Variants'
     )
+
+    count_child_ids = fields.Integer(
+        'Total child ids',
+        compute='_compute_count_child_ids'
+    )
+
+    @api.depends('child_ids')
+    def _compute_count_child_ids(self):
+        for product in self:
+            product.count_child_ids = len(product.child_ids)
+

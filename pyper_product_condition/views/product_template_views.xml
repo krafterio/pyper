@@ -6,7 +6,8 @@
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='description_sale']" position="after">
-                <field name="child_ids" mode="kanban">
+                <field name="count_child_ids" invisible="True"/>
+                <field name="child_ids" mode="kanban" invisible="count_child_ids in [0,1]">
                     <kanban class="child_condition_kanban mt-4" create="False">
                         <field name="name"/>
                         <field name="standard_price"/>
