@@ -682,6 +682,7 @@ export class TimelineRenderer extends Component {
             groups: this.props.model.groups,
             items: this.props.model.items,
         });
+        this.redraw();
     }
 
     onTimelineAdd(item, callback) {
