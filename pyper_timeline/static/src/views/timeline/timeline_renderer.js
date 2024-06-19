@@ -531,6 +531,8 @@ export class TimelineRenderer extends Component {
                     label: item?.content,
                     record: item?.record ? getFormattedRecord(item.record) : {},
                     user_context: this.env.services.user.context,
+                    groupByModel: item?.groupByModel,
+                    groupByField: item?.groupByField,
                 });
 
                 if (resEl.children.length > 1) {
@@ -561,6 +563,10 @@ export class TimelineRenderer extends Component {
                         record: item?.record || {},
                         templateName,
                         templates: this.timelineTemplates,
+                        context: {
+                            groupByModel: item?.groupByModel,
+                            groupByField: item?.groupByField,
+                        },
                     },
                     templates: templates,
                 }),

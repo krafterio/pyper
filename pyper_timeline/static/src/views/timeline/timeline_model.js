@@ -436,6 +436,8 @@ export class TimelineModel extends Model {
                 items.push(this.createItem({
                     id: groupByPosition + '_' + item.id,
                     group: groupByField ? groupByPosition : EMPTY_GROUP_ID,
+                    groupByModel: groupByModel,
+                    groupByField: groupByField,
                     start: itemStartDate,
                     end: itemEndDate,
                     type: itemEndDate ? this.archInfo.itemRangeType : this.archInfo.itemType,
