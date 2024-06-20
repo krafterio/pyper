@@ -1,0 +1,287 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_product_extend_features_it
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-19 14:40+0000\n"
+"PO-Revision-Date: 2024-06-19 16:42+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_graphic_card__create_uid
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_operating_system__create_uid
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_processor__create_uid
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_screen_size__create_uid
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_storage_capacity__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_graphic_card__create_date
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_operating_system__create_date
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_processor__create_date
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_screen_size__create_date
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_storage_capacity__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields.selection,name:pyper_product_extend_features_it.selection__product_category__product_pattern__desktop_computer
+msgid "Desktop Computer"
+msgstr "Ordinateur de bureau"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_graphic_card__display_name
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_operating_system__display_name
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_processor__display_name
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_screen_size__display_name
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_storage_capacity__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__graphic_card_id
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__graphic_card_id
+msgid "Graphic card"
+msgstr "Processeur graphique"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.actions.act_window,name:pyper_product_extend_features_it.action_product_graphic_card
+#: model:ir.ui.menu,name:pyper_product_extend_features_it.product_graphic_card_menu
+msgid "Graphic cards"
+msgstr "Processeurs graphiques"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields.selection,name:pyper_product_extend_features_it.selection__product_template__hard_drive_type__hdd
+msgid "HDD"
+msgstr ""
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__hard_drive_capacity_id
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__hard_drive_capacity_id
+msgid "Hard drive capacity"
+msgstr "Capacité disque dur"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__hard_drive_type
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__hard_drive_type
+msgid "Hard drive type"
+msgstr "Type disque dur"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__has_bluetooth
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__has_bluetooth
+msgid "Has bluetooth"
+msgstr "Bluetooth"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__has_optical_drive
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__has_optical_drive
+msgid "Has optical drive"
+msgstr "Lecteur optique"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__has_webcam
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__has_webcam
+msgid "Has webcam"
+msgstr "Webcam"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__has_wifi
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__has_wifi
+msgid "Has wifi"
+msgstr "Wifi"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_graphic_card__id
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_operating_system__id
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_processor__id
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_screen_size__id
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_storage_capacity__id
+msgid "ID"
+msgstr ""
+
+#. module: pyper_product_extend_features_it
+#: model:ir.ui.menu,name:pyper_product_extend_features_it.IT_menu
+msgid "IT"
+msgstr ""
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields.selection,name:pyper_product_extend_features_it.selection__product_category__product_pattern__laptop_computer
+msgid "Laptop computer"
+msgstr "Ordinateur portable"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_graphic_card__write_uid
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_operating_system__write_uid
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_processor__write_uid
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_screen_size__write_uid
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_storage_capacity__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_graphic_card__write_date
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_operating_system__write_date
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_processor__write_date
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_screen_size__write_date
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_storage_capacity__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_operating_system__logo
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_processor__logo
+msgid "Logo"
+msgstr ""
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_graphic_card__name
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_operating_system__name
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_processor__name
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_screen_size__name
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_storage_capacity__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields.selection,name:pyper_product_extend_features_it.selection__product_category__product_pattern__none
+msgid "None"
+msgstr "Aucune"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__operating_system_id
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__operating_system_id
+#: model:ir.ui.menu,name:pyper_product_extend_features_it.product_operating_system_menu
+msgid "Operating system"
+msgstr "Système d’exploitation"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.actions.act_window,name:pyper_product_extend_features_it.action_product_operating_system
+msgid "Operating systems"
+msgstr "Systèmes d’exploitations"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__processor_id
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__processor_id
+msgid "Processor"
+msgstr "Processeur"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.actions.act_window,name:pyper_product_extend_features_it.action_product_processor
+#: model:ir.ui.menu,name:pyper_product_extend_features_it.product_processor_menu
+msgid "Processors"
+msgstr "Processeurs"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model,name:pyper_product_extend_features_it.model_product_template
+msgid "Product"
+msgstr "Produit"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model,name:pyper_product_extend_features_it.model_product_category
+msgid "Product Category"
+msgstr "Catégorie de produits"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model,name:pyper_product_extend_features_it.model_product_operating_system
+msgid "Product Operating System"
+msgstr "Systèmes d’exploitations"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_category__product_pattern
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__product_pattern
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__product_pattern
+msgid "Product Pattern"
+msgstr "Schéma produit"
+
+#. module: pyper_product_extend_features_it
+#: model_terms:ir.ui.view,arch_db:pyper_product_extend_features_it.view_product_template_features_form
+msgid "Product features"
+msgstr "Caractéristiques produit"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model,name:pyper_product_extend_features_it.model_product_graphic_card
+msgid "Product graphic card"
+msgstr "Carte graphique"
+
+#. module: pyper_product_extend_features_it
+#: model_terms:ir.ui.view,arch_db:pyper_product_extend_features_it.view_product_category_form
+msgid "Product pattern"
+msgstr "Schéma produit"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model,name:pyper_product_extend_features_it.model_product_processor
+msgid "Product processor"
+msgstr "Processeur"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model,name:pyper_product_extend_features_it.model_product_screen_size
+msgid "Product screen size"
+msgstr "Taille d’écran"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model,name:pyper_product_extend_features_it.model_product_storage_capacity
+msgid "Product storage capacity"
+msgstr "Capacités de stockage"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__ram_capacity_id
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__ram_capacity_id
+msgid "RAM capacity"
+msgstr "Capacité RAM"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields.selection,name:pyper_product_extend_features_it.selection__product_template__hard_drive_type__ssd
+msgid "SSD"
+msgstr ""
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__screen_size_id
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__screen_size_id
+msgid "Screen size"
+msgstr "Taille d’écran"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.actions.act_window,name:pyper_product_extend_features_it.action_product_screen_size
+msgid "Screen sizes"
+msgstr "Tailles d’écran"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.ui.menu,name:pyper_product_extend_features_it.product_screen_size_menu
+msgid "Scren sizes"
+msgstr "Tailles d’écrans"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_graphic_card__sequence
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_processor__sequence
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_screen_size__sequence
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_storage_capacity__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields.selection,name:pyper_product_extend_features_it.selection__product_category__product_pattern__smartphone
+msgid "Smartphone"
+msgstr ""
+
+#. module: pyper_product_extend_features_it
+#: model:ir.actions.act_window,name:pyper_product_extend_features_it.action_product_storage_capacity
+#: model:ir.ui.menu,name:pyper_product_extend_features_it.product_storage_capacity_menu
+msgid "Storage capacity"
+msgstr "Capacité de stockage"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields.selection,name:pyper_product_extend_features_it.selection__product_category__product_pattern__tablet
+msgid "Tablet"
+msgstr "Tablette"

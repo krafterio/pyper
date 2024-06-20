@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <menuitem
+        id="IT_menu"
+        name="IT"
+        sequence="1"
+        parent="pyper_product_extend_features.product_features_menu"
+    >
+        <menuitem
+            id="product_operating_system_menu"
+            name="Operating system"
+            sequence="1"
+            action="pyper_product_extend_features_it.action_product_operating_system"
+        />
+
+        <menuitem
+            id="product_storage_capacity_menu"
+            name="Storage capacity"
+            sequence="2"
+            action="pyper_product_extend_features_it.action_product_storage_capacity"
+        />
+
+        <menuitem
+            id="product_processor_menu"
+            name="Processors"
+            sequence="3"
+            action="pyper_product_extend_features_it.action_product_processor"
+        />
+
+        <menuitem
+            id="product_screen_size_menu"
+            name="Scren sizes"
+            sequence="4"
+            action="pyper_product_extend_features_it.action_product_screen_size"
+        />
+
+        <menuitem
+            id="product_graphic_card_menu"
+            name="Graphic cards"
+            sequence="4"
+            action="pyper_product_extend_features_it.action_product_graphic_card"
+        />
+
+    </menuitem>
+
+
+</odoo>
