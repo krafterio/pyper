@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="audit_batch_sequence" model="ir.sequence">
+        <field name="name">Audit batch sequence</field>
+        <field name="code">audit_batch</field>
+        <field name="prefix">AB/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="implementation">no_gap</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="book_features_menu"
+        name="Books"
+        sequence="2"
+        parent="pyper_product_extend_features.product_features_menu"
+    >
+        <menuitem
+            id="product_book_publisher_menu"
+            name="Publishers"
+            sequence="1"
+            action="pyper_product_extend_features_book.action_product_book_publisher_page"
+        />
+    </menuitem>
+
+</odoo>
