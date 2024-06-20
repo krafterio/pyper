@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-19 06:39+0000\n"
-"PO-Revision-Date: 2024-06-19 08:40+0200\n"
+"POT-Creation-Date: 2024-06-19 14:29+0000\n"
+"PO-Revision-Date: 2024-06-19 16:31+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -16,6 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.4.4\n"
+
+#. module: pyper_product_condition
+#: model_terms:ir.ui.view,arch_db:pyper_product_condition.view_product_template_form
+msgid "<i class=\"fa fa-line-chart me-1\" title=\"Cost\"/>"
+msgstr ""
 
 #. module: pyper_product_condition
 #: model:ir.model,name:pyper_product_condition.model_product_attribute_value
@@ -39,6 +44,11 @@ msgid "Condition"
 msgstr ""
 
 #. module: pyper_product_condition
+#: model:ir.model,name:pyper_product_condition.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: pyper_product_condition
 #: model:ir.model.fields,field_description:pyper_product_condition.field_product_condition__create_uid
 msgid "Created by"
 msgstr ""
@@ -59,6 +69,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:pyper_product_condition.field_product_condition__display_name
 msgid "Display Name"
 msgstr ""
+
+#. module: pyper_product_condition
+#: model_terms:ir.ui.view,arch_db:pyper_product_condition.res_config_settings_inherit_view
+msgid "Display on product page variant list price"
+msgstr "Afficher sur la page produit le prix de la liste des variants"
+
+#. module: pyper_product_condition
+#: model_terms:ir.ui.view,arch_db:pyper_product_condition.res_config_settings_inherit_view
+msgid "Display on product page variant standard price"
+msgstr "Afficher sur la page produit le coût des variants"
+
+#. module: pyper_product_condition
+#: model_terms:ir.ui.view,arch_db:pyper_product_condition.res_config_settings_inherit_view
+msgid "Display variant list price"
+msgstr "Afficher le prix de la liste des variants"
+
+#. module: pyper_product_condition
+#: model_terms:ir.ui.view,arch_db:pyper_product_condition.res_config_settings_inherit_view
+msgid "Display variant standard price"
+msgstr "Afficher le coût des variants"
 
 #. module: pyper_product_condition
 #: model:product.condition,description:pyper_product_condition.product_condition_b
@@ -116,8 +146,9 @@ msgstr "Produit"
 
 #. module: pyper_product_condition
 #: model:ir.model.fields,field_description:pyper_product_condition.field_product_attribute_value__product_condition_id
+#: model_terms:ir.ui.view,arch_db:pyper_product_condition.res_config_settings_inherit_view
 msgid "Product Condition"
-msgstr "Condition produit"
+msgstr "Gestion des conditions"
 
 #. module: pyper_product_condition
 #: model:ir.model,name:pyper_product_condition.model_product_product
@@ -131,9 +162,34 @@ msgid "Product conditions"
 msgstr "Conditions de produit"
 
 #. module: pyper_product_condition
+#: model_terms:ir.ui.view,arch_db:pyper_product_condition.res_config_settings_inherit_view
+msgid "Product management"
+msgstr "Gestion des produits"
+
+#. module: pyper_product_condition
 #: model:ir.model.fields,field_description:pyper_product_condition.field_product_condition__sequence
 msgid "Sequence"
 msgstr "Séquence"
+
+#. module: pyper_product_condition
+#: model:res.groups,name:pyper_product_condition.group_product_show_variant_list_price
+msgid "Show product variant list price"
+msgstr "Afficher les prix de la liste de prix sur les variants"
+
+#. module: pyper_product_condition
+#: model:res.groups,name:pyper_product_condition.group_product_show_variant_standard_price
+msgid "Show product variant standard price"
+msgstr "Afficher le coût des variants"
+
+#. module: pyper_product_condition
+#: model:ir.model.fields,field_description:pyper_product_condition.field_res_config_settings__group_product_show_variant_list_price
+msgid "Show variant list price"
+msgstr "Afficher les prix de la liste de prix sur les variants"
+
+#. module: pyper_product_condition
+#: model:ir.model.fields,field_description:pyper_product_condition.field_res_config_settings__group_product_show_variant_standard_price
+msgid "Show variant standard price"
+msgstr "Afficher le coût des variants"
 
 #. module: pyper_product_condition
 #: model:product.attribute.value,name:pyper_product_condition.product_attribute_value_to_audit
@@ -146,6 +202,12 @@ msgstr "À auditer"
 #: model:ir.model.fields.selection,name:pyper_product_condition.selection__product_condition__condition_type__to_define
 msgid "To define"
 msgstr "A définir"
+
+#. module: pyper_product_condition
+#: model:ir.model.fields,field_description:pyper_product_condition.field_product_product__count_child_ids
+#: model:ir.model.fields,field_description:pyper_product_condition.field_product_template__count_child_ids
+msgid "Total child ids"
+msgstr "Total produits liés"
 
 #. module: pyper_product_condition
 #: model:ir.model.fields,field_description:pyper_product_condition.field_product_attribute_value__condition_type
