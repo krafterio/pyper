@@ -19,8 +19,6 @@
                 'p-1': message.isNote,
                 'mb-0 py-2 px-3': !message.isNote,
                 'align-self-start rounded-end-3 rounded-bottom-3': !state.isEditing and !message.isNote,
-                'text-dark': !message.isSelfAuthored,
-                'text-white': message.isSelfAuthored,
                 'o-mail-Message-editable flex-grow-1': state.isEditing,
             }</attribute>
       </xpath>
