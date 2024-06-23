@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='account']/block[@name='default_taxes_setting_container']//field[@name='sale_tax_id']/.." position="after">
+                <div class="row">
+                    <label string="Sales Service Tax" for="sale_service_tax_id" class="col-lg-3 o_light_label"/>
+                    <field name="sale_service_tax_id" domain="[('type_tax_use', '=', 'sale'), ('tax_scope', '=', 'service')]"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//app[@name='account']/block[@name='default_taxes_setting_container']//field[@name='purchase_tax_id']/.." position="after">
+                <div class="row">
+                    <label string="Purchase Service Tax" for="purchase_service_tax_id" class="col-lg-3 o_light_label"/>
+                    <field name="purchase_service_tax_id" domain="[('type_tax_use', '=', 'purchase'), ('tax_scope', '=', 'service')]"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
