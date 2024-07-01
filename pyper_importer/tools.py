@@ -9,7 +9,12 @@ def property_path(data: dict, path: str, default=False) -> Any:
     value = data
 
     for key in paths:
-        if key in value:
+        if isinstance(value, list):
+            try:
+                value = value[int(key)]
+            except IndexError:
+                return default
+        elif key in value:
             value = value[key]
         else:
             return default
