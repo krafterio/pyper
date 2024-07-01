@@ -17,6 +17,7 @@ from .exceptions import (
     PyperImporterConfigurationError,
     PyperImporterJSONDecodeError,
 )
+from .tools import property_path
 
 
 def _get_json_data(response: Response, raise_error: bool = True) -> dict:
@@ -147,18 +148,19 @@ class BaseHttpClient(ABC):
             mess_field = self._error_message_data_field
 
             if status_code == 401:
-                raise PyperImporterAuthenticationError(res_data.get(mess_field) if mess_field in res_data else _(
-                    'The Authentication configuration is invalid'))
+                raise PyperImporterAuthenticationError(property_path(res_data, mess_field, _(
+                    'The Authentication configuration is invalid')))
 
             if status_code == 403:
-                raise PyperImporterAuthorizationError(res_data.get(mess_field) if mess_field in res_data else _(
-                    'The Authentication configuration does not have the authorization'))
+                raise PyperImporterAuthorizationError(property_path(res_data, mess_field, _(
+                    'The Authentication configuration does not have the authorization')))
 
             if status_code >= 300:
                 msg = _("Status code: {} \n Reason: {}").format(status_code, response.reason)
+                res_mess = property_path(res_data, mess_field)
 
-                if mess_field in res_data:
-                    msg = msg + "\n" + _("Error message:\n\n{}").format(res_data.get(mess_field))
+                if res_mess:
+                    msg = msg + "\n" + _("Error message:\n\n{}").format(res_mess)
 
                 raise PyperImporterHttpError(status_code, msg)
 
