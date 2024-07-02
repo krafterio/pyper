@@ -354,7 +354,7 @@ class PyperImporterProvider(models.Model):
         if isinstance(external_id, bool):
             return False
 
-        return self.env.ref(external_id, False)
+        return self.env.ref(external_id, False) or False
 
     def find_record_by_gen_ext_id(self, model: str, identifier: str | int | bool, module: str = None
                                   ) -> models.Model | bool:
