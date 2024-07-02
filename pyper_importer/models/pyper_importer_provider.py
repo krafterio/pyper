@@ -373,6 +373,15 @@ class PyperImporterProvider(models.Model):
 
         return res.id if res else False
 
+    def create_external_id_data(self, model: str, identifier: str | int | bool, res_id: str | int,
+                                name: str = None, module: str = None):
+        return self.env['ir.model.data'].create({
+            'module': self.generate_external_id_module(module),
+            'name': name or self.generate_external_id_name(model, identifier),
+            'model': model,
+            'res_id': str(res_id),
+        })
+
     @staticmethod
     def generate_external_id_module(module: str = None) -> str:
         if module is None:

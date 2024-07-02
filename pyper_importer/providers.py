@@ -270,12 +270,13 @@ class LoadHelper(BaseProvider, ABC):
 
                 if loaded_id != 0:
                     if self.generate_external_id and not self.env.ref(item_external_id, False):
-                        self.env['ir.model.data'].create({
-                            'name': self.build_external_id_name(item),
-                            'model': self.target_model,
-                            'module': self.importer.generate_external_id_module(self.external_identifier_module),
-                            'res_id': loaded_id,
-                        })
+                        self.importer.create_external_id_data(
+                            module=self.external_identifier_module,
+                            name=self.build_external_id_name(item),
+                            model=self.target_model,
+                            identifier=False,
+                            res_id=loaded_id,
+                        )
 
                     self.job.log_success(
                         auto_commit=True,
@@ -288,12 +289,13 @@ class LoadHelper(BaseProvider, ABC):
                         ext_id = self.env.ref(item_external_id, False)
 
                         if not ext_id:
-                            self.env['ir.model.data'].create({
-                                'name': self.build_external_id_name(item),
-                                'model': self.target_model,
-                                'module': self.importer.generate_external_id_module(self.external_identifier_module),
-                                'res_id': existing_item.id,
-                            })
+                            self.importer.create_external_id_data(
+                                module=self.external_identifier_module,
+                                name=self.build_external_id_name(item),
+                                model=self.target_model,
+                                identifier=False,
+                                res_id=loaded_id,
+                            )
 
                     self.job.log_skip(
                         auto_commit=True,
