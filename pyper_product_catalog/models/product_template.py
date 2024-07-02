@@ -22,3 +22,9 @@ class ProductTemplate(models.Model):
     gtin = fields.Char(
         'GTIN',
     )
+
+    part_number_code = fields.Char(
+        'Part number',
+    )
+
+

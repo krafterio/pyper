@@ -80,10 +80,13 @@ class IcecatForm(models.TransientModel):
                 product_features = product_info['data']['FeaturesGroups']
 
                 product = self.env['product.template'].create({
-                    'name': product_sheet['Title'],
+                    'name': product_sheet['TitleInfo']['GeneratedIntTitle'],
                     'ean_upc': record.ean_upc,
                     'detailed_type': record.detailed_type,
                 })
+
+                if product_sheet['BrandPartCode']:
+                    product.part_number_code = product_sheet['BrandPartCode']
 
                 if record.categ_id:
                     product.categ_id = record.categ_id
