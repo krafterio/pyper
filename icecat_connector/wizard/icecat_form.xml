@@ -6,13 +6,18 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <group>
+                    <group string="Mandatory fields">
                         <field name="ean_upc"/>
-                        <field name="language_id" options="{'no_create': True}"/>
-                    </group>
-                    <group>
-                        <field name="categ_id" options="{'no_create': True}"/>
                         <field name="detailed_type"/>
+                    </group>
+                    <group string="Optional fields">
+                        <field name="categ_id" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <hr/>
+                <group>
+                    <group>
+                        <field name="language_ids" widget="many2many_tags" options="{'no_create': True}"/>
                     </group>
                 </group>
 

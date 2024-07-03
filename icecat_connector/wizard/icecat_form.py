@@ -1,12 +1,9 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from odoo import fields, models, _
+from odoo import api, fields, models, _
 import requests
 import base64
-from datetime import datetime
-
-from odoo.exceptions import UserError
 
 
 class IcecatForm(models.TransientModel):
@@ -18,10 +15,17 @@ class IcecatForm(models.TransientModel):
         required=True,
     )
 
-    language_id = fields.Many2one(
+    @api.model
+    def _default_lang_ids(self):
+        active_langs = self.env['res.lang'].search([('active', '=', True)])
+
+        return active_langs
+
+    language_ids = fields.Many2many(
         'res.lang',
         'Language',
         required=True,
+        default=lambda self: self._default_lang_ids()
     )
 
     detailed_type = fields.Selection(
@@ -40,7 +44,7 @@ class IcecatForm(models.TransientModel):
         'Category',
     )
 
-    def upsert_product(self, ean_upc):
+    def upsert_product(self, ean_upc, language_ids):
         self.ensure_one()
 
         existing_product = self.env['product.template'].search(
@@ -57,14 +61,9 @@ class IcecatForm(models.TransientModel):
 
             return existing_product[0]
         else:
-            url = "https://live.icecat.biz/api?shopname=openIcecat-live&lang=%s&content=&ean_upc=%s" % (self.language_id.iso_code, ean_upc)
 
             try:
-                response = requests.get(url)
-                response.raise_for_status()
-                product_info = response.json()
-
-                return self.create_product_with_icecat(product_info)
+                return self.create_product_with_icecat(language_ids, ean_upc)
 
             except requests.exceptions.HTTPError as http_err:
                 # See 404, 500, etc. errors
@@ -83,8 +82,13 @@ class IcecatForm(models.TransientModel):
             except requests.exceptions.RequestException as req_err:
                 print(f"Request error occurred: {req_err}")
 
-    def create_product_with_icecat(self, product_info):
+    def create_product_with_icecat(self, language_ids, ean_upc):
         self.ensure_one()
+
+        url = "https://live.icecat.biz/api?shopname=openIcecat-live&lang=%s&content=&ean_upc=%s" % (language_ids[0].iso_code, ean_upc)
+        response = requests.get(url)
+        response.raise_for_status()
+        product_info = response.json()
 
         product_sheet = product_info['data']['GeneralInfo']
         product_image = product_info['data']['Image']
@@ -101,9 +105,6 @@ class IcecatForm(models.TransientModel):
 
         if self.categ_id:
             product.categ_id = self.categ_id
-
-        if product_sheet['SummaryDescription']['LongSummaryDescription']:
-            product.description_sale = product_sheet['SummaryDescription']['LongSummaryDescription']
 
         if product_sheet['BrandInfo']:
             existing_manufacturer = self.env['product.manufacturer'].search(
@@ -128,6 +129,19 @@ class IcecatForm(models.TransientModel):
         if product_image['HighPic']:
             product.image_1920 = base64.b64encode(requests.get(product_image['HighPic']).content)
 
+        # Datas that need to be filled by lang
+        for lang in language_ids:
+            url = "https://live.icecat.biz/api?shopname=openIcecat-live&lang=%s&content=&ean_upc=%s" % (lang.iso_code, ean_upc)
+            response_lang = requests.get(url)
+            response_lang.raise_for_status()
+            product_lang_info = response_lang.json()
+            product_lang_sheet = product_lang_info['data']['GeneralInfo']
+
+            if product_lang_sheet['SummaryDescription']['LongSummaryDescription']:
+                print(lang.code)
+                product.with_context(lang=lang.code).description_sale = product_lang_sheet['SummaryDescription']['LongSummaryDescription']
+
+        # Weight field dedidaced only for Smartphones
         for feature_group in product_features:
             if feature_group['ID'] == 6881:
                 for feature in feature_group['Features']:
@@ -138,7 +152,7 @@ class IcecatForm(models.TransientModel):
 
     def action_icecat_api_call(self):
         self.ensure_one()
-        product_id = self.upsert_product(self.ean_upc)
+        product_id = self.upsert_product(self.ean_upc, self.language_ids)
 
         return {
             'type': 'ir.actions.act_window',
