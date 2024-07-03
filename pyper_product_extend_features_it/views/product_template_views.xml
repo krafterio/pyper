@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//page[@name='page_product_features']" position="inside">
                 <group class="pt-3 px-5 pb-5">
-                    <group>
+                    <group string="Editable features">
                         <field name="product_pattern" invisible="True"/>
                         <field name="operating_system_id"
                                invisible="product_pattern not in ['smartphone', 'tablet', 'laptop_computer', 'desktop_computer']"/>
@@ -17,10 +17,10 @@
                                invisible="product_pattern not in ['laptop_computer', 'desktop_computer']"/>
                         <field name="ram_capacity_id"
                                invisible="product_pattern not in ['laptop_computer', 'desktop_computer']"/>
+                    </group>
+                    <group string="Non editable features">
                         <field name="processor_id"
                                invisible="product_pattern not in ['laptop_computer', 'desktop_computer']"/>
-                    </group>
-                    <group>
                         <field name="screen_size_id"
                                invisible="product_pattern not in ['laptop_computer', 'smartphone', 'tablet']"/>
                         <field name="graphic_card_id"

@@ -3,6 +3,7 @@
 
 from odoo import fields, models
 
+
 class ProductStorageCapacity(models.Model):
     _name = 'product.storage.capacity'
     _description = 'Product storage capacity'
