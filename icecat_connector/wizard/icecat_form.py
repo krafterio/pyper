@@ -23,7 +23,8 @@ class IcecatForm(models.TransientModel):
 
     language_ids = fields.Many2many(
         'res.lang',
-        'Language',
+        'icecat_form_res_lang_rel',
+        string='Language',
         required=True,
         default=lambda self: self._default_lang_ids()
     )
