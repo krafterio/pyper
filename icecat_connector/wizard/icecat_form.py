@@ -72,7 +72,7 @@ class IcecatForm(models.TransientModel):
                 error_info = http_err.response.json()
 
                 if error_info['Message']:
-                    self.env['bus.bus']._sendone(self.env.user.partner_id, 'simple_notification', {
+                    return self.env['bus.bus']._sendone(self.env.user.partner_id, 'simple_notification', {
                         'type': 'danger',
                         'title': _("Error"),
                         'message': _(error_info['Message'])
@@ -87,6 +87,11 @@ class IcecatForm(models.TransientModel):
 
         url = "https://live.icecat.biz/api?shopname=openIcecat-live&lang=%s&content=&ean_upc=%s" % (language_ids[0].iso_code, ean_upc)
         response = requests.get(url)
+
+        if response.status_code == 404 and len(language_ids) > 1:
+            url = "https://live.icecat.biz/api?shopname=openIcecat-live&lang=%s&content=&ean_upc=%s" % (language_ids[1].iso_code, ean_upc)
+            response = requests.get(url)
+
         response.raise_for_status()
         product_info = response.json()
 
@@ -133,15 +138,15 @@ class IcecatForm(models.TransientModel):
         for lang in language_ids:
             url = "https://live.icecat.biz/api?shopname=openIcecat-live&lang=%s&content=&ean_upc=%s" % (lang.iso_code, ean_upc)
             response_lang = requests.get(url)
-            response_lang.raise_for_status()
-            product_lang_info = response_lang.json()
-            product_lang_sheet = product_lang_info['data']['GeneralInfo']
 
-            if product_lang_sheet['SummaryDescription']['LongSummaryDescription']:
-                print(lang.code)
-                product.with_context(lang=lang.code).description_sale = product_lang_sheet['SummaryDescription']['LongSummaryDescription']
+            if response_lang.status_code != 404:
+                product_lang_info = response_lang.json()
+                product_lang_sheet = product_lang_info['data']['GeneralInfo']
 
-        # Weight field dedidaced only for Smartphones
+                if product_lang_sheet['SummaryDescription']['LongSummaryDescription']:
+                    product.with_context(lang=lang.code).description_sale = product_lang_sheet['SummaryDescription']['LongSummaryDescription']
+
+        # Weight field dedicated only for Smartphones
         for feature_group in product_features:
             if feature_group['ID'] == 6881:
                 for feature in feature_group['Features']:
