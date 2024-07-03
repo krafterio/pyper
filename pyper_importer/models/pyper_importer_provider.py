@@ -375,6 +375,16 @@ class PyperImporterProvider(models.Model):
 
     def create_external_id_data(self, model: str, identifier: str | int | bool, res_id: str | int,
                                 name: str = None, prefix: str = None, module: str = None):
+        res = self.env['ir.model.data'].search([
+            ('module', '=', self.generate_external_id_module(module)),
+            ('name', '=', (prefix or '') + (name or self.generate_external_id_name(model, identifier))),
+            ('model', '=', model),
+            ('res_id', '=', str(res_id)),
+        ])
+
+        if res:
+            return res[0]
+
         return self.env['ir.model.data'].create({
             'module': self.generate_external_id_module(module),
             'name': (prefix or '') + (name or self.generate_external_id_name(model, identifier)),
