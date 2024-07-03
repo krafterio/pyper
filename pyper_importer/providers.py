@@ -242,6 +242,16 @@ class LoadHelper(BaseProvider, ABC):
             self.external_identifier_module
         )
 
+    def create_external_id_data(self, model: str, identifier: str | int | bool, res_id: str | int,
+                                name: str = None, module: str = None):
+        return self.importer.create_external_id_data(
+            model=model,
+            identifier=identifier,
+            res_id=res_id,
+            name=name,
+            module=module or self.external_identifier_module,
+        )
+
     def load(self, transformed_items: list[TransformedItem]):
         for transformed_item in transformed_items:
             if self.job.importer_stop_required:
@@ -270,8 +280,7 @@ class LoadHelper(BaseProvider, ABC):
 
                 if loaded_id != 0:
                     if self.generate_external_id and not self.env.ref(item_external_id, False):
-                        self.importer.create_external_id_data(
-                            module=self.external_identifier_module,
+                        self.create_external_id_data(
                             name=self.build_external_id_name(item),
                             model=self.target_model,
                             identifier=False,
@@ -289,8 +298,7 @@ class LoadHelper(BaseProvider, ABC):
                         ext_id = self.env.ref(item_external_id, False)
 
                         if not ext_id:
-                            self.importer.create_external_id_data(
-                                module=self.external_identifier_module,
+                            self.create_external_id_data(
                                 name=self.build_external_id_name(item),
                                 model=self.target_model,
                                 identifier=False,
