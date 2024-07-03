@@ -243,12 +243,13 @@ class LoadHelper(BaseProvider, ABC):
         )
 
     def create_external_id_data(self, model: str, identifier: str | int | bool, res_id: str | int,
-                                name: str = None, module: str = None):
+                                name: str = None, prefix: str = None, module: str = None):
         return self.importer.create_external_id_data(
             model=model,
             identifier=identifier,
             res_id=res_id,
             name=name,
+            prefix=prefix,
             module=module or self.external_identifier_module,
         )
 

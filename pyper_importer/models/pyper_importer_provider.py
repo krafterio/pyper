@@ -356,9 +356,9 @@ class PyperImporterProvider(models.Model):
 
         return self.env.ref(external_id, False) or False
 
-    def find_record_by_gen_ext_id(self, model: str, identifier: str | int | bool, module: str = None
+    def find_record_by_gen_ext_id(self, model: str, identifier: str | int | bool, module: str = None, prefix: str = None
                                   ) -> models.Model | bool:
-        ext_id = PyperImporterProvider.generate_external_id(model, identifier, module)
+        ext_id = PyperImporterProvider.generate_external_id(model, identifier, module, prefix)
 
         return self.find_record_by_ext_id(ext_id)
 
@@ -367,17 +367,17 @@ class PyperImporterProvider(models.Model):
 
         return res.id if res else False
 
-    def find_record_id_by_gen_ext_id(self, model: str, identifier: str | int | bool, module: str = None
-                                     ) -> models.Model | bool:
-        res = self.find_record_by_gen_ext_id(model, identifier, module)
+    def find_record_id_by_gen_ext_id(self, model: str, identifier: str | int | bool, module: str = None,
+                                     prefix: str = None) -> models.Model | bool:
+        res = self.find_record_by_gen_ext_id(model, identifier, module, prefix)
 
         return res.id if res else False
 
     def create_external_id_data(self, model: str, identifier: str | int | bool, res_id: str | int,
-                                name: str = None, module: str = None):
+                                name: str = None, prefix: str = None, module: str = None):
         return self.env['ir.model.data'].create({
             'module': self.generate_external_id_module(module),
-            'name': name or self.generate_external_id_name(model, identifier),
+            'name': (prefix or '') + (name or self.generate_external_id_name(model, identifier)),
             'model': model,
             'res_id': str(res_id),
         })
@@ -390,7 +390,7 @@ class PyperImporterProvider(models.Model):
         return str(module).strip().replace(' ', '_').lower()
 
     @staticmethod
-    def generate_external_id_name(model: str, identifier: str | int | bool) -> str | bool:
+    def generate_external_id_name(model: str, identifier: str | int | bool, prefix: str = None) -> str | bool:
         if isinstance(identifier, bool):
             return False
 
@@ -400,11 +400,12 @@ class PyperImporterProvider(models.Model):
         for char in ['.', ' ']:
             identifier = identifier.replace(char, '_')
 
-        return model.lower() + '__' + identifier.lower()
+        return model.lower() + '__' + (prefix or '') + identifier.lower()
 
     @staticmethod
-    def generate_external_id(model: str, identifier: str | int | bool, module: str = None) -> str | bool:
-        name = PyperImporterProvider.generate_external_id_name(model, identifier)
+    def generate_external_id(model: str, identifier: str | int | bool, module: str = None, prefix: str = None
+                             ) -> str | bool:
+        name = PyperImporterProvider.generate_external_id_name(model, identifier, prefix)
 
         if isinstance(name, bool):
             return name
