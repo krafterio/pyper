@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <menuitem
+        id="smartphone_products"
+        name="Smartphones"
+        sequence="1"
+        parent="pyper_product_extend_features.product_by_pattern_menu"
+        action="pyper_product_extend_features_it.product_smartphone_kanban"
+    />
+
+    <menuitem
+        id="laptop_products"
+        name="Laptops"
+        sequence="2"
+        parent="pyper_product_extend_features.product_by_pattern_menu"
+        action="pyper_product_extend_features_it.product_laptop_kanban"
+    />
 
     <menuitem
         id="IT_menu"

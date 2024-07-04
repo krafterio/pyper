@@ -17,7 +17,7 @@
     <menuitem
         id="product_manufacturer"
         name="Product manufacturers"
-        parent="pyper_product_catalog.product_catalog_root"
+        parent="pyper_product_catalog.product_settings_menu"
         action="pyper_product_catalog.product_manufacturer_action"
         sequence="0"
     />
@@ -49,9 +49,6 @@
             groups="product.group_product_variant"
         />
     </menuitem>
-
-
-
 
     <record model="ir.ui.menu" id="pyper_product_catalog.product_catalog_root">
         <field name="font_icon">ph ph-package</field>

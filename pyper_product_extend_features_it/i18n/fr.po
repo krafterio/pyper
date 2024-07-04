@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-03 09:03+0000\n"
-"PO-Revision-Date: 2024-07-03 11:03+0200\n"
+"POT-Creation-Date: 2024-07-03 14:21+0000\n"
+"PO-Revision-Date: 2024-07-03 16:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -74,12 +74,14 @@ msgstr ""
 #. module: pyper_product_extend_features_it
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__hard_drive_capacity_id
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__hard_drive_capacity_id
+#: model_terms:ir.ui.view,arch_db:pyper_product_extend_features_it.product_template_IT_kanban
 msgid "Hard drive capacity"
 msgstr "Capacité disque dur"
 
 #. module: pyper_product_extend_features_it
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__hard_drive_type
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__hard_drive_type
+#: model_terms:ir.ui.view,arch_db:pyper_product_extend_features_it.product_template_IT_kanban
 msgid "Hard drive type"
 msgstr "Type disque dur"
 
@@ -127,6 +129,12 @@ msgid "Laptop computer"
 msgstr "Ordinateur portable"
 
 #. module: pyper_product_extend_features_it
+#: model:ir.actions.act_window,name:pyper_product_extend_features_it.product_laptop_kanban
+#: model:ir.ui.menu,name:pyper_product_extend_features_it.laptop_products
+msgid "Laptops"
+msgstr "Ordinateur portables"
+
+#. module: pyper_product_extend_features_it
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_graphic_card__write_uid
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_operating_system__write_uid
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_processor__write_uid
@@ -151,6 +159,11 @@ msgid "Logo"
 msgstr ""
 
 #. module: pyper_product_extend_features_it
+#: model_terms:ir.ui.view,arch_db:pyper_product_extend_features_it.product_template_IT_kanban
+msgid "Manfuacturer"
+msgstr "Fabricant"
+
+#. module: pyper_product_extend_features_it
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_graphic_card__name
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_operating_system__name
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_processor__name
@@ -173,6 +186,7 @@ msgstr "Aucune"
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__operating_system_id
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__operating_system_id
 #: model:ir.ui.menu,name:pyper_product_extend_features_it.product_operating_system_menu
+#: model_terms:ir.ui.view,arch_db:pyper_product_extend_features_it.product_template_IT_kanban
 msgid "Operating system"
 msgstr "Système d’exploitation"
 
@@ -184,6 +198,7 @@ msgstr "Systèmes d’exploitations"
 #. module: pyper_product_extend_features_it
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__processor_id
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__processor_id
+#: model_terms:ir.ui.view,arch_db:pyper_product_extend_features_it.product_template_IT_kanban
 msgid "Processor"
 msgstr "Processeur"
 
@@ -195,6 +210,7 @@ msgstr "Processeurs"
 
 #. module: pyper_product_extend_features_it
 #: model:ir.model,name:pyper_product_extend_features_it.model_product_template
+#: model_terms:ir.ui.view,arch_db:pyper_product_extend_features_it.product_template_IT_kanban
 msgid "Product"
 msgstr "Produit"
 
@@ -243,6 +259,7 @@ msgstr "Capacités de stockage"
 #. module: pyper_product_extend_features_it
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__ram_capacity_id
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__ram_capacity_id
+#: model_terms:ir.ui.view,arch_db:pyper_product_extend_features_it.product_template_IT_kanban
 msgid "RAM capacity"
 msgstr "Capacité RAM"
 
@@ -254,6 +271,7 @@ msgstr ""
 #. module: pyper_product_extend_features_it
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__screen_size_id
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__screen_size_id
+#: model_terms:ir.ui.view,arch_db:pyper_product_extend_features_it.product_template_IT_kanban
 msgid "Screen size"
 msgstr "Taille d’écran"
 
@@ -278,6 +296,12 @@ msgstr ""
 #. module: pyper_product_extend_features_it
 #: model:ir.model.fields.selection,name:pyper_product_extend_features_it.selection__product_category__product_pattern__smartphone
 msgid "Smartphone"
+msgstr ""
+
+#. module: pyper_product_extend_features_it
+#: model:ir.actions.act_window,name:pyper_product_extend_features_it.product_smartphone_kanban
+#: model:ir.ui.menu,name:pyper_product_extend_features_it.smartphone_products
+msgid "Smartphones"
 msgstr ""
 
 #. module: pyper_product_extend_features_it
