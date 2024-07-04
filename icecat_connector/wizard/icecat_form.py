@@ -5,6 +5,8 @@ from odoo import api, fields, models, _
 import requests
 import base64
 
+from odoo.exceptions import UserError
+
 
 class IcecatForm(models.TransientModel):
     _name = 'icecat.form'
@@ -45,9 +47,7 @@ class IcecatForm(models.TransientModel):
         'Category',
     )
 
-    def upsert_product(self, ean_upc, language_ids):
-        self.ensure_one()
-
+    def upsert_product(self, ean_upc, language_ids, detailed_type, categ_id):
         existing_product = self.env['product.template'].search(
             [('ean_upc', '=', ean_upc)],
             limit=1,
@@ -64,7 +64,7 @@ class IcecatForm(models.TransientModel):
         else:
 
             try:
-                return self.create_product_with_icecat(language_ids, ean_upc)
+                return self.create_product_with_icecat(language_ids, ean_upc, detailed_type, categ_id)
 
             except requests.exceptions.HTTPError as http_err:
                 # See 404, 500, etc. errors
@@ -83,15 +83,18 @@ class IcecatForm(models.TransientModel):
             except requests.exceptions.RequestException as req_err:
                 print(f"Request error occurred: {req_err}")
 
-    def create_product_with_icecat(self, language_ids, ean_upc):
-        self.ensure_one()
+    def create_product_with_icecat(self, language_ids, ean_upc, detailed_type, categ_id):
+        response = False
 
-        url = "https://live.icecat.biz/api?shopname=openIcecat-live&lang=%s&content=&ean_upc=%s" % (language_ids[0].iso_code, ean_upc)
-        response = requests.get(url)
-
-        if response.status_code == 404 and len(language_ids) > 1:
-            url = "https://live.icecat.biz/api?shopname=openIcecat-live&lang=%s&content=&ean_upc=%s" % (language_ids[1].iso_code, ean_upc)
+        for lang in language_ids:
+            url = "https://live.icecat.biz/api?shopname=openIcecat-live&lang=%s&content=&ean_upc=%s" % (lang.iso_code, ean_upc)
             response = requests.get(url)
+
+            if response.status_code == 200:
+                break
+
+        if not response:
+            raise UserError(_("No lang selected"))
 
         response.raise_for_status()
         product_info = response.json()
@@ -102,15 +105,15 @@ class IcecatForm(models.TransientModel):
 
         product = self.env['product.template'].create({
             'name': product_sheet['TitleInfo']['GeneratedIntTitle'],
-            'ean_upc': self.ean_upc,
-            'detailed_type': self.detailed_type,
+            'ean_upc': ean_upc,
+            'detailed_type': detailed_type,
         })
 
         if product_sheet['BrandPartCode']:
             product.part_number_code = product_sheet['BrandPartCode']
 
-        if self.categ_id:
-            product.categ_id = self.categ_id
+        if categ_id:
+            product.categ_id = categ_id
 
         if product_sheet['BrandInfo']:
             existing_manufacturer = self.env['product.manufacturer'].search(
@@ -158,7 +161,8 @@ class IcecatForm(models.TransientModel):
 
     def action_icecat_api_call(self):
         self.ensure_one()
-        product_id = self.upsert_product(self.ean_upc, self.language_ids)
+
+        product_id = self.upsert_product(self.ean_upc, self.language_ids, self.detailed_type, self.categ_id)
 
         return {
             'type': 'ir.actions.act_window',
