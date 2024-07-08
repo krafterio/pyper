@@ -6,14 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-03 12:38+0000\n"
-"PO-Revision-Date: 2024-02-03 12:38+0000\n"
+"POT-Creation-Date: 2024-07-08 14:40+0000\n"
+"PO-Revision-Date: 2024-07-08 16:40+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. module: pyper_user_profile
 #: model:res.users.profile,name:pyper_user_profile.admin_profile
@@ -141,6 +143,11 @@ msgid "Profile for users defining their default access rights"
 msgstr "Profil des utilisateurs définissant leurs droits d’accès par défaut"
 
 #. module: pyper_user_profile
+#: model:ir.ui.menu,name:pyper_user_profile.menu_users_profile
+msgid "Profiles"
+msgstr "Profils"
+
+#. module: pyper_user_profile
 #: model:ir.model,name:pyper_user_profile.model_res_users_role
 msgid "Role containing groups/rights that should be applied to all its member"
 msgstr ""
@@ -148,19 +155,10 @@ msgstr ""
 "membres"
 
 #. module: pyper_user_profile
+#: model:ir.ui.menu,name:pyper_user_profile.menu_users_role
 #: model_terms:ir.ui.view,arch_db:pyper_user_profile.view_users_form
 msgid "Roles"
 msgstr "Rôles"
-
-#. module: pyper_user_profile
-#. odoo-python
-#: code:addons/pyper/pyper_user_profile/models/res_users_profile.py:0
-#: code:addons/pyper/pyper_user_profile/models/res_users_profile.py:0
-#: code:addons/pyper_user_profile/models/res_users_profile.py:0
-#: code:addons/pyper_user_profile/models/res_users_profile.py:0
-#, python-format
-msgid "There is already a default profile. Please deactivate it first"
-msgstr "Il existe déjà un profil par défaut. Veuillez d’abord le désactiver"
 
 #. module: pyper_user_profile
 #: model:ir.model,name:pyper_user_profile.model_res_users
@@ -178,18 +176,16 @@ msgstr "Rôle utilisateur"
 #: model:ir.model.fields,field_description:pyper_user_profile.field_res_users__user_profile_id
 #: model_terms:ir.ui.view,arch_db:pyper_user_profile.view_users_form
 msgid "User profile"
-msgstr "Profile utilisateur"
+msgstr "Profil utilisateur"
 
 #. module: pyper_user_profile
 #: model:ir.actions.act_window,name:pyper_user_profile.res_users_profile_action
-#: model:ir.ui.menu,name:pyper_user_profile.menu_users_profile
-msgid "Profiles"
+msgid "User profiles"
 msgstr "Profils"
 
 #. module: pyper_user_profile
 #: model:ir.actions.act_window,name:pyper_user_profile.res_users_role_action
-#: model:ir.ui.menu,name:pyper_user_profile.menu_users_role
-msgid "Roles"
+msgid "User roles"
 msgstr "Rôles"
 
 #. module: pyper_user_profile
