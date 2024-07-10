@@ -573,6 +573,14 @@ export class TimelineArchParser {
             }
         });
 
+        if (fields[fieldDateStart] && !(fieldDateStart in fieldNextIds)) {
+            fieldNextIds[fieldDateStart] = 0;
+        }
+
+        if (fields[fieldDateEnd] && !(fieldDateEnd in fieldNextIds)) {
+            fieldNextIds[fieldDateEnd] = 0;
+        }
+
         if (fields.display_name && !('display_name' in fieldNextIds)) {
             fieldNextIds['display_name'] = 0;
         }
