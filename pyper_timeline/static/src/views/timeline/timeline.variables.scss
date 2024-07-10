@@ -27,6 +27,9 @@ $pyper-timeline-item-bg: $o-view-background-color !default;
 $pyper-timeline-item-bg-hover: $o-view-background-color !default;
 $pyper-timeline-item-box-shadow-hover: 1px 1px 6px -1px rgba(0,0,0,0.3) !default;
 
+$pyper-timeline-item-no-date-opacity: 0.9 !default;
+$pyper-timeline-item-no-date-bg: repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 20px, transparent 20px, transparent 40px) !default;
+
 $pyper-timeline-item-past-opacity: 0.35 !default;
 $pyper-timeline-item-spliter-width: 2px !default;
 $pyper-timeline-item-spliter-color: $o-webclient-background-color !default;

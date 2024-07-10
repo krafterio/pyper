@@ -418,6 +418,7 @@ export class TimelineModel extends Model {
                 let itemStartDate = item[this.archInfo.fieldDateStart]?.toJSDate();
                 let itemEndDate = item[this.archInfo.fieldDateEnd]?.toJSDate();
                 let className = '';
+                let hasDate = true;
 
                 if (this.archInfo.fieldColor && item[this.archInfo.fieldColor]) {
                     className += 'o_timeline_color_' + item[this.archInfo.fieldColor];
@@ -429,8 +430,28 @@ export class TimelineModel extends Model {
                     itemEndDate = undefined;
                 }
 
+                if (!itemStartDate && !itemEndDate) {
+                    hasDate = false;
+
+                    if (this.rangeStart) {
+                        itemStartDate = new Date(this.rangeStart.toJSDate().valueOf());
+                    } else if (this.rangeEnd) {
+                        itemStartDate = new Date(this.rangeEnd.toJSDate().valueOf());
+                    } else {
+                        itemStartDate = new Date(luxon.DateTime.now().toJSDate().valueOf());
+                    }
+
+                    if (this.rangeStart && this.rangeEnd) {
+                        itemEndDate = new Date(this.rangeEnd.toJSDate().valueOf());
+                    }
+                }
+
                 if ((itemEndDate && DateTime.now() >= itemEndDate) || (undefined === itemEndDate && DateTime.now() >= itemStartDate)) {
                     className += ' o_timeline_past_item';
+                }
+
+                if (!hasDate) {
+                    className += ' o_timeline_no_date';
                 }
 
                 items.push(this.createItem({
@@ -443,7 +464,8 @@ export class TimelineModel extends Model {
                     type: itemEndDate ? this.archInfo.itemRangeType : this.archInfo.itemType,
                     content: item.display_name || item.id,
                     record: this.generateRecord(this.meta.resModel, item.id, this.meta.fields, this.meta.archInfo.fieldNames, item),
-                    className,
+                    className: className.trim(),
+                    hasDate,
                 }));
             }
         }

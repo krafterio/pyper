@@ -135,6 +135,13 @@
                 min-height: $pyper-timeline-item-min-height;
             }
 
+            &.o_timeline_no_date {
+                .vis-item-content {
+                    opacity: $pyper-timeline-item-no-date-opacity;
+                    background-image: $pyper-timeline-item-no-date-bg;
+                }
+            }
+
             .vis-delete {
                 right: -32px;
             }
