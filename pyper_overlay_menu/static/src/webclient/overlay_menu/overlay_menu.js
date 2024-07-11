@@ -26,6 +26,10 @@ export class OverlayMenu extends Component {
             type: Boolean,
             optional: true,
         },
+        preferWebIcon: {
+            type: Boolean,
+            optional: true,
+        },
         hideEmptyCategory: {
             type: Boolean,
             optional: true,
@@ -38,11 +42,13 @@ export class OverlayMenu extends Component {
 
     static defaultProps = {
         showRootApp: undefined,
+        preferWebIcon: undefined,
         hideEmptyCategory: undefined,
     };
 
     static configurableDefaultProps = {
         showRootApp: false,
+        preferWebIcon: false,
         hideEmptyCategory: false,
     };
 

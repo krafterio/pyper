@@ -12,6 +12,10 @@
                         <field name="overlay_menu_show_root_app"/>
                     </setting>
 
+                    <setting help="Display the web icon of menu items">
+                        <field name="overlay_menu_prefer_web_icon"/>
+                    </setting>
+
                     <setting help="Hide the menu items if the category is not defined or is in global category">
                         <field name="overlay_menu_hide_empty_category"/>
                     </setting>

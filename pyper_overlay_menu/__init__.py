@@ -10,3 +10,6 @@ def post_init_hook(env):
     # Overlay Menu
     if icp.get_param('pyper_overlay_menu.overlay_menu_props.showRootApp', None) is None:
         icp.set_param('pyper_overlay_menu.overlay_menu_props.showRootApp', 'True')
+
+    if icp.get_param('pyper_overlay_menu.overlay_menu_props.preferWebIcon', None) is None:
+        icp.set_param('pyper_overlay_menu.overlay_menu_props.preferWebIcon', 'True')
