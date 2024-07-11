@@ -466,7 +466,7 @@ export class TimelineModel extends Model {
                     record: this.generateRecord(this.meta.resModel, item.id, this.meta.fields, this.meta.archInfo.fieldNames, item),
                     className: className.trim(),
                     hasDate,
-                }));
+                }, item));
             }
         }
 
@@ -530,10 +530,11 @@ export class TimelineModel extends Model {
      * Allow to override values of created timeline item object.
      *
      * @param {Object} item
+     * @param {Object} data
      *
      * @returns {Object}
      */
-    createItem(item) {
+    createItem(item, data) {
         return item;
     }
 
