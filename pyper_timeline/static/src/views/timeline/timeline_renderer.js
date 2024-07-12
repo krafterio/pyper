@@ -299,7 +299,7 @@ export class TimelineRenderer extends Component {
                 add: this.props.model.canCreate,
                 remove: this.props.model.canDelete && this.props.model.archInfo.useTimelineDelete,
                 updateGroup: this.props.model.canEdit && this.props.model.isGroupByMovable,
-                updateTime: this.props.model.canEdit,
+                updateTime: this.props.model.canEdit && this.props.model.archInfo.editableTime,
                 overrideItems: this.props.model.canEdit,
             },
             format: undefined,

@@ -108,6 +108,7 @@ export class TimelineArchParser {
         let zoomable = true;
         let zoomFriction = 40;
         let zoomKey = 'ctrlKey';
+        let editableTime = true;
 
         visitXML(arch, (node) => {
             switch (node.tagName) {
@@ -147,6 +148,10 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('zoom_key')) {
                         zoomKey = node.getAttribute('zoom_key');
+                    }
+
+                    if (node.hasAttribute('editable_time')) {
+                        editableTime = archParseBoolean(node.getAttribute('editable_time'), editableTime);
                     }
 
                     if (node.hasAttribute('zoomable')) {
@@ -692,6 +697,7 @@ export class TimelineArchParser {
             zoomable,
             zoomFriction,
             zoomKey,
+            editableTime,
         };
     }
 }
