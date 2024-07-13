@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_dashboard.AddToDashboard">
+        <Dropdown class="'pyper_add_to_dashboard'">
+            <t t-set-slot="toggler">
+                <t t-call="pyper_dashboard.DashboardIcon"/>
+                Dashboards
+            </t>
+
+            <div class="px-3 pb-2">
+                <label class="mb-2">Add to dashboard</label>
+                <input type="text" class="o_input mb-3" t-ref="autofocus" t-model.trim="state.name" t-on-keydown="onInputKeydown" />
+                <button type="button" class="btn btn-primary" t-on-click="addToDashboard">Add</button>
+            </div>
+        </Dropdown>
+    </t>
+
+    <t t-name="pyper_dashboard.DashboardIcon">
+        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" class="oi-large">
+            <path d="M4,8c0-2.2,1.8-4,4-4h17v17c0,2.2-1.8,4-4,4H4V8Z" fill="var(--oi-color, #0e2328)"/>
+            <path d="M4,35c0-2.2,1.8-4,4-4h11v11c0,2.2-1.8,4-4,4H4v-11Z" fill="var(--oi-color, #35bfe5)"/>
+            <path d="M25,46h4c2.2,0,4-1.8,4-4v-11h-4c-2.2,0-4,1.8-4,4v11Z" fill="var(--oi-color, #337f8c)"/>
+            <path d="M31,17v4c0,2.2,1.8,4,4,4h11v-4c0-2.2-1.8-4-4-4h-11Z" fill="var(--oi-color, #30aac6)"/>
+            <path d="M31,4v4c0,2.2,1.8,4,4,4h11v-4c0-2.2-1.8-4-4-4h-11Z" fill="var(--oi-color, #3edbff)"/>
+            <path d="M38,46h4c2.2,0,4-1.8,4-4v-11h-4c-2.2,0-4,1.8-4,4v11Z" fill="var(--oi-color, #27616b)"/>
+        </svg>
+    </t>
+</templates>

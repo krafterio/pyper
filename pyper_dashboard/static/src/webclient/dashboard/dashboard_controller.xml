@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="pyper_dashboard.DashboardView">
+        <div class="pyper_dashboard d-flex flex-column">
+            <t t-if="dashboard.isEmpty">
+                <t t-call="pyper_dashboard.NoContent"/>
+            </t>
+            <t t-else="">
+                <t t-call="pyper_dashboard.Content"/>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="pyper_dashboard.Content">
+        <div t-if="!env.isSmall" class="pyper-dashboard-header px-3">
+            <h2 t-if="dashboard.title" t-out="dashboard.title"/>
+            <h2 t-else="">Dashboard</h2>
+
+            <Dropdown togglerClass="'btn btn-secondary p-2'">
+                <t t-set-slot="toggler">
+                    <img t-attf-src="/pyper_dashboard/static/img/layout_{{dashboard.layout}}.png" width="16" height="16" alt=""/>
+                    Change layout
+                </t>
+
+                <t t-foreach="'1 1-1 1-1-1 1-2 2-1'.split(' ')" t-as="layout" t-key="layout">
+                    <DropdownItem onSelected="() => this.selectLayout(layout)">
+                        <img t-attf-src="/pyper_dashboard/static/img/layout_{{layout}}.png" alt=""/>
+                        <i t-if="layout === dashboard.layout" class="fa fa-check fa-lg text-success" aria-label="Layout" role="img" title="Layout"/>
+                    </DropdownItem>
+                </t>
+            </Dropdown>
+        </div>
+
+        <div class="pyper-dashboard-layout flex-grow-1" t-attf-class="pyper-dashboard-layout-{{dashboard.layout}}" t-ref="main">
+            <t t-foreach="dashboard.columns" t-as="column" t-key="column_index">
+                <div t-if="column_index lt dashboard.colNumber" class="pyper-dashboard-column h-100" t-att-data-idx="column_index">
+                    <t t-foreach="column.actions" t-as="action" t-key="action.id">
+                        <div class="pyper-dashboard-action mx-3 mb-4 bg-view border" t-att-data-idx="action_index">
+                            <div t-attf-class="pyper-dashboard-action-header {{action.title ? '' : 'oe_header_empty'}}">
+                                <div class="pyper-dashboard-action-header-title">
+                                    <h3> <t t-esc="action.title"/> </h3>
+                                </div>
+
+                                <span class="btn p-1 text-muted" t-if="!action.isFolded" t-on-click="() => this.toggleAction(action, !env.isSmall)"><i class="fa fa-window-minimize"/></span>
+                                <span class="btn p-1 text-muted" t-if="action.isFolded"  t-on-click="() => this.toggleAction(action, !env.isSmall)"><i class="fa fa-window-maximize"/></span>
+                                <span t-if="!env.isSmall" class="btn p-1 text-muted" t-on-click="() => this.closeAction(column, action)"><i class="fa fa-close"/></span>
+                            </div>
+
+                            <DashboardAction t-if="!action.isFolded" action="action" />
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="pyper_dashboard.NoContent">
+        <div class="o_view_nocontent">
+            <div class="o_nocontent_help">
+                <p class="o_view_nocontent_neutral_face">
+                  Dashboard is empty
+                </p>
+
+                <p>
+                  To add your first graph into this dashboard, go to any
+                  menu, switch to list or graph view, and click <i>"Add to
+                  dashboard"</i> in the extended search options.
+                </p>
+
+                <p>
+                  You can group and filter data before inserting into the
+                  dashboard using the search options.
+                </p>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="pyper_dashboard.Arch">
+        <form t-att-string="title">
+            <dashboard t-att-layout="layout">
+                <column t-foreach="columns" t-as="column" t-key="column_index">
+                    <t t-foreach="column.actions" t-as="action" t-key="action_index">
+                        <action
+                            t-att-name="action.actionId"
+                            t-att-string="action.title"
+                            t-att-view_mode="action.viewMode"
+                            t-att-context="action.context"
+                            t-att-domain="action.domain"
+                            t-att-fold="action.isFolded ? 1 : 0"/>
+                    </t>
+                </column>
+            </dashboard>
+        </form>
+    </t>
+</templates>

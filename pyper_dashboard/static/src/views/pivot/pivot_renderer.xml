@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_dashboard.GraphRenderer" t-inherit="web.PivotRenderer" t-inherit-mode="extension">
+        <xpath expr="//t[@t-call='{{ props.buttonTemplate }}']" position="attributes">
+            <attribute name="t-if">displayButtonSection</attribute>
+        </xpath>
+    </t>
+</templates>
