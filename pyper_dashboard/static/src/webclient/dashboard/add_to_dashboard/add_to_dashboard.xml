@@ -3,19 +3,34 @@
     <t t-name="pyper_dashboard.AddToDashboard">
         <Dropdown class="'pyper_add_to_dashboard'">
             <t t-set-slot="toggler">
-                <t t-call="pyper_dashboard.DashboardIcon"/>
+                <t t-call="pyper_dashboard.AddToDashboard.Icon"/>
                 Dashboards
             </t>
 
-            <div class="px-3 pb-2">
-                <label class="mb-2">Add to dashboard</label>
-                <input type="text" class="o_input mb-3" t-ref="autofocus" t-model.trim="state.name" t-on-keydown="onInputKeydown" />
-                <button type="button" class="btn btn-primary" t-on-click="addToDashboard">Add</button>
-            </div>
+            <t t-foreach="boards" t-as="board" t-key="board.id">
+                <Dropdown>
+                    <t t-set-slot="toggler">
+                        <t t-out="board.name"/>
+                    </t>
+
+                    <t t-call="pyper_dashboard.AddToDashboard.Card">
+                        <t t-set="boardId" t-value="board.id"/>
+                    </t>
+                </Dropdown>
+            </t>
         </Dropdown>
     </t>
 
-    <t t-name="pyper_dashboard.DashboardIcon">
+    <t t-name="pyper_dashboard.AddToDashboard.Card">
+        <div class="px-3 pb-2">
+            <label class="mb-2">Add to dashboard</label>
+
+            <input type="text" class="o_input mb-3" t-ref="autofocus" t-model.trim="state.name" t-on-keydown="onInputKeydown" />
+            <button type="button" class="btn btn-primary" t-on-click="() => this.addToDashboard(boardId)">Add</button>
+        </div>
+    </t>
+
+    <t t-name="pyper_dashboard.AddToDashboard.Icon">
         <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" class="oi-large">
             <path d="M4,8c0-2.2,1.8-4,4-4h17v17c0,2.2-1.8,4-4,4H4V8Z" fill="var(--oi-color, #0e2328)"/>
             <path d="M4,35c0-2.2,1.8-4,4-4h11v11c0,2.2-1.8,4-4,4H4v-11Z" fill="var(--oi-color, #35bfe5)"/>

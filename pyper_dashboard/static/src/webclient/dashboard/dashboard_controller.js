@@ -9,8 +9,9 @@ import {useService} from '@web/core/utils/hooks';
 import {renderToString} from '@web/core/utils/render';
 import {useSortable} from '@web/core/utils/sortable_owl';
 import {standardViewProps} from '@web/views/standard_view_props';
-import {blockDom, Component, useState, useRef} from '@odoo/owl';
+import {blockDom, Component, onWillStart, useState, useRef} from '@odoo/owl';
 import {DashboardAction} from './dashboard_action';
+import {DashboardArchParser} from './dashboard_arch_parser';
 
 
 const xmlSerializer = new XMLSerializer();
@@ -26,13 +27,19 @@ export class DashboardController extends Component {
 
     static props = {
         ...standardViewProps,
-        dashboard: Object,
     };
 
     setup() {
-        this.dashboard = useState(this.props.dashboard);
+        this.dashboard = useState({});
         this.rpc = useService('rpc');
+        this.orm = useService('orm');
+        this.router = useService('router');
         this.dialogService = useService('dialog');
+        this.state = useState({
+            boards: [],
+            selectedBoard: null,
+            useSwitcher: false,
+        });
 
         const mainRef = useRef('main');
 
@@ -57,6 +64,50 @@ export class DashboardController extends Component {
                 this.moveAction(fromColIdx, fromActionIdx, toColIdx, toActionIdx);
             },
         });
+
+        onWillStart(async () => {
+            const {arch, info} = this.props;
+            Object.assign(this.dashboard, new DashboardArchParser().parse(arch, info.customViewId));
+
+            if (this.dashboard.useSwitcher) {
+                const boards = await this.orm.searchRead('dashboard.dashboard', [], ['id', 'name', 'arch']);
+                this.state.boards.length = 0;
+                this.state.boards.push(...boards);
+                this.selectBoard(this.router?.current?.hash?.board || null);
+            }
+        });
+    }
+
+    get boards() {
+        return this.state.boards || [];
+    }
+
+    get selectedBoard() {
+        return this.state.selectedBoard;
+    }
+
+    selectBoard(value) {
+        if (typeof value === 'number') {
+            for (let board of this.boards) {
+                if (value === board.id) {
+                    this.state.selectedBoard = board;
+                    break;
+                }
+            }
+        } else if (typeof value === 'object' && value && value.id) {
+            this.state.selectedBoard = value;
+        } else {
+            this.state.selectedBoard = this.state.boards.length > 0 ? this.state.boards[0] : null;
+        }
+
+        const arch = this.state.selectedBoard?.arch || this.props.arch;
+        Object.assign(this.dashboard, new DashboardArchParser().parse(arch, this.props.info.customViewId));
+
+        if (this.dashboard.useSwitcher && this.state.selectedBoard?.id) {
+            browser.setTimeout(() => {
+                this.router.replaceState({board: this.state.selectedBoard.id});
+            }, 100); // history.pushState is a little async
+        }
     }
 
     moveAction(fromColIdx, fromActionIdx, toColIdx, toActionIdx) {
@@ -143,10 +194,18 @@ export class DashboardController extends Component {
         const result = xmlSerializer.serializeToString(root);
         const arch = result.slice(result.indexOf("<", 1), result.indexOf("</rendertostring>"));
 
-        this.rpc('/web/view/edit_custom', {
-            custom_id: this.dashboard.customViewId,
-            arch,
-        });
+        if (this.dashboard.useSwitcher && this.state.selectedBoard?.id) {
+            this.state.selectedBoard.arch = arch;
+            this.orm.write('dashboard.dashboard', [this.state.selectedBoard.id], {
+                arch,
+            }).then();
+        } else {
+            this.rpc('/web/view/edit_custom', {
+                custom_id: this.dashboard.customViewId,
+                arch,
+            }).then();
+        }
+
         this.env.bus.trigger('CLEAR-CACHES');
     }
 }

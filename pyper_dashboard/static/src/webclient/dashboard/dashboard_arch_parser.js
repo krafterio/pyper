@@ -2,6 +2,7 @@
 
 import {Domain} from '@web/core/domain';
 import {visitXML} from '@web/core/utils/xml';
+import {archParseBoolean} from '@web/views/utils';
 
 export class DashboardArchParser {
     parse(arch, customViewId) {
@@ -9,6 +10,7 @@ export class DashboardArchParser {
         const archInfo = {
             title: null,
             layout: null,
+            useSwitcher: false,
             colNumber: 0,
             isEmpty: true,
             columns: [
@@ -27,6 +29,7 @@ export class DashboardArchParser {
                     break;
                 case 'dashboard':
                     archInfo.layout = node.getAttribute('layout');
+                    archInfo.useSwitcher = archParseBoolean(node.getAttribute('switcher'), true);
                     archInfo.colNumber = archInfo.layout.split('-').length;
                     break;
                 case 'column':
@@ -34,16 +37,13 @@ export class DashboardArchParser {
                     break;
                 case 'action': {
                     archInfo.isEmpty = false;
-                    const isFolded = Boolean(
-                        node.hasAttribute('fold') ? parseInt(node.getAttribute('fold'), 10) : 0
-                    );
                     const action = {
                         id: nextId++,
                         title: node.getAttribute('string'),
                         actionId: parseInt(node.getAttribute('name'), 10),
                         viewMode: node.getAttribute('view_mode'),
                         context: node.getAttribute('context'),
-                        isFolded,
+                        isFolded: archParseBoolean(node.getAttribute('fold')),
                     };
 
                     if (node.hasAttribute('domain')) {

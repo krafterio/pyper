@@ -19,10 +19,13 @@
     ],
     'data': [
         # Security
+        'security/res_groups.xml',
         'security/ir.model.access.csv',
 
         # Views
-        'views/dashboard_views.xml',
+        'views/dashboard_board_views.xml',
+        'views/dashboard_dashboard_views.xml',
+        'views/menu.xml',
     ],
     'assets': {
         'web.assets_backend': [

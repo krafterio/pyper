@@ -4,7 +4,7 @@ import {_t} from '@web/core/l10n/translation';
 import {Dropdown} from '@web/core/dropdown/dropdown';
 import {registry} from '@web/core/registry';
 import {useAutofocus, useService} from '@web/core/utils/hooks';
-import {Component, useState} from '@odoo/owl';
+import {Component, onWillStart, useState} from '@odoo/owl';
 
 const cogMenuRegistry = registry.category('cogMenu');
 
@@ -36,14 +36,46 @@ export class AddToDashboard extends Component {
     setup() {
         this.notification = useService('notification');
         this.rpc = useService('rpc');
+        this.orm = useService('orm');
         this.state = useState({
             name: this.env.config.getDisplayName(),
+            boards: [],
+            selectedBoard: null,
         });
 
         useAutofocus();
+
+        onWillStart(async () => {
+            const boards = await this.orm.searchRead('dashboard.dashboard', [], ['id', 'name']);
+            this.state.boards.push(...boards);
+            this.state.boards.push({
+                id: null,
+                name: _t('My dashboard'),
+            });
+
+            this.selectBoard(this.state.boards.length > 0 ? this.state.boards[0].id : null);
+        })
     }
 
-    async addToDashboard() {
+    get boards() {
+        return this.state.boards;
+    }
+
+
+    get selectedBoard() {
+        return this.state.selectedBoard;
+    }
+
+    selectBoard(id) {
+        for (let board of this.state.boards || []) {
+            if (id === board.id) {
+                this.state.selectedBoard = board;
+                break;
+            }
+        }
+    }
+
+    async addToDashboard(boardId) {
         const {domain, globalContext} = this.env.searchModel;
         const {context, groupBys, orderBy} = this.env.searchModel.getPreFavoriteValues();
         const limit = this.env?.config?.pagerProps?.limit || false;
@@ -74,6 +106,7 @@ export class AddToDashboard extends Component {
             domain,
             name: this.state.name,
             view_mode: this.env.config.viewType,
+            board_id: boardId,
         });
 
         if (result) {
