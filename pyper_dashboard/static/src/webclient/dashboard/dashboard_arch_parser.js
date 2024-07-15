@@ -48,7 +48,7 @@ export class DashboardArchParser {
 
                     if (node.hasAttribute('domain')) {
                         const domain = node.getAttribute('domain');
-                        action.domain = new Domain(domain).toList();
+                        action.domain = new Domain(domain).toList({});
                         // so it can be serialized when reexporting dashboard xml
                         action.domain.toString = () => node.getAttribute('domain');
                     }

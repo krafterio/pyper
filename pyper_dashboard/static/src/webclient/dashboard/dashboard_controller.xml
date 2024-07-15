@@ -55,7 +55,7 @@
         <div class="pyper-dashboard-layout flex-grow-1" t-attf-class="pyper-dashboard-layout-{{dashboard.layout}}" t-ref="main">
             <t t-foreach="dashboard.columns" t-as="column" t-key="column_index">
                 <div t-if="column_index lt dashboard.colNumber" class="pyper-dashboard-column h-100" t-att-data-idx="column_index">
-                    <t t-foreach="column.actions" t-as="action" t-key="action.id">
+                    <t t-foreach="column.actions" t-as="action" t-key="selectedBoard?.id + '__' + action.id">
                         <div class="pyper-dashboard-action mx-3 mb-4 bg-view border" t-att-data-idx="action_index">
                             <div t-attf-class="pyper-dashboard-action-header {{action.title ? '' : 'oe_header_empty'}}">
                                 <div class="pyper-dashboard-action-header-title">
