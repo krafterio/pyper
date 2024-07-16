@@ -28,6 +28,10 @@
         'views/menu.xml',
     ],
     'assets': {
+        'web._assets_primary_variables': [
+            'pyper_dashboard/static/src/**/*.variables.scss',
+        ],
+
         'web.assets_backend': [
             'pyper_dashboard/static/src/views/**/*',
             'pyper_dashboard/static/src/webclient/**/*',

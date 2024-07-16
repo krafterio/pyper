@@ -1,3 +1,4 @@
+// Dashboard
 .pyper_dashboard {
     height: 100%;
     overflow: auto;
@@ -7,24 +8,94 @@
     }
 }
 
-.pyper-dashboard-header {
+.pyper_dashboard--dropdown-menu {
+    min-width: auto;
+}
+
+// Dashboard Header
+.pyper_dashboard--header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px;
+    padding: $pyper-dashboard-padding-v $pyper-dashboard-padding-h;
 
     h2 {
         margin-bottom: 0;
     }
 }
 
-.pyper-dashboard-action-header {
+// Dashboard Container
+.pyper_dashboard--container {
     display: flex;
-    align-items: center;
-    padding: 8px 12px;
+    flex-direction: column;
+    gap: 32px;
+    padding: $pyper-dashboard-padding-v $pyper-dashboard-padding-h;
 }
 
-.pyper-dashboard-action-header-title {
+// Dashboard Section
+.pyper_dashboard--section {
+    display: grid;
+    flex-grow: 1;
+    gap: 16px;
+}
+
+.pyper_dashboard--section-header {
+    display: flex;
+    min-height: 40px;
+
+    > * {
+        margin-bottom: 0;
+    }
+
+    > *:first-child {
+        flex-grow: 1;
+    }
+
+    > .o-dropdown {
+        margin-left: 12px;
+    }
+}
+
+.pyper_dashboard--section-header-title {
+    display: flex;
+    align-items: center;
+}
+
+.pyper_dashboard--section-content {
+    display: grid;
+    gap: 16px;
+}
+
+.pyper_dashboard--section-content-1 {
+    grid-template-columns: 1fr;
+}
+.pyper_dashboard--section-content-1-1 {
+    grid-template-columns: 1fr 1fr;
+}
+.pyper_dashboard--section-content-1-1-1 {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.pyper_dashboard--section-content-2-1 {
+    grid-template-columns: 2fr 1fr;
+}
+.pyper_dashboard--section-content-1-2 {
+    grid-template-columns: 1fr 2fr;
+}
+
+// Dashboard Column
+.pyper_dashboard--column {
+    overflow-x: auto;
+    min-height: 40px;
+}
+
+// Dashboard Action
+.pyper_dashboard--action-header {
+    display: flex;
+    align-items: center;
+    padding: $pyper-dashboard-header-padding-v $pyper-dashboard-header-padding-h;
+}
+
+.pyper_dashboard--action-header-title {
     flex-grow: 1;
 
     h3 {
@@ -32,32 +103,13 @@
     }
 }
 
-.pyper-dashboard-layout {
-    display: grid;
-}
-
-.pyper-dashboard-layout-1 {
-    grid-template-columns: 1fr;
-}
-.pyper-dashboard-layout-1-1 {
-    grid-template-columns: 1fr 1fr;
-}
-.pyper-dashboard-layout-1-1-1 {
-    grid-template-columns: 1fr 1fr 1fr;
-}
-.pyper-dashboard-layout-2-1 {
-    grid-template-columns: 2fr 1fr;
-}
-.pyper-dashboard-layout-1-2 {
-    grid-template-columns: 1fr 2fr;
-}
-
-.pyper-dashboard-column {
-    overflow-x: auto;
-}
-
-.pyper-dashboard-action {
+.pyper_dashboard--action {
     align-self: start;
+    margin-bottom: 16px;
+
+    > h3 > span > i {
+        font-size: $pyper-dashboard-action-font-size;
+    }
 
     > .o_view_controller {
         &.o_pivot_view .table,
@@ -129,16 +181,24 @@
         }
     }
 
-    .o_column_quick_create, .o_control_panel {
+    .o_column_quick_create,
+    .o_control_panel {
         display: none;
     }
 }
 
-.pyper-dashboard-action > h3 > span > i {
-    font-size: 12px;
+// Dashboard Editable
+.pyper_dashboard.editable {
+    .pyper_dashboard--section-header-title,
+    .pyper_dashboard--action-header-title {
+        &:hover {
+            cursor: move;
+        }
+    }
 }
 
-.pyper_add_to_dashboard {
+// Dashboard Button add to dashboard
+.pyper_dashboard--add-to-dashboard {
     svg {
         width: var(--oi-font-size, 1em);
         aspect-ratio: 1;

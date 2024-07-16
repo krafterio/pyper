@@ -4,12 +4,9 @@
         <record model="ir.ui.view" id="view_dashboard_board">
             <field name="name">My dashboard</field>
             <field name="model">dashboard.board</field>
+            <field name="type">qweb</field>
             <field name="arch" type="xml">
-                <form string="My dashboard">
-                    <dashboard layout="2-1" switcher="False">
-                        <column/>
-                    </dashboard>
-                </form>
+                <dashboard string="My dashboard" switcher="False"/>
             </field>
         </record>
     </data>

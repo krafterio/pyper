@@ -46,7 +46,8 @@ export class AddToDashboard extends Component {
         useAutofocus();
 
         onWillStart(async () => {
-            const boards = await this.orm.searchRead('dashboard.dashboard', [], ['id', 'name']);
+            const boardDomain = [['is_editable', '=', true]];
+            const boards = await this.orm.searchRead('dashboard.dashboard', boardDomain, ['id', 'name']);
             this.state.boards.push(...boards);
             this.state.boards.push({
                 id: null,
@@ -89,7 +90,6 @@ export class AddToDashboard extends Component {
             ...context,
             order_by: orderBy,
             group_by: groupBys,
-            dashboard_merge_domains_contexts: false,
         };
 
         if (limit) {

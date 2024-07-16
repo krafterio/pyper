@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="pyper_dashboard.DashboardAction">
-        <t t-if="isValid">
-            <View t-props="viewProps"/>
-        </t>
+        <div class="pyper_dashboard--action bg-view border" t-att="props.attr">
+            <div t-attf-class="pyper_dashboard--action-header {{props.title ? '' : 'oe_header_empty'}}">
+                <div t-attf-class="pyper_dashboard--action-header-title {{props.title ? '' : 'oe_header_empty'}}">
+                    <h3 t-out="props.title"></h3>
+                </div>
 
-        <t t-else="">
-            <div class="text-center text-warning m-1">Invalid action</div>
-        </t>
+                <span t-if="!env.isSmall and props.foldable" class="btn p-1 text-muted" t-on-click="() => this.props.toggle()">
+                    <i class="fa fa-window-maximize" t-if="props.isFolded"/>
+                    <i class="fa fa-window-minimize" t-else=""/>
+                </span>
+
+                <span t-if="!env.isSmall and props.foldable" class="btn p-1 text-muted" t-on-click="() => this.props.remove()">
+                    <i class="fa fa-close"/>
+                </span>
+            </div>
+
+            <t t-if="!isValid">
+                <div class="text-center text-warning m-1">Invalid action</div>
+            </t>
+
+            <t t-if="isValid and !props.isFolded">
+                <View t-props="viewProps"/>
+            </t>
+        </div>
     </t>
 </templates>

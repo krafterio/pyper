@@ -13,8 +13,50 @@ export class DashboardAction extends Component {
     };
 
     static props = {
-        "*": true,
+        toggle: {
+            type: Function,
+        },
+        remove: {
+            type: Function,
+        },
+        title: {
+            type: String,
+            optional: true,
+        },
+        actionId: {
+            type: [Number, String],
+        },
+        viewMode: {
+            type: String,
+        },
+        context: {
+            type: Object,
+            optional: true,
+        },
+        domain: {
+            type: Array,
+            optional: true,
+        },
+        foldable: {
+            type: Boolean,
+            optional: true,
+        },
+        isFolded: {
+            type: Boolean,
+            optional: true,
+        },
+        attr: {
+            type: Object,
+            optional: true,
+        },
     };
+
+    static defaultProps = {
+        context: {},
+        domain: [],
+        foldable: true,
+        isFolded: false,
+    }
 
     static cache = {};
 
@@ -22,16 +64,16 @@ export class DashboardAction extends Component {
         const rpc = useService('rpc');
         const userService = useService('user');
         this.actionService = useService('action');
-        const action = this.props.action;
         this.formViewId = false;
         this.isValid = true;
+        this.viewProps = {};
 
         onWillStart(async () => {
-            let result = DashboardAction.cache[action.actionId];
+            let result = DashboardAction.cache[this.props.actionId];
 
             if (!result) {
-                result = await rpc('/web/action/load', {action_id: action.actionId});
-                DashboardAction.cache[action.actionId] = result;
+                result = await rpc('/web/action/load', {action_id: this.props.actionId});
+                DashboardAction.cache[this.props.actionId] = result;
             }
 
             if (!result) {
@@ -40,7 +82,7 @@ export class DashboardAction extends Component {
                 return;
             }
 
-            const viewMode = action.viewMode || result.views[0][1];
+            const viewMode = this.props.viewMode || result.views[0][1];
             const formView = result.views.find((v) => v[1] === 'form');
 
             if (formView) {
@@ -70,9 +112,9 @@ export class DashboardAction extends Component {
                 [(searchView && searchView[0]) || false, 'search'],
             ];
 
-            if (action.context) {
+            if (this.props.context) {
                 this.viewProps.context = makeContext([
-                    action.context,
+                    this.props.context,
                     {lang: userService.context.lang},
                 ]);
 
@@ -106,8 +148,8 @@ export class DashboardAction extends Component {
                 }
             }
 
-            if (action.domain) {
-                this.viewProps.domain = action.domain;
+            if (this.props.domain) {
+                this.viewProps.domain = this.props.domain;
             }
 
             if (viewMode === 'list') {

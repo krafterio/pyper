@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="pyper_dashboard.AddToDashboard">
-        <Dropdown class="'pyper_add_to_dashboard'">
+        <Dropdown class="'pyper_dashboard--add-to-dashboard'">
             <t t-set-slot="toggler">
                 <t t-call="pyper_dashboard.AddToDashboard.Icon"/>
                 Dashboards

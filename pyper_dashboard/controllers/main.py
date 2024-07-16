@@ -68,7 +68,20 @@ def _add_to_my_dashboard(action_id, context_to_save, domain, view_mode, name='')
 
 
 def _update_arch(board_arch, action_id, context_to_save, domain, view_mode, name=''):
-    column = board_arch.find('./dashboard/column')
+    columns = board_arch.xpath('//dashboard/section/column')
+    column = columns[len(columns) - 1] if len(columns) > 1 else None
+
+    if column is None:
+        sections = board_arch.xpath('//dashboard/section')
+        section = sections[len(sections) - 1] if len(sections) > 1 else None
+
+        if section is None:
+            section = ElementTree.Element('section')
+            board_arch.insert(0, section)
+
+        if section is not None:
+            column = ElementTree.Element('column')
+            section.insert(0, column)
 
     if column is not None:
         if 'allowed_company_ids' in context_to_save:

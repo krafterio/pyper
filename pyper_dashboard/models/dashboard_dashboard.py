@@ -35,7 +35,13 @@ class DashboardBoardItem(models.Model):
         index=True,
         required=False,
         ondelete='cascade',
-        domain=[('type', '=', 'dashboard')],
+        domain=[('model', '=', 'dashboard.dashboard'), ('type', '=', 'qweb')],
+    )
+
+    is_editable = fields.Boolean(
+        'Is editable?',
+        compute='_compute_is_editable',
+        store=True,
     )
 
     arch_db = fields.Text(
@@ -48,6 +54,11 @@ class DashboardBoardItem(models.Model):
         compute='_compute_arch',
         inverse='_inverse_arch',
     )
+
+    @api.depends('view_id')
+    def _compute_is_editable(self):
+        for board in self:
+            board.is_editable = board.view_id.id is False
 
     @api.depends('arch_db', 'view_id')
     def _compute_arch(self):

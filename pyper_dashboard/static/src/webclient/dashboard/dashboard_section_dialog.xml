@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_dashboard.DashboardSectionDialog">
+        <Dialog size="'md'" title="props.dialogTitle" modalRef="modalRef" bodyClass="'o_form_view'">
+            <div class="row">
+                <div class="col">
+                    <label class="o_form_label mb-2" for="title_0">
+                        Title
+                    </label>
+
+                    <div>
+                        <input type="text"
+                               id="title_0"
+                               t-model="title.input.value"
+                               class="o_input"
+                               t-att-class="{'is-invalid': title.input.hasError}"
+                               autofocus="autofocus"
+                        />
+                    </div>
+                </div>
+
+                <t t-slot="default"/>
+            </div>
+
+            <t t-set-slot="footer">
+                <button class="btn btn-primary" t-att-class="props.class" t-on-click="save" t-out="props.saveLabel"/>
+                <button class="btn btn-secondary" t-on-click="cancel" t-out="props.cancelLabel"/>
+            </t>
+        </Dialog>
+    </t>
+</templates>

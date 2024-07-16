@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_dashboard.DashboardSection">
+        <div class="pyper_dashboard--section" t-att="props.attr">
+            <div class="pyper_dashboard--section-header">
+                <h3 class="pyper_dashboard--section-header-title" t-out="props.title" t-if="props.title"/>
+                <div t-else="" class="spacer"/>
+
+                <Dropdown togglerClass="'btn btn-default py-1'" menuClass="'pyper_dashboard--dropdown-menu'" t-if="props.layoutEditable">
+                    <t t-set-slot="toggler">
+                        <i class="fa oi-fw fa-sliders" aria-label="Section settings" role="img" title="Section settings"/>
+                    </t>
+
+                    <DropdownItem onSelected="() => this.editSection()">
+                        <i class="oi-fw oi-fw me-1 fa fa-edit"></i>
+                        Edit
+                    </DropdownItem>
+
+                    <DropdownItem onSelected="() => this.deleteSection()">
+                        <i class="oi-fw oi-fw me-1 fa fa-trash-o"></i>
+                        Delete
+                    </DropdownItem>
+
+                    <DropdownItem class="'disabled'">
+                        <i class="oi-fw oi-fw me-1 fa fa-th-large"></i>
+                        Layout
+                    </DropdownItem>
+
+                    <t t-foreach="layouts" t-as="layout" t-key="layout">
+                        <DropdownItem onSelected="() => this.selectLayout(layout)">
+                            <img class="ms-4" t-attf-src="/pyper_dashboard/static/img/layout_{{layout}}.png" alt="" width="32"/>
+                            <i t-if="layout === props.layout" class="fa oi-fw fa-check fa-lg text-success ms-3" aria-label="Layout" role="img" title="Layout"/>
+                        </DropdownItem>
+                    </t>
+                </Dropdown>
+            </div>
+
+            <div class="pyper_dashboard--section-content" t-attf-class="pyper_dashboard--section-content-{{props.layout}}">
+                <t t-slot="default"/>
+            </div>
+        </div>
+    </t>
+</templates>

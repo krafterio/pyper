@@ -10,9 +10,12 @@ import {renderToString} from '@web/core/utils/render';
 import {useSortable} from '@web/core/utils/sortable_owl';
 import {standardViewProps} from '@web/views/standard_view_props';
 import {blockDom, Component, onWillStart, useState, useRef} from '@odoo/owl';
+import {View} from '@web/views/view';
 import {DashboardAction} from './dashboard_action';
-import {DashboardArchParser} from './dashboard_arch_parser';
-
+import {createColumnData, createSectionData, DashboardArchParser} from './dashboard_arch_parser';
+import {DashboardColumn} from './dashboard_column';
+import {DashboardSection, DEFAULT_LAYOUT} from './dashboard_section';
+import {DashboardSectionDialog} from './dashboard_section_dialog';
 
 const xmlSerializer = new XMLSerializer();
 
@@ -20,9 +23,12 @@ export class DashboardController extends Component {
     static template = 'pyper_dashboard.DashboardView';
 
     static components = {
+        DashboardSection,
+        DashboardColumn,
         DashboardAction,
         Dropdown,
         DropdownItem,
+        View,
     };
 
     static props = {
@@ -34,34 +40,61 @@ export class DashboardController extends Component {
         this.rpc = useService('rpc');
         this.orm = useService('orm');
         this.router = useService('router');
+        this.actionService = useService('action');
         this.dialogService = useService('dialog');
         this.state = useState({
             boards: [],
             selectedBoard: null,
             useSwitcher: false,
         });
+        this.leavedSectionIndex = null; // Use when action is dragged between 2 sections
 
         const mainRef = useRef('main');
 
         useSortable({
             ref: mainRef,
-            elements: '.pyper-dashboard-action',
-            handle: '.pyper-dashboard-action-header',
+            elements: '.pyper_dashboard--section',
+            handle: '.pyper_dashboard--section-header',
             cursor: 'move',
-            groups: '.pyper-dashboard-column',
+            groups: '.pyper_dashboard--container',
             connectGroups: true,
+            enable: () => this.canEdit,
+            onDrop: ({element, previous}) => {
+                const fromIdx = parseInt(element.dataset.idx, 10);
+                const toIdx = previous ? parseInt(previous.dataset.idx, 10) + 1 : 0;
+
+                this.moveSection(fromIdx, toIdx);
+            },
+        });
+
+        useSortable({
+            ref: mainRef,
+            elements: '.pyper_dashboard--action',
+            handle: '.pyper_dashboard--action-header',
+            cursor: 'move',
+            groups: '.pyper_dashboard--column',
+            connectGroups: true,
+            enable: () => this.canEdit,
+            onGroupLeave: (params) => {
+                if (null === this.leavedSectionIndex) {
+                    this.leavedSectionIndex = parseInt(params.group.closest('.pyper_dashboard--section').dataset.idx, 10);
+                }
+            },
             onDrop: ({element, previous, parent}) => {
-                const fromColIdx = parseInt(element.parentElement.dataset.idx, 10);
+                const fromSecIdx = this.leavedSectionIndex;
+                const fromColIdx = parseInt(element.closest('.pyper_dashboard--column').dataset.idx, 10);
                 const fromActionIdx = parseInt(element.dataset.idx, 10);
+                const toSecIdx = parseInt(parent.closest('.pyper_dashboard--section').dataset.idx, 10);
                 const toColIdx = parseInt(parent.dataset.idx, 10);
                 const toActionIdx = previous ? parseInt(previous.dataset.idx, 10) + 1 : 0;
+                this.leavedSectionIndex = null;
 
-                if (fromColIdx !== toColIdx) {
+                if (fromSecIdx !== toSecIdx || fromColIdx !== toColIdx) {
                     // To reduce visual flickering
                     element.classList.add('d-none');
                 }
 
-                this.moveAction(fromColIdx, fromActionIdx, toColIdx, toActionIdx);
+                this.moveAction(fromSecIdx, fromColIdx, fromActionIdx, toSecIdx, toColIdx, toActionIdx);
             },
         });
 
@@ -70,12 +103,30 @@ export class DashboardController extends Component {
             Object.assign(this.dashboard, new DashboardArchParser().parse(arch, info.customViewId));
 
             if (this.dashboard.useSwitcher) {
-                const boards = await this.orm.searchRead('dashboard.dashboard', [], ['id', 'name', 'arch']);
+                const boards = await this.orm.searchRead('dashboard.dashboard', [], ['id', 'name', 'arch', 'is_editable']);
                 this.state.boards.length = 0;
                 this.state.boards.push(...boards);
                 this.selectBoard(this.router?.current?.hash?.board || null);
             }
         });
+    }
+
+    get canCreate() {
+        return this.dashboard?.activeActions?.create || false;
+    }
+
+    get canEdit() {
+        if (!this.dashboard?.isEmpty) {
+            const editable = !!this.dashboard?.activeActions?.edit || !this.selectedBoard;
+
+            if (this.selectedBoard && !this.selectedBoard.is_editable) {
+                return false;
+            }
+
+            return editable;
+        }
+
+        return false;
     }
 
     get boards() {
@@ -106,24 +157,73 @@ export class DashboardController extends Component {
         if (this.dashboard.useSwitcher && this.state.selectedBoard?.id) {
             browser.setTimeout(() => {
                 this.router.replaceState({board: this.state.selectedBoard.id});
-            }, 100); // history.pushState is a little async
+            }, 200); // history.pushState is a little async
         }
     }
 
-    moveAction(fromColIdx, fromActionIdx, toColIdx, toActionIdx) {
-        const action = this.dashboard.columns[fromColIdx].actions[fromActionIdx];
+    addSection() {
+        this.dialogService.add(DashboardSectionDialog, {
+            title: this.props.title,
+            saveLabel: _t('Add'),
+            save: async (data) => {
+                this.dashboard.sections.push(createSectionData(DEFAULT_LAYOUT, true, data.title));
+                this.saveBoard();
+            },
+        });
+    }
 
-        if (fromColIdx !== toColIdx) {
+    editSection(section, sectionData) {
+        Object.assign(section, {...sectionData});
+        this.saveBoard();
+    }
+
+    removeSection(sectionIndex) {
+        this.dashboard.sections.splice(sectionIndex, 1);
+
+        if (!this.dashboard.isEmpty && this.dashboard.sections.length === 0) {
+            this.dashboard.isEmpty = true;
+        }
+
+        this.saveBoard();
+    }
+
+    actionSettings() {
+        this.actionService.doAction('pyper_dashboard.action_dashboard_dashboard_list');
+    }
+
+    moveSection(fromIdx, toIdx) {
+        if (fromIdx === toIdx) {
+            return;
+        }
+
+        const section = this.dashboard.sections[fromIdx];
+        const sections = this.dashboard.sections;
+
+        if (fromIdx < toIdx) {
+            sections.splice(toIdx + 1, 0, section);
+            sections.splice(fromIdx, 1);
+        } else {
+            sections.splice(fromIdx, 1);
+            sections.splice(toIdx, 0, section);
+        }
+
+        this.saveBoard();
+    }
+
+    moveAction(fromSecIdx, fromColIdx, fromActionIdx, toSecIdx, toColIdx, toActionIdx) {
+        const action = this.dashboard.sections[fromSecIdx].columns[fromColIdx].actions[fromActionIdx];
+
+        if (fromSecIdx !== toSecIdx || fromColIdx !== toColIdx) {
             // Action moving from a column to another
-            this.dashboard.columns[fromColIdx].actions.splice(fromActionIdx, 1);
-            this.dashboard.columns[toColIdx].actions.splice(toActionIdx, 0, action);
+            this.dashboard.sections[fromSecIdx].columns[fromColIdx].actions.splice(fromActionIdx, 1);
+            this.dashboard.sections[toSecIdx].columns[toColIdx].actions.splice(toActionIdx, 0, action);
         } else {
             // Move inside a column
             if (fromActionIdx === toActionIdx) {
                 return;
             }
 
-            const actions = this.dashboard.columns[fromColIdx].actions;
+            const actions = this.dashboard.sections[fromSecIdx].columns[fromColIdx].actions;
 
             if (fromActionIdx < toActionIdx) {
                 actions.splice(toActionIdx + 1, 0, action);
@@ -137,36 +237,42 @@ export class DashboardController extends Component {
         this.saveBoard();
     }
 
-    selectLayout(layout, save = true) {
-        const currentColNbr = this.dashboard.colNumber;
+    selectLayout(section, layout) {
+        if (section.layout === layout) {
+            return;
+        }
+
+        const currentColNbr = section.columnNumber;
         const nextColNbr = layout.split('-').length;
 
         if (nextColNbr < currentColNbr) {
             // Need to move all actions in last cols in the last visible col
-            const cols = this.dashboard.columns;
+            const cols = section.columns;
             const lastVisibleCol = cols[nextColNbr - 1];
 
             for (let i = nextColNbr; i < currentColNbr; i++) {
                 lastVisibleCol.actions.push(...cols[i].actions);
                 cols[i].actions = [];
             }
+        } else if (nextColNbr > currentColNbr) {
+            for (let i = 0; i < (nextColNbr - currentColNbr); ++i) {
+                section.columns.push(createColumnData());
+            }
         }
 
-        this.dashboard.layout = layout;
-        this.dashboard.colNumber = nextColNbr;
+        section.layout = layout;
+        section.columnNumber = nextColNbr;
 
-        if (save) {
-            this.saveBoard();
-        }
-
-        if (document.querySelector('canvas')) {
-            // Horrible hack to force charts to be recreated, so they pick up the
-            // proper size. also, no idea why raf is needed :(
-            browser.requestAnimationFrame(() => this.render(true));
-        }
+        this.saveBoard();
+        this.refreshCanvas();
     }
 
-    closeAction(column, action) {
+    toggleAction(action) {
+        action.isFolded = !action.isFolded;
+        this.saveBoard();
+    }
+
+    removeAction(column, action) {
         this.dialogService.add(ConfirmationDialog, {
             body: _t('Are you sure that you want to remove this item?'),
             confirm: () => {
@@ -178,11 +284,11 @@ export class DashboardController extends Component {
         });
     }
 
-    toggleAction(action, save = true) {
-        action.isFolded = !action.isFolded;
-
-        if (save) {
-            this.saveBoard();
+    refreshCanvas() {
+        if (document.querySelector('canvas')) {
+            // Horrible hack to force charts to be recreated, so they pick up the
+            // proper size. also, no idea why raf is needed :(
+            browser.requestAnimationFrame(() => this.render(true));
         }
     }
 

@@ -7,9 +7,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form edit="False" create="False" delete="False">
-                <dashboard layout="2-1" switcher="True">
-                    <column/>
-                </dashboard>
+                <dashboard switcher="True"/>
             </form>
         </field>
     </record>
