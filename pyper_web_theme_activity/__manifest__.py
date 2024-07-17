@@ -16,7 +16,6 @@
     'depends': [
         'base',
         'mail',
-        'pyper_activity',
         'pyper_web_theme',
     ],
     'data': [
