@@ -20,6 +20,7 @@
     ],
     'data': [
         # Views
+        'views/base_automation_views.xml',
         'views/ir_action_server_views.xml',
     ],
 }
