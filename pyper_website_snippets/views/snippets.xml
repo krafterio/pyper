@@ -1,0 +1,570 @@
+<odoo>
+
+    <template id="video_banner" name="Video banner snippet">
+        <section
+            class="s_cover bg-black-50 pt96 pb96 o_colored_level o_background_video s_parallax_no_overflow_hidden oe_img_bg o_bg_img_center"
+            data-scroll-background-ratio="0"
+            data-snippet="s_cover"
+            data-name="Video banner snippet"
+            style="background-image: url('/web/image/website.s_cover_default_image');"
+            data-bg-video-src="http://player.vimeo.com/video/392935303?autoplay=1&amp;muted=1&amp;autopause=0&amp;controls=0&amp;loop=1"
+            data-mimetype="image/webp"
+            data-mimetype-before-conversion="image/jpeg"
+            data-resize-width="1920"
+        >
+            <div class="o_we_bg_filter bg-black-50"/>
+
+            <div class="text-center o_container_small">
+                <h2 class="o_default_snippet_text text-o-color-4">This is a cool snippet showing an embed video on the
+                    back
+                </h2>
+                <p class="lead o_default_snippet_text">This banner allow you to write a small text in a visually
+                    attractive
+                    condition. Change this text to
+                    fit your needs and attract your user attention.
+                </p>
+
+                <a href="#" class="btn btn-primary o_default_snippet_text">Action button</a>
+            </div>
+        </section>
+    </template>
+
+    <template id="four_columns_title_text" name="Title and columns">
+        <section
+            class="s_text_image o_colored_level pt104 pb112 o_cc o_cc1"
+            data-snippet="s_text_image"
+            data-name="Texte - Image"
+        >
+            <div class="container">
+                <div class="text-start mb-4">
+                    <p class="text-o-color-1 fs-3 mb-1">Discover our full range of services</p>
+                    <h2>Out team is expert to offer you a premium service based on your specific needs.</h2>
+                </div>
+
+                <div class="row align-items-stretch">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                         style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;">
+                        <div class="o_colored_level o_cc o_cc3 p-5 h-100">
+                            <span class="fa fa-cogs fa-2x mb-3"/>
+                            <h3 class="fs-3 display-3 o_default_snippet_text">Custom Solutions</h3>
+                            <p class="mb-0">Tailored software solutions for your business needs.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                         style="animation-delay: 0.2s; animation-duration: 0.4s; --wanim-intensity: 20;">
+                        <div class="o_colored_level o_cc o_cc3 p-5 h-100">
+                            <span class="fa fa-cloud fa-2x mb-3"/>
+                            <h3 class="fs-3 display-3 o_default_snippet_text">Cloud Integration</h3>
+                            <p class="mb-0">Seamless integration with cloud services</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                         style="animation-delay: 0.4s; animation-duration: 0.4s; --wanim-intensity: 20;">
+                        <div class="o_colored_level o_cc o_cc3 p-5 h-100">
+                            <span class="fa fa-lock fa-2x mb-3"/>
+                            <h3 class="fs-3 display-3 o_default_snippet_text">Security</h3>
+                            <p class="mb-0">Top-notch security to protect your data.</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                         style="animation-delay: 0.6s; animation-duration: 0.4s; --wanim-intensity: 20;">
+                        <div class="o_colored_level o_cc o_cc3 p-5 h-100">
+                            <span class="fa fa-support fa-2x mb-3"/>
+                            <h3 class="fs-3 display-3 o_default_snippet_text">24/7 Support</h3>
+                            <p class="mb-0">Round-the-clock support to keep your business running smoothly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="container text-start mt-4">
+                    <a href="/contactus" class="btn btn-primary">Contact us</a>
+                </p>
+            </div>
+        </section>
+    </template>
+
+    <template id="two_columns_image_overflow" name="Two columns image overflow">
+        <section
+            class="s_text_image o_colored_level o_cc o_cc3 pt0 pb64"
+            data-snippet="s_text_image"
+            data-name="Two columns image overflow"
+            style="background-image: none;"
+        >
+            <div class="container">
+                <div class="row o_colored_level">
+                    <div
+                        class="col-xs-12 col-sm-12 col-md-12 p-3 o_anim_fade_in o_animate o_anim_from_bottom o_colored_level pt0 col-lg-5 o_visible"
+                        style="animation-delay: 0s; animation-duration: 0.4s; --wanim-intensity: 20;">
+                        <img src="/pyper_website_snippets/static/img/s_text_image_default_image_square.jpg"
+                             class="img img-fluid mx-auto o_we_image_cropped overflowed_image"
+                             alt=""
+                             loading="eager"
+                             data-mimetype="image/jpeg"
+                        />
+                    </div>
+
+                    <div
+                        class="col-xs-12 col-sm-12 col-md-12 p-3 o_anim_fade_in o_animate o_anim_from_bottom o_colored_level pt88 col-lg-7 o_visible"
+                        style="animation-delay: 0.2s; animation-duration: 0.4s; --wanim-intensity: 20;"
+                    >
+                        <h2 class="o_default_snippet_text">Enhance Your Business Efficiency</h2>
+                        <p class="o_default_snippet_text">Our comprehensive suite of tools is designed to streamline
+                            your business operations and
+                            increase productivity.
+                        </p>
+                        <p class="o_default_snippet_text">With intuitive interfaces and robust features, our solutions
+                            cater to businesses of all
+                            sizes.
+                        </p>
+                        <p class="container text-start mt-4">
+                            <a href="/contactus" class="btn btn-primary o_default_snippet_text">Contact us</a>
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </template>
+
+    <template id="two_columns_image_overflow_right" name="Two columns image overflow (right)">
+        <section
+            class="s_text_image o_colored_level o_cc o_cc4 pt0 pb64"
+            data-snippet="s_text_image"
+            data-name="Two columns image overflow"
+            style="background-image: none;"
+        >
+            <div class="container">
+                <div class="row o_colored_level">
+                    <div
+                        class="col-xs-12 col-sm-12 col-md-12 p-3 o_anim_fade_in o_animate o_anim_from_bottom o_colored_level pt88 col-lg-7 o_visible"
+                        style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;"
+                    >
+                        <h2 class="o_default_snippet_text">Enhance Your Business Efficiency</h2>
+                        <p class="o_default_snippet_text">Our comprehensive suite of tools is designed to streamline
+                            your business operations and
+                            increase productivity.
+                        </p>
+                        <p class="o_default_snippet_text">With intuitive interfaces and robust features, our solutions
+                            cater to businesses of all
+                            sizes.
+                        </p>
+                        <p class="container text-start mt-4">
+                            <a href="/contactus" class="btn btn-primary o_default_snippet_text">Contact us</a>
+                        </p>
+                    </div>
+                    <div
+                        class="col-xs-12 col-sm-12 col-md-12 p-3 o_anim_fade_in o_animate o_anim_from_bottom o_colored_level pt0 col-lg-5 o_visible"
+                        style="animation-delay: 0.2s; animation-duration: 0.4s; --wanim-intensity: 20;">
+                        <img src="/pyper_website_snippets/static/img/s_text_image_default_image_square.jpg"
+                             class="img img-fluid mx-auto o_we_image_cropped overflowed_image"
+                             alt=""
+                             loading="eager"
+                             data-mimetype="image/jpeg"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="grid_block_title_text" name="Grid block title text">
+        <section
+            class="s_text_image o_colored_level pt112 pb112 o_cc o_cc1"
+            data-snippet="s_text_image"
+            data-name="Texte - Image"
+        >
+            <div class="container">
+                <div class="text-start mb-4">
+                    <p class="text-o-color-1 fs-3 mb-1">Our features</p>
+                    <h2>Discover what we offer.</h2>
+                </div>
+
+                <div class="row align-items-stretch">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                         style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;">
+                        <div class="o_colored_level h-100">
+                            <div class="d-flex align-items-center mb-4">
+                                <span class="fa fa-lightbulb-o me-2 rounded-circle bg-o-color-1"/>
+                                <h3 class="fs-3 display-3 o_default_snippet_text mb-0">Innovation for all your process
+                                </h3>
+                            </div>
+                            <p class="mb-0">We bring innovative solutions to the table. Our approach helps you stay
+                                ahead of the competition..
+                            </p>
+                            <a href="#" class="text-primary d-block mt-4">Learn more</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                         style="animation-delay: 0.2s; animation-duration: 0.4s; --wanim-intensity: 20;">
+                        <div class="o_colored_level h-100">
+                            <div class="d-flex align-items-center mb-4">
+                                <span class="fa fa-users me-2 rounded-circle bg-o-color-1"/>
+                                <h3 class="fs-3 display-3 o_default_snippet_text mb-0">Team Collaboration</h3>
+                            </div>
+                            <p class="mb-0">Enhance team collaboration with our tools. Improve communication and
+                                efficiency.
+                            </p>
+                            <a href="#" class="text-primary d-block mt-4">Explore</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                         style="animation-delay: 0.4s; animation-duration: 0.4s; --wanim-intensity: 20;">
+                        <div class="o_colored_level h-100">
+                            <div class="d-flex align-items-center mb-4">
+                                <span class="fa fa-signal me-2 rounded-circle bg-o-color-1"/>
+                                <h3 class="fs-3 display-3 o_default_snippet_text mb-0">Performance Tracking</h3>
+                            </div>
+                            <p class="mb-0">Track your performance in real-time. Get detailed analytics to make informed
+                                decisions.
+                            </p>
+                            <a href="#" class="text-primary d-block mt-4">View details</a>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                         style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;">
+                        <div class="o_colored_level h-100">
+                            <div class="d-flex align-items-center mb-4">
+                                <span class="fa fa-mobile me-2 rounded-circle bg-o-color-1"/>
+                                <h3 class="fs-3 display-3 o_default_snippet_text mb-0">Mobile access</h3>
+                            </div>
+                            <p class="mb-0">Access your data from anywhere. Our mobile-friendly platform keeps you
+                                connected
+                            </p>
+                            <a href="#" class="text-primary d-block mt-4">Find out more</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                         style="animation-delay: 0.2s; animation-duration: 0.4s; --wanim-intensity: 20;">
+                        <div class="o_colored_level h-100">
+                            <div class="d-flex align-items-center mb-4">
+                                <span class="fa fa-cogs me-2 rounded-circle bg-o-color-1"/>
+                                <h3 class="fs-3 display-3 o_default_snippet_text mb-0">Customization</h3>
+                            </div>
+                            <p class="mb-0">Customize solutions to fit your needs. Tailored features to match your
+                                workflow.
+                            </p>
+                            <a href="#" class="text-primary d-block mt-4">Customize now</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                         style="animation-delay: 0.4s; animation-duration: 0.4s; --wanim-intensity: 20;">
+                        <div class="o_colored_level h-100">
+                            <div class="d-flex align-items-center mb-4">
+                                <span class="fa fa-cloud me-2 rounded-circle bg-o-color-1"/>
+                                <h3 class="fs-3 display-3 o_default_snippet_text mb-0">Cloud services</h3>
+                            </div>
+                            <p class="mb-0">TLeverage the power of the cloud. Reliable and scalable solutions for your
+                                business.
+                            </p>
+                            <a href="#" class="text-primary d-block mt-4">Get started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="containerized_kpis" name="Containerized KPIs">
+        <section
+            class="s_text_image o_colored_level o_cc o_cc1 pt112 pb112"
+            data-snippet="s_text_image"
+            data-name="Containerized KPIs"
+            style="background-image: none;"
+        >
+            <div class="container">
+                <div class="row o_colored_level">
+                    <h2 class="o_default_snippet_text text-center">Enhance Your Business Efficiency</h2>
+                    <p class="o_default_snippet_text text-center">Our company is dedicated to delivering top-notch
+                        solutions that drive your business forward. With a team of experienced professionals, we pride
+                        ourselves on our ability to innovate and adapt to the ever-changing market.
+                    </p>
+                    <p class="o_default_snippet_text text-center">Our commitment to
+                        excellence is reflected in the numerous awards we’ve won and the thousands of satisfied clients
+                        we’ve served. We are available 24/7 to ensure that your needs are met, providing unparalleled
+                        customer support and service.
+                    </p>
+
+                    <p class="container text-center mt-4">
+                        <a href="/contactus" class="btn btn-primary">Contact us</a>
+                    </p>
+
+                    <div class="p-4 mt-5 o_colored_level pt56 o_cc o_cc3 pb56">
+                        <div class="row">
+                            <div
+                                class="col-xs-12 col-md-4 mb-4 d-flex align-items-center o_anim_fade_in o_animate o_anim_from_bottom"
+                                style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;"
+                            >
+                                <i class="fa fa-users me-3 rounded-circle fa-2x bg-o-color-1"/>
+                                <div class="d-flex flex-column">
+                                    <h3 class="fs-2 mb-1 d-block">5,000+</h3>
+                                    <p class="mb-0">Satisfied clients</p>
+                                </div>
+                            </div>
+                            <div
+                                class="col-xs-12 col-md-4 mb-4 d-flex align-items-center o_anim_fade_in o_animate o_anim_from_bottom"
+                                style="animation-delay: 0.2s; animation-duration: 0.4s; --wanim-intensity: 20;"
+                            >
+                                <i class="fa fa-trophy me-3 rounded-circle fa-2x bg-o-color-1"/>
+                                <div class="d-flex flex-column">
+                                    <h3 class="fs-2 mb-0 d-block">150</h3>
+                                    <p class="mb-0">Awards Won</p>
+                                </div>
+                            </div>
+                            <div
+                                class="col-xs-12 col-md-4 mb-4 d-flex align-items-center o_anim_fade_in o_animate o_anim_from_bottom"
+                                style="animation-delay: 0.4s; animation-duration: 0.4s; --wanim-intensity: 20;"
+                            >
+                                <i class="fa fa-clock-o me-3 rounded-circle fa-2x bg-o-color-1"/>
+                                <div class="d-flex flex-column">
+                                    <h3 class="fs-2 mb-1 d-block">24/7</h3>
+                                    <p class="mb-0">Customer Support</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="floating_blocks_with_text" name="Floating blocks with text">
+        <section
+            class="s_banner o_colored_level pt56 pb56"
+            data-snippet="s_banner"
+            data-name="Floating blocks with text"
+            style="background-image: none;"
+        >
+            <div class="container">
+                <div
+                    class="row s_nb_column_fixed o_grid_mode"
+                    data-row-count="17"
+                >
+                    <div
+                        class="d-flex flex-column justify-content-center o_grid_item o_colored_level g-col-lg-4 g-height-6 col-lg-4 o_animate o_anim_fade_in o_anim_from_bottom"
+                        data-name="Box"
+                        style="z-index: 1; grid-area: 6 / 9 / 12 / 13; --grid-item-padding-y: 20px; --grid-item-padding-x: 20px;animation-delay: 0.4s; --wanim-intensity: 20; animation-duration: 0.4s;">
+
+                        <p class="lead o_default_snippet_text">Discover innovative solutions that drive success and
+                            elevate your business to new heights.
+                        </p>
+                        <p class="lead o_default_snippet_text">Our people will help yours to achieve great results.</p>
+                    </div>
+
+                    <div
+                        class="o_grid_item o_grid_item_image o_colored_level g-col-lg-8 g-height-11 col-lg-8 o_animate o_anim_fade_in o_anim_from_bottom"
+                        style="z-index: 2; grid-area: 4 / 1 / 15 / 9; --grid-item-padding-y: 0px; --grid-item-padding-x: 0px; animation-delay: 0.2s; --wanim-intensity: 20; animation-duration: 0.4s;">
+                        <img
+                            class="img img-fluid mx-auto"
+                            src="/website/static/src/img/snippets_demo/s_banner_2.jpg" alt=""
+                            loading="lazy"
+                            data-mimetype="image/jpeg"
+                            data-mimetype-before-conversion="image/jpeg"
+                        />
+                    </div>
+
+                    <div
+                        class="o_grid_item o_grid_item_image d-lg-block d-none o_snippet_mobile_invisible o_colored_level g-col-lg-5 g-height-6 col-lg-5 o_animate o_anim_fade_in o_anim_from_bottom"
+                        style="z-index: 4; grid-area: 12 / 8 / 18 / 13; animation-delay: 0.6s; --wanim-intensity: 20; animation-duration: 0.4s;"
+                        data-invisible="1"
+                    >
+                        <img
+                            class="img img-fluid mx-auto"
+                            src="/web/image/website.s_banner_default_image" alt=""
+                            loading="lazy"
+                            data-mimetype="image/jpeg"
+                        />
+                    </div>
+                    <div
+                        class="d-flex flex-column justify-content-center o_grid_item o_colored_level o_cc o_cc2 g-col-lg-5 o_animate o_anim_fade_in o_anim_from_bottom o_visible g-height-3 col-lg-5"
+                        style="z-index: 5; grid-area: 2 / 8 / 5 / 13; --grid-item-padding-y: 30px; --grid-item-padding-x: 30px; --wanim-intensity: 20; animation-duration: 0.4s;">
+                        <p>Unlock your potential with our modern services that will help your company to achieve full
+                            potential.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="top_banner_1" name="Top banner 1">
+        <section
+            class="pb0 o_colored_level pt72 pb72"
+            data-scroll-background-ratio="1"
+            data-snippet="s_cover"
+            style="background-image: none;"
+            data-name="Top banner (1))"
+        >
+
+            <div class="container">
+                <div class="row">
+                    <div
+                        class="col-xs-12 col-lg-10 o_anim_fade_in o_animate o_anim_from_left o_colored_level"
+                        style="--wanim-intensity: 20; animation-duration: 0.4s;">
+                        <p class="text-primary fs-3 fw-bold o_default_snippet_text">Welcome to our world</p>
+                        <h1 class="o_default_snippet_text">Transform Your Business with Innovative Solutions</h1>
+
+                        <p class="lead o_default_snippet_text">At our company, we specialize in providing cutting-edge
+                            solutions that are tailored to meet the unique needs of your business. Our team of experts
+                            works tirelessly to stay ahead of industry trends, ensuring that you have access to the
+                            latest and most effective tools available. We believe in building strong, lasting
+                            relationships with our clients, which is why we offer 24/7 customer support to assist you
+                            whenever you need it.
+                        </p>
+                        <div class="d-flex align-items-center gap-2">
+                            <a href="/contactus" class="btn btn-primary mt-4">Contact us</a>
+                            <a href="/" class="btn btn-outline-primary mt-4">More information</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="top_banner_2" name="Top banner 2">
+        <section
+            class="pb0 o_colored_level pt72 pb72 oe_img_bg o_bg_img_center o_cc o_cc2"
+            data-scroll-background-ratio="1"
+            data-snippet="s_cover"
+            style="background-image: url('/web/image/website.s_cover_default_image');"
+            data-name="Top banner 2"
+            data-mimetype="image/webp"
+            data-resize-width="1920"
+        >
+            <div class="o_we_bg_filter bg-black-50"/>
+            <div class="container">
+                <div class="row">
+                    <div
+                        class="col-xs-12 col-lg-10 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
+                        style="--wanim-intensity: 10; animation-duration: 0.4s;">
+                        <p class="fs-3 fw-bold o_default_snippet_text text-o-color-1">Welcome to our world</p>
+                        <h1 class="o_default_snippet_text">Transform your business with innovative solutions</h1>
+                        <h2 class="o_default_snippet_text text-o-color-1">Empowering your success every step of the
+                            way
+                        </h2>
+
+                        <div class="d-flex align-items-center gap-2">
+                            <a href="/contactus" class="btn btn-primary mt-4">Contact us</a>
+                            <a href="/" class="btn btn-primary mt-4">More information</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="title_and_values" name="Title and values">
+        <section
+            class="pb0 o_colored_level pt112 pb112 o_cc o_cc3"
+            data-name="Top banner 2"
+            data-mimetype="image/webp"
+            data-resize-width="1920"
+        >
+            <div class="container">
+                <p class="fs-3 fw-bold o_default_snippet_text text-o-color-1 text-center mb-5 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
+                        style="--wanim-intensity: 20;animation-delay: 0.0s; animation-duration: 0.4s;"
+                    >For over 10 years, we
+                    help companies to achieve great goals trough modern tools and ideas. Today, our aim is to understand
+                    yours and give you ways to reach it.
+                </p>
+                <h1 class="o_default_snippet_text text-center mb-5 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
+                        style="--wanim-intensity: 20;animation-delay: 0.0s; animation-duration: 0.4s;"
+                    >We focus on you.</h1>
+
+                <div class="row">
+                    <div
+                        class="col-xs-12 col-md-6 col-lg-3 pb-4 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
+                        style="--wanim-intensity: 20;animation-delay: 0.0s; animation-duration: 0.4s;"
+                    >
+                        <h2 class="text-center">Creativity</h2>
+                    </div>
+                    <div
+                        class="col-xs-12 col-md-6 col-lg-3 pb-4 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
+                        style="--wanim-intensity: 20;animation-delay: 0.2s; animation-duration: 0.4s;"
+                    >
+                        <h2 class="text-center">Quality</h2>
+                    </div>
+                    <div
+                        class="col-xs-12 col-md-6 col-lg-3 pb-4 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
+                        style="--wanim-intensity: 20;animation-delay: 0.4s; animation-duration: 0.4s;"
+                    >
+                        <h2 class="text-center">Consistency</h2>
+                    </div>
+                    <div
+                        class="col-xs-12 col-md-6 col-lg-3 pb-4 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
+                        style="--wanim-intensity: 20;animation-delay: 0.6s; animation-duration: 0.4s;"
+                    >
+                        <h2 class="text-center">Efficiency</h2>
+                    </div>
+                </div>
+
+                <p class="container text-center mt-4">
+                    <a href="/contactus" class="btn btn-primary">Contact us</a>
+                </p>
+            </div>
+        </section>
+    </template>
+
+    <template id="custom_krafter_snippets" inherit_id="website.snippets" name="Custom Krafter snippets">
+        <xpath expr="//div[@id='snippet_structure']" position="before">
+            <div id="snippet_structure" class="o_panel">
+                <div class="o_panel_header">Modern blocks</div>
+                <div class="o_panel_body">
+                    <t t-snippet="pyper_website_snippets.video_banner"
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_video_banner.svg">
+                        <keywords>video, banner</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.four_columns_title_text"
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_four_columns_grid.svg">
+                        <keywords>columns, title</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.two_columns_image_overflow"
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_two_column_overflow.svg">
+                        <keywords>image, overflow, title</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.two_columns_image_overflow_right"
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_two_column_overflow_right.svg">
+                        <keywords>image, overflow, title</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.grid_block_title_text"
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_grid_block_title_text.svg">
+                        <keywords>grid, text, title</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.containerized_kpis"
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_containerized_kpis.svg">
+                        <keywords>kpi, text, title, number</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.top_banner_1"
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_banner_1.svg">
+                        <keywords>kpi, text, title, number</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.top_banner_2"
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_banner_2.svg">
+                        <keywords>kpi, text, title, number</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.floating_blocks_with_text"
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_floating_blocks.svg">
+                        <keywords>kpi, text, title, number</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.title_and_values"
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_title_value.svg">
+                        <keywords>kpi, text, title, number</keywords>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
