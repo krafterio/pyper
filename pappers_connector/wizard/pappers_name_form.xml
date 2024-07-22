@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="pappers_name_form_view" model="ir.ui.view">
+        <field name="name">pappers.name.edit.form</field>
+        <field name="model">pappers.name.form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group invisible="identified_partner_id != False">
+                    <field name="name"/>
+                    <field name="identified_partner_id" invisible="True"/>
+                </group>
+
+                <field
+                    name="results"
+                    nolabel="True"
+                    readonly="True"
+                >
+                    <tree>
+                        <field name="name"/>
+                        <field name="siret" widget="CopyClipboardChar"/>
+                        <field name="zip" optional="hide"/>
+                        <field name="city"/>
+                        <field name="creation_date"/>
+
+                        <button
+                            name="action_create_company_siret"
+                            type="object"
+                            class="btn btn-primary"
+                            icon="fa-arrow-right"
+                            title="Create company"
+                            invisible="parent.identified_partner_id != False"
+                        />
+
+                        <button
+                            name="action_update_company_pappers"
+                            type="object"
+                            class="btn btn-primary"
+                            title="Download information"
+                            icon="fa-download"
+                            context="{'pappers_siret': siret, 'pappers_identified_partner': parent.identified_partner_id}"
+                            invisible="parent.identified_partner_id == False"
+                        />
+                    </tree>
+                </field>
+
+                <footer >
+                    <button
+                        name="action_pappers_api_call"
+                        type="object"
+                        string="Get companies"
+                        class="btn-primary o_sale_warranty_configurator_add"
+                        data-hotkey="g"
+                        invisible="identified_partner_id != False"
+                    />
+
+                    <button
+                        name="action_pappers_new_api_call"
+                        type="object"
+                        string="Reset search"
+                        class="btn btn-outline-primary"
+                        data-hotkey="g"
+                        invisible="identified_partner_id != False"
+                    />
+
+                    <button
+                        string="Close"
+                        class="btn-secondary"
+                        data-hotkey="z"
+                        special="cancel"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

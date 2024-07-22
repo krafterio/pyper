@@ -12,7 +12,7 @@
         parent="contacts.menu_contacts"
     />
 
-     <menuitem
+    <menuitem
         id="custom_customers_menu"
         name="Companies"
         sequence="1"
@@ -26,5 +26,26 @@
         sequence="2"
         parent="pyper_contact.custom_contact_root"
         action="pyper_contact.action_simple_contacts"
+    />
+
+    <menuitem
+        id="company_importer_root"
+        name="Importer"
+        sequence="5"
+        parent="contacts.menu_contacts"
+    />
+
+    <menuitem
+        id="all_company_importer"
+        name="Importer company"
+        sequence="1"
+        parent="pyper_contact.company_importer_root"
+    />
+
+    <menuitem
+        id="all_contact_import"
+        name="Import contact"
+        sequence="2"
+        parent="pyper_contact.company_importer_root"
     />
 </odoo>

@@ -1,0 +1,11 @@
+<odoo>
+    <record model="ir.actions.server" id="enrich_company_action">
+        <field name="name">Enrich company infos</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="state">code</field>
+        <field name="code">
+             records.action_enrich_company_infos()
+        </field>
+    </record>
+</odoo>
