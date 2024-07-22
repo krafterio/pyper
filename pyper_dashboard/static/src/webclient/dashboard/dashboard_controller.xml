@@ -38,18 +38,18 @@
             <div>
                 <Dropdown
                     togglerClass="'btn btn-outline-default py-1'"
-                    t-if="this.canEdit"
+                    t-if="this.canEdit and (!dashboard?.isEmpty or this.canAdmin)"
                 >
                     <t t-set-slot="toggler">
                         <i class="fa fa-fw fa-ellipsis-v" aria-label="Section settings" role="img" title="Section settings"/>
                     </t>
 
-                    <DropdownItem onSelected="() => this.addSection()">
+                    <DropdownItem onSelected="() => this.addSection()" t-if="!dashboard?.isEmpty">
                         <i class="oi-fw oi-fw me-1 fa fa-plus"></i>
                         Add a section
                     </DropdownItem>
 
-                    <DropdownItem onSelected="() => this.actionSettings()" t-if="this.canEdit">
+                    <DropdownItem onSelected="() => this.actionSettings()" t-if="this.canAdmin">
                         <i class="oi-fw oi-fw me-1 fa fa-gear"></i>
                         Settings
                     </DropdownItem>

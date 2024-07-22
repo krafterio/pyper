@@ -40,12 +40,14 @@ export class DashboardController extends Component {
         this.rpc = useService('rpc');
         this.orm = useService('orm');
         this.router = useService('router');
+        this.user = useService('user');
         this.actionService = useService('action');
         this.dialogService = useService('dialog');
         this.state = useState({
             boards: [],
             selectedBoard: null,
             useSwitcher: false,
+            isAdmin: false,
         });
         this.leavedSectionIndex = null; // Use when action is dragged between 2 sections
 
@@ -108,6 +110,10 @@ export class DashboardController extends Component {
                 this.state.boards.push(...boards);
                 this.selectBoard(this.router?.current?.hash?.board || null);
             }
+
+            if ('dashboard.dashboard' === this.props.resModel) {
+                this.state.isAdmin = await this.user.hasGroup('pyper_dashboard.group_dashboard_admin');
+            }
         });
     }
 
@@ -126,7 +132,11 @@ export class DashboardController extends Component {
             return editable;
         }
 
-        return false;
+        return !!this.dashboard?.activeActions?.edit;
+    }
+
+    get canAdmin() {
+        return this.canEdit && this.state.isAdmin;
     }
 
     get boards() {
