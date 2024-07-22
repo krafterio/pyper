@@ -23,6 +23,7 @@
         'security/ir.model.access.csv',
 
         'views/account_fiscal_year_views.xml',
+        'views/account_invoice_report_views.xml',
         'views/account_move_views.xml',
         'views/account_move_line_views.xml',
     ],
