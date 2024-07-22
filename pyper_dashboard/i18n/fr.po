@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0-20240525\n"
+"Project-Id-Version: Odoo Server 17.0-20240722\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-16 22:43+0000\n"
-"PO-Revision-Date: 2024-07-16 22:43+0000\n"
+"POT-Creation-Date: 2024-07-22 15:20+0000\n"
+"PO-Revision-Date: 2024-07-22 15:20+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -62,6 +62,11 @@ msgstr "Ajouter une section"
 #, python-format
 msgid "Add to dashboard"
 msgstr "Ajouter au tableau de bord"
+
+#. module: pyper_dashboard
+#: model:res.groups,name:pyper_dashboard.group_dashboard_user
+msgid "User"
+msgstr "Utilisateur"
 
 #. module: pyper_dashboard
 #: model:res.groups,name:pyper_dashboard.group_dashboard_admin
