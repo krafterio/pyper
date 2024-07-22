@@ -25,7 +25,7 @@
 
         <xpath expr="//i[hasclass('fa-search')]" position="attributes">
             <attribute name="class" separator=" " remove="fa fa-lg fa-search"
-                       add="ph ph-magnifying-glass nav-bar-icon mx-1 text-dark"/>
+                       add="ph ph-magnifying-glass nav-bar-icon mx-1"/>
         </xpath>
     </t>
 
