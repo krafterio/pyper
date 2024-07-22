@@ -67,7 +67,7 @@ export class DashboardArchParser {
                     if (!hasDashboard) {
                         throw new DashboardArchParserError(_t('The "dashboard" tag must be the only one child element of "form" tag. You cannot add other tags in the "form" tag if "dashboard" is used'));
                     }
-                    break
+                    break;
             }
         });
 
