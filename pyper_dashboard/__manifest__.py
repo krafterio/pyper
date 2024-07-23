@@ -21,6 +21,7 @@
     'data': [
         # Security
         'security/res_groups.xml',
+        'security/ir_rule.xml',
         'security/ir.model.access.csv',
 
         # Views

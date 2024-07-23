@@ -29,6 +29,10 @@ class DashboardBoardItem(models.Model):
         translate=True,
     )
 
+    group_ids = fields.Many2many(
+        'res.groups',
+    )
+
     view_id = fields.Many2one(
         'ir.ui.view',
         string='Original View',

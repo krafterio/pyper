@@ -306,6 +306,11 @@ msgid "Sequence"
 msgstr "Séquence"
 
 #. module: pyper_dashboard
+#: model:ir.model.fields,field_description:pyper_dashboard.field_dashboard_dashboard__group_ids
+msgid "Group"
+msgstr "Groupe"
+
+#. module: pyper_dashboard
 #. odoo-javascript
 #: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0

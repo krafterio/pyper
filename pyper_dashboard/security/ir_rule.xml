@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="ir_rule_dashboard_dashboard" model="ir.rule">
+        <field name="name">Pyper Dashboard: groups</field>
+        <field name="model_id" ref="model_dashboard_dashboard" />
+        <field name="groups" eval="[(4, ref('base.group_user'))]" />
+        <field name="domain_force">['|', ('group_ids', '=', False), ('group_ids', 'in', user.groups_id.ids)]</field>
+    </record>
+</odoo>
