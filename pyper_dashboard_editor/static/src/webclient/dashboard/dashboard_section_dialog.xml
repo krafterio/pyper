@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <t t-name="pyper_dashboard.DashboardSectionDialog">
+    <t t-name="pyper_dashboard_editor.DashboardSectionDialog">
         <Dialog size="'md'" title="props.dialogTitle" modalRef="modalRef" bodyClass="'o_form_view'">
             <div class="row">
                 <div class="col">

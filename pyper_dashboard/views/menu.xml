@@ -17,14 +17,6 @@
         groups="pyper_dashboard.group_dashboard_user"
     />
 
-    <menuitem
-        id="menu_dashboard_my_board"
-        name="My dashboard"
-        action="action_my_dashboard_open"
-        sequence="20"
-        parent="menu_dashboard_root"
-    />
-
     <!-- Config -->
     <menuitem
         id="menu_dashboard_settings"

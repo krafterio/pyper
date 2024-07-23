@@ -75,10 +75,6 @@
                         <group>
                         </group>
                     </group>
-
-                    <group>
-                        <field name="arch_db"/>
-                    </group>
                 </sheet>
             </form>
         </field>

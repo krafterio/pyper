@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
 
     <t t-name="pyper_dashboard.DashboardView">
-        <div class="pyper_dashboard d-flex flex-column" t-att-class="{'editable': this.canEdit}">
+        <div class="pyper_dashboard d-flex flex-column" t-att-class="this.dashboardClasses">
             <t t-call="pyper_dashboard.DashboardHeader"/>
 
             <t t-if="dashboard.isEmpty">
@@ -38,21 +38,18 @@
             <div>
                 <Dropdown
                     togglerClass="'btn btn-outline-default py-1'"
-                    t-if="this.canEdit and (!dashboard?.isEmpty or this.canAdmin)"
+                    t-if="filteredOptionsItems.length > 0"
                 >
                     <t t-set-slot="toggler">
-                        <i class="fa fa-fw fa-ellipsis-v" aria-label="Section settings" role="img" title="Section settings"/>
+                        <i class="fa fa-fw fa-ellipsis-v" aria-label="Options" role="img" title="Options"/>
                     </t>
 
-                    <DropdownItem onSelected="() => this.addSection()" t-if="!dashboard?.isEmpty">
-                        <i class="oi-fw oi-fw me-1 fa fa-plus"></i>
-                        Add a section
-                    </DropdownItem>
-
-                    <DropdownItem onSelected="() => this.actionSettings()" t-if="this.canAdmin">
-                        <i class="oi-fw oi-fw me-1 fa fa-gear"></i>
-                        Settings
-                    </DropdownItem>
+                    <t t-foreach="filteredOptionsItems" t-as="item" t-key="item.id">
+                        <DropdownItem onSelected="item.onSelected">
+                            <i t-attf-class="item.icon"></i>
+                            <t t-out="item.label"/>
+                        </DropdownItem>
+                    </t>
                 </Dropdown>
             </div>
         </div>
@@ -62,27 +59,19 @@
         <div class="pyper_dashboard--container" t-ref="main">
             <t t-foreach="dashboard.sections" t-as="section" t-key="section_index">
                 <DashboardSection
-                    selectLayout="(layout, save) => this.selectLayout(section, layout, save, section_index)"
-                    edit="(data) => this.editSection(section, data)"
-                    remove="() => this.removeSection(section_index)"
                     title="section.title"
                     layout="section.layout"
-                    layoutEditable="section.layoutEditable and this.canEdit"
                     attr="{'data-idx': section_index}"
                 >
                     <t t-foreach="section.columns" t-as="column" t-key="column_index">
                         <DashboardColumn attr="{'data-idx': column_index}">
                             <t t-foreach="column.actions" t-as="action" t-key="selectedBoard?.id + '__' + action.id">
                                 <DashboardAction
-                                    toggle="() => this.toggleAction(action)"
-                                    remove="() => this.removeAction(column, action)"
                                     title="action.title"
                                     actionId="action.actionId"
                                     viewMode="action.viewMode"
                                     context="action.context"
                                     domain="action.domain"
-                                    foldable="this.canEdit"
-                                    isFolded="action.isFolded"
                                     attr="{'data-idx': action_index}"
                                 />
                             </t>
@@ -112,33 +101,5 @@
                 </p>
             </div>
         </div>
-    </t>
-
-    <t t-name="pyper_dashboard.Arch">
-        <dashboard
-            t-att-string="title || undefined"
-            t-att-switcher="useSwitcher ? undefined : 'False'"
-        >
-            <t t-foreach="sections" t-as="section" t-key="section_index">
-                <section
-                    t-att-string="section.title || undefined"
-                    t-att-layout="section.layout || undefined"
-                    t-att-layout_editable="section.layoutEditable ? undefined : 'False'"
-                >
-                    <column t-foreach="section.columns" t-as="column" t-key="column_index">
-                        <t t-foreach="column.actions" t-as="action" t-key="action_index">
-                            <action
-                                t-att-name="action.actionId"
-                                t-att-string="action.title"
-                                t-att-view_mode="action.viewMode"
-                                t-att-context="action.context"
-                                t-att-domain="action.domain"
-                                t-att-fold="action.isFolded ? 'True' : undefined"
-                            />
-                        </t>
-                    </column>
-                </section>
-            </t>
-        </dashboard>
     </t>
 </templates>

@@ -25,7 +25,7 @@ const cogMenuRegistry = registry.category('cogMenu');
  * @extends Component
  */
 export class AddToDashboard extends Component {
-    static template = 'pyper_dashboard.AddToDashboard';
+    static template = 'pyper_dashboard_editor.AddToDashboard';
 
     static components = {
         Dropdown,

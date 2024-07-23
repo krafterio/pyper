@@ -13,12 +13,6 @@ export class DashboardAction extends Component {
     };
 
     static props = {
-        toggle: {
-            type: Function,
-        },
-        remove: {
-            type: Function,
-        },
         title: {
             type: String,
             optional: true,
@@ -37,14 +31,6 @@ export class DashboardAction extends Component {
             type: Array,
             optional: true,
         },
-        foldable: {
-            type: Boolean,
-            optional: true,
-        },
-        isFolded: {
-            type: Boolean,
-            optional: true,
-        },
         attr: {
             type: Object,
             optional: true,
@@ -54,8 +40,6 @@ export class DashboardAction extends Component {
     static defaultProps = {
         context: {},
         domain: [],
-        foldable: true,
-        isFolded: false,
     }
 
     static cache = {};
@@ -156,6 +140,10 @@ export class DashboardAction extends Component {
                 this.viewProps.allowSelectors = false;
             }
         });
+    }
+
+    get showView() {
+        return this.isValid;
     }
 
     selectRecord(resModel, resId) {

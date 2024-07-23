@@ -6,7 +6,7 @@ import {_t} from '@web/core/l10n/translation';
 import {useChildRef} from '@web/core/utils/hooks';
 
 export class DashboardSectionDialog extends Component {
-    static template = 'pyper_dashboard.DashboardSectionDialog';
+    static template = 'pyper_dashboard_editor.DashboardSectionDialog';
 
     static components = {
         Dialog,

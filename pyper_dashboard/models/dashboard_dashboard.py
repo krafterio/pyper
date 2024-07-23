@@ -44,11 +44,6 @@ class DashboardBoardItem(models.Model):
         store=True,
     )
 
-    arch_db = fields.Text(
-        'Custom architecture',
-        required=False,
-    )
-
     arch = fields.Text(
         'Architecture',
         compute='_compute_arch',
@@ -60,21 +55,16 @@ class DashboardBoardItem(models.Model):
         for board in self:
             board.is_editable = board.view_id.id is False
 
-    @api.depends('arch_db', 'view_id')
+    @api.depends('view_id')
     def _compute_arch(self):
         for board in self:
-            board.arch = board.arch_db or board.view_id.arch
+            board.arch = board.view_id.arch
 
     def _inverse_arch(self):
-        for board in self:
-            if board.arch:
-                board.arch_db = board.arch
-
-            if board.arch_db and board.view_id.arch and board.arch_db == self._arch_preprocessing(board.view_id.arch):
-                board.arch_db = False
+        pass
 
     def write(self, vals):
-        if 'arch_db' in vals or 'arch' in vals:
+        if 'arch' in vals:
             for board in self:
                 if board.view_id:
                     raise UserError(_('Unable to override this dashboard because it is associated with a view'))
@@ -87,11 +77,6 @@ class DashboardBoardItem(models.Model):
                 raise UserError(_('Unable to delete this dashboard because it is associated with a view'))
 
         return super().unlink()
-
-    @api.onchange('view_id')
-    def _onchange_view_id(self):
-        for board in self:
-            board.arch_db = False
 
     @api.model
     def get_view(self, view_id=None, view_type='form', **options):

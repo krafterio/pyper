@@ -35,7 +35,7 @@ def _add_to_board_dashboard(action_id, context_to_save, domain, view_mode, board
 
 
 def _add_to_my_dashboard(action_id, context_to_save, domain, view_mode, name=''):
-    action = request.env.ref('pyper_dashboard.action_my_dashboard_open', False).sudo()
+    action = request.env.ref('pyper_dashboard_editor.action_my_dashboard_open', False).sudo()
 
     if action and action['res_model'] == 'dashboard.board' and action['views'][0][1] == 'form' and action_id:
         view_id = action['views'][0][0]

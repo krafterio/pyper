@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_dashboard_editor.DashboardContent" t-inherit="pyper_dashboard.DashboardContent" t-inherit-mode="extension">
+        <xpath expr="//DashboardSection" position="attributes">
+            <attribute name="selectLayout">(layout, save) => this.selectLayout(section, layout, save, section_index)</attribute>
+            <attribute name="edit">(data) => this.editSection(section, data)</attribute>
+            <attribute name="remove">() => this.removeSection(section_index)</attribute>
+            <attribute name="layoutEditable">section.layoutEditable and this.canEdit</attribute>
+        </xpath>
+
+        <xpath expr="//DashboardAction" position="attributes">
+            <attribute name="toggle">() => this.toggleAction(action)</attribute>
+            <attribute name="remove">() => this.removeAction(column, action)</attribute>
+            <attribute name="foldable">this.canEdit</attribute>
+            <attribute name="isFolded">action.isFolded</attribute>
+        </xpath>
+    </t>
+
+    <t t-name="pyper_dashboard_editor.Arch">
+        <dashboard
+            t-att-string="title || undefined"
+            t-att-switcher="useSwitcher ? undefined : 'False'"
+        >
+            <t t-foreach="sections" t-as="section" t-key="section_index">
+                <section
+                    t-att-string="section.title || undefined"
+                    t-att-layout="section.layout || undefined"
+                    t-att-layout_editable="section.layoutEditable ? undefined : 'False'"
+                >
+                    <column t-foreach="section.columns" t-as="column" t-key="column_index">
+                        <t t-foreach="column.actions" t-as="action" t-key="action_index">
+                            <action
+                                t-att-name="action.actionId"
+                                t-att-string="action.title"
+                                t-att-view_mode="action.viewMode"
+                                t-att-context="action.context"
+                                t-att-domain="action.domain"
+                                t-att-fold="action.isFolded ? 'True' : undefined"
+                            />
+                        </t>
+                    </column>
+                </section>
+            </t>
+        </dashboard>
+    </t>
+</templates>

@@ -2,26 +2,17 @@
 <templates xml:space="preserve">
     <t t-name="pyper_dashboard.DashboardAction">
         <div class="pyper_dashboard--action bg-view border" t-att="props.attr">
-            <div t-attf-class="pyper_dashboard--action-header {{props.title ? '' : 'oe_header_empty'}}">
+            <div class="pyper_dashboard--action-header" t-attf-class="{{props.title ? '' : 'oe_header_empty'}}" name="pyper_dashboard_action_header">
                 <div t-attf-class="pyper_dashboard--action-header-title {{props.title ? '' : 'oe_header_empty'}}">
                     <h3 t-out="props.title"></h3>
                 </div>
-
-                <span t-if="!env.isSmall and props.foldable" class="btn p-1 text-muted" t-on-click="() => this.props.toggle()">
-                    <i class="fa fa-window-maximize" t-if="props.isFolded"/>
-                    <i class="fa fa-window-minimize" t-else=""/>
-                </span>
-
-                <span t-if="!env.isSmall and props.foldable" class="btn p-1 text-muted" t-on-click="() => this.props.remove()">
-                    <i class="fa fa-close"/>
-                </span>
             </div>
 
             <t t-if="!isValid">
                 <div class="text-center text-warning m-1">Invalid action</div>
             </t>
 
-            <t t-if="isValid and !props.isFolded">
+            <t t-if="showView">
                 <View t-props="viewProps"/>
             </t>
         </div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Config -->
+    <record model="ir.ui.view" id="view_dashboard_dashboard_form">
+        <field name="name">dashboard.dashboard.form</field>
+        <field name="model">dashboard.dashboard</field>
+        <field name="inherit_id" ref="pyper_dashboard.view_dashboard_dashboard_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group[@name='info']" position="after">
+                <group>
+                    <field name="arch_db"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

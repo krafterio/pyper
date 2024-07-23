@@ -1,4 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_dashboard_board_all,dashboard.board,model_dashboard_board,base.group_user,1,0,0,0
-access_dashboard_dashboard_erp_manager,dashboard.dashboard,model_dashboard_dashboard,pyper_dashboard.group_dashboard_admin,1,1,1,1
 access_dashboard_dashboard_user,dashboard.dashboard,model_dashboard_dashboard,pyper_dashboard.group_dashboard_user,1,0,0,0
+access_dashboard_dashboard_admin,dashboard.dashboard,model_dashboard_dashboard,pyper_dashboard.group_dashboard_admin,1,1,0,0

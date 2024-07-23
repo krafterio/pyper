@@ -9,7 +9,7 @@ export const dashboardView = {
     display_name: _t('Dashboards'),
     Controller: DashboardController,
 
-    props: (genericProps, view) => {
+    props: (genericProps) => {
         return {
             ...genericProps,
             className: 'pyper_dashboard',

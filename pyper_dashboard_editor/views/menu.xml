@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Dashboard Menu -->
+    <menuitem
+        id="menu_dashboard_my_board"
+        name="My dashboard"
+        action="action_my_dashboard_open"
+        sequence="20"
+        parent="pyper_dashboard.menu_dashboard_root"
+    />
+</odoo>

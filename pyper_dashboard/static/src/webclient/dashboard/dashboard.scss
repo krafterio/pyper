@@ -196,15 +196,3 @@
         }
     }
 }
-
-// Dashboard Button add to dashboard
-.pyper_dashboard--add-to-dashboard {
-    svg {
-        width: var(--oi-font-size, 1em);
-        aspect-ratio: 1;
-    }
-
-    &:not(:hover) {
-        --oi-color: currentColor;
-    }
-}

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <t t-name="pyper_dashboard.AddToDashboard">
+    <t t-name="pyper_dashboard_editor.AddToDashboard">
         <Dropdown class="'pyper_dashboard--add-to-dashboard'">
             <t t-set-slot="toggler">
-                <t t-call="pyper_dashboard.AddToDashboard.Icon"/>
+                <t t-call="pyper_dashboard_editor.AddToDashboard.Icon"/>
                 Dashboards
             </t>
 
@@ -13,7 +13,7 @@
                         <t t-out="board.name"/>
                     </t>
 
-                    <t t-call="pyper_dashboard.AddToDashboard.Card">
+                    <t t-call="pyper_dashboard_editor.AddToDashboard.Card">
                         <t t-set="boardId" t-value="board.id"/>
                     </t>
                 </Dropdown>
@@ -21,7 +21,7 @@
         </Dropdown>
     </t>
 
-    <t t-name="pyper_dashboard.AddToDashboard.Card">
+    <t t-name="pyper_dashboard_editor.AddToDashboard.Card">
         <div class="px-3 pb-2">
             <label class="mb-2">Add to dashboard</label>
 
@@ -30,7 +30,7 @@
         </div>
     </t>
 
-    <t t-name="pyper_dashboard.AddToDashboard.Icon">
+    <t t-name="pyper_dashboard_editor.AddToDashboard.Icon">
         <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" class="oi-large">
             <path d="M4,8c0-2.2,1.8-4,4-4h17v17c0,2.2-1.8,4-4,4H4V8Z" fill="var(--oi-color, #0e2328)"/>
             <path d="M4,35c0-2.2,1.8-4,4-4h11v11c0,2.2-1.8,4-4,4H4v-11Z" fill="var(--oi-color, #35bfe5)"/>
