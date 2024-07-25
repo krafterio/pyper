@@ -31,6 +31,6 @@ export class DrawerAppMenu extends Component {
     }
 
     get displayLocked() {
-        return !this.displayMinified && this.drawerService.isLocked;
+        return !this.displayMinified && (this.drawerService.isLocked || (this.drawerService.locked && !this.drawerService.isLocked && this.drawerService.isOpened));
     }
 }

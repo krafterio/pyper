@@ -35,7 +35,7 @@
 
     .o_drawer--menu {
         margin: 0;
-        padding: 0;
+        padding: $o-horizontal-padding/2 0;
         overflow-x: hidden;
         overflow-y: hidden;
         height: 100%;
@@ -450,7 +450,9 @@
     .o_drawer_toggler {
         &.o_drawer--locked {
             &.o_drawer--fixed-top {
-                width: $o-drawer-toggler-locked-width;
+                &:not(.o_drawer--mini) {
+                    width: $o-drawer-toggler-locked-width;
+                }
             }
 
             + .o_menu_brand {
@@ -459,6 +461,16 @@
 
             &.o_drawer--mini {
                 width: auto;
+            }
+        }
+    }
+
+    .o_navbar_apps_menu:not(.o_navbar_apps_menu--hide) + .o_drawer_toggler {
+        &.o_drawer--locked {
+            &.o_drawer--fixed-top {
+                &:not(.o_drawer--mini) {
+                    width: $o-drawer-toggler-locked-width-with-apps-menu;
+                }
             }
         }
     }

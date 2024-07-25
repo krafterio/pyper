@@ -52,7 +52,8 @@ $o-drawer-popover-item-active-hover-bg: $o-drawer-item-active-hover-bg !default;
 
 $o-drawer-popover-item-font-weight: bold !default;
 
-$o-drawer-toggler-locked-width: ($o-drawer-width - $o-navbar-apps-menu-width) !default;
+$o-drawer-toggler-locked-width: $o-drawer-width !default;
+$o-drawer-toggler-locked-width-with-apps-menu: ($o-drawer-toggler-locked-width - $o-navbar-apps-menu-width) !default;
 
 $o-drawer-swiper-zindex: $o-drawer-zindex + 1 !default;
 $o-drawer-swiper-width: 8px !default;

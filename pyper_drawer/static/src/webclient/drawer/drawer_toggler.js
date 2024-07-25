@@ -72,7 +72,23 @@ export class DrawerToggler extends Component {
     }
 
     get display() {
-        return !(this.settings.autoHide && this.drawerService.isLocked) && !this.drawerService.disabledOnSmallScreen;
+        if (this.settings.autoHide) {
+            if (this.drawerService.isSmallScreen) {
+                return !this.drawerService.disabledOnSmallScreen;
+            } else {
+                if (this.drawerService.disabledOnSmallScreen) {
+                    return true;
+                } else {
+                    if (this.drawerService.isLocked) {
+                        return this.drawerService.isMinified;
+                    }
+
+                    return true;
+                }
+            }
+        }
+
+        return !(this.drawerService.isSmallScreen && this.drawerService.disabledOnSmallScreen);
     }
 
     onClick() {
