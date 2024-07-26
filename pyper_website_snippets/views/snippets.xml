@@ -509,6 +509,33 @@
         </section>
     </template>
 
+    <template id="top_app_banner" name="Top app banner">
+        <section class="bg-black-50 pt96 pb96 o_colored_level" 
+                 data-snippet="s_cover" 
+                 data-name="Top app banner" 
+                 style="background-image: none;"
+        >
+            <div class="o_we_bg_filter bg-black"/>
+            <div class="container s_allow_columns text-center">
+                <div class="container justify-content-center gap-2">
+                    <p class="h4 text-primary fw-bold">new release v2.5.0</p>
+                        <div class="row justify-content-center">
+                            <h1 class="row justify-content-center display-3 o_default_snippet_text col-sm-4 fw-bold">Discover, our powerfull new features</h1>
+                        </div>
+                    <p class="lead o_default_snippet_text pb-0 mb-0">We are happy to introduce a suite of powerful new features designed to enhance your experience and streamline your workflow.</p>
+                    <p class="lead o_default_snippet_text">Our latest updates include advanced analytics tools, intuitive user interfaces, and seamless integration capabilities.</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-center gap-2 py-4">
+                     <a class="btn btn-primary o_default_snippet_text" href="#">Let me try it now !</a>
+                     <a class="btn btn-secondary o_default_snippet_text" href="#">See release resume</a>
+                </div>
+                  <div class="col-12 h-75 mx-auto rounded-3 border border-5 border-dark bg-dark overflow-hidden" style="box-shadow: 0 40px 220px 0 var(--primary);">
+                    <img src="/web/image/website.s_cover_default_image" class="img-fluid bg-dark"/>
+                 </div>
+            </div>
+        </section>
+    </template>
+
     <template id="custom_krafter_snippets" inherit_id="website.snippets" name="Custom Krafter snippets">
         <xpath expr="//div[@id='snippet_structure']" position="before">
             <div id="snippet_structure" class="o_panel">
@@ -563,6 +590,13 @@
                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_title_value.svg">
                         <keywords>kpi, text, title, number</keywords>
                     </t>
+
+                    <!-- TODO: get or create specific thumbnail-->
+                    <t t-snippet="pyper_website_snippets.top_app_banner"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_video_banner.svg">
+                            <keywords>app, banner</keywords>
+                    </t>
+
                 </div>
             </div>
         </xpath>
