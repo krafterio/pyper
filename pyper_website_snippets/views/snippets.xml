@@ -466,14 +466,15 @@
         >
             <div class="container">
                 <p class="fs-3 fw-bold o_default_snippet_text text-o-color-1 text-center mb-5 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
-                        style="--wanim-intensity: 20;animation-delay: 0.0s; animation-duration: 0.4s;"
-                    >For over 10 years, we
+                   style="--wanim-intensity: 20;animation-delay: 0.0s; animation-duration: 0.4s;"
+                >For over 10 years, we
                     help companies to achieve great goals trough modern tools and ideas. Today, our aim is to understand
                     yours and give you ways to reach it.
                 </p>
                 <h1 class="o_default_snippet_text text-center mb-5 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
-                        style="--wanim-intensity: 20;animation-delay: 0.0s; animation-duration: 0.4s;"
-                    >We focus on you.</h1>
+                    style="--wanim-intensity: 20;animation-delay: 0.0s; animation-duration: 0.4s;"
+                >We focus on you.
+                </h1>
 
                 <div class="row">
                     <div
@@ -510,28 +511,41 @@
     </template>
 
     <template id="top_app_banner" name="Top app banner">
-        <section class="bg-black-50 pt96 pb96 o_colored_level" 
-                 data-snippet="s_cover" 
-                 data-name="Top app banner" 
-                 style="background-image: none;"
+        <section
+            class="pt96 pb96 o_colored_level o_cc o_cc2"
+            data-snippet="s_cover"
+            data-name="Top app banner"
+            style="background-image: none;"
         >
-            <div class="o_we_bg_filter bg-black"/>
             <div class="container s_allow_columns text-center">
-                <div class="container justify-content-center gap-2">
-                    <p class="h4 text-primary fw-bold">new release v2.5.0</p>
+                <div class="row">
+                    <div class="col-12 o_animate o_anim_fade_in" style="-wanim-intensity: 20;animation-delay: 0.0s;">
+                        <p class="h4 text-primary fw-bold">new release v2.5.0</p>
                         <div class="row justify-content-center">
-                            <h1 class="row justify-content-center display-3 o_default_snippet_text col-sm-4 fw-bold">Discover, our powerfull new features</h1>
+                            <h1 class="row justify-content-center display-3 o_default_snippet_text col-xs-12 col-sm-12 col-xl-5 fw-bold">
+                                Discover, our powerfull new features
+                            </h1>
                         </div>
-                    <p class="lead o_default_snippet_text pb-0 mb-0">We are happy to introduce a suite of powerful new features designed to enhance your experience and streamline your workflow.</p>
-                    <p class="lead o_default_snippet_text">Our latest updates include advanced analytics tools, intuitive user interfaces, and seamless integration capabilities.</p>
+                        <p class="lead o_default_snippet_text pb-0 mb-0">We are happy to introduce a suite of
+                            powerful new
+                            features designed to enhance your experience and streamline your workflow.
+                        </p>
+                        <p class="lead o_default_snippet_text">Our latest updates include advanced analytics tools,
+                            intuitive user interfaces, and seamless integration capabilities.
+                        </p>
+
+                        <div class="d-flex align-items-center justify-content-center gap-2 py-4">
+                            <a class="btn btn-primary o_default_snippet_text" href="#">Let me try it now !</a>
+                            <a class="btn btn-secondary o_default_snippet_text" href="#">See release resume</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="d-flex align-items-center justify-content-center gap-2 py-4">
-                     <a class="btn btn-primary o_default_snippet_text" href="#">Let me try it now !</a>
-                     <a class="btn btn-secondary o_default_snippet_text" href="#">See release resume</a>
-                </div>
-                  <div class="col-12 h-75 mx-auto rounded-3 border border-5 border-dark bg-dark overflow-hidden" style="box-shadow: 0 40px 220px 0 var(--primary);">
-                    <img src="/web/image/website.s_cover_default_image" class="img-fluid bg-dark"/>
-                 </div>
+
+                <img
+                    src="/web/image/website.s_cover_default_image"
+                    class="img-fluid mt-3"
+                    style="box-shadow: 0 40px 220px 0 var(--primary);"
+                />
             </div>
         </section>
     </template>
@@ -593,8 +607,8 @@
 
                     <!-- TODO: get or create specific thumbnail-->
                     <t t-snippet="pyper_website_snippets.top_app_banner"
-                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_video_banner.svg">
-                            <keywords>app, banner</keywords>
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_app_banner.svg">
+                        <keywords>app, banner</keywords>
                     </t>
 
                 </div>
