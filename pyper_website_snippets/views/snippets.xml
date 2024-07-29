@@ -541,11 +541,27 @@
                     </div>
                 </div>
 
-                <img
-                    src="/web/image/website.s_cover_default_image"
-                    class="img-fluid mt-3"
-                    style="box-shadow: 0 40px 220px 0 var(--primary);"
-                />
+                <div
+                    class="s_image_gallery o_spc-small o_colored_level o_masonry"
+                    data-columns="1"
+                >
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="o_masonry_col o_snippet_not_selectable col-lg-12">
+                                <img
+                                    class="img img-fluid"
+                                    src="/web/image/website.s_cover_default_image"
+                                    data-name="Image"
+                                    alt=" "
+                                    loading="lazy"
+                                    data-mimetype="image/jpeg"
+                                    style="box-shadow: 0 40px 220px 0 var(--primary);"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
     </template>
