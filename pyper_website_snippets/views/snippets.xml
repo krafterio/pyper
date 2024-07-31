@@ -566,6 +566,7 @@
         </section>
     </template>
 
+    
     <template id="custom_krafter_snippets" inherit_id="website.snippets" name="Custom Krafter snippets">
         <xpath expr="//div[@id='snippet_structure']" position="before">
             <div id="snippet_structure" class="o_panel">
@@ -621,10 +622,14 @@
                         <keywords>kpi, text, title, number</keywords>
                     </t>
 
-                    <!-- TODO: get or create specific thumbnail-->
                     <t t-snippet="pyper_website_snippets.top_app_banner"
                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_app_banner.svg">
                         <keywords>app, banner</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.customer_review_blocks"
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_app_banner.svg">
+                        <keywords>text, title, review, customer</keywords>
                     </t>
 
                 </div>

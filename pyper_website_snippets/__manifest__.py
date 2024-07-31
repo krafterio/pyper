@@ -17,6 +17,7 @@
         'website',
     ],
     'data': [
+        'views/customer_review_blocks.xml',
         'views/snippets.xml',
     ],
     'assets': {
