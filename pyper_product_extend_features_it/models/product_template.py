@@ -43,6 +43,11 @@ class ProductTemplate(models.Model):
         'Screen size',
     )
 
+    screen_quality_id = fields.Many2one(
+        'product.screen.quality',
+        'Screen quality',
+    )
+
     graphic_card_id = fields.Many2one(
         'product.graphic.card',
         'Graphic card',
@@ -63,3 +68,5 @@ class ProductTemplate(models.Model):
     has_optical_drive = fields.Boolean(
         'Has optical drive',
     )
+
+

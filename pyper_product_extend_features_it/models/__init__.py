@@ -8,3 +8,4 @@ from . import product_storage_capacity
 from . import product_processor
 from . import product_screen_size
 from . import product_graphic_card
+from . import product_screen_quality
