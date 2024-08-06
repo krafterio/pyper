@@ -17,6 +17,7 @@
         'website',
     ],
     'data': [
+        'views/s_top_banner_overflow_image_right_and_left.xml',
         'views/snippets.xml',
     ],
     'assets': {

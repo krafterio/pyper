@@ -5,3 +5,10 @@
 .fa.rounded-circle{
     min-width: 3rem;
 }
+
+@media (max-width: 767px) {
+    .k-img-sm-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+}
