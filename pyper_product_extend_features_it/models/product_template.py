@@ -14,6 +14,7 @@ class ProductTemplate(models.Model):
         [
             ('HDD', 'HDD'),
             ('SSD', 'SSD'),
+            ('SSD + HDD', 'SSD + HDD'),
         ],
         'Hard drive type',
     )
