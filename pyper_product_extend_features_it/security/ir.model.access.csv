@@ -4,3 +4,4 @@ access_product_storage_capacity_group_user,product_storage_capacity group_user,m
 access_product_processor_group_user,product_processor group_user,model_product_processor,base.group_user,1,1,1,1
 access_product_screen_size_group_user,product_screen_size group_user,model_product_screen_size,base.group_user,1,1,1,1
 access_product_graphic_card_group_user,product_graphic_card group_user,model_product_graphic_card,base.group_user,1,1,1,1
+access_product_screen_quality_group_user,product_screen_quality group_user,model_product_screen_quality,base.group_user,1,1,1,1

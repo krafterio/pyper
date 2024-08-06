@@ -58,6 +58,14 @@
             action="pyper_product_extend_features_it.action_product_graphic_card"
         />
 
+        <menuitem
+            id="product_screen_quality_menu"
+            name="Screen quality"
+            sequence="5"
+            action="pyper_product_extend_features_it.action_product_screen_quality"
+        />
+
+
     </menuitem>
 
 

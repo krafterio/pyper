@@ -23,6 +23,8 @@
                                invisible="product_pattern not in ['laptop_computer', 'desktop_computer']"/>
                         <field name="screen_size_id"
                                invisible="product_pattern not in ['laptop_computer', 'smartphone', 'tablet']"/>
+                        <field name="screen_quality_id"
+                               invisible="product_pattern not in ['laptop_computer', 'smartphone', 'tablet']"/>
                         <field name="graphic_card_id"
                                invisible="product_pattern not in ['laptop_computer', 'desktop_computer']"/>
                         <field name="has_optical_drive"
