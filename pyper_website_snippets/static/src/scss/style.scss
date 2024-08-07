@@ -5,3 +5,19 @@
 .fa.rounded-circle{
     min-width: 3rem;
 }
+
+@media (max-width: 767px) {
+    .k-img-sm-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* snippet : top_banner_overflow_image_left */
+@media (min-width: 768px) {
+    .k-img-left-fix {
+        margin-left:auto; 
+        position: relative; 
+        left:-50%
+    }
+}
