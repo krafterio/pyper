@@ -2,3 +2,4 @@
 # Krafter Proprietary License (see LICENSE file).
 
 from . import mail_message_subtype
+from . import res_config_settings

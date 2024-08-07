@@ -31,7 +31,16 @@
             <attribute name="class">o-mail-Chatter-topbar px-0 d-flex align-items-center</attribute>
         </xpath>
 
-        <xpath expr="//button[hasclass('o-mail-Chatter-logNote')]" position="replace"/>
+        <xpath expr="//button[hasclass('o-mail-Chatter-logNote')]" position="replace">
+            <button t-if="props.hasMessageList and canWriteNotes" class="btn btn-secondary btn-quick p-0 me-2 text-nowrap" t-att-class="{
+                'btn-primary active': state.composerType === 'note',
+                'btn-secondary': state.composerType !== 'note',
+                'my-2': !props.compactHeight
+            }" data-hotkey="shift+m" t-on-click="() => this.toggleComposer('note')">
+                <i class="ph ph-note-pencil"/>
+                <i class="btn-quick-counter fa fa-plus"></i>
+            </button>
+        </xpath>
 
         <xpath expr="//button[hasclass('o-mail-Chatter-sendMessage')]" position="replace">
            <button t-if="props.hasMessageList" class="o-mail-Chatter-sendMessage btn btn-secondary btn-quick p-0 me-2 text-nowrap" t-att-disabled="!state.thread.hasWriteAccess and !(state.thread.hasReadAccess and state.thread.canPostOnReadonly) and props.threadId" data-hotkey="m" t-on-click="() => this.toggleComposer('message')">
