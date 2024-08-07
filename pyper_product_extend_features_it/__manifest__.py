@@ -27,6 +27,7 @@
         'views/product_template_views.xml',
         'views/product_category_views.xml',
         'views/product_operating_system_views.xml',
+        'views/product_storage_type_views.xml',
         'views/product_storage_capacity_views.xml',
         'views/product_processor_views.xml',
         'views/product_screen_size_views.xml',

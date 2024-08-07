@@ -10,14 +10,6 @@ class ProductTemplate(models.Model):
         related='categ_id.product_pattern',
     )
 
-    hard_drive_type = fields.Selection(
-        [
-            ('HDD', 'HDD'),
-            ('SSD', 'SSD'),
-        ],
-        'Hard drive type',
-    )
-
     operating_system_id = fields.Many2one(
         'product.operating.system',
         'Operating system',
@@ -26,6 +18,11 @@ class ProductTemplate(models.Model):
     hard_drive_capacity_id = fields.Many2one(
         'product.storage.capacity',
         'Hard drive capacity',
+    )
+
+    hard_drive_type_id = fields.Many2one(
+        'product.storage.type',
+        'Hard drive type',
     )
 
     ram_capacity_id = fields.Many2one(

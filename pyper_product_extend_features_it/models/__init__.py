@@ -4,6 +4,7 @@
 from . import product_template
 from . import product_category
 from . import product_operating_system
+from . import product_storage_type
 from . import product_storage_capacity
 from . import product_processor
 from . import product_screen_size
