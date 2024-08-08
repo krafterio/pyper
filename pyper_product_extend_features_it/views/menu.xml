@@ -52,6 +52,20 @@
         />
 
         <menuitem
+            id="product_processor_model_menu"
+            name="Processor model"
+            sequence="3"
+            action="pyper_product_extend_features_it.action_product_processor_model"
+        />
+
+        <menuitem
+            id="product_processor_generation_menu"
+            name="Processor generation"
+            sequence="3"
+            action="pyper_product_extend_features_it.action_product_processor_generation"
+        />
+
+        <menuitem
             id="product_screen_size_menu"
             name="Scren sizes"
             sequence="4"
@@ -71,7 +85,6 @@
             sequence="5"
             action="pyper_product_extend_features_it.action_product_screen_quality"
         />
-
 
     </menuitem>
 

@@ -30,6 +30,8 @@
         'views/product_storage_type_views.xml',
         'views/product_storage_capacity_views.xml',
         'views/product_processor_views.xml',
+        'views/product_processor_model_views.xml',
+        'views/product_processor_generation_views.xml',
         'views/product_screen_size_views.xml',
         'views/product_graphic_card_views.xml',
         'views/product_screen_quality_views.xml',

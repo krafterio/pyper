@@ -4,13 +4,11 @@
 from odoo import fields, models
 
 
-class ProductProcessor(models.Model):
-    _name = 'product.processor'
-    _description = 'Product processor'
+class ProductProcessorModel(models.Model):
+    _name = 'product.processor.model'
+    _description = 'Product processor model'
     _order = 'sequence ASC'
 
     sequence = fields.Integer(string='Sequence')
 
     name = fields.Char(string='Name')
-
-    generation_id = fields.Many2one('product.processor.generation')
