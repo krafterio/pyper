@@ -17,6 +17,7 @@
         'website',
     ],
     'data': [
+        'views/s_title_block_with_cards.xml',
         'views/snippets.xml',
     ],
     'assets': {
