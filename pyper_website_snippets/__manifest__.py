@@ -17,6 +17,8 @@
         'website',
     ],
     'data': [
+        'views/s_multi_grid_blocks.xml',
+        'views/s_multi_grid_blocks_with_carousel.xml',
         'views/snippets.xml',
     ],
     'assets': {
