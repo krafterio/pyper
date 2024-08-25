@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_ir_model_field_access_form" model="ir.ui.view">
+        <field name="name">ir.model.fields.access.form</field>
+        <field name="model">ir.model.fields.access</field>
+        <field name="arch" type="xml">
+            <form string="Field accesses" duplicate="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="field_id"/>
+                            <field name="model_id"/>
+                        </group>
+
+                        <group>
+                            <field name="perm_read"/>
+                            <field name="perm_write"/>
+                            <field name="perm_invisible"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ir_model_field_access_tree" model="ir.ui.view">
+        <field name="name">ir.model.fields.access.tree</field>
+        <field name="model">ir.model.fields.access</field>
+        <field name="arch" type="xml">
+            <tree string="Field Access Rights" editable="bottom">
+                <field name="field_id" options="{'no_create':True}"/>
+                <field name="model_id"/>
+                <field name="group_id" options="{'no_create':True}"/>
+                <field name="perm_read" width="100px"/>
+                <field name="perm_write" width="100px"/>
+                <field name="perm_invisible" width="100px"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ir_model_field_access_tree_search" model="ir.ui.view">
+            <field name="model">ir.model.fields.access</field>
+            <field name="arch" type="xml">
+                <search string="Fields">
+                    <field name="field_id" filter_domain="['|', ('field_id.name', 'ilike', self), ('field_id.field_description', 'ilike', self)]" string="Field"/>
+                    <filter string="Required field" name="required" domain="[('field_id.required', '=', True)]"/>
+                    <separator/>
+                    <filter string="Readonly field" name="readonly" domain="[('field_id.readonly', '=', True)]"/>
+                    <separator/>
+                    <filter string="Custom field" name="custom" domain="[('field_id.state', '=', 'manual')]"/>
+                    <filter string="Base field" name="base" domain="[('field_id.state', '=', 'base')]"/>
+                    <separator/>
+                    <filter string="Custom model" name="custom" domain="[('model_id.state', '=', 'manual')]"/>
+                    <filter string="Base model" name="base" domain="[('model_id.state', '=', 'base')]"/>
+                    <separator/>
+                    <filter string="Translate field" name="translate" domain="[('field_id.translate', '=', True)]"/>
+                    <field name="model_id"/>
+
+                    <group expand="0" string="Group By">
+                        <filter string="Model" name="group_by_object" domain="[]" context="{'group_by':'model_id'}"/>
+                        <filter string="Security group" name="group_by_group" domain="[]" context="{'group_by':'group_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+    <record id="action_ir_model_field_access" model="ir.actions.act_window">
+        <field name="name">Fields access rights</field>
+        <field name="res_model">ir.model.fields.access</field>
+        <field name="context">{}</field>
+        <field name="view_id" ref="view_ir_model_field_access_tree"/>
+        <field name="search_view_id" ref="view_ir_model_field_access_tree_search"/>
+    </record>
+
+    <menuitem action="action_ir_model_field_access"
+              id="menu_action_ir_model_field_access"
+              parent="base.menu_security"
+              sequence="10"
+    />
+</odoo>

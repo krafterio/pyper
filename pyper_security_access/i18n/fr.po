@@ -1,0 +1,177 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_security_access
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20240525\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-25 12:50+0000\n"
+"PO-Revision-Date: 2024-08-25 12:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pyper_security_access
+#: model:ir.model,name:pyper_security_access.model_res_groups
+msgid "Access Groups"
+msgstr "Groupes d'accès"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields__access_ids
+msgid "Access rights"
+msgstr "Droits d’accès"
+
+#. module: pyper_security_access
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_tree_search
+msgid "Base field"
+msgstr "Champ Base"
+
+#. module: pyper_security_access
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_tree_search
+msgid "Base model"
+msgstr "Modèle Base"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields_access__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields_access__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: pyper_security_access
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_tree_search
+msgid "Custom field"
+msgstr "Champ personnalisé"
+
+#. module: pyper_security_access
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_tree_search
+msgid "Custom model"
+msgstr "Modèle personnalisé"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields_access__display_name
+msgid "Display Name"
+msgstr "Nom"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields_access__perm_write
+msgid "Edit"
+msgstr "Modification"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields_access__field_id
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_tree_search
+msgid "Field"
+msgstr "Champ"
+
+#. module: pyper_security_access
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_groups_form
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_tree
+msgid "Field Access Rights"
+msgstr "Droits d’accès des champs"
+
+#. module: pyper_security_access
+#: model:ir.model,name:pyper_security_access.model_ir_model_fields_access
+msgid "Field access right"
+msgstr "Droit d’accès du champ"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_res_groups__field_access_ids
+msgid "Field access rights"
+msgstr "Droits d’accès du champ"
+
+#. module: pyper_security_access
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_form
+msgid "Field accesses"
+msgstr "Droits d’accès des champs"
+
+#. module: pyper_security_access
+#: model:ir.model,name:pyper_security_access.model_ir_model_fields
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_tree_search
+msgid "Fields"
+msgstr "Champs"
+
+#. module: pyper_security_access
+#: model:ir.actions.act_window,name:pyper_security_access.action_ir_model_field_access
+#: model:ir.ui.menu,name:pyper_security_access.menu_action_ir_model_field_access
+msgid "Fields access rights"
+msgstr "Droits d’accès des champs"
+
+#. module: pyper_security_access
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_tree_search
+msgid "Group By"
+msgstr "Groupé par"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields__has_access
+msgid "Has access"
+msgstr "A des droits d’accès"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields_access__id
+msgid "ID"
+msgstr ""
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields_access__perm_invisible
+msgid "Invisible"
+msgstr ""
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields_access__write_uid
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields_access__write_date
+msgid "Last Updated on"
+msgstr "Dernière modification le"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields_access__model_id
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_tree_search
+msgid "Model"
+msgstr "Modèle"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields_access__perm_read
+msgid "Read"
+msgstr "Lecture"
+
+#. module: pyper_security_access
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_tree_search
+msgid "Readonly field"
+msgstr "Champ lecture seule"
+
+#. module: pyper_security_access
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_tree_search
+msgid "Required field"
+msgstr "Champ requis"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,field_description:pyper_security_access.field_ir_model_fields_access__group_id
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_tree_search
+msgid "Security group"
+msgstr "Groupe de sécurité"
+
+#. module: pyper_security_access
+#: model:ir.model.fields,help:pyper_security_access.field_ir_model_fields_access__model_id
+msgid "The model this field belongs to"
+msgstr "Le modèle auquel ce champ appartient"
+
+#. module: pyper_security_access
+#: model_terms:ir.ui.view,arch_db:pyper_security_access.view_ir_model_field_access_tree_search
+msgid "Translate field"
+msgstr "Champ traduit"
+
+#. module: pyper_security_access
+#: model:ir.model,name:pyper_security_access.model_ir_ui_view
+msgid "View"
+msgstr "Vue"
