@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="module_security_root" model="ir.module.category">
+        <field name="name">Security</field>
+        <field name="sequence">0</field>
+        <field name="is_role" eval="True"/>
+    </record>
+
+    <record id="module_security_role" model="ir.module.category">
+        <field name="name">Role</field>
+        <field name="sequence">1</field>
+        <field name="parent_id" ref="module_security_root"/>
+        <field name="is_role" eval="True"/>
+    </record>
+
+    <record id="group_security_role" model="ir.module.category">
+        <field name="name">Role</field>
+        <field name="sequence">1</field>
+        <field name="parent_id" ref="module_security_role"/>
+        <field name="is_role" eval="True"/>
+    </record>
+
+    <!-- Technical -->
+    <record id="group_multi_role" model="res.groups">
+        <field name="name">Manage Multiple User Roles</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+</odoo>

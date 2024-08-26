@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Override Group action -->
+    <record id="view_groups_tree" model="ir.ui.view">
+        <field name="name">res.groups.tree</field>
+        <field name="model">res.groups</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="full_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="base.action_res_groups" model="ir.actions.act_window">
+        <field name="domain">[('is_role', '=', False)]</field>
+        <field name="view_ids" eval="[
+            Command.clear(),
+            Command.create({'view_mode': 'tree', 'view_id': ref('view_groups_tree')}),
+        ]"/>
+    </record>
+
+    <!-- Role -->
+    <record id="view_security_role_tree" model="ir.ui.view">
+        <field name="name">res.groups.security.role.tree</field>
+        <field name="model">res.groups</field>
+        <field name="arch" type="xml">
+            <tree string="Roles">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_groups_form" model="ir.ui.view">
+        <field name="name">res.groups.form.inherit</field>
+        <field name="model">res.groups</field>
+        <field name="inherit_id" ref="base.view_groups_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/field[@name='category_id']" position="attributes">
+                <attribute name="domain">[('is_role', '=', False)]</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='inherit_groups']/field[@name='implied_ids']" position="attributes">
+                <attribute name="context">{
+                    'tree_view_ref': 'pyper_security_role.view_groups_tree',
+                }</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_security_role_form" model="ir.ui.view">
+        <field name="name">res.groups.security.role.form</field>
+        <field name="model">res.groups</field>
+        <field name="inherit_id" ref="base.view_groups_form"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//group/field[@name='category_id']" position="before">
+                <field name="is_role" invisible="True"/>
+            </xpath>
+
+            <xpath expr="//group/field[@name='category_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+                <attribute name="force_save">True</attribute>
+                <attribute name="domain">[('is_role', '=', True)]</attribute>
+            </xpath>
+
+            <xpath expr="//group/field[@name='share']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='users']" position="attributes">
+                <attribute name="groups">pyper_security_role.group_multi_role</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_security_role_search" model="ir.ui.view">
+            <field name="name">res.groups.security.role.search</field>
+            <field name="model">res.groups</field>
+            <field name="arch" type="xml">
+                <search string="Roles">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+    <record id="action_security_role" model="ir.actions.act_window">
+        <field name="name">Roles</field>
+        <field name="res_model">res.groups</field>
+        <field name="domain">[('is_role', '=', True)]</field>
+        <field name="context">{'default_is_role': True}</field>
+        <field name="search_view_id" ref="view_security_role_search"/>
+        <field name="view_ids" eval="[
+            Command.clear(),
+            Command.create({'view_mode': 'tree', 'view_id': ref('view_security_role_tree')}),
+            Command.create({'view_mode': 'form', 'view_id': ref('view_security_role_form')}),
+        ]"/>
+        <field name="help">A role is a set of security groups that will be assigned to the user in order to give them access and rights to specific applications and tasks in the system. You can create custom roles or edit the ones existing by default in order to customize the view of the menu that users will be able to see.</field>
+    </record>
+
+    <menuitem action="action_security_role" id="menu_action_security_role" parent="base.menu_users" groups="base.group_erp_manager" sequence="2"/>
+</odoo>

@@ -1,0 +1,86 @@
+# Copyright Krafter SAS <hey@krafter.io>
+# Krafter Proprietary License (see LICENSE file).
+
+from odoo import _, api, fields, models, Command
+from odoo.exceptions import RedirectWarning
+
+
+class ResUsers(models.Model):
+    _inherit = 'res.users'
+
+    role_id = fields.Many2one(
+        'res.groups',
+        string='Role',
+        domain=[('is_role', '=', True)],
+        compute='_compute_role_id',
+        inverse='_inverse_role_id',
+        store=True,
+    )
+
+    role_ids = fields.Many2many(
+        'res.groups',
+        'res_users_role_rel',
+        'uid',
+        'rid',
+        string='Extra roles',
+        domain=[('is_role', '=', True)],
+        compute='_compute_role_ids',
+        inverse='_inverse_role_ids',
+        store=True,
+        help='Include the main role and allow to define other roles for this user',
+    )
+
+    @api.depends('groups_id', 'groups_id.implied_ids', 'role_ids')
+    def _compute_role_id(self):
+        for user in self:
+            roles = user.groups_id.filtered(lambda g: g.is_role)
+
+            if not user.role_id or user.role_id.id not in user.role_ids.ids:
+                user.role_id = roles[0] if roles else False
+
+    def _inverse_role_id(self):
+        for user in self:
+            user.groups_id = user.groups_id.filtered(lambda g: not g.is_role)
+
+            if user.role_id:
+                user.groups_id |= user.role_id
+
+    @api.depends('groups_id', 'groups_id.implied_ids')
+    def _compute_role_ids(self):
+        for user in self:
+            user.role_ids = user.groups_id.filtered(lambda g: g.is_role)
+
+    def _inverse_role_ids(self):
+        for user in self:
+            existing_groups = user.groups_id
+            groups_to_add = user.role_ids - existing_groups
+            groups_to_remove = existing_groups.filtered(lambda g: g.is_role) - user.role_ids
+
+            if groups_to_add:
+                user.groups_id |= groups_to_add
+
+            if groups_to_remove:
+                user.groups_id -= groups_to_remove
+
+        self._compute_role_id()
+
+    def action_confirm_reset_security_groups(self):
+        raise RedirectWarning(
+            _('Are you sure you want to reset access rights with only access rights defined in roles?'),
+            self.env.ref('pyper_security_role.action_reset_security_groups').id,
+            _('Reset access rights'),
+            {**self.env.context},
+        )
+
+    def reset_security_groups(self):
+        user_type_id = self.env.ref('base.module_category_user_type').id
+
+        for user in self:
+            kept_groups = user.groups_id.filtered(lambda g: g.is_role or g.category_id.id == user_type_id)
+            user.groups_id = [Command.clear()]
+            user.groups_id |= kept_groups
+
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'soft_reload',
+        }

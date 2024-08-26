@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_users_tree" model="ir.ui.view">
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lang']" position="before">
+                <field name="role_id" optional="show" options="{'no_create': True, 'no_edit': True}"/>
+                <field name="role_ids" widget="many2many_tags" optional="hide" options="{'no_create': True, 'no_edit': True}" groups="pyper_security_role.group_multi_role"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_users_form" model="ir.ui.view">
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='access_rights']/group[1]" position="before">
+                <group string="Roles management">
+                    <group>
+                        <field name="role_id" options="{'no_create': True, 'no_edit': True}"/>
+
+                        <div colspan="2">
+                            <button name="%(action_confirm_reset_security_groups)d"
+                                    type="action"
+                                    string="Reset access rights"
+                                    class="btn-sm btn-outline-warning"
+                            />
+                        </div>
+                    </group>
+
+                    <group>
+                        <field name="role_ids" widget="many2many_tags" options="{'no_create': True, 'no_edit': True}" groups="pyper_security_role.group_multi_role"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
