@@ -5,3 +5,11 @@
 .fa.rounded-circle{
     min-width: 3rem;
 }
+
+.s_section_with_card_link_items .card_wrapper:hover {
+    background-color: var(--o-color-2);
+}
+
+.s_section_with_card_link_items .card_wrapper h5:hover {
+    color: var(--primary);
+}

@@ -17,6 +17,7 @@
         'website',
     ],
     'data': [
+        'views/s_section_with_card_link_items.xml',
         'views/snippets.xml',
     ],
     'assets': {
