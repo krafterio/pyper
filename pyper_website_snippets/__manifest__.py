@@ -17,6 +17,7 @@
         'website',
     ],
     'data': [
+        'views/s_top_banner_title_with_foreground_image.xml',
         'views/snippets.xml',
     ],
     'assets': {
