@@ -58,6 +58,7 @@
 
                     <group expand="0" string="Group By">
                         <filter string="Model" name="group_by_object" domain="[]" context="{'group_by':'model_id'}"/>
+                        <filter string="Field" name="group_by_field" domain="[]" context="{'group_by':'field_id'}"/>
                         <filter string="Security group" name="group_by_group" domain="[]" context="{'group_by':'group_id'}"/>
                     </group>
                 </search>
