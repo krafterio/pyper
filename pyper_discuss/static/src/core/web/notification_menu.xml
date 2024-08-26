@@ -2,14 +2,18 @@
 <templates xml:space="preserve">
 
 <t t-name="pyper_discuss.NotificationMenu">
-    <DropdownItem
-        class="'o-command-NotificationSystray-class'"
-        href="'#'"
-        onSelected="() => this.onClick()"
-    >
-        <i class="fa fa-lg fa-bell-o" role="img" aria-label="Notifications"/>
-        <span t-if="counter" class="o-mail-MessagingMenu-counter badge rounded-pill"><t t-esc="counter"/></span>
-    </DropdownItem>
+    <div class="o-dropdown dropdown o-dropdown--no-caret o-command-NotificationSystray-class">
+        <button
+            type="button"
+            class="dropdown-toggle"
+            tabindex="0"
+            aria-expanded="false"
+            t-on-click="() => this.onClick()"
+        >
+            <i class="fa fa-lg fa-bell" role="img" aria-label="Notifications"/>
+            <span t-if="counter" class="o-mail-MessagingMenu-counter badge rounded-pill"><t t-esc="counter"/></span>
+        </button>
+    </div>
 </t>
 
 </templates>

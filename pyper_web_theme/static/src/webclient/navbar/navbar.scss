@@ -1,6 +1,8 @@
 // Fix menu brand color
 .o_menu_brand {
-    &:hover {
+    &:hover,
+    &:focus,
+    &.focus {
         color: inherit !important;
     }
 }
@@ -20,6 +22,59 @@
                     color: inherit !important;
                 }
             }
+        }
+    }
+
+    // Keep same style of the Discuss system tray buttons
+    .o_user_menu,
+    .o_debug_manager {
+        margin-top: - $o-navbar-padding-v; // cancel navbar padding
+        margin-bottom: - $o-navbar-padding-v; // cancel navbar padding
+
+        display: flex !important;
+        align-items: center;
+        padding: 0;
+    }
+
+    .o_menu_systray {
+        .dropdown-toggle {
+            margin-left: $o-navbar-system-tray-entry-margin-h;
+            margin-right: $o-navbar-system-tray-entry-margin-h;
+
+            &:hover,
+            &:focus,
+            &.focus {
+                color: $o-navbar-system-tray-entry-color--hover !important;
+            }
+        }
+
+        > .dropdown,
+        > .dropdown-item {
+            &:hover,
+            &:focus,
+            &.show {
+                background-color: $o-navbar-system-tray-entry-bg--hover;
+
+                &,
+                .dropdown-toggle {
+                    color: $o-navbar-system-tray-entry-color--hover;
+                }
+            }
+
+            &:active {
+                background-color: $o-navbar-system-tray-entry-bg--active;
+
+                &,
+                .dropdown-toggle {
+                    color: $o-navbar-system-tray-entry-color--active;
+                }
+            }
+        }
+
+        .badge {
+            position: absolute;
+            top: 0;
+            right: -$o-navbar-badge-padding;
         }
     }
 }

@@ -2,15 +2,10 @@
 
 import {Component, useState} from '@odoo/owl';
 import {registry} from '@web/core/registry';
-import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {useService} from '@web/core/utils/hooks';
 
 export class NotificationMenu extends Component {
     static template = 'pyper_discuss.NotificationMenu';
-
-    static components = {
-        DropdownItem,
-    };
 
     static props = [];
 

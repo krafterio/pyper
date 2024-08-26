@@ -20,6 +20,12 @@ $o-navbar-entry-color--hover: $o-white !default;
 $o-navbar-entry-bg--active: $o-navbar-entry-bg--hover !default;
 $o-navbar-entry-color--active: $o-navbar-entry-color--hover !default;
 
+$o-navbar-system-tray-entry-margin-h: $o-navbar-entry-padding-h / 2 !default;
+$o-navbar-system-tray-entry-color--hover: $o-gray-400 !default;
+$o-navbar-system-tray-entry-bg--hover: transparent !default;
+$o-navbar-system-tray-entry-color--active: $o-navbar-system-tray-entry-color--hover !default;
+$o-navbar-system-tray-entry-bg--active: $o-navbar-system-tray-entry-bg--hover !default;
+
 $o-navbar-dropdown-menu-border-top: 1px solid $o-border-color !default;
 $o-navbar-dropdown-menu-border-radius: $o-border-radius !default;
 

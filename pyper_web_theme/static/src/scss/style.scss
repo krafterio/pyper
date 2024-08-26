@@ -52,16 +52,6 @@ small,
     }
 }
 
-.o_main_navbar {
-    .o_menu_systray {
-        button.dropdown-toggle:hover,
-        button.dropdown-toggle:focus,
-        button.dropdown-toggle:active {
-            color:$o-gray-400;
-        }
-    }
-}
-
 .toggle-panel {
     border-radius:0.25rem;
 

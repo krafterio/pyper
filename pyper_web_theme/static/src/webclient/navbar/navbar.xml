@@ -8,7 +8,7 @@
 
     <t t-name="pyper_web_theme.DebugMenu" t-inherit="web.DebugMenu" t-inherit-mode="extension">
          <xpath expr="//i[hasclass('fa-bug')]" position="attributes">
-            <attribute name="class" add="ph ph-bug nav-bar-icon mx-2" separator=" " remove="fa fa-bug"/>
+            <attribute name="class" add="ph ph-bug nav-bar-icon" separator=" " remove="fa fa-bug"/>
         </xpath>
     </t>
 
@@ -19,13 +19,9 @@
     </t>
 
     <t t-name="pyper_web_theme.SearchMenu" t-inherit="pyper_command_search.SearchMenu" t-inherit-mode="extension">
-        <xpath expr="//div[1]" position="attributes">
-            <attribute name="class" add="pt-1" separator=" "/>
-        </xpath>
-
         <xpath expr="//i[hasclass('fa-search')]" position="attributes">
             <attribute name="class" separator=" " remove="fa fa-lg fa-search"
-                       add="ph ph-magnifying-glass nav-bar-icon mx-1"/>
+                       add="ph ph-magnifying-glass nav-bar-icon"/>
         </xpath>
     </t>
 
