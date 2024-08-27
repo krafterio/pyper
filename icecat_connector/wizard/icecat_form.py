@@ -135,8 +135,10 @@ class IcecatForm(models.TransientModel):
 
                 product.product_manufacturer_id = manufacturer
 
+		image_url = False
         if product_image['HighPic']:
-            product.image_1920 = base64.b64encode(requests.get(product_image['HighPic']).content)
+			image_url = product_image['HighPic']
+			product.image_1920 = base64.b64encode(requests.get(product_image['HighPic']).content)
 
         # Datas that need to be filled by lang
         for lang in language_ids:
@@ -157,12 +159,12 @@ class IcecatForm(models.TransientModel):
                     if feature['Feature']['ID'] == "94":
                         product.weight = float(feature['RawValue']) / 1000
 
-        return product
+        return product, image_url
 
     def action_icecat_api_call(self):
         self.ensure_one()
 
-        product_id = self.upsert_product(self.ean_upc, self.language_ids, self.detailed_type, self.categ_id)
+        product_id, image_url = self.upsert_product(self.ean_upc, self.language_ids, self.detailed_type, self.categ_id)
 
         return {
             'type': 'ir.actions.act_window',
@@ -170,6 +172,6 @@ class IcecatForm(models.TransientModel):
             'res_model': 'product.template',
             'view_mode': 'form',
             'res_id': product_id.id,
-            'target': 'current',
+			'image_url': image_url,
+			'target': 'current',
         }
-
