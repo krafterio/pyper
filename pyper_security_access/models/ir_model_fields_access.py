@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 from odoo import api, fields, models
-from odoo.tools import ormcache
+from odoo.tools import ormcache, frozendict
 
 
 class IrModelFieldsAccess(models.Model):
@@ -22,6 +22,18 @@ class IrModelFieldsAccess(models.Model):
         'Field',
         ondelete='cascade',
         required=True,
+    )
+
+    model_name = fields.Char(
+        string='Model name',
+        related='model_id.model',
+        store=True,
+    )
+
+    field_name = fields.Char(
+        string='Field name',
+        related='field_id.name',
+        store=True,
     )
 
     group_id = fields.Many2one(
@@ -82,56 +94,59 @@ class IrModelFieldsAccess(models.Model):
             if not rec.perm_read and rec.perm_write:
                 rec.perm_write = False
 
-    @ormcache('frozenset(self.env.user.groups_id.ids)', 'tuple(model_field_names)')
-    def get_access_rights(self, model_field_names):
-        """
-        :param model_field_names: The list of tuple defining model name and field name
-        """
-        model_names = []
-        field_names = []
+    def check_field_access_right(self, model: str, field: str, operation: str) -> bool:
+        if operation not in ['read', 'write']:
+            return False
 
-        for model_field_name in model_field_names:
-            if model_field_name[0] not in model_names:
-                model_names.append(model_field_name[0])
+        return self.get_field_access_rights(model, field).get(operation, True)
 
-            if model_field_name[1] not in field_names:
-                field_names.append(model_field_name[1])
+    def get_field_access_rights(self, model: str, field: str) -> dict:
+        return self.get_access_rights().get(model, {}).get(field, frozendict(build_access_right_item()))
 
-        access_rights = self.env['ir.model.fields.access'].sudo().search([
-            ('model_id.model', 'in', model_names),
-            ('field_id.name', 'in', field_names),
-            ('group_id', 'in', self.env.user.groups_id.ids)
-        ])
-
+    @ormcache('frozenset(self.env.user.groups_id.ids)')
+    def get_access_rights(self):
+        domain = [('group_id', 'in', self.env.user.groups_id.ids)]
+        field_names = ['model_name', 'field_name', 'perm_read', 'perm_write', 'perm_invisible']
+        access_rights = self.env['ir.model.fields.access'].sudo().search_read(domain, field_names)
         map_access_rights = {}
+
         for access_right in access_rights:
-            key = access_right.model_id.model + ':' + access_right.field_id.name
-            map_access_rights[key] = self._merge_access_rights(
-                self._build_access_right_map(access_right),
-                map_access_rights.get(key, None)
+            model_name = access_right.get('model_name')
+            field_name = access_right.get('field_name')
+
+            if model_name not in map_access_rights:
+                map_access_rights[model_name] = {}
+
+            map_access_rights[model_name][field_name] = merge_access_rights(
+                build_access_right_map(access_right),
+                map_access_rights[model_name].get(field_name, None),
             )
 
-        return map_access_rights
+        return frozendict(map_access_rights)
 
-    @staticmethod
-    def _build_access_right_map(record):
-        return {
-            'perm_read': record.perm_read,
-            'perm_write': record.perm_write,
-            'perm_invisible': record.perm_invisible,
-        }
 
-    @staticmethod
-    def _merge_access_rights(new_access, previous_access):
-        if previous_access is None:
-            return new_access
+def build_access_right_map(record):
+    return build_access_right_item(
+        read=record.get('perm_read', False),
+        write=record.get('perm_write', False),
+    )
 
-        if new_access.get('perm_read', False):
-            previous_access.update({'perm_read': True})
 
-        if new_access.get('perm_write', False):
-            previous_access.update({'perm_read': True, 'perm_write': True})
+def merge_access_rights(new_access, previous_access):
+    if previous_access is None:
+        return new_access
 
-        previous_access.update({'perm_invisible': not previous_access.get('perm_read', False)})
+    if new_access.get('read', False):
+        previous_access.update({'read': True})
 
-        return previous_access
+    if new_access.get('write', False):
+        previous_access.update({'read': True, 'write': True})
+
+    return previous_access
+
+
+def build_access_right_item(read: bool = True, write: bool = True):
+    return {
+        'read': read,
+        'write': write,
+    }
