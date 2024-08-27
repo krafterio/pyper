@@ -230,7 +230,7 @@ class PiloterrMixin(models.AbstractModel):
                             Retry the action and check the detailed error message in the response body
                             for more insights.""")
             else:
-                message(f'HTTP Error: {http_err}')
+                message = (f'HTTP Error: {http_err}')
             _logger.error(message)
             raise UserError(message)
         except requests.exceptions.RequestException as req_err:

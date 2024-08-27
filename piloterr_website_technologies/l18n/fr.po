@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* piloterr_website_technologies
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-02 14:59+0000\n"
+"PO-Revision-Date: 2024-09-02 14:59+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: piloterr_website_technologies
+#: model_terms:ir.ui.view,arch_db:piloterr_website_technologies.res_partner_view_form
+msgid ""
+"<span class=\"o_stat_text\">Import</span>\n"
+"                        <span class=\"o_stat_text\">technologies</span>"
+msgstr ""
+"<span class=\"o_stat_text\">Importer les</span>\n"
+"                        <span class=\"o_stat_text\">technologies</span>"
+
+#. module: piloterr_website_technologies
+#: model_terms:ir.ui.view,arch_db:piloterr_website_technologies.res_partner_view_tree
+msgid "Import technologies"
+msgstr "Importer les technologies"
+
+#. module: piloterr_website_technologies
+#. odoo-python
+#: code:addons/piloterr_website_technologies/models/piloterr_website_technologies.py:0
+#: code:addons/pyper/piloterr_website_technologies/models/piloterr_website_technologies.py:0
+#, python-format
+msgid "You have to give a website to complete operation."
+msgstr "Vous devez fournir un site web pour compléter l'opération."
