@@ -17,6 +17,7 @@
         'website',
     ],
     'data': [
+        'views/s_three_column_article.xml',
         'views/snippets.xml',
     ],
     'assets': {
