@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_view_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="after">
+                <div
+                    class="alert bg-info text-white d-flex align-items-center"
+                    invisible="is_spam_protected == False"
+                >
+                    <i title="Information" class="fa fa-info-circle me-3" style="font-size:32px"></i>
+                    <div>
+                        <span class="d-block">This partner has an anti-spam configured.</span>
+                    </div>
+                </div>
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    class="btn btn-secondary p-1"
+                    type="object"
+                    name="check_spam_protection"
+                    icon="fa-shield me-2"
+                >
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Check Spam<br/>Protection</span>
+                    </div>
+                </button>
+            </xpath>
+
+            <xpath expr="//field[@name='email']" position="after">
+                <field name="is_spam_protected" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_partner_view_tree" model="ir.ui.view">
+        <field name="name">res.partner.tree.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='display_name']" position="before">
+                <header>
+                    <button
+                        type="object"
+                        name="check_multiple_contacts_spam_protection"
+                        string="Check Spam Protection"
+                    />
+                </header>
+            </xpath>
+        </field>
+    </record>
+</odoo>
