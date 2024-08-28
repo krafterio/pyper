@@ -45,6 +45,16 @@ class IrUiView(models.Model):
 
         return parent_model
 
+    def _render_template(self, template, values=None):
+        values.update({
+            'is_granted': self._is_granted,
+        })
+
+        return super()._render_template(template, values)
+
+    def _is_granted(self, model: str, field: str, operation: str = 'read') -> bool:
+        return self.env['ir.model.fields.access'].check_field_access_right(model, field, operation)
+
 
 def get_parent_fields(node):
     parents = []
