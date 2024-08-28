@@ -98,6 +98,9 @@ class IrModelFieldsAccess(models.Model):
         if operation not in ['read', 'write']:
             return False
 
+        if self.env.su:
+            return True
+
         return self.get_field_access_rights(model, field).get(operation, True)
 
     def get_field_access_rights(self, model: str, field: str) -> dict:

@@ -4,10 +4,16 @@
 from odoo import models
 
 
-class Model(models.AbstractModel):
+class IrUiView(models.Model):
     _inherit = 'ir.ui.view'
 
     def _postprocess_access_rights(self, tree):
+        if not self.env.su:
+            self._postprocess_access_rights_fields(tree)
+
+        return super()._postprocess_access_rights(tree)
+
+    def _postprocess_access_rights_fields(self, tree):
         access_right = self.env['ir.model.fields.access']
 
         for field_node in tree.xpath('//field'):
@@ -22,8 +28,6 @@ class Model(models.AbstractModel):
 
             elif not config.get('write'):
                 field_node.set('readonly', 'True')
-
-        return super()._postprocess_access_rights(tree)
 
     def _get_model_name(self, field_node):
         parent_model = field_node.getroottree().getroot().get('model_access_rights')
