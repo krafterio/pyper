@@ -101,6 +101,28 @@ class IrModelFieldsAccess(models.Model):
         if self.env.su:
             return True
 
+        if '.' in field:
+            sub_fields = field.split('.')
+            sf_size = len(sub_fields) - 1
+            model_fields_info = self.env[model].fields_get()
+
+            for sf_idx, sub_field in enumerate(sub_fields):
+                if sub_field not in model_fields_info:
+                    return False
+
+                sub_field_info = model_fields_info[sub_field]
+                sub_field_type = sub_field_info['type']
+
+                # Replace the field by the last sub field and model by the last related model
+                field = sub_field
+
+                if sub_field_type in ['many2one', 'one2many', 'many2many']:
+                    model = sub_field_info['relation']
+
+                # Check if current user has access right on intermediate relations
+                if sf_idx < sf_size and not self.get_field_access_rights(model, field).get(operation, True):
+                    return False
+
         return self.get_field_access_rights(model, field).get(operation, True)
 
     def get_field_access_rights(self, model: str, field: str) -> dict:
