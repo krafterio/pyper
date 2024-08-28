@@ -17,6 +17,7 @@
         'website',
     ],
     'data': [
+        'views/s_feature_grid_with_links.xml',
         'views/snippets.xml',
     ],
     'assets': {
