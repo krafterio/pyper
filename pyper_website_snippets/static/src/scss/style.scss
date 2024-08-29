@@ -5,3 +5,9 @@
 .fa.rounded-circle{
     min-width: 3rem;
 }
+
+.s_tab_references .nav-item .nav-link.active {
+    background-color: transparent;
+    border-radius: 0%;
+    border-bottom: 0.25rem solid var(--primary);
+}

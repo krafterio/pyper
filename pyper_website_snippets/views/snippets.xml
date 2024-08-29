@@ -621,11 +621,16 @@
                         <keywords>kpi, text, title, number</keywords>
                     </t>
 
-                    <!-- TODO: get or create specific thumbnail-->
                     <t t-snippet="pyper_website_snippets.top_app_banner"
                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_app_banner.svg">
                         <keywords>app, banner</keywords>
                     </t>
+
+                    <t t-snippet="pyper_website_snippets.tab_references"
+                        t-thumbnail="/website/static/src/img/snippets_thumbs/s_tabs.svg">
+                        <keywords>tab, reference, customer, quote, image, testimonials</keywords>
+                    </t>
+                    
 
                 </div>
             </div>

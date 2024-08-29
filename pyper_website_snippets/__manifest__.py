@@ -17,6 +17,7 @@
         'website',
     ],
     'data': [
+        'views/s_tab_references.xml',
         'views/snippets.xml',
     ],
     'assets': {
