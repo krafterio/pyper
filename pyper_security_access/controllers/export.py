@@ -5,11 +5,12 @@ import json
 import operator
 from odoo.addons.web.controllers.export import Export, ExcelExport, CSVExport
 from odoo.http import request
+from ..models.models import CONTEXT_CHECK_FIELD_ACCESS_RIGHTS
 
 
 class AccessExport(Export):
     def fields_get(self, model):
-        request.update_context(check_field_access_rights=not request.env.su)
+        request.update_context(**{CONTEXT_CHECK_FIELD_ACCESS_RIGHTS: not request.env.su})
         return super().fields_get(model)
 
 

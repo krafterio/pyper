@@ -6,6 +6,9 @@ from typing import List, Dict
 from odoo import api, models
 
 
+CONTEXT_CHECK_FIELD_ACCESS_RIGHTS = 'check_field_access_rights'
+
+
 class SecuredBase(models.AbstractModel):
     """
     Secure field access rights on all models only in the "check_field_access_rights" context key is True.
@@ -24,6 +27,12 @@ class SecuredBase(models.AbstractModel):
       - Model.modified()
     """
     _inherit = 'base'
+
+    def with_field_access_rights(self):
+        return self.with_context(**{CONTEXT_CHECK_FIELD_ACCESS_RIGHTS: True}) if not self.env.su else self
+
+    def has_check_field_access_rights(self):
+        return not self.env.su and self.env.context.get(CONTEXT_CHECK_FIELD_ACCESS_RIGHTS)
 
     @api.model
     def default_get(self, fields_list):
@@ -60,7 +69,7 @@ class SecuredBase(models.AbstractModel):
     def search_panel_select_range(self, field_name, **kwargs):
         res = super().search_panel_select_range(field_name, **kwargs)
 
-        if not self.env.su and self.env.context.get('check_field_access_rights'):
+        if self.has_check_field_access_rights():
             check_right = self.env['ir.model.fields.access'].check_field_access_right
 
             if not check_right(self._name, field_name, 'read'):
@@ -72,7 +81,7 @@ class SecuredBase(models.AbstractModel):
     def search_panel_select_multi_range(self, field_name, **kwargs):
         res = super().search_panel_select_multi_range(field_name, **kwargs)
 
-        if not self.env.su and self.env.context.get('check_field_access_rights'):
+        if self.has_check_field_access_rights():
             check_right = self.env['ir.model.fields.access'].check_field_access_right
 
             if not check_right(self._name, field_name, 'read'):
@@ -84,7 +93,7 @@ class SecuredBase(models.AbstractModel):
     def fields_get(self, allfields=None, attributes=None):
         res = super().fields_get(allfields, attributes)
 
-        if not self.env.su and self.env.context.get('check_field_access_rights'):
+        if self.has_check_field_access_rights():
             check_right = self.env['ir.model.fields.access'].check_field_access_right
             field_names = list(res.keys())
 
@@ -99,7 +108,7 @@ class SecuredBase(models.AbstractModel):
         return super().fetch(field_names)
 
     def export_data(self, fields_to_export):
-        if not self.env.su and self.env.context.get('check_field_access_rights'):
+        if self.has_check_field_access_rights():
             check_right = self.env['ir.model.fields.access'].check_field_access_right
             fields_to_export = [f for f in fields_to_export if check_right(self._name, f.replace('/', '.'), 'read')]
 
@@ -122,7 +131,7 @@ class SecuredBase(models.AbstractModel):
 
 
 def check_access_right_field_names(self, fields):
-    if not self.env.su and self.env.context.get('check_field_access_rights'):
+    if self.has_check_field_access_rights():
         check_right = self.env['ir.model.fields.access'].check_field_access_right
         fields = [f for f in fields if check_right(self._name, f, 'read')]
 
@@ -130,7 +139,7 @@ def check_access_right_field_names(self, fields):
 
 
 def check_access_right_field_specifications(self, specification):
-    if not self.env.su and self.env.context.get('check_field_access_rights'):
+    if self.has_check_field_access_rights():
         check_right = self.env['ir.model.fields.access'].check_field_access_right
         field_names = list(specification.keys())
 
@@ -142,7 +151,7 @@ def check_access_right_field_specifications(self, specification):
 
 
 def check_access_right_groupby(self, groupby):
-    if not self.env.su and self.env.context.get('check_field_access_rights'):
+    if self.has_check_field_access_rights():
         check_right = self.env['ir.model.fields.access'].check_field_access_right
         groupby = [groupby] if isinstance(groupby, str) else groupby
         groupby = [f for f in groupby if check_right(self._name, f, 'read')]

@@ -5,7 +5,7 @@ import inspect
 
 from odoo.addons.web.controllers.dataset import DataSet
 from odoo.http import request
-from ..models.models import SecuredBase
+from ..models.models import SecuredBase, CONTEXT_CHECK_FIELD_ACCESS_RIGHTS
 
 
 def get_public_methods(cls):
@@ -27,7 +27,7 @@ class AccessDataSet(DataSet):
         """
         if method in SECURED_METHODS:
             context = kwargs.get('context', {})
-            context.update({'check_field_access_rights': not request.env.su})
+            context.update({CONTEXT_CHECK_FIELD_ACCESS_RIGHTS: not request.env.su})
             kwargs.update({'context': context})
 
         return super()._call_kw(model, method, args, kwargs)
