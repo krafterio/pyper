@@ -72,6 +72,15 @@ class ResUsers(models.Model):
 
         return res
 
+    def action_show_groups(self):
+        action = super().action_show_groups()
+        tree_view_id = self.env.ref('pyper_security_role.view_groups_tree').id
+        action['views'] = [(tree_view_id, 'tree')] + [
+            view for view in action.get('views', []) if view[1] != 'tree'
+        ]
+
+        return action
+
     def action_confirm_reset_security_groups(self):
         raise RedirectWarning(
             _('Are you sure you want to reset access rights with only access rights defined in roles?'),
