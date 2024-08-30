@@ -64,6 +64,19 @@ class ResUsers(models.Model):
 
         self._compute_role_id()
 
+    @api.onchange('role_id')
+    def _onchange_role_id(self):
+        for user in self:
+            new_role_ids = [r.id for r in user.role_ids.filtered(lambda r: val_id(r) != val_id(user.role_id))]
+            new_role_cmds = [Command.unlink(rid) for rid in new_role_ids]
+
+            # Add new role in roles if defined
+            if user.role_id and val_id(user.role_id) not in new_role_ids:
+                new_role_cmds.append(Command.link(user.role_id.id))
+
+            if new_role_cmds:
+                user.role_ids = new_role_cmds
+
     def action_confirm_reset_security_groups(self):
         raise RedirectWarning(
             _('Are you sure you want to reset access rights with only access rights defined in roles?'),
@@ -84,3 +97,7 @@ class ResUsers(models.Model):
             'type': 'ir.actions.client',
             'tag': 'soft_reload',
         }
+
+
+def val_id(r):
+    return r.id.origin if isinstance(r.id, models.NewId) else r.id
