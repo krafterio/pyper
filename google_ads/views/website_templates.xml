@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="layout" name="Main layout" inherit_id="portal.frontend_layout">
+        <xpath expr="//head" position="inside">
+            <t t-if="website and website.google_ads_id">
+
+                <script async="async" t-att-src="'https://www.googletagmanager.com/gtag/js?id=' + website.google_ads_id"></script>
+                <script>
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '&lt;t t-esc="website.google_ads_id"/>');
+                </script>
+            </t>
+        </xpath>
+    </template>
+</odoo>
