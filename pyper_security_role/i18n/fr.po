@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20240525\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-26 18:26+0000\n"
-"PO-Revision-Date: 2024-08-26 18:26+0000\n"
+"POT-Creation-Date: 2024-08-30 15:23+0000\n"
+"PO-Revision-Date: 2024-08-30 15:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -60,6 +60,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:pyper_security_role.field_res_users__role_ids
 msgid "Extra roles"
 msgstr "Rôles supplémentaires"
+
+#. module: pyper_security_role
+#: model:ir.model.fields,field_description:pyper_security_role.field_res_users__has_custom_groups
+msgid "Has custom access rights?"
+msgstr "A des droits d’accès personnalisés ?"
 
 #. module: pyper_security_role
 #: model:ir.model.fields,help:pyper_security_role.field_res_users__role_ids
@@ -117,6 +122,11 @@ msgstr "Gestion des rôles"
 #: model:ir.module.category,name:pyper_security_role.module_security_root
 msgid "Security"
 msgstr "Sécurité"
+
+#. module: pyper_security_role
+#: model_terms:ir.ui.view,arch_db:pyper_security_role.view_users_form
+msgid "See custom access rights"
+msgstr "Voir les droits d’accès personnalisés"
 
 #. module: pyper_security_role
 #: model:ir.model,name:pyper_security_role.model_res_users

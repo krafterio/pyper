@@ -29,6 +29,12 @@ class ResUsers(models.Model):
         help='Include the main role and allow to define other roles for this user',
     )
 
+    has_custom_groups = fields.Boolean(
+        'Has custom access rights?',
+        compute='_compute_has_custom_groups',
+        store=True,
+    )
+
     @api.depends('groups_id', 'groups_id.implied_ids', 'role_ids')
     def _compute_role_id(self):
         for user in self:
@@ -49,6 +55,11 @@ class ResUsers(models.Model):
             user.groups_id -= existing_groups.filtered(lambda g: g.is_role) - user.role_ids
 
         self._compute_role_id()
+
+    @api.depends('groups_id', 'groups_id.implied_ids', 'role_ids')
+    def _compute_has_custom_groups(self):
+        for user in self:
+            user.has_custom_groups = len(get_custom_groups(user)) > 0
 
     @api.onchange('role_id')
     def _onchange_role_id(self):
@@ -81,6 +92,15 @@ class ResUsers(models.Model):
 
         return action
 
+    def action_show_custom_groups(self):
+        action = self.action_show_groups()
+        action.update({
+            'domain': [('id', 'in', get_custom_groups(self).ids)],
+            'target': 'new',
+        })
+
+        return action
+
     def action_confirm_reset_security_groups(self):
         raise RedirectWarning(
             _('Are you sure you want to reset access rights with only access rights defined in roles?'),
@@ -110,3 +130,15 @@ class ResUsers(models.Model):
 
 def val_id(r):
     return r.id.origin if isinstance(r.id, models.NewId) else r.id
+
+
+def get_custom_groups(user):
+    user_type = user.env.ref('base.module_category_user_type')
+    user_type_group = user.groups_id.filtered(lambda g: g.category_id == user_type)
+
+    roles_groups = user.role_ids + user.role_ids.trans_implied_ids
+    user_groups = user.groups_id + user.groups_id.trans_implied_ids
+    user_groups -= user_type_group
+    user_groups -= user_type_group.trans_implied_ids
+
+    return user_groups - roles_groups
