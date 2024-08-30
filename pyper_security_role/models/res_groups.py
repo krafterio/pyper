@@ -14,13 +14,13 @@ class ResGroups(models.Model):
         store=True,
     )
 
-    @api.depends('category_id.name', 'name', 'is_role')
-    def _compute_full_name(self):
-        super()._compute_full_name()
+    def _compute_display_name(self):
+        super()._compute_display_name()
 
-        for group in self:
-            if group.is_role:
-                group.full_name = group.name
+        if self.env.context.get('display_role_name'):
+            for group in self:
+                if group.is_role:
+                    group.display_name = group.name
 
     @api.depends('category_id', 'category_id.is_role')
     def _compute_is_role(self):
