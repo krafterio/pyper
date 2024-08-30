@@ -94,8 +94,13 @@ class ResUsers(models.Model):
 
         for user in self:
             kept_groups = user.groups_id.filtered(lambda g: g.is_role or g.category_id.id == user_type_id)
-            user.groups_id = [Command.clear()]
-            user.groups_id |= kept_groups
+            implied_kept_groups = kept_groups
+
+            for kept_group in kept_groups:
+                implied_kept_groups |= kept_group.trans_implied_ids
+
+            remove_groups = user.groups_id - implied_kept_groups
+            user.groups_id = remove_groups.mapped(lambda g: Command.unlink(val_id(g)))
 
         return {
             'type': 'ir.actions.client',
