@@ -63,6 +63,15 @@ class ResUsers(models.Model):
             if new_role_cmds:
                 user.role_ids = new_role_cmds
 
+    def write(self, vals):
+        res = super().write(vals)
+
+        # Reset user security groups when main role is updated
+        if 'role_id' in vals:
+            self.reset_security_groups()
+
+        return res
+
     def action_confirm_reset_security_groups(self):
         raise RedirectWarning(
             _('Are you sure you want to reset access rights with only access rights defined in roles?'),
