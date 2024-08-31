@@ -74,7 +74,6 @@ export class AddToDashboard extends Component {
         return this.state.boards;
     }
 
-
     get selectedBoard() {
         return this.state.selectedBoard;
     }
@@ -151,8 +150,12 @@ export class AddToDashboard extends Component {
 export const addToDashboardItem = {
     Component: AddToDashboard,
     groupNumber: 20,
-    isDisplayed: ({config}) => {
-        const {actionType, actionId, viewType} = config;
+    isDisplayed: async (env) => {
+        if (!await env.services.user.hasGroup('pyper_dashboard.group_dashboard_user')) {
+            return false;
+        }
+
+        const {actionType, actionId, viewType} = env.config;
 
         return actionType === 'ir.actions.act_window' && actionId && viewType !== 'form';
     },
