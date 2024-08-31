@@ -18,13 +18,13 @@
         <div class="pyper_dashboard--header">
             <div>
                 <h2 t-if="dashboard.title" t-out="dashboard.title"/>
-                <h2 t-else="">Dashboard</h2>
+                <h2 t-else="" t-out="selectedBoard?.name"/>
             </div>
 
-            <div class="flex-grow-1 ps-4" t-if="dashboard.useSwitcher and boards.length > 1">
-                <Dropdown showCaret="true" togglerClass="'btn btn-secondary p-2'">
+            <div class="flex-grow-1 ps-2" t-if="dashboard.useSwitcher and boards.length > 1">
+                <Dropdown togglerClass="'btn btn-outline-default px-2 py-1'">
                     <t t-set-slot="toggler">
-                        <t t-out="selectedBoard?.name"/>
+                        <i class="fa fa-fw fa-chevron-down" aria-label="Dashboard switcher" role="img" title="Dashboard switcher"/>
                     </t>
 
                     <t t-foreach="boards" t-as="board" t-key="board.id">
