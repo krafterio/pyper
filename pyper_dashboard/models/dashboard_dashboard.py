@@ -3,6 +3,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.osv import expression
 
 
 class DashboardBoardItem(models.Model):
@@ -29,6 +30,24 @@ class DashboardBoardItem(models.Model):
         translate=True,
     )
 
+    full_name = fields.Char(
+        string='Dashboard Name',
+        compute='_compute_full_name',
+        search='_search_full_name',
+    )
+
+    category_id = fields.Many2one(
+        'dashboard.category',
+        string='Category',
+        index=True,
+    )
+
+    category_sequence = fields.Integer(
+        string='Category sequence',
+        related='category_id.sequence',
+        store=True,
+    )
+
     group_ids = fields.Many2many(
         'res.groups',
     )
@@ -53,6 +72,51 @@ class DashboardBoardItem(models.Model):
         compute='_compute_arch',
         inverse='_inverse_arch',
     )
+
+    @api.depends('category_id.name', 'name')
+    def _compute_full_name(self):
+        # Important: value must be stored in environment of board, not board1!
+        for board, board1 in zip(self, self.sudo()):
+            if board1.category_id:
+                board.full_name = '%s / %s' % (board1.category_id.name, board1.name)
+            else:
+                board.full_name = board1.name
+
+    def _search_full_name(self, operator, operand):
+        lst = True
+
+        if isinstance(operand, bool):
+            return [[('name', operator, operand)]]
+
+        if isinstance(operand, str):
+            lst = False
+            operand = [operand]
+
+        where = []
+
+        for group in operand:
+            values = [v for v in group.split('/') if v]
+            group_name = values.pop().strip()
+            category_name = values and '/'.join(values).strip() or group_name
+            group_domain = [('name', operator, lst and [group_name] or group_name)]
+            category_ids = self.env['dashboard.category'].sudo()._search(
+                [('name', operator, [category_name] if lst else category_name)])
+            category_domain = [('category_id', 'in', category_ids)]
+
+            if operator in expression.NEGATIVE_TERM_OPERATORS and not values:
+                category_domain = expression.OR([category_domain, [('category_id', '=', False)]])
+
+            if (operator in expression.NEGATIVE_TERM_OPERATORS) == (not values):
+                sub_where = expression.AND([group_domain, category_domain])
+            else:
+                sub_where = expression.OR([group_domain, category_domain])
+
+            if operator in expression.NEGATIVE_TERM_OPERATORS:
+                where = expression.AND([where, sub_where])
+            else:
+                where = expression.OR([where, sub_where])
+
+        return where
 
     @api.depends('view_id')
     def _compute_is_editable(self):

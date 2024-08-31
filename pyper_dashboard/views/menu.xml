@@ -34,4 +34,12 @@
         sequence="10"
         parent="menu_dashboard_settings"
     />
+
+    <menuitem
+        id="menu_dashboard_settings_category"
+        name="Categories"
+        action="action_dashboard_category_list"
+        sequence="20"
+        parent="menu_dashboard_settings"
+    />
 </odoo>

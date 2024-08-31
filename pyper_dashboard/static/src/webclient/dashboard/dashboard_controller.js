@@ -49,7 +49,21 @@ export class DashboardController extends Component {
             Object.assign(this.dashboard, new DashboardArchParser().parse(arch, info.customViewId));
 
             if (this.dashboard.useSwitcher) {
-                const boards = await this.orm.searchRead('dashboard.dashboard', [], ['id', 'name', 'arch', 'is_editable']);
+                const boards = await this.orm.searchRead('dashboard.dashboard', [], ['id', 'name', 'category_id', 'full_name', 'arch', 'is_editable'], {
+                    'order': 'category_sequence asc, sequence asc',
+                });
+                boards.sort((a, b) => {
+                    if (a.category_id === false && b.category_id !== false) {
+                        return 1;
+                    }
+
+                    if (a.category_id !== false && b.category_id === false) {
+                        return -1;
+                    }
+
+                    return 0;
+                });
+
                 this.state.boards.length = 0;
                 this.state.boards.push(...boards);
                 this.selectBoard(this.router?.current?.hash?.board || null);
@@ -93,6 +107,34 @@ export class DashboardController extends Component {
         return this.optionsItems.filter((item) => {
             return item.isShown && item.isShown();
         });
+    }
+
+    get categoryBoards() {
+        const categories = {}
+
+        this.boards.forEach(board => {
+            const [categoryId, categoryName] = board.category_id ? board.category_id : [0, undefined];
+
+            if (!categories[categoryId]) {
+                categories[categoryId] = {
+                    id: categoryId,
+                    name: categoryName,
+                    boards: [],
+                };
+            }
+
+            categories[categoryId].boards.push(board);
+        });
+
+        const emptyCategory = categories[0] ? categories[0] : undefined;
+        delete categories[0];
+        const values = Object.values(categories);
+
+        if (emptyCategory) {
+            values.push(emptyCategory);
+        }
+
+        return values;
     }
 
     selectBoard(value) {

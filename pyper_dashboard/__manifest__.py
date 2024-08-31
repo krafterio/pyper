@@ -25,6 +25,7 @@
         'security/ir.model.access.csv',
 
         # Views
+        'views/dashboard_category_views.xml',
         'views/dashboard_dashboard_views.xml',
         'views/menu.xml',
     ],

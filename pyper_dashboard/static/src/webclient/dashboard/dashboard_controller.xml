@@ -18,7 +18,7 @@
         <div class="pyper_dashboard--header">
             <div>
                 <h2 t-if="dashboard.title" t-out="dashboard.title"/>
-                <h2 t-else="" t-out="selectedBoard?.name"/>
+                <h2 t-else="" t-out="selectedBoard?.full_name"/>
             </div>
 
             <div class="flex-grow-1 ps-2" t-if="dashboard.useSwitcher and boards.length > 1">
@@ -27,10 +27,15 @@
                         <i class="fa fa-fw fa-chevron-down" aria-label="Dashboard switcher" role="img" title="Dashboard switcher"/>
                     </t>
 
-                    <t t-foreach="boards" t-as="board" t-key="board.id">
-                        <DropdownItem onSelected="() => this.selectBoard(board)">
-                            <t t-out="board.name"/>
-                        </DropdownItem>
+                    <t t-foreach="categoryBoards" t-as="category" t-key="category.id">
+                        <hr class="dropdown-divider"/>
+                        <div class="dropdown-header" t-out="category.name" t-if="category.name"/>
+
+                        <t t-foreach="category.boards" t-as="board" t-key="board.id">
+                            <DropdownItem onSelected="() => this.selectBoard(board)" class="'ps-4'">
+                                <t t-out="board.name"/>
+                            </DropdownItem>
+                        </t>
                     </t>
                 </Dropdown>
             </div>

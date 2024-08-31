@@ -29,7 +29,9 @@
             <tree editable="bottom">
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
+                <field name="category_id"/>
                 <field name="group_ids" widget="many2many_tags"/>
+                <field name="full_name" optional="hide"/>
                 <field name="view_id" optional="hide"/>
                 <button name="action_dashboard_debug_view" type="object" title="Settings" icon="fa-bug fa-lg" groups="base.group_no_one"/>
             </tree>

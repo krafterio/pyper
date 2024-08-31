@@ -6,6 +6,13 @@
     .o_view_nocontent {
         position: relative;
     }
+
+    .dropdown-header {
+        padding-top: 0;
+        margin-top: 0;
+        font-weight: bold;
+        color: $pyper-dashboard-dropdown-header_color;
+    }
 }
 
 .pyper_dashboard--dropdown-menu {
