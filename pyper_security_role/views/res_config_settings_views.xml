@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='user_default_rights']" position="inside">
+                <setting string="Multiple roles on users" help="Allow to set multiple roles on users" title="Enable this option to allow multiple roles to be managed on users" id="user_multi_roles">
+                    <field name="user_multi_roles"/>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -14,6 +14,7 @@
     'website': 'https://krafter.io',
     'depends': [
         'base',
+        'base_setup',
         'web',
     ],
     'data': [
@@ -24,6 +25,7 @@
         'security/res_groups.xml',
 
         # Views
+        'views/res_config_settings_views.xml',
         'views/res_groups_views.xml',
         'views/res_users_views.xml',
     ],
