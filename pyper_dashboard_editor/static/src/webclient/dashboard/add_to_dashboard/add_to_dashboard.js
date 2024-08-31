@@ -1,5 +1,6 @@
 /** @odoo-module **/
 
+import {orderDashboards} from '@pyper_dashboard/webclient/dashboard/utils';
 import {_t} from '@web/core/l10n/translation';
 import {Dropdown} from '@web/core/dropdown/dropdown';
 import {registry} from '@web/core/registry';
@@ -50,8 +51,14 @@ export class AddToDashboard extends Component {
             const boardDomain = [['is_editable', '=', true]];
 
             if (await this.user.hasGroup('pyper_dashboard.group_dashboard_admin')) {
-                const boards = await this.orm.searchRead('dashboard.dashboard', boardDomain, ['id', 'name']);
-                this.state.boards.push(...boards);
+                const boards = await this.orm.searchRead('dashboard.dashboard', boardDomain, ['id', 'full_name', 'category_id'], {
+                    'order': 'category_sequence asc, sequence asc',
+                });
+                boards.forEach(obj => {
+                    obj.name = obj['full_name'];
+                    delete obj['full_name'];
+                });
+                this.state.boards.push(...orderDashboards(boards));
             }
 
             this.state.boards.push({

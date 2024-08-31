@@ -12,6 +12,7 @@ import {DashboardAction} from './dashboard_action';
 import {DashboardArchParser} from './dashboard_arch_parser';
 import {DashboardColumn} from './dashboard_column';
 import {DashboardSection} from './dashboard_section';
+import {orderDashboards} from './utils';
 
 export class DashboardController extends Component {
     static template = 'pyper_dashboard.DashboardView';
@@ -52,20 +53,8 @@ export class DashboardController extends Component {
                 const boards = await this.orm.searchRead('dashboard.dashboard', [], ['id', 'name', 'category_id', 'full_name', 'arch', 'is_editable'], {
                     'order': 'category_sequence asc, sequence asc',
                 });
-                boards.sort((a, b) => {
-                    if (a.category_id === false && b.category_id !== false) {
-                        return 1;
-                    }
-
-                    if (a.category_id !== false && b.category_id === false) {
-                        return -1;
-                    }
-
-                    return 0;
-                });
-
                 this.state.boards.length = 0;
-                this.state.boards.push(...boards);
+                this.state.boards.push(...orderDashboards(boards));
                 this.selectBoard(this.router?.current?.hash?.board || null);
             }
 
