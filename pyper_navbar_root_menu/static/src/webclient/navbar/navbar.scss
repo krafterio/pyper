@@ -77,6 +77,8 @@
     .o_nav_entry--active {
         &.dropdown-item.o_nav_entry,
         &.o-dropdown .dropdown-toggle {
+            color: var(--NavBar-entry-color--active, #{$o-navbar-root-menu-entry-color--active});
+
              &:after {
                  background-color: $o-navbar-root-menu-entry-active-border-bottom-color;
              }
