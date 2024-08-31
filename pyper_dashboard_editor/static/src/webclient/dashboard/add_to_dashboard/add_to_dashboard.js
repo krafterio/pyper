@@ -37,6 +37,7 @@ export class AddToDashboard extends Component {
         this.notification = useService('notification');
         this.rpc = useService('rpc');
         this.orm = useService('orm');
+        this.user = useService('user');
         this.state = useState({
             name: this.env.config.getDisplayName(),
             boards: [],
@@ -47,8 +48,12 @@ export class AddToDashboard extends Component {
 
         onWillStart(async () => {
             const boardDomain = [['is_editable', '=', true]];
-            const boards = await this.orm.searchRead('dashboard.dashboard', boardDomain, ['id', 'name']);
-            this.state.boards.push(...boards);
+
+            if (await this.user.hasGroup('pyper_dashboard.group_dashboard_admin')) {
+                const boards = await this.orm.searchRead('dashboard.dashboard', boardDomain, ['id', 'name']);
+                this.state.boards.push(...boards);
+            }
+
             this.state.boards.push({
                 id: null,
                 name: _t('My dashboard'),

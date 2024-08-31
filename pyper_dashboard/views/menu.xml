@@ -6,6 +6,7 @@
         name="Dashboards"
         sequence="10"
         web_icon="pyper_dashboard,static/description/icon.png"
+        groups="pyper_dashboard.group_dashboard_user"
     />
 
     <menuitem
