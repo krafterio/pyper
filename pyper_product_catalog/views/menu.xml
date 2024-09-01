@@ -52,7 +52,6 @@
 
     <record model="ir.ui.menu" id="pyper_product_catalog.product_catalog_root">
         <field name="font_icon">ph ph-package</field>
-        <field name="font_icon_color">#374151</field>
         <field name="menu_category">global</field>
     </record>
 
