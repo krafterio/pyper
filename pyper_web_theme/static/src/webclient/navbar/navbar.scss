@@ -64,6 +64,10 @@
     .o_menu_systray {
         align-items: center;
 
+        + .o_menu_systray {
+            margin-left: $o-navbar-system-tray-entry-margin-h !important;
+        }
+
         > .dropdown:empty {
             // Hide empty dropdown to avoid double margin between 2 items
             display: none;
