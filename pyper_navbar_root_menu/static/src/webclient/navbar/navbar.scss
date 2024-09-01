@@ -20,6 +20,8 @@
     height: $o-navbar-root-menu-height;
     padding-top: $o-navbar-root-menu-padding-top;
     padding-bottom: $o-navbar-root-menu-padding-bottom;
+    padding-left: $o-navbar-root-menu-padding-h;
+    padding-right: $o-navbar-root-menu-padding-h;
     border-bottom: $o-navbar-root-menu-border-bottom solid $border-color;
     background: $o-navbar-root-background;
     font-size: $o-navbar-font-size;
@@ -49,6 +51,15 @@
         padding-bottom: $o-navbar-root-menu-entry-padding-v;
         border: none;
         border-radius: 0;
+        height: 100%; // Force the height to align toggles and items with the forced height of nav
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
 
         // Override Navbar Entry Base with custom text color
         @include o-hover-text-color(
@@ -56,35 +67,63 @@
             var(--NavBar-entry-color--hover, #{$o-navbar-root-menu-entry-color--hover})
         );
 
-        &:after {
-            height:$o-navbar-root-menu-border-bottom;
-            width: 100%;
-            left:0;
-            position:absolute;
-            content:"";
-            bottom:$o-navbar-root-menu-border-bottom-gap;
-            display:block;
-        }
+        background-color: $o-navbar-root-menu-entry-bg;
 
         &:hover,
-        &:focus {
+        &:focus,
+        &.focus {
+            background-color: $o-navbar-root-menu-entry-bg--hover;
+        }
+
+        &:after {
+            position: absolute;
+            display: block;
+            left: 0;
+            bottom: 0;
+            margin-bottom: -$o-navbar-root-menu-border-bottom;
+            width: 100%;
+            height: $o-navbar-root-menu-entry-border-bottom-width;
+            margin-left: 0;
+            border: none;
+            content: '';
+            background-color: transparent;
+        }
+    }
+
+    // Active
+    .o_nav_entry--active {
+        &.dropdown-item.o_nav_entry,
+        .dropdown-toggle {
+            font-weight: $o-navbar-root-menu-entry-font-weight--active;
+            color: var(--NavBar-entry-color--active, #{$o-navbar-root-menu-entry-color--active});
+            background-color: $o-navbar-root-menu-entry-bg--active;
+
             &:after {
-                background-color: $o-navbar-root-menu-entry-hover-border-bottom-color;
+                background-color: $o-navbar-root-menu-entry-border-bottom-color--active;
             }
         }
     }
 
-    .o_nav_entry--active {
-        &.dropdown-item.o_nav_entry,
-        &.o-dropdown .dropdown-toggle {
-            color: var(--NavBar-entry-color--active, #{$o-navbar-root-menu-entry-color--active});
+    // Hover
+    .dropdown-item.o_nav_entry,
+    .dropdown-toggle {
+        &:hover,
+        &:focus {
+            background-color: $o-navbar-root-menu-entry-bg--hover;
 
-             &:after {
-                 background-color: $o-navbar-root-menu-entry-active-border-bottom-color;
-             }
+            &:after {
+                background-color: $o-navbar-root-menu-entry-border-bottom-color--hover;
+            }
         }
     }
 
+    .show .dropdown-toggle {
+        &:after {
+            background-color: $o-navbar-root-menu-entry-border-bottom-color--hover;
+        }
+    }
+
+    // Dropdown Menu
     .dropdown-menu {
         border-top-left-radius: $o-navbar-root-menu-dropdown-menu-border-top-radius;
         border-top-right-radius: $o-navbar-root-menu-dropdown-menu-border-top-radius;

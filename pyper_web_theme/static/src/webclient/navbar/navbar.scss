@@ -25,6 +25,31 @@
         }
     }
 
+    .dropdown-item,
+    .dropdown-toggle {
+        height: $o-navbar-entry-height;
+    }
+
+    .o_menu_sections {
+        > .dropdown,
+        > .dropdown-item {
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        :active,
+        .o_nav_entry--active {
+            color: $o-navbar-entry-color--active;
+            background-color: $o-navbar-entry-bg--active;
+            font-weight: $o-navbar-entry-font-weight--active;
+        }
+    }
+
     // Keep same style of the Discuss system tray buttons
     .o_user_menu,
     .o_debug_manager {
@@ -37,36 +62,81 @@
     }
 
     .o_menu_systray {
+        align-items: center;
+
+        > .dropdown:empty {
+            // Hide empty dropdown to avoid double margin between 2 items
+            display: none;
+        }
+
         .dropdown-toggle {
-            margin-left: $o-navbar-system-tray-entry-margin-h;
-            margin-right: $o-navbar-system-tray-entry-margin-h;
+            margin: 0;
+            border: none;
+            height: 100%;
 
             &:hover,
             &:focus,
             &.focus {
                 color: $o-navbar-system-tray-entry-color--hover !important;
+                background-color: $o-navbar-system-tray-entry-bg--hover;
             }
+        }
+
+        > .dropdown-item,
+        .dropdown-toggle {
+            padding: $o-navbar-system-tray-entry-padding;
         }
 
         > .dropdown,
         > .dropdown-item {
-            &:hover,
-            &:focus,
-            &.show {
-                background-color: $o-navbar-system-tray-entry-bg--hover;
+            margin-left: $o-navbar-system-tray-entry-margin-h;
+            margin-right: $o-navbar-system-tray-entry-margin-h;
+            border-radius: $o-navbar-system-tray-entry-border-radius;
+            color: var(--NavBar-entry-color, #{$o-navbar-entry-color});
 
-                &,
-                .dropdown-toggle {
-                    color: $o-navbar-system-tray-entry-color--hover;
-                }
+            &:last-child {
+                margin-right: 0;
             }
 
+            &.active,
             &:active {
-                background-color: $o-navbar-system-tray-entry-bg--active;
+                &:before {
+                    content: '';
+                }
 
                 &,
                 .dropdown-toggle {
                     color: $o-navbar-system-tray-entry-color--active;
+                    background-color: $o-navbar-system-tray-entry-bg--active;
+                }
+            }
+
+            &:hover,
+            &:focus,
+            &.show {
+                &,
+                .dropdown-toggle {
+                    color: $o-navbar-system-tray-entry-color--hover;
+                    background-color: $o-navbar-system-tray-entry-bg--hover;
+                }
+            }
+        }
+
+        .o_user_menu {
+            .dropdown-toggle {
+                padding-left: 0;
+                padding-right: 0;
+
+                &:hover,
+                &:focus,
+                &:active,
+                &.active,
+                &[aria-expanded="true"]{
+                    .o_user_avatar {
+                        &.rounded-pill {
+                            border-radius: $o-navbar-system-tray-entry-border-radius !important;
+                        }
+                    }
                 }
             }
         }

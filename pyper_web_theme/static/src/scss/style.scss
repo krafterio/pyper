@@ -62,7 +62,13 @@ small,
 }
 
 .nav-bar-icon {
-    font-size:18px;
+    font-size: $o-navbar-entry-icon-font-size;
+
+    > span,
+    > i {
+        width: $o-navbar-entry-icon-font-size;
+        height: $o-navbar-entry-icon-font-size;
+    }
 }
 
 .o-mail-Message-tracking {

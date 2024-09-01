@@ -4,21 +4,24 @@
 $o-navbar-root-background : rgba(255, 255, 255, 1) !default;
 
 $o-navbar-root-menu-height: 47px !default;
-$o-navbar-root-menu-border-bottom: 1px !default;
-$o-navbar-root-menu-padding-top: 5px !default;
+$o-navbar-root-menu-padding-top: 0 !default;
 $o-navbar-root-menu-padding-bottom: 0 !default;
+$o-navbar-root-menu-padding-h: 0 !default;
+$o-navbar-root-menu-border-bottom: 1px !default;
 
 $o-navbar-root-menu-entry-margin-h: 0 !default;
 $o-navbar-root-menu-entry-padding-h: 10px !default;
 $o-navbar-root-menu-entry-padding-v: 10px !default;
-$o-navbar-root-menu-entry-border-bottom-width: 4px !default;
-$o-navbar-root-menu-entry-color: #18181b !default;
+$o-navbar-root-menu-entry-font-weight--active: inherit !default;
+$o-navbar-root-menu-entry-color: $o-navbar-entry-color !default;
+$o-navbar-root-menu-entry-bg: transparent !default;
 $o-navbar-root-menu-entry-color--hover: $o-gray-700 !default;
+$o-navbar-root-menu-entry-bg--hover: transparent !default;
 $o-navbar-root-menu-entry-color--active: $body-color !default;
+$o-navbar-root-menu-entry-bg--active: transparent !default;
 
-$o-navbar-root-menu-entry-hover-border-bottom-color: rgba(0, 0, 0, 0.08) !default;
-$o-navbar-root-menu-entry-active-border-bottom-color: $o-brand-primary !default;
+$o-navbar-root-menu-entry-border-bottom-width: 2px !default;
+$o-navbar-root-menu-entry-border-bottom-color--hover: rgba(0, 0, 0, 0.08) !default;
+$o-navbar-root-menu-entry-border-bottom-color--active: $o-brand-primary !default;
 
 $o-navbar-root-menu-dropdown-menu-border-top-radius: 0 !default;
-
-$o-navbar-root-menu-border-bottom-gap: -1px !default;

@@ -26,7 +26,7 @@
     <t t-name="pyper_navbar_root_menu.NavBar.SystemTray">
         <t t-foreach="sections" t-as="section" t-key="section.id">
             <DropdownItem
-                class="'nav-bar-icon px-2' + (sectionIsSelected(section) ? ' nav-bar-icon--active' : '')"
+                class="'nav-bar-icon' + (sectionIsSelected(section) ? ' active' : '')"
                 href="getMenuItemHref(section)"
                 dataset="{ menuXmlid: section.xmlid, section: section.id }"
                 onSelected="() => this.onNavBarDropdownItemSelection(section)"
