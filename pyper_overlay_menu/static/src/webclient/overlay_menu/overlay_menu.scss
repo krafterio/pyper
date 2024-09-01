@@ -64,7 +64,7 @@
     max-width: $o-overlay-menu-item-icon-size;
     max-height: $o-overlay-menu-item-icon-size;
     font-size: $o-overlay-menu-item-icon-size;
-    color: $o-overlay-menu-item-label-color;
+    color: $o-overlay-menu-item-icon-color;
 }
 
 .o_overlay_menu--item-label {
@@ -81,7 +81,7 @@
 
         .o_overlay_menu--item-icon,
         .o_overlay_menu--item-icon-empty {
-            color: $o-overlay-menu-item-label-hover-color;
+            color: $o-overlay-menu-item-icon-color-hover;
         }
 
         .o_overlay_menu--item-label {

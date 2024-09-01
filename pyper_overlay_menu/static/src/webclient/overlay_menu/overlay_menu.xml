@@ -58,7 +58,7 @@
             t-on-click.prevent="() => this.selectMenu(menu)"
         >
             <div class="o_overlay_menu--item-header">
-                <div t-if="menu.font_icon and !this.props.preferWebIcon" class="o_overlay_menu--item-icon-empty" t-att-style="'color: ' + (menu.font_icon_color || 'inherit') + ';'">
+                <div t-if="menu.font_icon and !this.props.preferWebIcon" class="o_overlay_menu--item-icon-empty" t-att-style="menu.font_icon_color ? 'color: ' + menu.font_icon_color + ';' : undefined">
                     <i t-att-class="menu.font_icon"/>
                 </div>
 

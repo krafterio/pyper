@@ -20,6 +20,8 @@ $o-overlay-menu-item-border-hover-bg: transparent !default;
 $o-overlay-menu-item-label-color: $o-gray-700 !default;
 $o-overlay-menu-item-label-hover-color: $o-gray-700 !default;
 
+$o-overlay-menu-item-icon-color: inherit !default;
+$o-overlay-menu-item-icon-color-hover: $o-overlay-menu-item-icon-color !default;
 $o-overlay-menu-item-icon-size: 50px !default;
 
 // = Overlay Menu Toggler Variables
