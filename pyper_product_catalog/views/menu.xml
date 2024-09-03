@@ -11,7 +11,7 @@
         name="Products"
         parent="pyper_product_catalog.product_catalog_root"
         action="pyper_product_catalog.product_template_action"
-        sequence="0"
+        sequence="10"
     />
 
     <menuitem
@@ -37,7 +37,7 @@
             id="product_manufacturer"
             name="Product manufacturers"
             action="pyper_product_catalog.product_manufacturer_action"
-            sequence="0"
+            sequence="10"
         />
 
         <menuitem
