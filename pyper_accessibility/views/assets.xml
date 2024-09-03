@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="Accessibility assets backend" inherit_id="web.webclient_bootstrap">
+        <xpath expr="//t[@t-set='head_web']//t[@t-call-assets='web.assets_web']" position="after">
+            <link type="text/css" rel="stylesheet" href="/web/user_accessibility.css"/>
+        </xpath>
+    </template>
+</odoo>

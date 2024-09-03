@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_accessibility
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20240903\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-03 12:24+0000\n"
+"PO-Revision-Date: 2024-09-03 14:25+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: pyper_accessibility
+#: model:ir.model.fields.selection,name:pyper_accessibility.selection__res_users_settings__font_size__100
+msgid "100%"
+msgstr "100 %"
+
+#. module: pyper_accessibility
+#: model:ir.model.fields.selection,name:pyper_accessibility.selection__res_users_settings__font_size__125
+msgid "125%"
+msgstr "125 %"
+
+#. module: pyper_accessibility
+#: model:ir.model.fields.selection,name:pyper_accessibility.selection__res_users_settings__font_size__150
+msgid "150%"
+msgstr "150 %"
+
+#. module: pyper_accessibility
+#: model:ir.model.fields.selection,name:pyper_accessibility.selection__res_users_settings__font_size__175
+msgid "175%"
+msgstr "175 %"
+
+#. module: pyper_accessibility
+#: model:ir.model.fields.selection,name:pyper_accessibility.selection__res_users_settings__font_size__200
+msgid "200%"
+msgstr "200 %"
+
+#. module: pyper_accessibility
+#: model_terms:ir.ui.view,arch_db:pyper_accessibility.view_users_form_simple_modif
+msgid "Accessibility"
+msgstr "Accessibilité"
+
+#. module: pyper_accessibility
+#: model:ir.model.fields,field_description:pyper_accessibility.field_res_users__res_users_settings_font_size
+#: model:ir.model.fields,field_description:pyper_accessibility.field_res_users_settings__font_size
+msgid "Font size"
+msgstr "Taille de la police"
+
+#. module: pyper_accessibility
+#: model:ir.model,name:pyper_accessibility.model_res_users
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: pyper_accessibility
+#: model:ir.model,name:pyper_accessibility.model_res_users_settings
+msgid "User Settings"
+msgstr "Paramètres utilisateur"
