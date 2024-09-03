@@ -17,6 +17,7 @@
         'website',
     ],
     'data': [
+        'views/s_heading_masonry.xml',
         'views/snippets.xml',
     ],
     'assets': {

@@ -5,3 +5,32 @@
 .fa.rounded-circle{
     min-width: 3rem;
 }
+
+.s_heading_masonry .s_heading_masonry_wrapper {
+    position: relative;
+    left: 50%;
+    height: 540px;
+    margin-left: -992px;
+    width: 1984px;
+  }
+  
+@media (max-width: 767px) {
+    .s_heading_masonry .s_heading_masonry_wrapper {
+        margin-left: -496px;
+        width: 992px;
+        height: 245px;
+    }
+
+    /* Needed otherwise a 'height:auto;' is added for sm sizes */
+    .s_heading_masonry .s_heading_masonry_wrapper .row {
+        height: 100% !important;
+    }
+}
+
+@media (min-width: 1800px) {
+    .s_heading_masonry .s_heading_masonry_wrapper {
+        margin-left: -1200px;
+        width: 2400px;
+        height: 652px;
+    }
+}
