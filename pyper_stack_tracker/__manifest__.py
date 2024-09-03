@@ -17,6 +17,7 @@
     'depends': [
         'base_automation',
         'pyper_saas',
+        'pyper_menu_icon',
     ],
     'data': [
         # Security
