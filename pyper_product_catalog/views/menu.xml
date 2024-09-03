@@ -15,14 +15,6 @@
     />
 
     <menuitem
-        id="product_manufacturer"
-        name="Product manufacturers"
-        parent="pyper_product_catalog.product_settings_menu"
-        action="pyper_product_catalog.product_manufacturer_action"
-        sequence="0"
-    />
-
-    <menuitem
         id="product_import_root"
         name="Import"
         parent="pyper_product_catalog.product_catalog_root"
@@ -39,6 +31,13 @@
             name="Products categories"
             action="product.product_category_action_form"
             sequence="10"
+        />
+        
+        <menuitem
+            id="product_manufacturer"
+            name="Product manufacturers"
+            action="pyper_product_catalog.product_manufacturer_action"
+            sequence="0"
         />
 
         <menuitem
