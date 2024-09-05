@@ -19,7 +19,7 @@
     ],
     'assets': {
         'web._assets_primary_variables': [
-            ('before', 'web/static/src/**/*.variables.scss', 'pyper_navbar_root_menu/static/src/**/*.variables.scss'),
+            ('after', 'web/static/src/**/*.variables.scss', 'pyper_navbar_root_menu/static/src/**/*.variables.scss'),
         ],
         'web.assets_backend': [
             'pyper_navbar_root_menu/static/src/webclient/**/*',
