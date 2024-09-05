@@ -4,9 +4,30 @@
             <div id="snippet_structure" class="o_panel">
                 <div class="o_panel_header">Top blocks</div>
                 <div class="o_panel_body">
+                
                     <t t-snippet="pyper_website_snippets.top_app_banner"
                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_app_banner.svg">
                         <keywords>app, banner</keywords>
+                    </t>                    
+                    
+                    <t t-snippet="pyper_website_snippets.top_banner_overflow_image_right"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_two_column_overflow.svg">
+                        <keywords>top, banner, image, overflow, right</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.top_banner_overflow_image_left"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_two_column_overflow.svg">
+                        <keywords>top, banner, image, overflow, left</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.top_banner_title_with_foreground_image"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_two_column_overflow_right.svg">
+                        <keywords>image, overflow, text, title, foreground</keywords>
+                    </t>
+                    
+                    <t t-snippet="pyper_website_snippets.heading_masonry"
+                        t-thumbnail="/website/static/src/img/snippets_thumbs/s_images_wall.svg">
+                        <keywords>masonry, image, background, banner</keywords>
                     </t>
 
                 </div>
@@ -14,4 +35,3 @@
         </xpath>
     </template>
 </odoo>
-

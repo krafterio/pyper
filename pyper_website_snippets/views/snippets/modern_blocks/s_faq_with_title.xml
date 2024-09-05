@@ -1,0 +1,84 @@
+<odoo>
+    <template id="faq_with_title" name="FAQ with title">
+        <section
+            class="s_faq_collapse pb48 pt48 o_colored_level o_cc o_cc1"
+            data-snippet="s_faq_with_title"
+            data-name="FAQ with title"
+        >
+            <div class="container">
+                <div class="d-flex align-items-center flex-column">    
+                    <div class="col-sm-12 col-lg-8 text-center py-3">
+                        <div 
+                            class="o_animate o_anim_fade_in o_anim_from_top"
+                            style="--wanim-intensity: 20;animation-delay: 0.0s;animation-duration: 0.4s;"
+                         >
+                            <p class="h6 text-primary fw-bold">Frequently Asked Questions</p>
+                            <div class="row justify-content-center">
+                                <h1>
+                                    Optimize time and enhance customer experience
+                                </h1>
+                            </div>
+                        </div>
+                        <div 
+                            class="o_animate o_anim_fade_in o_anim_from_bottom"
+                            style="--wanim-intensity: 20;animation-delay: 0.0s;animation-duration: 0.4s;"
+                         >
+                            <p class="h4 opacity-50 fw-bold mt-5">Do not underestimate this powerful key feature</p>
+                            <div class="d-flex align-items-center justify-content-center gap-2  py-5">
+                                <a class="btn btn-primary" href="#">See best practices</a>
+                                <a class="btn btn-secondary" href="#">Getting started</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-10 accordion flex-column" role="tablist">
+                        <!-- Faq item 1 -->
+                        <div class="card border-0 rounded-0" data-name="Item" role="presentation">
+                            <p class="card-header border-0 h5 mb-0 o_cc3  text-o-color-4" href="#" role="tab" data-bs-toggle="collapse" aria-expanded="true">How can I use this snippet ?</p>
+                            <div class="collapse" role="tabpanel" >
+                                <div class="card-body o_cc4 text-o-color-5">
+                                    <p class="card-text">Go into edit mode and select the 'Customize' panel. Choose this block, 'FAQ With Title' should be written at the top of the pannel. Then, click the 'Add Item' button to create a new topic.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Faq item 2-->
+                        <div class="card border-0 rounded-0" data-name="Item" role="presentation">
+                            <p class="card-header border-0 h5 mb-0 o_cc3  text-o-color-4" href="#" role="tab" data-bs-toggle="collapse" aria-expanded="true">What are the benefits of using this feature?</p>
+                            <div class="collapse" role="tabpanel" >
+                                <div class="card-body o_cc4 text-o-color-5">
+                                    <p class="card-text">This feature can significantly improve your workflow by automating repetitive tasks and reducing manual errors. It also enhances collaboration and ensures data consistency across your team.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Faq item 3-->
+                        <div class="card border-0 rounded-0" data-name="Item" role="presentation">
+                            <p class="card-header border-0 h5 mb-0 o_cc3  text-o-color-4" href="#" role="tab" data-bs-toggle="collapse" aria-expanded="true">What kind of support do you offer?</p>
+                            <div class="collapse" role="tabpanel" >
+                                <div class="card-body o_cc4 text-o-color-5">
+                                    <p class="card-text">We provide 24/7 customer support through email, live chat, and phone. Our dedicated support team is always ready to help you with any questions or issues you may have.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Faq item 4-->
+                        <div class="card border-0 rounded-0" data-name="Item" role="presentation">
+                            <p class="card-header border-0 h5 mb-0 o_cc3  text-o-color-4" href="#" role="tab" data-bs-toggle="collapse" aria-expanded="true">How can I get started with this feature?</p>
+                            <div class="collapse" role="tabpanel" >
+                                <div class="card-body o_cc4 text-o-color-5">
+                                    <p class="card-text">Getting started is easy. Simply sign up for an account on our website, and you'll receive a welcome email with instructions on how to set up and start using the feature.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Faq item 5-->
+                        <div class="card border-0 rounded-0" data-name="Item" role="presentation">
+                            <p class="card-header border-0 h5 mb-0 o_cc3  text-o-color-4" href="#" role="tab" data-bs-toggle="collapse" aria-expanded="true">What are the system requirements?</p>
+                            <div class="collapse" role="tabpanel" >
+                                <div class="card-body o_cc4 text-o-color-5">
+                                    <p class="card-text">This feature is compatible with most modern operating systems and browsers. For detailed system requirements, please refer to our technical specifications page.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

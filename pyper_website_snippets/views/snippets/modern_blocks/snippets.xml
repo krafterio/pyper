@@ -565,6 +565,66 @@
                         <keywords>kpi, text, title, number</keywords>
                     </t>
 
+                    <t t-snippet="pyper_website_snippets.containerized_title_block"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_app_banner.svg">
+                        <keywords>title, text, banner, image</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.row_banner_with_kpis"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_floating_blocks.svg">
+                        <keywords>kpi, text, title, number</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.faq_with_title"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_app_banner.svg">
+                        <keywords>faq, title, accordion</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.customer_review_blocks"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_app_banner.svg">
+                        <keywords>text, title, review, customer</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.title_block_with_cards"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_floating_blocks.svg">
+                        <keywords>card, app, title, block</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.customer_references_grid"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_containerized_kpis.svg">
+                        <keywords>image, grid, reference, customer</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.multi_grid_blocks"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_floating_blocks.svg">
+                        <keywords>grid, title, text, image, kpi</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.multi_grid_blocks_with_carousel"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_floating_blocks.svg">
+                        <keywords>grid, title, text, carousel, image, kpi</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.tab_references"
+                        t-thumbnail="/website/static/src/img/snippets_thumbs/s_tabs.svg">
+                        <keywords>tab, reference, customer, quote, image, testimonials</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.feature_grid_with_links"
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_grid_block_title_text.svg">
+                        <keywords>grid, text, title, app, feature, card, link</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.three_column_article"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_four_columns_grid.svg">
+                        <keywords>text, title, image, article, item, column</keywords>
+                    </t>
+
+                    <t t-snippet="pyper_website_snippets.section_with_card_link_items"
+                        t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_four_columns_grid.svg">
+                        <keywords>app, banner</keywords>
+                    </t>
+
                 </div>
             </div>
         </xpath>
