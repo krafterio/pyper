@@ -1,0 +1,17 @@
+<odoo>
+    <template id="custom_krafter_top_blocks_snippets" inherit_id="website.snippets" name="Custom Krafter Top Blocks snippets">
+        <xpath expr="//div[@id='snippet_structure']" position="before">
+            <div id="snippet_structure" class="o_panel">
+                <div class="o_panel_header">Top blocks</div>
+                <div class="o_panel_body">
+                    <t t-snippet="pyper_website_snippets.top_app_banner"
+                       t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_app_banner.svg">
+                        <keywords>app, banner</keywords>
+                    </t>
+
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
+

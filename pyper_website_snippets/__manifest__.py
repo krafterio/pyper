@@ -17,7 +17,12 @@
         'website',
     ],
     'data': [
-        'views/snippets.xml',
+        # Top Blocks
+        'views/snippets/top_blocks/s_top_app_banner.xml',
+        'views/snippets/top_blocks/snippets.xml',
+
+        # Modern Blocks
+        'views/snippets/modern_blocks/snippets.xml',
     ],
     'assets': {
         'web.assets_frontend': [

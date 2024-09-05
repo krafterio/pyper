@@ -1,0 +1,57 @@
+<odoo>
+    <template id="top_app_banner" name="Top app banner">
+        <section
+            class="pt96 pb96 o_colored_level o_cc o_cc2"
+            data-snippet="s_cover"
+            data-name="Top app banner"
+            style="background-image: none;"
+        >
+            <div class="container s_allow_columns text-center">
+                <div class="row">
+                    <div class="col-12 o_animate o_anim_fade_in" style="-wanim-intensity: 20;animation-delay: 0.0s;">
+                        <p class="h4 text-primary fw-bold">new release v2.5.0</p>
+                        <div class="row justify-content-center">
+                            <h1 class="row justify-content-center display-3 o_default_snippet_text col-xs-12 col-sm-12 col-xl-5 fw-bold">
+                                Discover, our powerfull new features
+                            </h1>
+                        </div>
+                        <p class="lead o_default_snippet_text pb-0 mb-0">We are happy to introduce a suite of
+                            powerful new
+                            features designed to enhance your experience and streamline your workflow.
+                        </p>
+                        <p class="lead o_default_snippet_text">Our latest updates include advanced analytics tools,
+                            intuitive user interfaces, and seamless integration capabilities.
+                        </p>
+
+                        <div class="d-flex align-items-center justify-content-center gap-2 py-4">
+                            <a class="btn btn-primary o_default_snippet_text" href="#">Let me try it now !</a>
+                            <a class="btn btn-secondary o_default_snippet_text" href="#">See release resume</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="s_image_gallery o_spc-small o_colored_level o_masonry"
+                    data-columns="1"
+                >
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="o_masonry_col o_snippet_not_selectable col-lg-12">
+                                <img
+                                    class="img img-fluid"
+                                    src="/web/image/website.s_cover_default_image"
+                                    data-name="Image"
+                                    alt=" "
+                                    loading="lazy"
+                                    data-mimetype="image/jpeg"
+                                    style="box-shadow: 0 40px 220px 0 var(--primary);"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </template>
+</odoo>
