@@ -9,6 +9,13 @@
 
 // Fix navbar apps menu color
 .o_main_navbar {
+    align-items: center;
+
+    .o_navbar_logo,
+    > img:first-child {
+        margin-left: $o-horizontal-padding;
+    }
+
     .o_navbar_apps_menu {
         .dropdown-toggle {
             &,
