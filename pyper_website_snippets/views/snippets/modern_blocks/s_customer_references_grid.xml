@@ -160,4 +160,13 @@
             </div>
         </section>
     </template>
+
+    <template inherit_id="pyper_website_snippets.custom_krafter_snippet_sections" id="custom_krafter_snippet_sections_customer_references_grid">
+        <xpath expr="//div[@id='snippet_modern_blocks']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="pyper_website_snippets.customer_references_grid"
+                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_containerized_kpis.svg">
+                <keywords>image, grid, reference, customer</keywords>
+            </t>
+        </xpath>
+    </template>
 </odoo>

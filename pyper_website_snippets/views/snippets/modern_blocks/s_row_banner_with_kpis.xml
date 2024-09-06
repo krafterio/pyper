@@ -58,4 +58,13 @@
             </div>
         </section>
     </template>
+
+    <template inherit_id="pyper_website_snippets.custom_krafter_snippet_sections" id="custom_krafter_snippet_sections_row_banner_with_kpis">
+        <xpath expr="//div[@id='snippet_modern_blocks']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="pyper_website_snippets.row_banner_with_kpis"
+                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_floating_blocks.svg">
+                <keywords>kpi, text, title, number</keywords>
+            </t>
+        </xpath>
+    </template>
 </odoo>

@@ -219,4 +219,13 @@
             </div>
         </xpath>
     </template>
+
+    <template inherit_id="pyper_website_snippets.custom_krafter_snippet_sections" id="custom_krafter_snippet_sections_tab_references">
+        <xpath expr="//div[@id='snippet_modern_blocks']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="pyper_website_snippets.tab_references"
+                t-thumbnail="/website/static/src/img/snippets_thumbs/s_tabs.svg">
+                <keywords>tab, reference, customer, quote, image, testimonials</keywords>
+            </t>
+        </xpath>
+    </template>
 </odoo>

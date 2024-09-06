@@ -17,14 +17,16 @@
         'website',
     ],
     'data': [
+
+        # Snippets Sections
+        'views/snippets/snippets.xml',
+
         # Top Blocks
         'views/snippets/top_blocks/s_top_app_banner.xml',
         'views/snippets/top_blocks/s_top_banner_overflow_image_variations.xml',
         'views/snippets/top_blocks/s_top_banner_title_with_foreground_image.xml',
         'views/snippets/top_blocks/s_heading_masonry.xml',
         
-        'views/snippets/top_blocks/snippets.xml',
-
         # Modern Blocks
         'views/snippets/modern_blocks/s_containerized_title_block.xml',
         'views/snippets/modern_blocks/s_row_banner_with_kpis.xml',
@@ -39,7 +41,9 @@
         'views/snippets/modern_blocks/s_three_column_article.xml',
         'views/snippets/modern_blocks/s_section_with_card_link_items.xml',
 
+        # Modern Blocks old section : need RFC soon
         'views/snippets/modern_blocks/snippets.xml',
+
     ],
     'assets': {
         'web.assets_frontend': [
