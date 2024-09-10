@@ -155,17 +155,17 @@
                                     <div class="d-flex flex-column">
                                         <div class="d-flex flex-column position-relative">
                                             <p 
-                                                class="h1 display-1 fw-bold text-primary position-absolute o_anim_fade_in o_animate o_animate_both_scroll o_anim_from_left"
+                                                class="h1 display-1 text-primary position-absolute o_anim_fade_in o_animate o_animate_both_scroll o_anim_from_left"
                                                 style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;"
                                             >“</p>
-                                            <p class="p-5 fw-bold h4"><t t-esc="ref_data['text']" /></p>
+                                            <p class="p-5 h4"><t t-esc="ref_data['text']" /></p>
                                             <p 
-                                                class="display-1 fw-bold text-primary position-absolute end-0 o_anim_fade_in o_animate o_animate_both_scroll o_anim_from_right"
+                                                class="display-1 text-primary position-absolute end-0 o_anim_fade_in o_animate o_animate_both_scroll o_anim_from_right"
                                                 style="bottom:-3rem; animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;"
                                             >”</p>
                                         </div>
                                         <p 
-                                            class="fw-bold h4 text-end text-primary pe-3 o_anim_fade_in o_animate o_animate_both_scroll o_anim_from_bottom"
+                                            class="h4 text-end text-primary pe-3 o_anim_fade_in o_animate o_animate_both_scroll o_anim_from_bottom"
                                             style="animation-delay: 0.2s; animation-duration: 0.4s; --wanim-intensity: 5;" >
                                             <em><t t-esc="ref_data['signature']"/></em>
                                         </p>

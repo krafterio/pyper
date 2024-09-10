@@ -98,7 +98,7 @@
                     <div class="col-12 col-lg-4 order-1 order-lg-2">
                         <div class="col-12  text-sm-center text-lg-start py-3 ps-sm-0 ps-md-5">
                             <div class="o_animate o_anim_fade_in o_anim_from_top mb-3" style="--wanim-intensity: 20;animation-delay: 0.0s;animation-duration: 0.4s;">
-                                <p class="h6 text-primary fw-bold o_default_snippet_text">Customers reviews</p>
+                                <p class="h6 text-primary  o_default_snippet_text">Customers reviews</p>
                                 <div class="row justify-content-center">
                                     <h2 class="o_default_snippet_text">Show how much your services are loved</h2>
                                 </div>
@@ -131,7 +131,7 @@
                 </div>
                 <div class="col-10">
                     <div class="d-flex flex-column align-items-sm-center align-items-md-start ps-2">
-                        <p class="fw-bold my-0 py-0 "><t t-esc="review['name']"/></p>
+                        <p class="my-0 py-0 "><t t-esc="review['name']"/></p>
                         <p class="my-0 py-0 ">
                             <span class="star" style="color: var(--primary)">
                                 <t t-foreach="range(review['rating'])" t-as="star">

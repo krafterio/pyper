@@ -14,7 +14,7 @@
                             <div class="d-flex flex-column">
                                 <div class="row text-nowrap text-warning">
                                     <h1 
-                                        class="col-3 display-1-fs fw-bold text-primary  o_anim_fade_in o_animate o_anim_from_left"
+                                        class="col-3 display-1-fs text-primary  o_anim_fade_in o_animate o_anim_from_left"
                                         style="--wanim-intensity: 20;animation-delay: 0.2s; animation-duration: 0.4s; z-index: 1;"
                                     >Craft a page</h1>
                                 </div>
@@ -22,7 +22,7 @@
                                 <div class="row text-nowrap" style="margin-top: -2rem;">
                                     <div class="spacer col-sm-1 col-lg-3"></div>
                                     <h1 
-                                        class="col-3 display-1-fs fw-bold pt-2 pt-md-0 ms-5 ms-sm-0 o_anim_fade_in o_animate o_anim_from_left"
+                                        class="col-3 display-1-fs pt-2 pt-md-0 ms-5 ms-sm-0 o_anim_fade_in o_animate o_anim_from_left"
                                         style="--wanim-intensity: 20;animation-delay: 0.4s; animation-duration: 0.4s; z-index: 1;"
                                     >that captivates</h1>
                                 </div>
@@ -31,7 +31,7 @@
                                     <div class="spacer col-sm-1 col-lg-3"></div>
                                     <div class="spacer col-sm-1 col-lg-3"></div>
                                     <h1 
-                                        class="col-3 display-1-fs fw-bold pt-2 pt-md-0 ms-5 ms-sm-0 ps-5 ps-sm-0 o_anim_fade_in o_animate o_anim_from_left"
+                                        class="col-3 display-1-fs pt-2 pt-md-0 ms-5 ms-sm-0 ps-5 ps-sm-0 o_anim_fade_in o_animate o_anim_from_left"
                                         style="--wanim-intensity: 20;animation-delay: 0.6s; animation-duration: 0.4s; z-index: 1;"
                                     >and shine bright</h1>
                                 </div>
@@ -49,7 +49,7 @@
                             </div>
                             <!-- item #2 -->
                             <div class="col-6 col-lg-3 d-flex flex-column o_cc o_cc1 py-3 ps-5 ps-lg-3 pe-3">
-                                <p class="display5 fw-bold">MINDSET</p>
+                                <p class="display5">MINDSET</p>
                                 <p>
                                     This grid block allow you to make your content stand out, drawing attention to key areas and making the page more aesthetically pleasing.
                                 </p>

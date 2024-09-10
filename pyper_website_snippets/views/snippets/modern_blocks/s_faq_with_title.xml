@@ -12,7 +12,7 @@
                             class="o_animate o_anim_fade_in o_anim_from_top"
                             style="--wanim-intensity: 20;animation-delay: 0.0s;animation-duration: 0.4s;"
                          >
-                            <p class="h6 text-primary fw-bold">Frequently Asked Questions</p>
+                            <p class="h6 text-primary">Frequently Asked Questions</p>
                             <div class="row justify-content-center">
                                 <h1>
                                     Optimize time and enhance customer experience
@@ -23,7 +23,7 @@
                             class="o_animate o_anim_fade_in o_anim_from_bottom"
                             style="--wanim-intensity: 20;animation-delay: 0.0s;animation-duration: 0.4s;"
                          >
-                            <p class="h4 opacity-50 fw-bold mt-5">Do not underestimate this powerful key feature</p>
+                            <p class="h4 opacity-50 mt-5">Do not underestimate this powerful key feature</p>
                             <div class="d-flex align-items-center justify-content-center gap-2  py-5">
                                 <a class="btn btn-primary" href="#">See best practices</a>
                                 <a class="btn btn-secondary" href="#">Getting started</a>

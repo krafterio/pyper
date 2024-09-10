@@ -10,14 +10,14 @@
                     <div class="row">
                         <div class="col-12 col-lg-4 d-flex flex-column align-items-start justify-content-center p-5">
                             <p
-                                class="h6 text-primary fw-bold m-0 o_anim_fade_in o_animate o_anim_from_left"
+                                class="h6 text-primary m-0 o_anim_fade_in o_animate o_anim_from_left"
                                 style="animation-delay: 0.1s; animation-duration: 0.4s; --wanim-intensity: 20;"
                             >Image impact</p>
                             <h1 
-                                class="mt-0 mb-3 display-5 fw-bold o_anim_fade_in o_animate o_anim_from_left"
+                                class="mt-0 mb-3 display-5 o_anim_fade_in o_animate o_anim_from_left"
                                 style="animation-delay: 0.3s; animation-duration: 0.4s; --wanim-intensity: 20;"
                             >Enhancing page design</h1>
-                            <p class="h5 fw-bold opacity-50">
+                            <p class="h5 opacity-50">
                                 By strategically placing an image across a title, you can create a captivating and engaging first impression for your visitors. This technique not only adds depth and dimension to your layout but also helps to convey the theme of your content effectively.
                             </p>
                             <div class="d-flex align-items-center justify-content-center gap-2 mt-3">
@@ -39,7 +39,7 @@
                     <div class="row d-flex align-items-baseline">
                         <div class="col-12 col-lg-4 p-5">
                             <h2 
-                                class="display-6 fw-bold o_anim_fade_in o_animate o_anim_from_bottom"
+                                class="display-6 o_anim_fade_in o_animate o_anim_from_bottom"
                                 style="animation-delay: 0.4s; animation-duration: 0.4s; --wanim-intensity: 20;"
                             >Minimalism</h2>
                         </div>
