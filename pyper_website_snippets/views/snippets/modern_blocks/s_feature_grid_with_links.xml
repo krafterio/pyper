@@ -10,7 +10,7 @@
                 <div class="row px-2">
                     <div class="col-12 col-lg-10 d-flex flex-column align-items-start" data-name="Title Box">
                         <h3 
-                            class="mt-0 mb-3 lh-1 fw-bold o_anim_fade_in o_animate o_anim_from_left"
+                            class="mt-0 mb-3 fw-bold o_anim_fade_in o_animate o_anim_from_left"
                             style="--wanim-intensity: 20;animation-delay: 0.0s; animation-duration: 0.4s;"
                         >Featuring</h3>
                         <p class="h6 fw-normal">

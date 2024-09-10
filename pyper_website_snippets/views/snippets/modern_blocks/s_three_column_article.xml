@@ -10,7 +10,7 @@
                 <div class="row px-2">
                     <div class="col-12 col-lg-10 d-flex flex-column align-items-start" style="max-width:600px;" data-name="Header">
                         <h3 
-                            class="mt-0 mb-3 lh-1 fw-bold o_anim_fade_in o_animate o_anim_from_left"
+                            class="mt-0 mb-3 fw-bold o_anim_fade_in o_animate o_anim_from_left"
                             style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;"
                         >Adaptive Articles</h3>
                         <p class="h6 fw-normal">
@@ -45,8 +45,8 @@
                                         >
                                             <div class="row">
                                                 <div class="d-flex flex-column align justify-content-beetween col-12" data-name="Article Item">
-                                                    <p class="h6 fw-bold lh-1 mb-0 text-primary">Nature and landscapes</p>
-                                                    <p class="h4 fw-bold lh-1">Majestic mountains</p>
+                                                    <p class="h6 fw-bold mb-0 text-primary">Nature and landscapes</p>
+                                                    <p class="h4 fw-bold">Majestic mountains</p>
                                                     <p class="h6 fw-bold">Discover these breathtaking beauties</p>
                                                     <p class="h6 opacity-75">Take a fresh breath and experience the serenity and grandeur of majestic mountains, where nature's power is on full display.</p>
                                                     <div class="d-flex align-items-center justify-content-start gap-2 mt-2">
@@ -78,8 +78,8 @@
                                         >
                                             <div class="row">
                                                 <div class="d-flex flex-column align justify-content-beetween col-12" data-name="Article Item">
-                                                    <p class="h6 fw-bold lh-1 mb-0 text-primary">Sky and sunsets</p>
-                                                    <p class="h4 fw-bold lh-1">Sunset skies</p>
+                                                    <p class="h6 fw-bold mb-0 text-primary">Sky and sunsets</p>
+                                                    <p class="h4 fw-bold">Sunset skies</p>
                                                     <p class="h6 fw-bold">Witness the magic athmosphere of twilight</p>
                                                     <p class="h6 opacity-75">Enjoy the vibrant hues of a sunset sky, as the day transitions into a peaceful night. Each one is a unique show by itself.</p>
                                                     <div class="d-flex align-items-center justify-content-start gap-2 mt-2">
@@ -111,8 +111,8 @@
                                         >
                                             <div class="row">
                                                 <div class="d-flex flex-column align justify-content-beetween col-12" data-name="Article Item">
-                                                    <p class="h6 fw-bold lh-1 mb-0 text-primary">Urban landscapes</p>
-                                                    <p class="h4 fw-bold lh-1">Los Angeles</p>
+                                                    <p class="h6 fw-bold mb-0 text-primary">Urban landscapes</p>
+                                                    <p class="h4 fw-bold">Los Angeles</p>
                                                     <p class="h6 fw-bold">Explore the vibrant city of Los Angeles</p>
                                                     <p class="h6 opacity-75">Immerse yourself in the bustling energy and iconic views of the city of Los Angeles, a well-known city that never sleeps.</p>
                                                     <div class="d-flex align-items-center justify-content-start gap-2 mt-2">
