@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="row align-items-stretch">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                    <div class="col-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;">
                         <div class="o_colored_level o_cc o_cc3 p-5 h-100">
                             <span class="fa fa-cogs fa-2x mb-3"/>
@@ -21,7 +21,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                    <div class="col-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.2s; animation-duration: 0.4s; --wanim-intensity: 20;">
                         <div class="o_colored_level o_cc o_cc3 p-5 h-100">
                             <span class="fa fa-cloud fa-2x mb-3"/>
@@ -29,7 +29,7 @@
                             <p class="mb-0">Seamless integration with cloud services</p>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                    <div class="col-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.4s; animation-duration: 0.4s; --wanim-intensity: 20;">
                         <div class="o_colored_level o_cc o_cc3 p-5 h-100">
                             <span class="fa fa-lock fa-2x mb-3"/>
@@ -37,7 +37,7 @@
                             <p class="mb-0">Top-notch security to protect your data.</p>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
+                    <div class="col-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.6s; animation-duration: 0.4s; --wanim-intensity: 20;">
                         <div class="o_colored_level o_cc o_cc3 p-5 h-100">
                             <span class="fa fa-support fa-2x mb-3"/>

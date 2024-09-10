@@ -8,7 +8,7 @@
             <div class="container-fluid"  style="max-width:1296px;">
                 <!-- Title Header -->
                 <div class="row px-2">
-                    <div class="col-sm-12 col-lg-10 d-flex flex-column align-items-start" data-name="Title Box">
+                    <div class="col-12 col-lg-10 d-flex flex-column align-items-start" data-name="Title Box">
                         <h3 
                             class="mt-0 mb-3 lh-1 fw-bold o_anim_fade_in o_animate o_anim_from_left"
                             style="--wanim-intensity: 20;animation-delay: 0.0s; animation-duration: 0.4s;"
@@ -28,7 +28,7 @@
 
                     <!-- Feature Column #1-->
                     <div 
-                        class="col-xs-12 col-sm-12 col-md-6 pe-4 ps-4 pt-2 o_anim_fade_in o_animate o_anim_from_bottom"
+                        class="col-12 col-md-6 pe-4 ps-4 pt-2 o_anim_fade_in o_animate o_anim_from_bottom"
                         style="--wanim-intensity: 20;animation-delay: 0.0s; animation-duration: 0.4s;" 
                         data-name="Feature Box"
                     >
@@ -84,7 +84,7 @@
 
                     <!-- Feature  Column #2 -->
                     <div 
-                        class="col-xs-12 col-sm-12 col-md-6 pe-4 ps-4 pt-2 o_anim_fade_in o_animate o_anim_from_bottom"
+                        class="col-12 col-md-6 pe-4 ps-4 pt-2 o_anim_fade_in o_animate o_anim_from_bottom"
                         style="--wanim-intensity: 20;animation-delay: 0.0s; animation-duration: 0.4s;" 
                         data-name="Feature Box"
                     >

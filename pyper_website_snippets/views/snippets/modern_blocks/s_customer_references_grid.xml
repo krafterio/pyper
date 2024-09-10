@@ -11,7 +11,7 @@
                     class="row justify-content-center p-3 o_animate o_anim_fade_in o_anim_from_top"
                     style="--wanim-intensity: 20;animation-delay: 0.0s;animation-duration: 0.4s;"
                 >           
-                    <div class="d-flex flex-column align-items-center text-center col-sm-12 col-md-10 col-lg-8">
+                    <div class="d-flex flex-column align-items-center text-center col-12 col-md-10 col-lg-8">
                         <h2 class="display-3 fw-bold">
                             They trust us
                         </h2>
@@ -32,7 +32,7 @@
             data-snippet="s_customer_references_grid_grid"
             data-name="Customer references grid (grid)"
         >
-            <div class="container col-sm-12 col-md-10 col-lg-8 o_cc o_cc1 py-2 py-md-4 px-2 px-md-5" style="overflow: hidden;">
+            <div class="container col-12 col-md-10 col-lg-8 o_cc o_cc1 py-2 py-md-4 px-2 px-md-5" style="overflow: hidden;">
                 <div 
                     class="row o_animate o_anim_fade_in o_anim_from_bottom"
                     style="--wanim-intensity: 20;animation-delay: 0.0s;animation-duration: 0.4s;"

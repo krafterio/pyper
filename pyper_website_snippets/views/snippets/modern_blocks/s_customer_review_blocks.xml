@@ -74,7 +74,7 @@
             <div class="container s_allow_columns text-center">
                 <div class="row">
                     <!-- block reviews -->
-                    <div class="col-sm-12 col-lg-8 order-2 order-lg-1 o_cc o_cc1">
+                    <div class="col-12 col-lg-8 order-2 order-lg-1 o_cc o_cc1">
                         <div class="row flex-column flex-md-row">
                             <!-- Col-left reviews -->
                             <div class="col ms-sm-0 ms-md-2 me-sm-0 me-md-1 mt-2 mb-sm-0 mb-md-2">
@@ -95,8 +95,8 @@
                         </div>
                     </div>
                     <!-- block text -->
-                    <div class="col-sm-12 col-lg-4 order-1 order-lg-2">
-                        <div class="col-sm-12  text-sm-center text-lg-start py-3 ps-sm-0 ps-md-5">
+                    <div class="col-12 col-lg-4 order-1 order-lg-2">
+                        <div class="col-12  text-sm-center text-lg-start py-3 ps-sm-0 ps-md-5">
                             <div class="o_animate o_anim_fade_in o_anim_from_top mb-3" style="--wanim-intensity: 20;animation-delay: 0.0s;animation-duration: 0.4s;">
                                 <p class="h6 text-primary fw-bold o_default_snippet_text">Customers reviews</p>
                                 <div class="row justify-content-center">

@@ -11,7 +11,7 @@
             <div class="container">
                 <div class="row">
                     <div
-                        class="col-xs-12 col-lg-10 o_anim_fade_in o_animate o_anim_from_left o_colored_level"
+                        class="col-12 col-lg-10 o_anim_fade_in o_animate o_anim_from_left o_colored_level"
                         style="--wanim-intensity: 20; animation-duration: 0.4s;">
                         <p class="text-primary fs-3 fw-bold o_default_snippet_text">Welcome to our world</p>
                         <h1 class="o_default_snippet_text">Transform Your Business with Innovative Solutions</h1>

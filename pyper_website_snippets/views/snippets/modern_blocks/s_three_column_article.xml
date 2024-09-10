@@ -8,7 +8,7 @@
             <div class="container-fluid"  style="max-width:1296px;">
                 <!-- Header -->
                 <div class="row px-2">
-                    <div class="col-sm-12 col-lg-10 d-flex flex-column align-items-start" style="max-width:600px;" data-name="Header">
+                    <div class="col-12 col-lg-10 d-flex flex-column align-items-start" style="max-width:600px;" data-name="Header">
                         <h3 
                             class="mt-0 mb-3 lh-1 fw-bold o_anim_fade_in o_animate o_anim_from_left"
                             style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;"

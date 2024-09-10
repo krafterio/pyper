@@ -7,13 +7,13 @@
         >
             <div class="container-fluid border-top border-2 border-light" style="max-width:1296px;">
                 <div class="row d-flex align-items-start  pt-xs-3 pt-sm-3 pt-md-5">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-2 flex-grow-1 p-3 ">
+                    <div class="col-12 col-md-12 col-lg-12 col-xl-2 flex-grow-1 p-3 ">
                         <div class="d-flex flex-column">
                             <p class="h5 fw-bold mb-0">Poster Collection</p>
                             <p class="h6 opacity-50">Browse Our Poster Categories</p>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9" data-name="Card Box">
+                    <div class="col-12 col-md-12 col-lg-12 col-xl-9" data-name="Card Box">
                         <div class="row d-flex">
                             <!-- item #1 -->
                             <div class="col-xs-12 col-sm-6 col-md-4 mb-3" data-name="Card item">

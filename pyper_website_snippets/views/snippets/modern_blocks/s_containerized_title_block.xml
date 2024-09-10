@@ -7,8 +7,8 @@
         >
             <div class="container o_cc o_cc5 p5">
                 <div class="row">
-                    <div class="col-sm-12 col-md-8 p-5">
-                        <div class="col-sm-12 text-center text-md-start mb-3">
+                    <div class="col-12 col-md-8 p-5">
+                        <div class="col-12 text-center text-md-start mb-3">
                             <p 
                                 class="h6 text-primary fw-bold o_animate o_anim_fade_in o_anim_from_right"
                                 style="--wanim-intensity: 20;animation-delay: 0.0s;animation-duration: 0.4s;"

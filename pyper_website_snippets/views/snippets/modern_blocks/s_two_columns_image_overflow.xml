@@ -9,7 +9,7 @@
             <div class="container">
                 <div class="row o_colored_level">
                     <div
-                        class="col-xs-12 col-sm-12 col-md-12 p-3 o_anim_fade_in o_animate o_anim_from_bottom o_colored_level pt0 col-lg-5 o_visible"
+                        class="col-12 col-md-12 p-3 o_anim_fade_in o_animate o_anim_from_bottom o_colored_level pt0 col-lg-5 o_visible"
                         style="animation-delay: 0s; animation-duration: 0.4s; --wanim-intensity: 20;">
                         <img src="/pyper_website_snippets/static/img/s_text_image_default_image_square.jpg"
                              class="img img-fluid mx-auto o_we_image_cropped overflowed_image"
@@ -20,7 +20,7 @@
                     </div>
 
                     <div
-                        class="col-xs-12 col-sm-12 col-md-12 p-3 o_anim_fade_in o_animate o_anim_from_bottom o_colored_level pt88 col-lg-7 o_visible"
+                        class="col-12 col-md-12 p-3 o_anim_fade_in o_animate o_anim_from_bottom o_colored_level pt88 col-lg-7 o_visible"
                         style="animation-delay: 0.2s; animation-duration: 0.4s; --wanim-intensity: 20;"
                     >
                         <h2 class="o_default_snippet_text">Enhance Your Business Efficiency</h2>

@@ -7,7 +7,7 @@
         >
             <div class="container">
                 <div class="d-flex align-items-center flex-column">    
-                    <div class="col-sm-12 col-lg-8 text-center py-3">
+                    <div class="col-12 col-lg-8 text-center py-3">
                         <div 
                             class="o_animate o_anim_fade_in o_anim_from_top"
                             style="--wanim-intensity: 20;animation-delay: 0.0s;animation-duration: 0.4s;"
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-lg-10 accordion flex-column" role="tablist">
+                    <div class="col-12 col-lg-10 accordion flex-column" role="tablist">
                         <!-- Faq item 1 -->
                         <div class="card border-0 rounded-0" data-name="Item" role="presentation">
                             <p class="card-header border-0 h5 mb-0 o_cc3  text-o-color-4" href="#" role="tab" data-bs-toggle="collapse" aria-expanded="true">How can I use this snippet ?</p>

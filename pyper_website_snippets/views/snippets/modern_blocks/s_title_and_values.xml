@@ -20,25 +20,25 @@
 
                 <div class="row">
                     <div
-                        class="col-xs-12 col-md-6 col-lg-3 pb-4 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
+                        class="col-12 col-md-6 col-lg-3 pb-4 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
                         style="--wanim-intensity: 20;animation-delay: 0.0s; animation-duration: 0.4s;"
                     >
                         <h2 class="text-center">Creativity</h2>
                     </div>
                     <div
-                        class="col-xs-12 col-md-6 col-lg-3 pb-4 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
+                        class="col-12 col-md-6 col-lg-3 pb-4 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
                         style="--wanim-intensity: 20;animation-delay: 0.2s; animation-duration: 0.4s;"
                     >
                         <h2 class="text-center">Quality</h2>
                     </div>
                     <div
-                        class="col-xs-12 col-md-6 col-lg-3 pb-4 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
+                        class="col-12 col-md-6 col-lg-3 pb-4 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
                         style="--wanim-intensity: 20;animation-delay: 0.4s; animation-duration: 0.4s;"
                     >
                         <h2 class="text-center">Consistency</h2>
                     </div>
                     <div
-                        class="col-xs-12 col-md-6 col-lg-3 pb-4 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
+                        class="col-12 col-md-6 col-lg-3 pb-4 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
                         style="--wanim-intensity: 20;animation-delay: 0.6s; animation-duration: 0.4s;"
                     >
                         <h2 class="text-center">Efficiency</h2>
