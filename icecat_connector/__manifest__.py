@@ -16,6 +16,7 @@
     'installable': True,
     'depends': [
         'product',
+		'stock',
         'pyper_product_catalog',
     ],
     'data': [
