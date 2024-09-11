@@ -50,7 +50,7 @@
                 <field name="product_manufacturer_id"/>
                 <field name="activity_state"/>
                 <field name="categ_id"/>
-                <field name="hard_drive_type"/>
+                <field name="hard_drive_type_id"/>
                 <field name="hard_drive_capacity_id"/>
                 <field name="processor_id"/>
                 <field name="screen_size_id"/>
@@ -88,7 +88,7 @@
                                                 <div class="d-flex justify-content-between border-bottom py-1"
                                                      invisible="product_pattern not in ['laptop_computer', 'desktop_computer']">
                                                     <dt class="fw-normal text-muted">Hard drive type</dt>
-                                                    <dd class="fw-bolder" t-esc="record.hard_drive_type.value"/>
+                                                    <dd class="fw-bolder" t-esc="record.hard_drive_type_id.value"/>
                                                 </div>
                                                 <div class="d-flex justify-content-between border-bottom py-1">
                                                     <dt class="fw-normal text-muted">Storage capacity</dt>
@@ -135,7 +135,7 @@
                     <field name="product_manufacturer_id" multi_select="True"/>
                     <field name="ram_capacity_id"/>
                     <field name="hard_drive_capacity_id"/>
-                    <field name="hard_drive_type"/>
+                    <field name="hard_drive_type_id"/>
                 </searchpanel>
             </search>
         </field>
