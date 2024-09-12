@@ -109,7 +109,7 @@
     <template inherit_id="pyper_website_snippets.custom_krafter_snippet_sections" id="custom_krafter_snippet_sections_multi_grid_blocks">
         <xpath expr="//div[@id='snippet_modern_blocks']/div[hasclass('o_panel_body')]" position="inside">
             <t t-snippet="pyper_website_snippets.multi_grid_blocks"
-                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_floating_blocks.svg">
+                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_multi_grid_blocks.svg">
                 <keywords>grid, title, text, image, kpi</keywords>
             </t>
         </xpath>

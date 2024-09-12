@@ -55,7 +55,7 @@
     <template inherit_id="pyper_website_snippets.custom_krafter_snippet_sections"  id="custom_krafter_snippet_sections_top_banner_title_with_foreground_image">
         <xpath expr="//div[@id='snippet_top_blocks']/div[hasclass('o_panel_body')]" position="inside">
             <t t-snippet="pyper_website_snippets.top_banner_title_with_foreground_image"
-                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_two_column_overflow_right.svg">
+                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_banner_title_with_foreground_image.svg">
                 <keywords>image, overflow, text, title, foreground</keywords>
             </t>
         </xpath>

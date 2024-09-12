@@ -118,7 +118,7 @@
     <template inherit_id="pyper_website_snippets.custom_krafter_snippet_sections" id="custom_krafter_snippet_sections_title_block_with_cards">
         <xpath expr="//div[@id='snippet_modern_blocks']/div[hasclass('o_panel_body')]" position="inside">
             <t t-snippet="pyper_website_snippets.title_block_with_cards"
-                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_floating_blocks.svg">
+                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_title_block_with_cards.svg">
                 <keywords>card, app, title, block</keywords>
             </t>
         </xpath>

@@ -135,7 +135,7 @@
     <template inherit_id="pyper_website_snippets.custom_krafter_snippet_sections" id="custom_krafter_snippet_sections_three_column_article">
         <xpath expr="//div[@id='snippet_modern_blocks']/div[hasclass('o_panel_body')]" position="inside">
             <t t-snippet="pyper_website_snippets.three_column_article"
-                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_four_columns_grid.svg">
+                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_three_column_article.svg">
                 <keywords>text, title, image, article, item, column</keywords>
             </t>
         </xpath>

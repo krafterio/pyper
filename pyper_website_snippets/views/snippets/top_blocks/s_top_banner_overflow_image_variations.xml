@@ -84,12 +84,12 @@
         <xpath expr="//div[@id='snippet_top_blocks']/div[hasclass('o_panel_body')]" position="inside">
 
             <t t-snippet="pyper_website_snippets.top_banner_overflow_image_right"
-                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_two_column_overflow.svg">
+                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_banner_overflow_image_right.svg">
                 <keywords>top, banner, image, overflow, right</keywords>
             </t>
     
             <t t-snippet="pyper_website_snippets.top_banner_overflow_image_left"
-                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_two_column_overflow.svg">
+                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_banner_overflow_image_left.svg">
                 <keywords>top, banner, image, overflow, left</keywords>
             </t>   
 

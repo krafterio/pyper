@@ -160,7 +160,7 @@
     <template inherit_id="pyper_website_snippets.custom_krafter_snippet_sections" id="custom_krafter_snippet_sections_customer_review_blocks">
         <xpath expr="//div[@id='snippet_modern_blocks']/div[hasclass('o_panel_body')]" position="inside">
             <t t-snippet="pyper_website_snippets.customer_review_blocks"
-                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_app_banner.svg">
+                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_customer_review_blocks.svg">
                 <keywords>text, title, review, customer</keywords>
             </t>
         </xpath>
