@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
     <t t-name="pyper_web_theme.Activity" t-inherit="mail.Activity" t-inherit-mode="extension">
         <xpath expr="//div[hasclass('o-mail-Activity')]" position="attributes">
-            <attribute name="class" separator=" " remove="py-1 mb-2" add="py-3 border-top border-bottom bg-light"/>
+            <attribute name="class" separator=" " remove="py-1 mb-2" add="py-3 border-top border-bottom"/>
         </xpath>
 
         <xpath expr="//div[hasclass('o-mail-Activity')]//img[hasclass('cursor-pointer')]" position="attributes">
