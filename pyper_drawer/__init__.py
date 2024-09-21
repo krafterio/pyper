@@ -26,3 +26,8 @@ def post_init_hook(env):
     # Drawer Toggler
     if icp.get_param('pyper_drawer.drawer_toggler_props.useCaretIcon', None) is None:
         icp.set_param('pyper_drawer.drawer_toggler_props.useCaretIcon', 'True')
+
+
+def uninstall_hook(env):
+    icp = env['ir.config_parameter'].sudo()
+    icp.search([('key', 'like', 'pyper_drawer.%')]).unlink()
