@@ -1,8 +1,8 @@
 // = Drawer Variables
 // ============================================================================
-$o-navbar-apps-menu-width: 72px !default;
-$o-drawer-width: 290px !default;
-$o-drawer-mini-width: 72px !default;
+$o-navbar-apps-menu-width: 54px !default;
+$o-drawer-width: 240px !default;
+$o-drawer-mini-width: 54px !default;
 $o-drawer-zindex: 999 !default;
 $o-drawer-border-width: 1px !default;
 $o-drawer-border-color: $o-border-color !default;
@@ -30,14 +30,14 @@ $o-drawer-item-hover-color: $o-gray-900 !default;
 $o-drawer-item-hover-bg: rgba($o-black, 0.08) !default;
 $o-drawer-item-icon-hover-color: inherit !default;
 
-$o-drawer-item-active-color: $o-white !default;
-$o-drawer-item-active-bg: $o-black !default;
-$o-drawer-item-icon-active-color: $o-white !default;
-$o-drawer-item-active-hover-color: $o-white !default;
+$o-drawer-item-active-color: $o-component-active-color !default;
+$o-drawer-item-active-bg: $o-component-active-bg !default;
+$o-drawer-item-icon-active-color: $o-drawer-item-active-color !default;
+$o-drawer-item-active-hover-color: $o-drawer-item-active-color !default;
 $o-drawer-item-active-hover-bg: $o-drawer-item-active-bg !default;
-$o-drawer-item-icon-active-hover-color: $o-white !default;
+$o-drawer-item-icon-active-hover-color: $o-drawer-item-icon-active-color !default;
 
-$o-drawer-item-nav-margin-h: 10px !default;
+$o-drawer-item-nav-margin-h: 5px !default;
 
 $o-drawer-popover-item-box-shadow: 12px 4px 12px rgba($o-black, 0.12) !default;
 $o-drawer-popover-item-color: $o-drawer-item-hover-color !default;
