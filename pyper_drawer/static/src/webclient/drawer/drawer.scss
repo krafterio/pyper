@@ -144,6 +144,8 @@
         }
 
         .o_drawer--item-label {
+            font-size: $o-drawer-item-font-size;
+
             &.hidden {
                 position: absolute;
                 opacity: 0;
