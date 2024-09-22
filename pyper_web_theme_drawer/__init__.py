@@ -12,11 +12,14 @@ def post_init_hook(env):
     if icp.get_param('pyper_drawer.drawer_props.showCategorySectionMinified', None) == 'True':
         icp.set_param('pyper_drawer.drawer_props.showCategorySectionMinified', False)
 
+    if icp.get_param('pyper_drawer.drawer_props.fixedTop', None) == 'True':
+        icp.set_param('pyper_drawer.drawer_props.fixedTop', False)
+
+    if icp.get_param('pyper_drawer.drawer_props.alwaysHeader', None) is None:
+        icp.set_param('pyper_drawer.drawer_props.alwaysHeader', 'True')
+
     if icp.get_param('pyper_drawer.drawer_props.alwaysFooter', None) is None:
         icp.set_param('pyper_drawer.drawer_props.alwaysFooter', 'True')
-
-    if icp.get_param('pyper_drawer.drawer_props.hideNavbarAppsMenu', None) is None:
-        icp.set_param('pyper_drawer.drawer_props.hideNavbarAppsMenu', 'True')
 
     # Drawer Toggler
     if icp.get_param('pyper_drawer.drawer_toggler_props.useCaretIcon', None) == 'True':

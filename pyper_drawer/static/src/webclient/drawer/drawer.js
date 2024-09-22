@@ -73,6 +73,10 @@ export class Drawer extends Component {
             type: Boolean,
             optional: true,
         },
+        subItemsDepth: {
+            type: Number,
+            optional: true,
+        },
         dragEndRatio: {
             type: Number,
             optional: true,
@@ -119,6 +123,8 @@ export class Drawer extends Component {
         popoverMinified: undefined,
         closeAction: undefined,
         closeOnClick: undefined,
+        closeAllUnactivatedItemsOnClick: undefined,
+        subItemsDepth: undefined,
         dragEndRatio: undefined,
         hideEmptyCategory: undefined,
         hideCategoryLabelFull: undefined,
@@ -140,6 +146,8 @@ export class Drawer extends Component {
         popoverMinified: false,
         closeAction: false,
         closeOnClick: false,
+        closeAllUnactivatedItemsOnClick: false,
+        subItemsDepth: 0,
         dragEndRatio: 0.25,
         hideEmptyCategory: false,
         hideCategoryLabelFull: false,
@@ -351,6 +359,10 @@ export class Drawer extends Component {
         return categories;
     }
 
+    get mainStartChildrenDepth() {
+        return this.settings.subItemsDepth < 0 ? -1 : Math.max(0, this.settings.subItemsDepth);
+    }
+
     get footerAppSections() {
         if (this.currentCategoryAppSections['drawer_footer']
             && this.currentCategoryAppSections['drawer_footer']['menus'].length > 0
@@ -481,18 +493,6 @@ export class Drawer extends Component {
         }
     }
 
-    menuIsSelected(menu) {
-        if (this.currentApp && menu) {
-            menu = typeof menu === 'number' ? this.menuService.getMenu(menu) : menu;
-
-            if (menu.actionID) {
-                return menu.actionID === this.currentApp.actionID;
-            }
-        }
-
-        return false;
-    }
-
     onWillUpdateProps(nextProps) {
         this.pyperSetupService.onWillUpdateProps(Drawer.SETUP_PREFIX, nextProps);
         this._refreshDrawerService();
@@ -597,6 +597,7 @@ export class Drawer extends Component {
         this.drawerService.minifiable = this.settings.minifiable;
         this.drawerService.popoverMinified = this.settings.popoverMinified;
         this.drawerService.disabledOnSmallScreen = this.settings.disabledOnSmallScreen;
+        this.drawerService.closeAllUnactivatedItemsOnClick = this.settings.closeAllUnactivatedItemsOnClick;
         this.drawerService.restoreMinified(this.settings.initMinified);
     }
 }

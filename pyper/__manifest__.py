@@ -25,9 +25,11 @@
             ('before', 'web/static/src/**/*.variables.scss', 'pyper/static/src/**/*.variables.scss'),
         ],
         'web.assets_backend': [
+            'pyper/static/src/core/dropdown/**/*',
             'pyper/static/src/core/ui/**/*',
             'pyper/static/src/views/fields/**/*',
             'pyper/static/src/views/form/**/*',
+            'pyper/static/src/webclient/menus/**/*',
         ],
     },
 }

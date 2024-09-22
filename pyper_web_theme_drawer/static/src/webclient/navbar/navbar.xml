@@ -6,11 +6,11 @@
                 <div class="o_main_navbar">
                     <DrawerAppMenu>
                         <t t-set-slot="minified">
-                            <img src="/pyper_web_theme/static/img/icon.svg" width="50" height="50" class="rounded-3"/>
+                            <img src="/pyper_web_theme/static/img/icon.svg" width="40" height="40" class="rounded-3"/>
                         </t>
 
                         <t t-set-slot="locked">
-                            <img src="/pyper_web_theme/static/img/icon.svg" width="50" height="50" class="rounded-3"/>
+                            <img src="/pyper_web_theme/static/img/icon.svg" width="40" height="40" class="rounded-3"/>
                         </t>
                     </DrawerAppMenu>
                 </div>

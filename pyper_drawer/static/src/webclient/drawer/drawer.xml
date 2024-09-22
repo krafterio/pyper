@@ -71,12 +71,13 @@
                         menuId="menu.id"
                         menuAction="menu.actionID || undefined"
                         hotkey="hotkey"
+                        childrenDepth="mainStartChildrenDepth"
+                        children="menu.childrenTree"
                         withIcon="settings.showRootApp"
                         iconData="menu.webIconData"
                         fontIcon="menu.font_icon"
                         fontIconColor="menu.font_icon_color"
                         label="menu.name"
-                        active="menuIsSelected(menu)"
                     />
                 </t>
             </t>
@@ -105,7 +106,6 @@
                 fontIcon="menu.font_icon"
                 fontIconColor="menu.font_icon_color"
                 label="menu.name"
-                active="menuIsSelected(menu)"
             />
         </t>
     </t>

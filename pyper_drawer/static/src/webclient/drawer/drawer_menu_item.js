@@ -3,7 +3,8 @@
 import {Component, onWillUpdateProps, useRef, useState} from '@odoo/owl';
 import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {usePopover} from '@web/core/popover/popover_hook';
-import {useService} from '@web/core/utils/hooks';
+import {useBus, useService} from '@web/core/utils/hooks';
+import {findFirstSelectableMenu} from '@pyper/webclient/menus/menu_helpers';
 import {DrawerPopoverItem} from './drawer_popover_item';
 
 
@@ -12,6 +13,7 @@ export class DrawerMenuItem extends Component {
 
     static components = {
         DropdownItem: DropdownItem,
+        DrawerMenuItem: DrawerMenuItem,
     };
 
     static props = {
@@ -29,6 +31,14 @@ export class DrawerMenuItem extends Component {
         },
         hotkey: {
             type: String,
+            optional: true,
+        },
+        childrenDepth: {
+            type: Number,
+            optional: true,
+        },
+        children: {
+            type: Array,
             optional: true,
         },
         withIcon: {
@@ -54,18 +64,29 @@ export class DrawerMenuItem extends Component {
             type: Boolean,
             optional: true,
         },
+        depth: {
+            type: Number,
+            optional: true,
+        }
     }
 
     static defaultProps = {
+        childrenDepth: 0,
+        children: [],
         withIcon: false,
-        active: false,
+        active: undefined,
+        depth: 0,
     }
 
     setup() {
         this.drawerService = useState(useService('drawer'));
+        this.menuStateService = useState(useService('menu_state'));
         this.actionService = useService('action');
         this.menuService = useService('menu');
         this.content = useRef('content');
+        this.state = useState({
+            opened: this.menuStateService.menuIsActivated(this.props.menuId),
+        });
 
         if (!this.drawerService.popover) {
             const navCls = (this.drawerService.isNav ? ' o_drawer--popover-item-nav' : '');
@@ -79,6 +100,26 @@ export class DrawerMenuItem extends Component {
         }
 
         onWillUpdateProps((nextProps) => this.onWillUpdateProps(nextProps));
+
+        useBus(this.env.bus, 'MENU-STATE:MENU-SELECTED', this.onMenuItemSelected.bind(this));
+    }
+
+    get classes() {
+        return {
+            'o_drawer--menu-item': true,
+            'o_drawer--menu-item-active': this.isActive,
+            'o_drawer--menu-item-opened': this.isOpened,
+        };
+    }
+
+    get styles() {
+        return {
+            '--drawer-item-depth': this.props.depth,
+        };
+    }
+
+    get displayChildren() {
+        return this.props.childrenDepth !== 0 && this.props.children.length > 0;
     }
 
     get displayIcon() {
@@ -107,8 +148,34 @@ export class DrawerMenuItem extends Component {
         return '#' + parts.join('&');
     }
 
+    get isActive() {
+        if (undefined === this.props.active) {
+            return this.menuStateService.activeIds.includes(this.props.menuId);
+        }
+
+        return this.props.active;
+    }
+
+    get isOpened() {
+        return this.state.opened;
+    }
+
+    get childrenDepth() {
+        return this.props.childrenDepth < 0 ? -1 : Math.max(0, this.props.childrenDepth - 1);
+    }
+
+    toggleChildren() {
+        this.setOpened(!this.state.opened);
+    }
+
+    setOpened(opened) {
+        this.state.opened = this.props.children.length > 0 ? !!opened : false;
+    }
+
     onItemSelection() {
-        if (this.props.menuId) {
+        if (this.displayChildren && !this.isPopoverEnabled) {
+            this.toggleChildren();
+        } else if (this.props.menuId) {
             // Check if action is external identifier of menu
             let menu = undefined;
 
@@ -117,7 +184,12 @@ export class DrawerMenuItem extends Component {
             }
 
             if (!menu) {
-                menu = this.props.menuId;
+                menu = this.menuService.getMenu(this.props.menuId);
+            }
+
+            // Force to find first sub menu item with action id
+            if (menu && menu.childrenTree.length > 0) {
+                menu = findFirstSelectableMenu(menu.childrenTree);
             }
 
             this.drawerService.selectMenu(menu);
@@ -125,6 +197,12 @@ export class DrawerMenuItem extends Component {
             this.actionService.doAction(this.props.menuAction, {
                 clearBreadcrumbs: true,
             }).then();
+        }
+    }
+
+    onMenuItemSelected() {
+        if (this.drawerService.closeAllUnactivatedItemsOnClick) {
+            this.setOpened(this.menuStateService.menuIsActivated(this.props.menuId));
         }
     }
 

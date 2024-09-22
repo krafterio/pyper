@@ -26,6 +26,7 @@ export class DrawerState {
             disabledOnSmallScreen: false,
             dragging: false,
             mounted: false,
+            closeAllUnactivatedItemsOnClick: false,
         };
     }
 
@@ -169,6 +170,14 @@ export class DrawerState {
 
     set popover(popover) {
         this._popover = popover;
+    }
+
+    get closeAllUnactivatedItemsOnClick() {
+        return this.state.closeAllUnactivatedItemsOnClick;
+    }
+
+    set closeAllUnactivatedItemsOnClick(value) {
+        this.state.closeAllUnactivatedItemsOnClick = value;
     }
 
     restoreMinified(defaultMinified) {

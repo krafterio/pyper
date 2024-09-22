@@ -15,6 +15,7 @@ import {useBus, useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
 import {isMobileOS} from '@web/core/browser/feature_detection';
 import {useHotkey} from '@web/core/hotkeys/hotkey_hook';
+import {findFirstSelectableMenu} from '@pyper/webclient/menus/menu_helpers';
 import {OverlayFooter} from './overlay_footer';
 
 
@@ -203,6 +204,10 @@ export class OverlayMenu extends Component {
 
     selectMenu(menu) {
         if (menu) {
+            if (menu && menu.childrenTree.length > 0) {
+                menu = findFirstSelectableMenu(menu.childrenTree);
+            }
+
             this.menuService.selectMenu(menu).then();
             this.close();
         }

@@ -2,15 +2,7 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="pyper_drawer.DrawerPopoverItem" owl="1">
-        <div
-            t-att-class="{
-                'dropdown-item': true,
-                'o_drawer--menu-item': true,
-                'o_drawer--menu-item-active': props.active,
-                'd-flex': true,
-                'align-items-center': true,
-            }"
-        >
+        <div t-att-class="classes">
             <t t-call="pyper_drawer.DrawerMenuItem.Content">
                 <t t-set="withIcon" t-value="props.displayIcon"/>
                 <t t-set="iconData" t-value="props.iconData"/>

@@ -62,6 +62,16 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='pyper_drawer.drawer_props.closeOnClick',
     )
 
+    drawer_close_all_unactivated_items_on_select = fields.Boolean(
+        'Close all unactivated items on select?',
+        config_parameter='pyper_drawer.drawer_props.closeAllUnactivatedItemsOnClick',
+    )
+
+    drawer_sub_items_depth = fields.Integer(
+        'Sub item depth',
+        config_parameter='pyper_drawer.drawer_props.subItemsDepth',
+    )
+
     drawer_drag_end_ratio = fields.Float(
         'Custom width ratio of drag end',
         config_parameter='pyper_drawer.drawer_props.dragEndRatio',

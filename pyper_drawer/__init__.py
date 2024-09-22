@@ -35,6 +35,9 @@ def post_init_hook(env):
     if icp.get_param('pyper_drawer.drawer_props.closeOnClick', None) is None:
         icp.set_param('pyper_drawer.drawer_props.closeOnClick', 'True')
 
+    if icp.get_param('pyper_drawer.drawer_props.closeAllUnactivatedItemsOnClick', None) is None:
+        icp.set_param('pyper_drawer.drawer_props.closeAllUnactivatedItemsOnClick', 'True')
+
 
 def uninstall_hook(env):
     icp = env['ir.config_parameter'].sudo()

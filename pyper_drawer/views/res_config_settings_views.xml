@@ -52,6 +52,10 @@
                         <field name="drawer_close_on_click"/>
                     </setting>
 
+                    <setting help="Allow to close all opened menu items in drawer with children on menu item is selected">
+                        <field name="drawer_close_all_unactivated_items_on_select"/>
+                    </setting>
+
                     <setting help="Hide the menu items if the category is not defined or is in global category">
                         <field name="drawer_hide_empty_category"/>
                     </setting>
@@ -74,6 +78,10 @@
 
                     <setting>
                         <field name="drawer_hide_navbar_apps_menu"/>
+                    </setting>
+
+                    <setting help="Number of levels that can be displayed for submenus. Set to -1 for no limit">
+                        <field name="drawer_sub_items_depth"/>
                     </setting>
 
                     <setting>

@@ -25,20 +25,38 @@ $o-drawer-item-padding-h: ($o-drawer-mini-width - $o-drawer-item-icon-width) / 2
 $o-drawer-item-color: inherit !default;
 $o-drawer-item-bg: inherit !default;
 $o-drawer-item-icon-color: inherit !default;
+$o-drawer-item-caret-color: $o-gray-500 !default;
 
 $o-drawer-item-hover-color: $o-gray-900 !default;
 $o-drawer-item-hover-bg: rgba($o-black, 0.08) !default;
 $o-drawer-item-icon-hover-color: inherit !default;
+$o-drawer-item-caret-hover-color: inherit !default;
 
 $o-drawer-item-active-color: $o-component-active-color !default;
 $o-drawer-item-active-bg: $o-component-active-bg !default;
 $o-drawer-item-icon-active-color: $o-drawer-item-active-color !default;
+$o-drawer-item-caret-active-color: $o-brand-primary !default;
 $o-drawer-item-active-hover-color: $o-drawer-item-active-color !default;
 $o-drawer-item-active-hover-bg: $o-drawer-item-active-bg !default;
 $o-drawer-item-icon-active-hover-color: $o-drawer-item-icon-active-color !default;
+$o-drawer-item-caret-active-hover-color: $o-drawer-item-icon-active-color !default;
 
 $o-drawer-item-nav-margin-h: 5px !default;
 $o-drawer-item-nav-padding-h: $o-drawer-item-padding-h !default;
+$o-drawer-item-nav-margin-bottom: $o-drawer-item-nav-margin-h !default;
+
+$o-drawer-subitem-depth-base: 5px !default;
+$o-drawer-subitem-depth-next: 15px !default;
+$o-drawer-subitem-margin-bottom: 15px !default;
+$o-drawer-subitem-padding-v: 2px !default;
+
+$o-drawer-subitem-active-color: $o-drawer-item-active-color !default;
+$o-drawer-subitem-active-bg: lighten($o-drawer-item-active-bg, 7%) !default;
+$o-drawer-subitem-active-hover-color: $o-drawer-subitem-active-color !default;
+$o-drawer-subitem-active-hover-bg: $o-drawer-subitem-active-bg !default;
+
+$o-drawer-subitem-nav-padding-v: $o-drawer-subitem-padding-v !default;
+$o-drawer-subitem-nav-margin-bottom: $o-drawer-item-nav-margin-bottom / 2 !default;
 
 $o-drawer-popover-item-box-shadow: 12px 4px 12px rgba($o-black, 0.12) !default;
 $o-drawer-popover-item-color: $o-drawer-item-hover-color !default;

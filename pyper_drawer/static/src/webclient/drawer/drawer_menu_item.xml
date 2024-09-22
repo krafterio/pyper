@@ -9,10 +9,11 @@
 
     <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.PopoverItem" owl="1">
         <DropdownItem
-            class="{'o_drawer--menu-item': true, 'o_drawer--menu-item-active': props.active}"
+            class="classes"
+            styles="styles"
             href="menuItemHref"
             hotkey="props.hotkey"
-            dataset="{menuXmlid: props.menuXmlid, menu: props.menuId, tooltip: drawerService.isMinified and !drawerService.isPopoverMinified ? props.label : undefined, tooltipPosition: 'right'}"
+            dataset="{depth: props.depth, menuXmlid: props.menuXmlid, menu: props.menuId, tooltip: drawerService.isMinified and !drawerService.isPopoverMinified ? props.label : undefined, tooltipPosition: 'right'}"
             onSelected="() => this.onItemSelection()"
         >
             <t t-call="pyper_drawer.DrawerMenuItem.Content">
@@ -33,16 +34,19 @@
 
     <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.DropdownItem" owl="1">
         <DropdownItem
-            class="{'o_drawer--menu-item': true, 'o_drawer--menu-item-active': props.active}"
+            class="classes"
+            styles="styles"
             href="menuItemHref"
             hotkey="props.hotkey"
-            dataset="{menuXmlid: props.menuXmlid, menu: props.menuId, tooltip: drawerService.isMinified and !drawerService.isPopoverMinified ? props.label : undefined, tooltipPosition: 'right'}"
+            dataset="{depth: props.depth, menuXmlid: props.menuXmlid, menu: props.menuId, tooltip: drawerService.isMinified and !drawerService.isPopoverMinified ? props.label : undefined, tooltipPosition: 'right'}"
             onSelected="() => this.onItemSelection()"
         >
             <t t-call="pyper_drawer.DrawerMenuItem.Content">
                 <t t-set="menuId" t-value="props.menuId"/>
                 <t t-set="menuAction" t-value="props.menuAction"/>
                 <t t-set="hotkey" t-value="props.hotkey"/>
+                <t t-set="withChildren" t-value="displayChildren"/>
+                <t t-set="childrenOpened" t-value="state.opened"/>
                 <t t-set="withIcon" t-value="displayIcon"/>
                 <t t-set="iconData" t-value="props.iconData"/>
                 <t t-set="fontIcon" t-value="props.fontIcon"/>
@@ -51,6 +55,23 @@
                 <t t-set="showLabel" t-value="!drawerService.isMinified"/>
             </t>
         </DropdownItem>
+
+        <div
+            t-if="displayChildren and state.opened"
+            t-att-class="{'o_drawer--menu-item-children': true}"
+        >
+            <t t-foreach="props.children" t-as="submenu" t-key="submenu.id">
+                <DrawerMenuItem
+                    menuXmlid="submenu.xmlid"
+                    menuId="submenu.id"
+                    menuAction="submenu.actionID || undefined"
+                    childrenDepth="childrenDepth"
+                    children="submenu.childrenTree"
+                    label="submenu.name"
+                    depth="props.depth + 1"
+                />
+            </t>
+        </div>
     </t>
 
     <t t-name="pyper_drawer.DrawerMenuItem.Content" owl="1">
@@ -80,6 +101,16 @@
 
             <div t-if="label" t-att-class="{'o_drawer--item-label': true, 'hidden': !showLabel}">
                 <t t-out="label"/>
+            </div>
+
+            <div t-if="showLabel and withChildren" class="o_drawer--item-icon-caret">
+                <t t-slot="closed_caret_icon" t-if="!childrenOpened">
+                    <i class="fa fa-caret-down"/>
+                </t>
+
+                <t t-slot="opened_caret_icon" t-else="">
+                    <i class="fa fa-caret-up"/>
+                </t>
             </div>
         </div>
     </t>
