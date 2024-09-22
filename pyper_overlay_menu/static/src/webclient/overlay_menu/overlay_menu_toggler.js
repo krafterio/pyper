@@ -19,6 +19,7 @@ export class OverlayMenuToggler extends Component {
             'o-dropdown': true,
             'o-dropdown--no-caret': true,
             'o_overlay_menu_toggler': true,
+            'o_navbar_apps_menu': true,
         };
     }
 

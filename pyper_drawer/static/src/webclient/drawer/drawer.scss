@@ -356,8 +356,8 @@
 
             .o_drawer--menu-item-content {
                 border-radius: $o-drawer-item-icon-border-radius;
-                padding-left: $o-drawer-item-padding-h - ($o-drawer-item-nav-margin-h/2);
-                padding-right: $o-drawer-item-padding-h - ($o-drawer-item-nav-margin-h/2);
+                padding-left: $o-drawer-item-nav-padding-h - ($o-drawer-item-nav-margin-h/2);
+                padding-right: $o-drawer-item-nav-padding-h - ($o-drawer-item-nav-margin-h/2);
             }
         }
     }
@@ -455,14 +455,42 @@
                 &:not(.o_drawer--mini) {
                     width: $o-drawer-toggler-locked-width;
                 }
-            }
 
-            + .o_menu_brand {
-                padding-left: $o-horizontal-padding;
+                + .o_menu_brand {
+                    padding-left: $o-horizontal-padding;
+                }
             }
 
             &.o_drawer--mini {
                 width: auto;
+            }
+        }
+    }
+
+    .o_navbar_apps_menu.o_navbar_apps_menu--hide {
+        + .o_drawer_toggler {
+            &.o_drawer--fixed-top {
+                .dropdown-toggle {
+                    padding-left: 0;
+                    padding-right: 0;
+                    width: $o-drawer-item-icon-width;
+                    justify-content: center;
+                }
+
+                &.o_drawer--mini {
+                    width: $o-drawer-mini-width;
+
+                    .dropdown-toggle {
+                        justify-content: center;
+                        width: 100%;
+                    }
+                }
+
+                &:not(.o_drawer--mini) {
+                    .dropdown-toggle {
+                        margin-left: $o-drawer-item-padding-h;
+                    }
+                }
             }
         }
     }
@@ -473,6 +501,10 @@
                 &:not(.o_drawer--mini) {
                     width: $o-drawer-toggler-locked-width-with-apps-menu;
                 }
+            }
+
+            &:not(.o_drawer--fixed-top) {
+                margin-left: -$o-drawer-item-padding-h;
             }
         }
     }
