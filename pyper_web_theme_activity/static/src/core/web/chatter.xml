@@ -43,14 +43,14 @@
         </xpath>
 
         <xpath expr="//button[hasclass('o-mail-Chatter-sendMessage')]" position="replace">
-           <button t-if="props.hasMessageList" class="o-mail-Chatter-sendMessage btn btn-secondary btn-quick p-0 me-2 text-nowrap" t-att-disabled="!state.thread.hasWriteAccess and !(state.thread.hasReadAccess and state.thread.canPostOnReadonly) and props.threadId" data-hotkey="m" t-on-click="() => this.toggleComposer('message')">
+           <button t-if="props.hasMessageList" class="o-mail-Chatter-sendMessage btn btn-secondary btn-quick p-0 me-2 text-nowrap" t-att-disabled="!state.thread.hasWriteAccess and !(state.thread.hasReadAccess and state.thread.canPostOnReadonly) and props.threadId" data-hotkey="m" t-on-click="() => this.toggleComposer('message')" title="Send message">
                <i class="ph ph-chat-centered-text"/>
                <i class="btn-quick-counter fa fa-plus"></i>
             </button>
         </xpath>
 
         <xpath expr="//button[hasclass('o-mail-Chatter-activity')]" position="replace">
-           <button t-if="props.hasActivities" class="o-mail-Chatter-activity btn btn-secondary btn-quick me-2 text-nowrap"  data-hotkey="shift+a" t-on-click="scheduleActivity">
+           <button t-if="props.hasActivities" class="o-mail-Chatter-activity btn btn-secondary btn-quick me-2 text-nowrap"  data-hotkey="shift+a" t-on-click="scheduleActivity" title="Schedule activity">
                <i class="ph ph-calendar-check fs-2 lh-lg"/>
            </button>
         </xpath>
@@ -64,7 +64,7 @@
                 onClick="(ev) => this.onClickAttachFile(ev)"
             >
                 <t t-set-slot="toggler">
-                    <button class="o-mail-Chatter-uploadFile btn btn-secondary btn-quick p-0 me-2 text-nowrap"  type="button" t-att-disabled="!state.thread.hasWriteAccess">
+                    <button class="o-mail-Chatter-uploadFile btn btn-secondary btn-quick p-0 me-2 text-nowrap"  type="button" t-att-disabled="!state.thread.hasWriteAccess" title="Attach files">
                         <i class="ph ph-upload"/>
                         <i class="btn-quick-counter fa fa-plus"></i>
                     </button>
@@ -85,10 +85,10 @@
         <xpath expr="//button[@t-on-click='onClickFollow']" position="replace"/>
 
         <xpath expr="//button[@t-on-click='onClickUnfollow']" position="replace">
-            <button t-if="props.hasFollowers and state.thread.selfFollower" class="btn btn-secondary btn-quick text-nowrap" t-att-class="{ 'text-primary': !unfollowHover.isHover}" t-att-disabled="!props.threadId" t-on-click="onClickUnfollow" t-ref="unfollow">
+            <button t-if="props.hasFollowers and state.thread.selfFollower" class="btn btn-secondary btn-quick text-nowrap" t-att-class="{ 'text-primary': !unfollowHover.isHover}" t-att-disabled="!props.threadId" t-on-click="onClickUnfollow" t-ref="unfollow" title="Unfollow">
                 <i class="ph-fill ph-toggle-right"/>
             </button>
-            <button t-if="!state.thread.selfFollower" class="o-mail-Chatter-follow btn btn-secondary btn-quick text-nowrap" t-on-click="onClickFollow">
+            <button t-if="!state.thread.selfFollower" class="o-mail-Chatter-follow btn btn-secondary btn-quick text-nowrap" t-on-click="onClickFollow" title="Follow">
                 <i class="ph-fill ph-toggle-left"/>
             </button>
         </xpath>
