@@ -422,6 +422,9 @@
 // Sub items
 .o_drawer {
     .o_drawer--menu-item-children {
+        padding-top: $o-drawer-subitem-block-padding-v;
+        padding-bottom: $o-drawer-subitem-block-padding-v;
+
         .o_drawer--menu-item-content {
             padding-top: $o-drawer-subitem-padding-v;
             padding-bottom: $o-drawer-subitem-padding-v;
