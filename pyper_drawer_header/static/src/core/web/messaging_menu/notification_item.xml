@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="pyper_drawer_header.NotificationItem" t-inherit="mail.NotificationItem"  t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('o-mail-NotificationItem')]/div[1]" position="attributes">
+            <attribute name="style">''</attribute>
+            <attribute name="class" add="o-drawer-mail-NotificationItem-avatar" separator=" "/>
+        </xpath>
+    </t>
+
+</templates>

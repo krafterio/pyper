@@ -1,0 +1,214 @@
+// = Drawer Header
+// ============================================================================
+
+// TODO : remove overflow from pyper drawer unless there is a reason to keep it ?
+.o_drawer {
+    overflow: visible;
+}
+
+.o-drawer--header {
+    margin-top: $o-drawer-header-margin-top;
+    padding-left: $o-drawer-header-padding-x;
+    padding-right: $o-drawer-header-padding-x;
+    display: flex;
+    align-items: center;
+
+    .o-drawer-header-action-btn {
+        background-color: $o-drawer-header-action-btn-bg;
+        border: $o-drawer-header-action-btn-border;
+        color: $o-drawer-header-action-btn-color;
+        width: $o-drawer-header-action-btn-size;
+        height: $o-drawer-header-action-btn-size;
+        line-height: $o-drawer-header-action-btn-size;
+        font-size: $o-drawer-header-action-btn-font-size;
+
+        &:hover {
+            color: $o-drawer-header-action-btn-hover-color;
+        }
+
+        .o-badge-counter {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 10px;
+            width: $o-drawer-badge-counter-size;
+            height: $o-drawer-badge-counter-size;
+            line-height: $o-drawer-badge-counter-size + 2px;
+            border-radius: 100%;
+            --o-discuss-badge-bg: #{$o-danger}; // sync with --o-navbar-badge-bg
+            color: white !important;
+            background-color: var(--o-discuss-badge-bg) !important;
+        }
+    }
+
+    .o-drawer-header-messages-block {
+        top: 0 !important;
+        left: $o-drawer-width !important;
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        max-height: 100vh;
+        background-color: $o-drawer-messages-block-bg;
+        font-size: 22px !important;
+        -webkit-animation-duration: 0.2s;
+        animation-duration: 0.2s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-name: fadeInLeftLight;
+        animation-name: fadeInLeftLight;
+
+        .o-drawer-header-messages-block-content {
+            width: $o-drawer-header-messages-block-width;
+
+            .o-drawer-header-messages-block-header {
+                background-color: $o-drawer-messages-block-bg
+            }
+
+            .o-mail-NotificationItem {
+                background-color: $o-drawer-messages-block-bg !important;
+
+                .o-drawer-mail-NotificationItem-avatar {
+                    width: 30px;
+                    height: 30px;
+                }
+
+                .o-mail-NotificationItem-name {
+                    font-size: 0.825rem;
+                }
+
+                .o-mail-NotificationItem-text {
+                    font-size: 0.825rem;
+                }
+
+                &:hover {
+                    background-color: $o-drawer-header-user-block-bg-hover !important;
+                }
+            }
+        }
+    }
+}
+
+.o-drawer--user-menu-block {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    padding: $o-drawer-header-user-block-padding;
+    border: $o-drawer-header-user-block-border;
+    background-color: $o-drawer-header-user-block-bg;
+    color: $o-drawer-header-user-block-color;
+
+    .o-drawer--user-menu-name-size {
+        font-size: $o-drawer-header-user-font-size;
+    }
+
+    .o_user_avatar {
+        width: $o-drawer-header-user-avatar-size;
+        height: $o-drawer-header-user-avatar-size;
+        border-radius: $o-drawer-header-user-avatar-radius;
+    }
+
+    &:hover {
+        background-color: $o-drawer-header-user-block-bg-hover;
+    }
+
+    &:active {
+        background-color: $o-drawer-header-user-block-bg-hover;
+    }
+}
+
+.o-drawer--header-action {
+    margin-top: $o-drawer-header-action-margin;
+
+    .o-drawer-inbox-btn {
+        background-color: $o-drawer-header-action-btn-bg;
+        border: $o-drawer-header-action-btn-border;
+    }
+}
+
+.o-drawer--menu {
+    margin-top: $o-drawer-menu-margin-v;
+    margin-bottom: $o-drawer-menu-margin-v;
+    padding-left: $o-drawer-menu-padding-h;
+    padding-right: $o-drawer-menu-padding-h;
+
+    .o-drawer-header-activity-btn {
+        background-color: transparent;
+        border-radius: 2px;
+        padding: 0.75rem;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+        color: $o-drawer-header-activity-btn-color;
+        border: $o-drawer-header-activity-btn-border;
+
+        &:hover {
+            border:$o-drawer-header-activity-btn-border-hover;
+        }
+
+        span {
+            font-size: 0.75rem;
+        }
+
+        i {
+            width: $o-drawer-header-user-avatar-size;
+            height: $o-drawer-header-user-avatar-size;
+            line-height: $o-drawer-header-user-avatar-size;
+            font-size: 1.25rem;
+        }
+
+        .o-mail-ActivityMenu-counter {
+            background-color: $o-gray-800;
+            height: $o-drawer-badge-counter-size;
+            width: $o-drawer-badge-counter-size;
+            border-radius: 100%;
+            line-height: $o-drawer-badge-counter-size + 2px;
+            padding: 0;
+            min-width: $o-drawer-badge-counter-size;
+            font-size: 10px;
+            --o-discuss-badge-bg: #{$o-danger}; // sync with --o-navbar-badge-bg
+            color: white !important;
+            background-color: var(--o-discuss-badge-bg) !important;
+        }
+    }
+
+    .o-drawer-header-activities-block {
+        top: 0 !important;
+        left: $o-drawer-width !important;
+        padding: 10px 0;
+        margin: 0;
+        height: 100vh;
+        max-height: 100vh;
+        background-color: $o-drawer-messages-block-bg;
+        width: $o-drawer-header-activities-block-width;
+        font-size: 22px !important;
+        -webkit-animation-duration: 0.2s;
+        animation-duration: 0.2s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-name: fadeInLeftLight;
+        animation-name: fadeInLeftLight;
+
+        .o-mail-ActivityMenu {
+            width: $o-drawer-header-activities-block-width;
+
+            .o-mail-ActivityGroup{
+                padding: 10px 20px !important;
+                font-size: 0.825rem;
+
+                .o-drawer-activity-title{
+                    color:$o-drawer-activity-title-color;
+                }
+
+                &:hover{
+                    color:$o-drawer-activity-title-color;
+                }
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+    }
+}
