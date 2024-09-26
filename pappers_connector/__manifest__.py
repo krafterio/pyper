@@ -26,7 +26,6 @@
 
         # Views
         'views/conf_setting_views.xml',
-        'views/res_partner_views.xml',
 
         # Wizard
         'wizard/pappers_name_form.xml',
