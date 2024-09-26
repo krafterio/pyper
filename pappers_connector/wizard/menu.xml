@@ -18,19 +18,19 @@
         </record>
 
         <menuitem
-            id="pappers_siret_form"
-            name="Import company with siret"
+            id="pappers_name_form"
+            name="Import company with name"
             sequence="1"
             parent="pyper_contact.all_company_importer"
-            action="pappers_connector.action_open_pappers_wizard"
+            action="pappers_connector.action_open_pappers_name_wizard"
         />
 
         <menuitem
-            id="pappers_name_form"
-            name="Import company with name"
+            id="pappers_siret_form"
+            name="Import company with siret"
             sequence="2"
             parent="pyper_contact.all_company_importer"
-            action="pappers_connector.action_open_pappers_name_wizard"
+            action="pappers_connector.action_open_pappers_wizard"
         />
     </data>
 </odoo>
