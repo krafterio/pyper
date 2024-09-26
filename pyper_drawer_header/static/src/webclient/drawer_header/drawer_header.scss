@@ -33,7 +33,7 @@
             font-size: 10px;
             width: $o-drawer-badge-counter-size;
             height: $o-drawer-badge-counter-size;
-            line-height: $o-drawer-badge-counter-size + 2px;
+            line-height: $o-drawer-badge-counter-size;
             border-radius: 100%;
             --o-discuss-badge-bg: #{$o-danger}; // sync with --o-navbar-badge-bg
             color: white !important;
@@ -66,6 +66,7 @@
 
             .o-mail-NotificationItem {
                 background-color: $o-drawer-messages-block-bg !important;
+                border-width: 0;
 
                 .o-drawer-mail-NotificationItem-avatar {
                     width: 30px;
@@ -162,7 +163,7 @@
             height: $o-drawer-badge-counter-size;
             width: $o-drawer-badge-counter-size;
             border-radius: 100%;
-            line-height: $o-drawer-badge-counter-size + 2px;
+            line-height: $o-drawer-badge-counter-size;
             padding: 0;
             min-width: $o-drawer-badge-counter-size;
             font-size: 10px;
@@ -191,10 +192,16 @@
 
         .o-mail-ActivityMenu {
             width: $o-drawer-header-activities-block-width;
+            background-color: $o-drawer-messages-block-bg;
+
+            .list-group-item{
+                background-color: $o-drawer-messages-block-bg;
+            }
 
             .o-mail-ActivityGroup{
                 padding: 10px 20px !important;
                 font-size: 0.825rem;
+                border-width: 0;
 
                 .o-drawer-activity-title{
                     color:$o-drawer-activity-title-color;
