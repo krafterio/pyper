@@ -84,13 +84,13 @@ class PiloterrCompanyLookup(models.Model):
         """
         obj = self.env[model_name].browse(obj_id)
 
-        if response['location']['city']:
+        if response['location']['city'] and not obj.city :
             setattr(obj, 'city', response['location']['city'])
 
-        if response['location']['postcode']:
+        if response['location']['postcode'] and not obj.zip:
             setattr(obj, 'zip', response['location']['postcode'])
 
-        if response['location']['country_code']:
+        if response['location']['country_code'] and not obj.country_id:
             country_id = self.env['res.country'].search(
                 [
                     ('code', '=', response['location']['country_code']),
@@ -99,16 +99,16 @@ class PiloterrCompanyLookup(models.Model):
             if country_id.id:
                 setattr(obj, 'country_id', country_id.id)
 
-        if response['phone_number']:
+        if response['phone_number'] and not obj.phone:
             setattr(obj, 'phone', response['phone_number'])
 
-        if response['location']['lat']:
+        if response['location']['lat'] and not obj.partner_latitude:
             setattr(obj, 'partner_latitude', response['location']['lat'])
 
-        if response['location']['lng']:
+        if response['location']['lng'] and not obj.partner_longitude:
             setattr(obj, 'partner_longitude', response['location']['lng'])
 
-        if response['social_networks']['linkedin']:
+        if response['social_networks']['linkedin'] and not obj.company_linkedin_url:
             setattr(obj, 'company_linkedin_url', response['social_networks']['linkedin'])
 
         base_geolocalize_installed = self.env['ir.module.module'].search_count(
@@ -120,8 +120,6 @@ class PiloterrCompanyLookup(models.Model):
 
         if base_geolocalize_installed and response['location']['lng'] and response['location']['lat']:
             address = self.get_address_from_coordinates(response['location']['lat'], response['location']['lng'])
-
-            print(address)
 
             street = ''
             if address['address'].get('house_number'):
