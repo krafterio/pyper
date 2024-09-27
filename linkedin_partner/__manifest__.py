@@ -1,0 +1,25 @@
+# Copyright Krafter SAS <hey@krafter.io>
+# Krafter Proprietary License (see LICENSE file).
+
+{
+    'name': 'Linkedin partner',
+    'category': 'Sales/CRM',
+    'license': 'Other proprietary',
+    'description': 'Add fields dedicated to linkedIn in partners',
+    'summary': 'Add fields dedicated to linkedIn in partners',
+    'version': '1.0',
+    'author': 'Krafter SAS',
+    'maintainer': [
+        'Krafter SAS',
+    ],
+    'website': 'https://krafter.io',
+    'application': True,
+    'installable': True,
+    'depends': [
+        'base',
+    ],
+    'data': [
+        # Views
+        'views/res_partner_views.xml',
+    ],
+}
