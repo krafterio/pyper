@@ -20,6 +20,7 @@ class PiloterrCompanyLookup(models.Model):
         obj_id: int = None,
     ):
         model = self.env[model_name].browse(obj_id)
+
         if not model.website:
             raise UserError(_('You have to give a website to complete operation.'))
 
@@ -107,6 +108,9 @@ class PiloterrCompanyLookup(models.Model):
         if response['location']['lng']:
             setattr(obj, 'partner_longitude', response['location']['lng'])
 
+        if response['social_networks']['linkedin']:
+            setattr(obj, 'company_linkedin_url', response['social_networks']['linkedin'])
+
         base_geolocalize_installed = self.env['ir.module.module'].search_count(
             [
                 ('name', '=', 'base_geolocalize'),
@@ -114,8 +118,10 @@ class PiloterrCompanyLookup(models.Model):
             ]
         ) > 0
 
-        if base_geolocalize_installed:
+        if base_geolocalize_installed and response['location']['lng'] and response['location']['lat']:
             address = self.get_address_from_coordinates(response['location']['lat'], response['location']['lng'])
+
+            print(address)
 
             street = ''
             if address['address'].get('house_number'):
@@ -142,6 +148,8 @@ class PiloterrCompanyLookup(models.Model):
         try:
             headers = {'User-Agent': 'Odoo (http://www.odoo.com/contactus)'}
             response = requests.get(url, headers=headers, params={'format': 'json', 'lat': latitude, 'lon': longitude})
+
         except Exception as e:
             print("Error ", e)
+
         return response.json()

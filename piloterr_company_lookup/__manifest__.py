@@ -16,6 +16,7 @@
     'installable': True,
     'depends': [
         'piloterr_connector',
+        'linkedin_partner',
     ],
     'data': [
         # Views
