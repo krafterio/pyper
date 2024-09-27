@@ -1,0 +1,25 @@
+# Copyright Krafter SAS <hey@krafter.io>
+# Krafter Proprietary License (see LICENSE file).
+
+{
+    'name': 'Piloterr Linkedin lookup',
+    'category': 'Sales/CRM',
+    'license': 'Other proprietary',
+    'description': 'Add ability to get information from linkedIn',
+    'summary': 'Add ability to get information from linkedIn',
+    'version': '1.0',
+    'author': 'Krafter SAS',
+    'maintainer': [
+        'Krafter SAS',
+    ],
+    'website': 'https://krafter.io',
+    'application': True,
+    'installable': True,
+    'depends': [
+        'linkedin_partner',
+    ],
+    'data': [
+        # Views
+        'views/res_partner_views.xml',
+    ],
+}

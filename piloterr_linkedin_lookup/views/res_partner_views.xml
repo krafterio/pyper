@@ -1,0 +1,38 @@
+<odoo>
+    <record id="res_partner_view_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='child_contact_block']" position="after">
+                <field name="linkedin_url" invisible="True"/>
+                <button
+                    class="btn btn-secondary btn-quick p-0"
+                    type="object"
+                    name="search_piloterr_linkedin_profil"
+                    data-tooltip-delay="0"
+                    invisible="linkedin_url == False"
+                    title="Get infos from linkedin"
+                >
+                    <i class="ph ph-linkedin-logo" title="ID"/>
+                    <i class="btn-quick-counter fa fa-search bg-success" title="Counter"></i>
+                </button>
+            </xpath>
+
+            <xpath expr="//div[@name='btn_quick_zone']" position="inside">
+                <field name="company_linkedin_url" invisible="True"/>
+                <button
+                    class="btn btn-secondary btn-quick p-0"
+                    type="object"
+                    name="search_piloterr_linkedin_company_profil"
+                    data-tooltip-delay="0"
+                    title="Get infos from linkedin"
+                    invisible="company_linkedin_url == False"
+                >
+                    <i class="ph ph-linkedin-logo" title="ID"/>
+                    <i class="btn-quick-counter fa fa-search bg-success" title="Counter"></i>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
