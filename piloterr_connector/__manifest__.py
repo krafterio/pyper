@@ -6,6 +6,7 @@
     'category': 'Sales/CRM',
     'license': 'Other proprietary',
     'description': 'Add ability to get info from piloterr',
+    'summary': 'Add ability to get info from piloterr',
     'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [
