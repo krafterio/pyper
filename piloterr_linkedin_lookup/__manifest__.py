@@ -17,10 +17,8 @@
     'installable': True,
     'depends': [
         'linkedin_partner',
-        'pyper_queue_job',
+        'pyper_queue_job'
     ],
     'data': [
-        # Views
-        'views/res_partner_views.xml',
     ],
 }
