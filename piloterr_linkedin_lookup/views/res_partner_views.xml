@@ -9,7 +9,7 @@
                 <button
                     class="btn btn-secondary btn-quick p-0"
                     type="object"
-                    name="search_piloterr_linkedin_profil"
+                    name="action_search_piloterr_linkedin_profil"
                     data-tooltip-delay="0"
                     invisible="linkedin_url == False"
                     title="Get infos from linkedin"
@@ -24,7 +24,7 @@
                 <button
                     class="btn btn-secondary btn-quick p-0"
                     type="object"
-                    name="search_piloterr_linkedin_company_profil"
+                    name="action_search_piloterr_linkedin_company_profil"
                     data-tooltip-delay="0"
                     title="Get infos from linkedin"
                     invisible="company_linkedin_url == False"

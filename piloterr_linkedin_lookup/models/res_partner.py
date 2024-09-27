@@ -6,8 +6,12 @@ from odoo.exceptions import UserError
 import requests
 import base64
 
+
 class ResPartner(models.Model):
     _inherit = 'res.partner'
+
+    def action_search_piloterr_linkedin_profil(self):
+        self.with_delay().search_piloterr_linkedin_profil()
 
     def search_piloterr_linkedin_profil(self):
         for contact in self:
@@ -46,6 +50,9 @@ class ResPartner(models.Model):
                 pass
             except requests.exceptions.RequestException as req_err:
                 print(f"Request error occurred: {req_err}")
+
+    def action_search_piloterr_linkedin_company_profil(self):
+        self.with_delay().search_piloterr_linkedin_company_profil()
 
     def search_piloterr_linkedin_company_profil(self):
         for partner in self:
@@ -121,4 +128,3 @@ class ResPartner(models.Model):
                 pass
             except requests.exceptions.RequestException as req_err:
                 print(f"Request error occurred: {req_err}")
-
