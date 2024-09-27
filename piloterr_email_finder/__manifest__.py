@@ -6,6 +6,7 @@
     'category': 'Sales/CRM',
     'license': 'Other proprietary',
     'description': 'Added the ability to retrieve a contact\'s e-email address from piloterr',
+    'summary': 'Added the ability to retrieve a contact\'s e-email address from piloterr',
     'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [
