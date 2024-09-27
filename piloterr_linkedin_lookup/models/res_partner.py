@@ -88,8 +88,6 @@ class ResPartner(models.Model):
                         response.raise_for_status()
                         linkedin_info = response.json()
 
-                        print(linkedin_info)
-
                         if linkedin_info['logo_url']:
                             partner.image_1920 = base64.b64encode(requests.get(linkedin_info['logo_url']).content)
 
