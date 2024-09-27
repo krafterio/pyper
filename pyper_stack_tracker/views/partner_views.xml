@@ -6,8 +6,9 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Technology" name="technology" invisible="is_company == False">
-                    <h3>Technology</h3>
-                    <field name="technology_ids"/>
+                    <div class="px-5 pt-4">
+                        <field name="technology_ids" colspan="2"/>
+                    </div>
                 </page>
             </xpath>
         </field>
