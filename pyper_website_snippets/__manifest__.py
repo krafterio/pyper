@@ -2,16 +2,18 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Website Snippets',
+    'name': 'Website custom snippets',
     'category': 'Hidden',
     'license': 'Other proprietary',
     'description': 'Extend website snippets',
+    'summary': 'Add designed custom blocks on your website !',
     'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
     ],
     'website': 'https://krafter.io',
+    'application': True,
     'installable': True,
     'depends': [
         'website',
