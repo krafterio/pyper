@@ -4,6 +4,7 @@
         id="product_catalog_root"
         name="Catalog"
         sequence="1"
+        web_icon="pyper_product_catalog,static/img/icon.png"
     />
 
     <menuitem
