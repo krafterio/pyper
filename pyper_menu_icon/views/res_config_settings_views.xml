@@ -7,13 +7,9 @@
         <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//app[@name='pyper_settings']" position="inside">
-                <block title="Overlay Menu" name="pyper_overlay_menu_settings" groups="base.group_erp_manager">
-                    <setting help="Display only the root menu items in Overlay Menu as applications with icons">
-                        <field name="overlay_menu_show_root_app"/>
-                    </setting>
-
-                    <setting help="Hide the menu items if the category is not defined or is in global category">
-                        <field name="overlay_menu_hide_empty_category"/>
+                <block title="Menu" name="pyper_menu_icon_settings" groups="base.group_erp_manager">
+                    <setting help="Display the web icon of menu items">
+                        <field name="menu_prefer_web_icon"/>
                     </setting>
                 </block>
             </xpath>

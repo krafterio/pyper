@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20240324\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-11 07:29+0000\n"
-"PO-Revision-Date: 2024-07-11 09:30+0200\n"
+"POT-Creation-Date: 2024-09-28 13:15+0000\n"
+"PO-Revision-Date: 2024-09-28 13:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,13 +29,8 @@ msgstr ""
 "qu’applications avec des icônes"
 
 #. module: pyper_overlay_menu
-#: model_terms:ir.ui.view,arch_db:pyper_overlay_menu.res_config_settings_view_form
-msgid "Display the web icon of menu items"
-msgstr "Afficher l’icône Web des éléments de menu"
-
-#. module: pyper_overlay_menu
 #: model:ir.model.fields,field_description:pyper_overlay_menu.field_res_config_settings__overlay_menu_hide_empty_category
-msgid "Hide empty categories?"
+msgid "Hide empty categories in Overlay Menu?"
 msgstr "Masquer les items sans catégories ?"
 
 #. module: pyper_overlay_menu
@@ -52,11 +47,27 @@ msgid "Overlay Menu"
 msgstr ""
 
 #. module: pyper_overlay_menu
-#: model:ir.model.fields,field_description:pyper_overlay_menu.field_res_config_settings__overlay_menu_prefer_web_icon
-msgid "Prefer web icons of menu items?"
-msgstr "Préférer les icônes Web des éléments de menu ?"
-
-#. module: pyper_overlay_menu
 #: model:ir.model.fields,field_description:pyper_overlay_menu.field_res_config_settings__overlay_menu_show_root_app
 msgid "Show only root menu items in Overlay Menu?"
 msgstr "Afficher uniquement les menu racines ?"
+
+#. module: pyper_overlay_menu
+#. odoo-javascript
+#: code:addons/pyper_overlay_menu/static/src/webclient/overlay_menu/overlay_footer.xml:0
+#, python-format
+msgid "TIP"
+msgstr ""
+
+#. module: pyper_overlay_menu
+#. odoo-javascript
+#: code:addons/pyper_overlay_menu/static/src/webclient/overlay_menu/overlay_menu_toggler.xml:0
+#, python-format
+msgid "Toggle Overlay Menu"
+msgstr ""
+
+#. module: pyper_overlay_menu
+#. odoo-javascript
+#: code:addons/pyper_overlay_menu/static/src/webclient/overlay_menu/overlay_footer.xml:0
+#, python-format
+msgid "— open me anywhere with"
+msgstr "— ouvre-moi n'importe où avec"

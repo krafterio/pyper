@@ -47,11 +47,16 @@ export class OverlayMenu extends Component {
         hideEmptyCategory: undefined,
     };
 
+    static configurableMenuDefaultProps = {
+        preferWebIcon: false,
+    };
+
     static configurableDefaultProps = {
         showRootApp: false,
-        preferWebIcon: false,
         hideEmptyCategory: false,
     };
+
+    static MENU_SETUP_PREFIX = 'pyper_menu_icon.provider.';
 
     static SETUP_PREFIX = 'pyper_overlay_menu.overlay_menu_props.';
 
@@ -71,15 +76,18 @@ export class OverlayMenu extends Component {
         });
 
         onWillStart(async () => {
+            await this.pyperSetupService.register(OverlayMenu.MENU_SETUP_PREFIX, OverlayMenu.configurableMenuDefaultProps);
             await this.pyperSetupService.register(OverlayMenu.SETUP_PREFIX, OverlayMenu.configurableDefaultProps);
         });
 
         onWillUpdateProps((nextProps) => {
+            this.pyperSetupService.onWillUpdateProps(OverlayMenu.MENU_SETUP_PREFIX, nextProps);
             this.pyperSetupService.onWillUpdateProps(OverlayMenu.SETUP_PREFIX, nextProps);
         });
 
         const debouncedAdapt = debounce(this.adapt.bind(this), 250);
         onWillDestroy(() => {
+            this.pyperSetupService.unregister(OverlayMenu.MENU_SETUP_PREFIX);
             this.pyperSetupService.unregister(OverlayMenu.SETUP_PREFIX);
             debouncedAdapt.cancel();
         });
@@ -107,6 +115,7 @@ export class OverlayMenu extends Component {
         });
 
         onMounted(() => {
+            this.pyperSetupService.onWillUpdateProps(OverlayMenu.MENU_SETUP_PREFIX, this.props);
             this.pyperSetupService.onWillUpdateProps(OverlayMenu.SETUP_PREFIX, this.props);
         });
 
@@ -119,7 +128,10 @@ export class OverlayMenu extends Component {
     }
 
     get settings() {
-        return this.pyperSetupService.settings[OverlayMenu.SETUP_PREFIX];
+        return {
+            ...this.pyperSetupService.settings[OverlayMenu.MENU_SETUP_PREFIX],
+            ...this.pyperSetupService.settings[OverlayMenu.SETUP_PREFIX],
+        };
     }
 
     get classes() {

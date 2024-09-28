@@ -2,3 +2,11 @@
 # Krafter Proprietary License (see LICENSE file).
 
 from . import models
+
+
+def post_init_hook(env):
+    icp = env['ir.config_parameter'].sudo()
+
+    # Menu
+    if icp.get_param('pyper_menu_icon.provider.preferWebIcon', None) is None:
+        icp.set_param('pyper_menu_icon.provider.preferWebIcon', 'True')
