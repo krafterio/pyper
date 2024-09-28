@@ -15,6 +15,7 @@
     'depends': [
         'base',
         'web',
+        'pyper',
         'pyper_menu_icon',
     ],
     'assets': {

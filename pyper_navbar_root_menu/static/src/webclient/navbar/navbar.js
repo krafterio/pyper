@@ -63,29 +63,15 @@ patch(NavBar.prototype, {
         if (this.currentApp && menu) {
             menu = typeof menu === 'number' ? this.menuService.getMenu(menu) : menu;
 
-            const getAllChildren = function(menu) {
-                const ids = [];
-
-                ids.push(...(menu.children || []));
-
-                (menu.childrenTree || []).forEach((childMenu) => {
-                    ids.push(...getAllChildren(childMenu));
-                });
-
-                return ids;
-            }
-
             // Check if selected menu is in sub menu or in children
-            if (menu.id === this.menuService.currentMenuId
-                || getAllChildren(menu).includes(this.menuService.currentMenuId)
-            ) {
+            if (this.menuStateService.activeIds.includes(menu.id)) {
                 return true;
             }
 
             // Check if selected menu is currentApp and if it is the case, check if the first sub menu is the same menu
             const currentApp = this.menuService.getCurrentApp();
 
-            return currentApp.id === this.menuService.currentMenuId && currentApp?.childrenTree[0]?.id === menu.id;
+            return currentApp.id === this.menuStateService.currentMenuId && currentApp?.childrenTree[0]?.id === menu.id;
         }
 
         return false;
