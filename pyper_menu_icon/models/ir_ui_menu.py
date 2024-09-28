@@ -14,6 +14,7 @@ class IrUiMenu(models.Model):
         [
             ('global', 'Global'),
             ('manager', 'Manager'),
+            ('system_tray', 'System Tray'),
         ],
         'Menu category',
     )
