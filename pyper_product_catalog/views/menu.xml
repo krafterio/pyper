@@ -3,7 +3,7 @@
     <menuitem
         id="product_catalog_root"
         name="Catalog"
-        sequence="1"
+        sequence="20"
         web_icon="pyper_product_catalog,static/img/icon.png"
     />
 
