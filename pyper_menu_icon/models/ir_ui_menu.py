@@ -12,6 +12,17 @@ class IrUiMenu(models.Model):
 
     menu_category = fields.Selection(
         [
+            ('crm', 'CRM'),
+            ('sales', 'Sales'),
+            ('services', 'Services'),
+            ('accounting', 'Accounting'),
+            ('stock', 'Stock'),
+            ('production', 'Production'),
+            ('website', 'Website'),
+            ('marketing', 'Marketing'),
+            ('hr', 'Human Resources'),
+            ('productivity', 'Productivity'),
+            ('technic', 'Technic'),
             ('global', 'Global'),
             ('manager', 'Manager'),
             ('system_tray', 'System Tray'),
