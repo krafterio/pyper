@@ -50,16 +50,6 @@ patch(NavBar.prototype, {
         return menus;
     },
 
-    get systemTraySections() {
-        if (this.rootCategoryAppSections['system_tray']
-            && this.rootCategoryAppSections['system_tray']['menus'].length > 0
-        ) {
-            return this.rootCategoryAppSections['system_tray']['menus'];
-        }
-
-        return [];
-    },
-
     onNavBarDropdownItemSelection(menu) {
         super.onNavBarDropdownItemSelection(menu);
 

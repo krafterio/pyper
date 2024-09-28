@@ -5,12 +5,6 @@
             <t t-if="rootMainAppSections.length" t-call="web.NavBar.SectionsMenu">
                 <t t-set="sections" t-value="rootMainAppSections" />
             </t>
-
-            <div class="o_menu_systray o_menu_systray--root-menu d-flex flex-shrink-0 ms-auto" role="menu">
-                <t t-call="pyper_navbar_root_menu.NavBar.SystemTray">
-                    <t t-set="sections" t-value="systemTraySections" />
-                </t>
-            </div>
         </xpath>
 
         <xpath expr="//header[hasclass('o_navbar')]/nav[hasclass('o_main_navbar')]" position="after">
@@ -21,20 +15,6 @@
         <xpath expr="//header[hasclass('o_navbar')]/div[hasclass('o-navbar-root-menu-nav')]" position="inside">
             <xpath expr="//header[hasclass('o_navbar')]/nav[hasclass('o_main_navbar')]/t[@t-call='web.NavBar.SectionsMenu']" position="move"/>
         </xpath>
-    </t>
-
-    <t t-name="pyper_navbar_root_menu.NavBar.SystemTray">
-        <t t-foreach="sections" t-as="section" t-key="section.id">
-            <DropdownItem
-                class="'nav-bar-icon' + (sectionIsSelected(section) ? ' active' : '')"
-                href="getMenuItemHref(section)"
-                dataset="{ menuXmlid: section.xmlid, section: section.id }"
-                onSelected="() => this.onNavBarDropdownItemSelection(section)"
-            >
-                <span t-if="!section.font_icon" t-out="section.name"></span>
-                <span t-else="" t-att-class="section.font_icon"/>
-            </DropdownItem>
-        </t>
     </t>
 
     <t t-name="pyper_navbar_root_menu.NavBar.SectionsMenu" t-inherit="web.NavBar.SectionsMenu" t-inherit-mode="extension" owl="1">

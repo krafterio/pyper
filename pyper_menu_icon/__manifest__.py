@@ -15,11 +15,15 @@
     'depends': [
         'base',
         'web',
+        'pyper',
     ],
     'data': [
         'views/ir_ui_menu_views.xml',
     ],
     'assets': {
+        'web._assets_primary_variables': [
+            'pyper_menu_icon/static/src/**/*.variables.scss',
+        ],
         'web.assets_backend': [
             'pyper_menu_icon/static/src/webclient/**/*',
         ],
