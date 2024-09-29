@@ -71,7 +71,7 @@
         .dropdown-toggle {
             margin: 0;
             border: none;
-            width: $o-navbar-entry-width;
+            min-width: $o-navbar-entry-width;
             height: $o-navbar-entry-height;
 
             &:hover,
