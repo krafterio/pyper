@@ -8,7 +8,9 @@
     }
 
     > .dropdown-item,
-    > .dropdown > .dropdown-toggle {
+    > .dropdown > .dropdown-toggle,
+    > .o_menu_sections > .dropdown-item,
+    > .o_menu_sections > .dropdown > .dropdown-toggle {
         height: $o-navbar-entry-height;
     }
 
@@ -60,7 +62,8 @@
         .dropdown-toggle {
             margin: 0;
             border: none;
-            height: 100%;
+            width: $o-navbar-entry-width;
+            height: $o-navbar-entry-height;
 
             &:hover,
             &:focus,
@@ -119,7 +122,7 @@
 
         .o-mail-DiscussSystray-class {
             > .dropdown-toggle {
-                width: $o-navbar-entry-height;
+                width: $o-navbar-entry-width;
                 height: $o-navbar-entry-height;
                 justify-content: center;
             }

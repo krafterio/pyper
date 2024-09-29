@@ -11,6 +11,7 @@ $o-navbar-font-size-xxl: $o-navbar-font-size * 1.14 !default;
 
 $o-navbar-entry-icon-font-size: 20px !default;
 $o-navbar-entry-height: calc(var(--o-navbar-height) - #{$o-navbar-padding-v * 2}) !default;
+$o-navbar-entry-width: calc(var(--o-navbar-height) - #{$o-navbar-padding-v * 2}) !default;
 $o-navbar-entry-margin-h: 2px !default;
 $o-navbar-entry-border-radius: $o-border-radius !default;
 $o-navbar-entry-color: #18181b !default;
