@@ -118,8 +118,12 @@ export class DrawerMenuItem extends Component {
         };
     }
 
-    get displayChildren() {
+    get hasChildren() {
         return this.props.childrenDepth !== 0 && this.props.children.length > 0;
+    }
+
+    get displayChildren() {
+        return this.hasChildren && this.props.children.length > 1;
     }
 
     get displayIcon() {
@@ -169,7 +173,7 @@ export class DrawerMenuItem extends Component {
     }
 
     setOpened(opened) {
-        this.state.opened = this.props.children.length > 0 ? !!opened : false;
+        this.state.opened = this.displayChildren ? !!opened : false;
     }
 
     onItemSelection() {
