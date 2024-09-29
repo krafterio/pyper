@@ -123,5 +123,5 @@ export class ActivityMenu extends Component {
 }
 
 registry
-    .category("drawer_header_action")
+    .category("drawer_header")
     .add("pyper_drawer_header.activity_menu", { Component: ActivityMenu }, { sequence: 20 });

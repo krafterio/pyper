@@ -7,20 +7,16 @@
         autoOpen="false"
         beforeOpen.bind="onBeforeOpen"
         menuClass="'o-drawer-header-activities-block'"
-        togglerClass="'o-drawer-header-activity-btn'"
+        togglerClass="'o-drawer-header-action-btn'"
         class="''"
     >
-        <t t-set-slot="toggler">
-            <div class="d-flex align-items-center">
-                <i class="ph ph-bell" role="img" aria-label="Activities"/>
 
-                <div class="ms-2 text-start d-flex flex-column lh-1 text-truncate">
-                    <span class="fw-bold mb-1">Activities</span>
-                    <span class="small opacity-50">Action to do</span>
-                </div>
-            </div>
-            <span t-if="store.activityCounter"
-                  class="o-mail-ActivityMenu-counter badge rounded-pill">
+        <t t-set-slot="toggler">
+                <i class="ph ph-bell"
+                   role="img"
+                   aria-label="Activities"
+                />
+            <span t-if="store.activityCounter" class="o-badge-counter">
                 <t t-esc="store.activityCounter"/>
             </span>
         </t>
@@ -38,7 +34,8 @@
                             t-att-data-model_name="group.model" t-on-click="() => this.openActivityGroup(group)">
                             <img alt="Activity" t-att-src="group.icon"/>
                             <div class="flex-grow-1 overflow-hidden">
-                                <div class="d-flex px-2 fw-bold o-drawer-activity-title" name="activityTitle" t-out="group.name"/>
+                                <div class="d-flex px-2 fw-bold o-drawer-activity-title" name="activityTitle"
+                                     t-out="group.name"/>
                                 <div t-if="group.type === 'activity'" class="d-flex">
                                     <span
                                         t-attf-class="#{group.overdue_count ? '' : 'text-muted'} py-0 px-2 text-truncate"

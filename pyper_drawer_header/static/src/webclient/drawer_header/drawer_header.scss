@@ -41,6 +41,52 @@
         }
     }
 
+    .o-drawer-header-activities-block {
+        top: 0 !important;
+        left: $o-drawer-width !important;
+        padding: 10px 0;
+        margin: 0;
+        height: 100vh;
+        max-height: 100vh;
+        background-color: $o-drawer-messages-block-bg;
+        width: $o-drawer-header-activities-block-width;
+        font-size: 22px !important;
+        -webkit-animation-duration: 0.2s;
+        animation-duration: 0.2s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-name: fadeInLeftLight;
+        animation-name: fadeInLeftLight;
+
+        .o-mail-ActivityMenu {
+            width: $o-drawer-header-activities-block-width;
+            background-color: $o-drawer-messages-block-bg;
+
+            .list-group-item{
+                background-color: $o-drawer-messages-block-bg;
+            }
+
+            .o-mail-ActivityGroup{
+                padding: 10px 20px !important;
+                font-size: 0.825rem;
+                border-width: 0;
+
+                .o-drawer-activity-title{
+                    color:$o-drawer-activity-title-color;
+                }
+
+                &:hover{
+                    color:$o-drawer-activity-title-color;
+                }
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+    }
+
     .o-drawer-header-messages-block {
         top: 0 !important;
         left: $o-drawer-width !important;
@@ -170,52 +216,6 @@
             --o-discuss-badge-bg: #{$o-danger}; // sync with --o-navbar-badge-bg
             color: white !important;
             background-color: var(--o-discuss-badge-bg) !important;
-        }
-    }
-
-    .o-drawer-header-activities-block {
-        top: 0 !important;
-        left: $o-drawer-width !important;
-        padding: 10px 0;
-        margin: 0;
-        height: 100vh;
-        max-height: 100vh;
-        background-color: $o-drawer-messages-block-bg;
-        width: $o-drawer-header-activities-block-width;
-        font-size: 22px !important;
-        -webkit-animation-duration: 0.2s;
-        animation-duration: 0.2s;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
-        -webkit-animation-name: fadeInLeftLight;
-        animation-name: fadeInLeftLight;
-
-        .o-mail-ActivityMenu {
-            width: $o-drawer-header-activities-block-width;
-            background-color: $o-drawer-messages-block-bg;
-
-            .list-group-item{
-                background-color: $o-drawer-messages-block-bg;
-            }
-
-            .o-mail-ActivityGroup{
-                padding: 10px 20px !important;
-                font-size: 0.825rem;
-                border-width: 0;
-
-                .o-drawer-activity-title{
-                    color:$o-drawer-activity-title-color;
-                }
-
-                &:hover{
-                    color:$o-drawer-activity-title-color;
-                }
-
-                img {
-                    width: 30px;
-                    height: 30px;
-                }
-            }
         }
     }
 }
