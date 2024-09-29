@@ -8,7 +8,7 @@
         <field name="mode">primary</field>
         <field name="priority">15</field>
         <field name="arch" type="xml">
-            <form string="Product" class="o_sale_order">
+            <form string="Product" class="o_product">
                 <sheet name="product_form">
                     <div class="oe_button_box" name="button_box">
                         <button class="oe_stat_button"

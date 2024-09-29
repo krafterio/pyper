@@ -42,10 +42,8 @@
         }
     }
 
-    .o_notebook {
-        .tab-pane {
-            padding: 0 !important;
-        }
+    .o_group.row {
+        margin-left: 0;
+        margin-right: 0;
     }
-
 }
