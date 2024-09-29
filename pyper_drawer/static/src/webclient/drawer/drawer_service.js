@@ -19,6 +19,7 @@ export class DrawerState {
             fixedTop: false,
             opened: false,
             locked: (cookie.get('drawer_locked') || 'true') === 'true',
+            lockable: false,
             minifiable: false,
             minified: false,
             alwaysMinified: false,
@@ -61,6 +62,14 @@ export class DrawerState {
     set locked(locked) {
         this.state.locked = locked;
         cookie.set('drawer_locked', locked);
+    }
+
+    get lockable() {
+        return this.state.lockable;
+    }
+
+    set lockable(lockable) {
+        this.state.lockable = lockable;
     }
 
     get minifiable() {
@@ -128,8 +137,12 @@ export class DrawerState {
         return this.nav;
     }
 
+    get isLockable() {
+        return this.lockable;
+    }
+
     get isLocked() {
-        return this.locked && !this.isSmallScreen;
+        return this.locked && this.isLockable && !this.isSmallScreen;
     }
 
     get isMinifiable() {
@@ -158,6 +171,10 @@ export class DrawerState {
 
     get isClosed() {
         return !this.opened;
+    }
+
+    get isClosable() {
+        return !this.isLocked && this.opened;
     }
 
     get isFixedTop() {

@@ -260,6 +260,10 @@ export class Drawer extends Component {
         return this.drawerService.isSmallScreen;
     }
 
+    get isLockable() {
+        return this.drawerService.isLockable;
+    }
+
     get isLocked() {
         return this.drawerService.isLocked;
     }
@@ -380,23 +384,10 @@ export class Drawer extends Component {
                 this.root.el.style.transform = '';
             }
         } else {
-            if (this.isLocked && this.isMinifiable && this.isMinified) {
-                this.drawerService.minified = false;
-            } else if (this.isLocked && this.isMinifiable && !this.isMinified) {
-                // Nothing do
-            } else if (this.isLocked && !this.isMinifiable && this.isMinified) {
-                this.drawerService.minified = false;
-            } else if (this.isLocked && !this.isMinifiable && !this.isMinified) {
-                // Nothing do
-            } else if (!this.isLocked && this.isMinifiable && this.isMinified) {
+            if (this.isLockable && !this.isLocked) {
                 this.drawerService.locked = true;
-            } else if (!this.isLocked && this.isMinifiable && !this.isMinified) {
-                this.drawerService.locked = true;
-            } else if (!this.isLocked && !this.isMinifiable && this.isMinified) {
-                this.drawerService.locked = true;
-                this.drawerService.minified = false;
-            } else if (!this.isLocked && !this.isMinifiable && !this.isMinified) {
-                this.drawerService.locked = true;
+            } else if (!this.isLockable && !this.isOpened) {
+                this.drawerService.opened = true;
             }
 
             this.root.el.style.transform = '';
@@ -412,22 +403,10 @@ export class Drawer extends Component {
                 this.root.el.style.transform = '';
             }
         } else {
-            if (this.isLocked && this.isMinifiable && this.isMinified) {
-                // Nothing do
-            } else if (this.isLocked && this.isMinifiable && !this.isMinified) {
-                this.drawerService.minified = true;
-            } else if (this.isLocked && !this.isMinifiable && this.isMinified) {
-                this.drawerService.minified = false;
-            } else if (this.isLocked && !this.isMinifiable && !this.isMinified) {
+            if (this.isLockable && this.isLocked) {
                 this.drawerService.locked = false;
-            } else if (!this.isLocked && this.isMinifiable && this.isMinified) {
-                this.drawerService.minified = false;
-            } else if (!this.isLocked && this.isMinifiable && !this.isMinified) {
-                // Nothing do
-            } else if (!this.isLocked && !this.isMinifiable && this.isMinified) {
-                this.drawerService.minified = false;
-            } else if (!this.isLocked && !this.isMinifiable && !this.isMinified) {
-                // Nothing do
+            } else if (!this.isLockable && this.isOpened) {
+                this.drawerService.opened = false;
             }
 
             this.root.el.style.transform = '';
@@ -444,21 +423,17 @@ export class Drawer extends Component {
                 this.open();
             }
         } else {
-            if (this.isLocked && this.isMinifiable && this.isMinified) {
-                this.open();
-            } else if (this.isLocked && this.isMinifiable && !this.isMinified) {
+            if (this.isLockable && this.isLocked) {
                 this.close();
-            } else if (this.isLocked && !this.isMinifiable && this.isMinified) {
+            } else if (this.isLockable && !this.isLocked) {
                 this.open();
-            } else if (this.isLocked && !this.isMinifiable && !this.isMinified) {
+            } else if (!this.isLockable && this.isOpened) {
                 this.close();
-            } else if (!this.isLocked && this.isMinifiable && this.isMinified) {
+            } else if (!this.isLockable && !this.isOpened) {
                 this.open();
-            } else if (!this.isLocked && this.isMinifiable && !this.isMinified) {
-                this.open();
-            } else if (!this.isLocked && !this.isMinifiable && this.isMinified) {
-                this.open();
-            } else if (!this.isLocked && !this.isMinifiable && !this.isMinified) {
+            } else if (this.isOpened) {
+                this.close();
+            } else {
                 this.open();
             }
         }
@@ -487,7 +462,7 @@ export class Drawer extends Component {
         if (menu) {
             this.menuService.selectMenu(menu).then();
 
-            if (this.settings.closeOnClick && this.drawerService.isSmallScreen) {
+            if (this.settings.closeOnClick && this.drawerService.isClosable) {
                 this.close();
             }
         }
