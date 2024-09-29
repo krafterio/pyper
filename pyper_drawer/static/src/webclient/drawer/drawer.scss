@@ -532,6 +532,11 @@
     &.o_drawer--fixed-top {
         top: $o-navbar-height + $o-drawer-border-width;
 
+        + .o_navbar,
+        + .o_drawer--obfuscator + .o_navbar {
+            z-index: $o-drawer-zindex;
+        }
+
         &.o_drawer--locked {
             + .o_navbar,
             + .o_drawer--obfuscator + .o_navbar {
