@@ -1,6 +1,12 @@
 // = Navbar Root Menu
 // ============================================================================
 
+.o_main_navbar {
+    .o_menu_brand {
+        display: none !important;
+    }
+}
+
 .o-navbar-root-menu-nav {
     --Dropdown_menu-margin-y: 0;
 
