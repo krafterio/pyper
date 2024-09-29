@@ -16,14 +16,4 @@
             <xpath expr="//header[hasclass('o_navbar')]/nav[hasclass('o_main_navbar')]/t[@t-call='web.NavBar.SectionsMenu']" position="move"/>
         </xpath>
     </t>
-
-    <t t-name="pyper_navbar_root_menu.NavBar.SectionsMenu" t-inherit="web.NavBar.SectionsMenu" t-inherit-mode="extension" owl="1">
-        <xpath expr="//DropdownItem" position="attributes">
-            <attribute name="class">'o_nav_entry' + (sectionIsSelected(section) ? ' o_nav_entry--active' : '')</attribute>
-        </xpath>
-
-        <xpath expr="//MenuDropdown" position="attributes">
-            <attribute name="class">(sectionIsSelected(section) ? 'o_nav_entry--active' : '')</attribute>
-        </xpath>
-    </t>
 </templates>

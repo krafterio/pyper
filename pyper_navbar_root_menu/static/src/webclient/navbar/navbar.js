@@ -49,31 +49,4 @@ patch(NavBar.prototype, {
 
         return menus;
     },
-
-    onNavBarDropdownItemSelection(menu) {
-        super.onNavBarDropdownItemSelection(menu);
-
-        // Force app changed to refresh the selection of menu
-        if (menu) {
-            this.env.bus.trigger("MENUS:APP-CHANGED");
-        }
-    },
-
-    sectionIsSelected(menu) {
-        if (this.currentApp && menu) {
-            menu = typeof menu === 'number' ? this.menuService.getMenu(menu) : menu;
-
-            // Check if selected menu is in sub menu or in children
-            if (this.menuStateService.activeIds.includes(menu.id)) {
-                return true;
-            }
-
-            // Check if selected menu is currentApp and if it is the case, check if the first sub menu is the same menu
-            const currentApp = this.menuService.getCurrentApp();
-
-            return currentApp.id === this.menuStateService.currentMenuId && currentApp?.childrenTree[0]?.id === menu.id;
-        }
-
-        return false;
-    },
 });

@@ -26,8 +26,17 @@
             }
         }
 
+        > .dropdown {
+            &.o_nav_entry--active {
+                > .dropdown-toggle {
+                    color: $o-navbar-entry-color--active;
+                    background-color: $o-navbar-entry-bg--active;
+                    font-weight: $o-navbar-entry-font-weight--active;
+                }
+            }
+        }
+
         > .dropdown-item {
-            &:active,
             &.o_nav_entry--active {
                 color: $o-navbar-entry-color--active;
                 background-color: $o-navbar-entry-bg--active;
