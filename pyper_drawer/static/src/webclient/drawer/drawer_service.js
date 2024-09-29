@@ -7,10 +7,12 @@ import {SIZES} from '@web/core/ui/ui_service';
 
 
 export class DrawerState {
-    constructor(envBus, ui) {
+    constructor(envBus, ui, menuState) {
         this.envBus = envBus;
         /** @type {import("@web/core/ui/ui_service").uiService} */
         this.uiService = ui;
+        /** @type {import("@pyper/webclient/menus/menu_state_service").menuStateService} */
+        this.menuStateService = menuState;
     }
 
     setup() {
@@ -27,6 +29,7 @@ export class DrawerState {
             disabledOnSmallScreen: false,
             dragging: false,
             mounted: false,
+            closeAllUnactivatedItemsOnOpenMenu: false,
             closeAllUnactivatedItemsOnClick: false,
         };
     }
@@ -190,6 +193,14 @@ export class DrawerState {
         this._popover = popover;
     }
 
+    get closeAllUnactivatedItemsOnOpenMenu() {
+        return this.state.closeAllUnactivatedItemsOnOpenMenu;
+    }
+
+    set closeAllUnactivatedItemsOnOpenMenu(value) {
+        this.state.closeAllUnactivatedItemsOnOpenMenu = value;
+    }
+
     get closeAllUnactivatedItemsOnClick() {
         return this.state.closeAllUnactivatedItemsOnClick;
     }
@@ -225,12 +236,21 @@ export class DrawerState {
     selectMenu(menu) {
         this.envBus.trigger('DRAWER:SELECT-MENU', menu);
     }
+
+    openMenu(menu) {
+        if (menu) {
+            const parentIds = this.menuStateService.findParentIds(menu.id);
+            const ids = [menu.id, ...parentIds];
+
+            this.envBus.trigger('DRAWER:OPEN-MENU', {menu, ids});
+        }
+    }
 }
 
 export const drawerService = {
-    dependencies: ['ui'],
-    start(env, {ui}) {
-        const drawerState = reactive(new DrawerState(env.bus, ui));
+    dependencies: ['ui', 'menu_state'],
+    start(env, {ui, menu_state}) {
+        const drawerState = reactive(new DrawerState(env.bus, ui, menu_state));
         drawerState.setup();
 
         return drawerState;

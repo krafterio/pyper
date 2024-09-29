@@ -77,6 +77,14 @@ export class Drawer extends Component {
             type: Boolean,
             optional: true,
         },
+        closeAllUnactivatedItemsOnOpenMenu: {
+            type: Boolean,
+            optional: true,
+        },
+        closeAllUnactivatedItemsOnClick: {
+            type: Boolean,
+            optional: true,
+        },
         subItemsDepth: {
             type: Number,
             optional: true,
@@ -128,6 +136,7 @@ export class Drawer extends Component {
         popoverMinified: undefined,
         closeAction: undefined,
         closeOnClick: undefined,
+        closeAllUnactivatedItemsOnOpenMenu: undefined,
         closeAllUnactivatedItemsOnClick: undefined,
         subItemsDepth: undefined,
         dragEndRatio: undefined,
@@ -152,6 +161,7 @@ export class Drawer extends Component {
         popoverMinified: false,
         closeAction: false,
         closeOnClick: false,
+        closeAllUnactivatedItemsOnOpenMenu: true,
         closeAllUnactivatedItemsOnClick: false,
         subItemsDepth: 0,
         dragEndRatio: 0.25,
@@ -578,6 +588,7 @@ export class Drawer extends Component {
         this.drawerService.minifiable = this.settings.minifiable;
         this.drawerService.popoverMinified = this.settings.popoverMinified;
         this.drawerService.disabledOnSmallScreen = this.settings.disabledOnSmallScreen;
+        this.drawerService.closeAllUnactivatedItemsOnOpenMenu = this.settings.closeAllUnactivatedItemsOnOpenMenu;
         this.drawerService.closeAllUnactivatedItemsOnClick = this.settings.closeAllUnactivatedItemsOnClick;
         this.drawerService.restoreMinified(this.settings.initMinified);
         this.drawerService.restoreLockable(this.settings.initLockable);

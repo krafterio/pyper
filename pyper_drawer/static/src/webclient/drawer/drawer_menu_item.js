@@ -102,6 +102,7 @@ export class DrawerMenuItem extends Component {
         onWillUpdateProps((nextProps) => this.onWillUpdateProps(nextProps));
 
         useBus(this.env.bus, 'MENU-STATE:MENU-SELECTED', this.onMenuItemSelected.bind(this));
+        useBus(this.env.bus, 'DRAWER:OPEN-MENU', this.onMenuItemOpened.bind(this));
     }
 
     get classes() {
@@ -174,6 +175,10 @@ export class DrawerMenuItem extends Component {
 
     setOpened(opened) {
         this.state.opened = this.displayChildren ? !!opened : false;
+
+        if (this.state.opened && this.props.menuId && this.drawerService.closeAllUnactivatedItemsOnOpenMenu) {
+            this.drawerService.openMenu(this.menuService.getMenu(this.props.menuId));
+        }
     }
 
     onItemSelection() {
@@ -201,6 +206,12 @@ export class DrawerMenuItem extends Component {
             this.actionService.doAction(this.props.menuAction, {
                 clearBreadcrumbs: true,
             }).then();
+        }
+    }
+
+    onMenuItemOpened(e) {
+        if (this.state.opened && this.drawerService.closeAllUnactivatedItemsOnOpenMenu && !e.detail.ids.includes(this.props.menuId)) {
+            this.setOpened(false);
         }
     }
 
