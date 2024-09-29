@@ -70,6 +70,7 @@ export class DrawerState {
 
     set lockable(lockable) {
         this.state.lockable = lockable;
+        cookie.set('drawer_lockable', lockable);
     }
 
     get minifiable() {
@@ -205,6 +206,16 @@ export class DrawerState {
         this.state.minified = minified;
 
         return minified;
+    }
+
+    restoreLockable(defaultLockable) {
+        defaultLockable = !(defaultLockable in [undefined, 'false', false]);
+        const defaultValue = defaultLockable ? 'true' : 'false';
+        const lockable = (cookie.get('drawer_lockable') || defaultValue) === 'true';
+
+        this.state.lockable = lockable;
+
+        return lockable;
     }
 
     toggle() {

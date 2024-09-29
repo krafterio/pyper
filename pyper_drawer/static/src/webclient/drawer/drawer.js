@@ -61,6 +61,10 @@ export class Drawer extends Component {
             type: Boolean,
             optional: true,
         },
+        initLockable: {
+            type: Boolean,
+            optional: true,
+        },
         popoverMinified: {
             type: Boolean,
             optional: true,
@@ -120,6 +124,7 @@ export class Drawer extends Component {
         alwaysMini: undefined,
         minifiable: undefined,
         initMinified: undefined,
+        initLockable: undefined,
         popoverMinified: undefined,
         closeAction: undefined,
         closeOnClick: undefined,
@@ -143,6 +148,7 @@ export class Drawer extends Component {
         alwaysMini: false,
         minifiable: false,
         initMinified: false,
+        initLockable: true,
         popoverMinified: false,
         closeAction: false,
         closeOnClick: false,
@@ -574,5 +580,6 @@ export class Drawer extends Component {
         this.drawerService.disabledOnSmallScreen = this.settings.disabledOnSmallScreen;
         this.drawerService.closeAllUnactivatedItemsOnClick = this.settings.closeAllUnactivatedItemsOnClick;
         this.drawerService.restoreMinified(this.settings.initMinified);
+        this.drawerService.restoreLockable(this.settings.initLockable);
     }
 }
