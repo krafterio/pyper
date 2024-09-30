@@ -3,12 +3,13 @@
         <field name="name">res.partner.custom.linkedin.form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">10000</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='child_ids']//sheet//field[@name='function']" position="after">
                 <field name="linkedin_url" placeholder="LinkedIn profil URL" widget="url" invisible="type != 'contact'"/>
             </xpath>
 
-            <xpath expr="//field[@name='function']" position="after">
+            <xpath expr="//field[@name='website']" position="after">
                 <field name="company_linkedin_url" string="Linkedin URL"
                        placeholder="Linkedin URL" widget="url"
                        invisible="is_company == False"/>
