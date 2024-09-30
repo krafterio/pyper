@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kaspr_form_group_user,kaspr_form group_user,model_kaspr_form,,1,1,1,1

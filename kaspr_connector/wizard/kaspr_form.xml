@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="kaspr_form" model="ir.ui.view">
+        <field name="name">kaspr.form</field>
+        <field name="model">kaspr.form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="linkedin_name"/>
+                    <field name="linkedin_url"/>
+                    <field name="company_id"/>
+                </group>
+
+                <footer>
+                    <button
+                        name="action_kaspr_form"
+                        type="object"
+                        string="Get linkedin info"
+                        class="btn-primary o_sale_warranty_configurator_add"
+                        data-hotkey="g"
+                    />
+
+                    <button
+                        string="Cancel"
+                        class="btn-secondary"
+                        data-hotkey="z"
+                        special="cancel"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
