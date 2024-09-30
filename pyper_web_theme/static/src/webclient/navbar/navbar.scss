@@ -167,7 +167,7 @@
         > .dropdown-item {
             > .badge {
                 position: absolute;
-                top: 0;
+                top: $o-navbar-badge-top;
                 right: -$o-navbar-badge-padding;
             }
         }
