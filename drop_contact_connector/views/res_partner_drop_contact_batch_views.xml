@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_drop_contact_batch_form" model="ir.ui.view">
+        <field name="name">res.partner.drop_contact.batch.form</field>
+        <field name="model">res.partner.drop_contact.batch</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        string="Retry"
+                        type="object"
+                        name="retry"
+                        confirm="Do you really want to retry?"
+                    />
+
+                    <field name="state" widget="statusbar" statusbar_visible="enqueued,getting_info,waiting_info,done"/>
+                </header>
+
+                <sheet>
+                    <group name="info">
+                        <group string="Information">
+                            <field name="create_date"/>
+                            <field name="request_id" readonly="True"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="partners" string="Partners">
+                            <field name="partner_ids" options="{'no_create': True, 'no_edit': True}"/>
+                        </page>
+
+                        <page name="results" string="Details" invisible="exception_name == False and exception_message == False and exception_info == False">
+                            <group>
+                                <group name="row_exceptions" string="Exceptions" invisible="exception_name == False and exception_message == False and exception_info == False">
+                                    <field name="exception_name" invisible="exception_name == False"/>
+                                    <field name="exception_message" invisible="exception_message == False"/>
+                                    <field name="exception_info" invisible="exception_info == False"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="res_partner_drop_contact_batch_tree" model="ir.ui.view">
+        <field name="name">res.partner.drop_contact.batch.tree</field>
+        <field name="model">res.partner.drop_contact.batch</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree create="False">
+                <field name="create_date"/>
+                <field name="partner_count"/>
+                <field name="state" widget="badge"/>
+                <field name="exception_name" optional="hide"/>
+                <field name="exception_message" optional="hide"/>
+                <field name="exception_info" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_partner_drop_contact_batch_action" model="ir.actions.act_window">
+        <field name="name">Enrich contact queue</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner.drop_contact.batch</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_res_partner_drop_contact_batch"
+        action="res_partner_drop_contact_batch_action"
+        parent="base.menu_administration"
+    />
+</odoo>

@@ -1,0 +1,21 @@
+<odoo>
+    <record id="res_partner_view_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">10000</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='child_ids']//t[@t-name='kanban-menu']" position="inside">
+                <button
+                    class="dropdown-item"
+                    type="object"
+                    name="action_enrich_contact_info"
+                    icon="fa-user-plus me-1"
+                    data-tooltip-delay="0"
+                    invisible="name == False"
+                    title="Find contact e-mail address"
+                >Find email &amp; Linkedin</button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
