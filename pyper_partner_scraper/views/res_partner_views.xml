@@ -6,6 +6,10 @@
         <field name="priority">0</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <div name="k-partner-scraper-action" class="d-flex gap-1"/>
+            </xpath>
+
             <xpath expr="//field[@name='child_ids']//t[@t-name='kanban-box']" position="before">
                 <t t-name="kanban-menu">
                     <div class="container"/>
