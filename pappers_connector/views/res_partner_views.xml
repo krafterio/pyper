@@ -1,0 +1,21 @@
+<odoo>
+    <record id="res_partner_view_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='k-partner-scraper-action']">
+                <button
+                    class="btn btn-secondary btn-sm mb-3"
+                    type="object"
+                    name="search_pappers_company"
+                    icon="fa-info me-1"
+                    data-tooltip-delay="0"
+                    invisible="vat and siret"
+                    title="Download Pappers infos"
+                >Download Pappers infos</button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

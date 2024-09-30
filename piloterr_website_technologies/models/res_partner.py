@@ -7,6 +7,9 @@ from odoo import models
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
+    def action_search_piloterr_technologies(self):
+        self.with_delay().search_piloterr_technologies()
+
     def search_piloterr_technologies(self):
         self.env['piloterr.website.technologies'].add_technologies(
             delay=False,

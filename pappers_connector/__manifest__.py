@@ -16,6 +16,8 @@
     'installable': True,
     'depends': [
         'pyper_contact',
+        'l10n_fr',
+        'pyper_partner_scraper',
     ],
     'data': [
         # Security
@@ -26,6 +28,7 @@
 
         # Views
         'views/conf_setting_views.xml',
+        'views/res_partner_views.xml',
 
         # Wizard
         'wizard/pappers_name_form.xml',

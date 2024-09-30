@@ -6,9 +6,13 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Technology" name="technology" invisible="is_company == False">
-                    <div class="px-5 pt-4">
-                        <field name="technology_ids" colspan="2"/>
+                    <div class="alert alert-info fadeInDownLight"
+                         role="alert"
+                    >
+                        <p class="mb-0">This tab allows you to get information about technology used in partner website.</p>
                     </div>
+
+                    <field name="technology_ids" colspan="2"/>
                 </page>
             </xpath>
         </field>

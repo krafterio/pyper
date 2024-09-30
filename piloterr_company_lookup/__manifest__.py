@@ -17,6 +17,7 @@
     'depends': [
         'piloterr_connector',
         'linkedin_partner',
+        'pyper_partner_scraper',
     ],
     'data': [
         # Views

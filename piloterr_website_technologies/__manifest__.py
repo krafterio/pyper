@@ -18,6 +18,8 @@
     'depends': [
         'piloterr_connector',
         'pyper_stack_tracker',
+        'pyper_partner_scraper',
+        'pyper_queue_job',
     ],
     'data': [
         # Views

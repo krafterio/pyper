@@ -4,20 +4,16 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[@name='button_box']" position="inside">
+             <xpath expr="//div[@name='k-partner-scraper-action']">
                 <button
-                    class="btn btn-secondary p-3"
+                    class="btn btn-secondary btn-sm mb-3"
                     type="object"
-                    name="search_piloterr_technologies"
-                    icon="fa-code me-2"
+                    name="action_search_piloterr_technologies"
+                    icon="fa-code me-1"
                     data-tooltip-delay="0"
-                    invisible="is_company == False"
-                >
-                    <div class="o_stat_info">
-                        <span class="o_stat_text">Import</span>
-                        <span class="o_stat_text">technologies</span>
-                    </div>
-                </button>
+                    invisible="technology_ids or not website"
+                    title="Crawl website"
+                >Crawl website</button>
             </xpath>
         </field>
     </record>
