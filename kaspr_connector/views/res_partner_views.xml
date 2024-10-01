@@ -11,7 +11,7 @@
                     name="action_update_kaspr_linkedin_form"
                     icon="fa-phone me-1"
                     data-tooltip-delay="0"
-                    invisible="name == False"
+                    invisible="linkedin_url == False"
                     title="Find phone number"
                 >Find phone number</button>
             </xpath>
