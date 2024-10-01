@@ -1,0 +1,38 @@
+<odoo>
+    <record id="view_unsubscribe_partners_wizard_form" model="ir.ui.view">
+        <field name="name">wizard.unsubscribe.partners.form</field>
+        <field name="model">wizard.unsubscribe.partners</field>
+        <field name="arch" type="xml">
+            <form string="Unsubscribe Partners">
+                <div class="col-12 mb-4">
+                    This dialog helps you unsubscribe clients of documents (field partner_id) from the document itself for the models you select.
+                    <br/>
+                    <u>Consider a backup</u> in case you change your mind.
+                </div>
+                <div class="col-12 mb-4"></div>
+                <group>
+                    <field name="model_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                </group>
+                <field name="follower_ids">
+                    <tree create="false">
+                        <field name="res_model"/>
+                        <field name="res_id"/>
+                        <field name="partner_id"/>
+                        <field name="subtype_ids" widget="many2many_tags"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button string="Confirm" type="object" name="action_confirm" class="btn-primary" confirm="Are you really sure ? This will automatically unsubscribe all those partner from the related documents."/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_unsubscribe_partners_wizard" model="ir.actions.act_window">
+        <field name="name">Unsubscribe Partners client of their document</field>
+        <field name="res_model">wizard.unsubscribe.partners</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
