@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Account Service Tax',
+    'name': 'Account Service Tax',
     'category': 'Accounting/Accounting',
     'license': 'Other proprietary',
     'description': 'Add default service taxes.',

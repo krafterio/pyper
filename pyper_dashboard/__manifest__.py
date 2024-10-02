@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Dashboard',
+    'name': 'Dashboard',
     'category': 'Productivity',
     'license': 'Other proprietary',
     'description': 'Build custom dashboards',

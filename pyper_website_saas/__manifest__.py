@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Website SaaS',
+    'name': 'Website SaaS',
     'category': 'Hidden',
     'license': 'Other proprietary',
     'description': 'Website configuration for SaaS',

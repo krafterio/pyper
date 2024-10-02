@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 {
-    'name': 'Pyper Web Theme Drawer',
+    'name': 'Web Theme Drawer',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Make compatible Drawer with Pyper Web Theme',

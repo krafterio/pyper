@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 {
-    'name': 'Pyper Web Theme Activity',
+    'name': 'Web Theme Activity',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Add activity theme for Pyper Web Theme',

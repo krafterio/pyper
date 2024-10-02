@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Discuss Extra',
+    'name': 'Discuss Extra',
     'category': 'Productivity/Discuss',
     'license': 'Other proprietary',
     'description': 'Split Chatter and Notification center',

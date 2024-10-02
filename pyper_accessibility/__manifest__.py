@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Accessibility',
+    'name': 'Accessibility',
     'category': 'Extra Tools',
     'license': 'Other proprietary',
     'summary': 'Customize user interface for better inclusivity',

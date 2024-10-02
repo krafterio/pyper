@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper SMS Twilio',
+    'name': 'SMS Twilio',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Use Twilio to send SMS messages.',

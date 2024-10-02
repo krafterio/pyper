@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper IAP',
+    'name': 'IAP',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Base to add custom IAP providers.',

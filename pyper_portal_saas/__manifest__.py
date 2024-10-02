@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Portal SaaS',
+    'name': 'Portal SaaS',
     'category': 'Hidden',
     'license': 'Other proprietary',
     'description': 'Portal configuration for SaaS',

@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 {
-    'name': 'Pyper Web Theme Overlay Menu',
+    'name': 'Web Theme Overlay Menu',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Make compatible Overlay Menu with Pyper Web Theme',

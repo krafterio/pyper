@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Navbar Root Menu',
+    'name': 'Navbar Root Menu',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Extend Web Interface with Root Menu in main navbar.',

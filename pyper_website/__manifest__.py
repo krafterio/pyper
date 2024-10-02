@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Website',
+    'name': 'Website',
     'category': 'Hidden',
     'license': 'Other proprietary',
     'description': 'Extend website features',

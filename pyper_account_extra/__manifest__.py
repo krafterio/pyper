@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Account Extra',
+    'name': 'Account Extra',
     'category': 'Accounting/Payment',
     'license': 'Other proprietary',
     'description': 'Extend Account features.',

@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Security Access',
+    'name': 'Security Access',
     'category': 'Technical',
     'license': 'Other proprietary',
     'description': 'Allow to add security access management on all models.',

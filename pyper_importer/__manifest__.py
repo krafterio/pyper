@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Importer',
+    'name': 'Importer',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Base to create and manage import from external service.',

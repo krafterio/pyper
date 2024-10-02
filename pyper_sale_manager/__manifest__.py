@@ -2,7 +2,7 @@
 # Odoo Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper sale Manager',
+    'name': 'sale Manager',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Override of default sale addon.',

@@ -2,7 +2,7 @@
 # Odoo Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Sale Order Type',
+    'name': 'Sale Order Type',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Addon dedicated to add sale order types',

@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Dynamic DBFilter',
+    'name': 'Dynamic DBFilter',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Allow to define db_filter with HTTP Header.',

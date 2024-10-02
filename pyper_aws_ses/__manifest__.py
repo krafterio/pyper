@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper AWS SES',
+    'name': 'AWS SES',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'summary': 'Retrieve inbound emails from AWS SES stored in AWS S3',

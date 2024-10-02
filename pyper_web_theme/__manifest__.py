@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 {
-    'name': 'Pyper Web Theme',
+    'name': 'Web Theme',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Add pyper web theme with clean back office theme',

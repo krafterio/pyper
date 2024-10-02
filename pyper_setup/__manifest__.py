@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Setup',
+    'name': 'Setup',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Add dedicated app section for Pyper addons in Settings application.',

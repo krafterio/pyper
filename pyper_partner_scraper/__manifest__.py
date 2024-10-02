@@ -2,7 +2,7 @@
 # Odoo Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper partner scraper',
+    'name': 'Partner scraper',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Add blocks that will allow you to scrape partners.',

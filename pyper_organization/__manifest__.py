@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Organization',
+    'name': 'Organization',
     'category': 'Hidden',
     'license': 'Other proprietary',
     'description': 'Base to build multi-tenant application',

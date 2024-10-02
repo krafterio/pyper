@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 {
-    'name': 'Pyper product catalog',
+    'name': 'Product catalog',
     'category': 'Inventory/Inventory',
     'license': 'Other proprietary',
     'description': 'Addon dedicated to product catalog management',

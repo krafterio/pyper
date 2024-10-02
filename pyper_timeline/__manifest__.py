@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Timeline',
+    'name': 'Timeline',
     'category': 'Tools',
     'license': 'Other proprietary',
     'description': 'Timeline component to create views with timeline chart',

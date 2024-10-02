@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper User Profile',
+    'name': 'User Profile',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Pyper addons dedicated to handling user profile and rights.',

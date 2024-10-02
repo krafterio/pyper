@@ -2,7 +2,7 @@
 # Odoo Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper contact',
+    'name': 'Contact',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Addon dedicated to contact management',

@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 {
-    'name': 'Pyper Website Menu',
+    'name': 'Website Menu',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Use menu items to build structured mega menu for website',

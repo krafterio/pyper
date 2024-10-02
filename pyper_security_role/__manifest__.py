@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Security Role',
+    'name': 'Security Role',
     'category': 'Technical',
     'license': 'Other proprietary',
     'description': 'Allow to add security role included security groups on user.',

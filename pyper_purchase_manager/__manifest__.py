@@ -2,7 +2,7 @@
 # Odoo Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper purchase Manager',
+    'name': 'Purchase Manager',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Override of default purchase addon.',

@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Website Maintenance',
+    'name': 'Website Maintenance',
     'category': 'Hidden',
     'license': 'Other proprietary',
     'description': 'Maintenance mode for all frontend features like website, portal and eCommerce',

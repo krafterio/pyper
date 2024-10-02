@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper IAP Mail',
+    'name': 'IAP Mail',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Send email warning when IAP provider threshold is reached.',

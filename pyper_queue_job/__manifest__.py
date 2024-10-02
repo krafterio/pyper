@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Queue Job',
+    'name': 'Queue Job',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Base to create and manage queue jobs.',

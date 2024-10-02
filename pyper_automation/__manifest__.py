@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Automation',
+    'name': 'Automation',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Extend features of Base Automation.',

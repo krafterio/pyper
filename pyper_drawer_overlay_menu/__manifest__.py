@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Drawer Overlay Menu',
+    'name': 'Drawer Overlay Menu',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Auto configure Drawer with Overlay Menu.',

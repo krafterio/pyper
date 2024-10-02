@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Drawer',
+    'name': 'Drawer',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Extend Web Interface with drawer.',

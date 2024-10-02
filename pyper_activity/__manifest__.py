@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Activity',
+    'name': 'Activity',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Pyper addons dedicated to activity override.',

@@ -2,7 +2,7 @@
 # Odoo Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper product condition extend features IT',
+    'name': 'Product condition extend features IT',
     'category': 'Manufacturing/Repair',
     'license': 'Other proprietary',
     'description': 'This addon adds ability to display condition on dedicated views with extends logics.',

@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper product extend features IT',
+    'name': 'Product extend features IT',
     'category': 'Extra Tools',
     'license': 'Other proprietary',
     'description': 'Add ability to extend product information with custom category features around IT',

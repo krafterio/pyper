@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Account Fiscal Year',
+    'name': 'Account Fiscal Year',
     'category': 'Accounting/Accounting',
     'license': 'Other proprietary',
     'description': 'Add Fiscal Year for Community Edition.',

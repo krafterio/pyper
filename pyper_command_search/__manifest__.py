@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Command Search',
+    'name': 'Command Search',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Global search action.',

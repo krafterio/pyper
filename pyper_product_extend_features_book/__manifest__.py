@@ -2,7 +2,7 @@
 # Odoo Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper product extend features book',
+    'name': 'Product extend features book',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'This addon adds book product management.',

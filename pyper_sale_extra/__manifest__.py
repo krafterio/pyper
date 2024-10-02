@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Sale Extra',
+    'name': 'Sale Extra',
     'category': 'Sales/Sales',
     'license': 'Other proprietary',
     'description': 'Extend Sale features.',

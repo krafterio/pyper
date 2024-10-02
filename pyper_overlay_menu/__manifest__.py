@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Overlay Menu',
+    'name': 'Overlay Menu',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Extend Web Interface with Overlay Menu.',

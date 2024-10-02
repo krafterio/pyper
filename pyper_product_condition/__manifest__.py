@@ -2,7 +2,7 @@
 # Odoo Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper product condition',
+    'name': 'Product condition',
     'category': 'Manufacturing/Repair',
     'license': 'Other proprietary',
     'description': 'This addon adds ability to manage product condition.',

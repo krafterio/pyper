@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Fonts Phosphor',
+    'name': 'Fonts Phosphor',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Phosphor fonts.',

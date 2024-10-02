@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 {
-    'name': 'Pyper Web Theme Discuss',
+    'name': 'Web Theme Discuss',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Make compatible Discuss Extra with Pyper Web Theme',

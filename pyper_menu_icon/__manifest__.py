@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Menu Icon',
+    'name': 'Menu Icon',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Extend Web Interface of menu with icon.',

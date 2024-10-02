@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Stack Tracker',
+    'name': 'Stack Tracker',
     'category': 'Sales/CRM',
     'license': 'Other proprietary',
     'description': 'Add ability to track partner technical stack',

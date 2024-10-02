@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Dashboard Editor',
+    'name': 'Dashboard Editor',
     'category': 'Productivity',
     'license': 'Other proprietary',
     'description': 'Build custom dashboards in drag and drop',
