@@ -38,7 +38,7 @@ class KasprForm(models.TransientModel):
                 raise UserError(_('Not a linkedin URL. Please paste full linkedin URL'))
             else:
 
-                api_token = self.env['ir.config_parameter'].sudo().get_param('kaspr_connector.kaspr_token_api')
+                api_token = self.env['ir.config_parameter'].sudo().get_param('pyper_kaspr_connector.kaspr_token_api')
 
                 if not api_token:
                     raise UserError(_('You have to fill the Kaspr token API in the global settings first.'))

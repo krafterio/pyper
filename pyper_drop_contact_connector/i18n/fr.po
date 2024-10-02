@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* drop_contact_connector
+# 	* pyper_drop_contact_connector
 #
 msgid ""
 msgstr ""
@@ -17,181 +17,181 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.5\n"
 
-#. module: drop_contact_connector
-#: model_terms:ir.ui.view,arch_db:drop_contact_connector.res_config_settings_view_form
+#. module: pyper_drop_contact_connector
+#: model_terms:ir.ui.view,arch_db:pyper_drop_contact_connector.res_config_settings_view_form
 msgid "Automatically get contact information from Drop Contact integration"
 msgstr "Obtenir automatiquement des informations de contact à partir de l'intégration de Drop Contact"
 
-#. module: drop_contact_connector
-#: model:ir.model,name:drop_contact_connector.model_res_config_settings
+#. module: pyper_drop_contact_connector
+#: model:ir.model,name:pyper_drop_contact_connector.model_res_config_settings
 msgid "Config Settings"
 msgstr "Paramètres de configuration"
 
-#. module: drop_contact_connector
-#: model:ir.model,name:drop_contact_connector.model_res_partner
+#. module: pyper_drop_contact_connector
+#: model:ir.model,name:pyper_drop_contact_connector.model_res_partner
 msgid "Contact"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__create_uid
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__create_uid
 msgid "Created by"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__create_date
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__create_date
 msgid "Created on"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model_terms:ir.ui.view,arch_db:drop_contact_connector.res_partner_drop_contact_batch_form
+#. module: pyper_drop_contact_connector
+#: model_terms:ir.ui.view,arch_db:pyper_drop_contact_connector.res_partner_drop_contact_batch_form
 msgid "Details"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__display_name
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__display_name
 msgid "Display Name"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model_terms:ir.ui.view,arch_db:drop_contact_connector.res_partner_drop_contact_batch_form
+#. module: pyper_drop_contact_connector
+#: model_terms:ir.ui.view,arch_db:pyper_drop_contact_connector.res_partner_drop_contact_batch_form
 msgid "Do you really want to retry?"
 msgstr "Voulez-vous vraiment réessayer ?"
 
-#. module: drop_contact_connector
-#: model_terms:ir.ui.view,arch_db:drop_contact_connector.res_config_settings_view_form
+#. module: pyper_drop_contact_connector
+#: model_terms:ir.ui.view,arch_db:pyper_drop_contact_connector.res_config_settings_view_form
 msgid "Drop Contact Connector"
 msgstr "Connecteur Dropcontact"
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_config_settings__drop_contact_token_api
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_config_settings__drop_contact_token_api
 msgid "Drop Contact Token API"
 msgstr "Token API Dropcontact"
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner__drop_contact_batch_id
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_users__drop_contact_batch_id
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner__drop_contact_batch_id
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_users__drop_contact_batch_id
 msgid "Drop contact batch"
 msgstr "Lot Dropcontact"
 
-#. module: drop_contact_connector
-#: model:ir.model,name:drop_contact_connector.model_res_partner_drop_contact_batch
+#. module: pyper_drop_contact_connector
+#: model:ir.model,name:pyper_drop_contact_connector.model_res_partner_drop_contact_batch
 msgid "Drop contact batch information for Partners"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner__drop_contact_batch_state
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_users__drop_contact_batch_state
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner__drop_contact_batch_state
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_users__drop_contact_batch_state
 msgid "Drop contact state"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.actions.server,name:drop_contact_connector.link_enrich_contact_info
+#. module: pyper_drop_contact_connector
+#: model:ir.actions.server,name:pyper_drop_contact_connector.link_enrich_contact_info
 msgid "Enrich contact info"
 msgstr "Enrichir les informations du contact"
 
-#. module: drop_contact_connector
-#: model:ir.actions.act_window,name:drop_contact_connector.res_partner_drop_contact_batch_action
-#: model:ir.ui.menu,name:drop_contact_connector.menu_res_partner_drop_contact_batch
+#. module: pyper_drop_contact_connector
+#: model:ir.actions.act_window,name:pyper_drop_contact_connector.res_partner_drop_contact_batch_action
+#: model:ir.ui.menu,name:pyper_drop_contact_connector.menu_res_partner_drop_contact_batch
 msgid "Enrich contact queue"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__exception_name
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__exception_name
 msgid "Exception"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__exception_info
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__exception_info
 msgid "Exception Info"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__exception_message
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__exception_message
 msgid "Exception Message"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model_terms:ir.ui.view,arch_db:drop_contact_connector.res_partner_drop_contact_batch_form
+#. module: pyper_drop_contact_connector
+#: model_terms:ir.ui.view,arch_db:pyper_drop_contact_connector.res_partner_drop_contact_batch_form
 msgid "Exceptions"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model_terms:ir.ui.view,arch_db:drop_contact_connector.res_partner_view_form
+#. module: pyper_drop_contact_connector
+#: model_terms:ir.ui.view,arch_db:pyper_drop_contact_connector.res_partner_view_form
 msgid "Find contact e-mail address"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model_terms:ir.ui.view,arch_db:drop_contact_connector.res_partner_view_form
+#. module: pyper_drop_contact_connector
+#: model_terms:ir.ui.view,arch_db:pyper_drop_contact_connector.res_partner_view_form
 msgid "Find email &amp; Linkedin"
 msgstr "Trouver e-mail &amp; linkedIn"
 
-#. module: drop_contact_connector
-#: model:ir.model.fields.selection,name:drop_contact_connector.selection__res_partner_drop_contact_batch__state__getting_info
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields.selection,name:pyper_drop_contact_connector.selection__res_partner_drop_contact_batch__state__getting_info
 msgid "Getting Info"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields.selection,name:drop_contact_connector.selection__res_partner_drop_contact_batch__state__getting_request
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields.selection,name:pyper_drop_contact_connector.selection__res_partner_drop_contact_batch__state__getting_request
 msgid "Getting Request"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__id
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__id
 msgid "ID"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model_terms:ir.ui.view,arch_db:drop_contact_connector.res_partner_drop_contact_batch_form
+#. module: pyper_drop_contact_connector
+#: model_terms:ir.ui.view,arch_db:pyper_drop_contact_connector.res_partner_drop_contact_batch_form
 msgid "Information"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__write_uid
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__write_uid
 msgid "Last Updated by"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__write_date
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__write_date
 msgid "Last Updated on"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__partner_count
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__partner_count
 msgid "Partner count"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__partner_ids
-#: model_terms:ir.ui.view,arch_db:drop_contact_connector.res_partner_drop_contact_batch_form
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__partner_ids
+#: model_terms:ir.ui.view,arch_db:pyper_drop_contact_connector.res_partner_drop_contact_batch_form
 msgid "Partners"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__request_id
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__request_id
 msgid "Request ID"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__response_data
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__response_data
 msgid "Response data"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model_terms:ir.ui.view,arch_db:drop_contact_connector.res_partner_drop_contact_batch_form
+#. module: pyper_drop_contact_connector
+#: model_terms:ir.ui.view,arch_db:pyper_drop_contact_connector.res_partner_drop_contact_batch_form
 msgid "Retry"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields,field_description:drop_contact_connector.field_res_partner_drop_contact_batch__state
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields,field_description:pyper_drop_contact_connector.field_res_partner_drop_contact_batch__state
 msgid "State"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model_terms:ir.ui.view,arch_db:drop_contact_connector.res_config_settings_view_form
+#. module: pyper_drop_contact_connector
+#: model_terms:ir.ui.view,arch_db:pyper_drop_contact_connector.res_config_settings_view_form
 msgid "Use the Drop Contact service to enrich contact information"
 msgstr ""
 
-#. module: drop_contact_connector
-#: model:ir.model.fields.selection,name:drop_contact_connector.selection__res_partner_drop_contact_batch__state__waiting_info
+#. module: pyper_drop_contact_connector
+#: model:ir.model.fields.selection,name:pyper_drop_contact_connector.selection__res_partner_drop_contact_batch__state__waiting_info
 msgid "Waiting info"
 msgstr "Attente d’informations"

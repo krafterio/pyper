@@ -10,5 +10,5 @@ class ConfSetting(models.TransientModel):
     pappers_token_api = fields.Char(
         string="Pappers Token API",
         store=True,
-        config_parameter='pappers_connector.pappers_token_api',
+        config_parameter='pyper_pappers_connector.pappers_token_api',
     )

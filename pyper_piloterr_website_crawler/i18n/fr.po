@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* piloterr_website_crawler
+# 	* pyper_piloterr_website_crawler
 #
 msgid ""
 msgstr ""
@@ -15,59 +15,59 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: piloterr_website_crawler
-#: model_terms:ir.ui.view,arch_db:piloterr_website_crawler.res_partner_view_form
+#. module: pyper_piloterr_website_crawler
+#: model_terms:ir.ui.view,arch_db:pyper_piloterr_website_crawler.res_partner_view_form
 msgid "<span class=\"o_stat_text\">Retrieve Cleaned<br/>HTML</span>"
 msgstr "<span class=\"o_stat_text\">Récupérer HTML<br/>nettoyé</span>"
 
-#. module: piloterr_website_crawler
-#: model_terms:ir.ui.view,arch_db:piloterr_website_crawler.res_partner_view_form
+#. module: pyper_piloterr_website_crawler
+#: model_terms:ir.ui.view,arch_db:pyper_piloterr_website_crawler.res_partner_view_form
 msgid "<span class=\"o_stat_text\">Retrieve HTML</span>"
 msgstr "<span class=\"o_stat_text\">Récupérer HTML</span>"
 
-#. module: piloterr_website_crawler
-#: model:ir.model,name:piloterr_website_crawler.model_res_partner
+#. module: pyper_piloterr_website_crawler
+#: model:ir.model,name:pyper_piloterr_website_crawler.model_res_partner
 msgid "Contact"
 msgstr ""
 
-#. module: piloterr_website_crawler
-#: model:ir.model.fields,field_description:piloterr_website_crawler.field_piloterr_website_crawler__create_uid
+#. module: pyper_piloterr_website_crawler
+#: model:ir.model.fields,field_description:pyper_piloterr_website_crawler.field_piloterr_website_crawler__create_uid
 msgid "Created by"
 msgstr ""
 
-#. module: piloterr_website_crawler
-#: model:ir.model.fields,field_description:piloterr_website_crawler.field_piloterr_website_crawler__create_date
+#. module: pyper_piloterr_website_crawler
+#: model:ir.model.fields,field_description:pyper_piloterr_website_crawler.field_piloterr_website_crawler__create_date
 msgid "Created on"
 msgstr ""
 
-#. module: piloterr_website_crawler
-#: model:ir.model.fields,field_description:piloterr_website_crawler.field_piloterr_website_crawler__display_name
+#. module: pyper_piloterr_website_crawler
+#: model:ir.model.fields,field_description:pyper_piloterr_website_crawler.field_piloterr_website_crawler__display_name
 msgid "Display Name"
 msgstr ""
 
-#. module: piloterr_website_crawler
-#: model:ir.model.fields,field_description:piloterr_website_crawler.field_piloterr_website_crawler__id
+#. module: pyper_piloterr_website_crawler
+#: model:ir.model.fields,field_description:pyper_piloterr_website_crawler.field_piloterr_website_crawler__id
 msgid "ID"
 msgstr ""
 
-#. module: piloterr_website_crawler
-#: model:ir.model.fields,field_description:piloterr_website_crawler.field_piloterr_website_crawler__write_uid
+#. module: pyper_piloterr_website_crawler
+#: model:ir.model.fields,field_description:pyper_piloterr_website_crawler.field_piloterr_website_crawler__write_uid
 msgid "Last Updated by"
 msgstr ""
 
-#. module: piloterr_website_crawler
-#: model:ir.model.fields,field_description:piloterr_website_crawler.field_piloterr_website_crawler__write_date
+#. module: pyper_piloterr_website_crawler
+#: model:ir.model.fields,field_description:pyper_piloterr_website_crawler.field_piloterr_website_crawler__write_date
 msgid "Last Updated on"
 msgstr ""
 
-#. module: piloterr_website_crawler
-#: model:ir.model,name:piloterr_website_crawler.model_piloterr_website_crawler
+#. module: pyper_piloterr_website_crawler
+#: model:ir.model,name:pyper_piloterr_website_crawler.model_piloterr_website_crawler
 msgid "Piloterr Website Crawler"
 msgstr ""
 
-#. module: piloterr_website_crawler
+#. module: pyper_piloterr_website_crawler
 #. odoo-python
-#: code:addons/piloterr_website_crawler/models/piloterr_website_crawler.py:0
+#: code:addons/pyper_piloterr_website_crawler/models/pyper_piloterr_website_crawler.py:0
 #, python-format
 msgid "You have to give a website to complete operation."
 msgstr "Vous devez fournir un site web pour compléter l'opération."

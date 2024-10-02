@@ -15,7 +15,7 @@
     'application': True,
     'installable': True,
     'depends': [
-        'linkedin_partner',
+        'pyper_linkedin_partner',
     ],
     'data': [
         # Security

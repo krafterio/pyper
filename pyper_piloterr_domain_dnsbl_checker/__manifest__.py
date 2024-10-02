@@ -15,7 +15,7 @@
     'application': True,
     'installable': True,
     'depends': [
-        'piloterr_connector',
+        'pyper_piloterr_connector',
     ],
     'data': [
         # Views

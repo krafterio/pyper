@@ -10,13 +10,13 @@
                 <app
                     string="Piloterr connexion"
                     name="piloterr_connexion"
-                    logo="/piloterr_connector/static/img/piloterr.svg"
+                    logo="/pyper_piloterr_connector/static/img/piloterr.svg"
                 >
-                    <block title="Piloterr Connector" name="piloterr_connector">
+                    <block title="Piloterr Connector" name="pyper_piloterr_connector">
                         <setting
                             help="Automatically get information from Piloterr integration"
                             title="Use the Piloterr service to enrich data"
-                            id="piloterr_connector">
+                            id="pyper_piloterr_connector">
                             <field name="piloterr_token_api" password="True"/>
                         </setting>
                     </block>

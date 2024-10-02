@@ -14,7 +14,7 @@
             name="Import product with EAN/UPC"
             sequence="10"
             parent="pyper_product_catalog.product_import_root"
-            action="icecat_connector.action_open_icecat_wizard"
+            action="pyper_icecat_connector.action_open_icecat_wizard"
         />
 
     </data>

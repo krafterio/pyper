@@ -167,7 +167,7 @@ class PiloterrMixin(models.AbstractModel):
         - Errors are logged for diagnostic and debugging purposes.
         """
 
-        api_token = self.env['ir.config_parameter'].sudo().get_param('piloterr_connector.piloterr_token_api')
+        api_token = self.env['ir.config_parameter'].sudo().get_param('pyper_piloterr_connector.piloterr_token_api')
 
         if not api_token:
             raise UserError(_('You have to complete your Piloterr token in the settings first.'))
@@ -268,7 +268,7 @@ class PiloterrMixin(models.AbstractModel):
         - Errors are logged for diagnostic and debugging purposes.
         """
 
-        api_token = self.env['ir.config_parameter'].sudo().get_param('piloterr_connector.piloterr_token_api')
+        api_token = self.env['ir.config_parameter'].sudo().get_param('pyper_piloterr_connector.piloterr_token_api')
 
         if not api_token:
             raise UserError(_('You have to complete your Piloterr token in the settings first.'))

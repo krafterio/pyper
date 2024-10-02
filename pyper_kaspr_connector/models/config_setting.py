@@ -10,5 +10,5 @@ class ConfSetting(models.TransientModel):
     kaspr_token_api = fields.Char(
         string="Kaspr Token API",
         store=True,
-        config_parameter='kaspr_connector.kaspr_token_api',
+        config_parameter='pyper_kaspr_connector.kaspr_token_api',
     )

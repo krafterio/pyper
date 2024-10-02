@@ -10,5 +10,5 @@ class ResConfigSettings(models.TransientModel):
     piloterr_token_api = fields.Char(
         string="Piloterr Token API",
         store=True,
-        config_parameter='piloterr_connector.piloterr_token_api',
+        config_parameter='pyper_piloterr_connector.piloterr_token_api',
     )

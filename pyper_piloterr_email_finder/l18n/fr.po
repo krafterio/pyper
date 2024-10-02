@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* piloterr_email_finder
+# 	* pyper_piloterr_email_finder
 #
 msgid ""
 msgstr ""
@@ -15,12 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: piloterr_email_finder
-#: model_terms:ir.ui.view,arch_db:piloterr_email_finder.res_partner_view_form
+#. module: pyper_piloterr_email_finder
+#: model_terms:ir.ui.view,arch_db:pyper_piloterr_email_finder.res_partner_view_form
 msgid "Retrieve email"
 msgstr "Récupérer l'email"
 
-#. module: piloterr_email_finder
-#: model_terms:ir.ui.view,arch_db:piloterr_email_finder.res_partner_view_tree
+#. module: pyper_piloterr_email_finder
+#: model_terms:ir.ui.view,arch_db:pyper_piloterr_email_finder.res_partner_view_tree
 msgid "Retrieve emails"
 msgstr "Récupérer l'email"

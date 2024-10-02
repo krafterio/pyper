@@ -6,11 +6,11 @@
         <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@id='contacts_settings']" position="after">
-                 <block title="Kaspr Connector" name="kaspr_connector">
+                 <block title="Kaspr Connector" name="pyper_kaspr_connector">
                         <setting
                             help="Automatically get contact information from kaspr integration"
                             title="Use the kaspr service to enrich contact information from linkedin"
-                            id="kaspr_connector">
+                            id="pyper_kaspr_connector">
                             <field name="kaspr_token_api" password="True"/>
                         </setting>
                 </block>

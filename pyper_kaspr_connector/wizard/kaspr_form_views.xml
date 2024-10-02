@@ -14,7 +14,7 @@
             name="Create contact from linkedin"
             sequence="1"
             parent="pyper_contact.company_importer_root"
-            action="kaspr_connector.action_open_kaspr_wizard"
+            action="pyper_kaspr_connector.action_open_kaspr_wizard"
         />
     </data>
 </odoo>

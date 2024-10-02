@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* piloterr_connector
+# 	* pyper_piloterr_connector
 #
 msgid ""
 msgstr ""
@@ -16,41 +16,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 
-#. module: piloterr_connector
-#: model_terms:ir.ui.view,arch_db:piloterr_connector.res_config_settings_view_form
+#. module: pyper_piloterr_connector
+#: model_terms:ir.ui.view,arch_db:pyper_piloterr_connector.res_config_settings_view_form
 msgid "Automatically get information from Piloterr integration"
 msgstr "Obtenez automatiquement des informations de l'intégration Piloterr"
 
-#. module: piloterr_connector
-#: model:ir.model,name:piloterr_connector.model_res_config_settings
+#. module: pyper_piloterr_connector
+#: model:ir.model,name:pyper_piloterr_connector.model_res_config_settings
 msgid "Config Settings"
 msgstr "Paramètres de configuration"
 
-#. module: piloterr_connector
-#: model_terms:ir.ui.view,arch_db:piloterr_connector.res_config_settings_view_form
+#. module: pyper_piloterr_connector
+#: model_terms:ir.ui.view,arch_db:pyper_piloterr_connector.res_config_settings_view_form
 msgid "Piloterr Connector"
 msgstr "Connecteur Piloterr"
 
-#. module: piloterr_connector
-#: model:ir.model.fields,field_description:piloterr_connector.field_res_config_settings__piloterr_token_api
+#. module: pyper_piloterr_connector
+#: model:ir.model.fields,field_description:pyper_piloterr_connector.field_res_config_settings__piloterr_token_api
 msgid "Piloterr Token API"
 msgstr ""
 
-#. module: piloterr_connector
-#: model_terms:ir.ui.view,arch_db:piloterr_connector.res_config_settings_view_form
+#. module: pyper_piloterr_connector
+#: model_terms:ir.ui.view,arch_db:pyper_piloterr_connector.res_config_settings_view_form
 msgid "Use the Piloterr service to enrich data"
 msgstr "Utilisez le service Piloterr pour enrichir les données"
 
-#. module: piloterr_connector
+#. module: pyper_piloterr_connector
 #. odoo-python
-#: code:addons/piloterr_connector/models/piloterr_mixin.py:0
+#: code:addons/pyper_piloterr_connector/models/piloterr_mixin.py:0
 #, python-format
 msgid "You have to complete your Piloterr token in the settings first."
 msgstr "Vous devez d’abord mettre à jour le token Piloterr dans les réglages."
 
-#. module: piloterr_connector
+#. module: pyper_piloterr_connector
 #. odoo-python
-#: code:addons/piloterr_connector/models/piloterr_mixin.py:0
+#: code:addons/pyper_piloterr_connector/models/piloterr_mixin.py:0
 #, python-format
 msgid "The callback method '%(callback)s' does not exist in the model '%(model)s'."
 msgstr "La méthode '%(callback)s' n'existe pas dans le modèle '%(model)s'."

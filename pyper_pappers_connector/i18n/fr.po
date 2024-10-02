@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* pappers_connector
+# 	* pyper_pappers_connector
 #
 msgid ""
 msgstr ""
@@ -17,197 +17,197 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.2.2\n"
 
-#. module: pappers_connector
-#: model_terms:ir.ui.view,arch_db:pappers_connector.res_config_settings_inherit_view
+#. module: pyper_pappers_connector
+#: model_terms:ir.ui.view,arch_db:pyper_pappers_connector.res_config_settings_inherit_view
 msgid "Automatically get company information from Pappers integration"
 msgstr "Obtenir automatiquement des informations sur l'entreprise à partir de l'intégration de Pappers"
 
-#. module: pappers_connector
-#: model_terms:ir.ui.view,arch_db:pappers_connector.pappers_form
-#: model_terms:ir.ui.view,arch_db:pappers_connector.pappers_name_form_view
+#. module: pyper_pappers_connector
+#: model_terms:ir.ui.view,arch_db:pyper_pappers_connector.pappers_form
+#: model_terms:ir.ui.view,arch_db:pyper_pappers_connector.pappers_name_form_view
 msgid "Cancel"
 msgstr "Annuler"
 
-#. module: pappers_connector
-#: model:ir.model,name:pappers_connector.model_res_config_settings
+#. module: pyper_pappers_connector
+#: model:ir.model,name:pyper_pappers_connector.model_res_config_settings
 msgid "Config Settings"
 msgstr "Paramètres de configuration"
 
-#. module: pappers_connector
-#: model:ir.model,name:pappers_connector.model_res_partner
+#. module: pyper_pappers_connector
+#: model:ir.model,name:pyper_pappers_connector.model_res_partner
 msgid "Contact"
 msgstr ""
 
-#. module: pappers_connector
-#: model_terms:ir.ui.view,arch_db:pappers_connector.pappers_name_form_view
+#. module: pyper_pappers_connector
+#: model_terms:ir.ui.view,arch_db:pyper_pappers_connector.pappers_name_form_view
 msgid "Create company"
 msgstr "Créer/éditer la société"
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_form__create_uid
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_form__create_uid
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_result_form__create_uid
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_form__create_uid
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_form__create_uid
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_result_form__create_uid
 msgid "Created by"
 msgstr "Créé par"
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_form__create_date
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_form__create_date
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_result_form__create_date
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_form__create_date
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_form__create_date
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_result_form__create_date
 msgid "Created on"
 msgstr "Créé le"
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_result_form__creation_date
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_result_form__creation_date
 msgid "Creation date"
 msgstr "Date de création"
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_form__display_name
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_form__display_name
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_result_form__display_name
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_form__display_name
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_form__display_name
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_result_form__display_name
 msgid "Display Name"
 msgstr ""
 
-#. module: pappers_connector
-#: model:ir.actions.server,name:pappers_connector.enrich_company_action
+#. module: pyper_pappers_connector
+#: model:ir.actions.server,name:pyper_pappers_connector.enrich_company_action
 msgid "Enrich company infos"
 msgstr "Enrichir les infos de la société"
 
-#. module: pappers_connector
-#: model_terms:ir.ui.view,arch_db:pappers_connector.pappers_name_form_view
+#. module: pyper_pappers_connector
+#: model_terms:ir.ui.view,arch_db:pyper_pappers_connector.pappers_name_form_view
 msgid "Get companies"
 msgstr "Lister les sociétés"
 
-#. module: pappers_connector
-#: model_terms:ir.ui.view,arch_db:pappers_connector.pappers_form
+#. module: pyper_pappers_connector
+#: model_terms:ir.ui.view,arch_db:pyper_pappers_connector.pappers_form
 msgid "Get company info"
 msgstr "Créer/éditer la société"
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_form__id
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_form__id
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_result_form__id
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_form__id
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_form__id
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_result_form__id
 msgid "ID"
 msgstr ""
 
-#. module: pappers_connector
-#: model:ir.actions.act_window,name:pappers_connector.action_open_pappers_name_wizard
-#: model:ir.ui.menu,name:pappers_connector.pappers_name_form
+#. module: pyper_pappers_connector
+#: model:ir.actions.act_window,name:pyper_pappers_connector.action_open_pappers_name_wizard
+#: model:ir.ui.menu,name:pyper_pappers_connector.pappers_name_form
 msgid "Import company with name"
 msgstr "Importer société avec le nom"
 
-#. module: pappers_connector
-#: model:ir.actions.act_window,name:pappers_connector.action_open_pappers_wizard
-#: model:ir.ui.menu,name:pappers_connector.pappers_siret_form
+#. module: pyper_pappers_connector
+#: model:ir.actions.act_window,name:pyper_pappers_connector.action_open_pappers_wizard
+#: model:ir.ui.menu,name:pyper_pappers_connector.pappers_siret_form
 msgid "Import company with siret"
 msgstr "Importer société avec le SIRET"
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_form__write_uid
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_form__write_uid
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_result_form__write_uid
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_form__write_uid
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_form__write_uid
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_result_form__write_uid
 msgid "Last Updated by"
 msgstr ""
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_form__write_date
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_form__write_date
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_result_form__write_date
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_form__write_date
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_form__write_date
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_result_form__write_date
 msgid "Last Updated on"
 msgstr ""
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_form__name
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_result_form__name
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_form__name
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_result_form__name
 msgid "Name"
 msgstr "Nom"
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_result_form__name_form
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_result_form__name_form
 msgid "Name form"
 msgstr ""
 
-#. module: pappers_connector
-#: model_terms:ir.ui.view,arch_db:pappers_connector.res_config_settings_inherit_view
+#. module: pyper_pappers_connector
+#: model_terms:ir.ui.view,arch_db:pyper_pappers_connector.res_config_settings_inherit_view
 msgid "Pappers Connector"
 msgstr "Connecteur Pappers"
 
-#. module: pappers_connector
-#: model:ir.model,name:pappers_connector.model_pappers_form
+#. module: pyper_pappers_connector
+#: model:ir.model,name:pyper_pappers_connector.model_pappers_form
 msgid "Pappers Form"
 msgstr ""
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_res_config_settings__pappers_token_api
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_res_config_settings__pappers_token_api
 msgid "Pappers Token API"
 msgstr "Token API Pampers"
 
-#. module: pappers_connector
-#: model:ir.model,name:pappers_connector.model_pappers_name_form
+#. module: pyper_pappers_connector
+#: model:ir.model,name:pyper_pappers_connector.model_pappers_name_form
 msgid "Pappers name Form"
 msgstr ""
 
-#. module: pappers_connector
-#: model:ir.model,name:pappers_connector.model_pappers_name_result_form
+#. module: pyper_pappers_connector
+#: model:ir.model,name:pyper_pappers_connector.model_pappers_name_result_form
 msgid "Pappers name result Form"
 msgstr ""
 
-#. module: pappers_connector
-#: model_terms:ir.ui.view,arch_db:pappers_connector.pappers_name_form_view
+#. module: pyper_pappers_connector
+#: model_terms:ir.ui.view,arch_db:pyper_pappers_connector.pappers_name_form_view
 msgid "Reset search"
 msgstr "Réinitialiser la recherche"
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_form__results
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_form__results
 msgid "Results"
 msgstr "Résultats"
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_form__siret
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_result_form__siret
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_form__siret
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_result_form__siret
 msgid "Siret"
 msgstr ""
 
-#. module: pappers_connector
-#: model_terms:ir.ui.view,arch_db:pappers_connector.res_config_settings_inherit_view
+#. module: pyper_pappers_connector
+#: model_terms:ir.ui.view,arch_db:pyper_pappers_connector.res_config_settings_inherit_view
 msgid "Use the Pappers service to enrich company information from siret/siren"
 msgstr "Utiliser le service Pappers pour enrichir les informations de société à partir du siret/siren"
 
-#. module: pappers_connector
+#. module: pyper_pappers_connector
 #. odoo-python
-#: code:addons/pappers_connector/models/res_partner.py:0
+#: code:addons/pyper_pappers_connector/models/res_partner.py:0
 #, python-format
 msgid "You can only enrich company data from a..... company. Right ?"
 msgstr "Vous ne pouvez enrichir les données de société… que si c’est une société, non ?"
 
-#. module: pappers_connector
+#. module: pyper_pappers_connector
 #. odoo-python
-#: code:addons/pappers_connector/models/res_partner.py:0
+#: code:addons/pyper_pappers_connector/models/res_partner.py:0
 #, python-format
 msgid "You have to complete your pappers token in the settings first."
 msgstr "Vous devez d’abord mettre à jour le token Pappers dans les réglages."
 
-#. module: pappers_connector
+#. module: pyper_pappers_connector
 #. odoo-python
-#: code:addons/pappers_connector/wizard/pappers_name_form.py:0
+#: code:addons/pyper_pappers_connector/wizard/pappers_name_form.py:0
 #, python-format
 msgid "You have to give a name to complete operation."
 msgstr "Vous devez fournir un nom pour compléter l’opération."
 
-#. module: pappers_connector
+#. module: pyper_pappers_connector
 #. odoo-python
-#: code:addons/pappers_connector/models/res_partner.py:0
+#: code:addons/pyper_pappers_connector/models/res_partner.py:0
 #, python-format
 msgid "You have to make sure SIRET is filled to complete operation."
 msgstr "Vous devez avoir rempli le Siret pour compléter l’opération."
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_result_form__zip
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_result_form__zip
 msgid "Zip code"
 msgstr "Code postal"
 
-#. module: pappers_connector
-#: model:ir.model.fields,field_description:pappers_connector.field_pappers_name_result_form__city
+#. module: pyper_pappers_connector
+#: model:ir.model.fields,field_description:pyper_pappers_connector.field_pappers_name_result_form__city
 msgid "city"
 msgstr "Ville"

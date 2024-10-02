@@ -15,8 +15,8 @@
     'application': True,
     'installable': True,
     'depends': [
-        'piloterr_connector',
-        'linkedin_partner',
+        'pyper_piloterr_connector',
+        'pyper_linkedin_partner',
         'pyper_partner_scraper',
     ],
     'data': [

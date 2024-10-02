@@ -10,5 +10,5 @@ class ResConfigSettings(models.TransientModel):
     drop_contact_token_api = fields.Char(
         string="Drop Contact Token API",
         store=True,
-        config_parameter='drop_contact_connector.token_api',
+        config_parameter='pyper_drop_contact_connector.token_api',
     )

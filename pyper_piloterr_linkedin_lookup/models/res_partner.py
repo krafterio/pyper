@@ -18,7 +18,7 @@ class ResPartner(models.Model):
             if contact.is_company:
                 raise UserError(_('You can only enrich contact data from a..... contact. Right ?'))
 
-            api_token = self.env['ir.config_parameter'].sudo().get_param('piloterr_connector.piloterr_token_api')
+            api_token = self.env['ir.config_parameter'].sudo().get_param('pyper_piloterr_connector.piloterr_token_api')
 
             if not api_token:
                 raise UserError(_('You have to complete your Piloterr token in the settings first.'))
@@ -59,7 +59,7 @@ class ResPartner(models.Model):
             if not partner.is_company:
                 raise UserError(_('You can only enrich company data from a..... company. Right ?'))
 
-            api_token = self.env['ir.config_parameter'].sudo().get_param('piloterr_connector.piloterr_token_api')
+            api_token = self.env['ir.config_parameter'].sudo().get_param('pyper_piloterr_connector.piloterr_token_api')
 
             if not api_token:
                 raise UserError(_('You have to complete your Piloterr token in the settings first.'))
@@ -81,7 +81,7 @@ class ResPartner(models.Model):
                         raise UserError(_('You can only enrich company data from a..... company. Right ?'))
 
                     api_token = self.env['ir.config_parameter'].sudo().get_param(
-                        'piloterr_connector.piloterr_token_api')
+                        'pyper_piloterr_connector.piloterr_token_api')
 
                     if not api_token:
                         raise UserError(_('You have to complete your Piloterr token in the settings first.'))

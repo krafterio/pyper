@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* icecat_connector
+# 	* pyper_icecat_connector
 #
 msgid ""
 msgstr ""
@@ -17,123 +17,123 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#. module: icecat_connector
-#: model_terms:ir.ui.view,arch_db:icecat_connector.icecat_form
+#. module: pyper_icecat_connector
+#: model_terms:ir.ui.view,arch_db:pyper_icecat_connector.icecat_form
 msgid "Cancel"
 msgstr "Annuler"
 
-#. module: icecat_connector
-#: model:ir.model.fields,field_description:icecat_connector.field_icecat_form__categ_id
+#. module: pyper_icecat_connector
+#: model:ir.model.fields,field_description:pyper_icecat_connector.field_icecat_form__categ_id
 msgid "Category"
 msgstr "Catégorie"
 
-#. module: icecat_connector
-#: model:ir.model.fields.selection,name:icecat_connector.selection__icecat_form__detailed_type__consu
+#. module: pyper_icecat_connector
+#: model:ir.model.fields.selection,name:pyper_icecat_connector.selection__icecat_form__detailed_type__consu
 msgid "Consumable"
 msgstr "Consommable"
 
-#. module: icecat_connector
-#: model:ir.model.fields,field_description:icecat_connector.field_icecat_form__create_uid
+#. module: pyper_icecat_connector
+#: model:ir.model.fields,field_description:pyper_icecat_connector.field_icecat_form__create_uid
 msgid "Created by"
 msgstr ""
 
-#. module: icecat_connector
-#: model:ir.model.fields,field_description:icecat_connector.field_icecat_form__create_date
+#. module: pyper_icecat_connector
+#: model:ir.model.fields,field_description:pyper_icecat_connector.field_icecat_form__create_date
 msgid "Created on"
 msgstr ""
 
-#. module: icecat_connector
-#: model:ir.model.fields,field_description:icecat_connector.field_icecat_form__display_name
+#. module: pyper_icecat_connector
+#: model:ir.model.fields,field_description:pyper_icecat_connector.field_icecat_form__display_name
 msgid "Display Name"
 msgstr ""
 
-#. module: icecat_connector
-#: model:ir.model.fields,field_description:icecat_connector.field_icecat_form__ean_upc
+#. module: pyper_icecat_connector
+#: model:ir.model.fields,field_description:pyper_icecat_connector.field_icecat_form__ean_upc
 msgid "EAN/UPC"
 msgstr ""
 
-#. module: icecat_connector
+#. module: pyper_icecat_connector
 #. odoo-python
-#: code:addons/icecat_connector/wizard/icecat_form.py:0
+#: code:addons/pyper_icecat_connector/wizard/icecat_form.py:0
 #, python-format
 msgid "EAN/UPC and Language are required"
 msgstr "EAN/UPC et langages sont requis"
 
-#. module: icecat_connector
+#. module: pyper_icecat_connector
 #. odoo-python
-#: code:addons/icecat_connector/wizard/icecat_form.py:0
+#: code:addons/pyper_icecat_connector/wizard/icecat_form.py:0
 #, python-format
 msgid "Error"
 msgstr ""
 
-#. module: icecat_connector
-#: model_terms:ir.ui.view,arch_db:icecat_connector.icecat_form
+#. module: pyper_icecat_connector
+#: model_terms:ir.ui.view,arch_db:pyper_icecat_connector.icecat_form
 msgid "Get product sheet"
 msgstr "Récupérer les informations produit"
 
-#. module: icecat_connector
-#: model:ir.model.fields,field_description:icecat_connector.field_icecat_form__id
+#. module: pyper_icecat_connector
+#: model:ir.model.fields,field_description:pyper_icecat_connector.field_icecat_form__id
 msgid "ID"
 msgstr ""
 
-#. module: icecat_connector
-#: model:ir.model,name:icecat_connector.model_icecat_form
+#. module: pyper_icecat_connector
+#: model:ir.model,name:pyper_icecat_connector.model_icecat_form
 msgid "Icecat Form"
 msgstr "Formulaire Icecat"
 
-#. module: icecat_connector
-#: model:ir.actions.act_window,name:icecat_connector.action_open_icecat_wizard
-#: model:ir.ui.menu,name:icecat_connector.icecat_import_menu
+#. module: pyper_icecat_connector
+#: model:ir.actions.act_window,name:pyper_icecat_connector.action_open_icecat_wizard
+#: model:ir.ui.menu,name:pyper_icecat_connector.icecat_import_menu
 msgid "Import product with EAN/UPC"
 msgstr "Importer produit avec EAN/UPC"
 
-#. module: icecat_connector
-#: model:ir.model.fields,field_description:icecat_connector.field_icecat_form__language_id
+#. module: pyper_icecat_connector
+#: model:ir.model.fields,field_description:pyper_icecat_connector.field_icecat_form__language_id
 msgid "Language"
 msgstr "Langue"
 
-#. module: icecat_connector
-#: model:ir.model.fields,field_description:icecat_connector.field_icecat_form__write_uid
+#. module: pyper_icecat_connector
+#: model:ir.model.fields,field_description:pyper_icecat_connector.field_icecat_form__write_uid
 msgid "Last Updated by"
 msgstr ""
 
-#. module: icecat_connector
-#: model:ir.model.fields,field_description:icecat_connector.field_icecat_form__write_date
+#. module: pyper_icecat_connector
+#: model:ir.model.fields,field_description:pyper_icecat_connector.field_icecat_form__write_date
 msgid "Last Updated on"
 msgstr ""
 
-#. module: icecat_connector
+#. module: pyper_icecat_connector
 #. odoo-python
-#: code:addons/icecat_connector/wizard/icecat_form.py:0
+#: code:addons/pyper_icecat_connector/wizard/icecat_form.py:0
 #, python-format
 msgid "Message"
 msgstr ""
 
-#. module: icecat_connector
-#: model:ir.model.fields.selection,name:icecat_connector.selection__icecat_form__detailed_type__product
+#. module: pyper_icecat_connector
+#: model:ir.model.fields.selection,name:pyper_icecat_connector.selection__icecat_form__detailed_type__product
 msgid "Product"
 msgstr "Produit"
 
-#. module: icecat_connector
+#. module: pyper_icecat_connector
 #. odoo-python
-#: code:addons/icecat_connector/wizard/icecat_form.py:0
+#: code:addons/pyper_icecat_connector/wizard/icecat_form.py:0
 #, python-format
 msgid "Product is already registered in your database."
 msgstr "Le produit est déjà enregistré dans votre base de données."
 
-#. module: icecat_connector
-#: model:ir.model.fields.selection,name:icecat_connector.selection__icecat_form__detailed_type__service
+#. module: pyper_icecat_connector
+#: model:ir.model.fields.selection,name:pyper_icecat_connector.selection__icecat_form__detailed_type__service
 msgid "Service"
 msgstr ""
 
-#. module: icecat_connector
-#: model:ir.model.fields,field_description:icecat_connector.field_icecat_form__detailed_type
+#. module: pyper_icecat_connector
+#: model:ir.model.fields,field_description:pyper_icecat_connector.field_icecat_form__detailed_type
 msgid "Type"
 msgstr ""
 
-#. module: icecat_connector
+#. module: pyper_icecat_connector
 #. odoo-python
-#: code:addons/icecat_connector/wizard/icecat_form.py:0
+#: code:addons/pyper_icecat_connector/wizard/icecat_form.py:0
 #, python-format
 msgid "Warning"
 msgstr "Attention"

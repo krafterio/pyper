@@ -14,7 +14,7 @@ class ResPartner(models.Model):
                 raise UserError(_('You can only enrich company data from a..... company. Right ?'))
 
             base_url = "https://api.pappers.fr/v2/entreprise"
-            api_token = self.env['ir.config_parameter'].sudo().get_param('pappers_connector.pappers_token_api')
+            api_token = self.env['ir.config_parameter'].sudo().get_param('pyper_pappers_connector.pappers_token_api')
 
             if not api_token:
                 raise UserError(_('You have to complete your pappers token in the settings first.'))

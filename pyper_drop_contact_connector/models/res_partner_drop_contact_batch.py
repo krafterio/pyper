@@ -81,8 +81,8 @@ class ResPartnerDropContactBatch(models.Model):
             self.env.cr.commit()
 
         params = self.env['ir.config_parameter'].sudo()
-        endpoint_api = params.get_param('drop_contact_connector.endpoint_api', '')
-        token_api = params.get_param('drop_contact_connector.token_api', '')
+        endpoint_api = params.get_param('pyper_drop_contact_connector.endpoint_api', '')
+        token_api = params.get_param('pyper_drop_contact_connector.token_api', '')
         data = {
             'data': [],
             'language': 'fr',
@@ -126,8 +126,8 @@ class ResPartnerDropContactBatch(models.Model):
             res_data = json.loads(self.response_data)
         else:
             params = self.env['ir.config_parameter'].sudo()
-            endpoint_api = params.get_param('drop_contact_connector.endpoint_api', '')
-            token_api = params.get_param('drop_contact_connector.token_api', '')
+            endpoint_api = params.get_param('pyper_drop_contact_connector.endpoint_api', '')
+            token_api = params.get_param('pyper_drop_contact_connector.token_api', '')
             res = requests.get(
                 endpoint_api + '/batch/{}'.format(self.request_id),
                 headers={

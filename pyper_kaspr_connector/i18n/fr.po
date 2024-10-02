@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* kaspr_connector
+# 	* pyper_kaspr_connector
 #
 msgid ""
 msgstr ""
@@ -17,175 +17,175 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.5\n"
 
-#. module: kaspr_connector
-#: model_terms:ir.ui.view,arch_db:kaspr_connector.res_config_settings_inherit_view
+#. module: pyper_kaspr_connector
+#: model_terms:ir.ui.view,arch_db:pyper_kaspr_connector.res_config_settings_inherit_view
 msgid "Automatically get contact information from kaspr integration"
 msgstr "Récupère des infos automatiquement depuis l’intégration Kaspr"
 
-#. module: kaspr_connector
-#: model_terms:ir.ui.view,arch_db:kaspr_connector.kaspr_form
+#. module: pyper_kaspr_connector
+#: model_terms:ir.ui.view,arch_db:pyper_kaspr_connector.kaspr_form
 msgid "Cancel"
 msgstr ""
 
-#. module: kaspr_connector
-#: model:ir.model.fields,field_description:kaspr_connector.field_kaspr_form__company_id
+#. module: pyper_kaspr_connector
+#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_kaspr_form__company_id
 msgid "Company"
 msgstr "Société"
 
-#. module: kaspr_connector
-#: model:ir.model,name:kaspr_connector.model_res_config_settings
+#. module: pyper_kaspr_connector
+#: model:ir.model,name:pyper_kaspr_connector.model_res_config_settings
 msgid "Config Settings"
 msgstr "Paramètres de configuration"
 
-#. module: kaspr_connector
-#: model:ir.model,name:kaspr_connector.model_res_partner
+#. module: pyper_kaspr_connector
+#: model:ir.model,name:pyper_kaspr_connector.model_res_partner
 msgid "Contact"
 msgstr ""
 
-#. module: kaspr_connector
-#: model:ir.ui.menu,name:kaspr_connector.kaspr_form_menu
+#. module: pyper_kaspr_connector
+#: model:ir.ui.menu,name:pyper_kaspr_connector.kaspr_form_menu
 msgid "Create contact from linkedin"
 msgstr "Créer contact depuis LinkedIn "
 
-#. module: kaspr_connector
-#: model:ir.model.fields,field_description:kaspr_connector.field_kaspr_form__create_uid
+#. module: pyper_kaspr_connector
+#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_kaspr_form__create_uid
 msgid "Created by"
 msgstr ""
 
-#. module: kaspr_connector
-#: model:ir.model.fields,field_description:kaspr_connector.field_kaspr_form__create_date
+#. module: pyper_kaspr_connector
+#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_kaspr_form__create_date
 msgid "Created on"
 msgstr ""
 
-#. module: kaspr_connector
-#: model:ir.model.fields,field_description:kaspr_connector.field_kaspr_form__display_name
+#. module: pyper_kaspr_connector
+#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_kaspr_form__display_name
 msgid "Display Name"
 msgstr ""
 
-#. module: kaspr_connector
-#: model_terms:ir.ui.view,arch_db:kaspr_connector.res_partner_view_form
+#. module: pyper_kaspr_connector
+#: model_terms:ir.ui.view,arch_db:pyper_kaspr_connector.res_partner_view_form
 msgid "Find phone number"
 msgstr "Trouver le numéro de téléphone"
 
-#. module: kaspr_connector
+#. module: pyper_kaspr_connector
 #. odoo-python
-#: code:addons/kaspr_connector/models/res_partner.py:0
-#: model_terms:ir.ui.view,arch_db:kaspr_connector.kaspr_form
+#: code:addons/pyper_kaspr_connector/models/res_partner.py:0
+#: model_terms:ir.ui.view,arch_db:pyper_kaspr_connector.kaspr_form
 #, python-format
 msgid "Get linkedin info"
 msgstr "Récupérer les infos de LinkedIn"
 
-#. module: kaspr_connector
-#: model:ir.model.fields,field_description:kaspr_connector.field_kaspr_form__id
+#. module: pyper_kaspr_connector
+#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_kaspr_form__id
 msgid "ID"
 msgstr ""
 
-#. module: kaspr_connector
-#: model:ir.actions.act_window,name:kaspr_connector.action_open_kaspr_wizard
+#. module: pyper_kaspr_connector
+#: model:ir.actions.act_window,name:pyper_kaspr_connector.action_open_kaspr_wizard
 msgid "Import contact from linkedin"
 msgstr "Importer contact depuis LinkedIn"
 
-#. module: kaspr_connector
-#: model_terms:ir.ui.view,arch_db:kaspr_connector.res_config_settings_inherit_view
+#. module: pyper_kaspr_connector
+#: model_terms:ir.ui.view,arch_db:pyper_kaspr_connector.res_config_settings_inherit_view
 msgid "Kaspr Connector"
 msgstr ""
 
-#. module: kaspr_connector
-#: model:ir.model,name:kaspr_connector.model_kaspr_form
+#. module: pyper_kaspr_connector
+#: model:ir.model,name:pyper_kaspr_connector.model_kaspr_form
 msgid "Kaspr Form"
 msgstr ""
 
-#. module: kaspr_connector
-#: model:ir.model.fields,field_description:kaspr_connector.field_res_config_settings__kaspr_token_api
+#. module: pyper_kaspr_connector
+#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_res_config_settings__kaspr_token_api
 msgid "Kaspr Token API"
 msgstr ""
 
-#. module: kaspr_connector
-#: model:ir.model.fields,field_description:kaspr_connector.field_kaspr_form__write_uid
+#. module: pyper_kaspr_connector
+#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_kaspr_form__write_uid
 msgid "Last Updated by"
 msgstr ""
 
-#. module: kaspr_connector
-#: model:ir.model.fields,field_description:kaspr_connector.field_kaspr_form__write_date
+#. module: pyper_kaspr_connector
+#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_kaspr_form__write_date
 msgid "Last Updated on"
 msgstr ""
 
-#. module: kaspr_connector
-#: model:ir.model.fields,help:kaspr_connector.field_kaspr_form__company_id
+#. module: pyper_kaspr_connector
+#: model:ir.model.fields,help:pyper_kaspr_connector.field_kaspr_form__company_id
 msgid "Leave empty if you want to create company with contact automatically."
 msgstr ""
 
-#. module: kaspr_connector
-#: model:ir.model.fields,field_description:kaspr_connector.field_kaspr_form__linkedin_url
+#. module: pyper_kaspr_connector
+#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_kaspr_form__linkedin_url
 msgid "Linkedin URL"
 msgstr ""
 
-#. module: kaspr_connector
-#: model:ir.model.fields,field_description:kaspr_connector.field_res_partner__linkedin_id
-#: model:ir.model.fields,field_description:kaspr_connector.field_res_users__linkedin_id
+#. module: pyper_kaspr_connector
+#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_res_partner__linkedin_id
+#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_res_users__linkedin_id
 msgid "Linkedin id"
 msgstr ""
 
-#. module: kaspr_connector
-#: model:ir.model.fields,field_description:kaspr_connector.field_kaspr_form__linkedin_name
+#. module: pyper_kaspr_connector
+#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_kaspr_form__linkedin_name
 msgid "Linkedin name"
 msgstr ""
 
-#. module: kaspr_connector
+#. module: pyper_kaspr_connector
 #. odoo-python
-#: code:addons/kaspr_connector/wizard/kaspr_form.py:0
+#: code:addons/pyper_kaspr_connector/wizard/kaspr_form.py:0
 #, python-format
 msgid "No infos found for this contact."
 msgstr "Aucune info trouvé sur ce contact"
 
-#. module: kaspr_connector
+#. module: pyper_kaspr_connector
 #. odoo-python
-#: code:addons/kaspr_connector/models/res_partner.py:0
-#: code:addons/kaspr_connector/wizard/kaspr_form.py:0
+#: code:addons/pyper_kaspr_connector/models/res_partner.py:0
+#: code:addons/pyper_kaspr_connector/wizard/kaspr_form.py:0
 #, python-format
 msgid "Not a linkedin URL. Please paste full linkedin URL"
 msgstr "Ceci n’est as une URL Linkedin valide."
 
-#. module: kaspr_connector
-#: model:ir.actions.server,name:kaspr_connector.link_update_linkedin_email
+#. module: pyper_kaspr_connector
+#: model:ir.actions.server,name:pyper_kaspr_connector.link_update_linkedin_email
 msgid "Update infos from linkedIn profile"
 msgstr "Mettre à jour infos depuis LinkedIn"
 
-#. module: kaspr_connector
-#: model:ir.actions.server,name:kaspr_connector.link_update_linkedin_phone
+#. module: pyper_kaspr_connector
+#: model:ir.actions.server,name:pyper_kaspr_connector.link_update_linkedin_phone
 msgid "Update infos from linkedIn profile (with phone)"
 msgstr "Mettre à jour infos depuis LinkedIn (avec téléphone)"
 
-#. module: kaspr_connector
-#: model_terms:ir.ui.view,arch_db:kaspr_connector.res_config_settings_inherit_view
+#. module: pyper_kaspr_connector
+#: model_terms:ir.ui.view,arch_db:pyper_kaspr_connector.res_config_settings_inherit_view
 msgid "Use the kaspr service to enrich contact information from linkedin"
 msgstr ""
 
-#. module: kaspr_connector
+#. module: pyper_kaspr_connector
 #. odoo-python
-#: code:addons/kaspr_connector/models/res_partner.py:0
+#: code:addons/pyper_kaspr_connector/models/res_partner.py:0
 #, python-format
 msgid "You can only enrich contact data from a..... contact. Right ?"
 msgstr ""
 
-#. module: kaspr_connector
+#. module: pyper_kaspr_connector
 #. odoo-python
-#: code:addons/kaspr_connector/wizard/kaspr_form.py:0
+#: code:addons/pyper_kaspr_connector/wizard/kaspr_form.py:0
 #, python-format
 msgid "You have to fill linkedin url and name."
 msgstr ""
 
-#. module: kaspr_connector
+#. module: pyper_kaspr_connector
 #. odoo-python
-#: code:addons/kaspr_connector/models/res_partner.py:0
+#: code:addons/pyper_kaspr_connector/models/res_partner.py:0
 #, python-format
 msgid "You have to fill linkedin url on contact profil."
 msgstr ""
 
-#. module: kaspr_connector
+#. module: pyper_kaspr_connector
 #. odoo-python
-#: code:addons/kaspr_connector/models/res_partner.py:0
-#: code:addons/kaspr_connector/wizard/kaspr_form.py:0
+#: code:addons/pyper_kaspr_connector/models/res_partner.py:0
+#: code:addons/pyper_kaspr_connector/wizard/kaspr_form.py:0
 #, python-format
 msgid "You have to fill the Kaspr token API in the global settings first."
 msgstr ""

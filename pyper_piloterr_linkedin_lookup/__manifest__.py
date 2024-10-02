@@ -16,7 +16,7 @@
     'application': True,
     'installable': True,
     'depends': [
-        'linkedin_partner',
+        'pyper_linkedin_partner',
         'pyper_queue_job',
         'pyper_partner_scraper',
     ],

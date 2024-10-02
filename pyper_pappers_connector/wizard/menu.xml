@@ -22,7 +22,7 @@
             name="Import company with name"
             sequence="1"
             parent="pyper_contact.all_company_importer"
-            action="pappers_connector.action_open_pappers_name_wizard"
+            action="pyper_pappers_connector.action_open_pappers_name_wizard"
         />
 
         <menuitem
@@ -30,7 +30,7 @@
             name="Import company with siret"
             sequence="2"
             parent="pyper_contact.all_company_importer"
-            action="pappers_connector.action_open_pappers_wizard"
+            action="pyper_pappers_connector.action_open_pappers_wizard"
         />
     </data>
 </odoo>
