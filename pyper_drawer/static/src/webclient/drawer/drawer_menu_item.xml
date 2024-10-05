@@ -60,7 +60,7 @@
             t-if="displayChildren and state.opened"
             t-att-class="{'o_drawer--menu-item-children': true}"
         >
-            <t t-foreach="props.children" t-as="submenu" t-key="submenu.id">
+            <t t-foreach="children" t-as="submenu" t-key="submenu.id">
                 <DrawerMenuItem
                     menuXmlid="submenu.xmlid"
                     menuId="submenu.id"

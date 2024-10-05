@@ -120,11 +120,11 @@ export class DrawerMenuItem extends Component {
     }
 
     get hasChildren() {
-        return this.props.childrenDepth !== 0 && this.props.children.length > 0;
+        return this.props.childrenDepth !== 0 && this.children.length > 0;
     }
 
     get displayChildren() {
-        return this.hasChildren && this.props.children.length > 1;
+        return this.hasChildren && this.children.length > 1;
     }
 
     get displayIcon() {
@@ -165,8 +165,27 @@ export class DrawerMenuItem extends Component {
         return this.state.opened;
     }
 
+    get children() {
+        return this.props.children;
+    }
+
     get childrenDepth() {
         return this.props.childrenDepth < 0 ? -1 : Math.max(0, this.props.childrenDepth - 1);
+    }
+
+    get menu() {
+        let menu = undefined;
+
+        // Check if action is external identifier of menu
+        if (typeof this.props.menuId === 'string') {
+            menu = this.menuService.getAll().find((item) => item.xmlid === this.props.menuId);
+        }
+
+        if (!menu) {
+            menu = this.menuService.getMenu(this.props.menuId);
+        }
+
+        return menu;
     }
 
     toggleChildren() {
@@ -176,25 +195,16 @@ export class DrawerMenuItem extends Component {
     setOpened(opened) {
         this.state.opened = this.displayChildren ? !!opened : false;
 
-        if (this.state.opened && this.props.menuId && this.drawerService.closeAllUnactivatedItemsOnOpenMenu) {
-            this.drawerService.openMenu(this.menuService.getMenu(this.props.menuId));
+        if (this.state.opened && this.menu && this.drawerService.closeAllUnactivatedItemsOnOpenMenu) {
+            this.drawerService.openMenu(this.menu);
         }
     }
 
     onItemSelection() {
         if (this.displayChildren && !this.isPopoverEnabled) {
             this.toggleChildren();
-        } else if (this.props.menuId) {
-            // Check if action is external identifier of menu
-            let menu = undefined;
-
-            if (typeof this.props.menuId === 'string') {
-                menu = this.menuService.getAll().find((item) => item.xmlid === this.props.menuId);
-            }
-
-            if (!menu) {
-                menu = this.menuService.getMenu(this.props.menuId);
-            }
+        } else if (this.menu) {
+            let menu = this.menu;
 
             // Force to find first sub menu item with action id
             if (menu && menu.childrenTree.length > 0) {
