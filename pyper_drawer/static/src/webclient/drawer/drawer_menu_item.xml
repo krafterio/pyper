@@ -46,7 +46,7 @@
                 <t t-set="menuAction" t-value="props.menuAction"/>
                 <t t-set="hotkey" t-value="props.hotkey"/>
                 <t t-set="withChildren" t-value="displayChildren"/>
-                <t t-set="childrenOpened" t-value="state.opened"/>
+                <t t-set="childrenOpened" t-value="isOpened"/>
                 <t t-set="withIcon" t-value="displayIcon"/>
                 <t t-set="iconData" t-value="props.iconData"/>
                 <t t-set="fontIcon" t-value="props.fontIcon"/>
@@ -57,7 +57,7 @@
         </DropdownItem>
 
         <div
-            t-if="displayChildren and state.opened"
+            t-if="displayChildren and isOpened"
             t-att-class="{'o_drawer--menu-item-children': true}"
         >
             <t t-foreach="children" t-as="submenu" t-key="submenu.id">
