@@ -314,62 +314,68 @@
         @include box-shadow($o-drawer-shadow);
     }
 
-    .btn-quick-action-group {
-        width: 100%;
+    .o_drawer--quick-actions-content {
+        padding-left:$o-drawer-quick-action-zone-padding-h;
+        padding-right:$o-drawer-quick-action-zone-padding-h;
 
-        .dropdown-toggle{
-            border-radius: $border-radius !important;
-            max-width: $o-drawer-quick-action-dropdown-btn-width;
+        .btn-quick-action-group {
+            width: 100%;
 
-            &:after{
-                border-top: 5px solid;
-                border-right: 5px solid transparent;
-                border-left: 5px solid transparent;
+            .dropdown-toggle {
+                border-radius: $border-radius !important;
+                max-width: $o-drawer-quick-action-dropdown-btn-width;
+
+                &:after {
+                    border-top: 5px solid;
+                    border-right: 5px solid transparent;
+                    border-left: 5px solid transparent;
+                }
+
+                &:hover {
+                    background-color: $o-drawer-quick-action-bg-hover;
+                }
             }
 
-            &:hover{
-                background-color:$o-drawer-quick-action-bg-hover;
-            }
-        }
+            .btn-quick-action {
+                background-color: $o-drawer-quick-action-bg;
+                border: $o-drawer-quick-action-border;
+                color: $o-drawer-quick-action-color;
+                text-align: left;
+                display: flex;
+                align-items: start;
+                padding-bottom: 10px;
+                padding-top: 4px;
+                transition: background-color 0.2s ease;
+                border-radius: $border-radius !important;
 
-        .btn-quick-action {
-            background-color: $o-drawer-quick-action-bg;
-            border: $o-drawer-quick-action-border;
-            color: $o-drawer-quick-action-color;
-            text-align: left;
-            display: flex;
-            align-items: start;
-            padding-bottom: 10px;
-            padding-top: 4px;
-            transition: background-color 0.2s ease;
-            border-radius: $border-radius !important;
-
-            &:hover{
-                background-color:$o-drawer-quick-action-bg-hover;
-            }
+                &:hover {
+                    background-color: $o-drawer-quick-action-bg-hover;
+                }
 
 
-            i {
-                width: $o-drawer-item-icon-width;
-                font-size: $o-drawer-item-icon-width;
-                margin-right: $o-drawer-quick-action-icon-padding-h;
-                margin-top: 5px;
-            }
+                i {
+                    width: $o-drawer-item-icon-width;
+                    font-size: $o-drawer-item-icon-width;
+                    margin-right: $o-drawer-quick-action-icon-padding-h;
+                    margin-top: 5px;
+                }
 
-            p {
-                margin-bottom: 0;
-                font-size: $o-drawer-item-font-size;
-                line-height: 2;
-            }
+                p {
+                    margin-bottom: 0;
+                    font-size: $o-drawer-item-font-size;
+                    line-height: 2;
+                }
 
-            span {
-                display: block;
-                line-height: 1;
-                font-size: 0.75rem;
-                color: $o-drawer-quick-action-color-subtitle
+                span {
+                    display: block;
+                    line-height: 1;
+                    font-size: 0.75rem;
+                    color: $o-drawer-quick-action-color-subtitle
+                }
             }
         }
     }
+
 }
 
 // Active Drawer menu item
