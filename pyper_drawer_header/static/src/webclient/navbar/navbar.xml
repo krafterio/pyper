@@ -12,14 +12,6 @@
                         </ErrorHandler>
                     </t>
                 </div>
-
-                <div class="o-drawer--menu" role="menu">
-                     <t t-foreach="headerDrawerActionItems" t-as="item" t-key="item.key">
-                         <ErrorHandler onError="error => this.handleItemError(error, item)">
-                            <t t-component="item.Component" t-props="item.props"/>
-                        </ErrorHandler>
-                     </t>
-                </div>
             </t>
         </xpath>
     </t>

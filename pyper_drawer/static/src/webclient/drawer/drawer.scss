@@ -271,7 +271,7 @@
 
 // Drawer Swiper
 .o_drawer--swiper {
-    position : fixed;
+    position: fixed;
     z-index: $o-drawer-swiper-zindex;
     width: $o-drawer-swiper-width;
     left: 0;
@@ -312,6 +312,63 @@
     &.o_drawer--hoverable.o_drawer--opened,
     &.o_drawer--dragging {
         @include box-shadow($o-drawer-shadow);
+    }
+
+    .btn-quick-action-group {
+        width: 100%;
+
+        .dropdown-toggle{
+            border-radius: $border-radius !important;
+            max-width: $o-drawer-quick-action-dropdown-btn-width;
+
+            &:after{
+                border-top: 5px solid;
+                border-right: 5px solid transparent;
+                border-left: 5px solid transparent;
+            }
+
+            &:hover{
+                background-color:$o-drawer-quick-action-bg-hover;
+            }
+        }
+
+        .btn-quick-action {
+            background-color: $o-drawer-quick-action-bg;
+            border: $o-drawer-quick-action-border;
+            color: $o-drawer-quick-action-color;
+            text-align: left;
+            display: flex;
+            align-items: start;
+            padding-bottom: 10px;
+            padding-top: 4px;
+            transition: background-color 0.2s ease;
+            border-radius: $border-radius !important;
+
+            &:hover{
+                background-color:$o-drawer-quick-action-bg-hover;
+            }
+
+
+            i {
+                width: $o-drawer-item-icon-width;
+                font-size: $o-drawer-item-icon-width;
+                margin-right: $o-drawer-quick-action-icon-padding-h;
+                margin-top: 5px;
+            }
+
+            p {
+                margin-bottom: 0;
+                font-size: $o-drawer-item-font-size;
+                line-height: 2;
+            }
+
+            span {
+                display: block;
+                line-height: 1;
+                font-size: 0.75rem;
+                color: $o-drawer-quick-action-color-subtitle
+            }
+        }
     }
 }
 
@@ -386,11 +443,6 @@
 
 // Drawer Menu Nav Style
 .o_drawer.o_drawer--nav {
-    .o_drawer--quick-actions-content {
-        margin-left: $o-drawer-item-nav-margin-h;
-        margin-right: $o-drawer-item-nav-margin-h;
-    }
-
     .o_drawer--menu {
         padding-bottom: $o-drawer-item-padding-v * 4;
     }

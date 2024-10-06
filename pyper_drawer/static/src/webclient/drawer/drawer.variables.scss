@@ -83,3 +83,11 @@ $o-drawer-swiper-bg: transparent !default;
 $o-drawer-obfuscator-zindex: $o-drawer-zindex - 1 !default;
 $o-drawer-obfuscator-duration: '0.3s' !default;
 $o-drawer-obfuscator-bg: rgba(0, 0, 0, 0.5) !default;
+
+$o-drawer-quick-action-bg: transparent !default;
+$o-drawer-quick-action-border: none !default;
+$o-drawer-quick-action-color:$o-gray-900 !default;
+$o-drawer-quick-action-color-subtitle: $o-main-color-muted !default;
+$o-drawer-quick-action-icon-padding-h:10px !default;
+$o-drawer-quick-action-bg-hover:$o-gray-100 !default;
+$o-drawer-quick-action-dropdown-btn-width: 50px !default;
