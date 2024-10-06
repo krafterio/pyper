@@ -26,7 +26,7 @@ export class DrawerPopoverItem extends Component {
 
     get isActive() {
         if (undefined === this.props.active) {
-            return this.menuStateService.activeIds.includes(this.props.menuId);
+            return this.menuStateService.menuIsActivated(this.props.menuId);
         }
 
         return this.props.active;

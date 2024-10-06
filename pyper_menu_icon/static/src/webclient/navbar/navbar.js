@@ -19,7 +19,7 @@ patch(NavBar.prototype, {
             if ('system_tray' === menu.category) {
                 items.push({
                     ...menu,
-                    isActive: this.menuStateService.activeIds.includes(menu.id),
+                    isActive: this.menuStateService.menuIsActivated(menu),
                 });
             }
         });
@@ -41,7 +41,7 @@ patch(NavBar.prototype, {
             menu = typeof menu === 'number' ? this.menuService.getMenu(menu) : menu;
 
             // Check if selected menu is in sub menu or in children
-            if (this.menuStateService.activeIds.includes(menu.id)) {
+            if (this.menuStateService.menuIsActivated(menu)) {
                 return true;
             }
 
