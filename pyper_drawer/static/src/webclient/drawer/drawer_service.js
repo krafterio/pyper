@@ -72,6 +72,10 @@ export class DrawerState {
     }
 
     set lockable(lockable) {
+        if (lockable && this.state.opened) {
+            this.state.opened = false;
+        }
+
         this.state.lockable = lockable;
         cookie.set('drawer_lockable', lockable);
     }
