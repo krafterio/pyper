@@ -34,7 +34,19 @@ export class MenuState {
     menuIsActivated(menu) {
         menu = typeof menu === 'number' ? this.menuService.getMenu(menu) : menu;
 
-        return typeof menu === 'object' && this.activeIds.includes(menu.id);
+        if (typeof menu === 'object') {
+            if (this.activeIds.includes(menu.id)) {
+                return true;
+            }
+
+            const currentMenu = this.menuService.getMenuAsTree(this.currentMenuId);
+
+            if (currentMenu && currentMenu.children && currentMenu.children[0] === menu.id) {
+                return true;
+            }
+        }
+
+        return  false;
     }
 
     findParentIds(targetMenuId) {
