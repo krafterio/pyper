@@ -72,8 +72,10 @@ export class DrawerState {
     }
 
     set lockable(lockable) {
-        if (lockable && this.state.opened) {
+        if (lockable && this.state.opened && !this.isSmallScreen) {
             this.state.opened = false;
+        } else if (!lockable && !this.state.opened && !this.isSmallScreen) {
+            this.state.opened = true;
         }
 
         this.state.lockable = lockable;
