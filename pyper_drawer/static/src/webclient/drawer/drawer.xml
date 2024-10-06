@@ -101,7 +101,7 @@
                     <i class="ph ph-note-pencil"/>
                     <div class="d-flex flex-column">
                         <p t-out="mainQuickAction.name"/>
-                        <span>Quick action</span>
+                        <p class="btn-quick-action-subtitle">Quick action</p>
                     </div>
                 </button>
 

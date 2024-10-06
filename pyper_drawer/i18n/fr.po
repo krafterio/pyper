@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0-20240831\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-22 20:33+0000\n"
-"PO-Revision-Date: 2024-09-22 20:33+0000\n"
+"POT-Creation-Date: 2024-10-06 20:13+0000\n"
+"PO-Revision-Date: 2024-10-06 20:13+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -92,6 +92,11 @@ msgid "Drawer Footer"
 msgstr ""
 
 #. module: pyper_drawer
+#: model:ir.model.fields.selection,name:pyper_drawer.selection__ir_ui_menu__menu_category__drawer_quick_actions
+msgid "Drawer Quick Actions"
+msgstr ""
+
+#. module: pyper_drawer
 #: model_terms:ir.ui.view,arch_db:pyper_drawer.res_config_settings_view_form
 msgid "Drawer Toggler"
 msgstr ""
@@ -153,14 +158,6 @@ msgstr ""
 "pour aucune limite"
 
 #. module: pyper_drawer
-#. odoo-javascript
-#: code:addons/pyper/pyper_drawer/static/src/webclient/drawer/drawer.js:0
-#: code:addons/pyper_drawer/static/src/webclient/drawer/drawer.js:0
-#, python-format
-msgid "Other"
-msgstr "Autre"
-
-#. module: pyper_drawer
 #: model:ir.model.fields,field_description:pyper_drawer.field_res_config_settings__drawer_popover_minified
 msgid "Popover title for mini drawer?"
 msgstr "Titre en popover en mini ?"
@@ -184,14 +181,6 @@ msgstr "Afficher uniquement les menu racines ?"
 #: model:ir.model.fields,field_description:pyper_drawer.field_res_config_settings__drawer_sub_items_depth
 msgid "Sub item depth"
 msgstr "Profondeur du sous-élément"
-
-#. module: pyper_drawer
-#. odoo-javascript
-#: code:addons/pyper/pyper_drawer/static/src/webclient/drawer/drawer_toggler.xml:0
-#: code:addons/pyper_drawer/static/src/webclient/drawer/drawer_toggler.xml:0
-#, python-format
-msgid "Toggle Drawer"
-msgstr ""
 
 #. module: pyper_drawer
 #: model:ir.model.fields,field_description:pyper_drawer.field_res_config_settings__drawer_toggler_use_caret_icon

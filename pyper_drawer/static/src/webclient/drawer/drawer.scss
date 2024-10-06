@@ -360,16 +360,17 @@
                     margin-top: 5px;
                 }
 
-                p {
+                p:not(.btn-quick-action-subtitle) {
                     margin-bottom: 0;
                     font-size: $o-drawer-item-font-size;
                     line-height: 2;
                 }
 
-                span {
+                p.btn-quick-action-subtitle {
                     display: block;
                     line-height: 1;
                     font-size: 0.75rem;
+                    margin-bottom: 0;
                     color: $o-drawer-quick-action-color-subtitle
                 }
             }
