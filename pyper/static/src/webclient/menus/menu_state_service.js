@@ -32,8 +32,6 @@ export class MenuState {
     }
 
     menuIsActivated(menu) {
-        menu = typeof menu === 'number' ? this.menuService.getMenu(menu) : menu;
-
         if (typeof menu === 'object') {
             if (this.activeIds.includes(menu.id)) {
                 return true;

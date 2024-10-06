@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home" inherit_id="portal.portal_my_home" name="My Portal Requests">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">My Requests</t>
+                <t t-set="text">View and manage your requests</t>
+                <t t-set="url" t-value="'/my/requests'"/>
+                <t t-set="config_card" t-value="True"/>
+                <t t-set="icon" t-value="'/pyper_portal_partner_request/static/src/img/icon.png'"/>
+            </t>
+        </xpath>
+    </template>
+ 
+    <template id="portal_request_detail_view" name="Request Detail">
+        <t t-call="portal.portal_layout">
+            <a href="/my/requests/" class="btn btn-secondary my-4">
+                Back
+            </a>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Requests</t>
+            </t>
+            <div class="container mt-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="align-self-end">
+                        <div><strong>State:</strong> <span style="font-size:large;" t-field="partner_request.state"></span></div>
+                    </div>
+                        <form t-if="partner_request.state != 'closed'" t-att-action="'/my/requests/' + str(partner_request.id) + '/close'" method="POST">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <button type="submit" class="btn btn-danger">Close</button>
+                        </form>
+                </div>
+                <div class="my-4">
+                    <h2 class="my-4"><t t-esc="partner_request.name"/></h2>
+                    <div class="my-4">
+                        <strong>Category:</strong> <t t-esc="partner_request.category"/>
+                    </div>
+                    <div><t t-esc="partner_request.description"/></div>
+                    <div class="my-4">
+                        <div><strong>Creation date:</strong><span t-field="partner_request.create_date"></span></div>
+                        <i>Last Update: </i>
+                        <span t-field="partner_request.write_date" style="font-size: smaller;"></span>
+                    </div>
+                    <div class="my-4" t-if="attachments">
+                        <strong>Attachments:</strong>
+                        <t t-foreach="attachments" t-as="attachment">
+                            <ul class="list-unstyled">
+                                <li class="py-1">
+                                    <a t-att-href="'/web/content/%s?download=true&amp;access_token=%s' % (attachment.id,str(attachment.access_token))" style="color: #f3e663;">
+                                        <t t-esc="attachment.name"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        </t>
+                    </div>
+                </div>
+                <t t-if="partner_request.state == 'waiting_for_validation' and 
+                         request.env.user.has_group('pyper_partner_request.group_request_validator')">
+                    <div class="d-flex">
+                        <div class="pr-2">
+                            <form t-att-action="'/my/requests/' + str(partner_request.id) + '/validate'" method="POST" class="mr-2">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <button type="submit" class="btn btn-primary mr-2">Validate request</button>
+                            </form>
+                        </div>
+                        <div class="px-2">
+                            <form t-att-action="'/my/requests/' + str(partner_request.id) + '/ask_requalification'" method="POST">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <button type="submit" class="btn btn-primary mr-2">Ask for requalification</button>
+                            </form>
+                        </div>
+                    </div>
+                </t>
+            </div>
+            <div class="container py-5 oe_chatter" >
+                <t t-call="portal.message_thread">
+                    <t t-set="object" t-value="partner_request"/>
+                </t>
+            </div>
+            <style>
+                .oe_chatter a {
+                    color: white !important;
+                }
+        
+                @media (prefers-color-scheme: light) {
+                    .oe_chatter a {
+                        color: black !important;
+                    }
+                }
+            </style>
+        </t>
+    </template>
+
+    <template id="portal_create_request_template" name="Create request">
+        <t t-call="portal.portal_layout">
+            <a href="/my/requests/" class="btn btn-secondary my-4">
+                Back
+            </a>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Requests</t>
+            </t>
+            
+            <h2>Create request</h2>
+            <div class="my-4">
+                <t t-if="error">
+                    <div class="alert alert-danger">
+                        <strong>Error!</strong> <t t-esc="error_message"/>
+                    </div>
+                </t>
+                <form action="/my/requests/create/submit" method="POST" class="o_portal_request_form" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <div class="form-group my-4">
+                        <label for="partner_request_name">Subject</label>
+                        <input type="text" id="partner_request_name" name="partner_request_name" class="form-control" required="required"/>
+                    </div>
+                    <div class="form-group my-4">
+                        <label for="partner_request_category">Category</label>
+                        <select id="partner_request_category" name="partner_request_category" class="form-control" required="required">
+                            <option value="" selected="selected">Select a category</option>
+                            <option value="incident">Incident</option>
+                            <option value="service request">Service Request</option>
+                            <option value="information request">Information Request</option>
+                            <option value="training request">Training Request</option>
+                        </select>
+                    </div>
+                    <div class="form-group my-4">
+                        <label for="partner_request_description">Description</label>
+                        <textarea id="partner_request_description" 
+                                    name="partner_request_description" 
+                                    class="form-control">
+                        </textarea>
+                        <div class="form-group my-4">
+                            <label for="partner_request_image">Image (optional)</label>
+                            <input type="file" id="partner_request_image" name="partner_request_image" accept="image/*" class="form-control"/>
+                        </div>
+                        <div class="form-group my-4">
+                            <label for="partner_request_attachment">Attachment (optional)</label>
+                            <input type="file" id="partner_request_attachment" name="partner_request_attachment" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="my-4">
+                        <button type="submit" class="btn btn-primary">Create request</button>
+                    </div>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_my_requests_template" name="My requests">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Requests</t>
+            </t>
+            <div class="container mt-4">
+                <h2>My requests</h2>
+                <div class="container my-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <button class="btn btn-primary mr-2" 
+                                    onclick="window.location.href='/my/requests/create'"
+                                    t-if="request.env.user.has_group('pyper_partner_request.group_request_creator')">
+                                    Create Request
+                            </button>
+                            <button class="btn btn-primary mr-2" 
+                                    onclick="window.location.href='/my/requests/settings'"
+                                    t-if="request.env.user.has_group('pyper_partner_request.group_request_validator')">
+                                    Settings
+                            </button>
+                        </div>
+                        <div>
+                            <form t-att-action="'/my/requests/filter'" method="GET" class="form-inline">
+                                <div class="mr-2">
+                                    <label for="filter_state" class="mr-2">Filter by state:</label>
+                                    <select id="filter_state" name="state" class="form-control mr-2">
+                                        <option value="all">All</option>
+                                        <option value="waiting_for_validation">Waiting for Validation</option>
+                                        <option value="to_be_processed">To be processed</option>
+                                        <option value="in_progress">In Progress</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="closed">Closed</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary my-1">Filter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div t-if="not partner_requests" class="alert alert-warning" role="alert">
+                    There are currently no requests.
+                </div>
+                <div t-elif="waiting_requalification_requests">
+                    <h3>Requests Requiring Your Attention</h3>
+                    <table  class="table">
+                        <thead>
+                            <tr class="active">
+                                <th>Subject</th>
+                                <th>State</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="waiting_requalification_requests" t-as="request">
+                                <tr>
+                                    <td>
+                                        <a t-att-href="'/my/requests/' + str(request.id)" style="color:white">
+                                            <t t-esc="request.name"/>
+                                        </a>
+                                    </td>
+                                    <td><span t-field="request.state"></span></td>
+                                    <td><span t-field="request.create_date"></span></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+                <div t-if="partner_requests" class="my-5">
+                    <h3>All Requests</h3>
+                    <table  class="table">
+                        <thead>
+                            <tr class="active">
+                                <th>Subject</th>
+                                <th>State</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="partner_requests" t-as="partner_request">
+                                <tr>
+                                    <td>
+                                        <a t-att-href="'/my/requests/' + str(partner_request.id)" style="color:white">
+                                            <t t-esc="partner_request.name"/>
+                                        </a>
+                                    </td>
+                                    <td><span t-field="partner_request.state"></span></td>
+                                    <td><span t-field="partner_request.create_date"></span></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

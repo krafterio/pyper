@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="pyper_url_share.SystrayButton">
+        <div class="o-dropdown dropdown o-dropdown--no-caret o-url-share-Systray-class">
+            <button
+                type="button"
+                class="dropdown-toggle"
+                tabindex="0"
+                aria-expanded="false"
+                t-on-click="() => this.onClick()"
+            >
+                <i class="fa fa-lg fa-clone" role="img" aria-label="Copy URL"/>
+            </button>
+        </div>
+    </t>
+</templates>

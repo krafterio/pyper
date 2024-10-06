@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20241015\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-17 18:57+0000\n"
-"PO-Revision-Date: 2024-11-17 18:57+0000\n"
+"POT-Creation-Date: 2024-10-19 22:27+0000\n"
+"PO-Revision-Date: 2024-10-19 22:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -531,11 +531,6 @@ msgid "List settings"
 msgstr "Paramètre Liste"
 
 #. module: pyper_web_view
-#: model:ir.model.fields,field_description:pyper_web_view.field_ir_views__main_ir_action_id
-msgid "Main Action"
-msgstr "Action principale"
-
-#. module: pyper_web_view
 #: model:ir.model.fields.selection,name:pyper_web_view.selection__ir_views_field__widget__many2many
 msgid "Many Relations"
 msgstr "Plusieurs relations"
@@ -751,11 +746,6 @@ msgid "Relation Badge"
 msgstr ""
 
 #. module: pyper_web_view
-#: model:ir.model.fields.selection,name:pyper_web_view.selection__ir_views_field__widget__many2one_image
-msgid "Relation Image"
-msgstr ""
-
-#. module: pyper_web_view
 #: model:ir.model.fields.selection,name:pyper_web_view.selection__ir_views_field__widget__one2many
 msgid "Relation List"
 msgstr "Relation Liste"
@@ -778,9 +768,7 @@ msgstr "Exemple"
 #. module: pyper_web_view
 #. odoo-javascript
 #: code:addons/pyper/pyper_web_view/static/src/search/control_panel/views_switcher.js:0
-#: code:addons/pyper/pyper_web_view/static/src/search/control_panel/views_switcher.xml:0
 #: code:addons/pyper_web_view/static/src/search/control_panel/views_switcher.js:0
-#: code:addons/pyper_web_view/static/src/search/control_panel/views_switcher.xml:0
 #: model:ir.actions.act_window,name:pyper_web_view.action_ir_views
 #: model:ir.model,name:pyper_web_view.model_ir_views
 #: model:ir.model.fields,field_description:pyper_web_view.field_ir_actions_act_window__ir_views_id
@@ -878,11 +866,6 @@ msgstr "Informations techniques"
 #: model:ir.model.fields.selection,name:pyper_web_view.selection__ir_views_field__widget__char
 msgid "Text"
 msgstr "Texte"
-
-#. module: pyper_web_view
-#: model:ir.model.fields.selection,name:pyper_web_view.selection__ir_views_field__widget__char_image
-msgid "Text Image"
-msgstr ""
 
 #. module: pyper_web_view
 #: model:ir.model.fields.selection,name:pyper_web_view.selection__ir_views_field__widget__text

@@ -134,12 +134,6 @@ class IrViews(models.Model):
         compute='_compute_arch',
     )
 
-    main_ir_action_id = fields.Many2one(
-        'ir.actions.act_window',
-        string='Main Action',
-        ondelete='cascade',
-    )
-
     ir_action_id = fields.Many2one(
         'ir.actions.act_window',
         string='Action',
@@ -486,9 +480,6 @@ class IrViews(models.Model):
 
             if field.options:
                 tree_field.attrib['options'] = field.options
-
-            if field.width:
-                tree_field.attrib['width'] = field.width.rstrip('px') + 'px'
 
     def _build_arch_kanban(self, root):
         self._build_arch_common(root)

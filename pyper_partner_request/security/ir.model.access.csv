@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ticket_model_ticket_group_manager,ticket.model_ticket user_group,model_res_partner_request,base.group_user,1,0,0,0
+access_ticket_validator,access.ticket.validator,bus.model_res_users,group_request_validator,1,1,1,0
+access_ticket_creator,access.ticket.creator,model_res_partner_request,group_request_creator,1,1,1,0
+access_ticket_admin,access.ticket.admin,model_res_partner_request,group_request_admin,1,1,1,1

@@ -4,7 +4,6 @@
 {
     'name': 'URL Share Button',
     'version': '1.0',
-    'license': 'Other proprietary',
     'summary': 'Copy URL to clipboard from the systray',
     'author': 'Krafter SAS',
     'maintainer': [
@@ -17,7 +16,7 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'pyper_url_share/static/src/webclient/**/*',
+            'pyper_url_share/static/src/**/*',
         ],
     },
 }

@@ -4,15 +4,12 @@
         <div class="o-views-switcher" t-if="displaySwitcher">
             <Dropdown
                 class="'o-views-switcher--dropdown'"
-                togglerClass="'btn btn-outline-secondary me-2'"
+                togglerClass="'btn btn-secondary me-2'"
                 showCaret="false"
                 beforeOpen.bind="onDropdownOpen"
             >
                 <t t-set-slot="toggler">
-                    <i t-att-class="'me-3 ' + togglerIcon" t-att-title="togglerLabel"/>
-                    <span>Saved views</span>
-
-                    <i class="fa fa-caret-down ms-3"/>
+                    <i t-att-class="togglerIcon" t-att-title="togglerLabel"/>
                 </t>
 
                 <t t-foreach="categorizedViews" t-as="category" t-key="category.value">
@@ -23,7 +20,7 @@
 
                         <span class="o_icon_right ms-3 text-secondary">
                             <i
-                                class="ms-2 text-muted fa fa-cog"
+                                class="ms-2 fa fa-cog"
                                 title="Configure views"
                                 t-on-click.stop="() => this.configureViews(category.value)"
                             />
@@ -40,15 +37,15 @@
                                 <t t-out="view.name"/>
                             </span>
 
-                            <span class="o_icon_right d-flex align-items-center gap-2 ms-5">
+                            <span class="o_icon_right ms-3">
                                 <i
-                                    class="text-muted fa fa-edit"
+                                    class="ms-2 fa fa-edit"
                                     title="Edit view"
                                     t-on-click.stop="() => this.editView(view.id)"
                                 />
 
                                 <i
-                                    class="text-muted fa fa-trash-o"
+                                    class="ms-2 fa fa-trash-o"
                                     title="Delete view"
                                     t-on-click.stop="() => this.openConfirmationDialog(view.id)"
                                 />
@@ -61,10 +58,10 @@
 
                 <DropdownItem onSelected.bind="createView">
                     <i
-                        class="me-2 fa fa-plus-circle"
+                        class="small me-2 fa fa-plus-circle"
                         t-att-title="createLabel"
                     />
-                    <span t-out="createLabel"/>
+                    <span class="small" t-out="createLabel"/>
                 </DropdownItem>
             </Dropdown>
         </div>

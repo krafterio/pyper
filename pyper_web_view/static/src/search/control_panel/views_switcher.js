@@ -1,6 +1,6 @@
 /** @odoo-module */
 
-import {Component, onMounted, useState} from '@odoo/owl';
+import {Component, useState} from '@odoo/owl';
 import {_t} from '@web/core/l10n/translation';
 import {x2ManyCommands} from '@web/core/orm_service';
 import {useService} from '@web/core/utils/hooks';
@@ -37,7 +37,6 @@ export class ViewsSwitcher extends Component {
         this.orm = useService('orm');
 
         this.state = useState({
-            mounted: false,
             views: [],
             selectedView: null,
         });
@@ -91,35 +90,6 @@ export class ViewsSwitcher extends Component {
                 }
             },
         });
-
-        onMounted(async () => {
-            if (!this.currentActionId) {
-                return;
-            }
-
-            this.state.mounted = true;
-
-            if (this.displaySwitcher) {
-                const views = await this.orm.searchRead(
-                    'ir.views',
-                    [...this.domain, ['ir_action_id', '=', this.currentActionId]],
-                    this.viewsFields,
-                    {limit: 1}
-                );
-
-                if (views.length > 0) {
-                    this.state.selectedView = views[0];
-                }
-            }
-        });
-    }
-
-    get isMounted() {
-        return this.state.mounted;
-    }
-
-    get currentActionId() {
-        return this.env.config?.actionId || null;
     }
 
     get currentViewType() {
@@ -147,8 +117,8 @@ export class ViewsSwitcher extends Component {
     }
 
     get displaySwitcher() {
-        return this.isMounted && !this.excludedViewTypes.includes(this.currentViewType)
-            && ![undefined, 'ir.views', 'ir.ui.menu'].includes(this.currentModelName);
+        return !this.excludedViewTypes.includes(this.currentViewType)
+            && ![undefined, 'ir.views'].includes(this.currentModelName);
     }
 
     get excludedViewTypes() {
@@ -156,7 +126,7 @@ export class ViewsSwitcher extends Component {
     }
 
     get viewsFields() {
-        return ['id', 'name', 'category', 'shared', 'view_mode', 'ir_action_id', 'main_ir_action_id'];
+        return ['id', 'name', 'category', 'shared', 'view_mode', 'ir_action_id'];
     }
 
     get domain() {
@@ -173,7 +143,7 @@ export class ViewsSwitcher extends Component {
         return {
             'tree': 'oi oi-view-list',
             'kanban': 'oi oi-view-kanban',
-            undefined: 'fa fa-floppy-o',
+            undefined: 'fa fa-columns',
         }
     }
 
@@ -320,7 +290,6 @@ export class ViewsSwitcher extends Component {
         context['default_res_field_ids'] = [];
         context['default_res_group_by_ids'] = [];
         context['default_res_order_by_ids'] = [];
-        context['default_main_ir_action_id'] = this.state.selectedView?.['main_ir_action_id']?.[0] || this.currentActionId || false;
 
         if (this.currentGroupBy.length > 0) {
             this.currentGroupBy.forEach((groupName) => {
@@ -417,7 +386,6 @@ export class ViewsSwitcher extends Component {
             const optional = field.getAttribute('optional');
             const widget = field.getAttribute('widget');
             const options = field.getAttribute('options');
-            const width = field.getAttribute('width');
 
             if (string) {
                 vals['label'] = string;
@@ -435,10 +403,6 @@ export class ViewsSwitcher extends Component {
 
             if (options) {
                 vals['options'] = options;
-            }
-
-            if (width) {
-                vals['width'] = width;
             }
 
             context['default_res_field_ids'].push(x2ManyCommands.create(undefined, vals));

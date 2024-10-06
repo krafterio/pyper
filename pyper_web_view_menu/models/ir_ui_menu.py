@@ -26,8 +26,7 @@ class IrUiMenu(models.Model):
             res = super().write(vals)
 
         if self.user_id and self.view_id:
-            for partner in self.user_id.partner_id:
-                self.env['bus.bus']._sendone(partner, 'user_menu_view_changed', {})
+            self.env['bus.bus']._sendone(self.user_id.partner_id, 'user_menu_view_changed', {})
 
         return res
 
@@ -38,7 +37,6 @@ class IrUiMenu(models.Model):
         res = super().unlink()
 
         if user_menu_view_changed:
-            for partner in partner_id:
-                self.env['bus.bus']._sendone(partner, 'user_menu_view_changed', {})
+            self.env['bus.bus']._sendone(partner_id, 'user_menu_view_changed', {})
 
         return res

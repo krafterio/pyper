@@ -4,21 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0-20241022\n"
+"Project-Id-Version: Odoo Server 17.0-20241015\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-25 21:41+0000\n"
-"PO-Revision-Date: 2024-10-25 23:42+0200\n"
+"POT-Creation-Date: 2024-10-20 16:51+0000\n"
+"PO-Revision-Date: 2024-10-20 16:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: pyper_web_view_menu
-#: model:ir.model.fields,help:pyper_web_view_menu.field_ir_views__display_counter
-msgid "Allow to display a counter on menu item when view is bookmarked"
-msgstr "Permet d’afficher un compteur sur l’élément de menu lorsque la vue est mise en favoris"
 
 #. module: pyper_web_view_menu
 #. odoo-javascript
@@ -32,11 +27,6 @@ msgstr "Ajouter la vue aux favoris"
 #: model:ir.model.fields,field_description:pyper_web_view_menu.field_ir_views__bookmarked
 msgid "Bookmarked"
 msgstr "Ajoutée aux favoris"
-
-#. module: pyper_web_view_menu
-#: model:ir.model.fields,field_description:pyper_web_view_menu.field_ir_views__display_counter
-msgid "Display counter"
-msgstr "Afficher un compteur"
 
 #. module: pyper_web_view_menu
 #: model:ir.model,name:pyper_web_view_menu.model_ir_ui_menu

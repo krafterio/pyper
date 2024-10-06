@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem 
+        id="menu_partner_requests_root"
+        name="Requests"
+        web_icon="pyper_partner_request,static/description/icon.png"
+        sequence="1"/>
+
+    <menuitem 
+        id="menu_partner_requests"
+        name="Requests"
+        parent="menu_partner_requests_root"
+        action="action_partner_request_open"
+        sequence="2"/>
+</odoo>

@@ -1,0 +1,411 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_partner_request
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-04 15:43+0000\n"
+"PO-Revision-Date: 2024-11-04 16:45+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: pyper_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_form
+msgid "<b class=\"my-2\">Created By: </b>"
+msgstr "<b class=\"my-2\">Crée par: </b>"
+
+#. module: pyper_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_form
+msgid "<b class=\"my-2\">Created Date: </b>"
+msgstr "<b class=\"my-2\">Date de création: </b>"
+
+#. module: pyper_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_form
+msgid "<b class=\"my-2\">Last Update: </b>"
+msgstr "<b class=\"my-2\">Dernière mise à jour : </b>"
+
+#. module: pyper_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_form
+msgid "<b>Priority: </b>"
+msgstr "<b>Priorité: </b>"
+
+#. module: pyper_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.res_partner_view_form
+msgid "<span class=\"o_stat_text\">requests</span>"
+msgstr "<span class=\"o_stat_text\">Demandes</span>"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__message_needaction
+msgid "Action Needed"
+msgstr "Action requise"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__activity_ids
+msgid "Activities"
+msgstr "Activités"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Activité d'exception de décoration"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__activity_state
+msgid "Activity State"
+msgstr "État de l'activité"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icône de type d'activité"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nombre de pièces jointes"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__state__awaiting_requalification
+msgid "Awaiting requalification"
+msgstr "En attente de requalification"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__category
+msgid "Category"
+msgstr "Catégorie"
+
+#. module: pyper_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_form
+msgid "Close"
+msgstr "Clôturer"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__state__closed
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_kanban
+msgid "Closed"
+msgstr "Clôturé"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__author_parent_id
+msgid "Company"
+msgstr "Société"
+
+#. module: pyper_partner_request
+#: model:ir.model,name:pyper_partner_request.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__author_id
+msgid "Created By"
+msgstr "Crée le"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__create_date
+msgid "Created Date"
+msgstr "Crée le"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__create_uid
+msgid "Created by"
+msgstr "Crée par"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__priority__critical
+msgid "Critical"
+msgstr "Critique"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__description
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_form
+msgid "Description"
+msgstr "Description"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__description_text
+msgid "Description Text"
+msgstr "Texte de description"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__message_follower_ids
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (partenaires)"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,help:pyper_partner_request.field_res_partner_request__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icône font awesome, par exemple fa-tasks"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__has_message
+msgid "Has Message"
+msgstr "A un message"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__priority__high
+msgid "High"
+msgstr "Élevé"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__id
+msgid "ID"
+msgstr "Id"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__activity_exception_icon
+msgid "Icon"
+msgstr "Icône"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,help:pyper_partner_request.field_res_partner_request__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icône indiquant une activité d'exception."
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,help:pyper_partner_request.field_res_partner_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+"Si cette case est cochée, de nouveaux messages requièrent votre attention."
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,help:pyper_partner_request.field_res_partner_request__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+"Si cette case est cochée, certains messages sont accompagnés d'une erreur "
+"de livraison."
+
+#. module: pyper_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_kanban
+msgid "In Progress"
+msgstr "En cours"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__state__in_progress
+msgid "In progress"
+msgstr "En cours"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__category__incident
+msgid "Incident"
+msgstr "Incident"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__category__information_request
+msgid "Information Request"
+msgstr "Demande d'information"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__message_is_follower
+msgid "Is Follower"
+msgstr "Est abonné"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__is_validated
+msgid "Is Validated"
+msgstr "Est validé"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__priority__low
+msgid "Low"
+msgstr "Faible"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__message_has_error
+msgid "Message Delivery error"
+msgstr "Erreur lors de l'envoie du message"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__message_ids
+msgid "Messages"
+msgstr "Messages"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Ma date limite d'activité"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__name
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_form
+msgid "Name"
+msgstr "Nom"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Prochaine activité du calendrier"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Date limite de la prochaine activité"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__activity_summary
+msgid "Next Activity Summary"
+msgstr "Résumé de l'activité suivante"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__activity_type_id
+msgid "Next Activity Type"
+msgstr "Type d'activité suivante"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__priority__normal
+msgid "Normal"
+msgstr "Normal"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'actions"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__message_has_error_counter
+msgid "Number of errors"
+msgstr "Nombre d'erreurs"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,help:pyper_partner_request.field_res_partner_request__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Nombre de message qui requiert une action"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,help:pyper_partner_request.field_res_partner_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de messages avec erreur de livraison"
+
+#. module: pyper_partner_request
+#: model:res.groups,name:pyper_partner_request.group_request_admin
+msgid "Partner Request Administrator"
+msgstr "Administrateur des requête des partenaires"
+
+#. module: pyper_partner_request
+#: model:res.groups,name:pyper_partner_request.group_request_creator
+msgid "Partner Request Creator"
+msgstr "Créateur de requête des partenaires"
+
+#. module: pyper_partner_request
+#: model:res.groups,name:pyper_partner_request.group_request_validator
+msgid "Partner Request Validator"
+msgstr "Validateur des requêtes de partenaires"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__state__pending
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_kanban
+msgid "Pending"
+msgstr "En attente"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__priority
+msgid "Priority"
+msgstr "Priorité"
+
+#. module: pyper_partner_request
+#: model:ir.actions.act_window,name:pyper_partner_request.action_partner_request_open
+#: model:ir.ui.menu,name:pyper_partner_request.menu_partner_requests
+#: model:ir.ui.menu,name:pyper_partner_request.menu_partner_requests_root
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.res_partner_view_form
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_tree
+msgid "Requests"
+msgstr "Demandes"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner__require_request_approval
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_users__require_request_approval
+msgid "Require request approval"
+msgstr "Requérir l'approbation de la demande"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__activity_user_id
+msgid "Responsible User"
+msgstr "Utilisateur responsable"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__category__service_request
+msgid "Service Request"
+msgstr "Demande de service"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner_request__state
+msgid "State"
+msgstr "Statut"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,help:pyper_partner_request.field_res_partner_request__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Statut basé sur les activités\n"
+"En retard : La date d'échéance est déjà dépassée\n"
+"Aujourd'hui : La date de l'activité est aujourd'hui\n"
+"Planifié : Activités futures."
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__state__to_be_processed
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_kanban
+msgid "To be processed"
+msgstr "À traiter"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__category__training_request
+msgid "Training Request"
+msgstr "Demande de formation"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,help:pyper_partner_request.field_res_partner_request__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Type de l'activité d'exception enregistrée."
+
+#. module: pyper_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_form
+msgid "Validate"
+msgstr "Valider"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields.selection,name:pyper_partner_request.selection__res_partner_request__state__waiting_for_validation
+msgid "Waiting for validation"
+msgstr "En attente de validation"
+
+#. module: pyper_partner_request
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_partner__requests_count
+#: model:ir.model.fields,field_description:pyper_partner_request.field_res_users__requests_count
+msgid "requests count"
+msgstr "nombres de demandes"
+
+#. module: pyper_partner_request
+#: model:ir.model,name:pyper_partner_request.model_res_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_partner_request.view_partner_request_form
+msgid "res.partner.request"
+msgstr ""

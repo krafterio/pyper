@@ -10,7 +10,7 @@
         </xpath>
     </t>
 
-    <t t-name="pyper_menu.NavBar.SectionsMenu" t-inherit="web.NavBar.SectionsMenu" t-inherit-mode="extension">
+    <t t-name="pyper_menu.NavBar.SectionsMenu" t-inherit="web.NavBar.SectionsMenu" t-inherit-mode="extension" owl="1">
         <xpath expr="//DropdownItem" position="attributes">
             <attribute name="class">'o_nav_entry' + (sectionIsSelected(section) ? ' o_nav_entry--active' : '')</attribute>
         </xpath>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_partner_request_settings_template" name="Settings">
+        <t t-call="portal.portal_layout">
+            <div class="container mt-4">
+                <h1>requests Settings</h1>
+                <h2><t t-esc="partner.name"/></h2>
+                <form action="/my/requests/settings/update" method="POST">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <div class="form-group my-4">
+                        <input type="checkbox" id="require_request_approval" name="require_request_approval" t-att-checked="partner.require_request_approval"/>
+                        <label for="require_request_approval">Require Request Approval</label>
+                    </div>
+                    <div class="form-group my-4">
+                        <div class="form-group mr-2">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Is validator ?</th>
+                                        <th>Is creator ?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="users" t-as="user">
+                                        <tr>
+                                            <td><t t-esc="user.name"/></td>
+                                            <input type="hidden" t-att-name="'user_' + str(user.id)" t-att-value="user.id"/>
+                                            <td>
+                                                <input type="checkbox" t-att-name="'validator_' + str(user.id)" t-att-checked="user.has_group('pyper_partner_request.group_request_validator')"/>
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" t-att-name="'creator_' + str(user.id)" t-att-checked="user.has_group('pyper_partner_request.group_request_creator')"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary my-4">Save</button>
+                </form>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,284 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_portal_partner_request
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-18 13:13+0000\n"
+"PO-Revision-Date: 2024-11-18 14:15+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_detail_view
+msgid "<i>Last Update: </i>"
+msgstr "<i>Dernière mise à jour : </i>"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_update_view
+msgid ""
+"<i>This request is awaiting requalification to proceed with further "
+"actions.</i>"
+msgstr ""
+"<i>Cette demande est en attente de requalification afin de poursuivre les "
+"actions.</i>"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_requests_template
+msgid ""
+"<select id=\"filter_state\" name=\"state\" class=\"form-control mr-2\">\n"
+"                                        <option value=\"all\">All</"
+"option>\n"
+"                                        <option value="
+"\"waiting_for_validation\">Waiting for Validation</option>\n"
+"                                        <option value=\"to_be_processed"
+"\">To be processed</option>\n"
+"                                        <option value=\"in_progress\">In "
+"Progress</option>\n"
+"                                        <option value=\"pending"
+"\">Pending</option>\n"
+"                                        <option value=\"closed\">Closed</"
+"option>\n"
+"                                    </select>"
+msgstr ""
+"<select id=\"filter_state\" name=\"state\" class=\"form-control mr-2\">\n"
+"                                        <option value=\"all\">Tous</"
+"option>\n"
+"                                        <option value="
+"\"waiting_for_validation\">En attente de validation</option>\n"
+"                                        <option value=\"to_be_processed"
+"\">À traiter</option>\n"
+"                                        <option value=\"in_progress\">En "
+"cours</option>\n"
+"                                        <option value=\"pending\">En "
+"attente</option>\n"
+"                                        <option value=\"closed\">Clôturé</"
+"option>\n"
+"                                    </select>"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_create_request_template
+msgid ""
+"<select id=\"partner_request_category\" name=\"partner_request_category\" "
+"class=\"form-control\" required=\"required\">\n"
+"                            <option value=\"\" selected=\"selected"
+"\">Select a category</option>\n"
+"                            <option value=\"incident\">Incident</option>\n"
+"                            <option value=\"service request\">Service "
+"Request</option>\n"
+"                            <option value=\"information request"
+"\">Information Request</option>\n"
+"                            <option value=\"training request\">Training "
+"Request</option>\n"
+"                        </select>"
+msgstr ""
+"<select id=\"partner_request_category\" name=\"partner_request_category\" "
+"class=\"form-control\" required=\"required\">\n"
+"                            <option value=\"\" selected=\"selected"
+"\">Sélectionnez une catégorie</option>\n"
+"                            <option value=\"incident\">Incident</option>\n"
+"                            <option value=\"service request\">Demande de "
+"service</option>\n"
+"                            <option value=\"information request\">Demande "
+"d'information</option>\n"
+"                            <option value=\"training request\">Demande de "
+"formation</option>\n"
+"                        </select>"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_detail_view
+msgid "<strong>Category:</strong>"
+msgstr "<strong>Catégorie:</strong>"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_detail_view
+msgid "<strong>Creation date:</strong>"
+msgstr "<strong>Date de création:</strong>"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_create_request_template
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_update_view
+msgid "<strong>Error!</strong>"
+msgstr "<strong>Erreur!</strong>"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_detail_view
+msgid "<strong>State:</strong>"
+msgstr "<strong>Statut:</strong>"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_requests_template
+msgid "All Requests"
+msgstr "Toutes les demandes"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_detail_view
+msgid "Ask for requalification"
+msgstr "Demander une requalification"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_update_view
+msgid "Attachment (optional)"
+msgstr "Pièce jointe (facultatif)"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_create_request_template
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_update_view
+msgid "Category"
+msgstr "Catégorie"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_detail_view
+msgid "Close"
+msgstr "Clôturer"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_requests_template
+msgid "Create Request"
+msgstr "Créer une demande"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_create_request_template
+msgid "Create request"
+msgstr "Créer une demande"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_requests_template
+msgid "Date"
+msgstr ""
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_create_request_template
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_update_view
+msgid "Description"
+msgstr ""
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_requests_template
+msgid "Filter"
+msgstr "Filtre"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_requests_template
+msgid "Filter by state:"
+msgstr "Filtrer par statut:"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_create_request_template
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_update_view
+msgid "Image (optional)"
+msgstr "Image (facultatif)"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_update_view
+msgid "Incident"
+msgstr ""
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_update_view
+msgid "Information Request"
+msgstr "Demande d'information"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_partner_request_settings_template
+msgid "Is creator ?"
+msgstr "Est créateur ?"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_partner_request_settings_template
+msgid "Is validator ?"
+msgstr "Est validateur ?"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_create_request_template
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_home
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_requests_template
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_detail_view
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_update_view
+msgid "My Requests"
+msgstr "Mes demandes d'assistance"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_requests_template
+msgid "My requests"
+msgstr "Mes demandes d'assistance"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_partner_request_settings_template
+msgid "Name"
+msgstr "Nom"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_requests_template
+msgid "Requests Requiring Your Attention"
+msgstr "Demandes nécessitant votre attention"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_partner_request_settings_template
+msgid "Require Request Approval"
+msgstr "Requérir l'approbation de la demande"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_partner_request_settings_template
+msgid "Save"
+msgstr "Sauvegarder"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_update_view
+msgid "Service Request"
+msgstr "Demande de service"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_requests_template
+msgid "Settings"
+msgstr "Paramètres"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_requests_template
+msgid "State"
+msgstr "Statut"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_create_request_template
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_requests_template
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_update_view
+msgid "Subject"
+msgstr "Sujet"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_requests_template
+msgid "There are currently no requests."
+msgstr "Il n'y a actuellement aucune demande."
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_update_view
+msgid "Training Request"
+msgstr "Demande de formation"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_update_view
+msgid "Update request"
+msgstr "Mettre a jour la demande"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_request_detail_view
+msgid "Validate request"
+msgstr "Valider la demande"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_my_home
+msgid "View and manage your requests"
+msgstr "Consulter et gérer vos demandes d'assistance"
+
+#. module: pyper_portal_partner_request
+#: model_terms:ir.ui.view,arch_db:pyper_portal_partner_request.portal_partner_request_settings_template
+msgid "requests Settings"
+msgstr "Paramètres des demandes"
