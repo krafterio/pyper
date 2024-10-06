@@ -37,27 +37,14 @@ export class MenuState {
         return typeof menu === 'object' && this.activeIds.includes(menu.id);
     }
 
-    findParentIds(targetMenuId, parentIds = [], menus = undefined) {
+    findParentIds(targetMenuId) {
         if (!targetMenuId) {
             return [];
         }
 
-        if (!menus) {
-            menus = this.menuService.getAll();
-        }
-
-        for (const menu of menus) {
+        for (const menu of this.menuService.getAll()) {
             if (menu.id === targetMenuId) {
-                return parentIds;
-            }
-
-            if (menu.children && menu.children.length > 0) {
-                const childrenTree = menu.children.map(this.menuService.getMenu);
-                const result = this.findParentIds(targetMenuId, [...parentIds, menu.id], childrenTree);
-
-                if (result.length > 0) {
-                    return result;
-                }
+                return [...(menu['parentPath'] || [])];
             }
         }
 

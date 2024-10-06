@@ -47,13 +47,17 @@ class IrUiMenu(models.Model):
         ids.remove('root')
 
         menu_values = self.search_read(
-            [('id', 'in', ids), '|', ('font_icon', '!=', False), ('menu_category', '!=', False)],
-            fields=['id', 'font_icon', 'font_icon_color', 'menu_category']
+            [('id', 'in', ids)],
+            fields=['id', 'font_icon', 'font_icon_color', 'menu_category', 'parent_path']
         )
 
         for menu_value in menu_values:
             category = menu_value.get('menu_category')
+            parent_path = [int(x) for x in menu_value.get('parent_path').split('/') if x]
             vals = {}
+
+            if parent_path:
+                vals['parentPath'] = parent_path
 
             if menu_value.get('font_icon'):
                 vals['font_icon'] = menu_value.get('font_icon')
