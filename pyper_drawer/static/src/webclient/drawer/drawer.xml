@@ -17,6 +17,12 @@
             <t t-slot="header" t-if="displayHeader"/>
 
             <!-- Top Action -->
+            <div class="o_drawer--quick-actions" t-if="displayQuickActions">
+                <t t-call="pyper_drawer.Drawer.QuickActions" t-if="isMounted">
+                    <t t-set="menus" t-value="Object.values(quickActionSections)"/>
+                </t>
+            </div>
+
             <t t-call="pyper_drawer.Drawer.TopAction" t-if="isMounted"/>
 
             <!-- Current App Sections -->
@@ -81,6 +87,44 @@
                     />
                 </t>
             </t>
+        </div>
+    </t>
+
+    <t t-name="pyper_drawer.Drawer.QuickActions" owl="1">
+        <div class="o_drawer--quick-actions-content">
+            <div class="btn-group">
+                <button
+                    type="button"
+                    class="btn btn-sm btn-primary"
+                    t-out="mainQuickAction.name"
+                    t-on-click="() => this.onClickQuickAction(mainQuickAction)"
+                />
+
+                <button
+                    type="button"
+                    class="btn btn-sm btn-primary dropdown-toggle dropdown-toggle-split"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    t-if="secondaryQuickActions.length > 0"
+                >
+                    <span class="visually-hidden">
+                        Toggle Dropdown
+                    </span>
+                </button>
+
+                <ul class="dropdown-menu" t-if="secondaryQuickActions.length > 0">
+                    <t t-foreach="secondaryQuickActions" t-as="menu" t-key="menu.id">
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="#"
+                                t-out="menu.name"
+                                t-on-click="() => this.onClickQuickAction(menu)"
+                            />
+                        </li>
+                    </t>
+                </ul>
+            </div>
         </div>
     </t>
 

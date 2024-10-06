@@ -9,6 +9,7 @@ class IrUiMenu(models.Model):
 
     menu_category = fields.Selection(
         selection_add=[
+            ('drawer_quick_actions', 'Drawer Quick Actions'),
             ('drawer_footer', 'Drawer Footer'),
         ],
     )

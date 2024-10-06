@@ -259,6 +259,7 @@
 }
 
 // Drawer Header and Footer
+.o_drawer--quick-actions,
 .o_drawer--header,
 .o_drawer--footer {
     padding: $o-horizontal-padding/2 0;
@@ -385,6 +386,11 @@
 
 // Drawer Menu Nav Style
 .o_drawer.o_drawer--nav {
+    .o_drawer--quick-actions-content {
+        margin-left: $o-drawer-item-nav-margin-h;
+        margin-right: $o-drawer-item-nav-margin-h;
+    }
+
     .o_drawer--menu {
         padding-bottom: $o-drawer-item-padding-v * 4;
     }

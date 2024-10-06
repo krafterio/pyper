@@ -179,6 +179,7 @@ export class Drawer extends Component {
         this.rpc = useService('rpc');
         this.pyperSetupService = useService('pyper_setup');
         this.drawerService = useState(useService('drawer'));
+        this.actionService = useState(useService('action'));
         this.menuService = useService('menu');
         this.root = useRef('root');
         this.appSubMenus = useRef('appSubMenus');
@@ -331,6 +332,10 @@ export class Drawer extends Component {
         return this.isMinified && this.settings.hideCategoryLabelMinified && this.settings.showCategorySectionMinified;
     }
 
+    get displayQuickActions() {
+        return !!this.mainQuickAction;
+    }
+
     get displayHeader() {
         return this.isSmallScreen || this.settings.alwaysHeader;
     }
@@ -374,6 +379,7 @@ export class Drawer extends Component {
 
     get mainCategoryAppSections() {
         const categories = {...this.currentCategoryAppSections};
+        delete categories['drawer_quick_actions'];
         delete categories['drawer_footer'];
 
         return categories;
@@ -381,6 +387,24 @@ export class Drawer extends Component {
 
     get mainStartChildrenDepth() {
         return this.settings.subItemsDepth < 0 ? -1 : Math.max(0, this.settings.subItemsDepth);
+    }
+
+    get quickActionSections() {
+        if (this.currentCategoryAppSections['drawer_quick_actions']
+            && this.currentCategoryAppSections['drawer_quick_actions']['menus'].length > 0
+        ) {
+            return this.currentCategoryAppSections['drawer_quick_actions']['menus'];
+        }
+
+        return [];
+    }
+
+    get mainQuickAction() {
+        return this.quickActionSections.length > 0 ? this.quickActionSections[0] : undefined;
+    }
+
+    get secondaryQuickActions() {
+        return this.quickActionSections.length > 1 ? this.quickActionSections.slice(1) : [];
     }
 
     get footerAppSections() {
@@ -487,6 +511,12 @@ export class Drawer extends Component {
     onWillUpdateProps(nextProps) {
         this.pyperSetupService.onWillUpdateProps(Drawer.SETUP_PREFIX, nextProps);
         this._refreshDrawerService();
+    }
+
+    onClickQuickAction(menu) {
+        this.actionService.doAction(menu.actionID, {
+            clearBreadcrumbs: true,
+        }).then();
     }
 
     _onTouchStartDrag(ev) {
