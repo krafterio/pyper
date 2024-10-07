@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ticket_tree" model="ir.ui.view">
+        <field name="name">ticket.tree</field>
+        <field name="model">ticket</field>
+        <field name="arch" type="xml">
+            <tree string="Tickets">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ticket_form" model="ir.ui.view">
+        <field name="name">ticket.form</field>
+        <field name="model">ticket</field>
+        <field name="arch" type="xml">
+            <form string="Ticket">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="user_id"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ticket_open" model="ir.actions.act_window">
+        <field name="name">Tickets</field>
+        <field name="res_model">ticket</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_ticket_tree"/>
+    </record>
+</odoo>

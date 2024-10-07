@@ -16,6 +16,7 @@
     'installable': True,
     'depends': [
         'base',
+        'mail',
     ],
     'data': [
         'views/ticket_views.xml',

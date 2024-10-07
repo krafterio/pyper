@@ -6,6 +6,7 @@ from odoo import models, fields, api
 
 class Ticket(models.Model):
     _name = 'ticket'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(string='Name', required=True)
     description = fields.Text(string='Description')
