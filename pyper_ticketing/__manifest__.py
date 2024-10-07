@@ -20,5 +20,7 @@
     'data': [
         'views/ticket_views.xml',
         'views/menu.xml',
+        'security/ir.model.access.csv',
+        'security/ticket_security.xml'
     ],
 }

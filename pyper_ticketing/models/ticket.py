@@ -10,6 +10,7 @@ class Ticket(models.Model):
     name = fields.Char(string='Name', required=True)
     description = fields.Text(string='Description')
     user_id = fields.Many2one('res.users', string='User')
+    company_id = fields.Many2one('res.company', string='Company', related='user_id.company_id', readonly=True)
     status = fields.Selection([
         ('new', 'New'),
         ('in_progress', 'In progress'),
