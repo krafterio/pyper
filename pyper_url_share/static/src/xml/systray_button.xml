@@ -9,7 +9,7 @@
                 aria-expanded="false"
                 t-on-click="() => this.onClick()"
             >
-                <i class="fa fa-lg fa-clone" role="img" aria-label="Copy URL"/>
+                <i class="fa fa-clone" role="img" aria-label="Copy URL"/>
             </button>
         </div>
     </t>
