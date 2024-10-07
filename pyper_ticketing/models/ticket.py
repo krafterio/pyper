@@ -10,7 +10,7 @@ class Ticket(models.Model):
 
     name = fields.Char(string='Name', required=True)
     description = fields.Text(string='Description')
-    user_id = fields.Many2one('res.users', string='User')
+    user_id = fields.Many2one('res.users', string='User', default=lambda self: self.env.user, readonly=True)
     company_id = fields.Many2one('res.company', string='Company', related='user_id.company_id', readonly=True)
     status = fields.Selection([
         ('new', 'New'),
@@ -22,4 +22,4 @@ class Ticket(models.Model):
         ('0', 'Low'),
         ('1', 'Normal'),
         ('2', 'High'),
-    ], string='Priority', default='1')
+    ], string='Priority', default='1', required=True)
