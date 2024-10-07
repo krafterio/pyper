@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem 
+        id="menu_ticketing_root"
+        name="Ticketing"
+        sequence="1"/>
+
+    <menuitem 
+        id="menu_ticketing_tickets"
+        name="Tickets"
+        parent="menu_ticketing_root"
+        action="action_ticket_open"
+        sequence="2"/>
+</odoo>
