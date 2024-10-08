@@ -6,53 +6,11 @@
         <field name="arch" type="xml">
             <tree string="Tickets">
                 <field name="name"/>
+                <field name="status"/>
+                <field name="priority"/>
             </tree>
         </field>
     </record>
-
-    <record id="view_ticket_kanban" model="ir.ui.view">
-        <field name="name">ticket.kanban</field>
-        <field name="model">ticket</field>
-        <field name="arch" type="xml">
-            <kanban default_group_by="status">
-                <field name="name"/>
-                <field name="status"/>
-                <field name="priority"/>
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_card oe_kanban_global_click">
-                            <strong><field name="name"/></strong>
-                            <div><field name="status"/></div>
-                            <div><field name="priority"/></div>
-                        </div>
-                    </t>
-                    <t t-name="kanban-column">
-                        <div t-attf-class="oe_kanban_column oe_kanban_{color}">
-                            <div class="oe_kanban_header">
-                                <field name="status" widget="statusbar" statusbar_visible="waiting_for_validation,new,in_progress,done" statusbar_clickable="True"/>
-                            </div>
-                            <div class="oe_kanban_content">
-                                <t t-foreach="records" t-as="record">
-                                    <t t-call="kanban-box"/>
-                                </t>
-                            </div>
-                        </div>
-                    </t>
-                    <t t-name="kanban-empty-column">
-                        <div t-attf-class="oe_kanban_column oe_kanban_{color}">
-                            <div class="oe_kanban_header">
-                                <field name="status" widget="statusbar" statusbar_visible="new,in_progress,done" statusbar_clickable="True"/>
-                            </div>
-                            <div class="oe_kanban_content">
-                                <div class="oe_kanban_no_content">No tickets</div>
-                            </div>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>    
-    </record>
-
 
     <record id="view_ticket_form" model="ir.ui.view">
         <field name="name">ticket.form</field>
@@ -72,8 +30,7 @@
                     </div>
                     <group>
                         <field name="description"/>
-                        <field name="priority"/>
-                        <field name="parent_id"/>
+                        <field name="priority" widget="radio"/>
                     </group>
                 </sheet>
                 <div class="oe_chatter">
@@ -87,8 +44,7 @@
     <record id="action_ticket_open" model="ir.actions.act_window">
         <field name="name">Tickets</field>
         <field name="res_model">ticket</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_ticket_tree"/>
-        <field name="view_ids" eval="[(5, 0, 0), (0, 0, {'view_mode': 'tree', 'view_id': ref('view_ticket_tree')}), (0, 0, {'view_mode': 'kanban', 'view_id': ref('view_ticket_kanban')})]"/>
     </record>
 </odoo>

@@ -21,7 +21,7 @@ class Ticket(models.Model):
     date = fields.Datetime(string='Date', default=fields.Datetime.now)
     priority = fields.Selection([
         ('0', 'Low'),
-        ('1', 'Normal'),
+        ('1', 'Middle'),
         ('2', 'High'),
     ], string='Priority', default='1', required=True)
     validated = fields.Boolean(string='Validated', default=False)
