@@ -20,6 +20,7 @@
     ],
     'data': [
         'security/ticket_security.xml',
+        'security/ticket_creator_group.xml',
         'security/ticket_validator_group.xml',
         'security/ir.model.access.csv',
         'views/ticket_config_settings_views.xml',
