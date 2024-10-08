@@ -29,7 +29,7 @@
                     <t t-name="kanban-column">
                         <div t-attf-class="oe_kanban_column oe_kanban_{color}">
                             <div class="oe_kanban_header">
-                                <field name="status" widget="statusbar" statusbar_visible="new,in_progress,done" statusbar_clickable="True"/>
+                                <field name="status" widget="statusbar" statusbar_visible="waiting_for_validation,new,in_progress,done" statusbar_clickable="True"/>
                             </div>
                             <div class="oe_kanban_content">
                                 <t t-foreach="records" t-as="record">
@@ -61,7 +61,9 @@
             <form string="Ticket">
                 <sheet>
                     <header>
-                        <field name="status" widget="statusbar" statusbar_visible="new,in_progress,done" options="{'clickable': 1}"/>
+                        <field name="status" widget="statusbar" statusbar_visible="new,in_progress,done" options="{'clickable': 1}" invisible="status == 'waiting_for_validation'"/>
+                        <field name="status" widget="statusbar" statusbar_visible="waiting_for_validation" invisible="status != 'waiting_for_validation'"/>
+                        <button name="action_validate" string="Validate" type="object" class="oe_highlight" groups="pyper_ticketing.group_ticket_validator" invisible="status != 'waiting_for_validation'"/>
                     </header>
                     <div class="oe_title">
                         <h1>

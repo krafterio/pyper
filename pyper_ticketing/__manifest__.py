@@ -19,10 +19,11 @@
         'mail',
     ],
     'data': [
-        'views/ticket_views.xml',
-        'views/ticket_config_settings_views.xml',
-        'views/menu.xml',
+        'security/ticket_security.xml',
+        'security/ticket_validator_group.xml',
         'security/ir.model.access.csv',
-        'security/ticket_security.xml'
+        'views/ticket_config_settings_views.xml',
+        'views/ticket_views.xml',
+        'views/menu.xml',
     ],
 }
