@@ -10,8 +10,8 @@ class Ticket(models.Model):
 
     name = fields.Char(string='Name', required=True)
     description = fields.Text(string='Description')
-    user_id = fields.Many2one('res.users', string='User', default=lambda self: self.env.user, readonly=True)
-    company_id = fields.Many2one('res.company', string='Company', related='user_id.company_id')
+    user_id = fields.Many2one('res.partner', string='User', default=lambda self: self.env.user, readonly=True)
+    parent_id = fields.Many2one('res.partner', string='Company', related='user_id.parent_id')
     status = fields.Selection([
         ('waiting_for_validation', 'Waiting for validation'),
         ('new', 'New'),
@@ -32,8 +32,8 @@ class Ticket(models.Model):
         for ticket in tickets:
             is_ticket_validator_enabled = self.env['ir.config_parameter'].sudo().get_param('ticketing.ticket_validator', default=False)
             if is_ticket_validator_enabled:
-                ticket.write({'company_id': self.env.user.company_id.id, 'status': 'waiting_for_validation'})
-                if not ticket.company_id:
+                ticket.write({'parent_id': self.env.user.parent_id.id, 'status': 'waiting_for_validation'})
+                if not ticket.parent_id:
                     continue
                 ticket.send_notification_to_validator()
             else:
@@ -42,7 +42,7 @@ class Ticket(models.Model):
 
     def send_notification_to_validator(self):
         group_id = self.env.ref('pyper_ticketing.group_ticket_validator')
-        users = self.env['res.users'].search([('groups_id', 'in', group_id.id), ('company_id', '=', self.company_id.id)])
+        users = self.env['res.users'].search([('groups_id', 'in', group_id.id), ('parent_id', '=', self.parent_id.id)])
         partner_ids = [user.partner_id.id for user in users]
         self.message_subscribe(partner_ids=partner_ids)
         self.message_post(

@@ -73,6 +73,7 @@
                     <group>
                         <field name="description"/>
                         <field name="priority"/>
+                        <field name="parent_id"/>
                     </group>
                 </sheet>
                 <div class="oe_chatter">
