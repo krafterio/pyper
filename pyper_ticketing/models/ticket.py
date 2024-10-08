@@ -28,28 +28,30 @@ class Ticket(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        for vals in vals_list:
+        tickets = super(Ticket, self).create(vals_list)
+        for ticket in tickets:
             is_ticket_validator_enabled = self.env['ir.config_parameter'].sudo().get_param('ticketing.ticket_validator', default=False)
             if is_ticket_validator_enabled:
-                vals.update({'company_id': self.env.user.company_id.id})
-                vals.update({'status': 'waiting_for_validation'})
-                if not vals.get('company_id'):
+                ticket.write({'company_id': self.env.user.company_id.id, 'status': 'waiting_for_validation'})
+                if not ticket.company_id:
                     continue
-                group_id = self.env.ref('pyper_ticketing.group_ticket_validator')
-                users = self.env['res.users'].search([('groups_id', 'in', group_id.id), ('company_id', '=', vals['company_id'])])
-                for user in users:
-                    self.env['mail.message'].create({
-                        'subject': _('New Ticket Created'),
-                        'body': _('A new ticket has been created and requires validation.'),
-                        'message_type': 'notification',
-                        'subtype_id': self.env.ref('mail.mt_comment').id,
-                        'partner_ids': [(4, user.partner_id.id)],
-                        'model': self._name,
-                        'res_id': self.id,
-                    })
+                ticket.send_notification_to_validator()
             else:
-                vals.update({'validated': True})
-        return super(Ticket, self).create(vals_list)
+                ticket.write({'validated': True})
+        return tickets
+
+    def send_notification_to_validator(self):
+        group_id = self.env.ref('pyper_ticketing.group_ticket_validator')
+        users = self.env['res.users'].search([('groups_id', 'in', group_id.id), ('company_id', '=', self.company_id.id)])
+        partner_ids = [user.partner_id.id for user in users]
+        self.message_subscribe(partner_ids=partner_ids)
+        self.message_post(
+            subject=_('New Ticket Created'),
+            body=_('A new ticket has been created and requires validation.'),
+            message_type='notification',
+            subtype_id=self.env.ref('mail.mt_comment').id,
+        )
+
     
     def action_validate(self):
         self.validated = True
