@@ -12,7 +12,7 @@
     >
 
         <t t-set-slot="toggler">
-                <i class="ph ph-bell"
+                <i class="ph ph-check-square-offset"
                    role="img"
                    aria-label="Activities"
                 />
