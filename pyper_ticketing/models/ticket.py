@@ -2,10 +2,8 @@
 # Krafter Proprietary License (see LICENSE file).
 
 from odoo import models, fields, api, _
-import logging
 
 
-_logger = logging.getLogger(__name__)
 class Ticket(models.Model):
     _name = 'ticket'
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -31,14 +29,15 @@ class Ticket(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         tickets = super(Ticket, self).create(vals_list)
-        is_ticket_validator_enabled = self.env['ir.config_parameter'].sudo().get_param('ticketing.ticket_validator', default=False)
         for ticket in tickets:
+            is_ticket_validator_enabled = self.env['ir.config_parameter'].sudo().get_param('ticketing.ticket_validator', default=False)
             ticket.parent_id = self.env.user.partner_id.parent_id
             ticket.status = 'waiting_for_validation'
             if is_ticket_validator_enabled and ticket.parent_id:
                 ticket.send_notification_to_validator()
             else:
                 ticket.validated = True
+                ticket.status = 'new'
         return tickets
 
     def send_notification_to_validator(self):

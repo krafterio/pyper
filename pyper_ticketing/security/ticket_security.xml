@@ -11,5 +11,16 @@
             <field name="perm_create" eval="False"/>
             <field name="perm_unlink" eval="False"/>
         </record>
+
+        <record id="ticket_rule_admin" model="ir.rule">
+            <field name="name">Ticket: admin access rule</field>
+            <field name="model_id" ref="model_ticket"/>
+            <field name="domain_force">[('status', '!=', 'waiting_for_validation')]</field>  <!-- Permet l'accès à tous les tickets -->
+            <field name="groups" eval="[(4, ref('pyper_ticketing.group_ticket_admin'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
     </data>
 </odoo>
