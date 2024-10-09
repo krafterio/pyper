@@ -19,9 +19,10 @@
         'mail',
     ],
     'data': [
-        'security/ticket_security.xml',
+        'security/ticket_admin_group.xml',
         'security/ticket_creator_group.xml',
         'security/ticket_validator_group.xml',
+        'security/ticket_security.xml',
         'security/ir.model.access.csv',
         'views/ticket_config_settings_views.xml',
         'views/ticket_views.xml',
