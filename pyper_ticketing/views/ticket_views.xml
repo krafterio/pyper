@@ -8,6 +8,7 @@
                 <field name="name"/>
                 <field name="status"/>
                 <field name="priority"/>
+                <field name="parent_id"/>
             </tree>
         </field>
     </record>

@@ -2,16 +2,18 @@
 # Krafter Proprietary License (see LICENSE file).
 
 from odoo import models, fields, api, _
+import logging
 
 
+_logger = logging.getLogger(__name__)
 class Ticket(models.Model):
     _name = 'ticket'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(string='Name', required=True)
     description = fields.Text(string='Description')
-    user_id = fields.Many2one('res.partner', string='User', default=lambda self: self.env.user, readonly=True)
-    parent_id = fields.Many2one('res.partner', string='Company', related='user_id.parent_id')
+    partner_id = fields.Many2one('res.partner', string='User', default=lambda self: self.env.user.partner_id, readonly=True)
+    parent_id = fields.Many2one('res.partner', string='Company', related='partner_id.parent_id')
     status = fields.Selection([
         ('waiting_for_validation', 'Waiting for validation'),
         ('new', 'New'),
@@ -29,21 +31,22 @@ class Ticket(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         tickets = super(Ticket, self).create(vals_list)
+        is_ticket_validator_enabled = self.env['ir.config_parameter'].sudo().get_param('ticketing.ticket_validator', default=False)
         for ticket in tickets:
-            is_ticket_validator_enabled = self.env['ir.config_parameter'].sudo().get_param('ticketing.ticket_validator', default=False)
-            if is_ticket_validator_enabled:
-                ticket.write({'parent_id': self.env.user.parent_id.id, 'status': 'waiting_for_validation'})
-                if not ticket.parent_id:
-                    continue
+            ticket.parent_id = self.env.user.partner_id.parent_id
+            ticket.status = 'waiting_for_validation'
+            if is_ticket_validator_enabled and ticket.parent_id:
                 ticket.send_notification_to_validator()
             else:
-                ticket.write({'validated': True})
+                ticket.validated = True
         return tickets
 
     def send_notification_to_validator(self):
         group_id = self.env.ref('pyper_ticketing.group_ticket_validator')
-        users = self.env['res.users'].search([('groups_id', 'in', group_id.id), ('parent_id', '=', self.parent_id.id)])
+        users = self.env['res.users'].search([('groups_id', 'in', group_id.id)])
         partner_ids = [user.partner_id.id for user in users]
+
+
         self.message_subscribe(partner_ids=partner_ids)
         self.message_post(
             subject=_('New Ticket Created'),
@@ -52,7 +55,6 @@ class Ticket(models.Model):
             subtype_id=self.env.ref('mail.mt_comment').id,
         )
 
-    
     def action_validate(self):
         self.validated = True
         self.status = 'new'
