@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <record id="action_report_product_template" model="ir.actions.report">
+       <field name="name">Devis avec conditions generales</field>
+       <field name="model">sale.order</field>
+       <field name="report_type">qweb-pdf</field>
+       <field name="report_name">pyper_custom_report.custom_report_template</field>
+       <field name="print_report_name">'Order Report - %s' % (object.name)</field>
+       <field name="binding_model_id" ref="sale.model_sale_order"/>
+   </record>
+</odoo>
