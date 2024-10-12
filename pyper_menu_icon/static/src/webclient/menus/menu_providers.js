@@ -25,8 +25,7 @@ menu.provide = async function (env, options) {
         if (menuId) {
             const menu = menuService.getMenu(menuId);
 
-            if (menu.font_icon || menu.font_icon_color) {
-                item.props = item.props || {};
+            if ((menu.font_icon || menu.font_icon_color) && item.props) {
                 item.props.webIcon = {
                     iconClass: menu.font_icon,
                     color: menu.font_icon_color,
