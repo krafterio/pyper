@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ir_views_group_user,ir.views group_user,model_ir_views,base.group_user,1,1,1,1
+access_ir_views_field_group_user,ir.views.field group_user,model_ir_views_field,base.group_user,1,1,1,1
+access_ir_views_group_by_group_user,ir.views.group_by group_user,model_ir_views_group_by,base.group_user,1,1,1,1
+access_ir_views_order_by_group_user,ir.views.order_by group_user,model_ir_views_order_by,base.group_user,1,1,1,1

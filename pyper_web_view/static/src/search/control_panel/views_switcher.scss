@@ -1,0 +1,22 @@
+.o-views-switcher {
+    height: 100%;
+
+    .o-views-switcher--dropdown {
+        &.dropdown {
+            height: 100%;
+
+            .dropdown-toggle {
+                height: 100%;
+
+                &.btn {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+    }
+
+    .o-dropdown--menu {
+        min-width: $o-views-switcher-menu-min-width;
+    }
+}

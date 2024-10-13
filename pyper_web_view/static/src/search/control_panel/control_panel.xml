@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pyper_web_view.ControlPanel" t-inherit="web.ControlPanel" t-inherit-mode="extension">
+        <xpath expr="//t[@t-if='env.config.viewSwitcherEntries?.length > 1']" position="attributes">
+            <attribute name="t-if">displayViewSwitcherEntries</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o_control_panel_breadcrumbs')]" position="before">
+            <ViewsSwitcher/>
+        </xpath>
+    </t>
+</templates>
