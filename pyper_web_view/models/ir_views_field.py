@@ -87,6 +87,7 @@ class IrViewsField(models.Model):
             ('color_picker', 'Color Picker'),
             ('badge', 'Badge'),
             ('status', 'Status'),
+            ('progress_circular', 'Progress Circular'),
             ('progressbar', 'Progressbar'),
             ('image', 'Image'),
             ('image_url', 'Image URL'),
@@ -104,6 +105,8 @@ class IrViewsField(models.Model):
             ('many2many_tags_avatar_popover', 'Many Relations Avatar Popover'),
             ('many2many_binary', 'Many Relations Binary'),
             ('many2many_checkboxes', 'Many Relations Checkboxes'),
+            ('relative_days', 'Relative Days'),
+            ('slider', 'Slider'),
             ('handle', 'Handle'),
         ],
     )
