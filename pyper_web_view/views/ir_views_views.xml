@@ -77,6 +77,8 @@
 
                         <group name="config_view">
                             <field name="shared"/>
+                            <field name="multi_edit" invisible="view_mode != 'tree'"/>
+                            <field name="expand" invisible="view_mode != 'tree'"/>
                         </group>
                     </group>
 

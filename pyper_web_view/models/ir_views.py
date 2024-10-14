@@ -145,6 +145,16 @@ class IrViews(models.Model):
         compute='_compute_display_page_fields',
     )
 
+    multi_edit = fields.Boolean(
+        'Multi edition?',
+        help='Allow inline editing when selecting one or more records',
+    )
+
+    expand = fields.Boolean(
+        'Expand groups?',
+        help='Allow to expand all groups by when list is grouped by fields',
+    )
+
     def write(self, vals):
         res = super().write(vals)
         self._sync_ir_action_view()
@@ -310,6 +320,12 @@ class IrViews(models.Model):
 
     def _build_arch_tree(self, root):
         self.ensure_one()
+
+        if self.multi_edit:
+            root.attrib['multi_edit'] = '1'
+
+        if self.expand:
+            root.attrib['expand'] = '1'
 
         if self.res_order_by_ids:
             root.attrib['default_order'] = ', '.join([f"{ob.field_name} {ob.sort}" for ob in self.res_order_by_ids])
