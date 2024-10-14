@@ -60,7 +60,7 @@ class IrViewsField(models.Model):
         translate=True,
     )
 
-    widget=fields.Selection(
+    widget = fields.Selection(
         [
             ('char', 'Text'),
             ('text', 'Textarea'),
@@ -147,4 +147,3 @@ class IrViewsField(models.Model):
                 del vals['widget']
 
         return super().create(vals_list)
-
