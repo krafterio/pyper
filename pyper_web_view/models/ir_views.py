@@ -145,14 +145,97 @@ class IrViews(models.Model):
         compute='_compute_display_page_fields',
     )
 
+    # Common settings
+    # ---------------
+
+    no_create = fields.Boolean(
+        'No create',
+        help='Disable creation of new records',
+    )
+
+    no_edit = fields.Boolean(
+        'No edit',
+        help='Disable edition of new records',
+    )
+
+    no_delete = fields.Boolean(
+        'No delete',
+        help='Disable deletion of new records',
+    )
+
+    no_import = fields.Boolean(
+        'No import',
+        help='Disable importation of new records',
+    )
+
+    classes = fields.Char(
+        'CSS Class',
+        help='Define custom CSS classes',
+    )
+
+    jsClass = fields.Char(
+        'JS Class',
+        help='Define custom CSS classes',
+    )
+
+    sample = fields.Boolean(
+        'Sample',
+        help='Display sample data when view is empty',
+    )
+
+    # List settings
+    #--------------
+
+    editable = fields.Selection(
+        [
+            ('top', 'Top'),
+            ('bottom', 'Bottom'),
+        ],
+        string='Position of edition',
+        help='Placing of the new record creation',
+    )
+
+    no_duplicate = fields.Boolean(
+        'No duplicate',
+        help='Disable duplication of records',
+    )
+
+    no_export = fields.Boolean(
+        'No export',
+        help='Disable exportation of records',
+    )
+
+    no_open_form_view = fields.Boolean(
+        'No open form view',
+        help='Disable open form view',
+    )
+
     multi_edit = fields.Boolean(
-        'Multi edition?',
+        'Multi edition',
         help='Allow inline editing when selecting one or more records',
     )
 
     expand = fields.Boolean(
-        'Expand groups?',
+        'Expand groups',
         help='Allow to expand all groups by when list is grouped by fields',
+    )
+
+    # Kanban settings
+    # ---------------
+
+    no_group_create = fields.Boolean(
+        'No group creation',
+        help='Disable creation of groups',
+    )
+
+    no_quick_create = fields.Boolean(
+        'No quick creation',
+        help='Disable quick creation in card',
+    )
+
+    no_records_draggable = fields.Boolean(
+        'No records draggable',
+        help='Disable dragging of cards',
     )
 
     def write(self, vals):
@@ -318,17 +401,53 @@ class IrViews(models.Model):
 
             rec.arch = etree.tostring(root, pretty_print=True, encoding='unicode')
 
-    def _build_arch_tree(self, root):
+    def _build_arch_common(self, root):
         self.ensure_one()
+
+        if self.no_create:
+            root.attrib['create'] = '0'
+
+        if self.no_edit:
+            root.attrib['edit'] = '0'
+
+        if self.no_delete:
+            root.attrib['delete'] = '0'
+
+        if self.no_import:
+            root.attrib['import'] = '0'
+
+        if self.classes:
+            root.attrib['class'] = self.classes
+
+        if self.jsClass:
+            root.attrib['js_class'] = self.jsClass
+
+        if self.sample:
+            root.attrib['sample'] = '1'
+
+        if self.res_order_by_ids:
+            root.attrib['default_order'] = ', '.join([f"{ob.field_name} {ob.sort}" for ob in self.res_order_by_ids])
+
+    def _build_arch_tree(self, root):
+        self._build_arch_common(root)
+
+        if self.editable:
+            root.attrib['editable'] = self.editable
+
+        if self.no_duplicate:
+            root.attrib['duplicate'] = '0'
+
+        if self.no_export:
+            root.attrib['export_xlsx'] = '0'
+
+        if self.no_open_form_view:
+            root.attrib['open_form_view'] = '0'
 
         if self.multi_edit:
             root.attrib['multi_edit'] = '1'
 
         if self.expand:
             root.attrib['expand'] = '1'
-
-        if self.res_order_by_ids:
-            root.attrib['default_order'] = ', '.join([f"{ob.field_name} {ob.sort}" for ob in self.res_order_by_ids])
 
         for field in self.res_field_ids:
             tree_field = etree.SubElement(root, 'field')
@@ -348,7 +467,13 @@ class IrViews(models.Model):
                 tree_field.attrib['optional'] = field.optional
 
     def _build_arch_kanban(self, root):
-        self.ensure_one()
+        self._build_arch_common(root)
 
-        if self.res_order_by_ids:
-            root.attrib['default_order'] = ', '.join([f"{ob.field_name} {ob.sort}" for ob in self.res_order_by_ids])
+        if self.no_group_create:
+            root.attrib['group_create'] = 'false'
+
+        if self.no_quick_create:
+            root.attrib['quick_create'] = 'false'
+
+        if self.no_records_draggable:
+            root.attrib['records_draggable'] = 'false'

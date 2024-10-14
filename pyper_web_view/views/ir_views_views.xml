@@ -77,8 +77,6 @@
 
                         <group name="config_view">
                             <field name="shared"/>
-                            <field name="multi_edit" invisible="view_mode != 'tree'"/>
-                            <field name="expand" invisible="view_mode != 'tree'"/>
                         </group>
                     </group>
 
@@ -120,6 +118,36 @@
                                 </tree>
                             </field>
                         </page>
+
+                        <page name="advanced" string="Advanced">
+                            <group>
+                                <group name="advanced_mode_tree" string="List settings" invisible="view_mode != 'tree'">
+                                    <field name="editable"/>
+                                    <field name="multi_edit"/>
+                                    <field name="expand"/>
+                                    <field name="no_export"/>
+                                    <field name="no_duplicate"/>
+                                    <field name="no_open_form_view"/>
+                                </group>
+
+                                <group name="advanced_mode_kanban" string="Kanban settings" invisible="view_mode != 'kanban'" groups="base.group_no_one">
+                                    <field name="no_group_create"/>
+                                    <field name="no_quick_create"/>
+                                    <field name="no_records_draggable"/>
+                                </group>
+
+                                <group name="advanced_mode_global" string="Common settings">
+                                    <field name="limit"/>
+                                    <field name="no_create"/>
+                                    <field name="no_edit"/>
+                                    <field name="no_delete"/>
+                                    <field name="no_import"/>
+                                    <field name="sample"/>
+                                    <field name="classes"/>
+                                    <field name="jsClass"/>
+                                </group>
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -138,11 +166,10 @@
                 <field name="res_model_id" options="{'no_create': True, 'no_edit': True}"/>
             </xpath>
 
-            <xpath expr="//page[@name='page_res_order_by_ids']" position="after">
-                <page name="page_info" string="Information">
+            <xpath expr="//page[@name='advanced']" position="after">
+                <page name="page_technical" string="Technical">
                     <group>
-                        <group name="info" string="Other information" groups="base.group_no_one">
-                            <field name="limit"/>
+                        <group name="info" string="Technical information" groups="base.group_no_one">
                             <field name="context"/>
                             <field name="ir_action_id" groups="base.group_no_one"/>
                             <field name="ir_view_id" groups="base.group_no_one"/>
