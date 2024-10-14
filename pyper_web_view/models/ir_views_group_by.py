@@ -55,6 +55,26 @@ class IrViewsGroupBy(models.Model):
         compute='_compute_field_id_domain',
     )
 
+    field_type = fields.Selection(
+        related='field_id.ttype',
+    )
+
+    grouping_type = fields.Selection(
+        [
+            ('day', 'Day'),
+            ('week', 'Week'),
+            ('month', 'Month'),
+            ('quarter', 'Quarter'),
+            ('year', 'Year'),
+        ],
+        string='Grouping type',
+    )
+
+    available_grouping_type = fields.Boolean(
+        string='Available grouping type',
+        compute='_compute_available_grouping_type',
+    )
+
     @api.depends('field_id')
     def _compute_field_name(self):
         for rec in self:
@@ -71,3 +91,8 @@ class IrViewsGroupBy(models.Model):
     def _compute_field_id_domain(self):
         for rec in self:
             rec.field_id_domain = [('model_id', '=', rec.model_id.id), ('store', '=', True)]
+
+    @api.depends('field_type')
+    def _compute_available_grouping_type(self):
+        for rec in self:
+            rec.available_grouping_type = rec.field_type in ['date', 'datetime']

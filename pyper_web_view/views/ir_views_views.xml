@@ -102,8 +102,10 @@
                             <field name="res_group_by_ids" class="px-3">
                                 <tree editable="bottom" multi_edit="True">
                                     <field name="field_id_domain" column_invisible="True"/>
+                                    <field name="available_grouping_type" column_invisible="True"/>
                                     <field name="sequence" widget="handle"/>
                                     <field name="field_id" domain="field_id_domain" options="{'no_create': True, 'no_edit': True}"/>
+                                    <field name="grouping_type" invisible="not available_grouping_type" required="available_grouping_type"/>
                                 </tree>
                             </field>
                         </page>

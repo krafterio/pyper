@@ -275,7 +275,7 @@ class IrViews(models.Model):
 
                 if views.res_group_by_ids:
                     ctx.update({
-                        'group_by': [gb.field_name for gb in views.res_group_by_ids],
+                        'group_by': [gb.field_name + (f":{gb.grouping_type}" if gb.grouping_type else '') for gb in views.res_group_by_ids],
                     })
 
                 if views.res_order_by_ids:
@@ -365,8 +365,15 @@ class IrViews(models.Model):
         for rec in self:
             for gb in rec.res_group_by_ids:
                 if gb.field_name and not gb.field_id:
-                    gb.field_id = gb.field_id.search([('model', '=', self.res_model_name), ('name', '=', gb.field_name)], limit=1)
+                    parts = gb.field_name.split(':', 1)
+                    field_name = parts[0]
+                    grouping_type = parts[1] if len(parts) > 1 else None
+
+                    gb.field_id = gb.field_id.search([('model', '=', self.res_model_name), ('name', '=', field_name)], limit=1)
                     gb.field_name = rec.res_model_id.model
+
+                    if gb.field_id:
+                        gb.grouping_type = grouping_type
 
     @api.onchange('res_order_by_ids')
     def _onchange_res_order_by_ids(self):
