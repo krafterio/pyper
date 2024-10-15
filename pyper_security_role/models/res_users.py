@@ -59,7 +59,7 @@ class ResUsers(models.Model):
     @api.depends('groups_id', 'groups_id.implied_ids', 'role_ids')
     def _compute_has_custom_groups(self):
         for user in self:
-            user.has_custom_groups = len(get_custom_groups(user)) > 0
+            user.has_custom_groups = user.role_id and len(get_custom_groups(user)) > 0
 
     @api.onchange('role_id')
     def _onchange_role_id(self):
