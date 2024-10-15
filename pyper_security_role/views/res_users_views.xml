@@ -20,6 +20,8 @@
         <field name="arch" type="xml">
             <xpath expr="//page[@name='access_rights']/group[1]" position="before">
                 <group string="Roles management">
+                    <field name="role_ids" invisible="True" force_save="True"/>
+
                     <group>
                         <field name="role_id" options="{'no_create': True, 'no_edit': True}" context="{'display_role_name': True}"/>
 
