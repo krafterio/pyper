@@ -6,7 +6,7 @@
     'category': 'Manufacturing/Repair',
     'license': 'Other proprietary',
     'description': 'This addon adds ability to manage product condition.',
-    'version': '17.0.0.0',
+    'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',

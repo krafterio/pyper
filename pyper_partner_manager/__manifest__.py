@@ -6,7 +6,7 @@
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Override of default sale addon.',
-    'version': '17.0.0.0',
+    'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
