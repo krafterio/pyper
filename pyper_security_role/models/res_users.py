@@ -78,7 +78,7 @@ class ResUsers(models.Model):
         res = super().write(vals)
 
         # Reset user security groups when main role is updated
-        if 'role_id' in vals:
+        if 'role_id' in vals and vals['role_id'] != False:
             self.reset_security_groups()
 
         return res
