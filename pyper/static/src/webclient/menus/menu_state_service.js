@@ -39,6 +39,10 @@ export class MenuState {
                 return true;
             }
 
+            if (!this.currentMenuId) {
+                return false;
+            }
+
             const currentMenu = this.menuService.getMenuAsTree(this.currentMenuId);
 
             if (currentMenu && currentMenu.children && currentMenu.children[0] === menu.id) {
