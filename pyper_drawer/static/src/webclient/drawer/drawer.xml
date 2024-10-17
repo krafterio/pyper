@@ -83,6 +83,7 @@
                         iconData="menu.webIconData"
                         fontIcon="menu.font_icon"
                         fontIconColor="menu.font_icon_color"
+                        emojiIcon="menu.emoji_icon"
                         label="menu.name"
                     />
                 </t>
@@ -154,6 +155,7 @@
                 iconData="menu.webIconData"
                 fontIcon="menu.font_icon"
                 fontIconColor="menu.font_icon_color"
+                emojiIcon="menu.emoji_icon"
                 label="menu.name"
             />
         </t>

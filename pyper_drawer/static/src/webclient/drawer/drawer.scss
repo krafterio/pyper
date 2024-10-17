@@ -112,6 +112,10 @@
     border-radius: $o-drawer-item-icon-border-radius;
 }
 
+.o_drawer--item-icon-emoji {
+    margin-top: $o-drawer-item-icon-emoji-top;
+}
+
 .o_drawer--item-icon-empty {
     display: flex;
     align-items: center;

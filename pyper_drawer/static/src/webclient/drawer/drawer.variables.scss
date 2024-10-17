@@ -21,6 +21,7 @@ $o-drawer-item-icon-font-width: $o-drawer-item-icon-width !default;
 $o-drawer-item-icon-border-radius: $o-border-radius-lg !default;
 $o-drawer-item-padding-v: 6px !default;
 $o-drawer-item-padding-h: ($o-drawer-mini-width - $o-drawer-item-icon-width) / 2 !default;
+$o-drawer-item-icon-emoji-top: -1 * ($o-drawer-item-padding-h / 2) !default;
 
 $o-drawer-item-color: inherit !default;
 $o-drawer-item-bg: inherit !default;

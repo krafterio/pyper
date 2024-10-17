@@ -24,6 +24,7 @@
                 <t t-set="iconData" t-value="props.iconData"/>
                 <t t-set="fontIcon" t-value="props.fontIcon"/>
                 <t t-set="fontIconColor" t-value="props.fontIconColor"/>
+                <t t-set="emojiIcon" t-value="props.emojiIcon"/>
                 <t t-set="label" t-value="props.label"/>
                 <t t-set="showLabel" t-value="false"/>
                 <t t-set="onItemMouseEnterFct" t-value="this.onItemMouseEnter.bind(this)"/>
@@ -51,6 +52,7 @@
                 <t t-set="iconData" t-value="props.iconData"/>
                 <t t-set="fontIcon" t-value="props.fontIcon"/>
                 <t t-set="fontIconColor" t-value="props.fontIconColor"/>
+                <t t-set="emojiIcon" t-value="props.emojiIcon"/>
                 <t t-set="label" t-value="props.label"/>
                 <t t-set="showLabel" t-value="!drawerService.isMinified"/>
             </t>
@@ -81,7 +83,11 @@
             t-on-mouseenter="onItemMouseEnterFct ? (ev) => onItemMouseEnterFct(ev) : () => {}"
             t-on-mouseleave="onItemMouseLeaveFct ? (ev) => onItemMouseLeaveFct(ev) : () => {}"
         >
-            <div t-if="withIcon and fontIcon" class="o_drawer--item-icon-empty" t-att-style="'color: ' + (fontIconColor || 'inherit') + ';'">
+            <div t-if="withIcon and emojiIcon" class="o_drawer--item-icon o_drawer--item-icon-emoji">
+                <t t-out="emojiIcon"/>
+            </div>
+
+            <div t-elif="withIcon and fontIcon" class="o_drawer--item-icon-empty" t-att-style="'color: ' + (fontIconColor || 'inherit') + ';'">
                 <i t-att-class="fontIcon"/>
             </div>
 

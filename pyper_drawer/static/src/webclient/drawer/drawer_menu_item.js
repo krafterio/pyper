@@ -56,6 +56,10 @@ export class DrawerMenuItem extends Component {
             type: String,
             optional: true,
         },
+        emojiIcon: {
+            type: String,
+            optional: true,
+        },
         label: {
             type: String,
             optional: true,
@@ -128,7 +132,7 @@ export class DrawerMenuItem extends Component {
     }
 
     get displayIcon() {
-        return this.props.withIcon || !!this.props.fontIcon;
+        return this.props.withIcon || !!this.props.fontIcon || !!this.props.emojiIcon;
     }
 
     get isPopoverEnabled() {
