@@ -17,7 +17,7 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'pyper_url_share/static/src/**/*',
+            'pyper_url_share/static/src/webclient/**/*',
         ],
     },
 }

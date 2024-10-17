@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <t t-name="pyper_url_share.SystrayButton">
-        <div class="o-dropdown dropdown o-dropdown--no-caret o-url-share-Systray-class">
+    <t t-name="pyper_url_share.UrlShareMenu">
+        <div class="o-dropdown dropdown o-dropdown--no-caret o-command-UrlShareSystray-class">
             <button
                 type="button"
                 class="dropdown-toggle"
