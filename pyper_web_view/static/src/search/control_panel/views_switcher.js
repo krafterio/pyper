@@ -48,6 +48,10 @@ export class ViewsSwitcher extends Component {
                 }
 
                 this.env.bus.trigger('CLEAR-CACHES');
+
+                if (view['ir_action_id'] && view['ir_action_id'][0] && view['ir_action_id'][0] === this.env?.config?.actionId) {
+                    this.selectView(view);
+                }
             },
             onRecordDiscarded: () => {},
             onClose: () => {},
