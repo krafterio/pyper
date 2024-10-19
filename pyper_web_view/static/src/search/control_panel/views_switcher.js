@@ -9,6 +9,18 @@ import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {useOpenMany2XRecord, useSelectCreate} from '@web/views/fields/relational_utils';
 import {ConfirmationDialog} from '@web/core/confirmation_dialog/confirmation_dialog';
 
+export const TRUE_VALUES = [
+    'True',
+    'true',
+    '1',
+];
+
+export const FALSE_VALUES = [
+    'False',
+    'false',
+    '0',
+];
+
 export class ViewsSwitcher extends Component {
     static template = 'pyper_web_view.ViewsSwitcher';
 
@@ -295,42 +307,122 @@ export class ViewsSwitcher extends Component {
             }));
         }
 
+        const arch = this.env.config.viewArch;
+
+        if (FALSE_VALUES.includes(arch.getAttribute('create'))) {
+            context['default_no_create'] = true;
+        }
+
+        if (FALSE_VALUES.includes(arch.getAttribute('edit'))) {
+            context['default_no_edit'] = true;
+        }
+
+        if (FALSE_VALUES.includes(arch.getAttribute('delete'))) {
+            context['default_no_delete'] = true;
+        }
+
+        if (FALSE_VALUES.includes(arch.getAttribute('import'))) {
+            context['default_no_import'] = true;
+        }
+
+        if (TRUE_VALUES.includes(arch.getAttribute('sample'))) {
+            context['sample'] = true;
+        }
+
+        if (arch.hasAttribute('class')) {
+            context['default_classes'] = arch.getAttribute('class');
+        }
+
+        if (arch.hasAttribute('js_class')) {
+            context['default_js_class'] = arch.getAttribute('js_class');
+        }
+
         if (['tree', 'list'].includes(this.currentViewType)) {
-            const fields = this.env.config.viewArch.querySelectorAll('field');
+            this._buildTreeContext(context);
+        }
 
-            fields.forEach(field => {
-                const vals = {
-                    'field_name': field.getAttribute('name'),
-                };
-                const string = field.getAttribute('string');
-                const invisible = field.getAttribute('column_invisible');
-                const optional = field.getAttribute('optional');
-                const widget = field.getAttribute('widget');
-                const options = field.getAttribute('options');
-
-                if (string) {
-                    vals['label'] = string;
-                }
-
-                if (invisible) {
-                    vals['optional'] = 'invisible';
-                } else if (optional) {
-                    vals['optional'] = optional;
-                }
-
-                if (widget) {
-                    vals['widget'] = widget;
-                }
-
-                if (options) {
-                    vals['options'] = options;
-                }
-
-                context['default_res_field_ids'].push(x2ManyCommands.create(undefined, vals));
-            });
+        if ('kanban' === this.currentViewType) {
+            this._buildKanbanContext(context);
         }
 
         return context;
+    }
+
+    _buildTreeContext(context) {
+        const arch = this.env.config.viewArch;
+
+        if (TRUE_VALUES.includes(arch.getAttribute('editable'))) {
+            context['default_editable'] = true;
+        }
+
+        if (FALSE_VALUES.includes(arch.getAttribute('duplicate'))) {
+            context['default_no_duplicate'] = true;
+        }
+
+        if (FALSE_VALUES.includes(arch.getAttribute('export_xlsx'))) {
+            context['default_no_export'] = true;
+        }
+
+        if (FALSE_VALUES.includes(arch.getAttribute('open_form_view'))) {
+            context['default_no_open_form_view'] = true;
+        }
+
+        if (TRUE_VALUES.includes(arch.getAttribute('multi_edit'))) {
+            context['default_multi_edit'] = true;
+        }
+
+        if (TRUE_VALUES.includes(arch.getAttribute('expand'))) {
+            context['default_expand'] = true;
+        }
+
+        const fields = this.env.config.viewArch.querySelectorAll('field');
+
+        fields.forEach(field => {
+            const vals = {
+                'field_name': field.getAttribute('name'),
+            };
+            const string = field.getAttribute('string');
+            const invisible = field.getAttribute('column_invisible');
+            const optional = field.getAttribute('optional');
+            const widget = field.getAttribute('widget');
+            const options = field.getAttribute('options');
+
+            if (string) {
+                vals['label'] = string;
+            }
+
+            if (invisible) {
+                vals['optional'] = 'invisible';
+            } else if (optional) {
+                vals['optional'] = optional;
+            }
+
+            if (widget) {
+                vals['widget'] = widget;
+            }
+
+            if (options) {
+                vals['options'] = options;
+            }
+
+            context['default_res_field_ids'].push(x2ManyCommands.create(undefined, vals));
+        });
+    }
+
+    _buildKanbanContext(context) {
+        const arch = this.env.config.viewArch;
+
+        if (FALSE_VALUES.includes(arch.getAttribute('group_create'))) {
+            context['default_no_group_create'] = true;
+        }
+
+        if (FALSE_VALUES.includes(arch.getAttribute('quick_create'))) {
+            context['default_no_quick_create'] = true;
+        }
+
+        if (FALSE_VALUES.includes(arch.getAttribute('records_draggable'))) {
+            context['default_no_records_draggable'] = true;
+        }
     }
 
     async _onViewDeleted(view) {}
