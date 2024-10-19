@@ -179,7 +179,7 @@ class IrViews(models.Model):
         help='Define custom CSS classes',
     )
 
-    jsClass = fields.Char(
+    js_class = fields.Char(
         'JS Class',
         help='Define custom CSS classes',
     )
@@ -432,8 +432,8 @@ class IrViews(models.Model):
         if self.classes:
             root.attrib['class'] = self.classes
 
-        if self.jsClass:
-            root.attrib['js_class'] = self.jsClass
+        if self.js_class:
+            root.attrib['js_class'] = self.js_class
 
         if self.sample:
             root.attrib['sample'] = '1'

@@ -159,7 +159,7 @@
                                     <field name="no_import"/>
                                     <field name="sample" invisible="not expert_mode" force_save="1"/>
                                     <field name="classes" invisible="not expert_mode" force_save="1"/>
-                                    <field name="jsClass" invisible="not expert_mode" force_save="1"/>
+                                    <field name="js_class" invisible="not expert_mode" force_save="1"/>
                                 </group>
                             </group>
                         </page>
