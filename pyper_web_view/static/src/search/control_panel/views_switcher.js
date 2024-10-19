@@ -101,7 +101,7 @@ export class ViewsSwitcher extends Component {
     }
 
     get currentLimit() {
-        return this.env.model?.config?.limit || this.actionService?.currentController?.action?.limit || 80;
+        return this.env.model?.config?.initialLimit || this.actionService?.currentController?.action?.limit || 80;
     }
 
     get currentDomain() {
