@@ -33,8 +33,6 @@
                         class="'o-views-switcher--dropdown-item'"
                     >
                         <span class="d-flex p-0 align-items-center justify-content-between o-views-switcher-dropdown-item-content">
-                            <i class="me-2 small" t-att-class="getViewIcon(view.view_mode)"/>
-
                             <span class="flex-grow-1 text-truncate">
                                 <t t-out="view.name"/>
                             </span>
