@@ -47,7 +47,7 @@ export class ViewsSwitcher extends Component {
                     this.state.views.splice(vIdx, 1, view);
                 }
 
-                this.selectView(view);
+                this.env.bus.trigger('CLEAR-CACHES');
             },
             onRecordDiscarded: () => {},
             onClose: () => {},
@@ -58,6 +58,10 @@ export class ViewsSwitcher extends Component {
             activeActions: {
                 write: true,
             },
+            onCreateEdit: async ({context}) => {
+                await this.openMany2X({context});
+            },
+            onUnselect: () => {},
             onSelected: (resId) => {
                 const resIds = Array.isArray(resId) ? resId : [resId];
 
@@ -240,6 +244,8 @@ export class ViewsSwitcher extends Component {
                 if (vIdx !== -1) {
                     this.state.views.splice(vIdx, 1);
                 }
+
+                this.env.bus.trigger('CLEAR-CACHES');
             },
             cancel: () => {},
         };
