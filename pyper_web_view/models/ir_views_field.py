@@ -56,7 +56,7 @@ class IrViewsField(models.Model):
     )
 
     label = fields.Char(
-        string='Label',
+        string='Custom label',
         translate=True,
     )
 

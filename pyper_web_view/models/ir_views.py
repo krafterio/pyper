@@ -30,7 +30,7 @@ class IrViews(models.Model):
     )
 
     shared = fields.Boolean(
-        'Is shared?',
+        'View shared',
         compute='_compute_shared',
         inverse='_inverse_shared',
     )
@@ -106,6 +106,12 @@ class IrViews(models.Model):
         'ir.views.order_by',
         'view_id',
         string='Orders by',
+    )
+
+    expert_mode = fields.Boolean(
+        'Expert mode',
+        store=False,
+        help='Display more options to configure the view',
     )
 
     limit = fields.Integer(
