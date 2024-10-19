@@ -48,7 +48,7 @@ class IrViews(models.Model):
         return {
             'name': self.name,
             'action': str(self.ir_action_id.type) + ',' + str(self.ir_action_id.id),
-            'menu_category': 'views',
+            'menu_category': 'shared_views' if self.shared else 'my_views',
             'view_id': self.id,
             'user_id': self.env.user.id,
         }

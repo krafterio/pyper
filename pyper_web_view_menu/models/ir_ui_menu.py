@@ -9,7 +9,8 @@ class IrUiMenu(models.Model):
 
     menu_category = fields.Selection(
         selection_add=[
-            ('views', 'Views'),
+            ('my_views', 'My views'),
+            ('shared_views', 'Shared views'),
         ],
     )
 
