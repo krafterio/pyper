@@ -229,10 +229,10 @@ export class ViewsSwitcher extends Component {
     }
 
     openConfirmationDialog(viewId) {
-        const {shared} = this.state.views.find((view) => view.id === viewId);
+        const view = this.state.views.find((view) => view.id === viewId);
         const dialogProps = {
             title: _t('Warning'),
-            body: shared
+            body: view.shared
                 ? _t('This view is shared and will be removed for everyone.')
                 : _t('Are you sure that you want to remove this view?'),
             confirmLabel: _t('Delete view'),
@@ -242,6 +242,8 @@ export class ViewsSwitcher extends Component {
                 if (this.state.selectedView?.id === viewId) {
                     this.selectView(null);
                 }
+
+                await this._onViewDeleted(view);
 
                 const vIdx = this.state.views.findIndex(v => v.id === viewId);
 
@@ -278,8 +280,6 @@ export class ViewsSwitcher extends Component {
         context['default_res_order_by_ids'] = [];
 
         if (this.currentGroupBy.length > 0) {
-            const items = [];
-
             this.currentGroupBy.forEach((groupName) => {
                 context['default_res_group_by_ids'].push(x2ManyCommands.create(undefined, {
                     'field_name': groupName,
@@ -327,4 +327,6 @@ export class ViewsSwitcher extends Component {
 
         return context;
     }
+
+    async _onViewDeleted(view) {}
 }
