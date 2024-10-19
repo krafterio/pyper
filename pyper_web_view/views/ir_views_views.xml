@@ -92,7 +92,7 @@
                                            widget="many2many_tags"
                                            options="{'no_create': True, 'no_edit': True}"
                                            groups="base.group_no_one"
-                                           invisible="not expert_mode"
+                                           invisible="not expert_mode or not shared"
                                     />
                                 </group>
                             </group>
