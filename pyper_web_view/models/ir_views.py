@@ -156,22 +156,22 @@ class IrViews(models.Model):
 
     no_create = fields.Boolean(
         'No create',
-        help='Disable creation of new records',
+        help='Disable creation of records',
     )
 
     no_edit = fields.Boolean(
         'No edit',
-        help='Disable edition of new records',
+        help='Disable edition of records',
     )
 
     no_delete = fields.Boolean(
         'No delete',
-        help='Disable deletion of new records',
+        help='Disable deletion of records',
     )
 
     no_import = fields.Boolean(
         'No import',
-        help='Disable importation of new records',
+        help='Disable importation of records',
     )
 
     classes = fields.Char(
@@ -181,7 +181,7 @@ class IrViews(models.Model):
 
     js_class = fields.Char(
         'JS Class',
-        help='Define custom CSS classes',
+        help='Define the CSS class to extend the Form Controller',
     )
 
     sample = fields.Boolean(
