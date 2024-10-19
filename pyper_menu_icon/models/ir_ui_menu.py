@@ -44,6 +44,7 @@ class IrUiMenu(models.Model):
 
     def load_web_menus(self, debug):
         menus = super().load_web_menus(debug)
+        menu_categories = dict(self._fields['menu_category']._description_selection(self.env))
 
         ids = list(menus.keys())
         ids.remove('root')
@@ -77,7 +78,7 @@ class IrUiMenu(models.Model):
 
             if category:
                 vals['category'] = category
-                vals['category_display_name'] = dict(self._fields['menu_category'].selection).get(category)
+                vals['category_display_name'] = menu_categories.get(category)
 
             if vals:
                 menus.get(menu_value.get('id')).update(vals)
