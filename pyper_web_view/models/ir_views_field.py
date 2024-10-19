@@ -86,7 +86,6 @@ class IrViewsField(models.Model):
             ('color', 'Color'),
             ('color_picker', 'Color Picker'),
             ('badge', 'Badge'),
-            ('status', 'Status'),
             ('progress_circular', 'Progress Circular'),
             ('progressbar', 'Progressbar'),
             ('image', 'Image'),
