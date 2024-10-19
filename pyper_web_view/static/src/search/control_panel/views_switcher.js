@@ -306,6 +306,7 @@ export class ViewsSwitcher extends Component {
                 const invisible = field.getAttribute('column_invisible');
                 const optional = field.getAttribute('optional');
                 const widget = field.getAttribute('widget');
+                const options = field.getAttribute('options');
 
                 if (string) {
                     vals['label'] = string;
@@ -319,6 +320,10 @@ export class ViewsSwitcher extends Component {
 
                 if (widget) {
                     vals['widget'] = widget;
+                }
+
+                if (options) {
+                    vals['options'] = options;
                 }
 
                 context['default_res_field_ids'].push(x2ManyCommands.create(undefined, vals));

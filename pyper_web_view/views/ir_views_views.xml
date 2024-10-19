@@ -106,6 +106,7 @@
                                     <field name="label"/>
                                     <field name="widget" column_invisible="not parent.expert_mode" force_save="1"/>
                                     <field name="optional" placeholder="Always show" column_invisible="not parent.expert_mode" force_save="1"/>
+                                    <field name="options" column_invisible="not parent.expert_mode" force_save="1" widget="char"/>
                                 </tree>
                             </field>
                         </page>

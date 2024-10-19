@@ -119,6 +119,10 @@ class IrViewsField(models.Model):
         string='Optional',
     )
 
+    options = fields.Char(
+        string='Options',
+    )
+
     @api.depends('field_id')
     def _compute_field_name(self):
         for rec in self:

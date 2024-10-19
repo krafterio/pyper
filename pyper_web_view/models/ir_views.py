@@ -479,6 +479,9 @@ class IrViews(models.Model):
             elif field.optional:
                 tree_field.attrib['optional'] = field.optional
 
+            if field.options:
+                tree_field.attrib['options'] = field.options
+
     def _build_arch_kanban(self, root):
         self._build_arch_common(root)
 
