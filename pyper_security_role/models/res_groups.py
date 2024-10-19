@@ -14,6 +14,12 @@ class ResGroups(models.Model):
         store=True,
     )
 
+    expert_mode = fields.Boolean(
+        'Expert mode',
+        store=False,
+        help='Display more options to configure the role',
+    )
+
     def _compute_display_name(self):
         super()._compute_display_name()
 

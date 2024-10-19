@@ -67,8 +67,52 @@
                 <attribute name="invisible">True</attribute>
             </xpath>
 
+            <xpath expr="//group/field[@name='share']" position="after">
+                <field name="expert_mode" widget="boolean_toggle" options="{'autosave': False}"/>
+            </xpath>
+
+            <xpath expr="//notebook" position="attributes">
+                <attribute name="invisible">not expert_mode</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='users']" position="before">
+                <page name="inherit_groups_expert_mode" string="Security groups">
+                    <label for="implied_ids" string="All users with this role have automatically the following security groups."/>
+                    <field name="implied_ids"
+                           context="{
+                               'tree_view_ref': 'pyper_security_role.view_groups_tree',
+                           }"
+                    />
+                </page>
+            </xpath>
+
             <xpath expr="//page[@name='users']" position="attributes">
                 <attribute name="groups">pyper_security_role.group_multi_role</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='inherit_groups']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+
+            <xpath expr="//notebook" position="after">
+                <notebook name="notebook_simple_role" invisible="expert_mode">
+                    <page name="role_inherit_groups" string="Security groups">
+                        <label for="implied_ids" string="All users with this role have automatically the following security groups."/>
+                        <field name="implied_ids"
+                               context="{
+                                   'tree_view_ref': 'pyper_security_role.view_groups_tree',
+                               }"
+                        />
+                    </page>
+
+                    <page name="role_users" string="Users" groups="pyper_security_role.group_multi_role">
+                        <field name="users" context="{'search_default_filter_no_share':1}"/>
+                    </page>
+
+                    <page name="role_notes" string="Notes">
+                        <field name="comment"/>
+                    </page>
+                </notebook>
             </xpath>
         </field>
     </record>

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0-20240525\n"
+"Project-Id-Version: Odoo Server 17.0-20241015\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-31 07:15+0000\n"
-"PO-Revision-Date: 2024-08-31 07:15+0000\n"
+"POT-Creation-Date: 2024-10-19 17:26+0000\n"
+"PO-Revision-Date: 2024-10-19 17:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -40,6 +40,14 @@ msgid "Action to reset user access rights"
 msgstr "Action pour réinitialiser les droits d'accès des utilisateurs"
 
 #. module: pyper_security_role
+#: model_terms:ir.ui.view,arch_db:pyper_security_role.view_security_role_form
+msgid ""
+"All users with this role have automatically the following security groups."
+msgstr ""
+"Tous les utilisateurs avec ce rôle disposent automatiquement des groupes de "
+"sécurité suivants."
+
+#. module: pyper_security_role
 #: model_terms:ir.ui.view,arch_db:pyper_security_role.res_config_settings_view_form
 msgid "Allow to set multiple roles on users"
 msgstr "Permet de définir plusieurs rôles sur les utilisateurs"
@@ -67,12 +75,22 @@ msgid "Config Settings"
 msgstr "Paramètres de configuration"
 
 #. module: pyper_security_role
+#: model:ir.model.fields,help:pyper_security_role.field_res_groups__expert_mode
+msgid "Display more options to configure the role"
+msgstr "Afficher plus d’options pour configurer le rôle"
+
+#. module: pyper_security_role
 #: model:ir.model.fields,help:pyper_security_role.field_res_config_settings__user_multi_roles
 #: model_terms:ir.ui.view,arch_db:pyper_security_role.res_config_settings_view_form
 msgid "Enable this option to allow multiple roles to be managed on users"
 msgstr ""
 "Activez cette option pour permettre la gestion de plusieurs rôles sur les "
 "utilisateurs"
+
+#. module: pyper_security_role
+#: model:ir.model.fields,field_description:pyper_security_role.field_res_groups__expert_mode
+msgid "Expert mode"
+msgstr "Mode expert"
 
 #. module: pyper_security_role
 #: model:ir.model.fields,field_description:pyper_security_role.field_res_users__role_ids
@@ -107,6 +125,11 @@ msgstr "Gérer plusieurs rôles d’utilisateur"
 #: model_terms:ir.ui.view,arch_db:pyper_security_role.res_config_settings_view_form
 msgid "Multiple roles on users"
 msgstr "Plusieurs rôles sur les utilisateurs"
+
+#. module: pyper_security_role
+#: model_terms:ir.ui.view,arch_db:pyper_security_role.view_security_role_form
+msgid "Notes"
+msgstr ""
 
 #. module: pyper_security_role
 #. odoo-python
@@ -148,6 +171,11 @@ msgid "Security"
 msgstr "Sécurité"
 
 #. module: pyper_security_role
+#: model_terms:ir.ui.view,arch_db:pyper_security_role.view_security_role_form
+msgid "Security groups"
+msgstr "Groupes de sécurité"
+
+#. module: pyper_security_role
 #: model_terms:ir.ui.view,arch_db:pyper_security_role.view_users_form
 msgid "See custom access rights"
 msgstr "Voir les droits d’accès personnalisés"
@@ -155,4 +183,9 @@ msgstr "Voir les droits d’accès personnalisés"
 #. module: pyper_security_role
 #: model:ir.model,name:pyper_security_role.model_res_users
 msgid "User"
-msgstr ""
+msgstr "Utilisateur"
+
+#. module: pyper_security_role
+#: model_terms:ir.ui.view,arch_db:pyper_security_role.view_security_role_form
+msgid "Users"
+msgstr "Utilisateurs"
