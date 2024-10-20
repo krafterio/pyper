@@ -13,7 +13,7 @@
     'website': 'https://krafter.io',
     'depends': [
         'product',
-		'pyper_menu_icon',
+		'pyper_menu',
     ],
     'data': [
         # Security

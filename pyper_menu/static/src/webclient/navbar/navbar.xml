@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-    <t t-name="pyper_menu_icon.NavBar" t-inherit="web.NavBar" t-inherit-mode="extension">
+    <t t-name="pyper_menu.NavBar" t-inherit="web.NavBar" t-inherit-mode="extension">
         <xpath expr="//header[hasclass('o_navbar')]/nav[hasclass('o_main_navbar')]/div[hasclass('o_menu_systray')]" position="before">
             <div class="o_menu_systray o_menu_systray--root-menu d-flex flex-shrink-0 ms-auto" role="menu">
-                <t t-call="pyper_menu_icon.NavBar.SystemTray">
+                <t t-call="pyper_menu.NavBar.SystemTray">
                     <t t-set="items" t-value="systemTrayItems" />
                 </t>
             </div>
         </xpath>
     </t>
 
-    <t t-name="pyper_menu_icon.NavBar.SectionsMenu" t-inherit="web.NavBar.SectionsMenu" t-inherit-mode="extension" owl="1">
+    <t t-name="pyper_menu.NavBar.SectionsMenu" t-inherit="web.NavBar.SectionsMenu" t-inherit-mode="extension" owl="1">
         <xpath expr="//DropdownItem" position="attributes">
             <attribute name="class">'o_nav_entry' + (sectionIsSelected(section) ? ' o_nav_entry--active' : '')</attribute>
         </xpath>
@@ -20,7 +20,7 @@
         </xpath>
     </t>
 
-    <t t-name="pyper_menu_icon.NavBar.SystemTray">
+    <t t-name="pyper_menu.NavBar.SystemTray">
         <t t-foreach="items" t-as="item" t-key="item.id">
             <DropdownItem
                 class="'nav-bar-icon' + (item.isActive ? ' active' : '')"

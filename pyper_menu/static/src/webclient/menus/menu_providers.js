@@ -7,7 +7,7 @@ const commandProviderRegistry = registry.category('command_provider');
 const menu = commandProviderRegistry.get('menu');
 const menuProvideFct = menu.provide;
 
-const MENU_SETUP_PREFIX = 'pyper_menu_icon.provider.';
+const MENU_SETUP_PREFIX = 'pyper_menu.provider.';
 
 menu.provide = async function (env, options) {
     const menuService = env.services.menu;

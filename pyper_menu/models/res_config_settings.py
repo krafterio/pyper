@@ -9,5 +9,5 @@ class ResConfigSettings(models.TransientModel):
 
     menu_prefer_web_icon = fields.Boolean(
         'Prefer web icons of menu items?',
-        config_parameter='pyper_menu_icon.provider.preferWebIcon',
+        config_parameter='pyper_menu.provider.preferWebIcon',
     )

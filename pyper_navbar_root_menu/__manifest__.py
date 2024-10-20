@@ -16,7 +16,7 @@
         'base',
         'web',
         'pyper',
-        'pyper_menu_icon',
+        'pyper_menu',
     ],
     'assets': {
         'web._assets_primary_variables': [

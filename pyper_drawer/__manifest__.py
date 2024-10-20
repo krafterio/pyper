@@ -18,7 +18,7 @@
         'base',
         'web',
         'pyper',
-        'pyper_menu_icon',
+        'pyper_menu',
         'pyper_setup',
     ],
     'data': [

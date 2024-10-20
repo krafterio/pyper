@@ -2,10 +2,10 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Overlay Menu',
+    'name': 'Menu Icon',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
-    'description': 'Extend Web Interface with Overlay Menu.',
+    'description': 'Extend Web Interface of menu with icon.',
     'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [
@@ -16,19 +16,19 @@
     'depends': [
         'base',
         'web',
-        'pyper',
-        'pyper_menu',
         'pyper_setup',
     ],
     'data': [
+        # Views
+        'views/ir_ui_menu_views.xml',
         'views/res_config_settings_views.xml',
     ],
     'assets': {
         'web._assets_primary_variables': [
-            ('before', 'web/static/src/**/*.variables.scss', 'pyper_overlay_menu/static/src/**/*.variables.scss'),
+            'pyper_menu/static/src/**/*.variables.scss',
         ],
         'web.assets_backend': [
-            'pyper_overlay_menu/static/src/webclient/**/*',
+            'pyper_menu/static/src/webclient/**/*',
         ],
     },
 }

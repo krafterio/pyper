@@ -15,14 +15,14 @@
     'application': False,
     'auto_install': [
         'pyper_web_view',
-        'pyper_menu_icon',
+        'pyper_menu',
     ],
     'depends': [
         'base',
         'bus',
         'web',
         'pyper_web_view',
-        'pyper_menu_icon',
+        'pyper_menu',
     ],
     'data': [
         # Security

@@ -56,7 +56,7 @@ export class OverlayMenu extends Component {
         hideEmptyCategory: false,
     };
 
-    static MENU_SETUP_PREFIX = 'pyper_menu_icon.provider.';
+    static MENU_SETUP_PREFIX = 'pyper_menu.provider.';
 
     static SETUP_PREFIX = 'pyper_overlay_menu.overlay_menu_props.';
 
