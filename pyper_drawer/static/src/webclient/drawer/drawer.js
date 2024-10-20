@@ -219,6 +219,13 @@ export class Drawer extends Component {
         useBus(this.env.bus, 'DRAWER:SELECT-MENU', (evt) => {
             this.selectMenu(evt.detail);
         });
+        useBus(this.env.bus, 'MENU-STATE:MENU-SELECTED', (e) => {
+            // Force to mount the drawer if onPatched is not executed because selected menu does not exist
+            // in initialization
+            if (!this.drawerService.mounted) {
+                this.drawerService.mounted = true;
+            }
+        });
 
         onMounted(() => {
             this.onWillUpdateProps(this.props);
