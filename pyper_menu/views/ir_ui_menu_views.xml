@@ -8,7 +8,8 @@
             <xpath expr="//form//field[@name='web_icon']" position="before">
                 <field name="font_icon"/>
                 <field name="font_icon_color" widget="color"/>
-                <field name="menu_category"/>
+                <field name="category_id"/>
+                <field name="position"/>
             </xpath>
         </field>
     </record>

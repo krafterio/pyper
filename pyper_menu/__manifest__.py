@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Menu Icon',
+    'name': 'Menu',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
     'description': 'Extend Web Interface of menu with icon.',
@@ -19,9 +19,17 @@
         'pyper_setup',
     ],
     'data': [
+        # Security
+        'security/ir.model.access.csv',
+
+        # Data
+        'data/ir_ui_menu_category_data.xml',
+
         # Views
+        'views/ir_ui_menu_category_views.xml',
         'views/ir_ui_menu_views.xml',
         'views/res_config_settings_views.xml',
+        'views/menu.xml',
     ],
     'assets': {
         'web._assets_primary_variables': [

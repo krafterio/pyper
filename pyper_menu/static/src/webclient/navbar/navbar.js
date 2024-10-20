@@ -16,7 +16,7 @@ patch(NavBar.prototype, {
         const items = [];
 
         (menu.childrenTree || []).forEach((menu) => {
-            if ('system_tray' === menu.category) {
+            if ('system_tray' === menu.position) {
                 items.push({
                     ...menu,
                     isActive: this.menuStateService.menuIsActivated(menu),

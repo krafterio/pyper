@@ -7,13 +7,6 @@ from odoo import fields, models
 class IrUiMenu(models.Model):
     _inherit = 'ir.ui.menu'
 
-    menu_category = fields.Selection(
-        selection_add=[
-            ('my_views', 'My views'),
-            ('shared_views', 'Shared views'),
-        ],
-    )
-
     user_id = fields.Many2one(
         'res.users',
         string='User',

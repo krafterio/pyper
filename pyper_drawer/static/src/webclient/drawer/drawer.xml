@@ -27,7 +27,7 @@
 
             <!-- Current App Sections -->
             <t t-call="pyper_drawer.Drawer.Menu" t-if="isMounted">
-                <t t-set="categories" t-value="Object.values(mainCategoryAppSections)"/>
+                <t t-set="categories" t-value="mainCategoryAppSections"/>
             </t>
 
             <!-- Bottom Action -->
@@ -81,9 +81,9 @@
                         children="menu.childrenTree"
                         withIcon="settings.showRootApp"
                         iconData="menu.webIconData"
-                        fontIcon="menu.font_icon"
-                        fontIconColor="menu.font_icon_color"
-                        emojiIcon="menu.emoji_icon"
+                        fontIcon="menu.fontIcon"
+                        fontIconColor="menu.fontIconColor"
+                        emojiIcon="menu.emojiIcon"
                         label="menu.name"
                     />
                 </t>
@@ -153,9 +153,9 @@
                 hotkey="hotkey"
                 withIcon="settings.showRootApp"
                 iconData="menu.webIconData"
-                fontIcon="menu.font_icon"
-                fontIconColor="menu.font_icon_color"
-                emojiIcon="menu.emoji_icon"
+                fontIcon="menu.fontIcon"
+                fontIconColor="menu.fontIconColor"
+                emojiIcon="menu.emojiIcon"
                 label="menu.name"
             />
         </t>

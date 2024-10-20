@@ -52,7 +52,7 @@
 
     <record model="ir.ui.menu" id="pyper_product_catalog.product_catalog_root">
         <field name="font_icon">ph ph-package</field>
-        <field name="menu_category">global</field>
+        <field name="category_id" ref="pyper_menu.menu_category_global"/>
     </record>
 
 </odoo>

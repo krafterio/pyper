@@ -12,73 +12,79 @@ class IrUiMenu(models.Model):
     font_icon = fields.Char('Font icon')
     font_icon_color = fields.Char('Font icon color')
 
-    menu_category = fields.Selection(
+    category_id = fields.Many2one(
+        'ir.ui.menu.category',
+        'Category',
+        ondelete='restrict',
+    )
+
+    category_sequence = fields.Integer(
+        'Category sequence',
+        related='category_id.sequence',
+    )
+
+    position = fields.Selection(
         [
-            ('crm', 'CRM'),
-            ('sales', 'Sales'),
-            ('services', 'Services'),
-            ('accounting', 'Accounting'),
-            ('stock', 'Stock'),
-            ('production', 'Production'),
-            ('website', 'Website'),
-            ('marketing', 'Marketing'),
-            ('hr', 'Human Resources'),
-            ('productivity', 'Productivity'),
-            ('technic', 'Technic'),
-            ('global', 'Global'),
-            ('manager', 'Manager'),
             ('system_tray', 'System Tray'),
         ],
-        'Menu category',
+        'Position',
     )
 
     def write(self, vals):
         res = super().write(vals)
 
         for item in self:
-            # Force remove menu category value if menu item is a sub menu item
-            if item.parent_id and item.menu_category:
-                item.menu_category = False
+            # Force remove menu position value if menu item is a sub menu item
+            if item.parent_id and item.position:
+                item.position = False
+
+            # Force remove category if menu item is used in position or parent is defined
+            if item.category_id and (item.parent_id or item.position):
+                item.category_id = False
 
         return res
 
     def load_web_menus(self, debug):
         menus = super().load_web_menus(debug)
-        menu_categories = dict(self._fields['menu_category']._description_selection(self.env))
 
         ids = list(menus.keys())
         ids.remove('root')
 
         for menu in menus.values():
-            if self.is_first_character_emoji(menu.get('name')):
-                name = menu.get('name')
+            name = menu.get('name')
+
+            if self.is_first_character_emoji(name):
                 menu.update({
                     'name': re.sub(r'^[\s\uFE0F\u200B-\u200D\u2060-\u206F]*', '', name[1:]),
-                    'emoji_icon': name[0],
+                    'emojiIcon': name[0],
                 })
 
         menu_values = self.search_read(
             [('id', 'in', ids)],
-            fields=['id', 'font_icon', 'font_icon_color', 'menu_category', 'parent_path']
+            fields=['id', 'parent_path', 'position', 'category_id', 'category_sequence', 'font_icon', 'font_icon_color']
         )
 
         for menu_value in menu_values:
-            category = menu_value.get('menu_category')
+            position = menu_value.get('position')
+            category = menu_value.get('category_id')
             parent_path = [int(x) for x in menu_value.get('parent_path').split('/') if x]
             vals = {}
+
+            if position:
+                vals['position'] = position
 
             if parent_path:
                 vals['parentPath'] = parent_path
 
             if menu_value.get('font_icon'):
-                vals['font_icon'] = menu_value.get('font_icon')
+                vals['fontIcon'] = menu_value.get('font_icon')
 
             if menu_value.get('font_icon_color'):
-                vals['font_icon_color'] = menu_value.get('font_icon_color')
+                vals['fontIconColor'] = menu_value.get('font_icon_color')
 
             if category:
                 vals['category'] = category
-                vals['category_display_name'] = menu_categories.get(category)
+                vals['categorySequence'] = menu_value.get('category_sequence') or False
 
             if vals:
                 menus.get(menu_value.get('id')).update(vals)

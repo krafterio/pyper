@@ -28,6 +28,9 @@
         # Security
         'security/ir_ui_menu_security.xml',
 
+        # Data
+        'data/ir_ui_menu_category_data.xml',
+
         # Views
         'views/ir_views_views.xml',
     ],

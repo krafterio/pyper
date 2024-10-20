@@ -5,41 +5,53 @@ import {patch} from '@web/core/utils/patch';
 import {_t} from '@web/core/l10n/translation';
 
 patch(NavBar.prototype, {
-    get rootAppSections() {
-        const menu = this.menuService.getMenuAsTree('root');
+    get rootMainCategoryAppSections() {
+        const rootMenu = this.menuService.getMenuAsTree('root');
+        const menus = rootMenu.childrenTree || [];
 
-        return menu.childrenTree || [];
-    },
-
-    get rootCategoryAppSections() {
         const categories = {};
 
-        this.rootAppSections.forEach((menu) => {
-            if (undefined === categories[menu.category]) {
-                categories[menu.category] = {
-                    display_name: menu.category_display_name || _t('Other'),
-                    value: menu.category || 'other',
+        menus.forEach((menu) => {
+            if (menu.position) {
+                return;
+            }
+
+            const menuCatId = menu.category ? menu.category[0] : undefined;
+            const menuCatName = menu.category ? menu.category[1] : undefined;
+            const menuCatSeq = menu.categorySequence ? menu.categorySequence : undefined;
+
+            if (undefined === categories[menuCatId]) {
+                categories[menuCatId] = {
+                    display_name: menuCatName || _t('Other'),
+                    sequence: menuCatSeq,
+                    value: menuCatId || 0,
                     menus: [],
                 }
             }
 
-            categories[menu.category]['menus'].push(menu);
+            categories[menuCatId]['menus'].push(menu);
         });
 
-        return categories;
-    },
+        const categoryList = Object.keys(categories).map(key => categories[key]);
+        categoryList.sort((a, b) => {
+            if (a.sequence === undefined) {
+                return 1;
+            }
 
-    get rootMainCategoryAppSections() {
-        const categories = {...this.rootCategoryAppSections};
-        delete categories['system_tray'];
+            if (b.sequence === undefined) {
+                return -1;
+            }
 
-        return categories;
+            return a.sequence - b.sequence;
+        });
+
+        return categoryList;
     },
 
     get rootMainAppSections() {
         const menus = [];
 
-        Object.values(this.rootMainCategoryAppSections).forEach((category) => {
+        this.rootMainCategoryAppSections.forEach((category) => {
             category.menus.forEach((menu) => {
                 const newMenu = {...menu};
                 newMenu.childrenTree = [];

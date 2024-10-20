@@ -28,8 +28,8 @@
                 dataset="{menuXmlid: item.xmlid}"
                 onSelected="() => this.onNavBarDropdownItemSelection(item)"
             >
-                <span t-if="!item.font_icon" t-out="item.name"></span>
-                <span t-else="" t-att-class="item.font_icon"/>
+                <span t-if="!item.fontIcon" t-out="item.name"></span>
+                <span t-else="" t-att-class="item.fontIcon"/>
             </DropdownItem>
         </t>
     </t>

@@ -7,7 +7,7 @@ from odoo import fields, models
 class IrUiMenu(models.Model):
     _inherit = 'ir.ui.menu'
 
-    menu_category = fields.Selection(
+    position = fields.Selection(
         selection_add=[
             ('drawer_quick_actions', 'Drawer Quick Actions'),
             ('drawer_footer', 'Drawer Footer'),

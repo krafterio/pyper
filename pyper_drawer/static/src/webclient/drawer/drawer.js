@@ -355,34 +355,48 @@ export class Drawer extends Component {
         return menu.childrenTree || [];
     }
 
-    get currentCategoryAppSections() {
+    get mainCategoryAppSections() {
         const categories = {};
 
         this.currentAppSections.forEach((menu) => {
-            if (undefined === categories[menu.category]) {
-                categories[menu.category] = {
-                    display_name: menu.category_display_name || _t('Other'),
-                    value: menu.category || 'other',
+            if (menu.position) {
+                return;
+            }
+
+            const menuCatId = menu.category ? menu.category[0] : undefined;
+            const menuCatName = menu.category ? menu.category[1] : undefined;
+            const menuCatSeq = menu.categorySequence ? menu.categorySequence : undefined;
+
+            if (undefined === categories[menuCatId]) {
+                categories[menuCatId] = {
+                    display_name: menuCatName || _t('Other'),
+                    sequence: menuCatSeq,
+                    value: menuCatId || 0,
                     menus: [],
                 }
             }
 
-            categories[menu.category]['menus'].push(menu);
+            categories[menuCatId]['menus'].push(menu);
         });
 
         if (this.settings.hideEmptyCategory) {
             delete categories[undefined];
         }
 
-        return categories;
-    }
+        const categoryList = Object.keys(categories).map(key => categories[key]);
+        categoryList.sort((a, b) => {
+            if (a.sequence === undefined) {
+                return 1;
+            }
 
-    get mainCategoryAppSections() {
-        const categories = {...this.currentCategoryAppSections};
-        delete categories['drawer_quick_actions'];
-        delete categories['drawer_footer'];
+            if (b.sequence === undefined) {
+                return -1;
+            }
 
-        return categories;
+            return a.sequence - b.sequence;
+        });
+
+        return categoryList;
     }
 
     get mainStartChildrenDepth() {
@@ -390,13 +404,15 @@ export class Drawer extends Component {
     }
 
     get quickActionSections() {
-        if (this.currentCategoryAppSections['drawer_quick_actions']
-            && this.currentCategoryAppSections['drawer_quick_actions']['menus'].length > 0
-        ) {
-            return this.currentCategoryAppSections['drawer_quick_actions']['menus'];
-        }
+        const menus = [];
 
-        return [];
+        this.currentAppSections.forEach((menu) => {
+            if ('drawer_quick_actions' === menu.position) {
+                menus.push(menu);
+            }
+        });
+
+        return menus;
     }
 
     get mainQuickAction() {
@@ -408,13 +424,15 @@ export class Drawer extends Component {
     }
 
     get footerAppSections() {
-        if (this.currentCategoryAppSections['drawer_footer']
-            && this.currentCategoryAppSections['drawer_footer']['menus'].length > 0
-        ) {
-            return this.currentCategoryAppSections['drawer_footer']['menus'];
-        }
+        const menus = [];
 
-        return [];
+        this.currentAppSections.forEach((menu) => {
+            if ('drawer_footer' === menu.position) {
+                menus.push(menu);
+            }
+        });
+
+        return menus;
     }
 
     open() {

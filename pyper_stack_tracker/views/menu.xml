@@ -32,7 +32,7 @@
     <record model="ir.ui.menu" id="pyper_stack_tracker.technology_root">
         <field name="font_icon">ph ph-code</field>
         <field name="font_icon_color">#374151</field>
-        <field name="menu_category">manager</field>
+        <field name="category_id" ref="pyper_menu.menu_category_manager"/>
     </record>
 </odoo>
 
