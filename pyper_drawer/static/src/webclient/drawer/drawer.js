@@ -366,12 +366,18 @@ export class Drawer extends Component {
             const menuCatId = menu.category ? menu.category[0] : undefined;
             const menuCatName = menu.category ? menu.category[1] : undefined;
             const menuCatSeq = menu.categorySequence ? menu.categorySequence : undefined;
+            const menuCatIcon = menu.categoryFontIcon ? menu.categoryFontIcon : undefined;
+            const menuCatIconColor = menu.categoryFontIconColor ? menu.categoryFontIconColor : undefined;
+            const menuCatActionId = menu.categoryActionId ? menu.categoryActionId : undefined;
 
             if (undefined === categories[menuCatId]) {
                 categories[menuCatId] = {
-                    display_name: menuCatName || _t('Other'),
+                    label: menuCatName || _t('Other'),
                     sequence: menuCatSeq,
                     value: menuCatId || 0,
+                    fontIcon: menuCatIcon,
+                    fontIconColor: menuCatIconColor,
+                    actionID: menuCatActionId,
                     menus: [],
                 }
             }
@@ -531,10 +537,16 @@ export class Drawer extends Component {
         this._refreshDrawerService();
     }
 
-    onClickQuickAction(menu) {
-        this.actionService.doAction(menu.actionID, {
+    async onClickQuickAction(menu) {
+        await this.actionService.doAction(menu.actionID, {
             clearBreadcrumbs: true,
-        }).then();
+        });
+    }
+
+    async onClickCategoryAction(category) {
+        await this.actionService.doAction(category.actionID, {
+            clearBreadcrumbs: true,
+        });
     }
 
     _onTouchStartDrag(ev) {

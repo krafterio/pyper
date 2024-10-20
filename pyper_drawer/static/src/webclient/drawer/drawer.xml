@@ -57,8 +57,18 @@
              role="menu"
         >
             <t t-foreach="categories" t-as="category" t-key="category.value">
-                <p class="o_drawer--category-label" t-if="displayCategoryName">
-                    <t t-out="category.display_name"/>
+                <p class="o_drawer--category" t-if="displayCategoryName">
+                    <span class="o_drawer--category-label" t-out="category.label"/>
+
+                    <span class="o_drawer--category-action"
+                          t-if="category.actionID"
+                          t-att-style="'color: ' + (category.fontIconColor || 'inherit') + ';'"
+                          t-on-click="() => this.onClickCategoryAction(category)"
+                    >
+                        <i t-if="category.fontIcon" t-att-class="category.fontIcon"/>
+
+                        <i t-else="" class="o_drawer--category-action_empty fa fa-cog"/>
+                    </span>
                 </p>
 
                 <hr t-elif="displayCategorySection" class="o_drawer--category-section"/>

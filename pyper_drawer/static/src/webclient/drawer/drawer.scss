@@ -71,12 +71,27 @@
     }
 }
 
-.o_drawer--category-label {
+.o_drawer--category {
     font-size: $o-drawer-category-label-size;
     color: $o-drawer-category-label-color;
     padding: $o-drawer-category-label-padding-v $o-drawer-category-label-padding-h;
     margin-top: $o-drawer-category-label-margin-top;
     margin-bottom: $o-drawer-category-label-margin-bottom;
+    display: flex;
+}
+
+.o_drawer--category-label {
+    flex-grow: 1;
+}
+
+.o_drawer--category-action {
+    cursor: pointer;
+    width: $o-drawer-item-padding-h;
+    height: $o-drawer-item-padding-h;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .o_drawer--menu-item-content,

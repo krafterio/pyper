@@ -23,6 +23,21 @@ class IrUiMenu(models.Model):
         related='category_id.sequence',
     )
 
+    category_font_icon = fields.Char(
+        'Category font icon',
+        related='category_id.font_icon',
+    )
+
+    category_font_icon_color = fields.Char(
+        'Category font icon color',
+        related='category_id.font_icon_color',
+    )
+
+    category_action_id = fields.Many2one(
+        string='Category action',
+        related='category_id.ir_action_id',
+    )
+
     position = fields.Selection(
         [
             ('system_tray', 'System Tray'),
@@ -50,6 +65,7 @@ class IrUiMenu(models.Model):
         ids = list(menus.keys())
         ids.remove('root')
 
+        # Extract emoji icon in dedicated property
         for menu in menus.values():
             name = menu.get('name')
 
@@ -59,37 +75,63 @@ class IrUiMenu(models.Model):
                     'emojiIcon': name[0],
                 })
 
-        menu_values = self.search_read(
-            [('id', 'in', ids)],
-            fields=['id', 'parent_path', 'position', 'category_id', 'category_sequence', 'font_icon', 'font_icon_color']
-        )
+        # Inject extra values in menu items
+        menu_values = self.search_read([('id', 'in', ids)], fields=self.get_extra_fields())
 
         for menu_value in menu_values:
-            position = menu_value.get('position')
-            category = menu_value.get('category_id')
-            parent_path = [int(x) for x in menu_value.get('parent_path').split('/') if x]
             vals = {}
-
-            if position:
-                vals['position'] = position
-
-            if parent_path:
-                vals['parentPath'] = parent_path
-
-            if menu_value.get('font_icon'):
-                vals['fontIcon'] = menu_value.get('font_icon')
-
-            if menu_value.get('font_icon_color'):
-                vals['fontIconColor'] = menu_value.get('font_icon_color')
-
-            if category:
-                vals['category'] = category
-                vals['categorySequence'] = menu_value.get('category_sequence') or False
+            self.inject_extra_fields(menu_value, vals)
 
             if vals:
                 menus.get(menu_value.get('id')).update(vals)
 
         return menus
+
+    @staticmethod
+    def get_extra_fields():
+        return [
+            'id',
+            'parent_path',
+            'position',
+            'category_id',
+            'category_sequence',
+            'category_font_icon',
+            'category_font_icon_color',
+            'category_action_id',
+            'font_icon',
+            'font_icon_color',
+        ]
+
+    @staticmethod
+    def inject_extra_fields(menu_value, vals):
+        position = menu_value.get('position')
+        parent_path = [int(x) for x in menu_value.get('parent_path').split('/') if x]
+        category = menu_value.get('category_id')
+
+        if position:
+            vals['position'] = position
+
+        if parent_path:
+            vals['parentPath'] = parent_path
+
+        if menu_value.get('font_icon'):
+            vals['fontIcon'] = menu_value.get('font_icon')
+
+        if menu_value.get('font_icon_color'):
+            vals['fontIconColor'] = menu_value.get('font_icon_color')
+
+        if category:
+            vals['category'] = category
+            vals['categorySequence'] = menu_value.get('category_sequence') or False
+
+            if menu_value.get('category_font_icon'):
+                vals['categoryFontIcon'] = menu_value.get('category_font_icon')
+
+            if menu_value.get('category_font_icon_color'):
+                vals['categoryFontIconColor'] = menu_value.get('category_font_icon_color')
+
+            if menu_value.get('category_action_id'):
+                vals['categoryActionId'] = menu_value.get('category_action_id')[0]
 
     @staticmethod
     def is_first_character_emoji(text):

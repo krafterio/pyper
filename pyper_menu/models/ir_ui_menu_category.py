@@ -19,3 +19,13 @@ class IrUiMenuCategory(models.Model):
         'Sequence',
         default=100,
     )
+
+    font_icon = fields.Char('Font icon')
+
+    font_icon_color = fields.Char('Font icon color')
+
+    ir_action_id = fields.Many2one(
+        'ir.actions.act_window',
+        string='Action',
+        ondelete='set null',
+    )
