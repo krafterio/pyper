@@ -546,6 +546,11 @@ export class Drawer extends Component {
     async onClickCategoryAction(category) {
         await this.actionService.doAction(category.actionID, {
             clearBreadcrumbs: true,
+            additionalContext: {
+                active_id: category.value,
+                active_ids: [category.values],
+                active_model: 'ir.ui.menu.category',
+            }
         });
     }
 

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20241015\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-20 14:00+0000\n"
-"PO-Revision-Date: 2024-10-20 14:00+0000\n"
+"POT-Creation-Date: 2024-10-20 16:51+0000\n"
+"PO-Revision-Date: 2024-10-20 16:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -52,6 +52,16 @@ msgstr "Vue enregistrée"
 #: model:ir.model,name:pyper_web_view_menu.model_ir_views
 msgid "Saved views"
 msgstr "Vues enregistrées"
+
+#. module: pyper_web_view_menu
+#: model:ir.actions.act_window,name:pyper_web_view_menu.action_settings_menu_category_my_views
+msgid "Settings my views"
+msgstr "Configurer Mes vues"
+
+#. module: pyper_web_view_menu
+#: model:ir.actions.act_window,name:pyper_web_view_menu.action_settings_menu_category_shared_views
+msgid "Settings shared views"
+msgstr "Configurer Vues partagées"
 
 #. module: pyper_web_view_menu
 #: model:ir.ui.menu.category,name:pyper_web_view_menu.menu_category_shared_views
