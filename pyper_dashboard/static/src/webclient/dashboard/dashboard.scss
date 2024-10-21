@@ -2,6 +2,7 @@
 .pyper_dashboard {
     height: 100%;
     overflow: auto;
+    background-color: $pyper-dashboard-bg;
 
     .o_view_nocontent {
         position: relative;
@@ -11,7 +12,7 @@
         padding-top: 0;
         margin-top: 0;
         font-weight: bold;
-        color: $pyper-dashboard-dropdown-header_color;
+        color: $pyper-dashboard-dropdown-header-color;
     }
 }
 
@@ -93,9 +94,15 @@
 .pyper_dashboard--column {
     overflow-x: auto;
     min-height: 40px;
+    padding: $pyper-dashboard-column-padding-v $pyper-dashboard-column-padding-h;
 }
 
 // Dashboard Action
+.pyper_dashboard--action {
+    border-radius: $pyper-dashboard-action-border-radius;
+    box-shadow: $pyper-dashboard-action-box-shadow;
+}
+
 .pyper_dashboard--action-header {
     display: flex;
     align-items: center;

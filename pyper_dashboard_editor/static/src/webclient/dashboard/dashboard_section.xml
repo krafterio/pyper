@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
     <t t-name="pyper_dashboard_editor.DashboardSection" t-inherit="pyper_dashboard.DashboardSection" t-inherit-mode="extension">
         <xpath expr="//div[@name='pyper_dashboard_section_header']" position="inside">
-            <Dropdown togglerClass="'btn btn-default py-1'" menuClass="'pyper_dashboard--dropdown-menu'" t-if="props.layoutEditable">
+            <Dropdown togglerClass="'btn btn-outline-secondary py-1'" menuClass="'pyper_dashboard--dropdown-menu'" t-if="props.layoutEditable">
                 <t t-set-slot="toggler">
                     <i class="fa oi-fw fa-sliders" aria-label="Section settings" role="img" title="Section settings"/>
                 </t>

@@ -22,7 +22,7 @@
             </div>
 
             <div class="flex-grow-1 ps-2" t-if="dashboard.useSwitcher and boards.length > 1">
-                <Dropdown togglerClass="'btn btn-outline-default px-2 py-1'">
+                <Dropdown togglerClass="'btn btn-outline-secondary px-2 py-1'">
                     <t t-set-slot="toggler">
                         <i class="fa fa-fw fa-chevron-down" aria-label="Dashboard switcher" role="img" title="Dashboard switcher"/>
                     </t>
@@ -42,7 +42,7 @@
 
             <div>
                 <Dropdown
-                    togglerClass="'btn btn-outline-default py-1'"
+                    togglerClass="'btn btn-outline-secondary py-1'"
                     t-if="filteredOptionsItems.length > 0"
                 >
                     <t t-set-slot="toggler">
