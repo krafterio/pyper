@@ -60,7 +60,15 @@ export class DashboardArchParser {
                     archInfo.sections[currentSectionIdx].isEmpty = false;
 
                     const action = createAction(nextId++, node);
-                    archInfo.sections[currentSectionIdx].columns[currentColumnIdx].actions.push(action);
+                    let selectedColumn = archInfo.sections[currentSectionIdx]?.columns[currentColumnIdx];
+
+                    // Use the last available section and last available column if current section does not exist
+                    if (!selectedColumn) {
+                        const selectedSection = archInfo.sections[archInfo.sections.length - 1]
+                        selectedColumn = selectedSection.columns[selectedSection.columns.length - 1];
+                    }
+
+                    selectedColumn?.actions?.push(action);
                     break;
                 }
                 default:
