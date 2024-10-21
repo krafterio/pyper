@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="row">
                                         <p 
-                                            class="h5 opacity-50 o_animate o_anim_fade_in o_anim_from_right"
+                                            class="h5 text-muted o_animate o_anim_fade_in o_anim_from_right"
                                             style="--wanim-intensity: 20;animation-delay: 0.4s;animation-duration: 0.4s;"
                                         >
                                             Our advanced analytics tools are the backbone of our business. A devoted staff of data-driven decision-makers. We are proud offering cutting-edge features and unparalleled quality.

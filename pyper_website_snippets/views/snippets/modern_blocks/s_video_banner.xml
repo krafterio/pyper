@@ -1,7 +1,7 @@
 <odoo>
     <template id="video_banner" name="Video banner snippet">
         <section
-            class="s_cover bg-black-50 pt96 pb96 o_colored_level o_background_video s_parallax_no_overflow_hidden oe_img_bg o_bg_img_center"
+            class="s_cover bg-black-50 pt96 pb96  o_background_video s_parallax_no_overflow_hidden oe_img_bg o_bg_img_center"
             data-scroll-background-ratio="0"
             data-snippet="s_cover"
             data-name="Video banner snippet"
@@ -14,16 +14,16 @@
             <div class="o_we_bg_filter bg-black-50"/>
 
             <div class="text-center o_container_small">
-                <h2 class="o_default_snippet_text text-o-color-4">This is a cool snippet showing an embed video on the
+                <h2 class=" text-o-color-4">This is a cool snippet showing an embed video on the
                     back
                 </h2>
-                <p class="lead o_default_snippet_text">This banner allow you to write a small text in a visually
+                <p class="lead ">This banner allow you to write a small text in a visually
                     attractive
                     condition. Change this text to
                     fit your needs and attract your user attention.
                 </p>
 
-                <a href="#" class="btn btn-primary o_default_snippet_text">Action button</a>
+                <a href="#" class="btn btn-primary ">Action button</a>
             </div>
         </section>
     </template>

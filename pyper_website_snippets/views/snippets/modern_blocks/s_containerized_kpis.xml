@@ -1,19 +1,19 @@
 <odoo>
     <template id="containerized_kpis" name="Containerized KPIs">
         <section
-            class="s_text_image o_colored_level o_cc o_cc1 pt112 pb112"
+            class="s_text_image  o_cc o_cc1 pt112 pb112"
             data-snippet="s_text_image"
             data-name="Containerized KPIs"
             style="background-image: none;"
         >
             <div class="container">
-                <div class="row o_colored_level">
-                    <h2 class="o_default_snippet_text text-center">Enhance Your Business Efficiency</h2>
-                    <p class="o_default_snippet_text text-center">Our company is dedicated to delivering top-notch
+                <div class="row ">
+                    <h2 class="text-center">Enhance Your Business Efficiency</h2>
+                    <p class="text-center">Our company is dedicated to delivering top-notch
                         solutions that drive your business forward. With a team of experienced professionals, we pride
                         ourselves on our ability to innovate and adapt to the ever-changing market.
                     </p>
-                    <p class="o_default_snippet_text text-center">Our commitment to
+                    <p class=" text-center">Our commitment to
                         excellence is reflected in the numerous awards we’ve won and the thousands of satisfied clients
                         we’ve served. We are available 24/7 to ensure that your needs are met, providing unparalleled
                         customer support and service.
@@ -23,7 +23,7 @@
                         <a href="/contactus" class="btn btn-primary">Contact us</a>
                     </p>
 
-                    <div class="p-4 mt-5 o_colored_level pt56 o_cc o_cc3 pb56">
+                    <div class="p-4 mt-5  pt56 o_cc o_cc3 pb56">
                         <div class="row">
                             <div
                                 class="col-12 col-md-4 mb-4 d-flex align-items-center o_anim_fade_in o_animate o_anim_from_bottom"

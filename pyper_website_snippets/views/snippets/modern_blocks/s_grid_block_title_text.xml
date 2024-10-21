@@ -1,7 +1,7 @@
 <odoo>
     <template id="grid_block_title_text" name="Grid block title text">
         <section
-            class="s_text_image o_colored_level pt112 pb112 o_cc o_cc1"
+            class="s_text_image  pt112 pb112 o_cc o_cc1"
             data-snippet="s_text_image"
             data-name="Texte - Image"
         >
@@ -14,10 +14,10 @@
                 <div class="row align-items-stretch">
                     <div class="col-12 col-md-6 col-lg-4 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;">
-                        <div class="o_colored_level h-100">
+                        <div class=" h-100">
                             <div class="d-flex align-items-center mb-4">
                                 <span class="fa fa-lightbulb-o me-2 rounded-circle bg-o-color-1"/>
-                                <h3 class="fs-3 display-3 o_default_snippet_text mb-0">Innovation for all your process
+                                <h3 class="fs-3 display-3  mb-0">Innovation for all your process
                                 </h3>
                             </div>
                             <p class="mb-0">We bring innovative solutions to the table. Our approach helps you stay
@@ -28,10 +28,10 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.2s; animation-duration: 0.4s; --wanim-intensity: 20;">
-                        <div class="o_colored_level h-100">
+                        <div class=" h-100">
                             <div class="d-flex align-items-center mb-4">
                                 <span class="fa fa-users me-2 rounded-circle bg-o-color-1"/>
-                                <h3 class="fs-3 display-3 o_default_snippet_text mb-0">Team Collaboration</h3>
+                                <h3 class="fs-3 display-3  mb-0">Team Collaboration</h3>
                             </div>
                             <p class="mb-0">Enhance team collaboration with our tools. Improve communication and
                                 efficiency.
@@ -41,10 +41,10 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.4s; animation-duration: 0.4s; --wanim-intensity: 20;">
-                        <div class="o_colored_level h-100">
+                        <div class=" h-100">
                             <div class="d-flex align-items-center mb-4">
                                 <span class="fa fa-signal me-2 rounded-circle bg-o-color-1"/>
-                                <h3 class="fs-3 display-3 o_default_snippet_text mb-0">Performance Tracking</h3>
+                                <h3 class="fs-3 display-3  mb-0">Performance Tracking</h3>
                             </div>
                             <p class="mb-0">Track your performance in real-time. Get detailed analytics to make informed
                                 decisions.
@@ -55,10 +55,10 @@
 
                     <div class="col-12 col-md-6 col-lg-4 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;">
-                        <div class="o_colored_level h-100">
+                        <div class=" h-100">
                             <div class="d-flex align-items-center mb-4">
                                 <span class="fa fa-mobile me-2 rounded-circle bg-o-color-1"/>
-                                <h3 class="fs-3 display-3 o_default_snippet_text mb-0">Mobile access</h3>
+                                <h3 class="fs-3 display-3  mb-0">Mobile access</h3>
                             </div>
                             <p class="mb-0">Access your data from anywhere. Our mobile-friendly platform keeps you
                                 connected
@@ -68,10 +68,10 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.2s; animation-duration: 0.4s; --wanim-intensity: 20;">
-                        <div class="o_colored_level h-100">
+                        <div class=" h-100">
                             <div class="d-flex align-items-center mb-4">
                                 <span class="fa fa-cogs me-2 rounded-circle bg-o-color-1"/>
-                                <h3 class="fs-3 display-3 o_default_snippet_text mb-0">Customization</h3>
+                                <h3 class="fs-3 display-3  mb-0">Customization</h3>
                             </div>
                             <p class="mb-0">Customize solutions to fit your needs. Tailored features to match your
                                 workflow.
@@ -81,10 +81,10 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.4s; animation-duration: 0.4s; --wanim-intensity: 20;">
-                        <div class="o_colored_level h-100">
+                        <div class=" h-100">
                             <div class="d-flex align-items-center mb-4">
                                 <span class="fa fa-cloud me-2 rounded-circle bg-o-color-1"/>
-                                <h3 class="fs-3 display-3 o_default_snippet_text mb-0">Cloud services</h3>
+                                <h3 class="fs-3 display-3  mb-0">Cloud services</h3>
                             </div>
                             <p class="mb-0">TLeverage the power of the cloud. Reliable and scalable solutions for your
                                 business.

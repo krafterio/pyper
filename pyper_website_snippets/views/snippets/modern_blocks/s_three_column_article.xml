@@ -48,7 +48,7 @@
                                                     <p class="h6 mb-0 text-primary">Nature and landscapes</p>
                                                     <p class="h4">Majestic mountains</p>
                                                     <p class="h6">Discover these breathtaking beauties</p>
-                                                    <p class="h6 opacity-75">Take a fresh breath and experience the serenity and grandeur of majestic mountains, where nature's power is on full display.</p>
+                                                    <p class="h6 text-muted">Take a fresh breath and experience the serenity and grandeur of majestic mountains, where nature's power is on full display.</p>
                                                     <div class="d-flex align-items-center justify-content-start gap-2 mt-2">
                                                         <a class="btn btn-primary" href="#">Full article</a>
                                                         <a class="btn btn-secondary" href="#">Learn more</a>
@@ -81,7 +81,7 @@
                                                     <p class="h6 mb-0 text-primary">Sky and sunsets</p>
                                                     <p class="h4">Sunset skies</p>
                                                     <p class="h6">Witness the magic athmosphere of twilight</p>
-                                                    <p class="h6 opacity-75">Enjoy the vibrant hues of a sunset sky, as the day transitions into a peaceful night. Each one is a unique show by itself.</p>
+                                                    <p class="h6 text-muted">Enjoy the vibrant hues of a sunset sky, as the day transitions into a peaceful night. Each one is a unique show by itself.</p>
                                                     <div class="d-flex align-items-center justify-content-start gap-2 mt-2">
                                                         <a class="btn btn-primary" href="#">Full article</a>
                                                         <a class="btn btn-secondary" href="#">Learn more</a>
@@ -114,7 +114,7 @@
                                                     <p class="h6 mb-0 text-primary">Urban landscapes</p>
                                                     <p class="h4">Los Angeles</p>
                                                     <p class="h6">Explore the vibrant city of Los Angeles</p>
-                                                    <p class="h6 opacity-75">Immerse yourself in the bustling energy and iconic views of the city of Los Angeles, a well-known city that never sleeps.</p>
+                                                    <p class="h6 text-muted">Immerse yourself in the bustling energy and iconic views of the city of Los Angeles, a well-known city that never sleeps.</p>
                                                     <div class="d-flex align-items-center justify-content-start gap-2 mt-2">
                                                         <a class="btn btn-primary" href="#">Full article</a>
                                                         <a class="btn btn-secondary" href="#">Learn more</a>

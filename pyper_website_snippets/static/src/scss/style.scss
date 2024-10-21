@@ -15,10 +15,10 @@
 }
 
 @media (min-width: 768px) {
-    .k-img-left-fix {
-        margin-left:auto; 
+    .k-img-left-fix { 
         position: relative; 
-        left:-50%
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 
@@ -93,5 +93,19 @@
         margin-left: -1200px;
         width: 2400px;
         height: 652px;
+    }
+}
+
+.s_faq_with_title .card-header {
+    border-bottom:0 ;
+}
+
+@media (min-width: 767px) {
+    .s_customer_review_blocks .review-container {
+        max-height: 680px;
+    }
+    
+    .s_customer_review_blocks .review-column {
+        transform: translateY(-5%);
     }
 }

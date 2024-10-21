@@ -13,7 +13,7 @@
                             style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;"    
                         >
                             <span class="fs-2">18.0.0</span>
-                            <p class="fs-6 opacity-50">last LTS</p>
+                            <p class="fs-6 text-muted">last LTS</p>
                             <hr class="col-4 border-1 border-bottom"/>
                         </div>
                         <div 
@@ -21,7 +21,7 @@
                             style="animation-delay: 0.4s; animation-duration: 0.6s; --wanim-intensity: 20;"    
                         >
                             <span class="fs-2">60+</span>
-                            <p class="fs-6 opacity-50">new features</p>
+                            <p class="fs-6 text-muted">new features</p>
                         </div>
                     </div>
                     <div 
@@ -29,7 +29,7 @@
                         style="animation-delay: 0.0s; animation-duration: 1.0s; --wanim-intensity: 20;"
                     >
                         <div class="d-flex flex-column align-items-center gap-2 py-4">
-                            <p class="fs-6 opacity-75">Incorporate the best UX/UI practices into your website to enhance your business and your image</p>
+                            <p class="fs-6 text-muted">Incorporate the best UX/UI practices into your website to enhance your business and your image</p>
                             <h1>Create an outstanding content by highlighting few key figures</h1>
                             <div class="d-flex align-items-center justify-content-center gap-2 py-4">
                                 <a class="btn btn-primary " href="#">Easily custom</a>
@@ -43,7 +43,7 @@
                             style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;"    
                         >
                             <span class="fs-2">3.5M</span>
-                            <p class="fs-6 opacity-50">positives comments</p>
+                            <p class="fs-6 text-muted">positives comments</p>
                             <hr class="col-4 border-1 border-bottom"/>
                         </div>
                         <div 
@@ -51,7 +51,7 @@
                             style="animation-delay: 0.4s; animation-duration: 0.6s; --wanim-intensity: 20;"    
                         >
                             <span class="fs-2">87%</span>
-                            <p class="fs-6 opacity-50">increased performances</p>
+                            <p class="fs-6 text-muted">increased performances</p>
                         </div>
                     </div>
                 </div>

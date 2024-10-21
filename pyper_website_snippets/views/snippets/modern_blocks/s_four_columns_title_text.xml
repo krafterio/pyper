@@ -1,7 +1,7 @@
 <odoo>
     <template id="four_columns_title_text" name="Title and columns">
         <section
-            class="s_text_image o_colored_level pt104 pb112 o_cc o_cc1"
+            class="s_text_image  pt104 pb112 o_cc o_cc1"
             data-snippet="s_text_image"
             data-name="Texte - Image"
         >
@@ -14,34 +14,34 @@
                 <div class="row align-items-stretch">
                     <div class="col-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;">
-                        <div class="o_colored_level o_cc o_cc3 p-5 h-100">
+                        <div class=" o_cc o_cc3 p-5 h-100">
                             <span class="fa fa-cogs fa-2x mb-3"/>
-                            <h3 class="fs-3 display-3 o_default_snippet_text">Custom Solutions</h3>
+                            <h3 class="fs-3 ">Custom Solutions</h3>
                             <p class="mb-0">Tailored software solutions for your business needs.</p>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.2s; animation-duration: 0.4s; --wanim-intensity: 20;">
-                        <div class="o_colored_level o_cc o_cc3 p-5 h-100">
+                        <div class=" o_cc o_cc3 p-5 h-100">
                             <span class="fa fa-cloud fa-2x mb-3"/>
-                            <h3 class="fs-3 display-3 o_default_snippet_text">Cloud Integration</h3>
+                            <h3 class="fs-3 ">Cloud Integration</h3>
                             <p class="mb-0">Seamless integration with cloud services</p>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.4s; animation-duration: 0.4s; --wanim-intensity: 20;">
-                        <div class="o_colored_level o_cc o_cc3 p-5 h-100">
+                        <div class=" o_cc o_cc3 p-5 h-100">
                             <span class="fa fa-lock fa-2x mb-3"/>
-                            <h3 class="fs-3 display-3 o_default_snippet_text">Security</h3>
+                            <h3 class="fs-3 ">Security</h3>
                             <p class="mb-0">Top-notch security to protect your data.</p>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-3 p-3 o_anim_fade_in o_animate o_anim_from_bottom"
                          style="animation-delay: 0.6s; animation-duration: 0.4s; --wanim-intensity: 20;">
-                        <div class="o_colored_level o_cc o_cc3 p-5 h-100">
+                        <div class=" o_cc o_cc3 p-5 h-100">
                             <span class="fa fa-support fa-2x mb-3"/>
-                            <h3 class="fs-3 display-3 o_default_snippet_text">24/7 Support</h3>
+                            <h3 class="fs-3 ">24/7 Support</h3>
                             <p class="mb-0">Round-the-clock support to keep your business running smoothly.</p>
                         </div>
                     </div>

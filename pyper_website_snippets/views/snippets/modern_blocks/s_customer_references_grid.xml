@@ -2,7 +2,7 @@
     <template id="customer_references_grid" name="Customer references grid">
         <!-- TEXT SECTION -->
         <section
-            class="pt48 o_colored_level o_cc o_cc2"
+            class="pt48  o_cc o_cc2"
             data-snippet="s_customer_references_grid_text"
             data-name="Customer references grid (text)"
         >
@@ -12,10 +12,10 @@
                     style="--wanim-intensity: 20;animation-delay: 0.0s;animation-duration: 0.4s;"
                 >           
                     <div class="d-flex flex-column align-items-center text-center col-12 col-md-10 col-lg-8">
-                        <h2 class="display-3">
+                        <h2 class="">
                             They trust us
                         </h2>
-                        <p class="opacity-50">
+                        <p class="text-muted">
                             We are privileged to work with a distinguished group of clients who rely on us for our expertise and dedication. Our collaborations are driven by a shared vision of success and a commitment to delivering outstanding value.
                         </p>
                         <div class="d-flex align-items-center justify-content-center gap-2 mt-4 mb-2">
@@ -28,7 +28,7 @@
         </section>
         <!-- GRID SECTION -->
         <section
-            class="pt24 pb96 o_colored_level o_cc o_cc2"
+            class="pt24 pb96  o_cc o_cc2"
             data-snippet="s_customer_references_grid_grid"
             data-name="Customer references grid (grid)"
         >

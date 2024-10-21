@@ -1,7 +1,7 @@
 <odoo>
     <template id="top_app_banner" name="Top app banner">
         <section
-            class="pt96 pb96 o_colored_level o_cc o_cc2"
+            class="pt96 pb96  o_cc o_cc2"
             data-snippet="s_cover"
             data-name="Top app banner"
             style="background-image: none;"
@@ -11,27 +11,27 @@
                     <div class="col-12 o_animate o_anim_fade_in" style="-wanim-intensity: 20;animation-delay: 0.0s;">
                         <p class="h4 text-primary">new release v2.5.0</p>
                         <div class="row justify-content-center">
-                            <h1 class="row justify-content-center display-3 o_default_snippet_text col-12 col-xl-5">
+                            <h1 class="row justify-content-center  col-12 col-xl-5">
                                 Discover, our powerfull new features
                             </h1>
                         </div>
-                        <p class="lead o_default_snippet_text pb-0 mb-0">We are happy to introduce a suite of
+                        <p class="lead  pb-0 mb-0">We are happy to introduce a suite of
                             powerful new
                             features designed to enhance your experience and streamline your workflow.
                         </p>
-                        <p class="lead o_default_snippet_text">Our latest updates include advanced analytics tools,
+                        <p class="lead ">Our latest updates include advanced analytics tools,
                             intuitive user interfaces, and seamless integration capabilities.
                         </p>
 
                         <div class="d-flex align-items-center justify-content-center gap-2 py-4">
-                            <a class="btn btn-primary o_default_snippet_text" href="#">Let me try it now !</a>
-                            <a class="btn btn-secondary o_default_snippet_text" href="#">See release resume</a>
+                            <a class="btn btn-primary " href="#">Let me try it now !</a>
+                            <a class="btn btn-secondary " href="#">See release resume</a>
                         </div>
                     </div>
                 </div>
 
                 <div
-                    class="s_image_gallery o_spc-small o_colored_level o_masonry"
+                    class="s_image_gallery o_spc-small  o_masonry"
                     data-columns="1"
                 >
                     <div class="container">
@@ -39,7 +39,7 @@
                             <div class="o_masonry_col o_snippet_not_selectable col-lg-12">
                                 <img
                                     class="img img-fluid"
-                                    src="/web/image/website.s_cover_default_image"
+                                    src="/website/static/src/img/snippets_demo/s_quotes_carousel_0.jpg"
                                     data-name="Image"
                                     alt=" "
                                     loading="lazy"

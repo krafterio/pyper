@@ -10,7 +10,7 @@
                     <div class="col-12 col-md-12 col-lg-12 col-xl-2 flex-grow-1 p-3 ">
                         <div class="d-flex flex-column">
                             <p class="h5 mb-0">Poster Collection</p>
-                            <p class="h6 opacity-50">Browse Our Poster Categories</p>
+                            <p class="h6 text-muted">Browse Our Poster Categories</p>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-12 col-xl-9" data-name="Card Box">
@@ -24,7 +24,7 @@
                                                 <img src="/website/static/src/img/backgrounds/panama-sky.jpg" style="width:100%; height:100%; object-fit:cover;"/>
                                             </div>
                                             <p class="h5 mb-0 mt-2">Nature &amp; Landscapes</p>
-                                            <p class="h6 opacity-50">13 elements</p>
+                                            <p class="h6 text-muted">13 elements</p>
                                         </a>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                                 <img src="/website/static/src/img/library/ice_coffe.jpg" style="width:100%; height:100%; object-fit:cover;"/>
                                             </div>
                                             <p class="h5 mb-0 mt-2">Food &amp; Drinks</p>
-                                            <p class="h6 opacity-50">22 elements</p>
+                                            <p class="h6 text-muted">22 elements</p>
                                         </a>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                                                 <img src="/website/static/src/img/library/mobile_device.jpg" style="width:100%; height:100%; object-fit:cover;"/>
                                             </div>
                                             <p class="h5 mb-0 mt-2">Technology</p>
-                                            <p class="h6 opacity-50">16 elements</p>
+                                            <p class="h6 text-muted">16 elements</p>
                                         </a>
                                     </div>
                                 </div>

@@ -160,7 +160,7 @@
                                             >“</p>
                                             <p class="p-5 h4"><t t-esc="ref_data['text']" /></p>
                                             <p 
-                                                class="display-1 text-primary position-absolute end-0 o_anim_fade_in o_animate o_animate_both_scroll o_anim_from_right"
+                                                class="h1 display-1 text-primary position-absolute end-0 o_anim_fade_in o_animate o_animate_both_scroll o_anim_from_right"
                                                 style="bottom:-3rem; animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;"
                                             >”</p>
                                         </div>

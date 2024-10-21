@@ -1,7 +1,7 @@
 <odoo>
     <template id="top_banner_2" name="Top banner 2">
         <section
-            class="pb0 o_colored_level pt72 pb72 oe_img_bg o_bg_img_center o_cc o_cc2"
+            class="pb0  pt72 pb72 oe_img_bg o_bg_img_center o_cc o_cc2"
             data-scroll-background-ratio="1"
             data-snippet="s_cover"
             style="background-image: url('/web/image/website.s_cover_default_image');"
@@ -13,11 +13,11 @@
             <div class="container">
                 <div class="row">
                     <div
-                        class="col-12 col-lg-10 o_anim_fade_in o_animate o_anim_from_top o_colored_level"
+                        class="col-12 col-lg-10 o_anim_fade_in o_animate o_anim_from_top "
                         style="--wanim-intensity: 10; animation-duration: 0.4s;">
-                        <p class="fs-3 o_default_snippet_text text-o-color-1">Welcome to our world</p>
-                        <h1 class="o_default_snippet_text">Transform your business with innovative solutions</h1>
-                        <h2 class="o_default_snippet_text text-o-color-1">Empowering your success every step of the
+                        <p class="fs-3  text-o-color-1">Welcome to our world</p>
+                        <h1 class="">Transform your business with innovative solutions</h1>
+                        <h2 class=" text-o-color-1">Empowering your success every step of the
                             way
                         </h2>
 
