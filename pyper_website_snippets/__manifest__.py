@@ -52,6 +52,7 @@
         'views/snippets/modern_blocks/s_feature_grid_with_links.xml',
         'views/snippets/modern_blocks/s_three_column_article.xml',
         'views/snippets/modern_blocks/s_section_with_card_link_items.xml',
+        'views/snippets/modern_blocks/s_sticky_top_variations.xml',
 
     ],
     'assets': {
