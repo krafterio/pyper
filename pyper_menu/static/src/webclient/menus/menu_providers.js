@@ -25,6 +25,10 @@ menu.provide = async function (env, options) {
         if (menuId) {
             const menu = menuService.getMenu(menuId);
 
+            if (item.props.webIconData && item.props.webIconData.includes('/web_enterprise/static/img/default_icon_app.png')) {
+                delete item.props.webIconData;
+            }
+
             if ((menu.fontIcon || menu.fontIconColor) && item.props) {
                 item.props.webIcon = {
                     iconClass: menu.fontIcon,
