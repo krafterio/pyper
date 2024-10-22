@@ -20,7 +20,10 @@ class IrUiMenu(models.Model):
     )
 
     def write(self, vals):
-        res = super().write(vals)
+        if self.user_id == self.env.user and not self.env.su:
+            res = super().sudo().write(vals)
+        else:
+            res = super().write(vals)
 
         if self.user_id and self.view_id:
             self.env['bus.bus']._sendone(self.user_id.partner_id, 'user_menu_view_changed', {})
