@@ -3,7 +3,7 @@
 
 import json
 
-from odoo import api, fields, models, Command
+from odoo import api, fields, models
 
 from lxml import etree
 
@@ -252,10 +252,6 @@ class IrViews(models.Model):
 
     def _sync_ir_action_view(self):
         for rec in self:
-            action_views = [
-                Command.clear(),
-            ]
-
             if rec.view_mode in rec._available_view_mode_custom_view():
                 view_vals = {
                     'name': rec.name,
@@ -273,8 +269,6 @@ class IrViews(models.Model):
                     rec.ir_view_id = view.id
                 else:
                     rec.ir_view_id.sudo().write(view_vals)
-
-                action_views.append(Command.create({'view_mode': rec.view_mode, 'view_id': rec.ir_view_id.id}))
 
             def build_action_context(views):
                 ctx = json.loads(views.context or '{}')
@@ -304,12 +298,17 @@ class IrViews(models.Model):
                 'context': build_action_context(rec),
                 'limit': rec.limit,
                 'ir_views_id': rec.id,
-                'view_ids': action_views,
             }
 
             if not rec.ir_action_id:
                 action = self.env['ir.actions.act_window'].sudo().create(action_vals)
                 rec.ir_action_id = action.id
+
+                self.env['ir.actions.act_window.view'].sudo().create({
+                    'view_mode': rec.view_mode,
+                    'view_id': rec.ir_view_id.id,
+                    'act_window_id': action.id,
+                })
             else:
                 rec.ir_action_id.sudo().write(action_vals)
 
