@@ -44,10 +44,11 @@ class IrViews(models.Model):
     @api.model
     def get_menu_vals(self):
         self.ensure_one()
+        action = self.ir_action_id.sudo()
 
         return {
             'name': self.name,
-            'action': str(self.ir_action_id.type) + ',' + str(self.ir_action_id.id),
+            'action': str(action.type) + ',' + str(action.id),
             'category_id': self.env.ref('pyper_web_view_menu.menu_category_shared_views').id
                 if self.shared
                 else self.env.ref('pyper_web_view_menu.menu_category_my_views').id,
@@ -69,7 +70,8 @@ class IrViews(models.Model):
             if rec.menu_ids:
                 menus = rec.menu_ids.filtered(lambda m: m.user_id == self.env.user)
 
-                rec.menu_ids = [Command.delete(menu.id) for menu in menus]
+                for menu in menus:
+                    menu.sudo().unlink()
 
     def _sync_ir_ui_menu(self):
         for rec in self:
