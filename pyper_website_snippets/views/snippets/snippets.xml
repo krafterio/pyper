@@ -7,9 +7,13 @@
                 <div class="o_panel_body"/>
             </div>
 
-
             <div id="snippet_modern_blocks" class="o_panel">
                 <div class="o_panel_header">Modern blocks</div>
+                <div class="o_panel_body"/>
+            </div>
+
+            <div id="snippet_scroll_blocks" class="o_panel">
+                <div class="o_panel_header">Scroll blocks</div>
                 <div class="o_panel_body"/>
             </div>
 

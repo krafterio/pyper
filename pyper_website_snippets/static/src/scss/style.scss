@@ -110,20 +110,8 @@
     }
 }
 
-.sticky-top .sticky-col {
-    min-height:0px;
-}
-
-// .sticky-top .scrolling-wrapper {
-//     transform: translateY(-1000px);
-// }
-
 @media (max-width: 768px) {
-    .sticky-top .scrolling-col {
+    .s_sticky_top_variations .scrolling-col {
         display:none !important;
-    }
-
-    .sticky-top .sticky-col {
-        min-height:1400px;
     }
 }

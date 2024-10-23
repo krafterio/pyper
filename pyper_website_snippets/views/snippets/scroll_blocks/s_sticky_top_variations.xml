@@ -1,0 +1,218 @@
+<odoo>
+    <!-- Title left snippet -->
+    <template id="sticky_top_title_left" name="Sticky top (title left)">
+        <section
+            class="s_sticky_top_variations pt96 pb96 o_cc o_cc1"
+            data-snippet="s_sticky_top_title_left"
+            data-name="Sticky top (title left)"
+        >
+            <div class="container ">
+                <div class="row d-flex flex-column flex-md-row">
+                    <!-- Column sticky -->
+                    <div class="sticky-col col-12 col-md-5 p-3" data-name="Column sticky">
+                        <div class="col-12 d-flex flex-column align-items-center align-items-md-start py-5 oe_unmovable" style="position: sticky; top:200px;">
+                            <p class="h6 mt-0 mb-0 text-primary">Sticky Top</p>
+                            <h3 class="mt-0 mb-3">Master the scrolling experience</h3>
+                            <p class="fw-normal text-secondary ">
+                                While scrolling, this part will remain fixed.
+                                This snippet is also available in right oriented variation and image variation.
+                                Enhance easily user experience with this scrolling trick.
+                                Keep in mind that for small screens, the scrolling column will not be displayed.
+                                If you need to change the snippet background color, schedule also the mask color option.
+                            </p>
+                            <div class="d-flex align-items-center justify-content-center gap-2 mt-3">
+                                <a class="btn btn-primary" href="#">It's time</a>
+                                <a class="btn btn-secondary" href="#">to scroll</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column scrolling -->
+                    <div class="scrolling-col  col-12 col-md-7 d-flex flex-column ps-3 ps-md-5 px-3 pb-3"  data-name="Column scrolling">
+                        <div class="col-12 mask  oe_unremovable o_cc o_cc1 position-absolute position-sticky w-100 start-0 top-0" style="height:120px; user-select:none;"/>
+                        <div class="col-12 mask  oe_unremovable o_cc o_cc1 position-absolute position-sticky w-100 start-0" style="top:480px; height:1000px; user-select:none;"/>
+                        <t t-foreach="range(10)" t-as="i">
+                            <div class="row">
+                                <div class="col-12 d-flex flex-column" style="margin-bottom:250px;" data-name="Scroll Item">
+                                    <p class="h5 fw-bold">I'm a scrolling Item #<t t-esc="i + 1"/></p>
+                                    <p>Edit, duplicate and move me easily. Drag anything you need you need here, like images or some inner content snippets.</p>
+                                </div>
+                            </div>
+                        </t>
+                        <div style="height:1000px;user-select:none;"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- Title right snippet -->
+    <template id="sticky_top_title_right" name="Sticky top (title right)">
+        <section
+            class="s_sticky_top_variations pt96 pb96 o_cc o_cc1"
+            data-snippet="s_sticky_top_title_right"
+            data-name="Sticky top (title right)"
+        >
+            <div class="container ">
+                <div class="row d-flex flex-column flex-md-row"> 
+                    <!-- Column scrolling -->
+                    <div class="scrolling-col  col-12 col-md-7 d-flex flex-column pe-3 pe-md-5 px-3 pb-3"  data-name="Column scrolling">
+                        <div class="col-12 mask  oe_unremovable o_cc o_cc1 position-absolute position-sticky w-100 start-0 top-0" style="height:120px; user-select:none;"/>
+                        <div class="col-12 mask  oe_unremovable o_cc o_cc1 position-absolute position-sticky w-100 start-0" style="top:480px; height:1000px; user-select:none;"/>
+                        <t t-foreach="range(10)" t-as="i">
+                            <div class="row">
+                                <div class="col-12 d-flex flex-column" style="margin-bottom:250px;" data-name="Scroll Item">
+                                    <p class="h5 fw-bold">I'm a scrolling Item #<t t-esc="i + 1"/></p>
+                                    <p>Edit, duplicate and move me easily. Drag anything you need you need here, like images or some inner content snippets.</p>
+                                </div>
+                            </div>
+                        </t>
+                        <div style="height:1000px;user-select:none;"/>
+                    </div>
+                    <!-- Column sticky -->
+                    <div class="sticky-col col-12 col-md-5 p-3" data-name="Column sticky">
+                        <div class="col-12 d-flex flex-column align-items-center align-items-md-start py-5 oe_unmovable" style="position: sticky; top:200px;">
+                            <p class="h6 mt-0 mb-0 text-primary">Sticky Top</p>
+                            <h3 class="mt-0 mb-3">Master the scrolling experience</h3>
+                            <p class="fw-normal text-secondary ">
+                                While scrolling, this part will remain fixed.
+                                This snippet is also available in right oriented variation and image variation.
+                                Enhance easily user experience with this scrolling trick.
+                                Keep in mind that for small screens, the scrolling column will not be displayed.
+                                If you need to change the snippet background color, schedule also the mask color option.
+                            </p>
+                            <div class="d-flex align-items-center justify-content-center gap-2 mt-3">
+                                <a class="btn btn-primary" href="#">It's time</a>
+                                <a class="btn btn-secondary" href="#">to scroll</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- Image left snippet -->
+    <template id="sticky_top_image_left" name="Sticky top (image left)">
+        <section
+            class="s_sticky_top_variations pt96 pb96 o_cc o_cc1"
+            data-snippet="s_sticky_top_image_left"
+            data-name="Sticky top (image left)"
+        >
+
+            <div class="container ">
+                <div class="row d-flex flex-column flex-md-row">
+                    <!-- Column sticky -->
+                    <div class="sticky-col col-12 col-md-4 p-3" data-name="Column sticky">
+                        <div class="col-12 d-flex flex-column align-items-center align-items-md-start py-5 oe_unmovable" style="position: sticky; top:200px;">
+                            <img 
+                                class="img img-fluid" src="/web/image/334-893e3f6c/peak.svg" 
+                                loading="lazy" data-mimetype="image/svg+xml" data-original-id="215" 
+                                data-original-src="/website/static/src/img/backgrounds/peak.jpg" 
+                                data-mimetype-before-conversion="image/jpeg" data-shape="web_editor/devices/galaxy_front_portrait" 
+                                data-file-name="peak.svg" data-shape-colors=";;;;#142E26" data-original-mimetype="image/jpeg"
+                            />
+                        </div>
+                    </div>
+                    <!-- Column scrolling -->
+                    <div class="scrolling-col  col-12 col-md-8 d-flex flex-column ps-3 ps-md-5 px-3 pb-3"  data-name="Column scrolling">
+                        <div class="col-12 mask  oe_unremovable o_cc o_cc1 position-absolute position-sticky w-100 start-0 top-0" style="height:120px; user-select:none;"/>
+                        <div class="col-12 mask  oe_unremovable o_cc o_cc1 position-absolute position-sticky w-100 start-0" style="top:480px; height:1000px; user-select:none;"/>
+                        <t t-foreach="range(10)" t-as="i">
+                            <div class="row">
+                                <div class="col-12 d-flex flex-column" style="margin-bottom:250px;" data-name="Scroll Item">
+                                    <p class="h5 fw-bold">I'm a scrolling Item #<t t-esc="i + 1"/></p>
+                                    <p>Edit, duplicate and move me easily. Drag anything you need you need here, like images or some inner content snippets.</p>
+                                </div>
+                            </div>
+                        </t>
+                        <div style="height:1000px;user-select:none;"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- Image right snippet -->
+    <template id="sticky_top_image_right" name="Sticky top (image right)">
+        <section
+            class="s_sticky_top_variations pt96 pb96 o_cc o_cc1"
+            data-snippet="s_sticky_top_title_right"
+            data-name="Sticky top (image right)"
+        >
+            <div class="container ">
+                <div class="row d-flex flex-column flex-md-row">
+                    <!-- Column scrolling -->
+                    <div class="scrolling-col  col-12 col-md-8 d-flex flex-column ps-3 ps-md-5 px-3 pb-3"  data-name="Column scrolling">
+                        <div class="col-12 mask  oe_unremovable o_cc o_cc1 position-absolute position-sticky w-100 start-0 top-0" style="height:120px; user-select:none;"/>
+                        <div class="col-12 mask  oe_unremovable o_cc o_cc1 position-absolute position-sticky w-100 start-0" style="top:480px; height:1000px; user-select:none;"/>
+                        <t t-foreach="range(10)" t-as="i">
+                            <div class="row">
+                                <div class="col-12 d-flex flex-column" style="margin-bottom:250px;" data-name="Scroll Item">
+                                    <p class="h5 fw-bold">I'm a scrolling Item #<t t-esc="i + 1"/></p>
+                                    <p>Edit, duplicate and move me easily. Drag anything you need you need here, like images or some inner content snippets.</p>
+                                </div>
+                            </div>
+                        </t>
+                        <div style="height:1000px;user-select:none;"/>
+                    </div>                  
+                    <!-- Column sticky -->
+                    <div class="sticky-col col-12 col-md-4 p-3" data-name="Column sticky">
+                        <div class="col-12 d-flex flex-column align-items-center align-items-md-start py-5 oe_unmovable" style="position: sticky; top:200px;">
+                            <img 
+                                class="img img-fluid" src="/web/image/334-893e3f6c/peak.svg" 
+                                loading="lazy" data-mimetype="image/svg+xml" data-original-id="215" 
+                                data-original-src="/website/static/src/img/backgrounds/peak.jpg" 
+                                data-mimetype-before-conversion="image/jpeg" data-shape="web_editor/devices/galaxy_front_portrait" 
+                                data-file-name="peak.svg" data-shape-colors=";;;;#142E26" data-original-mimetype="image/jpeg"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- Options snippet -->
+    <template id="sticky_top_snippet_options" inherit_id="website.snippet_options">
+        <xpath expr="." position="inside">
+            <div data-selector=".s_sticky_top_variations" data-apply-to-options="background-color">
+                <we-colorpicker 
+                    string="Mask Color"
+                    data-apply-to=".mask"
+                    data-select-style="true"
+                    data-no-transparency="true"
+                    data-css-property="background-color"
+                    data-color-prefix="bg-" 
+                />
+            </div>
+        </xpath>
+    </template>
+
+    <!-- snippet thumbnails -->
+    <template inherit_id="pyper_website_snippets.custom_krafter_snippet_sections" id="custom_krafter_snippet_sections_sticky_top_variations">
+        <xpath expr="//div[@id='snippet_scroll_blocks']/div[hasclass('o_panel_body')]" position="inside">
+
+            <t t-snippet="pyper_website_snippets.sticky_top_title_left"
+                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_banner_title_with_foreground_image.svg">
+                <keywords>scroll, text, title, columns, features, right</keywords>
+            </t>
+
+            <t t-snippet="pyper_website_snippets.sticky_top_title_right"
+                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_banner_title_with_foreground_image.svg">
+                <keywords>scroll, text, title, columns, features, left</keywords>
+            </t>
+
+            <t t-snippet="pyper_website_snippets.sticky_top_image_left"
+                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_banner_title_with_foreground_image.svg">
+                <keywords>scroll, text, image, columns, features, phone, left</keywords>
+            </t>
+
+            <t t-snippet="pyper_website_snippets.sticky_top_image_right"
+                t-thumbnail="/pyper_website_snippets/static/img/snippets/snippet_thumb/s_top_banner_title_with_foreground_image.svg">
+                <keywords>scroll, text, image, columns, features, phone, right</keywords>
+            </t>
+
+        </xpath>
+    </template>
+
+</odoo>
