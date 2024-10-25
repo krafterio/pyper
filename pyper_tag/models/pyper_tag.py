@@ -9,10 +9,20 @@ class PyperTag(models.Model):
     _description = 'Generic Tag Model'
 
     # [!] Comment sera nommé l'objet en lui même : un tag / un onglet / une marque ... choisi par l'utilisateur
+    # [!] Utiliser une relation ?
     generic_name = fields.Char(
         'Generic name',
         required=True,
-        default='Tag'
+        readonly=True,
+        default='Tag' # [!] compute avec le model name ?
+    )
+
+    # [!] Le nom du modèle qui hérite du tag, pour que chaque tag soit unique par modèle
+    model_name = fields.Char(
+        'Model Name',
+        required=True,
+        default='pyper.tag', # [!] to compute test only ?
+        help="The model name associated with the tag"
     )
 
     # [!] La valeur, ce qui est écrit sur le tag : "Flow en meeting", "Prospect à relancer avant mai"
@@ -44,3 +54,8 @@ class PyperTag(models.Model):
     )
 
     icon = fields.Char('Icon')
+
+    _sql_constraints = [
+        ('unique_model_value', 'unique(value, model_name)',
+         'Each tag value must be unique for a given model'),
+    ]

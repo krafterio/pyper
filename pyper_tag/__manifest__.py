@@ -14,7 +14,6 @@
     ],
     'website': 'https://krafter.io',
     'installable': True,
-    'application': True,
     'depends': [
        'web',
     ],
@@ -25,7 +24,7 @@
         # Data
 
         # Views
-        'views/pyper_tag_views.xml',
+        
     ],
     'assets': {
 
