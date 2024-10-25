@@ -34,10 +34,11 @@ class MailThread(models.AbstractModel):
         ))
 
     def message_subscribe(self, *args, **kwargs):
-        if self.subscription_disabled_models and \
-           self._name in self.subscription_disabled_models.split(',') and \
-           'partner_id' in self and args and self.partner_id.id in args[0]:
-            args[0].remove(self.partner_id.id)
+        for thread in self:
+            if thread.subscription_disabled_models and \
+               thread._name in thread.subscription_disabled_models.split(',') and \
+               'partner_id' in thread and args and thread.partner_id.id in args[0]:
+                args[0].remove(thread.partner_id.id)
         return super().message_subscribe(*args, **kwargs)
 
     @api.returns('mail.message', lambda value: value.id)
