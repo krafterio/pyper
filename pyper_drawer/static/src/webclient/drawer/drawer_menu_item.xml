@@ -118,6 +118,12 @@
                     <i class="fa fa-caret-up"/>
                 </t>
             </div>
+
+            <div t-if="showLabel" class="o_drawer--item-icon-counter">
+                <t t-slot="counter_badge">
+                    <span class="badge rounded-pill" t-out="formattedCounter"/>
+                </t>
+            </div>
         </div>
     </t>
 

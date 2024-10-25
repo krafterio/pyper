@@ -14,6 +14,12 @@ class IrViews(models.Model):
         ondelete='cascade',
     )
 
+    display_counter = fields.Boolean(
+        'Display counter',
+        default=True,
+        help='Allow to display a counter on menu item when view is bookmarked',
+    )
+
     bookmarked = fields.Boolean(
         string='Bookmarked',
         compute='_compute_bookmarked',
@@ -49,6 +55,7 @@ class IrViews(models.Model):
         return {
             'name': self.name,
             'action': str(action.type) + ',' + str(action.id),
+            'display_counter': self.display_counter,
             'category_id': self.env.ref('pyper_web_view_menu.menu_category_shared_views').id
                 if self.shared
                 else self.env.ref('pyper_web_view_menu.menu_category_my_views').id,

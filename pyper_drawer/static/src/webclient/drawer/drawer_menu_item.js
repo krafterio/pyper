@@ -1,9 +1,10 @@
 /** @odoo-module **/
 
-import {Component, onWillUpdateProps, useRef, useState} from '@odoo/owl';
+import {Component, onWillUpdateProps, useEffect, useRef, useState} from '@odoo/owl';
 import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {usePopover} from '@web/core/popover/popover_hook';
 import {useBus, useService} from '@web/core/utils/hooks';
+import {humanNumber} from '@web/core/utils/numbers';
 import {findFirstSelectableMenu} from '@pyper/webclient/menus/menu_helpers';
 import {DrawerPopoverItem} from './drawer_popover_item';
 
@@ -85,6 +86,7 @@ export class DrawerMenuItem extends Component {
     setup() {
         this.drawerService = useState(useService('drawer'));
         this.menuStateService = useState(useService('menu_state'));
+        this.menuCounterService = useState(useService('menu_counter'));
         this.actionService = useService('action');
         this.menuService = useService('menu');
         this.content = useRef('content');
@@ -107,6 +109,16 @@ export class DrawerMenuItem extends Component {
 
         useBus(this.env.bus, 'MENU-STATE:MENU-SELECTED', this.onMenuItemSelected.bind(this));
         useBus(this.env.bus, 'DRAWER:OPEN-MENU', this.onMenuItemOpened.bind(this));
+
+        useEffect((menuId) => {
+            this.menuCounterService.unregisterMenuItem(this.props.menuId);
+
+            const menu = this.menuService.getMenu(this.props.menuId);
+
+            if (menu?.displayCounter) {
+                this.menuCounterService.registerMenuItem(menuId);
+            }
+        }, () => [this.props.menuId]);
     }
 
     get classes() {
@@ -190,6 +202,14 @@ export class DrawerMenuItem extends Component {
         }
 
         return menu;
+    }
+
+    get counter() {
+        return this.menuCounterService.values[this.props.menuId];
+    }
+
+    get formattedCounter() {
+        return undefined !== this.counter ? humanNumber(this.counter) : undefined;
     }
 
     toggleChildren() {

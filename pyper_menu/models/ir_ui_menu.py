@@ -12,6 +12,10 @@ class IrUiMenu(models.Model):
     font_icon = fields.Char('Font icon')
     font_icon_color = fields.Char('Font icon color')
 
+    display_counter = fields.Boolean(
+        string='Display counter',
+    )
+
     category_id = fields.Many2one(
         'ir.ui.menu.category',
         'Category',
@@ -100,6 +104,7 @@ class IrUiMenu(models.Model):
             'category_action_id',
             'font_icon',
             'font_icon_color',
+            'display_counter',
         ]
 
     @staticmethod
@@ -119,6 +124,9 @@ class IrUiMenu(models.Model):
 
         if menu_value.get('font_icon_color'):
             vals['fontIconColor'] = menu_value.get('font_icon_color')
+
+        if menu_value.get('display_counter'):
+            vals['displayCounter'] = True
 
         if category:
             vals['category'] = category

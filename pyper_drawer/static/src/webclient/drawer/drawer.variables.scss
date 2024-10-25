@@ -27,20 +27,28 @@ $o-drawer-item-color: inherit !default;
 $o-drawer-item-bg: inherit !default;
 $o-drawer-item-icon-color: inherit !default;
 $o-drawer-item-caret-color: $o-gray-500 !default;
+$o-drawer-item-counter-color: $o-drawer-item-color !default;
+$o-drawer-item-counter-bg: $o-gray-300 !default;
 
 $o-drawer-item-hover-color: $o-gray-900 !default;
 $o-drawer-item-hover-bg: rgba($o-black, 0.08) !default;
 $o-drawer-item-icon-hover-color: inherit !default;
 $o-drawer-item-caret-hover-color: inherit !default;
+$o-drawer-item-counter-hover-color: $o-drawer-item-hover-color !default;
+$o-drawer-item-counter-hover-bg: $o-gray-400 !default;
 
 $o-drawer-item-active-color: $o-component-active-color !default;
 $o-drawer-item-active-bg: $o-component-active-bg !default;
 $o-drawer-item-icon-active-color: $o-drawer-item-active-color !default;
 $o-drawer-item-caret-active-color: $o-brand-primary !default;
+$o-drawer-item-counter-active-color: $o-drawer-item-active-color !default;
+$o-drawer-item-counter-active-bg: $o-gray-300 !default;
 $o-drawer-item-active-hover-color: $o-drawer-item-active-color !default;
 $o-drawer-item-active-hover-bg: $o-drawer-item-active-bg !default;
 $o-drawer-item-icon-active-hover-color: $o-drawer-item-icon-active-color !default;
 $o-drawer-item-caret-active-hover-color: $o-drawer-item-icon-active-color !default;
+$o-drawer-item-counter-active-hover-color: $o-drawer-item-active-hover-color !default;
+$o-drawer-item-counter-active-hover-bg: $o-gray-400 !default;
 
 $o-drawer-item-nav-margin-h: 5px !default;
 $o-drawer-item-nav-padding-h: $o-drawer-item-padding-h !default;

@@ -191,6 +191,15 @@
             color: $o-drawer-item-caret-color;
         }
 
+        .o_drawer--item-icon-counter {
+            .badge {
+                padding-left: $badge-padding-x / 2;
+                padding-right: $badge-padding-x / 2;
+                color: $o-drawer-item-counter-color;
+                background-color: $o-drawer-item-counter-bg;
+            }
+        }
+
         .o_drawer--item-label {
             font-size: $o-drawer-item-font-size;
             flex-grow: 1;
@@ -213,6 +222,13 @@
 
             .o_drawer--item-icon-caret {
                 color: $o-drawer-item-caret-hover-color !important;
+            }
+
+            .o_drawer--item-icon-counter {
+                .badge {
+                    color: $o-drawer-item-counter-hover-color;
+                    background-color: $o-drawer-item-counter-hover-bg;
+                }
             }
 
             .o_drawer--menu-item-content {
@@ -410,6 +426,13 @@
             color: $o-drawer-item-caret-active-color;
         }
 
+        .o_drawer--item-icon-counter {
+            .badge {
+                color: $o-drawer-item-counter-active-color;
+                background-color: $o-drawer-item-counter-active-bg;
+            }
+        }
+
         .o_drawer--menu-item-content {
             color: $o-drawer-item-active-color;
             background-color: $o-drawer-item-active-bg;
@@ -424,6 +447,13 @@
 
             .o_drawer--item-icon-caret {
                 color: $o-drawer-item-caret-active-hover-color !important;
+            }
+
+            .o_drawer--item-icon-counter {
+                .badge {
+                    color: $o-drawer-item-counter-active-hover-color;
+                    background-color: $o-drawer-item-counter-active-hover-bg;
+                }
             }
 
             .o_drawer--menu-item-content {
