@@ -12,6 +12,7 @@
     'maintainer': [
         'Krafter SAS',
     ],
+    'post_init_hook': 'post_init_hook',
     'installable': True,
     'application': True,
     'website': 'https://krafter.io',

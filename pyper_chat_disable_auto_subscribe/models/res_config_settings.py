@@ -13,7 +13,6 @@ class ResConfigSettings(models.TransientModel):
 
     disable_msg_post_recipients_subscribe = fields.Boolean(
         config_parameter='disable_msg_post_recipients_subscribe',
-        default=True,
     )
 
     disable_msg_post_self_subscribe = fields.Boolean(
