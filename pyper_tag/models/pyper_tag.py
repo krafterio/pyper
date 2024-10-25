@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class PyperTag(models.Model):
@@ -18,10 +18,13 @@ class PyperTag(models.Model):
     )
 
     # [!] Le nom du modèle qui hérite du tag, pour que chaque tag soit unique par modèle
+    # [!] Pour le moment je n'ai réussi à placer cette valeur que dans le contexte du field du form du test-model
+    # [!] Comment automatiser simplement ?
     model_name = fields.Char(
-        'Model Name',
+        'Associated Model Name',
         required=True,
-        default='pyper.tag', # [!] to compute test only ?
+        readonly=True,
+        default='pyper.tag.default', # [!] to compute test only ?
         help="The model name associated with the tag"
     )
 
@@ -33,7 +36,6 @@ class PyperTag(models.Model):
 
     # [!] PyperTag design related properties
     # [+] Affiner les champs nécessaires et créer d'autres classes séparées si nécessaire
-    
     color_id = fields.Many2one(
         'pyper.tag.color',
         string='Color'
@@ -49,7 +51,7 @@ class PyperTag(models.Model):
     color_hex_code = fields.Char(
         string='Color Hex code',
         related='color_id.hex_code',
-        # store=True,
+        store=True,
         # readonly=True
     )
 
@@ -59,3 +61,17 @@ class PyperTag(models.Model):
         ('unique_model_value', 'unique(value, model_name)',
          'Each tag value must be unique for a given model'),
     ]
+
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        print("Here in PyperTag model")
+        print("Parent name= ", self._parent_name)
+        return super(PyperTag, self).create(vals_list)
+
+    def write(self, vals):
+        # if 'tag_ids' in vals:
+        for tag in self.tag_ids:
+            tag.model_name = self._name
+
+        return super().write(vals)

@@ -3,6 +3,7 @@
 
 from odoo import fields, models, api, _
 from odoo.exceptions import UserError
+from typing import Any
 
 
 class PyperTagMixin(models.AbstractModel):
@@ -12,8 +13,19 @@ class PyperTagMixin(models.AbstractModel):
     tag_ids = fields.Many2many(
         'pyper.tag',
         string='Tags', #[+] compute avec la valeur du nom générique ?
+        # context={'default_model_name': },
+        # [+] utiliser ici domain pour filtrer
     )
+    # user_ids = fields.Many2many('res.users', string="Send to:", compute='_compute_user_ids')
+    tag_list = fields.Many2many('pyper.tag', string='NOP', compute='_compute_tag_list')
 
+    # un compute qui va chercher tous les tag avec model_name self._name .... >_<
+    def _compute_tag_list(self):
+        self.tag_list = self.env['pyper.tag'].search([
+            ('model_name', '=', self._name)
+        ])
+
+    # [!] c'est bien joli mais no utilisé pour le moment
     @api.model
     def create_tag(self, tag_value):
         if self._try_find_tag(tag_value):
@@ -31,12 +43,14 @@ class PyperTagMixin(models.AbstractModel):
             'model_name': self._name
         })
 
+    # [!] c'est bien joli mais no utilisé pour le moment
     def add_tag(self, tag_value):
         tag = self._try_find_tag(tag_value)
         if not tag:
             tag = self.create_tag(tag_value)
         self.write({'tag_ids': [(4, tag.id)]})
 
+    # [!] c'est bien joli mais no utilisé pour le moment
     def remove_tag(self, tag_value):
         tag = self._try_find_tag(tag_value)
         if tag:
