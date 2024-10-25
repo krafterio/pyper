@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="res_config_settings_view_form" model="ir.ui.view">
-        <field name="name">pyper_chat_disable_auto_subscribe.res.config.settings.view</field>
+        <field name="name">pyper_chat_config.res.config.settings.view</field>
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
-                <app string="Chat followers" name="pyper_chat_disable_auto_subscribe">
+                <app string="Chat followers" name="pyper_chat_config">
                     <block title="Automatic subscription" name="chat_setting_auto_subscription_container">
                         <setting id="disable_msg_post_recipients_subscribe" help="Disable automatic subscription of chat thread recipients when posting message.">
                             <field name="disable_msg_post_recipients_subscribe"/>
@@ -25,7 +25,7 @@
                     </block>
                     <block title="Unsubscribe" name="chat_setting_unsubscribe_container">
                         <div class="col-12">
-                            <button name="%(pyper_chat_disable_auto_subscribe.action_unsubscribe_partners_wizard)d" type="action" string="Unsubscribe clients" class="btn btn-primary me-3" icon="fa-warning"/>
+                            <button name="%(pyper_chat_config.action_unsubscribe_partners_wizard)d" type="action" string="Unsubscribe clients" class="btn btn-primary me-3" icon="fa-warning"/>
                         </div>
                     </block>
                 </app>
@@ -33,12 +33,12 @@
         </field>
     </record>
 
-     <record id="action_pyper_chat_disable_auto_subscribe_config_settings" model="ir.actions.act_window">
+     <record id="action_pyper_chat_config_config_settings" model="ir.actions.act_window">
         <field name="name">Settings</field>
         <field name="res_model">res.config.settings</field>
         <field name="view_id" ref="res_config_settings_view_form"/>
         <field name="view_mode">form</field>
         <field name="target">inline</field>
-        <field name="context">{'module': 'pyper_chat_disable_auto_subscribe', 'bin_size': False}</field>
+        <field name="context">{'module': 'pyper_chat_config', 'bin_size': False}</field>
     </record>
 </odoo>

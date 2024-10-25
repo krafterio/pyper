@@ -2,10 +2,10 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Chat disable AutoSubscribe',
+    'name': 'Pyper Chat Config',
     'category': 'Productivity/Discuss',
     'license': 'Other proprietary',
-    'description': 'Pyper addons preventing partner to be automatically included in copy of '
+    'description': 'Pyper addon to configure preventing partner to be automatically included in copy of '
     'each mail.',
     'version': '1.0',
     'author': 'Krafter SAS',
@@ -26,7 +26,7 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'pyper_chat_disable_auto_subscribe/static/src/core/**/*',
+            'pyper_chat_config/static/src/core/**/*',
         ],
     }
 }
