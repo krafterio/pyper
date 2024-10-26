@@ -11,6 +11,8 @@ import xmlrpc
 
 from odoo import api, fields, models, Command, _
 
+from ..utils import deserialize
+
 from ..exceptions import create_error as queue_create_error, QueueJobProcessError, QueueJobError
 
 DELAY_AUTO_UNLINK_NONE = 'none'
@@ -657,7 +659,11 @@ class PyperQueueJob(models.Model):
 
             call = getattr(recordset, self.model_method)
             call_init_args = self.payload if self.payload else {}
-            call_args = {}
+            call_args = []
+            call_kwargs = {}
+
+            if '_args' in call_init_args:
+                call_args = call_init_args.pop('_args')
 
             if not callable(call):
                 raise QueueJobProcessError(_('The model method is not callable attribute'))
@@ -666,13 +672,16 @@ class PyperQueueJob(models.Model):
 
             for arg in call_init_args.keys():
                 if arg in call_sig.parameters and not arg.startswith('_'):
-                    call_args[arg] = call_init_args[arg]
+                    call_kwargs[arg] = call_init_args[arg]
 
             for job_arg in ['job', 'queue_job']:
                 if job_arg in call_sig.parameters:
-                    call_args[job_arg] = self
+                    call_kwargs[job_arg] = self
 
-            call(**call_args)
+            call_args = deserialize(self.env, call_args)
+            call_kwargs = deserialize(self.env, call_kwargs)
+
+            call(*call_args, **call_kwargs)
             self._done()
 
             if (self.auto_unlink == DELAY_AUTO_UNLINK_DONE

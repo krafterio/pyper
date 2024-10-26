@@ -5,7 +5,9 @@ from datetime import datetime
 
 from odoo import models
 
-from .pyper_queue_job import DELAY_AUTO_UNLINK_NONE, DELAY_AUTO_UNLINK_DONE, DELAY_AUTO_UNLINK_FULL
+from .pyper_queue_job import DELAY_AUTO_UNLINK_FULL
+
+from ..utils import serialize
 
 
 class Base(models.AbstractModel):
@@ -59,16 +61,21 @@ class Delayable(object):
 
         return self._call_method
 
-    def _call_method(self, **kwargs):
+    def _call_method(self, *args, **kwargs):
         if self.method_name is None:
             pass
+
+        payload = {**kwargs}
+
+        if args:
+            payload.update({'_args': args})
 
         job_vals = {
             **self.job_config,
             'model_name': self.recordset._name,
             'model_method': self.method_name,
             'recordset_ids': self.recordset.ids if self.recordset.ids else False,
-            'payload': kwargs,
+            'payload': serialize(payload),
         }
 
         if job_vals.get('name', None) is None:
