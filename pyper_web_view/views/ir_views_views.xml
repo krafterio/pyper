@@ -157,7 +157,6 @@
                                 </group>
 
                                 <group name="advanced_mode_global" string="Common settings">
-                                    <field name="display_counter"/>
                                     <field name="limit"/>
                                     <field name="no_create"/>
                                     <field name="no_edit"/>

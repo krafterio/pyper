@@ -9,6 +9,10 @@
             <xpath expr="//form/field[@name='ir_action_id']" position="after">
                 <field name="bookmarked" invisible="True"/>
             </xpath>
+
+            <xpath expr="//form//group[@name='advanced_mode_global']//field[@name='limit']" position="before">
+                <field name="display_counter"/>
+            </xpath>
         </field>
     </record>
 </odoo>
