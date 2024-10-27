@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+<t t-name="pyper_queue_job_bus.ProgressMenu">
+    <div class="o-dropdown dropdown o-dropdown--no-caret o-command-QueueJobProgressSystray-class" t-if="displayIcon">
+        <button
+            type="button"
+            class="dropdown-toggle"
+            tabindex="0"
+            aria-expanded="false"
+            t-on-click="() => this.onClick()"
+        >
+            <i class="fa fa-hourglass-o" role="img" aria-label="Queue job progression"/>
+            <span t-if="counter" class="o-mail-QueueJobProgressMenu-counter badge rounded-pill bg-primary"><t t-esc="counter"/></span>
+        </button>
+    </div>
+</t>
+
+</templates>

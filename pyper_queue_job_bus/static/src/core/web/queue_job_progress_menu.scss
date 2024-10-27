@@ -1,0 +1,39 @@
+.o-command-QueueJobProgressSystray-class {
+    margin-top: - $o-navbar-padding-v; // cancel navbar padding
+    margin-bottom: - $o-navbar-padding-v; // cancel navbar padding
+    display: flex;
+    align-items: center;
+
+    &:hover,
+    &:focus,
+    &.show {
+        color: $o-navbar-entry-color--hover;
+        background-color: $o-navbar-entry-bg--hover;
+    }
+
+    &:active {
+        color: $o-navbar-entry-color--active;
+        background-color: $o-navbar-entry-bg--active;
+    }
+
+    .dropdown-toggle {
+        justify-content: center;
+
+        > i {
+            animation: queueJobProgression $o-queue-job_progress-animate-delay infinite;
+        }
+    }
+}
+
+
+@keyframes queueJobProgression {
+    0% {
+        transform: rotate(0deg);
+    }
+    15% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}

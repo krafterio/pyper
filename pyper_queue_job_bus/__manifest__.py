@@ -21,6 +21,14 @@
         'bus',
         'pyper_queue_job',
     ],
-    'data': [
-    ],
+    'assets': {
+        'web._assets_primary_variables': [
+            ('before', 'web/static/src/**/*.variables.scss', 'pyper_queue_job_bus/static/src/**/*.variables.scss'),
+        ],
+
+        'web.assets_backend': [
+            'pyper_queue_job_bus/static/src/core/**/*',
+            'pyper_queue_job_bus/static/src/webclient/**/*',
+        ],
+    },
 }
