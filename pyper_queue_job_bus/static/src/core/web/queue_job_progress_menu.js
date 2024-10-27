@@ -1,6 +1,6 @@
 /* @odoo-module */
 
-import {Component, onMounted, useState} from '@odoo/owl';
+import {Component, useState} from '@odoo/owl';
 
 import {registry} from '@web/core/registry';
 import {useService} from '@web/core/utils/hooks';
@@ -13,10 +13,6 @@ export class ProgressMenu extends Component {
     setup() {
         this.queueJobService = useState(useService('queue_job'));
         this.actionService = useService('action');
-
-        onMounted(() => {
-            this.env.bus.trigger('QUEUE-JOB:UPDATED');
-        });
     }
 
     get counter() {
