@@ -4,6 +4,7 @@
 from datetime import datetime, timedelta
 from inspect import signature
 import json
+import time
 import traceback
 from typing import Any
 import xmlrpc
@@ -577,6 +578,26 @@ class PyperQueueJob(models.Model):
 
     @api.model
     def runner(self):
+        check_interval = int(self.env['ir.config_parameter'].sudo().get_param('pyper_queue_job.runner_check_interval', 0))
+        check_interval = check_interval if 1 <= check_interval <= 59 else 0
+
+        # Run the runner in normal mode
+        if not check_interval:
+            self._runner_run()
+            return
+
+        # Run the runner in check interval mode: checks every defined seconds that a new job is not found
+        # and stops after 60 seconds because the Runner is executed every minute
+        check_interval = check_interval if 1 <= check_interval <= 59 else 1
+        start_time = time.time()
+
+        while (time.time() - start_time) < 60:
+            self.env.cr.commit()
+            self._runner_run()
+
+            time.sleep(check_interval)
+
+    def _runner_run(self):
         job = self._acquire_next_job()
         while job:
             job._process()
