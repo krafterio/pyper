@@ -27,3 +27,11 @@ msgstr "Action différée"
 #: model:ir.model,name:pyper_queue_job_bus.model_pyper_queue_job
 msgid "Queue Job"
 msgstr "Job en file d’attente"
+
+#. module: pyper_queue_job_bus
+#. odoo-python
+#: code:addons/pyper/pyper_queue_job_bus/models/pyper_queue_job.py:0
+#: code:addons/pyper_queue_job_bus/models/pyper_queue_job.py:0
+#, python-format
+msgid "The action has been queued"
+msgstr "L’action a été mise en file d’attente"
