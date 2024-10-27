@@ -118,7 +118,7 @@ export class ViewsSwitcher extends Component {
 
     get displaySwitcher() {
         return !this.excludedViewTypes.includes(this.currentViewType)
-            && ![undefined, 'ir.views'].includes(this.currentModelName);
+            && ![undefined, 'ir.views', 'ir.ui.menu'].includes(this.currentModelName);
     }
 
     get excludedViewTypes() {
