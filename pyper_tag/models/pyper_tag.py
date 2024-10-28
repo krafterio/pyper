@@ -105,4 +105,4 @@ class PyperTag(models.Model):
             if pyper_tag.is_public:
                 pyper_tag.display_name = f'{emoji} {name}' if emoji else name
             else:
-                pyper_tag.display_name = f'({emoji} {name})' if emoji else f'(name)'
+                pyper_tag.display_name = f'({emoji} {name})' if emoji else f'({name})'
