@@ -3,7 +3,6 @@
 
 from odoo import fields, models, api, _
 from odoo.exceptions import UserError
-from typing import Any
 
 
 class PyperTagMixin(models.AbstractModel):
@@ -12,62 +11,61 @@ class PyperTagMixin(models.AbstractModel):
 
     tag_ids = fields.Many2many(
         'pyper.tag',
-        string='Tags', #[+] compute avec la valeur du nom générique ?
-        # context={'default_model_name': },
-        # [+] utiliser ici domain pour filtrer
+        string='Tags', 
     )
-    # user_ids = fields.Many2many('res.users', string="Send to:", compute='_compute_user_ids')
-    tag_list = fields.Many2many('pyper.tag', string='NOP', compute='_compute_tag_list')
 
-    # un compute qui va chercher tous les tag avec model_name self._name .... >_<
-    def _compute_tag_list(self):
-        self.tag_list = self.env['pyper.tag'].search([
-            ('model_name', '=', self._name)
-        ])
+    tag_model_name = fields.Char(
+        'Associated tag model name',
+        compute='_compute_tag_model_name',
+    )
 
-    # [!] c'est bien joli mais no utilisé pour le moment
+    def _compute_tag_model_name(self):
+        for mixin in self:
+            mixin.tag_model_name = self._name
+
+    # tag_list = fields.Many2many('pyper.tag', string='Tag list', compute='_compute_tag_list')
+
+    # un compute qui va chercher tous les tag avec tag_model_name self._name .... >_<
+    # def _compute_tag_list(self):
+    #     self.tag_list = self.env['pyper.tag'].search([
+    #         ('tag_model_name', '=', self._name)
+    #     ])
+
+    # [!] non utilisé pour le moment
     @api.model
     def create_tag(self, tag_value):
         if self._try_find_tag(tag_value):
             raise UserError(
                 _(
                     'A tag with "{value}" value'
-                    'already exists for "{model_name}" model'
+                    'already exists for "{tag_model_name}" model'
                 ).format(
                     value=tag_value,
-                    model_name=self._name,
+                    tag_model_name=self._name,
                 )
             )
         return self.env['pyper.tag'].create({
             'value': tag_value,
-            'model_name': self._name
+            'tag_model_name': self._name
         })
 
-    # [!] c'est bien joli mais no utilisé pour le moment
+    # [!] non utilisé pour le moment
     def add_tag(self, tag_value):
         tag = self._try_find_tag(tag_value)
         if not tag:
             tag = self.create_tag(tag_value)
         self.write({'tag_ids': [(4, tag.id)]})
 
-    # [!] c'est bien joli mais no utilisé pour le moment
+    # [!] non utilisé pour le moment
     def remove_tag(self, tag_value):
         tag = self._try_find_tag(tag_value)
         if tag:
             self.write({'tag_ids': [(3, tag.id)]})
-
-    # [+][!]  a tester pour definir comment appeller / utiliser
-    def update_generic_name(self, new_generic_name):
-        tags_to_update = self.env['pyper.tag'].search([('model_name', '=', self._name)])
-        if tags_to_update:
-            tags_to_update.write({'generic_name': new_generic_name})
-        else:
-            raise UserError('No tag to update with generice name "{}" found'.format(self._name))
 
 
     # [+] Améliorer la notion de tag unique (privé / public ... par valeur ? ... )
     def _try_find_tag(self, tag_value):
         return self.env['pyper.tag'].search([
             ('value', '=', tag_value),
-            ('model_name', '=', self._name)
+            ('tag_model_name', '=', self._name)
         ], limit=1)

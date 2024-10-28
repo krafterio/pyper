@@ -8,30 +8,21 @@ class PyperTag(models.Model):
     _name = 'pyper.tag'
     _description = 'Generic Tag Model'
 
-    # [!] Comment sera nommé l'objet en lui même : un tag / un onglet / une marque ... choisi par l'utilisateur
-    # [!] Utiliser une relation ?
-    generic_name = fields.Char(
-        'Generic name',
-        required=True,
-        readonly=True,
-        default='Tag' # [!] compute avec le model name ?
-    )
-
-    # [!] Le nom du modèle qui hérite du tag, pour que chaque tag soit unique par modèle
-    # [!] Pour le moment je n'ai réussi à placer cette valeur que dans le contexte du field du form du test-model
-    # [!] Comment automatiser simplement ?
-    model_name = fields.Char(
-        'Associated Model Name',
-        required=True,
-        readonly=True,
-        default='pyper.tag.default', # [!] to compute test only ?
-        help="The model name associated with the tag"
-    )
-
     # [!] La valeur, ce qui est écrit sur le tag : "Flow en meeting", "Prospect à relancer avant mai"
-    value = fields.Char(
-        'Value',
+    name = fields.Char(
+        'Tag name',
         required=True,
+    )
+
+    display_name = fields.Char(
+        string="Displayed tag name", 
+        compute="_compute_display_name",
+        store=True
+    )
+
+    tag_model_name = fields.Char(
+        'Associated Model',
+        # default=lambda self: self.env.context.get('default_tag_model_name')
     )
 
     # [!] PyperTag design related properties
@@ -55,23 +46,33 @@ class PyperTag(models.Model):
         # readonly=True
     )
 
-    icon = fields.Char('Icon')
+    emoji = fields.Char(
+        'Emoji',
+        help="Emoji representing the tag"
+     )
 
     _sql_constraints = [
-        ('unique_model_value', 'unique(value, model_name)',
-         'Each tag value must be unique for a given model'),
+        ('unique_model_value', 'unique(name, tag_model_name)',
+         'Each tag name must be unique for a given model'),
     ]
+
+    @api.depends('emoji', 'name')
+    def _compute_display_name(self):
+        for pyper_tag in self:
+            emoji = pyper_tag.emoji or ""
+            name = pyper_tag.name or ""
+            pyper_tag.display_name = f"{emoji} {name}" if emoji else name
 
 
     @api.model_create_multi
     def create(self, vals_list):
         print("Here in PyperTag model")
-        print("Parent name= ", self._parent_name)
         return super(PyperTag, self).create(vals_list)
 
     def write(self, vals):
         # if 'tag_ids' in vals:
-        for tag in self.tag_ids:
-            tag.model_name = self._name
+        print("Here in write PyperTag model")
+        # for tag in self.tag_ids:
+        #     tag.tag_model_name = self._name
 
         return super().write(vals)
