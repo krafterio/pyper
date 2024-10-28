@@ -22,6 +22,7 @@
         'security/ir.model.access.csv',
 
         # Data
+         'data/rules.xml',
 
         # Views
         
