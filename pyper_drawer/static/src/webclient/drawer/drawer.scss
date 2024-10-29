@@ -25,6 +25,7 @@
     }
 
     &.o_drawer--locked {
+        z-index: auto;
         transform: translate3d(0px, 0px, 0px);
     }
 
