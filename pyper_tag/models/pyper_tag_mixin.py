@@ -9,7 +9,7 @@ class PyperTagMixin(models.AbstractModel):
     _name = 'pyper.tag.mixin'
     _description = 'Pyper Tag Mixin'
 
-    tag_ids = fields.Many2many(
+    pyper_tag_ids = fields.Many2many(
         'pyper.tag',
         string='Tags', 
     )
