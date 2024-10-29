@@ -8,6 +8,8 @@ import requests
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
+    creation_date = fields.Date('Creation Date')
+
     def action_enrich_company_infos(self):
         for partner in self:
             if not partner.is_company:

@@ -6,7 +6,24 @@
         <field name="arch" type="xml">
             <form>
                 <group invisible="identified_partner_id != False">
-                    <field name="name"/>
+                    <div class="d-flex flex-row align-items-start" colspan="2">
+                        <field
+                            name="name"
+                            placeholder="Search a company name"
+                            default_focus="1"
+                            class="flew-grow-1"
+                            readonly="results"
+                        />
+
+                        <button
+                            name="action_pappers_new_api_call"
+                            type="object"
+                            string="Reset search"
+                            class="btn btn-danger text-nowrap ms-2"
+                            data-hotkey="g"
+                            invisible="identified_partner_id != False or not results"
+                        />
+                    </div>
                     <field name="identified_partner_id" invisible="True"/>
                 </group>
 
@@ -14,6 +31,7 @@
                     name="results"
                     nolabel="True"
                     readonly="True"
+                    invisible="not results"
                 >
                     <tree>
                         <field name="name"/>
@@ -43,23 +61,18 @@
                     </tree>
                 </field>
 
-                <footer >
+                <div class="alert alert-info" invisible="results">
+                    <p class="mb-0">Search a company in the top area and the matching results will appear here.</p>
+                </div>
+
+                <footer>
                     <button
                         name="action_pappers_api_call"
                         type="object"
                         string="Get companies"
                         class="btn-primary o_sale_warranty_configurator_add"
                         data-hotkey="g"
-                        invisible="identified_partner_id != False"
-                    />
-
-                    <button
-                        name="action_pappers_new_api_call"
-                        type="object"
-                        string="Reset search"
-                        class="btn btn-outline-primary"
-                        data-hotkey="g"
-                        invisible="identified_partner_id != False"
+                        invisible="identified_partner_id != False or results"
                     />
 
                     <button
