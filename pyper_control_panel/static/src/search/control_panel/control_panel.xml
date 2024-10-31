@@ -31,6 +31,10 @@
             <attribute name="class" separator=" " remove="pt-2 pb-3" add="py-3"/>
         </xpath>
 
+        <xpath expr="//div[hasclass('o_control_panel_actions')]" position="attributes">
+            <attribute name="class" separator=" " remove="justify-content-lg-around" add="justify-content-lg-between"/>
+        </xpath>
+
         <xpath expr="//div[hasclass('o_control_panel_main')]" position="attributes">
             <attribute name="class" separator=" " remove="gap-3 align-items-lg-start" add="gap-2 align-items-center"/>
         </xpath>
