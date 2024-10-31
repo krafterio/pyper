@@ -73,27 +73,31 @@ class ResPartner(models.Model):
                 "accept-version": "v2.0",
                 "authorization": "Bearer " + api_token,
             }
-
             try:
                 response = requests.post(url, json=payload, headers=headers)
+                response.raise_for_status()  # Raise an HTTPError for bad responses (4xx and 5xx)
                 contact_infos = response.json()
 
+                if not contact_infos:
+                    raise UserError(_('No data found for this contact'))
+    
                 if contact.email is False:
                     if contact_infos['profile']['starryWorkEmail']:
                         contact.email = contact_infos['profile']['starryWorkEmail']
                     elif contact_infos['profile']['workEmails']:
                         contact.email = contact_infos['profile']['workEmails']
-                    else:
+                    elif contact_infos['profile']['professionalEmails']:
                         contact.email = contact_infos['profile']['professionalEmails'][0]
 
-                if not contact.mobile:
+                if contact_infos['profile']['starryPhone'] and not contact.mobile:
                     contact.mobile = contact_infos['profile']['starryPhone']
 
             except requests.exceptions.HTTPError as http_err:
-                # See 404, 500, etc. errors
-                # print(f"HTTP error occurred: {http_err}")
-                pass
+                if response.status_code == 401:
+                    raise UserError(_('Invalid API token. Please check your Kaspr API token in the global settings.'))
+                else:
+                    raise UserError(_('HTTP error occurred: %s') % http_err)
             except requests.exceptions.RequestException as req_err:
-                print(f"Request error occurred: {req_err}")
+                raise UserError(_('Request error occurred: %s') % req_err)
 
 
