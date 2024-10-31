@@ -20,5 +20,8 @@
         'web.assets_backend': [
             'pyper_command_search/static/src/core/web/**/*',
         ],
+        'web.qunit_suite_tests': [
+            'pyper_command_search/static/tests/*',
+        ],
     },
 }
