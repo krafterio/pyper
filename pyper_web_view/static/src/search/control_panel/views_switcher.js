@@ -143,7 +143,7 @@ export class ViewsSwitcher extends Component {
         return {
             'tree': 'oi oi-view-list',
             'kanban': 'oi oi-view-kanban',
-            undefined: 'fa fa-columns',
+            undefined: 'fa fa-floppy-o',
         }
     }
 

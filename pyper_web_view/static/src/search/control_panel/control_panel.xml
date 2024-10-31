@@ -5,7 +5,7 @@
             <attribute name="t-if">displayViewSwitcherEntries</attribute>
         </xpath>
 
-        <xpath expr="//div[hasclass('o_control_panel_breadcrumbs')]" position="before">
+        <xpath expr="//div[hasclass('o_control_panel_actions')]/t[@t-slot='layout-actions']" position="before">
             <ViewsSwitcher/>
         </xpath>
     </t>
