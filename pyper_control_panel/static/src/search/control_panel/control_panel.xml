@@ -20,9 +20,9 @@
                     </ul>
                 </div>
                 <div class="d-none d-xl-inline-flex gap-1">
-                    <t t-slot="control-panel-create-button"/>
                     <t t-slot="layout-buttons"/>
                     <t t-slot="control-panel-always-buttons"/>
+                    <t t-slot="control-panel-create-button"/>
                 </div>
             </div>
         </xpath>
