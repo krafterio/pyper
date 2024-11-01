@@ -38,35 +38,32 @@ class ResPartner(models.Model):
 
             if response.status_code == 200:
                 if company_infos['nom_entreprise']:
-                    if company_infos['numero_tva_intracommunautaire']:
+                    if company_infos['numero_tva_intracommunautaire'] and not partner.vat:
                         partner.vat = company_infos['numero_tva_intracommunautaire']
 
-                    if company_infos['code_naf']:
+                    if company_infos['code_naf'] and not partner.ape:
                         partner.ape = company_infos['code_naf']
 
-                    if company_infos['objet_social'] and partner.description is False:
-                        partner.description = company_infos['objet_social']
-
-                    if company_infos['date_creation']:
+                    if company_infos['date_creation'] and not partner.creation_date:
                         partner.creation_date = company_infos['date_creation']
 
                     if company_infos['etablissement']:
-                        if company_infos['etablissement']['adresse_ligne_1']:
+                        if company_infos['etablissement']['adresse_ligne_1'] and not partner.street:
                             partner.street = company_infos['etablissement']['adresse_ligne_1'].capitalize()
 
-                        if company_infos['etablissement']['code_postal']:
+                        if company_infos['etablissement']['code_postal'] and not partner.zip:
                             partner.zip = company_infos['etablissement']['code_postal']
 
-                        if company_infos['etablissement']['ville']:
+                        if company_infos['etablissement']['ville'] and not partner.city:
                             partner.city = company_infos['etablissement']['ville'].capitalize()
 
-                        if company_infos['etablissement']['siret']:
+                        if company_infos['etablissement']['siret'] and not partner.siret:
                             partner.siret = company_infos['etablissement']['siret']
 
-                        if company_infos['etablissement']['effectif_min']:
+                        if company_infos['etablissement']['effectif_min'] and not partner.number_employees_min:
                             partner.number_employees_min = company_infos['etablissement']['effectif_min']
 
-                        if company_infos['etablissement']['code_pays']:
+                        if company_infos['etablissement']['code_pays'] and not partner.country_id:
                             country_code = company_infos['etablissement']['code_pays']
 
                             country_id = self.env['res.country'].search(
@@ -78,7 +75,7 @@ class ResPartner(models.Model):
                             if country_id.id:
                                 partner['country_id'] = country_id.id
 
-                    if company_infos['capital'] and company_infos['devise_capital']:
+                    if company_infos['capital'] and company_infos['devise_capital'] and not partner.capital:
                         currency_id = self.env['res.currency'].search(
                             [
                                 ('currency_unit_label', '=', company_infos['devise_capital']),
@@ -88,8 +85,6 @@ class ResPartner(models.Model):
                         if currency_id:
                             partner.capital_currency_id = currency_id
                             partner.capital = company_infos['capital']
-
-
 
             elif response.status_code == 400:
                 raise UserError(response.json()['message'])
