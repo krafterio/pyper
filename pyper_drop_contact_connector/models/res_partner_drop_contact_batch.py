@@ -86,6 +86,7 @@ class ResPartnerDropContactBatch(models.Model):
         data = {
             'data': [],
             'language': 'fr',
+            'siren': True,
         }
 
         for partner in self.partner_ids:
@@ -93,6 +94,9 @@ class ResPartnerDropContactBatch(models.Model):
                 'full_name': partner.name,
                 'company': partner.parent_id.name,
                 'email': partner.email,
+                'linkedin': partner.linkedin_url if partner.linkedin_url else '',
+                'website': partner.parent_id.website if partner.parent_id.website else '',
+                'siret': partner.parent_id.siret if partner.parent_id.siret else '',
             })
 
         res = requests.post(
@@ -174,8 +178,52 @@ class ResPartnerDropContactBatch(models.Model):
         if 'phone' in info and not partner_id.phone:
             partner_id.phone = info['phone']
 
+        if 'mobile_phone' in info and not partner_id.mobile:
+            partner_id.mobile = info['mobile_phone']
+
         if 'linkedin' in info and not partner_id.linkedin_url:
             partner_id.linkedin_url = info['linkedin']
+
+        if 'vat' in info and not partner_id.parent_id.vat:
+            partner_id.parent_id.vat = info['vat']
+
+        if 'job' in info and not partner_id.function:
+            partner_id.function = info['job']
+
+        if not partner_id.parent_id and 'company' in info:
+            parent = self.env['res.partner'].create({
+                'name': info['company'],
+                'company_type': 'company',
+            })
+
+            if 'siret_address' in info:
+                parent.street = info['siret_address']
+
+            if 'siret_zip' in info:
+                parent.zip = info['siret_zip']
+
+            if 'siret_city' in info:
+                parent.city = info['siret_city']
+
+            if 'siret' in info:
+                parent.siret = info['siret']
+
+            partner_id.parent_id = parent
+
+        if 'company_linkedin' in info and not partner_id.parent_id.company_linkedin_url:
+            partner_id.parent_id.company_linkedin_url = info['company_linkedin']
+
+        if 'vat' in info and not partner_id.parent_id.vat:
+                partner_id.parent_id.vat = info['vat']
+
+        if 'website' in info and not partner_id.parent_id.website:
+            partner_id.function = info['job']
+
+        if 'siret' in info and not partner_id.parent_id.siret:
+            partner_id.parent_id.siret = info['siret']
+
+        if 'company_linkedin' in info and not partner_id.company_linkedin_url:
+            partner_id.parent_id.company_linkedin_url = info['company_linkedin']
 
         self.env.cr.commit()
 
