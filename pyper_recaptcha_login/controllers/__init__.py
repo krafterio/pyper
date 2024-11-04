@@ -2,3 +2,4 @@
 # Krafter Proprietary License (see LICENSE file).
 
 from . import home
+from . import signup
