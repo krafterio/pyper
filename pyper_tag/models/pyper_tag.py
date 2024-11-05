@@ -33,7 +33,17 @@ class PyperTag(models.Model):
         help="If checked, this tag will be visible to all users."
     )
 
-    tag_model_name = fields.Char('Associated Model')
+    tag_model_name = fields.Char(
+        'Associated Model',
+        readonly=True,
+        required=True,
+    )
+
+    family_id = fields.Many2one(
+        'pyper.tag.family', 
+        string="Tag family", 
+        help="The family to which this tag belongs"
+    )
 
     color_id = fields.Char('Tag color')
 
@@ -68,6 +78,13 @@ class PyperTag(models.Model):
         string="Emoji",
     )
 
+    @api.constrains('is_public', 'family_id')
+    def _check_family_has_same_visibility(self):
+        for pyper_tag in self:
+            if pyper_tag.family_id and pyper_tag.family_id.is_public is not self.is_public:
+                raise ValidationError(_('A tag and his family must have the same visibility, both public either private'))
+
+
     @api.constrains('name', 'tag_model_name', 'is_public')
     def _check_unique_tag_name_per_model(self):
         for pyper_tag in self:
@@ -97,12 +114,19 @@ class PyperTag(models.Model):
             if self.search_count(domain) > 0:
                 raise ValidationError(_('You already have a private tag with this name.'))
 
-    @api.depends('emoji', 'name')
+    @api.depends('emoji', 'name', 'is_public', 'family_id')
     def _compute_display_name(self):
         for pyper_tag in self:
-            emoji = pyper_tag.emoji or ''
-            name = pyper_tag.name or ''
-            if pyper_tag.is_public:
-                pyper_tag.display_name = f'{emoji} {name}' if emoji else name
-            else:
-                pyper_tag.display_name = f'({emoji} {name})' if emoji else f'({name})'
+            name_list = []
+            # [+] Improve this in display related flow
+            # if pyper_tag.family_id:
+            #     name_list.append(f'[{pyper_tag.family_id.display_name}]')
+            if pyper_tag.emoji:
+                name_list.append(pyper_tag.emoji)
+            if pyper_tag.name:
+                name_list.append(pyper_tag.name)
+            name_string = ' '.join(name_list)
+            if not pyper_tag.is_public:
+                name_string = '(' + name_string + ')'
+            pyper_tag.display_name = name_string
+               

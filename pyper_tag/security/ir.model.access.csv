@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_pyper_tag_user,pyper.tag.user,model_pyper_tag,base.group_user,1,0,0,0
 access_pyper_tag_manager,pyper.tag.manager,model_pyper_tag,base.group_user,1,1,1,1
+access_pyper_tag_family_user,pyper.tag.family.user,model_pyper_tag_family,base.group_user,1,0,0,0
+access_pyper_tag_family_manager,pyper.tag.family.manager,model_pyper_tag_family,base.group_user,1,1,1,1
