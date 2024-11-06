@@ -14,7 +14,6 @@
     'website': 'https://krafter.io',
     'installable': True,
     'depends': [
-        'auth_signup',
         'pyper_setup',
     ],
     'data': [
