@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pyper_tag_family_tree" model="ir.ui.view">
+        <field name="name">pyper.tag.family.tree</field>
+        <field name="model">pyper.tag.family</field>
+        <field name="arch" type="xml">
+            <tree string="Tag Families" multi_edit="1" editable="bottom" expand="1">
+                <field name="is_public" widget="boolean_toggle"/>
+                <field name="name"/>
+                <field name="tag_model_name"/>
+                <field name="tag_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pyper_tag_family_form" model="ir.ui.view">
+        <field name="name">pyper.tag.family.form</field>
+        <field name="model">pyper.tag.family</field>
+        <field name="arch" type="xml">
+            <form string="Tag Family Form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="is_public" widget="boolean_toggle"/>
+                        <field name="tag_model_name" readonly="1"/>
+                    </group>
+                    <group string="Tags in this Family">
+                        <field name="user_id" />
+                        <field name="tag_ids" widget="many2many_tags" 
+                               domain="[('tag_model_name', '=', tag_model_name), ('is_public', '=', is_public), '|', ('is_public', '=', True), ('user_id', '=', uid)]" 
+                               context="{'default_tag_model_name': tag_model_name, 'default_is_public': is_public, 'default_user_id': user_id}"
+                         />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pyper_tag_family_kanban" model="ir.ui.view">
+        <field name="name">pyper.tag.family.kanban</field>
+        <field name="model">pyper.tag.family</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click p-4 rounded-1">
+                            <div class="o_kanban_record_top">
+                                <div class="h4">
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="o_kanban_label">Public : </span>
+                                <field name="is_public" widget="boolean_toggle" editable="0" />
+                            </div>
+                            <t t-if="record.tag_model_name">
+                                <div class="mt-2">
+                                    <span class="text-muted me-3">Model owner</span>
+                                    <field name="tag_model_name"/>
+                                </div>
+                            </t>
+                            <t t-if="record.user_id">
+                                <div class="mt-2">
+                                    <span class="text-muted me-3">Created by</span>
+                                    <field name="user_id"/>
+                                </div>
+                            </t>
+                            <t t-if="record.tag_ids">
+                                <div class="mt-2">
+                                    <span class="text-muted me-3">Available tags</span>
+                                    <field name="tag_ids" editable="0" widget="many2many_tags"/>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_pyper_tag_family_search" model="ir.ui.view">
+        <field name="name">pyper.tag.family.search</field>
+        <field name="model">pyper.tag.family</field>
+        <field name="arch" type="xml">
+            <search string="Tag Families">
+                <field name="name"/>
+                <field name="tag_model_name"/>
+                <field name="is_public"/>
+                <field name="user_id"/>
+
+                <filter string="Public" name="public_tag_families" domain="[('is_public', '=', True)]"/>
+                <filter string="Private" name="private_tag_families" domain="[('is_public', '=', False)]"/>
+                <filter string="My Tag Families" name="my_tag_families" domain="[('user_id', '=', uid)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_pyper_tag_family" model="ir.actions.act_window">
+        <field name="name">Tag Families</field>
+        <field name="res_model">pyper.tag.family</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="search_view_id" ref="view_pyper_tag_family_search"/>
+        <field name="domain">['|', ('is_public', '=', True), ('user_id', '=', uid)]</field>
+    </record>
+</odoo>

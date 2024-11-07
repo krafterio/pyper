@@ -25,6 +25,7 @@
          'data/rules.xml',
 
         # Views
-        
+        'views/pyper_tag_views.xml',
+        'views/pyper_tag_family_views.xml',
     ],
 }

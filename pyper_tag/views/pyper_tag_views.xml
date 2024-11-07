@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pyper_tag_tree" model="ir.ui.view">
+        <field name="name">pyper.tag.tree</field>
+        <field name="model">pyper.tag</field>
+        <field name="arch" type="xml">
+            <tree string="Tags" multi_edit="1" editable="bottom" expand="1">
+                <field name="is_public" widget="boolean_toggle"/>
+                <field name="display_name"/>
+                <field name="tag_model_name"/>
+                <field name="name"/>
+                <field name="color_id" widget="color"/>
+                <field name="emoji"/>
+                <field name="user_id"/>
+                <field name="family_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pyper_tag_form" model="ir.ui.view">
+        <field name="name">pyper.tag.form</field>
+        <field name="model">pyper.tag</field>
+        <field name="arch" type="xml">
+            <form string="Tag Form">
+                <sheet>
+                    <group string="Tag informations">
+                        <field name="name"/>
+                        <field name="is_public" widget="boolean_toggle"/>
+                        <field name="tag_model_name"/>
+                    </group>
+                    <group string="Design">
+                        <field name="display_name" />
+                        <field name="color_id" widget="color"/>
+                        <field name="emoji" widget="badges"/>
+                    </group>
+                    
+                    <group string="Relations">
+                        <field name="user_id" />
+                        <field name="family_id" widget="many2one_tags" 
+                               domain="[('tag_model_name', '=', tag_model_name), ('is_public', '=', is_public), '|', ('is_public', '=', True), ('user_id', '=', uid)]"
+                               context="{'default_tag_model_name': tag_model_name, 'default_is_public': is_public, 'default_user_id': user_id}"
+                        />
+                    </group>
+                    <header groups="kascade.administrator">
+                        <button name="%(pyper_tag.action_pyper_tag_family)d"
+                                string="Manage tag families"
+                                type="action"
+                                class="btn btn-secondary"
+                                icon="fa-cog"
+                        />
+                    </header>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pyper_tag_kanban" model="ir.ui.view">
+        <field name="name">pyper.tag.kanban</field>
+        <field name="model">pyper.tag</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click p-4 rounded-1">
+                            <div class="o_kanban_record_top">
+                                <div class="h4">
+                                    <strong>
+                                        <field name="display_name"/>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="d-flex flex-row justify-content-between align-items-baseline">
+                                    <div>
+                                        <span class="o_kanban_label">Public : </span>
+                                        <field name="is_public" widget="boolean_toggle" editable="0" />
+                                    </div>
+                                    <div class="h3">
+                                        <field name="emoji"/>
+                                    </div>
+                                    <field name="color_id" widget="color" editable="0"/>
+                                </div>
+                            </div>
+                            <t t-if="record.tag_model_name">
+                                <div class="mt-2">
+                                    <span class="text-muted me-3">Model owner</span>
+                                    <field name="tag_model_name"/>
+                                </div>
+                            </t>
+                            <t t-if="record.user_id">
+                                <div class="mt-2">
+                                    <span class="text-muted me-3">Created by</span>
+                                    <field name="user_id"/>
+                                </div>
+                            </t>
+                            <t t-if="record.family_id">
+                                <div class="mt-2">
+                                    <span class="text-muted me-3">Tag Family</span>
+                                    <field name="family_id"/>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_pyper_tag_search" model="ir.ui.view">
+        <field name="name">pyper.tag.search</field>
+        <field name="model">pyper.tag</field>
+        <field name="arch" type="xml">
+            <search string="Tags">
+                <field name="name"/>
+                <field name="display_name"/>
+                <field name="is_public"/>
+                <field name="tag_model_name"/>
+                <field name="user_id"/>
+                <field name="family_id"/>
+
+                <filter string="Public" name="public_tags" domain="[('is_public', '=', True)]"/>
+                <filter string="Private" name="private_tags" domain="[('is_public', '=', False)]"/>
+                <filter string="My Tags" name="my_tags" domain="[('user_id', '=', uid)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_pyper_tag" model="ir.actions.act_window">
+        <field name="name">Pyper Tags</field>
+        <field name="res_model">pyper.tag</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="search_view_id" ref="view_pyper_tag_search"/>
+    </record>
+</odoo>

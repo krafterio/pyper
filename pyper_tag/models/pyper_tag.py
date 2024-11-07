@@ -12,6 +12,7 @@ class PyperTag(models.Model):
     name = fields.Char(
         'Tag name',
         required=True,
+        index=True,
     )
 
     display_name = fields.Char(
@@ -29,7 +30,8 @@ class PyperTag(models.Model):
 
     is_public = fields.Boolean(
         string="Is Public", 
-        default=False, 
+        default=False,
+        index=True, 
         help="If checked, this tag will be visible to all users."
     )
 
@@ -37,6 +39,7 @@ class PyperTag(models.Model):
         'Associated Model',
         readonly=True,
         required=True,
+        index=True,
     )
 
     family_id = fields.Many2one(
