@@ -32,10 +32,10 @@ class ResPartner(models.Model):
                 response.raise_for_status()
                 linkedin_info = response.json()
 
-                if linkedin_info['photo_url']:
+                if linkedin_info['photo_url'] and not contact.image_1920:
                     contact.image_1920 = base64.b64encode(requests.get(linkedin_info['photo_url']).content)
 
-                if linkedin_info['headline']:
+                if linkedin_info['headline'] and not contact.function:
                     contact.function = linkedin_info['headline']
 
                 if linkedin_info['full_name']:
