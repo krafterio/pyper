@@ -96,7 +96,7 @@ class IcecatForm(models.TransientModel):
                 break
 
         if not response:
-            raise UserError(_("No lang selected"))
+            raise UserError(_("The product with the EAN code {ean_upc} was not found").format(ean_upc=ean_upc))
 
         response.raise_for_status()
         product_info = response.json()
