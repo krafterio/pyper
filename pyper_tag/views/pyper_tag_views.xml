@@ -42,7 +42,7 @@
                                context="{'default_tag_model_name': tag_model_name, 'default_is_public': is_public, 'default_user_id': user_id}"
                         />
                     </group>
-                    <header groups="kascade.administrator">
+                    <header>
                         <button name="%(pyper_tag.action_pyper_tag_family)d"
                                 string="Manage tag families"
                                 type="action"
@@ -131,5 +131,6 @@
         <field name="res_model">pyper.tag</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="search_view_id" ref="view_pyper_tag_search"/>
+        <field name="context">{'default_is_public': False, 'default_user_id': uid, 'default_tag_model_name': 'flow'}</field>
     </record>
 </odoo>

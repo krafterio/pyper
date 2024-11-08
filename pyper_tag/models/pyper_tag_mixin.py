@@ -29,7 +29,8 @@ class PyperTagMixin(models.AbstractModel):
             if mixin.pyper_tag_ids:
                 unique_tags_by_family = {}
                 for tag in mixin.pyper_tag_ids:
-                    family_id = tag.family_id
-                    if family_id in unique_tags_by_family:
-                        mixin.pyper_tag_ids -= unique_tags_by_family[family_id]
-                    unique_tags_by_family[family_id] = tag
+                    if tag.family_id:
+                        family_id = tag.family_id
+                        if family_id in unique_tags_by_family:
+                            mixin.pyper_tag_ids -= unique_tags_by_family[family_id]
+                        unique_tags_by_family[family_id] = tag

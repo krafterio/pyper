@@ -40,24 +40,3 @@ class PyperTagFamily(models.Model):
         default=lambda self: self.env.user,
         readonly=True
     )
-
-    # @api.onchange('is_public')
-    # def _onchange_is_public(self):
-    #     for tag in self.tag_ids:
-    #         tag.is_public = self.is_public
-
-    # @api.constrains('tag_ids', 'tag_model_name', 'is_public')
-    # def _check_tags_family_traits(self):
-    #     for family in self:
-    #         if family.tag_ids:
-    #             tag_model_names = {tag.tag_model_name for tag in family.tag_ids}
-    #             if len(tag_model_names) > 1:
-    #                 raise ValidationError("All tags in the same family must have the same 'Associated Model'.")
-
-    #             if not family.tag_model_name:
-    #                 family.tag_model_name = family.tag_ids[0].tag_model_name
-    #             else:
-    #                 for tag in family.tag_ids:
-    #                     tag.tag_model_name = family.tag_model_name
-    #             if any(tag.is_public != family.is_public for tag in family.tag_ids):
-    #                 raise ValidationError("All tags in the same family must be either all public or all private.")

@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 from odoo import fields, models, api, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, AccessError
 
 
 class PyperTag(models.Model):
@@ -132,4 +132,23 @@ class PyperTag(models.Model):
             if not pyper_tag.is_public:
                 name_string = '(' + name_string + ')'
             pyper_tag.display_name = name_string
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('is_public') and not self.env.user.has_group('base.group_system'):
+                raise AccessError(_('Only administrators can create public tags.'))
+        return super(PyperTag, self).create(vals_list)
+
+    def write(self, vals):
+        for pyper_tag in self:
+            if pyper_tag.is_public and not self.env.user.has_group('base.group_system'):
+                raise AccessError(_('Only administrators can edit a public tag.'))
+        return super(PyperTag, self).write(vals)
+
+    def unlink(self):
+        for pyper_tag in self:
+            if pyper_tag.is_public and not self.env.user.has_group('base.group_system'):
+                raise AccessError(_('Only administrators can delete public tags.'))
+        return super(PyperTag, self).unlink()
                
