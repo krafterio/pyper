@@ -60,9 +60,9 @@
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_card oe_kanban_global_click">
-                            <div class="row">
+                            <div class="row d-flex flex-column">
                                 <div class="text-center col-xs-12 col-md-3">
-                                    <div class="text-center p-3 d-flex flex-column align-items-center">
+                                    <div class="text-center p-3 d-flex align-items-center">
                                         <img
                                             t-att-src="kanban_image('product.template', 'image_256', record.id.raw_value)"
                                             alt="Product" class="" style="max-height: 150px"/>
@@ -73,7 +73,7 @@
                                             alt="Manfuacturer"/>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-md-9 my-4">
+                                <div class="col-xs-12 col-md-12 my-4">
                                     <h2>
                                         <field name="name"/>
                                     </h2>
@@ -85,31 +85,31 @@
 
                                         <div class="row mt-3">
                                             <div class="col-md-6">
-                                                <div class="d-flex justify-content-between border-bottom py-1"
+                                                <div class="d-flex flex-wrap justify-content-between border-bottom py-1"
                                                      invisible="product_pattern not in ['laptop_computer', 'desktop_computer']">
                                                     <dt class="fw-normal text-muted">Hard drive type</dt>
                                                     <dd class="fw-bolder" t-esc="record.hard_drive_type_id.value"/>
                                                 </div>
-                                                <div class="d-flex justify-content-between border-bottom py-1">
+                                                <div class="d-flex flex-wrap justify-content-between border-bottom py-1">
                                                     <dt class="fw-normal text-muted">Storage capacity</dt>
                                                     <dd class="fw-bolder" t-esc="record.hard_drive_capacity_id.value"/>
                                                 </div>
-                                                <div class="d-flex justify-content-between border-bottom py-1"
+                                                <div class="d-flex flex-wrap justify-content-between border-bottom py-1"
                                                      invisible="product_pattern not in ['laptop_computer', 'desktop_computer']">
                                                     <dt class="fw-normal text-muted">RAM capacity</dt>
                                                     <dd class="fw-bolder" t-esc="record.ram_capacity_id.value"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="d-flex justify-content-between border-bottom py-1">
+                                                <div class="d-flex flex-wrap justify-content-between border-bottom py-1">
                                                     <dt class="fw-normal text-muted">Screen size</dt>
                                                     <dd class="fw-bolder" t-esc="record.screen_size_id.value"/>
                                                 </div>
-                                                <div class="d-flex justify-content-between border-bottom py-1">
+                                                <div class="d-flex flex-wrap justify-content-between border-bottom py-1">
                                                     <dt class="fw-normal text-muted">Processor</dt>
                                                     <dd class="fw-bolder" t-esc="record.processor_id.value"/>
                                                 </div>
-                                                <div class="d-flex justify-content-between border-bottom py-1">
+                                                <div class="d-flex flex-wrap justify-content-between border-bottom py-1">
                                                     <dt class="fw-normal text-muted">Operating system</dt>
                                                     <dd class="fw-bolder" t-esc="record.operating_system_id.value"/>
                                                 </div>
