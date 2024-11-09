@@ -18,8 +18,6 @@
         'base_setup',
         'web',
         'pyper',
-        'pyper_command_search',
-        'pyper_control_panel',
         'pyper_fonts_phosphor',
         'pyper_setup',
     ],

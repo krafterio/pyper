@@ -18,13 +18,6 @@
         </xpath>
     </t>
 
-    <t t-name="pyper_web_theme.SearchMenu" t-inherit="pyper_command_search.SearchMenu" t-inherit-mode="extension">
-        <xpath expr="//i[hasclass('fa-search')]" position="attributes">
-            <attribute name="class" separator=" " remove="fa fa-lg fa-search"
-                       add="ph ph-magnifying-glass nav-bar-icon"/>
-        </xpath>
-    </t>
-
     <t t-name="pyper_web_theme.FormStatusIndicator" t-inherit="web.FormStatusIndicator" t-inherit-mode="extension">
         <xpath expr="//button[hasclass('o_form_button_save')]" position="attributes">
             <attribute name="class" add="btn-primary me-2" separator=" "
