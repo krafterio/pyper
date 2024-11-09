@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
 
-    <t t-name="pyper_drawer.DrawerPopoverItem" owl="1">
+    <t t-name="pyper_drawer.DrawerPopoverItem">
         <div t-att-class="classes">
             <t t-call="pyper_drawer.DrawerMenuItem.Content">
                 <t t-set="withIcon" t-value="props.displayIcon"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
 
-    <t t-name="pyper_web_theme_overlay_menu.OverlayMenuToggler" t-inherit="pyper_overlay_menu.OverlayMenuToggler" t-inherit-mode="extension" owl="1">
+    <t t-name="pyper_web_theme_overlay_menu.OverlayMenuToggler" t-inherit="pyper_overlay_menu.OverlayMenuToggler" t-inherit-mode="extension">
         <xpath expr="//button//i" position="attributes">
             <attribute name="class" separator=" " remove="oi oi-apps" add="ph-light ph-squares-four fs-2"/>
         </xpath>

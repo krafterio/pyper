@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
 
-    <t t-name="pyper_drawer.DrawerMenuItem" owl="1">
+    <t t-name="pyper_drawer.DrawerMenuItem">
         <t t-if="isPopoverEnabled" t-call="pyper_drawer.DrawerMenuItem.Wrapper.PopoverItem"/>
 
         <t t-else="" t-call="pyper_drawer.DrawerMenuItem.Wrapper.DropdownItem"/>
     </t>
 
-    <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.PopoverItem" owl="1">
+    <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.PopoverItem">
         <DropdownItem
             class="classes"
             styles="styles"
@@ -33,7 +33,7 @@
         </DropdownItem>
     </t>
 
-    <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.DropdownItem" owl="1">
+    <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.DropdownItem">
         <DropdownItem
             class="classes"
             styles="styles"
@@ -76,7 +76,7 @@
         </div>
     </t>
 
-    <t t-name="pyper_drawer.DrawerMenuItem.Content" owl="1">
+    <t t-name="pyper_drawer.DrawerMenuItem.Content">
         <div
             t-ref="content"
             t-att-class="{'o_drawer--menu-item-content': true}"

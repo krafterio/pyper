@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
 
-    <t t-name="pyper_overlay_menu.OverlayMenu" owl="1">
+    <t t-name="pyper_overlay_menu.OverlayMenu">
         <div
             t-if="isOpened"
             t-att-class="classes"
@@ -31,7 +31,7 @@
         </div>
     </t>
 
-    <t t-name="pyper_overlay_menu.OverlayMenu.Menu" owl="1">
+    <t t-name="pyper_overlay_menu.OverlayMenu.Menu">
         <div class="o_overlay_menu--menu"
              t-ref="appSubMenus"
              role="menu"

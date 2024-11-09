@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-    <t t-name="pyper_navbar_root_menu.NavBar" t-inherit="web.NavBar" t-inherit-mode="extension" owl="1">
+    <t t-name="pyper_navbar_root_menu.NavBar" t-inherit="web.NavBar" t-inherit-mode="extension">
         <xpath expr="//header[hasclass('o_navbar')]/nav[hasclass('o_main_navbar')]/t[@t-call='web.NavBar.SectionsMenu']" position="after">
             <t t-if="rootMainAppSections.length" t-call="web.NavBar.SectionsMenu">
                 <t t-set="sections" t-value="rootMainAppSections" />

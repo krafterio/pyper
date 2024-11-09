@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
 
-    <t t-name="pyper_drawer.Drawer" owl="1">
+    <t t-name="pyper_drawer.Drawer">
         <div t-if="isDraggable" class="o_drawer--swiper" t-on-touchstart="_onTouchStartDrag" t-on-touchmove="_onTouchMoveDrag" t-on-touchend="_onTouchEndDrag" t-ref="swiper"/>
 
         <div t-att-class="classes" t-on-touchstart="_onTouchStartDrag" t-on-touchmove="_onTouchMoveDrag" t-on-touchend="_onTouchEndDrag" t-ref="root">
@@ -55,7 +55,7 @@
 
     <t t-name="pyper_drawer.Drawer.BottomAction" />
 
-    <t t-name="pyper_drawer.Drawer.Menu" owl="1">
+    <t t-name="pyper_drawer.Drawer.Menu">
         <t t-set="section_index" t-value="0" />
 
         <div class="o_drawer--menu"
@@ -107,7 +107,7 @@
         </div>
     </t>
 
-    <t t-name="pyper_drawer.Drawer.QuickActions" owl="1">
+    <t t-name="pyper_drawer.Drawer.QuickActions">
         <div class="o_drawer--quick-actions-content">
             <div class="btn-group btn-quick-action-group">
                 <button
@@ -150,7 +150,7 @@
         </div>
     </t>
 
-    <t t-name="pyper_drawer.Drawer.FooterMenu" owl="1">
+    <t t-name="pyper_drawer.Drawer.FooterMenu">
         <t t-set="section_index" t-value="0" />
 
         <t t-foreach="menus" t-as="menu" t-key="menu.id">
