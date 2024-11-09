@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pyper_drawer_header.Drawer.Header" t-inherit="pyper_drawer.Drawer.Header" t-inherit-mode="extension">
+        <xpath expr="." position="inside">
+            <div class="o-drawer--header" role="menu">
+                <t t-foreach="headerDrawerItems" t-as="item" t-key="item.key">
+                    <div t-att-data-index="item.index"/>
+                    <ErrorHandler onError="error => this.handleItemError(error, item)">
+                        <t t-component="item.Component" t-props="item.props"/>
+                    </ErrorHandler>
+                </t>
+            </div>
+        </xpath>
+    </t>
+
+</templates>
