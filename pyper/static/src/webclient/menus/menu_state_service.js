@@ -66,6 +66,25 @@ export class MenuState {
 
         return [];
     }
+
+    findAllChildrenIds(targetMenuId) {
+        const menu = targetMenuId ? this.menuService.getMenuAsTree(targetMenuId) : undefined;
+
+        if (!menu) {
+            return [];
+        }
+
+        const ids = [menu.id];
+
+        function getChildrenIds(childMenu) {
+            ids.push(childMenu.id);
+            (childMenu.childrenTree || []).forEach(getChildrenIds);
+        }
+
+        menu.childrenTree.forEach(getChildrenIds);
+
+        return ids;
+    }
 }
 
 export const menuStateService = {

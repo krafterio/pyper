@@ -72,7 +72,11 @@ export class DrawerMenuItem extends Component {
         depth: {
             type: Number,
             optional: true,
-        }
+        },
+        disablePopover: {
+            type: Boolean,
+            optional: true,
+        },
     }
 
     static defaultProps = {
@@ -81,6 +85,7 @@ export class DrawerMenuItem extends Component {
         withIcon: false,
         active: undefined,
         depth: 0,
+        disablePopover: false,
     }
 
     setup() {
@@ -140,7 +145,7 @@ export class DrawerMenuItem extends Component {
     }
 
     get displayChildren() {
-        return this.hasChildren && this.children.length > 1;
+        return !this.isPopoverEnabled && this.hasChildren && this.children.length > 1;
     }
 
     get displayIcon() {
@@ -148,7 +153,15 @@ export class DrawerMenuItem extends Component {
     }
 
     get isPopoverEnabled() {
-        return this.drawerService.isMinified && this.drawerService.popoverMinified;
+        return !this.props.disablePopover && this.drawerService.isMinified && this.drawerService.popoverMinified;
+    }
+
+    get isNextChildrenEnabled() {
+        return this.drawerService.nextItemsSubPanel && this.children?.length > 1 && this.props.childrenDepth === 0;
+    }
+
+    get isNextChildrenOpened() {
+        return this.isNextChildrenEnabled && this.drawerService.subPanelMenu?.id === this.menu?.id;
     }
 
     get menuItemHref() {
@@ -225,7 +238,9 @@ export class DrawerMenuItem extends Component {
     }
 
     onItemSelection() {
-        if (this.displayChildren && !this.isPopoverEnabled) {
+        if (this.isNextChildrenEnabled) {
+            this.openSubPanel();
+        } else if (this.displayChildren && !this.isPopoverEnabled) {
             this.toggleChildren();
         } else if (this.menu) {
             let menu = this.menu;
@@ -281,5 +296,13 @@ export class DrawerMenuItem extends Component {
                 menuItemHref: this.menuItemHref,
             });
         }
+    }
+
+    openSubPanel() {
+        this.drawerService.openSubPanel(this.menu);
+    }
+
+    closeSubPanel() {
+        this.drawerService.closeSubPanel();
     }
 }

@@ -18,14 +18,16 @@ import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {_t} from '@web/core/l10n/translation';
 import {getTransform} from '@pyper/core/ui/css';
 import {DrawerMenuItem} from './drawer_menu_item';
+import {DrawerSubPanel} from './drawer_sub_panel';
 
 
 export class Drawer extends Component {
     static template = 'pyper_drawer.Drawer';
 
     static components = {
-        DropdownItem: DropdownItem,
-        DrawerMenuItem: DrawerMenuItem,
+        DropdownItem,
+        DrawerMenuItem,
+        DrawerSubPanel,
     };
 
     static props = {
@@ -89,6 +91,10 @@ export class Drawer extends Component {
             type: Number,
             optional: true,
         },
+        nextItemsSubPanel: {
+            type: Boolean,
+            optional: true,
+        },
         dragEndRatio: {
             type: Number,
             optional: true,
@@ -139,6 +145,7 @@ export class Drawer extends Component {
         closeAllUnactivatedItemsOnOpenMenu: undefined,
         closeAllUnactivatedItemsOnClick: undefined,
         subItemsDepth: undefined,
+        nextItemsSubPanel: undefined,
         dragEndRatio: undefined,
         hideEmptyCategory: undefined,
         hideCategoryLabelFull: undefined,
@@ -164,6 +171,7 @@ export class Drawer extends Component {
         closeAllUnactivatedItemsOnOpenMenu: true,
         closeAllUnactivatedItemsOnClick: false,
         subItemsDepth: 0,
+        nextItemsSubPanel: false,
         dragEndRatio: 0.25,
         hideEmptyCategory: false,
         hideCategoryLabelFull: false,
@@ -273,6 +281,7 @@ export class Drawer extends Component {
             'o_drawer--fixed-top': this.isFixedTop,
             'o_drawer--hoverable': this.isHoverable,
             'o_drawer--dragging': this.isDragging,
+            'o_drawer--sub-panel--opened': this.isSubPanelOpened,
         };
     }
 
@@ -314,6 +323,10 @@ export class Drawer extends Component {
 
     get isOpened() {
         return this.drawerService.isOpened;
+    }
+
+    get isSubPanelOpened() {
+        return this.drawerService.isSubPanelOpened;
     }
 
     get isClosed() {
@@ -413,6 +426,10 @@ export class Drawer extends Component {
     }
 
     get mainStartChildrenDepth() {
+        if (this.isMinifiable && this.isMinified && this.drawerService.nextItemsSubPanel) {
+            return 0;
+        }
+
         return this.settings.subItemsDepth < 0 ? -1 : Math.max(0, this.settings.subItemsDepth);
     }
 
@@ -484,6 +501,8 @@ export class Drawer extends Component {
 
             debounce(() => window.dispatchEvent(new CustomEvent('resize')), 1)();
         }
+
+        this.drawerService.closeSubPanel();
     }
 
     toggle() {
@@ -532,6 +551,7 @@ export class Drawer extends Component {
     selectMenu(menu) {
         if (menu) {
             this.menuService.selectMenu(menu).then();
+            this.drawerService.closeSubPanel();
 
             if (this.settings.closeOnClick && this.drawerService.isClosable) {
                 this.close();
@@ -609,6 +629,10 @@ export class Drawer extends Component {
             return;
         }
 
+        if (this.drawerService.isSubPanelOpened) {
+            this.drawerService.closeSubPanel();
+        }
+
         this.root.el.style.transform = `translateX(${translateX}px)`;
     }
 
@@ -659,6 +683,7 @@ export class Drawer extends Component {
         this.drawerService.alwaysMinified = this.settings.alwaysMini;
         this.drawerService.minifiable = this.settings.minifiable;
         this.drawerService.popoverMinified = this.settings.popoverMinified;
+        this.drawerService.nextItemsSubPanel = this.settings.nextItemsSubPanel;
         this.drawerService.disabledOnSmallScreen = this.settings.disabledOnSmallScreen;
         this.drawerService.closeAllUnactivatedItemsOnOpenMenu = this.settings.closeAllUnactivatedItemsOnOpenMenu;
         this.drawerService.closeAllUnactivatedItemsOnClick = this.settings.closeAllUnactivatedItemsOnClick;

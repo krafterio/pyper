@@ -2,12 +2,6 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="pyper_drawer.DrawerMenuItem">
-        <t t-if="isPopoverEnabled" t-call="pyper_drawer.DrawerMenuItem.Wrapper.PopoverItem"/>
-
-        <t t-else="" t-call="pyper_drawer.DrawerMenuItem.Wrapper.DropdownItem"/>
-    </t>
-
-    <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.PopoverItem">
         <DropdownItem
             class="classes"
             styles="styles"
@@ -20,41 +14,18 @@
                 <t t-set="menuId" t-value="props.menuId"/>
                 <t t-set="menuAction" t-value="props.menuAction"/>
                 <t t-set="hotkey" t-value="props.hotkey"/>
-                <t t-set="withIcon" t-value="displayIcon"/>
-                <t t-set="iconData" t-value="props.iconData"/>
-                <t t-set="fontIcon" t-value="props.fontIcon"/>
-                <t t-set="fontIconColor" t-value="props.fontIconColor"/>
-                <t t-set="emojiIcon" t-value="props.emojiIcon"/>
-                <t t-set="label" t-value="props.label"/>
-                <t t-set="showLabel" t-value="false"/>
-                <t t-set="onItemMouseEnterFct" t-value="this.onItemMouseEnter.bind(this)"/>
-                <t t-set="onItemMouseLeaveFct" t-value="this.onItemMouseLeave.bind(this)"/>
-            </t>
-        </DropdownItem>
-    </t>
-
-    <t t-name="pyper_drawer.DrawerMenuItem.Wrapper.DropdownItem">
-        <DropdownItem
-            class="classes"
-            styles="styles"
-            href="menuItemHref"
-            hotkey="props.hotkey"
-            dataset="{depth: props.depth, menuXmlid: props.menuXmlid, menu: props.menuId, tooltip: drawerService.isMinified and !drawerService.isPopoverMinified ? props.label : undefined, tooltipPosition: 'right'}"
-            onSelected="() => this.onItemSelection()"
-        >
-            <t t-call="pyper_drawer.DrawerMenuItem.Content">
-                <t t-set="menuId" t-value="props.menuId"/>
-                <t t-set="menuAction" t-value="props.menuAction"/>
-                <t t-set="hotkey" t-value="props.hotkey"/>
-                <t t-set="withChildren" t-value="displayChildren"/>
+                <t t-set="withChildren" t-value="isPopoverEnabled ? false : displayChildren"/>
                 <t t-set="childrenOpened" t-value="isOpened"/>
+                <t t-set="withNextChildren" t-value="isNextChildrenEnabled"/>
                 <t t-set="withIcon" t-value="displayIcon"/>
                 <t t-set="iconData" t-value="props.iconData"/>
                 <t t-set="fontIcon" t-value="props.fontIcon"/>
                 <t t-set="fontIconColor" t-value="props.fontIconColor"/>
                 <t t-set="emojiIcon" t-value="props.emojiIcon"/>
                 <t t-set="label" t-value="props.label"/>
-                <t t-set="showLabel" t-value="!drawerService.isMinified"/>
+                <t t-set="showLabel" t-value="isPopoverEnabled ? false : !drawerService.isMinified || props.disablePopover"/>
+                <t t-set="onItemMouseEnterFct" t-value="isPopoverEnabled ? this.onItemMouseEnter.bind(this) : undefined"/>
+                <t t-set="onItemMouseLeaveFct" t-value="isPopoverEnabled ? this.onItemMouseLeave.bind(this) : undefined"/>
             </t>
         </DropdownItem>
 
@@ -71,6 +42,7 @@
                     children="submenu.childrenTree"
                     label="submenu.name"
                     depth="props.depth + 1"
+                    disablePopover="props.disablePopover"
                 />
             </t>
         </div>
@@ -80,8 +52,8 @@
         <div
             t-ref="content"
             t-att-class="{'o_drawer--menu-item-content': true}"
-            t-on-mouseenter="onItemMouseEnterFct ? (ev) => onItemMouseEnterFct(ev) : () => {}"
-            t-on-mouseleave="onItemMouseLeaveFct ? (ev) => onItemMouseLeaveFct(ev) : () => {}"
+            t-on-mouseenter="onItemMouseEnterFct ? onItemMouseEnterFct : () => {}"
+            t-on-mouseleave="onItemMouseLeaveFct ? onItemMouseLeaveFct : () => {}"
         >
             <div t-if="withIcon and emojiIcon" class="o_drawer--item-icon o_drawer--item-icon-emoji">
                 <t t-out="emojiIcon"/>
@@ -116,6 +88,16 @@
 
                 <t t-slot="opened_caret_icon" t-else="">
                     <i class="fa fa-caret-up"/>
+                </t>
+            </div>
+
+            <div t-if="showLabel and withNextChildren" class="o_drawer--item-icon-caret">
+                <t t-slot="next_caret_icon" t-if="!isNextChildrenOpened">
+                    <i class="fa fa-caret-left"/>
+                </t>
+
+                <t t-slot="next_caret_icon_opened" t-else="">
+                    <i class="fa fa-caret-right"/>
                 </t>
             </div>
 

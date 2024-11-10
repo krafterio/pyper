@@ -4,6 +4,7 @@ $o-navbar-apps-menu-width: 54px !default;
 $o-drawer-width: 240px !default;
 $o-drawer-mini-width: 54px !default;
 $o-drawer-zindex: 999 !default;
+$o-drawer-zindex-locked: 50 !default;
 $o-drawer-border-width: 1px !default;
 $o-drawer-border-color: $o-border-color !default;
 $o-drawer-bg: $o-white !default;
@@ -82,6 +83,11 @@ $o-drawer-popover-item-active-hover-bg: $o-drawer-item-active-hover-bg !default;
 
 $o-drawer-popover-item-font-weight: bold !default;
 $o-drawer-item-font-size: $o-font-size-base !default;
+
+$o-drawer-sub-panel-responsive-side-position-width: ($o-drawer-width * 2 + ($o-drawer-width * 0.1)) !default;
+$o-drawer-sub-panel-responsive-zindex: $o-drawer-zindex + 1 !default;
+$o-drawer-sub-panel-title-font-weight: bold !default;
+$o-drawer-sub-panel-title-font-size: 1.1rem !default;
 
 $o-drawer-toggler-locked-width: $o-drawer-width !default;
 $o-drawer-toggler-locked-width-with-apps-menu: ($o-drawer-toggler-locked-width - $o-navbar-apps-menu-width) !default;

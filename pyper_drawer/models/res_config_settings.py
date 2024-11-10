@@ -72,6 +72,11 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='pyper_drawer.drawer_props.subItemsDepth',
     )
 
+    drawer_next_items_sub_panel = fields.Boolean(
+        'Next items in sub panel',
+        config_parameter='pyper_drawer.drawer_props.nextItemsSubPanel',
+    )
+
     drawer_drag_end_ratio = fields.Float(
         'Custom width ratio of drag end',
         config_parameter='pyper_drawer.drawer_props.dragEndRatio',

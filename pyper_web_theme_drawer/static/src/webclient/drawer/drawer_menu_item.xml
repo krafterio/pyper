@@ -12,5 +12,13 @@
         <xpath expr="//t[@t-slot='opened_caret_icon']/i" position="attributes">
             <attribute name="class" separator=" " remove="fa fa-caret-up" add="ph-light ph-caret-up"/>
         </xpath>
+
+        <xpath expr="//t[@t-slot='next_caret_icon']/i" position="attributes">
+            <attribute name="class" separator=" " remove="fa fa-caret-left" add="ph-light ph-caret-left"/>
+        </xpath>
+
+        <xpath expr="//t[@t-slot='next_caret_icon_opened']/i" position="attributes">
+            <attribute name="class" separator=" " remove="fa fa-caret-right" add="ph-light ph-caret-right"/>
+        </xpath>
     </t>
 </templates>

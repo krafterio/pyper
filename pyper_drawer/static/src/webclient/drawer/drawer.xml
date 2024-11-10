@@ -4,6 +4,8 @@
     <t t-name="pyper_drawer.Drawer">
         <div t-if="isDraggable" class="o_drawer--swiper" t-on-touchstart="_onTouchStartDrag" t-on-touchmove="_onTouchMoveDrag" t-on-touchend="_onTouchEndDrag" t-ref="swiper"/>
 
+        <DrawerSubPanel/>
+
         <div t-att-class="classes" t-on-touchstart="_onTouchStartDrag" t-on-touchmove="_onTouchMoveDrag" t-on-touchend="_onTouchEndDrag" t-ref="root">
             <div class="o_drawer--closer btn"
                  tabindex="0"
@@ -167,6 +169,8 @@
                 menuId="menu.id"
                 menuAction="menu.actionID || undefined"
                 hotkey="hotkey"
+                childrenDepth="0"
+                children="menu.childrenTree"
                 withIcon="settings.showRootApp"
                 iconData="menu.webIconData"
                 fontIcon="menu.fontIcon"

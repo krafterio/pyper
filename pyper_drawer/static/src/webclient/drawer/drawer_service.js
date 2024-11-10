@@ -27,10 +27,13 @@ export class DrawerState {
             alwaysMinified: false,
             popoverMinified: false,
             disabledOnSmallScreen: false,
+            nextItemsSubPanel: false,
             dragging: false,
             mounted: false,
             closeAllUnactivatedItemsOnOpenMenu: false,
             closeAllUnactivatedItemsOnClick: false,
+            subPanelOpened: false,
+            subPanelMenu: null,
         };
     }
 
@@ -95,6 +98,7 @@ export class DrawerState {
     }
 
     set minified(minified) {
+        this.closeSubPanel();
         this.state.minified = minified;
         cookie.set('drawer_minified', minified);
     }
@@ -113,6 +117,14 @@ export class DrawerState {
 
     set popoverMinified(popoverMinified) {
         this.state.popoverMinified = popoverMinified;
+    }
+
+    get nextItemsSubPanel() {
+        return this.state.nextItemsSubPanel;
+    }
+
+    set nextItemsSubPanel(nextItemsSubPanel) {
+        this.state.nextItemsSubPanel = nextItemsSubPanel;
     }
 
     get disabledOnSmallScreen() {
@@ -215,6 +227,18 @@ export class DrawerState {
         this.state.closeAllUnactivatedItemsOnClick = value;
     }
 
+    get subPanelOpened() {
+        return this.state.subPanelOpened;
+    }
+
+    get subPanelMenu() {
+        return this.state.subPanelMenu;
+    }
+
+    get isSubPanelOpened() {
+        return (this.isOpened || this.isLocked) && this.subPanelOpened;
+    }
+
     restoreMinified(defaultMinified) {
         defaultMinified = !(defaultMinified in [undefined, 'false', false]);
         const defaultValue = defaultMinified ? 'true' : 'false';
@@ -248,8 +272,26 @@ export class DrawerState {
             const parentIds = this.menuStateService.findParentIds(menu.id);
             const ids = [menu.id, ...parentIds];
 
+            if (!this.menuStateService.findAllChildrenIds(this.subPanelMenu?.id).includes(menu.id)) {
+                this.closeSubPanel();
+            }
+
             this.envBus.trigger('DRAWER:OPEN-MENU', {menu, ids});
         }
+    }
+
+    openSubPanel(menu) {
+        if (menu) {
+            this.state.subPanelOpened = true;
+            this.state.subPanelMenu = menu;
+        } else {
+            this.closeSubPanel();
+        }
+    }
+
+    closeSubPanel() {
+        this.state.subPanelOpened = false;
+        this.state.subPanelMenu = null;
     }
 }
 
