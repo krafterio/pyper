@@ -10,18 +10,18 @@
             <div class="o_drawer--closer btn"
                  tabindex="0"
                  aria-expanded="false"
-                 t-if="settings.closeAction and !isMinified"
+                 t-if="isMounted and settings.closeAction and !isMinified"
                  t-on-click="close"
             >
                 <i class="fa fa-fw fa-chevron-circle-left"/>
             </div>
 
-            <t t-slot="header" t-if="displayHeader"/>
+            <t t-slot="header" t-if="isMounted and displayHeader"/>
 
             <t t-call="pyper_drawer.Drawer.Header" t-if="isMounted and displayHeader"/>
 
             <!-- Top Action -->
-            <div class="o_drawer--quick-actions" t-if="displayQuickActions">
+            <div class="o_drawer--quick-actions" t-if="isMounted and displayQuickActions">
                 <t t-call="pyper_drawer.Drawer.QuickActions" t-if="isMounted">
                     <t t-set="menus" t-value="Object.values(quickActionSections)"/>
                 </t>
@@ -35,17 +35,17 @@
             </t>
 
             <!-- Bottom Action -->
-            <t t-call="pyper_drawer.Drawer.BottomAction" t-if="isMounted"/>
+            <t t-call="pyper_drawer.Drawer.BottomAction" t-if="isMounted and isMounted"/>
 
-            <div class="o_drawer--footer" t-if="displayFooter">
-                <t t-call="pyper_drawer.Drawer.FooterMenu" t-if="isMounted">
+            <div class="o_drawer--footer" t-if="isMounted and displayFooter">
+                <t t-call="pyper_drawer.Drawer.FooterMenu">
                     <t t-set="menus" t-value="Object.values(footerAppSections)"/>
                 </t>
             </div>
 
             <t t-call="pyper_drawer.Drawer.Footer" t-if="isMounted and displayFooter"/>
 
-            <t t-slot="footer" t-if="displayFooter"/>
+            <t t-slot="footer" t-if="isMounted and displayFooter"/>
         </div>
 
         <div class="o_drawer--obfuscator" t-on-click="close"/>
