@@ -240,7 +240,7 @@ export class DrawerMenuItem extends Component {
 
     onItemSelection() {
         if (this.isNextChildrenEnabled) {
-            this.openSubPanel();
+            this.toggleSubPanel();
         } else if (this.displayChildren && !this.isPopoverEnabled) {
             this.toggleChildren();
         } else if (this.menu) {
@@ -296,6 +296,14 @@ export class DrawerMenuItem extends Component {
                 onItemSelection: this.onItemSelection.bind(this),
                 menuItemHref: this.menuItemHref,
             });
+        }
+    }
+
+    toggleSubPanel() {
+        if (this.menu?.id !== this.drawerService.subPanelMenu?.id) {
+            this.openSubPanel();
+        } else {
+            this.closeSubPanel();
         }
     }
 
