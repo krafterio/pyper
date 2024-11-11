@@ -129,6 +129,7 @@ export class DrawerMenuItem extends Component {
     get classes() {
         return {
             'o_drawer--menu-item': true,
+            'o_drawer--menu-item-with-icon': this.displayIcon,
             'o_drawer--menu-item-active': this.isActive,
             'o_drawer--menu-item-opened': this.isOpened,
         };

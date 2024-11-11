@@ -56,8 +56,9 @@ $o-drawer-item-nav-padding-h: $o-drawer-item-padding-h !default;
 $o-drawer-item-icon-gap: $o-drawer-item-nav-padding-h !default;
 $o-drawer-item-nav-margin-bottom: $o-drawer-item-nav-margin-h !default;
 
-$o-drawer-subitem-depth-base: 5px !default;
-$o-drawer-subitem-depth-next: 15px !default;
+$o-drawer-subitem-depth-base-with-icon: 20px !default;
+$o-drawer-subitem-depth-base: 0px !default;
+$o-drawer-subitem-depth-next: 10px !default;
 $o-drawer-subitem-margin-bottom: 15px !default;
 $o-drawer-subitem-padding-v: 2px !default;
 
@@ -86,6 +87,7 @@ $o-drawer-item-font-size: $o-font-size-base !default;
 
 $o-drawer-sub-panel-responsive-side-position-width: ($o-drawer-width * 2 + ($o-drawer-width * 0.1)) !default;
 $o-drawer-sub-panel-responsive-zindex: $o-drawer-zindex + 1 !default;
+$o-drawer-sub-panel-header-height: $o-navbar-height !default;
 $o-drawer-sub-panel-title-font-weight: bold !default;
 $o-drawer-sub-panel-title-font-size: 1.1rem !default;
 
