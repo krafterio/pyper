@@ -191,6 +191,7 @@
                     <group>
                         <group name="info" string="Technical information" groups="base.group_no_one">
                             <field name="context"/>
+                            <field name="main_ir_action_id" groups="base.group_no_one"/>
                             <field name="ir_action_id" groups="base.group_no_one"/>
                             <field name="ir_view_id" groups="base.group_no_one"/>
                         </group>

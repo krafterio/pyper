@@ -134,6 +134,12 @@ class IrViews(models.Model):
         compute='_compute_arch',
     )
 
+    main_ir_action_id = fields.Many2one(
+        'ir.actions.act_window',
+        string='Main Action',
+        ondelete='cascade',
+    )
+
     ir_action_id = fields.Many2one(
         'ir.actions.act_window',
         string='Action',

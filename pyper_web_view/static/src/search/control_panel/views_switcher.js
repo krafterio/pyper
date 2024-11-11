@@ -1,6 +1,6 @@
 /** @odoo-module */
 
-import {Component, useState} from '@odoo/owl';
+import {Component, onMounted, useState} from '@odoo/owl';
 import {_t} from '@web/core/l10n/translation';
 import {x2ManyCommands} from '@web/core/orm_service';
 import {useService} from '@web/core/utils/hooks';
@@ -37,6 +37,7 @@ export class ViewsSwitcher extends Component {
         this.orm = useService('orm');
 
         this.state = useState({
+            mounted: false,
             views: [],
             selectedView: null,
         });
@@ -90,6 +91,35 @@ export class ViewsSwitcher extends Component {
                 }
             },
         });
+
+        onMounted(async () => {
+            if (!this.currentActionId) {
+                return;
+            }
+
+            this.state.mounted = true;
+
+            if (this.displaySwitcher) {
+                const views = await this.orm.searchRead(
+                    'ir.views',
+                    [...this.domain, ['ir_action_id', '=', this.currentActionId]],
+                    this.viewsFields,
+                    {limit: 1}
+                );
+
+                if (views.length > 0) {
+                    this.state.selectedView = views[0];
+                }
+            }
+        });
+    }
+
+    get isMounted() {
+        return this.state.mounted;
+    }
+
+    get currentActionId() {
+        return this.env.config?.actionId || null;
     }
 
     get currentViewType() {
@@ -117,7 +147,7 @@ export class ViewsSwitcher extends Component {
     }
 
     get displaySwitcher() {
-        return !this.excludedViewTypes.includes(this.currentViewType)
+        return this.isMounted && !this.excludedViewTypes.includes(this.currentViewType)
             && ![undefined, 'ir.views', 'ir.ui.menu'].includes(this.currentModelName);
     }
 
@@ -290,6 +320,7 @@ export class ViewsSwitcher extends Component {
         context['default_res_field_ids'] = [];
         context['default_res_group_by_ids'] = [];
         context['default_res_order_by_ids'] = [];
+        context['default_main_ir_action_id'] = this.currentActionId || false;
 
         if (this.currentGroupBy.length > 0) {
             this.currentGroupBy.forEach((groupName) => {
