@@ -87,7 +87,7 @@ $o-drawer-item-font-size: $o-font-size-base !default;
 
 $o-drawer-sub-panel-responsive-side-position-width: ($o-drawer-width * 2 + ($o-drawer-width * 0.1)) !default;
 $o-drawer-sub-panel-responsive-zindex: $o-drawer-zindex + 1 !default;
-$o-drawer-sub-panel-header-height: 46px !default;
+$o-drawer-sub-panel-header-height: $o-navbar-height !default;
 $o-drawer-sub-panel-title-font-weight: bold !default;
 $o-drawer-sub-panel-title-font-size: 1.1rem !default;
 
