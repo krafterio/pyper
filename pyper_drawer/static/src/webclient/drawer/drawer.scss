@@ -113,12 +113,6 @@
     flex-direction: column;
     align-items: normal;
     margin-bottom: $o-drawer-subitem-margin-bottom;
-
-    .dropdown-item {
-        .o_drawer--item-label {
-            white-space: normal;
-        }
-    }
 }
 
 .o_drawer--item-icon {
@@ -148,6 +142,10 @@
         width: 0;
         margin-right: 0;
     }
+}
+
+.o_drawer--item-label {
+    white-space: normal;
 }
 
 .o_drawer.o_drawer--mini {
