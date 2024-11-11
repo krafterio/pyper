@@ -83,21 +83,21 @@
 
             <div t-if="showLabel and withChildren" class="o_drawer--item-icon-caret">
                 <t t-slot="closed_caret_icon" t-if="!childrenOpened">
-                    <i class="fa fa-caret-down"/>
+                    <i class="fa fa-caret-right"/>
                 </t>
 
                 <t t-slot="opened_caret_icon" t-else="">
-                    <i class="fa fa-caret-up"/>
+                    <i class="fa fa-caret-down"/>
                 </t>
             </div>
 
             <div t-if="showLabel and withNextChildren" class="o_drawer--item-icon-caret">
                 <t t-slot="next_caret_icon" t-if="!isNextChildrenOpened">
-                    <i class="fa fa-caret-left"/>
+                    <i class="fa fa-caret-down"/>
                 </t>
 
                 <t t-slot="next_caret_icon_opened" t-else="">
-                    <i class="fa fa-caret-right"/>
+                    <i class="fa fa-align-right"/>
                 </t>
             </div>
 
