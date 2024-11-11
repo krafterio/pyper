@@ -3,12 +3,13 @@
 
     <t t-name="pyper_drawer.DrawerToggler">
         <div t-if="display" t-att-class="classes">
-            <button class="dropdown-toggle"
-                    title="Toggle Drawer"
-                    data-hotkey="d"
-                    tabindex="0"
-                    aria-expanded="false"
-                    t-on-click="onClick"
+            <button
+                class="o_drawer--closer btn"
+                title="Toggle Drawer"
+                data-hotkey="d"
+                tabindex="0"
+                aria-expanded="false"
+                t-on-click="onClick"
             >
                 <t t-slot="icon_menu" t-if="displayMenuIcon">
                     <i class="fa fa-bars"/>
