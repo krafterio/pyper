@@ -11,7 +11,6 @@ class IrViews(models.Model):
         'ir.ui.menu',
         'view_id',
         string='Menu item',
-        ondelete='cascade',
     )
 
     display_counter = fields.Boolean(
