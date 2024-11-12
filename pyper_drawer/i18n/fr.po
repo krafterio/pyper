@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0-20241015\n"
+"Project-Id-Version: Odoo Server 17.0-20241109\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-20 14:04+0000\n"
-"PO-Revision-Date: 2024-10-20 14:04+0000\n"
+"POT-Creation-Date: 2024-11-12 05:27+0000\n"
+"PO-Revision-Date: 2024-11-12 05:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -80,6 +80,11 @@ msgid "Display only the root menu items in Drawer as applications with icons"
 msgstr ""
 "Afficher uniquement les menu items racines dans le Drawer en tant "
 "qu’applications avec des icones"
+
+#. module: pyper_drawer
+#: model_terms:ir.ui.view,arch_db:pyper_drawer.res_config_settings_view_form
+msgid "Display the next items in sub panel"
+msgstr "Afficher les items suivants dans le sous-panel"
 
 #. module: pyper_drawer
 #: model_terms:ir.ui.view,arch_db:pyper_drawer.res_config_settings_view_form
@@ -159,6 +164,11 @@ msgstr "Minifiable ?"
 #: model:ir.model.fields,field_description:pyper_drawer.field_res_config_settings__drawer_init_minified
 msgid "Minified on initialisation?"
 msgstr "Minifié à l’initialisation ?"
+
+#. module: pyper_drawer
+#: model:ir.model.fields,field_description:pyper_drawer.field_res_config_settings__drawer_next_items_sub_panel
+msgid "Next items in sub panel"
+msgstr "Items suivants dans le sous-panel"
 
 #. module: pyper_drawer
 #: model_terms:ir.ui.view,arch_db:pyper_drawer.res_config_settings_view_form
