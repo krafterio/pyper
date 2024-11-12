@@ -156,7 +156,7 @@ export class ViewsSwitcher extends Component {
     }
 
     get viewsFields() {
-        return ['id', 'name', 'category', 'shared', 'view_mode', 'ir_action_id'];
+        return ['id', 'name', 'category', 'shared', 'view_mode', 'ir_action_id', 'main_ir_action_id'];
     }
 
     get domain() {
@@ -320,7 +320,7 @@ export class ViewsSwitcher extends Component {
         context['default_res_field_ids'] = [];
         context['default_res_group_by_ids'] = [];
         context['default_res_order_by_ids'] = [];
-        context['default_main_ir_action_id'] = this.currentActionId || false;
+        context['default_main_ir_action_id'] = this.state.selectedView?.['main_ir_action_id']?.[0] || this.currentActionId || false;
 
         if (this.currentGroupBy.length > 0) {
             this.currentGroupBy.forEach((groupName) => {
