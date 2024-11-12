@@ -31,27 +31,17 @@ class IrViews(models.Model):
         return res
 
     def unlink(self):
-        partner_id = self.user_id.partner_id
-        user_menu_view_changed = False
+        sudo = self.sudo()
+        sudo.menu_ids.sudo().unlink()
 
-        if self.menu_ids:
-            menus = self.menu_ids.sudo()
-            self.menu_ids = [Command.delete(menu.id) for menu in menus]
-            user_menu_view_changed = True
-
-        res = super().unlink()
-
-        if user_menu_view_changed:
-            self.env['bus.bus']._sendone(partner_id, 'user_menu_view_changed', {})
-
-        return res
+        return super(IrViews, sudo).unlink()
 
     @api.model
-    def get_menu_vals(self):
+    def get_menu_vals(self, sync = False):
         self.ensure_one()
         action = self.ir_action_id.sudo()
 
-        return {
+        vals = {
             'name': self.name,
             'action': str(action.type) + ',' + str(action.id),
             'display_counter': self.display_counter,
@@ -59,8 +49,14 @@ class IrViews(models.Model):
                 if self.shared
                 else self.env.ref('pyper_web_view_menu.menu_category_my_views').id,
             'view_id': self.id,
-            'user_id': self.env.user.id,
         }
+
+        if not sync:
+            vals.update({
+                'user_id': self.env.user.id,
+            })
+
+        return vals
 
     def bookmark(self, font_icon = False):
         for rec in self:
@@ -73,17 +69,12 @@ class IrViews(models.Model):
 
     def unbookmark(self):
         for rec in self:
-            if rec.menu_ids:
-                menus = rec.menu_ids.filtered(lambda m: m.user_id == self.env.user)
-
-                for menu in menus:
-                    menu.sudo().unlink()
+            rec.menu_ids.sudo().unlink()
 
     def _sync_ir_ui_menu(self):
         for rec in self:
-            if rec.menu_ids:
-                rec.menu_ids.sudo().write(rec.get_menu_vals())
-
+            if rec.sudo().menu_ids:
+                rec.sudo().menu_ids.write(rec.get_menu_vals(True))
 
     @api.depends('menu_ids')
     def _compute_bookmarked(self):
