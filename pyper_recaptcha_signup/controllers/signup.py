@@ -9,6 +9,10 @@ from odoo import http, _
 from odoo.addons.web.controllers.utils import ensure_db
 from odoo.addons.auth_signup.controllers.main import AuthSignupHome
 from odoo.http import request
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class Signup(AuthSignupHome):
     @http.route()
@@ -17,17 +21,10 @@ class Signup(AuthSignupHome):
         param = request.env['ir.config_parameter'].sudo().get_param
 
         if param('pyper_recaptcha_signup.enabled'):
-            max_error_attempt = param('pyper_recaptcha_signup.max_error_attempt') or 0
-
-            if max_error_attempt:
-                max_error_attempt = int(max_error_attempt)
-
-            max_error_attempt = max_error_attempt and max_error_attempt or 0
-            failed_attempt = request.session.get('failed_attempt', 0)
-
-            if request.httprequest.method == 'POST' and failed_attempt >= max_error_attempt:
+            if request.httprequest.method == 'POST':
                 secret_key = param('pyper_recaptcha_signup.private_key')
-                captcha_result = self._check_grecaptcha(kw.get('g-recaptcha-response'), secret_key)
+                min_score = param('pyper_recaptcha_signup.min_score')
+                captcha_result = self._check_grecaptcha(kw.get('g-recaptcha-response'), secret_key, min_score)
 
                 if not captcha_result.get('success', False):
                     request.params['signup_success'] = False
@@ -36,66 +33,9 @@ class Signup(AuthSignupHome):
                     values['recaptcha_signup_enabled'] = True
                     values['providers'] = self._get_providers()
 
-                    if not failed_attempt:
-                        failed_attempt = 0
-
-                    failed_attempt += 1
-                    request.session['failed_attempt'] = failed_attempt
-
                     return request.render('auth_signup.signup', values)
-
-            result = super(Signup, self).web_auth_signup(redirect=redirect, **kw)
-
-            if request.httprequest.method == 'GET' and failed_attempt and (failed_attempt >= max_error_attempt):
-                result.qcontext.update({
-                    'recaptcha_signup_enabled': True,
-                    'error': _(
-                        'Please, don\'t forgot to validate reCAPTCHA, maximum allowed error attempt is %(max)s.',
-                        max=max_error_attempt,
-                    ),
-                })
-
-            if request.httprequest.method == 'POST':
-                if result.qcontext.get('error'):
-                    if not failed_attempt:
-                        failed_attempt = 0
-
-                    failed_attempt += 1
-                    request.session['failed_attempt'] = failed_attempt
-                    request.params['signup_success'] = False
-
-                    if failed_attempt < max_error_attempt:
-                        result.qcontext.update({
-                            'error': _(
-                                '%(error)s, signup lockdown is enabled, you have left %(attempt)s attempt!',
-                                error=result.qcontext.get('error'),
-                                attempt=max_error_attempt - failed_attempt
-                            )
-                        })
-                    else:
-                        result.qcontext.update({
-                            'error': _('Please don\'t forget to validate reCAPTCHA.')
-                        })
-                else:
-                    failed_attempt = None
-                    request.params['signup_success'] = True
-                    request.session['failed_attempt'] = failed_attempt
-                    result.qcontext.update({
-                        'recaptcha_signup_enabled': None,
-                    })
-
-                if failed_attempt and failed_attempt >= max_error_attempt:
-                    result.qcontext.update({
-                        'recaptcha_signup_enabled': True,
-                        'error': _(
-                            'Please, don\'t forgot to validate reCAPTCHA, maximum allowed error attempt is %(max)s.',
-                            max=max_error_attempt,
-                        ),
-                    })
-
-            return result
-        else:
-            return super(Signup, self).web_auth_signup(redirect=redirect, **kw)
+          
+        return super(Signup, self).web_auth_signup(redirect=redirect, **kw)
 
     @staticmethod
     def _get_providers():
@@ -107,7 +47,7 @@ class Signup(AuthSignupHome):
 
         for provider in providers:
             return_url = request.httprequest.url_root + 'auth_oauth/signin'
-            state = AuthSignupHome._get_state(provider)
+            state = Signup._get_state(provider)
             params = dict(
                 response_type='token',
                 client_id=provider['client_id'],
@@ -141,16 +81,33 @@ class Signup(AuthSignupHome):
         return state
 
     @staticmethod
-    def _check_grecaptcha(response, secret_key):
-        url = 'https://www.google.com/recaptcha/api/siteverify'
+    def _check_grecaptcha(response, secret_key, min_score):
+        url = 'https://www.recaptcha.net/recaptcha/api/siteverify'
+        ip_addr = Signup._get_client_ip()
         params = {
             'secret': secret_key,
             'response': response,
-            'remoteip': AuthSignupHome._get_client_ip()
+            'remoteip': ip_addr
         }
-        res = requests.get(url, params=params, verify=True)
+        res = {}
+        try:
+            res_raw = requests.get(url, params=params, verify=True, timeout=2)
+            res = res_raw.json()
+        except requests.exceptions.Timeout:
+            logger.error("Trial captcha verification timeout for ip address %s", ip_addr)
+            res.update({'success': False})
+        except Exception:
+            logger.error("Trial captcha verification bad request response")
+            res.update({'success': False})
 
-        return res.json()
+        res_success = res.get('success', False)
+        if res_success:
+            score = res.get('score', False)
+            if score < float(min_score):
+                logger.warning("Trial captcha verification for ip address %s failed with score %f.", ip_addr, score)
+                res.update({'success': False, 'error-codes' : ['score-too-low'] })
+        return res
+
 
     @staticmethod
     def _get_client_ip():
@@ -162,10 +119,13 @@ class Signup(AuthSignupHome):
             'missing-input-secret': _('Secret parameter is missing, please inform the website administrator'),
             'invalid-input-secret': _('Secret parameter is invalid or malformed, please inform the website administrator'),
             'missing-input-response': _('reCAPTCHA is missing, please try again'),
-            'invalid-input-response': _('reCAPTCHA is missing, invalid or malformed, please try again')
+            'invalid-input-response': _('reCAPTCHA is missing, invalid or malformed, please try again'),
+            'timeout-or-duplicate': _('reCAPTCHA request failed because of duplicate or timeout'),
+            'bad-request': _('reCAPTCHA request failed due to a bad request'),
+            'score-too-low': _('You did not reached the minimum score required for reCAPTCHA, are you a bot ?'),
         }
 
         return error_code_mapper.get(
             error_code[0] if error_code else None,
-            _('Please fill all entry and submit reCAPTCHA again')
+            _('action blocked by reCAPTCHA, please submit again or contact website administrator')
         )
