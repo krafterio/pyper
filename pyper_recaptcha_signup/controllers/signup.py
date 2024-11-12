@@ -17,15 +17,7 @@ class Signup(AuthSignupHome):
         param = request.env['ir.config_parameter'].sudo().get_param
 
         if param('pyper_recaptcha_signup.enabled'):
-            max_error_attempt = param('pyper_recaptcha_signup.max_error_attempt') or 0
-
-            if max_error_attempt:
-                max_error_attempt = int(max_error_attempt)
-
-            max_error_attempt = max_error_attempt and max_error_attempt or 0
-            failed_attempt = request.session.get('failed_attempt', 0)
-
-            if request.httprequest.method == 'POST' and failed_attempt >= max_error_attempt:
+            if request.httprequest.method == 'POST':
                 secret_key = param('pyper_recaptcha_signup.private_key')
                 captcha_result = self._check_grecaptcha(kw.get('g-recaptcha-response'), secret_key)
 
@@ -36,61 +28,20 @@ class Signup(AuthSignupHome):
                     values['recaptcha_signup_enabled'] = True
                     values['providers'] = self._get_providers()
 
-                    if not failed_attempt:
-                        failed_attempt = 0
-
-                    failed_attempt += 1
-                    request.session['failed_attempt'] = failed_attempt
-
                     return request.render('auth_signup.signup', values)
 
             result = super(Signup, self).web_auth_signup(redirect=redirect, **kw)
 
-            if request.httprequest.method == 'GET' and failed_attempt and (failed_attempt >= max_error_attempt):
-                result.qcontext.update({
-                    'recaptcha_signup_enabled': True,
-                    'error': _(
-                        'Please, don\'t forgot to validate reCAPTCHA, maximum allowed error attempt is %(max)s.',
-                        max=max_error_attempt,
-                    ),
-                })
-
             if request.httprequest.method == 'POST':
                 if result.qcontext.get('error'):
-                    if not failed_attempt:
-                        failed_attempt = 0
-
-                    failed_attempt += 1
-                    request.session['failed_attempt'] = failed_attempt
                     request.params['signup_success'] = False
-
-                    if failed_attempt < max_error_attempt:
-                        result.qcontext.update({
-                            'error': _(
-                                '%(error)s, signup lockdown is enabled, you have left %(attempt)s attempt!',
-                                error=result.qcontext.get('error'),
-                                attempt=max_error_attempt - failed_attempt
-                            )
-                        })
-                    else:
-                        result.qcontext.update({
-                            'error': _('Please don\'t forget to validate reCAPTCHA.')
-                        })
+                    result.qcontext.update({
+                        'error': _('Error to pass reCAPTCHA.')
+                    })
                 else:
-                    failed_attempt = None
                     request.params['signup_success'] = True
-                    request.session['failed_attempt'] = failed_attempt
                     result.qcontext.update({
                         'recaptcha_signup_enabled': None,
-                    })
-
-                if failed_attempt and failed_attempt >= max_error_attempt:
-                    result.qcontext.update({
-                        'recaptcha_signup_enabled': True,
-                        'error': _(
-                            'Please, don\'t forgot to validate reCAPTCHA, maximum allowed error attempt is %(max)s.',
-                            max=max_error_attempt,
-                        ),
                     })
 
             return result
@@ -107,7 +58,7 @@ class Signup(AuthSignupHome):
 
         for provider in providers:
             return_url = request.httprequest.url_root + 'auth_oauth/signin'
-            state = AuthSignupHome._get_state(provider)
+            state = Signup._get_state(provider)
             params = dict(
                 response_type='token',
                 client_id=provider['client_id'],
@@ -146,7 +97,7 @@ class Signup(AuthSignupHome):
         params = {
             'secret': secret_key,
             'response': response,
-            'remoteip': AuthSignupHome._get_client_ip()
+            'remoteip': Signup._get_client_ip()
         }
         res = requests.get(url, params=params, verify=True)
 

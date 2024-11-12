@@ -12,12 +12,6 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='pyper_recaptcha_signup.enabled'
     )
 
-    recaptcha_signup_max_error_attempt = fields.Integer(
-        string='Max Error Attempt',
-        help="The maximum number of attempts before locking the signup",
-        config_parameter='pyper_recaptcha_signup.max_error_attempt'
-    )
-
     recaptcha_signup_site_key = fields.Char(
         string='reCAPTCHA Site Key',
         help='The Site Key of your reCAPTCHA',
@@ -34,7 +28,6 @@ class ResConfigSettings(models.TransientModel):
     def enable_recaptcha_signup(self):
         self.env['res.config.settings'].create({
             'recaptcha_signup_enabled': True,
-            'recaptcha_signup_max_error_attempt': 2,
             'recaptcha_signup_site_key': 'CHANGE_SITE_KEY',
             'recaptcha_signup_private_key': 'CHANGE_PRIVATE_KEY',
         }).execute()
