@@ -225,7 +225,7 @@
         <field name="res_model">pyper.queue.job</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[('user_id', '=', uid), ('state', 'not in', ['done', 'cancelled'])]</field>
-        <field name="target">new</field>
+        <field name="target">main</field>
         <field name="view_ids" eval="[
             Command.clear(),
             Command.create({'view_mode': 'tree', 'view_id': ref('pyper_queue_job_simple_tree')})
