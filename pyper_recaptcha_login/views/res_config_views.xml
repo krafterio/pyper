@@ -28,11 +28,16 @@
                                 <label for="recaptcha_login_private_key" class="col-3 o_light_label"/>
                                 <field name="recaptcha_login_private_key"/>
                             </div>
+                            
+                            <div class="mt16 row">
+                                <label for="recaptcha_login_min_score" class="col-3 o_light_label"/>
+                                <field name="recaptcha_login_min_score"/>
+                            </div>
 
-                            <div>
+                            <div class="mt16 row">
                                 <a href="https://www.google.com/recaptcha/admin/create" class="oe_link" target="_blank">
                                     <i class="oi oi-arrow-right"/>
-                                    <span>Generate reCAPTCHA v3 keys</span>
+                                    <span> Generate reCAPTCHA v3 keys</span>
                                 </a>
                             </div>
                         </div>

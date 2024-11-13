@@ -4,10 +4,23 @@
          <xpath expr="//button[@type='submit']" position="before">
              <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"/>
 
-             <div class="pyper_recaptcha_login form-group field-password" t-if ="env['ir.config_parameter'].sudo().get_param('pyper_recaptcha_login.enabled')">
-                 <hr/>
-                 <div class="g-recaptcha" t-att-data-sitekey="env['ir.config_parameter'].sudo().get_param('pyper_recaptcha_login.site_key')"/>
-             </div>
+             <script>
+                function onSubmitLogin(token) {
+                    document.querySelector(".oe_login_form").submit();
+                }
+            </script>
          </xpath>
+
+         <xpath expr="//button[@type='submit']" position="replace">
+            <button 
+                type="submit" 
+                class="btn btn-primary g-recaptcha" 
+                t-att-data-sitekey="env['ir.config_parameter'].sudo().get_param('pyper_recaptcha_login.site_key')"
+                data-callback='onSubmitLogin' 
+                data-action='submit'
+            >
+                Sign in
+            </button>
+        </xpath>
     </template>
 </odoo>

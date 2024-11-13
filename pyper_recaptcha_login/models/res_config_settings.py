@@ -1,7 +1,8 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class ResConfigSettings(models.TransientModel):
@@ -12,29 +13,29 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='pyper_recaptcha_login.enabled'
     )
 
-    recaptcha_login_max_error_attempt = fields.Integer(
-        string='Max Error Attempt',
-        help="The maximum number of attempts before locking the login",
-        config_parameter='pyper_recaptcha_login.max_error_attempt'
-    )
-
     recaptcha_login_site_key = fields.Char(
-        string='reCAPTCHA Site Key',
+        string='Login reCAPTCHA Site Key',
         help='The Site Key of your reCAPTCHA',
         config_parameter='pyper_recaptcha_login.site_key'
     )
 
     recaptcha_login_private_key = fields.Char(
-        string='reCAPTCHA Private Key',
+        string='Login reCAPTCHA Private Key',
         help='The Private Key of your reCAPTCHA',
         config_parameter='pyper_recaptcha_login.private_key'
     )
 
-    @api.model
-    def enable_recaptcha_login(self):
-        self.env['res.config.settings'].create({
-            'recaptcha_login_enabled': True,
-            'recaptcha_login_max_error_attempt': 2,
-            'recaptcha_login_site_key': 'CHANGE_SITE_KEY',
-            'recaptcha_login_private_key': 'CHANGE_PRIVATE_KEY',
-        }).execute()
+    recaptcha_login_min_score = fields.Float(
+        "Login minimum score",
+        help="By default, should be one of 0.1, 0.3, 0.7, 0.9.\n1.0 is very likely a good interaction, 0.0 is very likely a bot",
+        default="0.7",
+        config_parameter='pyper_recaptcha_login.min_score',
+    )
+
+    @api.constrains('recaptcha_login_min_score')
+    def _check_recaptcha_login_min_score(self):
+        for record in self:
+            if not (0.0 <= record.recaptcha_login_min_score <= 1.0):
+                raise ValidationError(
+                    _('Minimum reCAPTCHA score must be inside 0.0 - 1.0 range')
+                )
