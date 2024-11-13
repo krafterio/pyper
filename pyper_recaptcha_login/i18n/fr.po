@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 21:25+0000\n"
-"PO-Revision-Date: 2024-03-21 21:25+0000\n"
+"POT-Creation-Date: 2024-11-13 14:15+0000\n"
+"PO-Revision-Date: 2024-11-13 14:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,10 +19,21 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:pyper_recaptcha_login.res_config_settings_view_form
 msgid ""
 "<i class=\"oi oi-arrow-right\"/>\n"
-"                                    <span>Generate reCAPTCHA v3 keys</span>"
+"                                    <span> Generate reCAPTCHA v3 keys</span>"
 msgstr ""
 "<i class=\"oi oi-arrow-right\"/>\n"
 "                                    <span>Générer des clés reCAPTCHA v3</span>"
+
+#. module: pyper_recaptcha_login
+#. odoo-python
+#: code:addons/pyper_recaptcha_login/controllers/home.py:0
+#, python-format
+msgid ""
+"Action blocked by reCAPTCHA, please submit again or contact website "
+"administrator"
+msgstr ""
+"Action bloquée par reCAPTCHA, veuillez réessayer ou contacter "
+"l'administrateur du site"
 
 #. module: pyper_recaptcha_login
 #: model:ir.model,name:pyper_recaptcha_login.model_res_config_settings
@@ -35,29 +46,36 @@ msgid "Enable reCAPTCHA on login"
 msgstr "Activer reCAPTCHA lors de la connexion"
 
 #. module: pyper_recaptcha_login
-#: model:ir.model.fields,field_description:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_enabled
-msgid "Enabled reCAPTCHA login lockdown"
-msgstr "Activer le verrouillage de l’authentification reCAPTCHA"
+#. odoo-python
+#: code:addons/pyper_recaptcha_login/models/res_config_settings.py:0
+#, python-format
+msgid "Minimum reCAPTCHA score must be inside 0.0 - 1.0 range"
+msgstr ""
+"Le score minimal du reCAPTACHA doit se situer dans l'intervalle 0.0 - 1.0"
 
 #. module: pyper_recaptcha_login
-#: model:ir.model.fields,field_description:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_max_error_attempt
-msgid "Max Error Attempt"
-msgstr "Tentative d’erreur maximale"
+#. odoo-python
+#: code:addons/pyper_recaptcha_login/controllers/home.py:0
+#, python-format
+msgid ""
+"Secret parameter is invalid or malformed, please inform the website "
+"administrator"
+msgstr ""
+"La clé secrète est invalide ou possède un mauvais formatage, merci d'en "
+"informer l'administrateur du site"
 
 #. module: pyper_recaptcha_login
-#: model:ir.model.fields,help:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_private_key
-msgid "The Private Key of your reCAPTCHA"
-msgstr "La clé privée de votre reCAPTCHA"
+#. odoo-python
+#: code:addons/pyper_recaptcha_login/controllers/home.py:0
+#, python-format
+msgid "Secret parameter is missing, please inform the website administrator"
+msgstr ""
+"La clé secrète est manquante, merci d'en informer l'administrateur du site"
 
 #. module: pyper_recaptcha_login
-#: model:ir.model.fields,help:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_site_key
-msgid "The Site Key of your reCAPTCHA"
-msgstr "La clé du site de votre reCAPTCHA"
-
-#. module: pyper_recaptcha_login
-#: model:ir.model.fields,help:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_max_error_attempt
-msgid "The maximum number of attempts before locking the login"
-msgstr "Le nombre maximum de tentatives avant de bloquer l’authentification"
+#: model_terms:ir.ui.view,arch_db:pyper_recaptcha_login.login
+msgid "Sign in"
+msgstr "Se connecter"
 
 #. module: pyper_recaptcha_login
 #: model_terms:ir.ui.view,arch_db:pyper_recaptcha_login.res_config_settings_view_form
@@ -65,16 +83,49 @@ msgid "Use Google reCAPTCHA on the login pages"
 msgstr "Utilisez Google reCAPTCHA sur les pages d’authentification"
 
 #. module: pyper_recaptcha_login
+#. odoo-python
+#: code:addons/pyper_recaptcha_login/controllers/home.py:0
+#, python-format
+msgid ""
+"You did not reached the minimum score required for reCAPTCHA, are you a bot "
+"?"
+msgstr ""
+"Vous n'avez pas atteint le score minimum requis pour le reCAPTCHA, seriez-"
+"vous un robot ?"
+
+#. module: pyper_recaptcha_login
 #: model_terms:ir.ui.view,arch_db:pyper_recaptcha_login.res_config_settings_view_form
 msgid "reCAPTCHA Login"
 msgstr ""
 
 #. module: pyper_recaptcha_login
-#: model:ir.model.fields,field_description:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_private_key
-msgid "reCAPTCHA Private Key"
-msgstr "Clé privée reCAPTCHA"
+#. odoo-python
+#: code:addons/pyper_recaptcha_login/controllers/home.py:0
+#, python-format
+msgid "reCAPTCHA is missing, invalid or malformed, please try again"
+msgstr ""
+"Le reCAPTCHA est manquant, invalide ou possède un mauvais formatage, "
+"veuillez réessayer"
 
 #. module: pyper_recaptcha_login
-#: model:ir.model.fields,field_description:pyper_recaptcha_login.field_res_config_settings__recaptcha_login_site_key
-msgid "reCAPTCHA Site Key"
-msgstr "Clé du site reCAPTCHA"
+#. odoo-python
+#: code:addons/pyper_recaptcha_login/controllers/home.py:0
+#, python-format
+msgid "reCAPTCHA is missing, please try again"
+msgstr "Le reCAPTCHA est manquant, veuillez réessayer"
+
+#. module: pyper_recaptcha_login
+#. odoo-python
+#: code:addons/pyper_recaptcha_login/controllers/home.py:0
+#, python-format
+msgid "reCAPTCHA request failed because of duplicate or timeout"
+msgstr ""
+"La requête reCAPTCHA a échoué en raison d'un duplicata ou d'un temps de "
+"réponse trop long"
+
+#. module: pyper_recaptcha_login
+#. odoo-python
+#: code:addons/pyper_recaptcha_login/controllers/home.py:0
+#, python-format
+msgid "reCAPTCHA request failed due to a bad request"
+msgstr "La requête reCAPTCHA a échoué suite à une mauvaise requête"
