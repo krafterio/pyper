@@ -3,8 +3,6 @@
 
 from odoo import _, models
 
-from odoo.addons.pyper_queue_job.models.pyper_queue_job import DELAY_AUTO_UNLINK_DONE, DELAY_AUTO_UNLINK_FULL
-
 
 class PyperQueueJob(models.Model):
     _inherit = 'pyper.queue.job'
@@ -54,20 +52,6 @@ class PyperQueueJob(models.Model):
                        or 'date_cancelled' in values
                        or 'date_done' in values
                        or 'date_failed' in values)
-        notify_records = []
 
         if run_changed:
-            for record in records:
-                unlinked = False
-
-                if (record.auto_unlink == DELAY_AUTO_UNLINK_DONE
-                        and not record.log_count and record.state in ['done', 'cancelled']):
-                    unlinked = True
-                elif record.auto_unlink == DELAY_AUTO_UNLINK_FULL:
-                    unlinked = True
-
-                if not unlinked:
-                    notify_records.append(record)
-
-        if notify_records:
-            self._notify_update(notify_records)
+            self._notify_update(records)
