@@ -7,7 +7,6 @@
             <script>
                 function onSubmitSignup(token) {
                     document.querySelector(".oe_signup_form").submit();
-                    console.log("onSubmitSignup, token =", token);
                 }
             </script>
 

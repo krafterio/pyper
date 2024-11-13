@@ -29,10 +29,15 @@
                                 <field name="recaptcha_signup_private_key"/>
                             </div>
 
-                            <div>
+                            <div class="mt16 row">
+                                <label for="recaptcha_signup_min_score" class="col-3 o_light_label"/>
+                                <field name="recaptcha_signup_min_score"/>
+                            </div>
+
+                            <div class="mt16 row">
                                 <a href="https://www.google.com/recaptcha/admin/create" class="oe_link" target="_blank">
                                     <i class="oi oi-arrow-right"/>
-                                    <span>Generate reCAPTCHA v3 keys</span>
+                                    <span> Generate reCAPTCHA v3 keys</span>
                                 </a>
                             </div>
                         </div>
