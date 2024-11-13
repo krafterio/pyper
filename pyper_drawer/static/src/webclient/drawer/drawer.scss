@@ -315,6 +315,7 @@
     opacity: 0.01;
     background-color: $o-drawer-swiper-bg;
     user-select: none;
+    overscroll-behavior-x: contain;
 }
 
 // Drawer Obfuscator
@@ -329,6 +330,7 @@
     opacity: 0;
     transition: opacity #{$o-drawer-obfuscator-duration} ease, z-index 0s linear;
     transition-delay: 0s, #{$o-drawer-obfuscator-duration};
+    overscroll-behavior: contain;
 
     .o_drawer--opened + & {
         z-index: $o-drawer-obfuscator-zindex;
@@ -738,6 +740,7 @@
 // = Body
 // ============================================================================
 
+html,
 body {
     overscroll-behavior-x: contain;
 }
