@@ -63,6 +63,7 @@ class IrViewsField(models.Model):
     widget = fields.Selection(
         [
             ('char', 'Text'),
+            ('char_image', 'Text Image'),
             ('text', 'Textarea'),
             ('url', 'URL'),
             ('phone', 'Phone'),
@@ -96,6 +97,7 @@ class IrViewsField(models.Model):
             ('many2one', 'Relation'),
             ('many2one_badge', 'Relation Badge'),
             ('many2one_avatar', 'Relation Avatar'),
+            ('many2one_image', 'Relation Image'),
             ('many2one_reference', 'Relation Reference'),
             ('one2many', 'Relation List'),
             ('many2many', 'Many Relations'),
