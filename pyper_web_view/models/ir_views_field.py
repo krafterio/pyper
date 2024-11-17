@@ -125,6 +125,10 @@ class IrViewsField(models.Model):
         string='Options',
     )
 
+    width = fields.Char(
+        string='Width',
+    )
+
     @api.depends('field_id')
     def _compute_field_name(self):
         for rec in self:

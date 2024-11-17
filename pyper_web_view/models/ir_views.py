@@ -487,6 +487,9 @@ class IrViews(models.Model):
             if field.options:
                 tree_field.attrib['options'] = field.options
 
+            if field.width:
+                tree_field.attrib['width'] = field.width.rstrip('px') + 'px'
+
     def _build_arch_kanban(self, root):
         self._build_arch_common(root)
 
