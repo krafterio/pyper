@@ -68,11 +68,22 @@ def _add_to_my_dashboard(action_id, context_to_save, domain, view_mode, name='')
 
 
 def _update_arch(board_arch, action_id, context_to_save, domain, view_mode, name=''):
-    columns = board_arch.xpath('//dashboard/section/column')
+    board = board_arch
+
+    if board.tag != 'dashboard':
+        boards = board_arch.xpath('//dashboard')
+        board = boards[0] if boards else None
+
+        if board is None:
+            board = ElementTree.Element('dashboard', {
+                'switcher': 'True',
+            })
+
+    columns = board.xpath('//section/column')
     column = columns[len(columns) - 1] if len(columns) > 1 else None
 
     if column is None:
-        sections = board_arch.xpath('//dashboard/section')
+        sections = board.xpath('//section')
         section = sections[len(sections) - 1] if len(sections) > 1 else None
 
         if section is None:
@@ -96,4 +107,4 @@ def _update_arch(board_arch, action_id, context_to_save, domain, view_mode, name
         })
         column.insert(0, new_action)
 
-    return ElementTree.tostring(board_arch, encoding='unicode')
+    return ElementTree.tostring(board, encoding='unicode')
