@@ -77,7 +77,7 @@ def _update_arch(board_arch, action_id, context_to_save, domain, view_mode, name
 
         if section is None:
             section = ElementTree.Element('section')
-            board_arch.insert(0, section)
+            board.insert(0, section)
 
         if section is not None:
             column = ElementTree.Element('column')
@@ -96,4 +96,4 @@ def _update_arch(board_arch, action_id, context_to_save, domain, view_mode, name
         })
         column.insert(0, new_action)
 
-        return ElementTree.tostring(board_arch, encoding='unicode')
+    return ElementTree.tostring(board_arch, encoding='unicode')
