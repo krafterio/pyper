@@ -83,6 +83,9 @@
 .pyper_dashboard--section-content-1-1-1 {
     grid-template-columns: 1fr 1fr 1fr;
 }
+.pyper_dashboard--section-content-1-1-1-1 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
 .pyper_dashboard--section-content-2-1 {
     grid-template-columns: 2fr 1fr;
 }
@@ -132,6 +135,7 @@
         }
 
         .o_content {
+            padding: 0 $pyper-dashboard-padding-h !important;
             min-width: 100%;
             max-height: 70vh;
             overflow: auto;
