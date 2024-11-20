@@ -78,7 +78,7 @@ export class OpenAiStream extends Component {
         this.eventSource = new EventSource(`/openai/stream/${res.identifier}`);
 
         this.eventSource.addEventListener('message', async (event) => {
-            this.props.record.data.content += event.data;
+            this.props.record.data[this.props.targetField] += event.data;
         });
 
         this.eventSource.addEventListener('end', () => {
