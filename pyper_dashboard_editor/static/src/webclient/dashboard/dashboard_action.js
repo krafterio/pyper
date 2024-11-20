@@ -2,6 +2,14 @@
 
 import {patch} from '@web/core/utils/patch';
 import {DashboardAction} from '@pyper_dashboard/webclient/dashboard/dashboard_action';
+import {Dropdown} from '@web/core/dropdown/dropdown';
+import {DropdownItem} from '@web/core/dropdown/dropdown_item';
+
+DashboardAction.components = {
+    ...DashboardAction.components,
+    Dropdown,
+    DropdownItem,
+};
 
 DashboardAction.props = {
     ...DashboardAction.props,
@@ -11,7 +19,7 @@ DashboardAction.props = {
     remove: {
         type: Function,
     },
-    foldable: {
+    layoutEditable: {
         type: Boolean,
         optional: true,
     },
@@ -23,7 +31,7 @@ DashboardAction.props = {
 
 DashboardAction.defaultProps = {
     ...DashboardAction.defaultProps,
-    foldable: true,
+    layoutEditable: false,
     isFolded: false,
 };
 

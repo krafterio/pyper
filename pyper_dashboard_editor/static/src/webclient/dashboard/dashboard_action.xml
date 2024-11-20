@@ -2,14 +2,31 @@
 <templates xml:space="preserve">
     <t t-name="pyper_dashboard_editor.DashboardAction" t-inherit="pyper_dashboard.DashboardAction" t-inherit-mode="extension">
         <xpath expr="//div[@name='pyper_dashboard_action_header']" position="inside">
-            <span t-if="!env.isSmall and props.foldable" class="btn p-1 text-muted" t-on-click="() => this.props.toggle()">
-                <i class="fa fa-window-maximize" t-if="props.isFolded"/>
-                <i class="fa fa-window-minimize" t-else=""/>
-            </span>
+            <Dropdown
+                togglerClass="'btn btn-sm'"
+                menuClass="'pyper_dashboard--dropdown-menu'"
+                position="'bottom-end'"
+                t-if="props.layoutEditable"
+            >
+                <t t-set-slot="toggler">
+                    <i class="fa oi-fw fa-ellipsis-v" aria-label="Action settings" role="img" title="Action settings"/>
+                </t>
 
-            <span t-if="!env.isSmall and props.foldable" class="btn p-1 text-muted" t-on-click="() => this.props.remove()">
-                <i class="fa fa-close"/>
-            </span>
+                <DropdownItem t-if="props.isFolded" onSelected="() => this.props.toggle()">
+                    <i class="oi-fw oi-fw me-1 fa fa-window-maximize"></i>
+                    Maximize
+                </DropdownItem>
+
+                <DropdownItem t-else="" onSelected="() => this.props.toggle()">
+                    <i class="oi-fw oi-fw me-1 fa fa-window-minimize"></i>
+                    Minimize
+                </DropdownItem>
+
+                <DropdownItem onSelected="() => this.props.remove()">
+                    <i class="oi-fw oi-fw me-1 fa fa-trash-o"></i>
+                    Delete
+                </DropdownItem>
+            </Dropdown>
         </xpath>
     </t>
 </templates>
