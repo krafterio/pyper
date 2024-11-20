@@ -5,6 +5,11 @@
         <field name="sequence">10</field>
     </record>
 
+    <record id="menu_category_website" model="ir.ui.menu.category">
+        <field name="name">Website</field>
+        <field name="sequence">10</field>
+    </record>
+
     <record id="menu_category_manager" model="ir.ui.menu.category">
         <field name="name">Manager</field>
         <field name="sequence">1000</field>
