@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <t t-name="pyper_dashboard_editor.DashboardSectionDialog" t-inherit="pyper_dashboard_editor.DashboardDialogBase" t-inherit-mode="primary">
+    <t t-name="pyper_dashboard_editor.DashboardActionDialog" t-inherit="pyper_dashboard_editor.DashboardDialogBase" t-inherit-mode="primary">
         <xpath expr="//t[@t-slot='default']" position="inside">
             <div class="row">
                 <div class="col">

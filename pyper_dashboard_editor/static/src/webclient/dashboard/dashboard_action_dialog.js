@@ -3,8 +3,8 @@
 import {_t} from '@web/core/l10n/translation';
 import {DashboardDialogBase, useControlledInput} from './dashboard_dialog';
 
-export class DashboardSectionDialog extends DashboardDialogBase {
-    static template = 'pyper_dashboard_editor.DashboardSectionDialog';
+export class DashboardActionDialog extends DashboardDialogBase {
+    static template = 'pyper_dashboard_editor.DashboardActionDialog';
 
     static props = {
         ...DashboardDialogBase.props,
@@ -16,7 +16,7 @@ export class DashboardSectionDialog extends DashboardDialogBase {
 
     static defaultProps = {
         ...DashboardDialogBase.defaultProps,
-        dialogTitle: _t('Section'),
+        dialogTitle: _t('Action'),
     }
 
     setup() {

@@ -2,7 +2,6 @@
 
 import {blockDom, useRef} from '@odoo/owl';
 import {browser} from '@web/core/browser/browser';
-import {ConfirmationDialog} from '@web/core/confirmation_dialog/confirmation_dialog';
 import {_t} from '@web/core/l10n/translation';
 import {patch} from '@web/core/utils/patch';
 import {renderToString} from '@web/core/utils/render';
@@ -243,16 +242,15 @@ patch(DashboardController.prototype, {
         this.saveBoard();
     },
 
+    editAction(action, actionData) {
+        Object.assign(action, {...actionData});
+        this.saveBoard();
+    },
+
     removeAction(column, action) {
-        this.dialogService.add(ConfirmationDialog, {
-            body: _t('Are you sure that you want to remove this item?'),
-            confirm: () => {
-                const index = column.actions.indexOf(action);
-                column.actions.splice(index, 1);
-                this.saveBoard();
-            },
-            cancel: () => {},
-        });
+        const index = column.actions.indexOf(action);
+        column.actions.splice(index, 1);
+        this.saveBoard();
     },
 
     saveBoard() {

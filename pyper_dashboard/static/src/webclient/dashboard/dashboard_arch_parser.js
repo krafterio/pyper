@@ -146,7 +146,7 @@ export const createAction = function(id, node) {
     const action = {
         id,
         actionId,
-        title: node.getAttribute('string'),
+        title: node.getAttribute('string') || undefined,
         viewMode: node.getAttribute('view_mode'),
         context: {},
         domain: [],

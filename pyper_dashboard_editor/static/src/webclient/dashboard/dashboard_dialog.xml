@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_dashboard_editor.DashboardDialogBase">
+        <Dialog size="dialogSize" title="props.dialogTitle" modalRef="modalRef" bodyClass="'o_form_view'">
+            <t t-slot="default"/>
+
+            <t t-set-slot="footer">
+                <button class="btn btn-primary" t-att-class="props.class" t-on-click="save" t-out="props.saveLabel"/>
+                <button class="btn btn-secondary" t-on-click="cancel" t-out="props.cancelLabel"/>
+            </t>
+        </Dialog>
+    </t>
+</templates>

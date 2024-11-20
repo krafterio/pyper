@@ -22,7 +22,12 @@
                     Minimize
                 </DropdownItem>
 
-                <DropdownItem onSelected="() => this.props.remove()">
+                <DropdownItem onSelected="() => this.editAction()">
+                    <i class="oi-fw oi-fw me-1 fa fa-edit"></i>
+                    Edit
+                </DropdownItem>
+
+                <DropdownItem onSelected="() => this.deleteAction()">
                     <i class="oi-fw oi-fw me-1 fa fa-trash-o"></i>
                     Delete
                 </DropdownItem>
