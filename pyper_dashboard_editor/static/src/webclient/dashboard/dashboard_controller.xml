@@ -5,13 +5,13 @@
             <attribute name="selectLayout">(layout, save) => this.selectLayout(section, layout, save, section_index)</attribute>
             <attribute name="edit">(data) => this.editSection(section, data)</attribute>
             <attribute name="remove">() => this.removeSection(section_index)</attribute>
-            <attribute name="layoutEditable">section.layoutEditable and this.canEdit</attribute>
+            <attribute name="layoutEditable">section.layoutEditable and this.canEdit and this.isEditMode</attribute>
         </xpath>
 
         <xpath expr="//DashboardAction" position="attributes">
             <attribute name="toggle">() => this.toggleAction(action)</attribute>
             <attribute name="remove">() => this.removeAction(column, action)</attribute>
-            <attribute name="foldable">this.canEdit</attribute>
+            <attribute name="foldable">this.canEdit and this.isEditMode</attribute>
             <attribute name="isFolded">action.isFolded</attribute>
         </xpath>
     </t>

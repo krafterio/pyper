@@ -2,8 +2,11 @@
 <templates xml:space="preserve">
     <t t-name="pyper_dashboard.DashboardSection">
         <div class="pyper_dashboard--section" t-att="props.attr">
-            <div class="pyper_dashboard--section-header" name="pyper_dashboard_section_header">
+            <div class="pyper_dashboard--section-header" name="pyper_dashboard_section_header" t-if="props.layoutEditable or props.title">
                 <h3 class="pyper_dashboard--section-header-title" t-out="props.title" t-if="props.title"/>
+                <h3 class="pyper_dashboard--section-header-title text-muted" t-elif="props.layoutEditable">
+                    Section
+                </h3>
                 <div t-else="" class="spacer"/>
             </div>
 

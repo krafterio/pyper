@@ -22,6 +22,8 @@ patch(DashboardController.prototype, {
 
         const mainRef = useRef('main');
 
+        this.state.editMode = false;
+
         useSortable({
             ref: mainRef,
             elements: '.pyper_dashboard--section',
@@ -29,7 +31,7 @@ patch(DashboardController.prototype, {
             cursor: 'move',
             groups: '.pyper_dashboard--container',
             connectGroups: true,
-            enable: () => this.canEdit,
+            enable: () => this.canEdit && this.isEditMode,
             onDrop: ({element, previous}) => {
                 const fromIdx = parseInt(element.dataset.idx, 10);
                 const toIdx = previous ? parseInt(previous.dataset.idx, 10) + 1 : 0;
@@ -45,7 +47,7 @@ patch(DashboardController.prototype, {
             cursor: 'move',
             groups: '.pyper_dashboard--column',
             connectGroups: true,
-            enable: () => this.canEdit,
+            enable: () => this.canEdit && this.isEditMode,
             onGroupLeave: (params) => {
                 if (null === this.leavedSectionIndex) {
                     this.leavedSectionIndex = parseInt(params.group.closest('.pyper_dashboard--section').dataset.idx, 10);
@@ -68,6 +70,10 @@ patch(DashboardController.prototype, {
                 this.moveAction(fromSecIdx, fromColIdx, fromActionIdx, toSecIdx, toColIdx, toActionIdx);
             },
         });
+    },
+
+    get isEditMode() {
+        return this.state.editMode;
     },
 
     get canCreate() {
@@ -95,21 +101,39 @@ patch(DashboardController.prototype, {
     get dashboardClasses() {
         return {
             ...super.dashboardClasses,
-            'editable': this.canEdit,
+            'editable': this.canEdit && this.isEditMode,
         };
     },
 
     get optionsItems() {
         return [
             {
+                id: 'enable_edit_mode',
+                label: _t('Enable edit'),
+                icon: 'oi-fw oi-fw me-1 fa fa-edit',
+                onSelected: () => this.toggleEditMode(),
+                isShown: () => !this.isEditMode,
+            },
+            {
+                id: 'disable_edit_mode',
+                label: _t('Disable edit'),
+                icon: 'oi-fw oi-fw me-1 fa fa-edit',
+                onSelected: () => this.toggleEditMode(),
+                isShown: () => this.isEditMode,
+            },
+            {
                 id: 'add_section',
                 label: _t('Add a section'),
                 icon: 'oi-fw oi-fw me-1 fa fa-plus',
                 onSelected: () => this.addSection(),
-                isShown: () => !this.dashboard?.isEmpty,
+                isShown: () => !this.dashboard?.isEmpty && this.isEditMode,
             },
             ...super.optionsItems,
         ];
+    },
+
+    toggleEditMode() {
+        this.state.editMode = !this.state.editMode;
     },
 
     addSection() {
