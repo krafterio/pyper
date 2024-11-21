@@ -11,6 +11,7 @@ export const openAiStreamWidget = {
             systemMessageField: attrs['system_message_field'] || undefined,
             userMessageField: attrs['user_message_field'] || undefined,
             targetField: attrs['target_field'] || undefined,
+            endMessageField: attrs['end_message_field'] || undefined,
         };
     },
 };

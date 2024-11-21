@@ -23,6 +23,10 @@ export class OpenAiStream extends Component {
         targetField: {
             type: String,
         },
+        endMessageField: {
+            type: String,
+            optional: true,
+        },
     };
 
     setup() {
@@ -84,6 +88,10 @@ export class OpenAiStream extends Component {
         this.eventSource.addEventListener('end', () => {
             this.eventSource.close();
             this.eventSource = null;
+
+            if (this.props.endMessageField && this.props.record?.data[this.props.endMessageField]) {
+                this.props.record.data[this.props.targetField] += this.props.record?.data[this.props.endMessageField];
+            }
         });
 
         this.eventSource.addEventListener('error', (e) => {
