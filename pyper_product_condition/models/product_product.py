@@ -8,12 +8,14 @@ class ProductProduct(models.Model):
 
     product_condition_id = fields.Many2one(
         'product.condition',
-        'Condition',
-        compute='_compute_product_condition'
+        'Product Condition',
+        compute='_compute_product_condition',
+        search=True,
     )
 
     product_condition_description = fields.Char(
-        related='product_condition_id.description'
+        related='product_condition_id.description',
+        string="Product Condition Description",
     )
 
     @api.depends('product_template_attribute_value_ids')

@@ -5,6 +5,7 @@ from odoo import fields, models, api, _
 
 class ProductCondition(models.Model):
     _name = 'product.condition'
+    _description = 'Product condition'
 
     sequence = fields.Integer(string='Sequence')
 
