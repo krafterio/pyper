@@ -68,7 +68,7 @@ export class OpenAiStream extends Component {
         const systemMessage = this.props.record?.data[this.props.systemMessageField] || undefined;
         const userMessage = this.props.record?.data[this.props.userMessageField] || undefined;
 
-        if (!userMessage) {
+        if (!userMessage || 0 === userMessage.length) {
             return;
         }
 
