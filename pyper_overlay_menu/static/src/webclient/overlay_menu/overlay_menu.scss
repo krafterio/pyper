@@ -37,6 +37,10 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: $o-overlay-menu-item-gap;
+
+    @include media-breakpoint-up(md) {
+        justify-content: flex-start;
+    }
 }
 
 .o_overlay_menu--item {
