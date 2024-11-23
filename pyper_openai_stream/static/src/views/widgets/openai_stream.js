@@ -78,11 +78,12 @@ export class OpenAiStream extends Component {
             'user_message': userMessage,
         });
 
-        this.props.record.data[this.props.targetField] = '';
+        this.props.record.update({[this.props.targetField]: ''});
         this.eventSource = new EventSource(`/openai/stream/${res.identifier}`);
 
         this.eventSource.addEventListener('message', async (event) => {
-            this.props.record.data[this.props.targetField] += event.data;
+            const message = this.props.record.data[this.props.targetField] + event.data;
+            this.props.record.update({[this.props.targetField]: message});
         });
 
         this.eventSource.addEventListener('end', () => {
@@ -90,7 +91,9 @@ export class OpenAiStream extends Component {
             this.eventSource = null;
 
             if (this.props.endMessageField && this.props.record?.data[this.props.endMessageField]) {
-                this.props.record.data[this.props.targetField] += this.props.record?.data[this.props.endMessageField];
+                const endMessage = this.props.record?.data[this.props.endMessageField];
+                const message = this.props.record.data[this.props.targetField];
+                this.props.record.update({[this.props.targetField]: message + endMessage});
             }
         });
 
