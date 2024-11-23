@@ -2,6 +2,9 @@
 <odoo>
     <template id="portal_partner_request_settings_template" name="Settings">
         <t t-call="portal.portal_layout">
+            <a href="/my/requests/" class="btn btn-secondary my-4">
+                Back
+            </a>
             <div class="container mt-4">
                 <h1>requests Settings</h1>
                 <h2><t t-esc="partner.name"/></h2>

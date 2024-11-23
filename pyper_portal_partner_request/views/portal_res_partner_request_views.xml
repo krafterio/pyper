@@ -17,9 +17,7 @@
             <a href="/my/requests/" class="btn btn-secondary my-4">
                 Back
             </a>
-            <t t-call="portal.portal_searchbar">
-                <t t-set="title">My Requests</t>
-            </t>
+            <t t-set="title">My Requests</t>
             <div class="container mt-4">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="align-self-end">
@@ -47,6 +45,7 @@
                             <ul class="list-unstyled">
                                 <li class="py-1">
                                     <a t-att-href="'/web/content/%s?download=true&amp;access_token=%s' % (attachment.id,str(attachment.access_token))" style="color: #f3e663;">
+                                        <i class="fa fa-download" aria-hidden="true"></i>
                                         <t t-esc="attachment.name"/>
                                     </a>
                                 </li>
@@ -127,8 +126,7 @@
                         <label for="partner_request_description">Description</label>
                         <textarea id="partner_request_description" 
                                     name="partner_request_description" 
-                                    class="form-control">
-                        </textarea>
+                                    class="form-control"/>
                         <div class="form-group my-4">
                             <label for="partner_request_image">Image (optional)</label>
                             <input type="file" id="partner_request_image" name="partner_request_image" accept="image/*" class="form-control"/>
