@@ -36,7 +36,7 @@
 
     .o_drawer--menu {
         margin: 0;
-        padding: $o-horizontal-padding/2 0;
+        padding: $o-drawer-menu-padding-h 0;
         overflow-x: hidden;
         overflow-y: hidden;
         height: 100%;
@@ -297,7 +297,7 @@
 .o_drawer--quick-actions,
 .o_drawer--header,
 .o_drawer--footer {
-    padding: $o-horizontal-padding/2 0;
+    padding: $o-drawer-menu-padding-h 0;
 
     &:empty {
         display: none;
@@ -709,7 +709,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     flex-grow: 1;
-    padding: $o-horizontal-padding/2 0;
+    padding: $o-drawer-menu-padding-h 0;
     list-style: none;
     text-align: left;
     direction: ltr;
