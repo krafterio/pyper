@@ -77,29 +77,21 @@
 
                         <group name="config_view">
                             <field name="expert_mode" widget="boolean_toggle" options="{'autosave': False}"/>
-                        </group>
-                    </group>
 
-                    <notebook>
-                        <page name="page_share" string="Share">
-                            <group>
-                                <group>
-                                    <field name="shared" widget="boolean_toggle" options="{'autosave': False}"/>
-                                </group>
+                            <field name="shared" widget="boolean_toggle" options="{'autosave': False}"/>
 
-                                <group>
-                                    <field name="group_ids"
+                            <field name="group_ids"
                                            widget="many2many_tags"
                                            options="{'no_create': True, 'no_edit': True}"
                                            groups="base.group_no_one"
                                            invisible="not expert_mode or not shared"
                                     />
-                                </group>
-                            </group>
-                        </page>
+                        </group>
+                    </group>
 
+                    <notebook>
                         <page name="page_domain" string="Filters">
-                            <field name="domain" widget="domain" options="{'model': 'res_model_name', 'in_dialog': True}"/>
+                            <field name="domain" widget="domain" options="{'model': 'res_model_name', 'in_dialog': False}"/>
                         </page>
 
                         <page name="page_res_field_ids" string="Columns" invisible="not display_page_fields">
