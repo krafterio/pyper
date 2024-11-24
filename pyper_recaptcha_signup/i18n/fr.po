@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 17.0-20241123\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-13 14:31+0000\n"
-"PO-Revision-Date: 2024-11-13 14:31+0000\n"
+"POT-Creation-Date: 2024-11-24 00:45+0000\n"
+"PO-Revision-Date: 2024-11-24 00:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,116 +16,16 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: pyper_recaptcha_signup
-#: model_terms:ir.ui.view,arch_db:pyper_recaptcha_signup.res_config_settings_view_form
-msgid ""
-"<i class=\"oi oi-arrow-right\"/>\n"
-"                                    <span> Generate reCAPTCHA v3 keys</span>"
-msgstr ""
-"<i class=\"oi oi-arrow-right\"/>\n"
-"                                    <span>Generate reCAPTCHA v3 keys</span>"
-
-#. module: pyper_recaptcha_signup
 #: model:ir.model,name:pyper_recaptcha_signup.model_res_config_settings
 msgid "Config Settings"
 msgstr "Paramètres de configuration"
 
 #. module: pyper_recaptcha_signup
 #: model_terms:ir.ui.view,arch_db:pyper_recaptcha_signup.res_config_settings_view_form
-msgid "Enable reCAPTCHA on signup"
-msgstr "Activer reCAPTCHA lors de l'inscription"
+msgid "Protect your signup page from spam and abuse."
+msgstr "Protégez votre page d’inscription contre le spam et les abus."
 
 #. module: pyper_recaptcha_signup
-#. odoo-python
-#: code:addons/pyper_recaptcha_signup/models/res_config_settings.py:0
-#, python-format
-msgid "Minimum reCAPTCHA score must be inside 0.0 - 1.0 range"
-msgstr "Le score minimum du reCAPTCHA doit se situer dans l'intervalle 0.0 - 1.0"
-
-#. module: pyper_recaptcha_signup
-#. odoo-python
-#: code:addons/pyper_recaptcha_signup/controllers/signup.py:0
-#, python-format
-msgid ""
-"Secret parameter is invalid or malformed, please inform the website "
-"administrator"
-msgstr ""
-"La clé secrète est invalide ou possède un mauvais formatage, merci d'en "
-"informer l'administrateur du site"
-
-#. module: pyper_recaptcha_signup
-#. odoo-python
-#: code:addons/pyper_recaptcha_signup/controllers/signup.py:0
-#, python-format
-msgid "Secret parameter is missing, please inform the website administrator"
-msgstr "La clé secrète est manquante, merci d'en informer l'administrateur du site"
-
-#. module: pyper_recaptcha_signup
-#: model_terms:ir.ui.view,arch_db:pyper_recaptcha_signup.signup
-msgid "Sign up"
-msgstr "Inscription"
-
-#. module: pyper_recaptcha_signup
-#: model_terms:ir.ui.view,arch_db:pyper_recaptcha_signup.res_config_settings_view_form
-msgid "Use Google reCAPTCHA on the signup pages"
-msgstr "Utiliser le reCAPTCHA de Google sur les pages d'inscription"
-
-#. module: pyper_recaptcha_signup
-#. odoo-python
-#: code:addons/pyper_recaptcha_signup/controllers/signup.py:0
-#, python-format
-msgid ""
-"You did not reached the minimum score required for reCAPTCHA, are you a bot "
-"?"
-msgstr ""
-"Vous n'avez pas atteint le score minimum requis pour le reCAPTCHA, seriez-"
-"vous un robot ?"
-
-#. module: pyper_recaptcha_signup
-#. odoo-python
-#: code:addons/pyper_recaptcha_signup/controllers/signup.py:0
-#, python-format
-msgid ""
-"action blocked by reCAPTCHA, please submit again or contact website "
-"administrator"
-msgstr ""
-"Action bloquée par reCAPTCHA, veuillez réessayer ou contacter "
-"l'administrateur du site"
-
-#. module: pyper_recaptcha_signup
-#: model_terms:ir.ui.view,arch_db:pyper_recaptcha_signup.res_config_settings_view_form
-msgid "reCAPTCHA Signup"
-msgstr ""
-
-#. module: pyper_recaptcha_signup
-#. odoo-python
-#: code:addons/pyper_recaptcha_signup/controllers/signup.py:0
-#, python-format
-msgid "reCAPTCHA is missing, invalid or malformed, please try again"
-msgstr ""
-"Le reCAPTCHA est manquant, invalide ou possède un mauvais formatage, "
-"veuillez réessayer"
-
-#. module: pyper_recaptcha_signup
-#. odoo-python
-#: code:addons/pyper_recaptcha_signup/controllers/signup.py:0
-#, python-format
-msgid "reCAPTCHA is missing, please try again"
-msgstr ""
-"Le reCAPTCHA est manquant, invalide ou possède un mauvais formatage, "
-"veuillez réessayer"
-
-#. module: pyper_recaptcha_signup
-#. odoo-python
-#: code:addons/pyper_recaptcha_signup/controllers/signup.py:0
-#, python-format
-msgid "reCAPTCHA request failed because of duplicate or timeout"
-msgstr ""
-"La requête reCAPTCHA a échoué en raison d'un duplicata ou d'un temps de "
-"réponse trop long"
-
-#. module: pyper_recaptcha_signup
-#. odoo-python
-#: code:addons/pyper_recaptcha_signup/controllers/signup.py:0
-#, python-format
-msgid "reCAPTCHA request failed due to a bad request"
-msgstr "La requête reCAPTCHA a échoué suite à une mauvaise requête"
+#: model:ir.model.fields,field_description:pyper_recaptcha_signup.field_res_config_settings__recaptcha_signup_enabled
+msgid "reCAPTCHA on signup"
+msgstr "reCAPTCHA sur la page d’inscription"

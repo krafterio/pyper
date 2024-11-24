@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'reCAPTCHA Signup',
+    'name': 'ReCAPTCHA Signup',
     'category': 'Hidden',
     'license': 'Other proprietary',
     'description': 'Securing signup page with Google reCAPTCHA',
@@ -15,7 +15,7 @@
     'installable': True,
     'depends': [
         'auth_signup',
-        'pyper_setup',
+        'google_recaptcha',
     ],
     'data': [
         # Views

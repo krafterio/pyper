@@ -3,46 +3,16 @@
     <record id="res_config_settings_view_form" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.inherit</field>
         <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="pyper_setup.res_config_settings_view_form"/>
+        <field name="inherit_id" ref="google_recaptcha.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//app[@name='pyper_settings']" position="inside">
-                <block title="reCAPTCHA Signup" name="pyper_recaptcha_signup">
-                    <setting
-                        string="Enable reCAPTCHA on signup"
-                        help="Use Google reCAPTCHA on the signup pages"
-                        id="module_pyper_recaptcha_signup"
-                    >
-                        <field name="recaptcha_signup_enabled"/>
-
-                        <div
-                            id="pyper_recaptcha_signup_configuration_settings"
-                            class="content-group"
-                            invisible="not recaptcha_signup_enabled"
-                        >
-                            <div class="mt16 row">
-                                <label for="recaptcha_signup_site_key" class="col-3 o_light_label"/>
-                                <field name="recaptcha_signup_site_key"/>
-                            </div>
-
-                            <div class="mt16 row">
-                                <label for="recaptcha_signup_private_key" class="col-3 o_light_label"/>
-                                <field name="recaptcha_signup_private_key"/>
-                            </div>
-
-                            <div class="mt16 row">
-                                <label for="recaptcha_signup_min_score" class="col-3 o_light_label"/>
-                                <field name="recaptcha_signup_min_score"/>
-                            </div>
-
-                            <div class="mt16 row">
-                                <a href="https://www.google.com/recaptcha/admin/create" class="oe_link" target="_blank">
-                                    <i class="oi oi-arrow-right"/>
-                                    <span> Generate reCAPTCHA v3 keys</span>
-                                </a>
-                            </div>
-                        </div>
-                    </setting>
-                </block>
+            <xpath expr="//setting[@id='recaptcha']" position="after">
+                <setting
+                    help="Protect your signup page from spam and abuse."
+                    id="pyper_recaptcha_signup"
+                    invisible="not module_google_recaptcha"
+                >
+                    <field name="recaptcha_signup_enabled"/>
+                </setting>
             </xpath>
         </field>
     </record>
