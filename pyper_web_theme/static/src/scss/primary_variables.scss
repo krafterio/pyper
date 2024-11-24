@@ -80,11 +80,6 @@ $o-main-favorite-color: $o-brand-primary !default;
 // Cards
 $card-border-color: $border-color !default;
 
-// Component
-$o-component-active-color: $o-gray-900 !default;
-$o-component-active-bg: mix($o-action, $o-white, 10%) !default;
-$o-component-active-border: $o-action !default;
-
 // Button
 $o-btns-bs-override: () !default;
 $o-btns-bs-override: map-merge((
