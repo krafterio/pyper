@@ -11,15 +11,6 @@
         float: right!important;
     }
 
-    .o_form_sheet_bg {
-        --formView-sheetBg-padding-x: 0;
-
-        padding-top: map-get($spacers, 0);
-        padding-left: 0;
-        padding-right: 0;
-        margin-right: 0
-    }
-
     .o_form_sheet {
         --formView-sheet-padding-y: #{map-get($spacers, 4)};
         --formView-sheet-padding-x: #{map-get($spacers, 4)};
