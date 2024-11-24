@@ -12,29 +12,12 @@
     }
 
     .o_form_sheet {
-        --formView-sheet-padding-y: #{map-get($spacers, 4)};
-        --formView-sheet-padding-x: #{map-get($spacers, 4)};
-
-        border-width: 0;
+        border-color: transparent;
         border-radius: 0;
-
-        @include media-breakpoint-up(md) {
-            --formView-sheet-border-width: 0;
-        }
-
-        @include media-breakpoint-up(lg) {
-            --formView-sheet-padding-x: var(--formView-sheet-padding-x-lg, #{map-get($spacers, 5)});
-        }
-
-        @include media-breakpoint-up(xxl, $o-extra-grid-breakpoints) {
-            --formView-sheet-padding-y: var(--formView-sheet-padding-y-xxl, #{map-get($spacers, 5)});
-            --formView-sheet-padding-x: var(--formView-sheet-padding-x-xxl, #{map-get($spacers, 5)});
-        }
     }
 
     .o_form_statusbar {
-        padding: 0 16px 0 32px;
-        margin-top: 16px;
+        margin-top: map-get($spacers, 2);
     }
 
     .o_inner_group {
@@ -47,22 +30,6 @@
             min-width: auto;
         }
     }
-
-    .o_inner_group.oe_subtotal_footer {
-
-    }
-}
-
-.modal .modal-dialog {
-    .o_form_sheet {
-        --formView-sheet-padding-y-xxl: #{map-get($spacers, 3)};
-    }
-}
-
-.o_form_view.o_xxl_form_view {
-    .o_form_sheet_bg {
-        flex: inherit;
-    }
 }
 
 .oe_title {
@@ -73,6 +40,22 @@
 
         .o_field_widget {
             font-weight: bold !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .o_content {
+        > .o_form_renderer {
+            > .o_form_sheet_bg {
+                padding-left: 0;
+                padding-right: 0;
+
+                > .o_form_statusbar {
+                    padding-left: map-get($spacers, 3);
+                    padding-right: map-get($spacers, 3);
+                }
+            }
         }
     }
 }
