@@ -28,7 +28,7 @@ export class MenuState {
     }
 
     get activeIds() {
-        return this.currentMenuId ? [...this.findParentIds(this.currentMenuId), this.currentMenuId] : [];
+        return this.currentMenuId ? Array.from(new Set([...this.findParentIds(this.currentMenuId), this.currentMenuId])) : [];
     }
 
     menuIsActivated(menu) {
