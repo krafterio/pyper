@@ -23,7 +23,4 @@
         'pyper_fonts_phosphor',
         'pyper_web_theme',
     ],
-    'data': [
-        'data/menu_icons.csv',
-    ],
 }
