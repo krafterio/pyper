@@ -3,6 +3,7 @@
     <menuitem
         id="technology_root"
         name="Technologies"
+        web_icon="pyper_stack_tracker,static/description/icon.png"
     />
 
     <menuitem
