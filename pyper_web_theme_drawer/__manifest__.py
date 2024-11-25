@@ -12,6 +12,10 @@
         'Krafter SAS',
     ],
     'post_init_hook': 'post_init_hook',
+    'auto_install': [
+        'pyper_drawer',
+        'pyper_web_theme',
+    ],
     'depends': [
         'base',
         'base_setup',
