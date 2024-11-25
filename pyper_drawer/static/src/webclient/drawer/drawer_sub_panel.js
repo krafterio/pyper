@@ -28,6 +28,7 @@ export class DrawerSubPanel extends Component {
             'o_drawer--drawer-dragging': this.isDrawerDragging,
             'o_drawer--sub-panel--opened': this.isOpened,
             'o_drawer--nav': this.isNav,
+            'o_drawer--fixed-top': this.isFixedTop,
         };
     }
 
@@ -57,6 +58,10 @@ export class DrawerSubPanel extends Component {
 
     get isNav() {
         return this.drawerService.isNav;
+    }
+
+    get isFixedTop() {
+        return this.drawerService.isFixedTop;
     }
 
     get title() {
