@@ -19,6 +19,7 @@ export class DrawerState {
         this.state = {
             nav: false,
             fixedTop: false,
+            neutralizeBannerTop: 0,
             opened: false,
             locked: (cookie.get('drawer_locked') || 'true') === 'true',
             lockable: false,

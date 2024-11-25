@@ -16,7 +16,7 @@ import {useBus, useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
 import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {_t} from '@web/core/l10n/translation';
-import {getTransform} from '@pyper/core/ui/css';
+import {getTransform, stylesToString} from '@pyper/core/ui/css';
 import {DrawerMenuItem} from './drawer_menu_item';
 import {DrawerSubPanel} from './drawer_sub_panel';
 
@@ -283,6 +283,12 @@ export class Drawer extends Component {
             'o_drawer--dragging': this.isDragging,
             'o_drawer--sub-panel--opened': this.isSubPanelOpened,
         };
+    }
+
+    get styles() {
+        return stylesToString({
+            '--drawer-margin-fixed-top': this.drawerService.neutralizeBannerTop + 'px',
+        });
     }
 
     get isMounted() {
@@ -689,5 +695,6 @@ export class Drawer extends Component {
         this.drawerService.closeAllUnactivatedItemsOnClick = this.settings.closeAllUnactivatedItemsOnClick;
         this.drawerService.restoreMinified(this.settings.initMinified);
         this.drawerService.restoreLockable(this.settings.initLockable);
+        this.drawerService.neutralizeBannerTop = document.getElementById('oe_neutralize_banner')?.getBoundingClientRect()?.height || 0;
     }
 }

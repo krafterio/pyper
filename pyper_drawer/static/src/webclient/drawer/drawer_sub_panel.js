@@ -3,6 +3,7 @@
 import {Component, useState} from '@odoo/owl';
 import {useService} from '@web/core/utils/hooks';
 import {DrawerMenuItem} from './drawer_menu_item';
+import {stylesToString} from '@pyper/core/ui/css';
 
 export class DrawerSubPanel extends Component {
     static template = 'pyper_drawer.DrawerSubPanel';
@@ -30,6 +31,12 @@ export class DrawerSubPanel extends Component {
             'o_drawer--nav': this.isNav,
             'o_drawer--fixed-top': this.isFixedTop,
         };
+    }
+
+    get styles() {
+        return stylesToString({
+            '--drawer-margin-fixed-top': this.drawerService.neutralizeBannerTop + 'px',
+        });
     }
 
     get isMounted() {

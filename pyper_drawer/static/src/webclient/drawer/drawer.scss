@@ -783,7 +783,7 @@ body {
     }
 
     &.o_drawer--fixed-top {
-        top: $o-navbar-height + $o-drawer-border-width;
+        top: calc(#{$o-navbar-height + $o-drawer-border-width} + var(--drawer-margin-fixed-top, 0px));
 
         + .o_navbar,
         + .o_drawer--obfuscator + .o_navbar {

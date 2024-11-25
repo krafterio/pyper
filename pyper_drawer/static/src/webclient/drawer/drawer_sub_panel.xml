@@ -2,7 +2,7 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="pyper_drawer.DrawerSubPanel">
-        <div t-att-class="classes">
+        <div t-att-class="classes" t-att-style="styles">
             <t t-call="pyper_drawer.DrawerSubPanel.Header"/>
 
             <t t-call="pyper_drawer.DrawerSubPanel.Content"/>
