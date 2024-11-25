@@ -101,6 +101,7 @@
                         iconData="menu.webIconData"
                         fontIcon="menu.fontIcon"
                         fontIconColor="menu.fontIconColor"
+                        preferWebIcon="settings.preferWebIcon"
                         emojiIcon="menu.emojiIcon"
                         label="menu.name"
                     />
@@ -175,6 +176,7 @@
                 iconData="menu.webIconData"
                 fontIcon="menu.fontIcon"
                 fontIconColor="menu.fontIconColor"
+                preferWebIcon="settings.preferWebIcon"
                 emojiIcon="menu.emojiIcon"
                 label="menu.name"
             />

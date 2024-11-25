@@ -21,6 +21,7 @@
                 <t t-set="iconData" t-value="props.iconData"/>
                 <t t-set="fontIcon" t-value="props.fontIcon"/>
                 <t t-set="fontIconColor" t-value="props.fontIconColor"/>
+                <t t-set="preferWebIcon" t-value="props.preferWebIcon"/>
                 <t t-set="emojiIcon" t-value="props.emojiIcon"/>
                 <t t-set="label" t-value="props.label"/>
                 <t t-set="showLabel" t-value="isPopoverEnabled ? false : !drawerService.isMinified || props.disablePopover"/>
@@ -59,7 +60,7 @@
                 <t t-out="emojiIcon"/>
             </div>
 
-            <div t-elif="withIcon and fontIcon" class="o_drawer--item-icon-empty" t-att-style="'color: ' + (fontIconColor || 'inherit') + ';'">
+            <div t-elif="withIcon and fontIcon and !preferWebIcon" class="o_drawer--item-icon-empty" t-att-style="'color: ' + (fontIconColor || 'inherit') + ';'">
                 <i t-att-class="fontIcon"/>
             </div>
 

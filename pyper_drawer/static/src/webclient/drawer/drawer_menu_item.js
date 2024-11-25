@@ -77,6 +77,10 @@ export class DrawerMenuItem extends Component {
             type: Boolean,
             optional: true,
         },
+        preferWebIcon: {
+            type: Boolean,
+            optional: true,
+        },
     }
 
     static defaultProps = {
@@ -86,6 +90,7 @@ export class DrawerMenuItem extends Component {
         active: undefined,
         depth: 0,
         disablePopover: false,
+        preferWebIcon: false,
     }
 
     setup() {

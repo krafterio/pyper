@@ -155,6 +155,10 @@ export class Drawer extends Component {
         hideNavbarAppsMenu: undefined,
     };
 
+    static configurableMenuDefaultProps = {
+        preferWebIcon: false,
+    };
+
     static configurableDefaultProps = {
         showRootApp: false,
         nav: false,
@@ -181,6 +185,8 @@ export class Drawer extends Component {
         hideNavbarAppsMenu: false,
     };
 
+    static MENU_SETUP_PREFIX = 'pyper_menu.provider.';
+
     static SETUP_PREFIX = 'pyper_drawer.drawer_props.';
 
     setup() {
@@ -199,12 +205,14 @@ export class Drawer extends Component {
         this.dragDistance = 0;
 
         onWillStart(async () => {
+            await this.pyperSetupService.register(Drawer.MENU_SETUP_PREFIX, Drawer.configurableMenuDefaultProps);
             await this.pyperSetupService.register(Drawer.SETUP_PREFIX, Drawer.configurableDefaultProps);
             this._refreshDrawerService();
         });
 
         const debouncedAdapt = debounce(this.adapt.bind(this), 250);
         onWillDestroy(() => {
+            this.pyperSetupService.unregister(Drawer.MENU_SETUP_PREFIX);
             this.pyperSetupService.unregister(Drawer.SETUP_PREFIX);
             debouncedAdapt.cancel();
 
@@ -265,7 +273,10 @@ export class Drawer extends Component {
     }
 
     get settings() {
-        return this.pyperSetupService.settings[Drawer.SETUP_PREFIX];
+        return {
+            ...this.pyperSetupService.settings[Drawer.MENU_SETUP_PREFIX],
+            ...this.pyperSetupService.settings[Drawer.SETUP_PREFIX],
+        };
     }
 
     get classes() {
@@ -566,6 +577,7 @@ export class Drawer extends Component {
     }
 
     onWillUpdateProps(nextProps) {
+        this.pyperSetupService.onWillUpdateProps(Drawer.MENU_SETUP_PREFIX, nextProps);
         this.pyperSetupService.onWillUpdateProps(Drawer.SETUP_PREFIX, nextProps);
         this._refreshDrawerService();
     }
