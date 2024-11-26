@@ -19,7 +19,7 @@ class IrUiMenu(models.Model):
     category_id = fields.Many2one(
         'ir.ui.menu.category',
         'Category',
-        ondelete='restrict',
+        ondelete='set null',
     )
 
     category_sequence = fields.Integer(
