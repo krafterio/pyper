@@ -65,7 +65,7 @@
              role="menu"
         >
             <t t-foreach="categories" t-as="category" t-key="category.value">
-                <p class="o_drawer--category" t-if="displayCategoryName">
+                <p class="o_drawer--category" t-if="displayCategoryName and (category.label or category.actionID)">
                     <span class="o_drawer--category-label" t-out="category.label"/>
 
                     <span class="o_drawer--category-action"

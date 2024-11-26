@@ -179,14 +179,6 @@ msgstr ""
 "pour aucune limite"
 
 #. module: pyper_drawer
-#. odoo-javascript
-#: code:addons/pyper/pyper_drawer/static/src/webclient/drawer/drawer.js:0
-#: code:addons/pyper_drawer/static/src/webclient/drawer/drawer.js:0
-#, python-format
-msgid "Other"
-msgstr "Autre"
-
-#. module: pyper_drawer
 #: model:ir.model.fields,field_description:pyper_drawer.field_res_config_settings__drawer_popover_minified
 msgid "Popover title for mini drawer?"
 msgstr "Titre en popover en mini ?"

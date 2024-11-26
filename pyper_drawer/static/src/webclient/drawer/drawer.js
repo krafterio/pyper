@@ -15,7 +15,6 @@ import {
 import {useBus, useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
 import {DropdownItem} from '@web/core/dropdown/dropdown_item';
-import {_t} from '@web/core/l10n/translation';
 import {getTransform, stylesToString} from '@pyper/core/ui/css';
 import {DrawerMenuItem} from './drawer_menu_item';
 import {DrawerSubPanel} from './drawer_sub_panel';
@@ -409,7 +408,7 @@ export class Drawer extends Component {
 
             if (undefined === categories[menuCatId]) {
                 categories[menuCatId] = {
-                    label: menuCatName || _t('Other'),
+                    label: menuCatName || undefined,
                     sequence: menuCatSeq,
                     value: menuCatId || 0,
                     fontIcon: menuCatIcon,
@@ -429,11 +428,11 @@ export class Drawer extends Component {
         const categoryList = Object.keys(categories).map(key => categories[key]);
         categoryList.sort((a, b) => {
             if (a.sequence === undefined) {
-                return 1;
+                return -1;
             }
 
             if (b.sequence === undefined) {
-                return -1;
+                return 1;
             }
 
             return a.sequence - b.sequence;
