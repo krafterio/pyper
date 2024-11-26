@@ -50,6 +50,7 @@
             'pyper_web_theme/static/src/scss/style.scss',
             'pyper_web_theme/static/src/legacy/**/*',
             'pyper_web_theme/static/src/core/**/*',
+            'pyper_web_theme/static/src/search/control_panel/**/*',
             'pyper_web_theme/static/src/views/**/*',
             'pyper_web_theme/static/src/webclient/**/*',
         ],
