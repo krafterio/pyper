@@ -14,6 +14,11 @@
         'Krafter SAS',
     ],
     'website': 'https://krafter.io',
+    'external_dependencies': {
+        'python': [
+            'openai',
+        ]
+    },
     'depends': [
         'base',
         'web',

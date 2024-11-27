@@ -13,6 +13,11 @@
     ],
     'website': 'https://krafter.io',
     'installable': True,
+    'external_dependencies': {
+        'python': [
+            'pyyaml',
+        ]
+    },
     'depends': [
         'base',
         'base_setup',

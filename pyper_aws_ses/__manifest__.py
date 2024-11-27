@@ -19,6 +19,11 @@ Allow to retrieve inbound emails from AWS SES (Simple Email Service) stored in A
     ],
     'website': 'https://krafter.io',
     'installable': True,
+    'external_dependencies': {
+        'python': [
+            'boto3',
+        ]
+    },
     'depends': [
         'mail',
         'web',
