@@ -88,30 +88,30 @@
                                                 <div class="d-flex flex-wrap justify-content-between border-bottom py-1"
                                                      invisible="product_pattern not in ['laptop_computer', 'desktop_computer']">
                                                     <dt class="fw-normal text-muted">Hard drive type</dt>
-                                                    <dd class="fw-bolder" t-esc="record.hard_drive_type_id.value"/>
+                                                    <dd class="fw-bolder" t-out="record.hard_drive_type_id.value"/>
                                                 </div>
                                                 <div class="d-flex flex-wrap justify-content-between border-bottom py-1">
                                                     <dt class="fw-normal text-muted">Storage capacity</dt>
-                                                    <dd class="fw-bolder" t-esc="record.hard_drive_capacity_id.value"/>
+                                                    <dd class="fw-bolder" t-out="record.hard_drive_capacity_id.value"/>
                                                 </div>
                                                 <div class="d-flex flex-wrap justify-content-between border-bottom py-1"
                                                      invisible="product_pattern not in ['laptop_computer', 'desktop_computer']">
                                                     <dt class="fw-normal text-muted">RAM capacity</dt>
-                                                    <dd class="fw-bolder" t-esc="record.ram_capacity_id.value"/>
+                                                    <dd class="fw-bolder" t-out="record.ram_capacity_id.value"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="d-flex flex-wrap justify-content-between border-bottom py-1">
                                                     <dt class="fw-normal text-muted">Screen size</dt>
-                                                    <dd class="fw-bolder" t-esc="record.screen_size_id.value"/>
+                                                    <dd class="fw-bolder" t-out="record.screen_size_id.value"/>
                                                 </div>
                                                 <div class="d-flex flex-wrap justify-content-between border-bottom py-1">
                                                     <dt class="fw-normal text-muted">Processor</dt>
-                                                    <dd class="fw-bolder" t-esc="record.processor_id.value"/>
+                                                    <dd class="fw-bolder" t-out="record.processor_id.value"/>
                                                 </div>
                                                 <div class="d-flex flex-wrap justify-content-between border-bottom py-1">
                                                     <dt class="fw-normal text-muted">Operating system</dt>
-                                                    <dd class="fw-bolder" t-esc="record.operating_system_id.value"/>
+                                                    <dd class="fw-bolder" t-out="record.operating_system_id.value"/>
                                                 </div>
                                             </div>
                                         </div>

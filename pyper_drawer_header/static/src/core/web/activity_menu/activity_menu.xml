@@ -17,7 +17,7 @@
                    aria-label="Activities"
                 />
             <span t-if="store.activityCounter" class="o-badge-counter">
-                <t t-esc="store.activityCounter"/>
+                <t t-out="store.activityCounter"/>
             </span>
         </t>
 

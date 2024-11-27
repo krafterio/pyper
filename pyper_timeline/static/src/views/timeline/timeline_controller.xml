@@ -73,7 +73,7 @@
                         t-att-class="env.isSmall ? 'btn-sm btn-light' : 'btn-secondary'"
                         t-on-click.stop="() => this.setDate('today')"
                     >
-                        <span t-if="env.isSmall" class="position-relative pt-1"><t t-esc="today"/>
+                        <span t-if="env.isSmall" class="position-relative pt-1"><t t-out="today"/>
                             <i class="fa fa-calendar-o position-absolute top-50 start-50 translate-middle fs-1"></i>
                         </span>
 
@@ -82,27 +82,27 @@
 
                     <h5 class="d-inline-flex ms-lg-2 mb-0">
                         <t t-if="model.scale === 'year'">
-                            <t t-esc="currentYear"/>
+                            <t t-out="currentYear"/>
                         </t>
 
                         <t t-elif="model.scale === 'month'">
-                            <t t-esc="currentMonth"/>
+                            <t t-out="currentMonth"/>
                         </t>
 
                         <t t-elif="model.scale === 'week'">
-                            <t t-esc="weekHeader"/>
+                            <t t-out="weekHeader"/>
 
                             <span class="badge bg-100 rounded px-1 ms-1">
-                                Week <t t-esc="currentWeek"/>
+                                Week <t t-out="currentWeek"/>
                             </span>
                         </t>
 
                         <t t-elif="['2days', '3days', 'custom'].includes(model.scale)">
-                            <t t-esc="daysHeader"/>
+                            <t t-out="daysHeader"/>
                         </t>
 
                         <t t-else="">
-                            <t t-esc="dayHeader" />
+                            <t t-out="dayHeader" />
                         </t>
                     </h5>
                 </div>

@@ -6,7 +6,7 @@
             <t t-set-slot="toggler">
                 <img class="o_avatar o_user_avatar" t-att-src="source" alt="User"/>
                 <div class="oe_topbar_name ms-2 text-start d-flex flex-column lh-1 text-truncate">
-                    <span t-esc="user.name" class="o-drawer--user-menu-name-size fw-bold mb-1 text-truncate"/>
+                    <span t-out="user.name" class="o-drawer--user-menu-name-size fw-bold mb-1 text-truncate"/>
                     <span class="small opacity-50">My account</span>
                 </div>
             </t>

@@ -17,7 +17,7 @@
                    aria-label="Messages"
                 />
                 <span t-if="counter" class="o-badge-counter">
-                    <t t-esc="counter"/>
+                    <t t-out="counter"/>
                 </span>
             </t>
             <t t-set-slot="default">
@@ -123,7 +123,7 @@
                                 <i class="fa fa-mail-reply me-1"/>You:
                             </t>
                             <t t-elif="message.author and !message.author?.eq(thread.correspondent)">
-                                <t t-esc="message.author.name"/>:
+                                <t t-out="message.author.name"/>:
                             </t>
                         </t>
                     </NotificationItem>
@@ -138,7 +138,7 @@
                 'border-end': !tab_last,
             }" t-on-click="() => this.onClickNavTab(tab.id)">
                 <i t-attf-class="p-2 fs-4 {{ tab.icon }}"/>
-                <span class="small" t-esc="tab.label"/>
+                <span class="small" t-out="tab.label"/>
             </button>
         </div>
     </t>

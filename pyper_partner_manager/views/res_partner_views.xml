@@ -221,10 +221,10 @@
                                                                     <field name="country_id"/>
                                                                 </div>
                                                                 <div t-if="record.phone.raw_value">Phone:
-                                                                    <t t-esc="record.phone.value"/>
+                                                                    <t t-out="record.phone.value"/>
                                                                 </div>
                                                                 <div t-if="record.mobile.raw_value">Mobile:
-                                                                    <t t-esc="record.mobile.value"/>
+                                                                    <t t-out="record.mobile.value"/>
                                                                 </div>
                                                             </div>
                                                         </div>

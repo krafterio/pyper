@@ -5,7 +5,7 @@
             <!-- the chosen value is rather arbitrary: the idea was to have enough space (but not too much) for some particular known cases-->
             <div class="popover-header d-flex justify-content-between py-2 pe-2">
                 <h4 t-if="props.label" class="p-0 pt-1">
-                    <t t-esc="props.label" />
+                    <t t-out="props.label" />
                 </h4>
 
                 <span t-else=""/>
@@ -21,9 +21,9 @@
 
             <t t-if="props.editButton || props.deleteButton">
                 <div class="popover-footer border-top p-3">
-                    <button t-if="props.editButton" class="btn btn-primary btn-sm" t-on-click="onEditClick" t-esc="props.editButton.text"/>
+                    <button t-if="props.editButton" class="btn btn-primary btn-sm" t-on-click="onEditClick" t-out="props.editButton.text"/>
 
-                    <button t-if="props.deleteButton" class="btn btn-secondary btn-sm" t-on-click="onDeleteClick" t-esc="props.deleteButton.text"/>
+                    <button t-if="props.deleteButton" class="btn btn-secondary btn-sm" t-on-click="onDeleteClick" t-out="props.deleteButton.text"/>
                 </div>
             </t>
         </div>
@@ -32,11 +32,11 @@
     <t t-name="pyper_pipeline.TimelinePopover.default">
         <ul class="p-0 mb-0 list-unstyled">
             <li class="pe-2">
-                <strong>Start:</strong> <span t-esc="start"/>
+                <strong>Start:</strong> <span t-out="start"/>
             </li>
 
             <li class="pe-2">
-                <strong>End:</strong> <span t-esc="end"/>
+                <strong>End:</strong> <span t-out="end"/>
             </li>
         </ul>
     </t>

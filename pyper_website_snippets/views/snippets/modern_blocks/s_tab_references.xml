@@ -158,7 +158,7 @@
                                                 class="h1 display-1 text-primary position-absolute o_anim_fade_in o_animate o_animate_both_scroll o_anim_from_left"
                                                 style="animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;"
                                             >“</p>
-                                            <p class="p-5 h4"><t t-esc="ref_data['text']" /></p>
+                                            <p class="p-5 h4"><t t-out="ref_data['text']" /></p>
                                             <p 
                                                 class="h1 display-1 text-primary position-absolute end-0 o_anim_fade_in o_animate o_animate_both_scroll o_anim_from_right"
                                                 style="bottom:-3rem; animation-delay: 0.0s; animation-duration: 0.4s; --wanim-intensity: 20;"
@@ -167,12 +167,12 @@
                                         <p 
                                             class="h4 text-end text-primary pe-3 o_anim_fade_in o_animate o_animate_both_scroll o_anim_from_bottom"
                                             style="animation-delay: 0.2s; animation-duration: 0.4s; --wanim-intensity: 5;" >
-                                            <em><t t-esc="ref_data['signature']"/></em>
+                                            <em><t t-out="ref_data['signature']"/></em>
                                         </p>
                                     </div>
                                     <div class="d-flex gap-2 ms-5 mt-5 mb-2">
                                         <a class="btn btn-primary" href="#">See full project story</a>
-                                        <a class="btn btn-secondary" href="#">More about <t t-esc="ref_data['name']" /></a>
+                                        <a class="btn btn-secondary" href="#">More about <t t-out="ref_data['name']" /></a>
                                     </div>
                                 </div>
                             </div>

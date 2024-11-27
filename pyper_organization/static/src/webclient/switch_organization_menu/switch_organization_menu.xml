@@ -4,7 +4,7 @@
         <Dropdown class="'o_switch_organization_menu'" position="'bottom-end'">
             <t t-set-slot="toggler">
                 <div class="o_avatar o_user_avatar">
-                    <span t-esc="organizationInitials"/>
+                    <span t-out="organizationInitials"/>
 
                     <img
                         t-if="organizationLogo"
@@ -86,7 +86,7 @@
                 </div>
 
                 <div class="o_switcher_organization_item--logo">
-                    <span t-esc="props.organization.initials"/>
+                    <span t-out="props.organization.initials"/>
 
                     <img
                         t-if="props.organization.logo_data"

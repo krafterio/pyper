@@ -138,7 +138,7 @@
                 </div>
                 <div class="col-10 ps-2">
                     <div class="d-flex flex-column align-items-sm-center align-items-md-start ps-2">
-                        <p class="my-0 py-0 "><t t-esc="review['name']"/></p>
+                        <p class="my-0 py-0 "><t t-out="review['name']"/></p>
                         <p class="my-0 py-0 ">
                             <span class="star" style="color: var(--primary)">
                                 <t t-foreach="range(review['rating'])" t-as="star">
@@ -154,12 +154,12 @@
             </div>
             <!-- review body -->
              <div class="p-2 px-3 mt-2">
-                 <p class="text-sm-center text-md-start text-secondary"><t t-esc="review['text']"/></p>
+                 <p class="text-sm-center text-md-start text-secondary"><t t-out="review['text']"/></p>
              </div>
             <!-- review footer -->
             <div class="d-inline-flex justify-content-evenly px-2 text-muted">
-                <p class="mb-0"><t t-esc="review['time']"/></p>
-                <p class="mb-0"><t t-esc="review['date']"/></p>
+                <p class="mb-0"><t t-out="review['time']"/></p>
+                <p class="mb-0"><t t-out="review['date']"/></p>
             </div>
         </div>
     </template>

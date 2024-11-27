@@ -11,7 +11,7 @@
             t-on-click="() => this.onClick()"
         >
             <i class="fa fa-hourglass-o" role="img" aria-label="Queue job progression"/>
-            <span t-if="counter" class="o-mail-QueueJobProgressMenu-counter badge rounded-pill bg-primary"><t t-esc="counter"/></span>
+            <span t-if="counter" class="o-mail-QueueJobProgressMenu-counter badge rounded-pill bg-primary"><t t-out="counter"/></span>
         </button>
     </div>
 </t>

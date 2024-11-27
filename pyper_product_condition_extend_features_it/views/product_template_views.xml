@@ -16,7 +16,7 @@
                         class="o_kanban_record_body"
                         t-foreach="record.child_ids" t-as="child"
                     >
-                        <strong class="d-block fw-bolder mb-0" t-esc="child"/>
+                        <strong class="d-block fw-bolder mb-0" t-out="child"/>
 
                     </div>
                 </div>
