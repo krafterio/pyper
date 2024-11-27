@@ -43,19 +43,3 @@
         }
     }
 }
-
-@include media-breakpoint-up(md) {
-    .o_content {
-        > .o_form_renderer {
-            > .o_form_sheet_bg {
-                padding-left: 0;
-                padding-right: 0;
-
-                > .o_form_statusbar {
-                    padding-left: map-get($spacers, 3);
-                    padding-right: map-get($spacers, 3);
-                }
-            }
-        }
-    }
-}
