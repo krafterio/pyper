@@ -10,7 +10,7 @@
             >
                 <t t-set-slot="toggler">
                     <i t-att-class="'me-3 ' + togglerIcon" t-att-title="togglerLabel"/>
-                    <span>Saved views</span>
+                    <span t-out="togglerLabel"/>
 
                     <i class="fa fa-caret-down ms-3"/>
                 </t>
