@@ -8,6 +8,7 @@ from odoo.exceptions import ValidationError
 class PyperTagFamily(models.Model):
     _name = 'pyper.tag.family'
     _description = 'Gather several Tags'
+    _order='is_public DESC, name'
 
     name = fields.Char(
         string="Family Name",
@@ -40,3 +41,12 @@ class PyperTagFamily(models.Model):
         default=lambda self: self.env.user,
         readonly=True
     )
+
+    def action_open_family_tag_form(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'pyper.tag.family',
+            'view_mode': 'form',
+            'res_id': self.id,
+            'target': 'current',
+        }

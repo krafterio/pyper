@@ -14,6 +14,12 @@
                 <field name="user_id" optional="hide"/>
                 <field name="is_public" widget="boolean_toggle" optional="hide"/>
                 <field name="family_id" options="{'no_create': True, 'no_edit': True}"/>
+                <button name="action_open_tag_form" 
+                        type="object" 
+                        title="Edit tag" 
+                        icon="fa-pencil-square-o" 
+                        class="btn-secondary"
+                        />
             </tree>
         </field>
     </record>
@@ -25,22 +31,21 @@
             <form string="Tag Form">
                 <sheet>
                     <group string="Tag informations">
-                        <field name="name"/>
-                        <field name="is_public" widget="boolean_toggle"/>
-                        <field name="tag_model_name"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="is_public" widget="boolean_toggle"/>
+                        </group>
+                        <group >
+                            <field name="user_id" />
+                            <field name="tag_model_name"/>
+                        </group>
                     </group>
-                    <group string="Design">
-                        <field name="display_name" />
-                        <field name="color_id" widget="color"/>
-                        <field name="emoji" widget="badges"/>
-                    </group>
-                    
-                    <group string="Relations">
-                        <field name="user_id" />
-                        <field name="family_id" widget="many2one_tags" 
-                               domain="[('tag_model_name', '=', tag_model_name), ('is_public', '=', is_public), '|', ('is_public', '=', True), ('user_id', '=', uid)]"
-                               context="{'default_tag_model_name': tag_model_name, 'default_is_public': is_public, 'default_user_id': user_id}"
-                        />
+                    <hr />
+                    <group string="Family" class="col-6">
+                        <field name="family_id" widget="many2one_tags" placeholder="Select a tag family"/>
+                                domain="[('tag_model_name', '=', tag_model_name), ('is_public', '=', is_public), '|', ('is_public', '=', True), ('user_id', '=', uid)]"
+                                context="{'default_tag_model_name': tag_model_name, 'default_is_public': is_public, 'default_user_id': user_id}"
+                            />
                     </group>
                     <header>
                         <button name="%(pyper_tag.action_pyper_tag_family)d"
@@ -51,6 +56,18 @@
                                 context="{'default_tag_model_name': tag_model_name, 'default_is_public': is_public, 'default_user_id': user_id}"
                         />
                     </header>
+                    <hr />
+                    <group>
+                        <group string="Design">
+                            <field name="display_name" />
+                            <field name="color_id" widget="color"/>
+                        </group>
+                    </group>
+                    <group class="row">
+                        <group class="col-10">
+                            <field name="emoji" widget="selection_badge" placeholder="Select an emoji"/>
+                        </group>
+                    </group>
                 </sheet>
             </form>
         </field>

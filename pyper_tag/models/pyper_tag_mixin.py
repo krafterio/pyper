@@ -14,6 +14,11 @@ class PyperTagMixin(models.AbstractModel):
         string='Tags', 
     )
 
+    pyper_tag_family_id = fields.Many2one(
+        related='pyper_tag_ids.family_id',
+        string='Tag Families',
+    )
+
     tag_model_name = fields.Char(
         'Associated tag model name',
         compute='_compute_tag_model_name',
