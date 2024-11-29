@@ -8,6 +8,7 @@ from odoo.exceptions import ValidationError, AccessError
 class PyperTag(models.Model):
     _name = 'pyper.tag'
     _description = 'Generic Tag Model'
+    _order='is_public DESC, family_id, name'
 
     name = fields.Char(
         'Tag name',

@@ -6,14 +6,14 @@
         <field name="model">pyper.tag</field>
         <field name="arch" type="xml">
             <tree string="Tags" multi_edit="1" editable="bottom" expand="1">
-                <field name="is_public" widget="boolean_toggle"/>
-                <field name="display_name"/>
-                <field name="tag_model_name"/>
-                <field name="name"/>
-                <field name="color_id" widget="color"/>
-                <field name="emoji"/>
-                <field name="user_id"/>
-                <field name="family_id"/>
+                <field name="display_name" optional="show"/>
+                <field name="tag_model_name" optional="hide"/>
+                <field name="name" optional="show"/>
+                <field name="color_id" widget="color" optional="show"/>
+                <field name="emoji" optional="show"/>
+                <field name="user_id" optional="hide"/>
+                <field name="is_public" widget="boolean_toggle" optional="hide"/>
+                <field name="family_id" options="{'no_create': True, 'no_edit': True}"/>
             </tree>
         </field>
     </record>
@@ -60,7 +60,7 @@
         <field name="name">pyper.tag.kanban</field>
         <field name="model">pyper.tag</field>
         <field name="arch" type="xml">
-            <kanban>
+            <kanban string="Tags">
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click p-4 rounded-1">
@@ -112,14 +112,16 @@
         <field name="name">pyper.tag.search</field>
         <field name="model">pyper.tag</field>
         <field name="arch" type="xml">
-            <search string="Tags" default_order="family_id, name">
+            <search string="Tags">
+                <searchpanel>
+                    <field name="family_id" string="Tag Family" icon="fa-cube" color="var(--o-color-1)" enable_counters="1"/>
+                </searchpanel>
                 <field name="name"/>
                 <field name="display_name"/>
                 <field name="is_public"/>
                 <field name="tag_model_name"/>
                 <field name="user_id"/>
                 <field name="family_id"/>
-
                 <filter string="Public" name="public_tags" domain="[('is_public', '=', True)]"/>
                 <filter string="Private" name="private_tags" domain="[('is_public', '=', False)]"/>
                 <filter string="My Tags" name="my_tags" domain="[('user_id', '=', uid)]"/>
@@ -130,7 +132,7 @@
     <record id="action_pyper_tag" model="ir.actions.act_window">
         <field name="name">Pyper Tags</field>
         <field name="res_model">pyper.tag</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
         <field name="search_view_id" ref="view_pyper_tag_search"/>
         <field name="context">{'default_is_public': False, 'default_user_id': uid, 'default_tag_model_name': 'flow'}</field>
     </record>
