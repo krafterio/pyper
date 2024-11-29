@@ -48,6 +48,7 @@
                                 type="action"
                                 class="btn btn-secondary"
                                 icon="fa-cog"
+                                context="{'default_tag_model_name': tag_model_name, 'default_is_public': is_public, 'default_user_id': user_id}"
                         />
                     </header>
                 </sheet>
@@ -64,7 +65,7 @@
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click p-4 rounded-1">
                             <div class="o_kanban_record_top">
-                                <div class="h4">
+                                <div class="h2">
                                     <strong>
                                         <field name="display_name"/>
                                     </strong>
@@ -111,7 +112,7 @@
         <field name="name">pyper.tag.search</field>
         <field name="model">pyper.tag</field>
         <field name="arch" type="xml">
-            <search string="Tags">
+            <search string="Tags" default_order="family_id, name">
                 <field name="name"/>
                 <field name="display_name"/>
                 <field name="is_public"/>
