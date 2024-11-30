@@ -17,7 +17,9 @@ def cleanup_filestore(env: Environment):
         dbname = dbs[0] if dbs else False
 
     filestore_path = config.filestore(dbname)
-    attachments = env['ir.attachment'].search_read([('store_fname', '!=', False)], ['store_fname'])
+    attachments = env['ir.attachment'].with_context({
+        'skip_res_field_check': True,
+    }).search_read([('store_fname', '!=', False)], ['store_fname'])
     valid_files = {attachment['store_fname'] for attachment in attachments}
 
     for root, _, files in os.walk(filestore_path):
