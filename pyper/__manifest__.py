@@ -14,10 +14,15 @@
     'website': 'https://krafter.io',
     'installable': True,
     'depends': [
+        'base',
         'base_setup',
         'web',
     ],
     'data': [
+        # Data
+        'data/ir_cron_data.xml',
+
+        # Views
         'views/webclient_templates.xml',
     ],
     'assets': {

@@ -1,13 +1,13 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-import os
 import sys
 
 from odoo import SUPERUSER_ID, registry
 from odoo.api import Environment
 from odoo.cli import Command
 from odoo.tools import config
+from ..tools.filestore import cleanup_filestore
 
 
 class CleanupFilestore(Command):
@@ -27,7 +27,6 @@ class CleanupFilestore(Command):
         super().__init__()
         self.env = None
 
-    """ Count lines of code per modules """
     def run(self, args):
         config.parse_config(args)
 
@@ -44,20 +43,6 @@ class CleanupFilestore(Command):
             sys.exit("ERROR: %s" % e)
 
     def cleanup(self):
-        deleted_file_count = 0
-        dbname = config['db_name']
-        filestore_path = config.filestore(dbname)
-        attachments = self.env['ir.attachment'].search_read([('store_fname', '!=', False)], ['store_fname'])
-        valid_files = {attachment['store_fname'] for attachment in attachments}
-
-        for root, _, files in os.walk(filestore_path):
-            for file in files:
-                file_path = os.path.join(root, file)
-                relative_file_path = os.path.relpath(file_path, filestore_path)
-
-                if relative_file_path not in valid_files:
-                    file_path = os.path.join(root, file)
-                    os.remove(file_path)
-                    deleted_file_count += 1
+        deleted_file_count = cleanup_filestore(self.env)
 
         print(f"Number of deleted files in filestore: {deleted_file_count}")
