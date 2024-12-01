@@ -13,8 +13,14 @@
     ],
     'installable': True,
     'application': False,
+    'auto_install': [
+        'web',
+        'mail',
+        'pyper_web_theme',
+    ],
     'depends': [
         'base',
+        'web',
         'mail',
         'pyper_web_theme',
     ],
