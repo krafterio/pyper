@@ -26,7 +26,7 @@
     </t>
 
     <t t-name="pyper_drawer.DrawerSubPanel.Content">
-        <div class="o_drawer--sub-panel--content">
+        <div class="o_drawer--sub-panel--content o_drawer--menu-item-children">
             <t t-foreach="menuChildren" t-as="submenu" t-key="submenu.id">
                 <DrawerMenuItem
                     menuXmlid="submenu.xmlid"
