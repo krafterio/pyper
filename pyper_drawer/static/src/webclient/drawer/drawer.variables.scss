@@ -24,34 +24,44 @@ $o-drawer-item-icon-font-width: $o-drawer-item-icon-width !default;
 $o-drawer-item-icon-border-radius: $o-border-radius-lg !default;
 $o-drawer-item-padding-v: 6px !default;
 $o-drawer-item-padding-h: ($o-drawer-mini-width - $o-drawer-item-icon-width) / 2 !default;
-$o-drawer-item-icon-emoji-top: -1 * ($o-drawer-item-padding-h / 2) !default;
 
+$o-drawer-item-font-size: $o-font-size-base !default;
 $o-drawer-item-color: inherit !default;
 $o-drawer-item-bg: inherit !default;
 $o-drawer-item-icon-color: inherit !default;
 $o-drawer-item-caret-color: $o-gray-500 !default;
+
+$o-drawer-item-counter-border-radius: $o-border-radius !default;
+$o-drawer-item-counter-padding-v: 1px !default;
+$o-drawer-item-counter-padding-h: 2px !default;
+$o-drawer-item-counter-font-size: $o-font-size-base-small !default;
+$o-drawer-item-counter-line-height: $o-drawer-item-font-size !default;
 $o-drawer-item-counter-color: $o-drawer-item-color !default;
-$o-drawer-item-counter-bg: $o-gray-300 !default;
+$o-drawer-item-counter-bg: transparent !default;
+$o-drawer-item-counter-opacity: 0.6 !default;
 
 $o-drawer-item-hover-color: $o-gray-900 !default;
 $o-drawer-item-hover-bg: rgba($o-black, 0.08) !default;
 $o-drawer-item-icon-hover-color: inherit !default;
 $o-drawer-item-caret-hover-color: inherit !default;
 $o-drawer-item-counter-hover-color: $o-drawer-item-hover-color !default;
-$o-drawer-item-counter-hover-bg: $o-gray-400 !default;
+$o-drawer-item-counter-hover-bg: transparent !default;
+$o-drawer-item-counter-hover-opacity: 1 !default;
 
 $o-drawer-item-active-color: $o-component-active-color !default;
 $o-drawer-item-active-bg: $o-component-active-bg !default;
 $o-drawer-item-icon-active-color: $o-drawer-item-active-color !default;
 $o-drawer-item-caret-active-color: $o-brand-primary !default;
 $o-drawer-item-counter-active-color: $o-drawer-item-active-color !default;
-$o-drawer-item-counter-active-bg: $o-gray-300 !default;
+$o-drawer-item-counter-active-bg: transparent !default;
+$o-drawer-item-counter-active-opacity: $o-drawer-item-counter-opacity !default;
 $o-drawer-item-active-hover-color: $o-drawer-item-active-color !default;
 $o-drawer-item-active-hover-bg: $o-drawer-item-active-bg !default;
 $o-drawer-item-icon-active-hover-color: $o-drawer-item-icon-active-color !default;
 $o-drawer-item-caret-active-hover-color: $o-drawer-item-icon-active-color !default;
 $o-drawer-item-counter-active-hover-color: $o-drawer-item-active-hover-color !default;
-$o-drawer-item-counter-active-hover-bg: $o-gray-400 !default;
+$o-drawer-item-counter-active-hover-bg: transparent !default;
+$o-drawer-item-counter-active-hover-opacity: $o-drawer-item-counter-hover-opacity !default;
 
 $o-drawer-item-nav-margin-h: 5px !default;
 $o-drawer-item-nav-padding-h: $o-drawer-item-padding-h !default;
@@ -85,7 +95,6 @@ $o-drawer-popover-item-active-hover-color: $o-drawer-item-active-hover-color !de
 $o-drawer-popover-item-active-hover-bg: $o-drawer-item-active-hover-bg !default;
 
 $o-drawer-popover-item-font-weight: bold !default;
-$o-drawer-item-font-size: $o-font-size-base !default;
 
 $o-drawer-sub-panel-responsive-side-position-width: ($o-drawer-width * 2 + ($o-drawer-width * 0.1)) !default;
 $o-drawer-sub-panel-responsive-zindex: $o-drawer-zindex + 1 !default;

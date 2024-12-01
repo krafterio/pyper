@@ -102,9 +102,9 @@
                 </t>
             </div>
 
-            <div t-if="showLabel" class="o_drawer--item-icon-counter">
+            <div t-if="showLabel and formattedCounter" class="o_drawer--item-icon-counter">
                 <t t-slot="counter_badge">
-                    <span class="text-muted" t-out="formattedCounter"/>
+                    <span class="counter-badge" t-out="formattedCounter"/>
                 </t>
             </div>
         </div>

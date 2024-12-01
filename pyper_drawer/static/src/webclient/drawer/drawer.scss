@@ -124,7 +124,7 @@
 }
 
 .o_drawer--item-icon-emoji {
-    margin-top: $o-drawer-item-icon-emoji-top;
+    line-height: $o-drawer-item-icon-width;
 }
 
 .o_drawer--item-icon-empty {
@@ -192,11 +192,14 @@
         }
 
         .o_drawer--item-icon-counter {
-            .badge {
-                padding-left: $badge-padding-x / 2;
-                padding-right: $badge-padding-x / 2;
+            .counter-badge {
+                border-radius: $o-drawer-item-counter-border-radius;
+                padding: $o-drawer-item-counter-padding-v $o-drawer-item-counter-padding-h;
+                font-size: $o-drawer-item-counter-font-size;
+                line-height: $o-drawer-item-counter-line-height;
                 color: $o-drawer-item-counter-color;
                 background-color: $o-drawer-item-counter-bg;
+                opacity: $o-drawer-item-counter-opacity;
             }
         }
 
@@ -225,9 +228,10 @@
             }
 
             .o_drawer--item-icon-counter {
-                .badge {
+                .counter-badge {
                     color: $o-drawer-item-counter-hover-color;
                     background-color: $o-drawer-item-counter-hover-bg;
+                    opacity: $o-drawer-item-counter-hover-opacity;
                 }
             }
 
@@ -429,9 +433,10 @@
         }
 
         .o_drawer--item-icon-counter {
-            .badge {
+            .counter-badge {
                 color: $o-drawer-item-counter-active-color;
                 background-color: $o-drawer-item-counter-active-bg;
+                opacity: $o-drawer-item-counter-active-opacity;
             }
         }
 
@@ -452,9 +457,10 @@
             }
 
             .o_drawer--item-icon-counter {
-                .badge {
+                .counter-badge {
                     color: $o-drawer-item-counter-active-hover-color;
                     background-color: $o-drawer-item-counter-active-hover-bg;
+                    opacity: $o-drawer-item-counter-active-hover-opacity;
                 }
             }
 
