@@ -3,4 +3,8 @@
     <record model="ir.ui.menu" id="base.menu_administration">
         <field name="position">drawer_footer</field>
     </record>
+
+    <record model="ir.ui.menu" id="base.menu_management">
+        <field name="position">drawer_footer</field>
+    </record>
 </odoo>
