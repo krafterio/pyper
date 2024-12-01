@@ -51,7 +51,21 @@
         <div class="o_drawer--obfuscator" t-on-click="close"/>
     </t>
 
-    <t t-name="pyper_drawer.Drawer.Header" />
+    <t t-name="pyper_drawer.Drawer.Header">
+        <div class="o_main_navbar o_drawer_app_logo">
+            <div class="o_drawer_app_logo_badge">
+                <img src="/pyper_drawer/static/img/pyper_badge.svg"
+                     class="pyper-badge"
+                />
+            </div>
+
+            <div class="o_drawer_app_logo_full" t-if="!isMinified">
+                <img src="/pyper_drawer/static/img/pyper_logo.svg"
+                     class="pyper-logo"
+                />
+            </div>
+        </div>
+    </t>
 
     <t t-name="pyper_drawer.Drawer.TopAction" />
 

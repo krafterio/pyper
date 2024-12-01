@@ -60,6 +60,10 @@
         }
     }
 
+    .o_main_navbar + .o_drawer--menu {
+        padding-top: 0;
+    }
+
     &.o_drawer--ready {
         .o_drawer--menu {
             overflow-y: auto;
@@ -744,6 +748,36 @@
 
         &.o_drawer--sub-panel--opened {
             transform: translate3d(0px, 0px, 0px);
+        }
+    }
+}
+
+// App Logo
+.o_drawer_app_logo {
+    display: flex;
+    align-items: center;
+
+    .o_drawer_app_logo_badge {
+        width: $o-drawer-mini-width;
+        display: flex;
+        justify-content: center;
+
+        img {
+            width: $o-drawer-item-icon-width*1.4;
+            height: $o-drawer-item-icon-width*1.4;
+            max-width: $o-drawer-item-icon-width*1.4;
+            max-height: $o-drawer-item-icon-width*1.4;
+            border-radius: $o-border-radius;
+        }
+    }
+
+    .o_drawer_app_logo_full {
+        flex-grow: 1;
+        display: flex;
+
+        img {
+            height: $o-drawer-item-font-size*1.2;
+            margin-left: $o-drawer-item-nav-margin-h/2;
         }
     }
 }
