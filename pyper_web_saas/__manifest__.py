@@ -2,29 +2,27 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Portal SaaS',
+    'name': 'Web SaaS',
     'category': 'Hidden',
     'license': 'Other proprietary',
-    'description': 'Portal configuration for SaaS',
+    'description': 'Web configuration for SaaS',
     'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
     ],
     'website': 'https://krafter.io',
-    'installable': True,
     'auto_install': [
         'pyper_saas',
         'web',
-        'portal',
     ],
     'depends': [
         'pyper_saas',
-        'pyper_web_saas',
+        'base',
         'web',
-        'portal',
     ],
     'data': [
-        'views/portal_templates.xml',
+        # Data
+        'views/webclient_templates.xml',
     ],
 }
