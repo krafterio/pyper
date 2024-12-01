@@ -79,11 +79,7 @@ export class DrawerToggler extends Component {
                 if (this.drawerService.disabledOnSmallScreen) {
                     return true;
                 } else {
-                    if (this.drawerService.isLocked) {
-                        return this.drawerService.isMinified;
-                    }
-
-                    return true;
+                    return !this.drawerService.isLocked;
                 }
             }
         }
