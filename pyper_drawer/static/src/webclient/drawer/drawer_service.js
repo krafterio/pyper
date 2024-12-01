@@ -173,7 +173,7 @@ export class DrawerState {
     }
 
     get isMinified() {
-        return (this.minified || this.alwaysMinified) && this.isMinifiable && !this.isSmallScreen;
+        return (this.minified || this.alwaysMinified) && this.isMinifiable && !this.isSmallScreen && this.isLocked;
     }
 
     get isPopoverMinified() {
