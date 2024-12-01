@@ -80,6 +80,7 @@
     margin-top: $o-drawer-category-label-margin-top;
     margin-bottom: $o-drawer-category-label-margin-bottom;
     display: flex;
+    align-items: center;
 }
 
 .o_drawer--category-label {
@@ -94,6 +95,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: $o-drawer-category-action-margin-right;
 }
 
 .o_drawer--menu-item-content,
@@ -509,6 +511,10 @@
 .o_drawer.o_drawer--nav {
     .o_drawer--menu {
         padding-bottom: $o-drawer-item-padding-v * 4;
+    }
+
+    .o_drawer--category-action {
+        margin-right: $o-drawer-category-action-nav-margin-right - ($o-drawer-item-nav-margin-h/2);
     }
 
     .o_drawer--menu-item {

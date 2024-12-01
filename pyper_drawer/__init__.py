@@ -14,9 +14,6 @@ def post_init_hook(env):
     if icp.get_param('pyper_drawer.drawer_props.alwaysFooter', None) is None:
         icp.set_param('pyper_drawer.drawer_props.alwaysFooter', 'True')
 
-    if icp.get_param('pyper_drawer.drawer_props.hideCategoryLabelFull', None) is None:
-        icp.set_param('pyper_drawer.drawer_props.hideCategoryLabelFull', 'True')
-
     if icp.get_param('pyper_drawer.drawer_props.hideCategoryLabelMinified', None) is None:
         icp.set_param('pyper_drawer.drawer_props.hideCategoryLabelMinified', 'True')
 

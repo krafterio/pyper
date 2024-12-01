@@ -12,14 +12,16 @@ $o-drawer-shadow: 0 10px 14px rgba(0, 0, 0, 0.12) !default;
 
 $o-drawer-menu-padding-h: $o-horizontal-padding/2 !default;
 
+$o-drawer-icon-width: 28px !default;
+
 $o-drawer-category-label-color: $o-main-color-muted !default;
 $o-drawer-category-label-size: $o-font-size-base-small !default;
 $o-drawer-category-label-padding-v: 0 !default;
-$o-drawer-category-label-padding-h: 16px !default;
+$o-drawer-category-label-padding-h: ($o-drawer-mini-width - $o-drawer-icon-width) / 2 !default;
 $o-drawer-category-label-margin-top: 24px !default;
 $o-drawer-category-label-margin-bottom: 8px !default;
 
-$o-drawer-item-icon-width: 28px !default;
+$o-drawer-item-icon-width: $o-drawer-icon-width !default;
 $o-drawer-item-icon-font-width: $o-drawer-item-icon-width !default;
 $o-drawer-item-icon-border-radius: $o-border-radius-lg !default;
 $o-drawer-item-padding-v: 6px !default;
@@ -65,14 +67,16 @@ $o-drawer-item-counter-active-hover-opacity: $o-drawer-item-counter-hover-opacit
 
 $o-drawer-item-nav-margin-h: 5px !default;
 $o-drawer-item-nav-padding-h: $o-drawer-item-padding-h !default;
-$o-drawer-item-icon-gap: $o-drawer-item-nav-padding-h !default;
 $o-drawer-item-nav-margin-bottom: $o-drawer-item-nav-margin-h !default;
+
+$o-drawer-item-icon-gap: $o-drawer-item-nav-padding-h !default;
 
 $o-drawer-subitem-depth-base-with-icon: 20px !default;
 $o-drawer-subitem-depth-base: 0px !default;
 $o-drawer-subitem-depth-next: 10px !default;
 $o-drawer-subitem-margin-bottom: 15px !default;
 $o-drawer-subitem-padding-v: 2px !default;
+$o-drawer-subitem-block-padding-v: 0 !default;
 
 $o-drawer-subitem-active-color: $o-drawer-item-active-color !default;
 $o-drawer-subitem-active-bg: lighten($o-drawer-item-active-bg, 7%) !default;
@@ -81,7 +85,9 @@ $o-drawer-subitem-active-hover-bg: $o-drawer-subitem-active-bg !default;
 
 $o-drawer-subitem-nav-padding-v: $o-drawer-subitem-padding-v !default;
 $o-drawer-subitem-nav-margin-bottom: $o-drawer-item-nav-margin-bottom / 2 !default;
-$o-drawer-subitem-block-padding-v: 0 !default;
+
+$o-drawer-category-action-margin-right: ($o-drawer-item-padding-h - $o-drawer-category-label-padding-h) !default;
+$o-drawer-category-action-nav-margin-right: ($o-drawer-item-nav-padding-h + $o-drawer-item-nav-margin-h - $o-drawer-category-label-padding-h) !default;
 
 $o-drawer-popover-item-box-shadow: 12px 4px 12px rgba($o-black, 0.12) !default;
 $o-drawer-popover-item-color: $o-drawer-item-hover-color !default;
