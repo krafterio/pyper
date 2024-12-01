@@ -12,10 +12,16 @@
         'Krafter SAS',
     ],
     'website': 'https://krafter.io',
+    'auto_install': [
+        'web',
+        'mail',
+        'pyper_saas',
+    ],
     'depends': [
         'base',
         'web',
         'mail',
+        'pyper_saas',
     ],
     'data': [
         # Data
