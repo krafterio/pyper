@@ -24,7 +24,16 @@ export const FALSE_VALUES = [
 export class ViewsSwitcher extends Component {
     static template = 'pyper_web_view.ViewsSwitcher';
 
-    static props = {};
+    static props = {
+        defaultTitle: {
+            type: String,
+            optional: true,
+        },
+        placeholder: {
+            type: String,
+            optional: true,
+        },
+    };
 
     static components = {
         Dropdown,
@@ -173,7 +182,7 @@ export class ViewsSwitcher extends Component {
         return {
             'tree': 'oi oi-view-list',
             'kanban': 'oi oi-view-kanban',
-            undefined: 'fa fa-floppy-o',
+            undefined: 'fa fa-folder-o',
         }
     }
 
@@ -182,11 +191,11 @@ export class ViewsSwitcher extends Component {
     }
 
     get togglerLabel() {
-        return this.state.selectedView?.name || this.placeholder;
+        return this.state.selectedView?.name || this.props.defaultTitle || this.placeholder;
     }
 
     get placeholder() {
-        return _t('Select a view');
+        return this.props.placeholder || _t('Select a view');
     }
 
     get createLabel() {

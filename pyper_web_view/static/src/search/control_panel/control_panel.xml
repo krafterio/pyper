@@ -4,9 +4,18 @@
         <xpath expr="//t[@t-if='env.config.viewSwitcherEntries?.length > 1']" position="attributes">
             <attribute name="t-if">displayViewSwitcherEntries</attribute>
         </xpath>
+    </t>
 
-        <xpath expr="//div[hasclass('o_control_panel_actions')]/t[@t-slot='layout-actions']" position="before">
-            <ViewsSwitcher/>
+    <t t-name="pyper_web_view.Breadcrumb.Name" t-inherit="web.Breadcrumb.Name" t-inherit-mode="extension">
+        <xpath expr="//t[@t-out='breadcrumb.name']" position="inside">
+            <ViewsSwitcher
+                defaultTitle="breadcrumb.name"
+            />
+        </xpath>
+
+        <xpath expr="//t[@t-out='breadcrumb.name']" position="attributes">
+            <attribute name="t-if">true</attribute>
+            <attribute name="t-out"></attribute>
         </xpath>
     </t>
 </templates>

@@ -4,15 +4,15 @@
         <div class="o-views-switcher" t-if="displaySwitcher">
             <Dropdown
                 class="'o-views-switcher--dropdown'"
-                togglerClass="'btn btn-outline-secondary me-2'"
+                togglerClass="'btn btn-outline-secondary'"
                 showCaret="false"
                 beforeOpen.bind="onDropdownOpen"
             >
                 <t t-set-slot="toggler">
-                    <i t-att-class="'me-3 ' + togglerIcon" t-att-title="togglerLabel"/>
+                    <i t-att-class="'o-views-switcher--dropdown-icon me-2 ' + togglerIcon" t-att-title="togglerLabel" t-if="togglerIcon"/>
                     <span t-out="togglerLabel"/>
 
-                    <i class="fa fa-caret-down ms-3"/>
+                    <i class="fa fa-caret-down ms-2"/>
                 </t>
 
                 <t t-foreach="categorizedViews" t-as="category" t-key="category.value">
