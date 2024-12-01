@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="pyper_web_theme_drawer.BurgerMenu" t-inherit="web.BurgerMenu" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('o_mobile_menu_toggle')]" position="attributes">
+            <attribute name="t-if">false</attribute>
+        </xpath>
+    </t>
+</templates>
