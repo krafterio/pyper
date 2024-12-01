@@ -1,5 +1,7 @@
 .o_kanban_renderer {
     .o_kanban_record {
+        margin-bottom: $o-kanban-record-margin-bottom;
+
         > div:not(.o_dropdown_kanban) {
             border-radius: $o-kanban-border-radius;
         }
