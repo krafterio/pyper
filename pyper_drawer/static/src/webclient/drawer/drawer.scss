@@ -118,7 +118,7 @@
 }
 
 .o_drawer--item-icon {
-    margin-right: $o-drawer-item-icon-gap;
+    margin-right: $o-drawer-item-padding-h;
     width: $o-drawer-item-icon-width;
     max-height: $o-drawer-item-icon-width;
     font-size: $o-drawer-item-icon-width;
@@ -133,7 +133,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: $o-drawer-item-icon-gap;
+    margin-right: $o-drawer-item-padding-h;
     width: $o-drawer-item-icon-width;
     height: $o-drawer-item-icon-width;
     font-size: $o-drawer-item-icon-font-width;

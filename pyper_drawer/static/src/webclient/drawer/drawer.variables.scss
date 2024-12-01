@@ -1,8 +1,8 @@
 // = Drawer Variables
 // ============================================================================
-$o-navbar-apps-menu-width: 54px !default;
+$o-navbar-apps-menu-width: 50px !default;
 $o-drawer-width: 240px !default;
-$o-drawer-mini-width: 54px !default;
+$o-drawer-mini-width: 50px !default;
 $o-drawer-zindex: 999 !default;
 $o-drawer-zindex-locked: 50 !default;
 $o-drawer-border-width: 1px !default;
@@ -12,7 +12,7 @@ $o-drawer-shadow: 0 10px 14px rgba(0, 0, 0, 0.12) !default;
 
 $o-drawer-menu-padding-h: $o-horizontal-padding/2 !default;
 
-$o-drawer-icon-width: 28px !default;
+$o-drawer-icon-width: 24px !default;
 
 $o-drawer-category-label-color: $o-main-color-muted !default;
 $o-drawer-category-label-size: $o-font-size-base-small !default;
@@ -24,7 +24,7 @@ $o-drawer-category-label-margin-bottom: 8px !default;
 $o-drawer-item-icon-width: $o-drawer-icon-width !default;
 $o-drawer-item-icon-font-width: $o-drawer-item-icon-width !default;
 $o-drawer-item-icon-border-radius: $o-border-radius-lg !default;
-$o-drawer-item-padding-v: 6px !default;
+$o-drawer-item-padding-v: 4px !default;
 $o-drawer-item-padding-h: ($o-drawer-mini-width - $o-drawer-item-icon-width) / 2 !default;
 
 $o-drawer-item-font-size: $o-font-size-base !default;
@@ -69,8 +69,6 @@ $o-drawer-item-nav-margin-h: 5px !default;
 $o-drawer-item-nav-padding-h: $o-drawer-item-padding-h !default;
 $o-drawer-item-nav-margin-bottom: $o-drawer-item-nav-margin-h !default;
 
-$o-drawer-item-icon-gap: $o-drawer-item-nav-padding-h !default;
-
 $o-drawer-subitem-depth-base-with-icon: 20px !default;
 $o-drawer-subitem-depth-base: 0px !default;
 $o-drawer-subitem-depth-next: 10px !default;
@@ -100,7 +98,7 @@ $o-drawer-popover-item-active-bg: $o-drawer-item-active-bg !default;
 $o-drawer-popover-item-active-hover-color: $o-drawer-item-active-hover-color !default;
 $o-drawer-popover-item-active-hover-bg: $o-drawer-item-active-hover-bg !default;
 
-$o-drawer-popover-item-font-weight: bold !default;
+$o-drawer-popover-item-font-weight: normal !default;
 
 $o-drawer-sub-panel-responsive-side-position-width: ($o-drawer-width * 2 + ($o-drawer-width * 0.1)) !default;
 $o-drawer-sub-panel-responsive-zindex: $o-drawer-zindex + 1 !default;
