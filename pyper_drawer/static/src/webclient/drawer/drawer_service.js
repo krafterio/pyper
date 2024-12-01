@@ -241,7 +241,7 @@ export class DrawerState {
     }
 
     restoreMinified(defaultMinified) {
-        defaultMinified = !(defaultMinified in [undefined, 'false', false]);
+        defaultMinified = ['true', true].includes(defaultMinified);
         const defaultValue = defaultMinified ? 'true' : 'false';
         const minified = (cookie.get('drawer_minified') || defaultValue) === 'true';
 
@@ -251,7 +251,7 @@ export class DrawerState {
     }
 
     restoreLockable(defaultLockable) {
-        defaultLockable = !(defaultLockable in [undefined, 'false', false]);
+        defaultLockable = ['true', true].includes(defaultLockable);
         const defaultValue = defaultLockable ? 'true' : 'false';
         const lockable = (cookie.get('drawer_lockable') || defaultValue) === 'true';
 
