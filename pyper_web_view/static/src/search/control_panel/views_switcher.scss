@@ -16,6 +16,14 @@
         }
     }
 
+    .o-views-switcher--dropdown-icon {
+        display: none;
+
+        @include media-breakpoint-up(xxl) {
+            display: inherit;
+        }
+    }
+
     .o-dropdown--menu {
         min-width: $o-views-switcher-menu-min-width;
     }
