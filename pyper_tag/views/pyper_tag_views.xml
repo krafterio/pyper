@@ -42,7 +42,7 @@
                     </group>
                     <hr />
                     <group string="Family" class="col-6">
-                        <field name="family_id" widget="many2one_tags" placeholder="Select a tag family"/>
+                        <field name="family_id" widget="many2one_tags" placeholder="Select a tag family"
                                 domain="[('tag_model_name', '=', tag_model_name), ('is_public', '=', is_public), '|', ('is_public', '=', True), ('user_id', '=', uid)]"
                                 context="{'default_tag_model_name': tag_model_name, 'default_is_public': is_public, 'default_user_id': user_id}"
                             />
@@ -151,6 +151,6 @@
         <field name="res_model">pyper.tag</field>
         <field name="view_mode">tree,kanban,form</field>
         <field name="search_view_id" ref="view_pyper_tag_search"/>
-        <field name="context">{'default_is_public': False, 'default_user_id': uid, 'default_tag_model_name': 'flow'}</field>
+        <field name="context">{'default_is_public': False, 'default_user_id': uid, 'default_tag_model_name': 'tag_model_name'}</field>
     </record>
 </odoo>
