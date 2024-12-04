@@ -137,13 +137,13 @@ class SmartTag(models.Model):
             if self.search_count(domain) > 0:
                 raise ValidationError(_('You already have a private tag with this name.'))
 
-    @api.depends('emoji', 'name', 'is_public', 'family_id')
+    @api.depends('emoji', 'name', 'is_public', 'family_id.display_name')
     def _compute_display_name(self):
         for smart_tag in self:
             name_list = []
-            # [+] Improve this in display related flow
-            # if smart_tag.family_id:
-            #     name_list.append(f'[{smart_tag.family_id.display_name}]')
+            if smart_tag.family_id:
+                name_list.append(smart_tag.family_id.display_name)
+                name_list.append('\u00B7') # middle dot
             if smart_tag.emoji:
                 name_list.append(smart_tag.emoji)
             if smart_tag.name:
