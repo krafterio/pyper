@@ -31,6 +31,7 @@ export class OpenAiStream extends Component {
 
     setup() {
         this.rpc = useService('rpc');
+        this.notification = useService('notification');
         this.eventSource = null;
 
         useEffect(this._changeValues.bind(this), this._getComputeDependencies.bind(this));
@@ -101,7 +102,7 @@ export class OpenAiStream extends Component {
             this.eventSource.close();
             this.eventSource = null;
 
-            throw e;
+            this.notification.add(e.data, {type: 'danger'});
         });
     }
 }

@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from openai import OpenAI
+from openai import OpenAI, APIError
 from werkzeug.exceptions import BadRequest, NotFound
 
 from odoo import http, _
@@ -76,16 +76,25 @@ class Stream(http.Controller):
             'content': user_message,
         })
 
-        response = client.chat.completions.create(
-            model=model,
-            stream=True,
-            messages=messages,
-        )
+        try:
+            response = client.chat.completions.create(
+                model=model,
+                stream=True,
+                messages=messages,
+            )
 
-        for line in response:
-            text = line.choices[0].delta.content
+            for line in response:
+                text = line.choices[0].delta.content
 
-            if text:
-                yield f"data: {text}\n\n"
+                if text:
+                    yield f"data: {text}\n\n"
 
-        yield "event: end\ndata: end\n\n"
+            yield "event: end\ndata: end\n\n"
+        except Exception as e:
+            if isinstance(e, APIError):
+                message = e.body.get('message', str(e)) if isinstance(e.body, dict) else str(e)
+            else:
+                message = str(e)
+
+            yield f"event: error\ndata: {message}\n\n"
+            yield "event: end\ndata: end\n\n"
