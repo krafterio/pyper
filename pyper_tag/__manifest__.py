@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper Tag',
+    'name': 'Smart Tag',
     'category': 'Tools',
     'license': 'Other proprietary',
     'description': 'A generic tag model, built to fit with any odoo model',
@@ -25,7 +25,7 @@
          'data/rules.xml',
 
         # Views
-        'views/pyper_tag_family_views.xml',
-        'views/pyper_tag_views.xml',
+        'views/smart_tag_family_views.xml',
+        'views/smart_tag_views.xml',
     ],
 }

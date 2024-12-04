@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_pyper_tag_tree" model="ir.ui.view">
-        <field name="name">pyper.tag.tree</field>
-        <field name="model">pyper.tag</field>
+    <record id="view_smart_tag_tree" model="ir.ui.view">
+        <field name="name">smart.tag.tree</field>
+        <field name="model">smart.tag</field>
         <field name="arch" type="xml">
             <tree string="Tags" multi_edit="1" editable="bottom" expand="1">
                 <field name="display_name" optional="show"/>
@@ -24,9 +24,9 @@
         </field>
     </record>
 
-    <record id="view_pyper_tag_form" model="ir.ui.view">
-        <field name="name">pyper.tag.form</field>
-        <field name="model">pyper.tag</field>
+    <record id="view_smart_tag_form" model="ir.ui.view">
+        <field name="name">smart.tag.form</field>
+        <field name="model">smart.tag</field>
         <field name="arch" type="xml">
             <form string="Tag Form">
                 <sheet>
@@ -48,7 +48,7 @@
                             />
                     </group>
                     <header>
-                        <button name="%(pyper_tag.action_pyper_tag_family)d"
+                        <button name="%(pyper_tag.action_smart_tag_family)d"
                                 string="Manage tag families"
                                 type="action"
                                 class="btn btn-secondary"
@@ -73,9 +73,9 @@
         </field>
     </record>
 
-    <record id="view_pyper_tag_kanban" model="ir.ui.view">
-        <field name="name">pyper.tag.kanban</field>
-        <field name="model">pyper.tag</field>
+    <record id="view_smart_tag_kanban" model="ir.ui.view">
+        <field name="name">smart.tag.kanban</field>
+        <field name="model">smart.tag</field>
         <field name="arch" type="xml">
             <kanban string="Tags">
                 <templates>
@@ -125,9 +125,9 @@
         </field>
     </record>
 
-    <record id="view_pyper_tag_search" model="ir.ui.view">
-        <field name="name">pyper.tag.search</field>
-        <field name="model">pyper.tag</field>
+    <record id="view_smart_tag_search" model="ir.ui.view">
+        <field name="name">smart.tag.search</field>
+        <field name="model">smart.tag</field>
         <field name="arch" type="xml">
             <search string="Tags">
                 <searchpanel>
@@ -146,11 +146,11 @@
         </field>
     </record>
 
-    <record id="action_pyper_tag" model="ir.actions.act_window">
-        <field name="name">Pyper Tags</field>
-        <field name="res_model">pyper.tag</field>
+    <record id="action_smart_tag" model="ir.actions.act_window">
+        <field name="name">Smart tags</field>
+        <field name="res_model">smart.tag</field>
         <field name="view_mode">tree,kanban,form</field>
-        <field name="search_view_id" ref="view_pyper_tag_search"/>
+        <field name="search_view_id" ref="view_smart_tag_search"/>
         <field name="context">{'default_is_public': False, 'default_user_id': uid, 'default_tag_model_name': 'tag_model_name'}</field>
     </record>
 </odoo>

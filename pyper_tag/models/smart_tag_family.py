@@ -5,8 +5,8 @@ from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
 
 
-class PyperTagFamily(models.Model):
-    _name = 'pyper.tag.family'
+class SmartTagFamily(models.Model):
+    _name = 'smart.tag.family'
     _description = 'Gather several Tags'
     _order='is_public DESC, name'
 
@@ -16,7 +16,7 @@ class PyperTagFamily(models.Model):
     )
 
     tag_ids = fields.One2many(
-        'pyper.tag', 
+        'smart.tag', 
         'family_id', 
         string="Tags",
         domain="[('tag_model_name', '=', 'tag_model_name'), ('is_public', '=', 'is_public'), '|', ('is_public', '=', True), ('user_id', '=', uid)]",
@@ -32,7 +32,9 @@ class PyperTagFamily(models.Model):
 
     tag_model_name = fields.Char(
         'Associated Model',
+        store=True,
         readonly=True,
+        index=True,
     )
 
     user_id = fields.Many2one(
@@ -42,10 +44,18 @@ class PyperTagFamily(models.Model):
         readonly=True
     )
 
+    @api.onchange('tag_ids')
+    def _onchange_tag_model_name(self):
+        for family in self:
+            if not family.tag_model_name:
+                if len(family.tag_ids) > 0:
+                    family.tag_model_name = family.tag_ids[0].tag_model_name
+                
+
     def action_open_family_tag_form(self):
         return {
             'type': 'ir.actions.act_window',
-            'res_model': 'pyper.tag.family',
+            'res_model': 'smart.tag.family',
             'view_mode': 'form',
             'res_id': self.id,
             'target': 'current',

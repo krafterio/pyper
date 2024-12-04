@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_pyper_tag_family_tree" model="ir.ui.view">
-        <field name="name">pyper.tag.family.tree</field>
-        <field name="model">pyper.tag.family</field>
+    <record id="view_smart_tag_family_tree" model="ir.ui.view">
+        <field name="name">smart.tag.family.tree</field>
+        <field name="model">smart.tag.family</field>
         <field name="arch" type="xml">
             <tree string="Tag Families" multi_edit="1" editable="bottom" expand="1">
                 <field name="name"/>
@@ -22,9 +22,9 @@
         </field>
     </record>
 
-    <record id="view_pyper_tag_family_form" model="ir.ui.view">
-        <field name="name">pyper.tag.family.form</field>
-        <field name="model">pyper.tag.family</field>
+    <record id="view_smart_tag_family_form" model="ir.ui.view">
+        <field name="name">smart.tag.family.form</field>
+        <field name="model">smart.tag.family</field>
         <field name="arch" type="xml">
             <form string="Tag Family Form">
                 <sheet>
@@ -52,9 +52,9 @@
         </field>
     </record>
 
-    <record id="view_pyper_tag_family_kanban" model="ir.ui.view">
-        <field name="name">pyper.tag.family.kanban</field>
-        <field name="model">pyper.tag.family</field>
+    <record id="view_smart_tag_family_kanban" model="ir.ui.view">
+        <field name="name">smart.tag.family.kanban</field>
+        <field name="model">smart.tag.family</field>
         <field name="arch" type="xml">
             <kanban>
                 <templates>
@@ -96,9 +96,9 @@
         </field>
     </record>
 
-    <record id="view_pyper_tag_family_search" model="ir.ui.view">
-        <field name="name">pyper.tag.family.search</field>
-        <field name="model">pyper.tag.family</field>
+    <record id="view_smart_tag_family_search" model="ir.ui.view">
+        <field name="name">smart.tag.family.search</field>
+        <field name="model">smart.tag.family</field>
         <field name="arch" type="xml">
             <search string="Tag Families">
                 <field name="name"/>
@@ -112,11 +112,11 @@
         </field>
     </record>
 
-    <record id="action_pyper_tag_family" model="ir.actions.act_window">
+    <record id="action_smart_tag_family" model="ir.actions.act_window">
         <field name="name">Tag Families</field>
-        <field name="res_model">pyper.tag.family</field>
+        <field name="res_model">smart.tag.family</field>
         <field name="view_mode">tree,kanban,form</field>
-        <field name="search_view_id" ref="view_pyper_tag_family_search"/>
+        <field name="search_view_id" ref="view_smart_tag_family_search"/>
         <field name="domain">['|', ('is_public', '=', True), ('user_id', '=', uid)]</field>
     </record>
 </odoo>

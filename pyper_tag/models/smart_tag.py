@@ -5,8 +5,8 @@ from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError, AccessError
 
 
-class PyperTag(models.Model):
-    _name = 'pyper.tag'
+class SmartTag(models.Model):
+    _name = 'smart.tag'
     _description = 'Generic Tag Model'
     _order='is_public DESC, family_id, name'
 
@@ -39,12 +39,11 @@ class PyperTag(models.Model):
     tag_model_name = fields.Char(
         'Associated Model',
         readonly=True,
-        required=True,
         index=True,
     )
 
     family_id = fields.Many2one(
-        'pyper.tag.family', 
+        'smart.tag.family', 
         string="Tag family", 
         help="The family to which this tag belongs"
     )
@@ -104,62 +103,62 @@ class PyperTag(models.Model):
 
     @api.constrains('is_public', 'family_id')
     def _check_family_has_same_visibility(self):
-        for pyper_tag in self:
-            if pyper_tag.family_id and pyper_tag.family_id.is_public is not self.is_public:
+        for smart_tag in self:
+            if smart_tag.family_id and smart_tag.family_id.is_public is not self.is_public:
                 raise ValidationError(_('A tag and his family must have the same visibility, both public either private'))
 
 
     @api.constrains('name', 'tag_model_name', 'is_public')
     def _check_unique_tag_name_per_model(self):
-        for pyper_tag in self:
-            check_method = self._check_unique_public_tag_name_per_model if pyper_tag.is_public else self._check_unique_private_tag_name_per_model
-            check_method(pyper_tag)
+        for smart_tag in self:
+            check_method = self._check_unique_public_tag_name_per_model if smart_tag.is_public else self._check_unique_private_tag_name_per_model
+            check_method(smart_tag)
 
-    def _check_unique_public_tag_name_per_model(self, pyper_tag):
-        for pyper_tag in self:
+    def _check_unique_public_tag_name_per_model(self, smart_tag):
+        for smart_tag in self:
             domain = [
-            ('name', '=', pyper_tag.name),
-            ('tag_model_name', '=', pyper_tag.tag_model_name),
+            ('name', '=', smart_tag.name),
+            ('tag_model_name', '=', smart_tag.tag_model_name),
             ('is_public', '=', True),
-            ('id', '!=', pyper_tag.id),
+            ('id', '!=', smart_tag.id),
         ]
         if self.search_count(domain) > 0:
             raise ValidationError(_('A public tag with this name already exists for the selected model.'))
                  
-    def _check_unique_private_tag_name_per_model(self, pyper_tag):
-        for pyper_tag in self:
+    def _check_unique_private_tag_name_per_model(self, smart_tag):
+        for smart_tag in self:
             domain = [
-                ('name', '=', pyper_tag.name),
-                ('tag_model_name', '=', pyper_tag.tag_model_name),
+                ('name', '=', smart_tag.name),
+                ('tag_model_name', '=', smart_tag.tag_model_name),
                 ('is_public', '=', False),
-                ('user_id', '=', pyper_tag.user_id.id),
-                ('id', '!=', pyper_tag.id),
+                ('user_id', '=', smart_tag.user_id.id),
+                ('id', '!=', smart_tag.id),
             ]
             if self.search_count(domain) > 0:
                 raise ValidationError(_('You already have a private tag with this name.'))
 
     @api.depends('emoji', 'name', 'is_public', 'family_id')
     def _compute_display_name(self):
-        for pyper_tag in self:
+        for smart_tag in self:
             name_list = []
             # [+] Improve this in display related flow
-            # if pyper_tag.family_id:
-            #     name_list.append(f'[{pyper_tag.family_id.display_name}]')
-            if pyper_tag.emoji:
-                name_list.append(pyper_tag.emoji)
-            if pyper_tag.name:
-                name_list.append(pyper_tag.name)
+            # if smart_tag.family_id:
+            #     name_list.append(f'[{smart_tag.family_id.display_name}]')
+            if smart_tag.emoji:
+                name_list.append(smart_tag.emoji)
+            if smart_tag.name:
+                name_list.append(smart_tag.name)
             name_string = ' '.join(name_list)
-            if not pyper_tag.is_public:
+            if not smart_tag.is_public:
                 name_string = '(' + name_string + ')'
-            pyper_tag.display_name = name_string
+            smart_tag.display_name = name_string
 
 
     def action_open_tag_form(self):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'res_model': 'pyper.tag',
+            'res_model': 'smart.tag',
             'view_mode': 'form',
             'res_id': self.id,
             'target': 'current',
@@ -170,17 +169,17 @@ class PyperTag(models.Model):
         for vals in vals_list:
             if vals.get('is_public') and not self.env.user.has_group('base.group_system'):
                 raise AccessError(_('Only administrators can create public tags.'))
-        return super(PyperTag, self).create(vals_list)
+        return super(SmartTag, self).create(vals_list)
 
     def write(self, vals):
-        for pyper_tag in self:
-            if pyper_tag.is_public and not self.env.user.has_group('base.group_system'):
+        for smart_tag in self:
+            if smart_tag.is_public and not self.env.user.has_group('base.group_system'):
                 raise AccessError(_('Only administrators can edit a public tag.'))
-        return super(PyperTag, self).write(vals)
+        return super(SmartTag, self).write(vals)
 
     def unlink(self):
-        for pyper_tag in self:
-            if pyper_tag.is_public and not self.env.user.has_group('base.group_system'):
+        for smart_tag in self:
+            if smart_tag.is_public and not self.env.user.has_group('base.group_system'):
                 raise AccessError(_('Only administrators can delete public tags.'))
-        return super(PyperTag, self).unlink()
+        return super(SmartTag, self).unlink()
                

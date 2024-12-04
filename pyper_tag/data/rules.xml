@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="pyper_tag_user_rule" model="ir.rule">
-        <field name="name">Private Tag : Access limited to creator</field>
-        <field name="model_id" ref="model_pyper_tag"/>
+    <record id="smart_tag_user_rule" model="ir.rule">
+        <field name="name">Private smart tag : Access limited to creator</field>
+        <field name="model_id" ref="model_smart_tag"/>
         <field name="domain_force">['|', ('is_public', '=', True), ('user_id', '=', user.id)]</field>
         <field name="groups" eval="[(4, ref('base.group_user'))]"/>
         <field name="perm_read" eval="True"/>
