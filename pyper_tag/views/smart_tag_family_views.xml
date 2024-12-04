@@ -9,6 +9,7 @@
                 <field name="name"/>
                 <field name="tag_model_name" optional="hide"/>
                 <field name="is_public" widget="boolean_toggle" optional="hide"/>
+                <field name="only_child" widget="boolean_toggle" optional="hide"/>
                 <field name="tag_ids" widget="many2many_tags" optional="show"
                     options="{'color_field': 'color_id', 'no_quick_create': True, 'no_create': False, 'no_edit': True, 'no_open': True, }"
                 />
@@ -32,6 +33,7 @@
                         <group>
                             <field name="name"/>
                             <field name="is_public" widget="boolean_toggle"/>
+                            <field name="only_child" widget="boolean_toggle"/>
                         </group>
                         <group>
                             <field name="tag_model_name" readonly="1"/>
@@ -71,6 +73,10 @@
                                 <span class="o_kanban_label">Public : </span>
                                 <field name="is_public" widget="boolean_toggle" editable="0" />
                             </div>
+                            <div>
+                                <span class="o_kanban_label">Only child : </span>
+                                <field name="only_child" widget="boolean_toggle" editable="0" />
+                            </div>
                             <t t-if="record.tag_model_name">
                                 <div class="mt-2">
                                     <span class="text-muted me-3">Model owner</span>
@@ -104,9 +110,12 @@
                 <field name="name"/>
                 <field name="tag_model_name"/>
                 <field name="is_public"/>
+                <field name="only_child"/>
                 <field name="user_id"/>
                 <filter string="Public" name="public_tag_families" domain="[('is_public', '=', True)]"/>
                 <filter string="Private" name="private_tag_families" domain="[('is_public', '=', False)]"/>
+                <filter string="Only child" name="only_child_tag_families" domain="[('only_child', '=', True)]"/>
+                <filter string="Multi child" name="multi_child_tag_families" domain="[('only_child', '=', False)]"/>
                 <filter string="My Tag Families" name="my_tag_families" domain="[('user_id', '=', uid)]"/>
             </search>
         </field>
@@ -117,6 +126,6 @@
         <field name="res_model">smart.tag.family</field>
         <field name="view_mode">tree,kanban,form</field>
         <field name="search_view_id" ref="view_smart_tag_family_search"/>
-        <field name="domain">['|', ('is_public', '=', True), ('user_id', '=', uid)]</field>
+        <field name="domain">['|', ('is_public', '=', True), ('user_id', '=', uid), ('tag_model_name', '=', tag_model_name)]</field>
     </record>
 </odoo>

@@ -24,16 +24,16 @@ class SmartTag(models.Model):
 
     user_id = fields.Many2one(
         'res.users', 
-        string="Created By", 
+        string='Created By', 
         default=lambda self: self.env.user,
         readonly=True
     )
 
     is_public = fields.Boolean(
-        string="Is Public", 
+        string='Is Public', 
         default=False,
         index=True, 
-        help="If checked, this tag will be visible to all users."
+        help='If checked, this tag will be visible to all users.'
     )
 
     tag_model_name = fields.Char(

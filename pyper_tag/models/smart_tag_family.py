@@ -44,6 +44,12 @@ class SmartTagFamily(models.Model):
         readonly=True
     )
 
+    only_child = fields.Boolean(
+        'Only child',
+        default=True,
+        help="If checked, you can't chose more than one child per family."
+    )        
+
     @api.onchange('tag_ids')
     def _onchange_tag_model_name(self):
         for family in self:
