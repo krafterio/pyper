@@ -18,16 +18,16 @@ class SmartTagFamily(models.Model):
     tag_ids = fields.One2many(
         'smart.tag', 
         'family_id', 
-        string="Tags",
+        string='Tags',
         domain="[('tag_model_name', '=', 'tag_model_name'), ('is_public', '=', 'is_public'), '|', ('is_public', '=', True), ('user_id', '=', uid)]",
         help="Tags associated in this family"
     )
 
     is_public = fields.Boolean(
-        string="Is Public", 
+        string='Is Public', 
         default=False,
         readonly=True, 
-        help="If checked, this familly tag will be visible to all users."
+        help='If checked, this familly tag will be visible to all users.'
     )
 
     tag_model_name = fields.Char(
@@ -39,7 +39,7 @@ class SmartTagFamily(models.Model):
 
     user_id = fields.Many2one(
         'res.users', 
-        string="Created By", 
+        string='Created By', 
         default=lambda self: self.env.user,
         readonly=True
     )

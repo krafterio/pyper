@@ -10,7 +10,7 @@
                 <field name="tag_model_name" optional="hide"/>
                 <field name="name" optional="show"/>
                 <field name="color_id" widget="color" optional="show"/>
-                <field name="emoji" optional="show"/>
+                <field name="emoji" optional="show" widget="text_emojis" />
                 <field name="user_id" optional="hide"/>
                 <field name="is_public" widget="boolean_toggle" optional="hide"/>
                 <field name="family_id" options="{'no_create': True, 'no_edit': True}"/>
@@ -64,8 +64,8 @@
                         </group>
                     </group>
                     <group class="row">
-                        <group class="col-10">
-                            <field name="emoji" widget="selection_badge" placeholder="Select an emoji"/>
+                        <group class="col-3">
+                            <field name="emoji" widget="text_emojis" placeholder="Please use only one emoji"/>
                         </group>
                     </group>
                 </sheet>
@@ -95,7 +95,7 @@
                                         <field name="is_public" widget="boolean_toggle" editable="0" />
                                     </div>
                                     <div class="h3">
-                                        <field name="emoji"/>
+                                        <field name="emoji" widget="text_emojis"/>
                                     </div>
                                     <field name="color_id" widget="color" editable="0"/>
                                 </div>
