@@ -7,24 +7,6 @@
         <field name="arch" type="xml">
             <xpath expr="//block[@name='about_setting_container']/setting[@id='appstore']" position="replace"/>
 
-            <xpath expr="//widget[@name='res_config_edition']" position="replace">
-                <Setting addLabel="false">
-                    <div class="user-heading">
-                        <h3 class="px-0" id="edition-title">
-                            <span>Made with love by Krafter</span>
-                        </h3>
-                    </div>
-
-                    <div>
-                        <div class="tab-content">
-                            <div role="tabpanel" id="settings" class="tab-pane active text-muted o_web_settings_compact_subtitle">
-                                <small>Copyright © <a target="_blank" href="https://krafter.io" style="text-decoration: underline;">Krafter SAS</a></small>
-                            </div>
-                        </div>
-                    </div>
-                </Setting>
-            </xpath>
-
             <xpath expr="//app[@name='pyper_settings']" position="inside">
                 <block title="Progressive Web App" id="pwa_settings">
                     <setting help="This name will be used for the application when Pyper is installed through the browser.">
