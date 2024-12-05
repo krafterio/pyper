@@ -26,7 +26,6 @@ class SmartTagFamily(models.Model):
     is_public = fields.Boolean(
         string='Is Public', 
         default=False,
-        readonly=True, 
         help='If checked, this familly tag will be visible to all users.'
     )
 
@@ -48,7 +47,20 @@ class SmartTagFamily(models.Model):
         'Only child',
         default=True,
         help="If checked, you can't chose more than one child per family."
-    )        
+    )   
+            
+    # def get_tag_model_name_within_context(self):
+    #     for family in self:
+    #         if family.tag_model_name:
+    #             return family.tag_model_name
+    #         else:
+    #             context = self._context
+    #             if 'default_tag_model_name' in context:
+    #                 return context['default_tag_model_name']
+    #             elif 'tag_model_name' in context:
+    #                 return context['tag_model_name']
+    #             else:
+    #                 return 'tag_model_name'
 
     @api.onchange('tag_ids')
     def _onchange_tag_model_name(self):

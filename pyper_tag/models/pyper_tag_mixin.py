@@ -9,14 +9,9 @@ class PyperTagMixin(models.AbstractModel):
     _name = 'pyper.tag.mixin'
     _description = 'Pyper Tag Mixin'
 
-    tag_ids = fields.Many2many(
+    smart_tag_ids = fields.Many2many(
         'smart.tag',
         string='Tags', 
-    )
-
-    tag_family_id = fields.Many2one(
-        related='tag_ids.family_id',
-        string='Tag Families',
     )
 
     tag_model_name = fields.Char(
@@ -36,14 +31,14 @@ class PyperTagMixin(models.AbstractModel):
             vals['tag_model_name'] = self._name
         return super().create(vals_list)
 
-    @api.onchange('tag_ids')
+    @api.onchange('smart_tag_ids')
     def _only_one_tag_per_family(self):
         for mixin in self:
-            if mixin.tag_ids:
+            if mixin.smart_tag_ids:
                 unique_tags_by_family = {}
-                for tag in mixin.tag_ids:
+                for tag in mixin.smart_tag_ids:
                     if tag.family_id and tag.family_id.only_child:
                         family_id = tag.family_id
                         if family_id in unique_tags_by_family:
-                            mixin.tag_ids -= unique_tags_by_family[family_id]
+                            mixin.smart_tag_ids -= unique_tags_by_family[family_id]
                         unique_tags_by_family[family_id] = tag
