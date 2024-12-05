@@ -22,6 +22,6 @@ patch(WebClient.prototype, {
     },
 
     get defaultTitle() {
-        return 'Pyper';
+        return this.pyperSetupService?.appName;
     },
 });

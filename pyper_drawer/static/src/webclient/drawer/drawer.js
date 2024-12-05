@@ -357,6 +357,10 @@ export class Drawer extends Component {
         return this.drawerService.isFixedTop;
     }
 
+    get appName() {
+        return this.pyperSetupService.appName;
+    }
+
     get displayCategoryName() {
         return (!this.isMinified && !this.settings.hideCategoryLabelFull)
             ||

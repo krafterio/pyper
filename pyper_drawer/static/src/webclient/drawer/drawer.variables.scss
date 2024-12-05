@@ -12,6 +12,14 @@ $o-drawer-shadow: 0 10px 14px rgba(0, 0, 0, 0.12) !default;
 
 $o-drawer-menu-padding-h: $o-horizontal-padding/2 !default;
 
+$o-drawer-logo-name-font-weight: bold !default;
+$o-drawer-logo-name-font-size: 1rem !default;
+$o-drawer-logo-name-padding: 0 ($o-navbar-height*0.8) 0 2px !default;
+
+$o_drawer--closer-font-size: 1.2rem !default;
+$o_drawer--closer-color: $o-gray-300 !default;
+$o_drawer--closer-color-hover: $o-main-text-color !default;
+
 $o-drawer-icon-width: 24px !default;
 
 $o-drawer-category-label-color: $o-main-color-muted !default;

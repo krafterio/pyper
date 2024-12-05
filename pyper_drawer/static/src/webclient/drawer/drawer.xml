@@ -13,7 +13,7 @@
                  t-if="isMounted and settings.closeAction and !isMinified"
                  t-on-click="close"
             >
-                <i class="fa fa-fw fa-chevron-circle-left"/>
+                <i class="fa fa-fw fa-caret-square-o-left"/>
             </div>
 
             <t t-slot="header" t-if="isMounted and displayHeader"/>
@@ -60,9 +60,7 @@
             </div>
 
             <div class="o_drawer_app_logo_full" t-if="!isMinified">
-                <img src="/pyper_drawer/static/img/pyper_logo.svg"
-                     class="pyper-logo"
-                />
+                <span class="pyper-app-name" t-out="appName"></span>
             </div>
         </div>
     </t>

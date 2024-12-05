@@ -74,6 +74,18 @@
         position: absolute;
         top: 0;
         right: 0;
+        width: $o-navbar-height*0.8;
+        height: $o-navbar-height;
+        color: $o_drawer--closer-color;
+        font-size: $o_drawer--closer-font-size;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+
+        &:hover{
+            color: $o_drawer--closer-color-hover;
+        }
     }
 }
 
@@ -774,6 +786,12 @@
     .o_drawer_app_logo_full {
         flex-grow: 1;
         display: flex;
+        padding: $o-drawer-logo-name-padding;
+
+        span {
+            font-weight: $o-drawer-logo-name-font-weight;
+            font-size: $o-drawer-logo-name-font-size;
+        }
 
         img {
             height: $o-drawer-item-font-size*1.2;

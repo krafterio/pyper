@@ -11,6 +11,18 @@ export class PyperSetupService {
         this._rpcService = rpc;
         this._registeredPrefixes = reactive({});
         this.settings = reactive({});
+
+        this.register('web.', {
+            'web_app_name': this.defaultAppName,
+        }).then();
+    }
+
+    get defaultAppName() {
+        return 'Pyper';
+    }
+
+    get appName() {
+        return this.settings?.['web.']?.web_app_name || this.defaultAppName;
     }
 
     /**

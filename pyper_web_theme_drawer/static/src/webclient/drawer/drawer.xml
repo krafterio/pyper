@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="pyper_web_theme_drawer.Drawer" t-inherit="pyper_drawer.Drawer" t-inherit-mode="extension">
+        <xpath expr="//div[contains(@class, 'o_drawer-') and contains(@class, '-closer')]/i" position="attributes">
+            <attribute name="class" separator=" " remove="fa fa-fw fa-caret-square-o-left" add="ph ph-arrow-line-left"/>
+        </xpath>
+    </t>
+</templates>
