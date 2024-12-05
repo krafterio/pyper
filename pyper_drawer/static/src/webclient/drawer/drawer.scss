@@ -31,7 +31,6 @@
 
     &.o_drawer--mini {
         width: $o-drawer-mini-width;
-        overflow-x: hidden;
     }
 
     .o_drawer--menu {
@@ -323,6 +322,10 @@
 
     &:empty {
         display: none;
+    }
+
+    + .o_drawer--footer {
+        padding-top: 0;
     }
 }
 
@@ -770,7 +773,7 @@
     align-items: center;
 
     .o_drawer_app_logo_badge {
-        width: $o-drawer-mini-width;
+        width: $o-drawer-mini-width - $o-drawer-border-width;
         display: flex;
         justify-content: center;
 

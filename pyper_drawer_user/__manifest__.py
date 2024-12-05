@@ -2,10 +2,10 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Drawer Header',
+    'name': 'Drawer User',
     'category': 'Tools',
     'license': 'Other proprietary',
-    'description': 'Allow to display user information in drawer.',
+    'description': 'Move user menu in drawer.',
     'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [
@@ -16,19 +16,14 @@
     'depends': [
         'base',
         'web',
-        'pyper',
         'pyper_drawer',
-        'mail',
-    ],
-    'data': [
     ],
     'assets': {
         'web._assets_primary_variables': [
-            ('after', 'pyper_drawer/static/src/**/*.variables.scss', 'pyper_drawer_header/static/src/**/*.variables.scss'),
+            ('after', 'pyper_drawer/static/src/**/*.variables.scss', 'pyper_drawer_user/static/src/**/*.variables.scss'),
         ],
         'web.assets_backend': [
-            'pyper_drawer_header/static/src/webclient/**/*',
-            'pyper_drawer_header/static/src/core/**/*',
+            'pyper_drawer_user/static/src/webclient/**/*',
         ],
     }
 }

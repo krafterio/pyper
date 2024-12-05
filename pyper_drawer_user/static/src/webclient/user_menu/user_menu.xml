@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="pyper_drawer_user.UserMenu" t-inherit="web.UserMenu" t-inherit-mode="extension">
+        <xpath expr="//Dropdown" position="attributes">
+            <attribute name="class">'o_user_menu dropdown-item o_drawer--menu-item'</attribute>
+            <attribute name="togglerClass">'o_drawer--menu-item-content btn'</attribute>
+        </xpath>
+
+        <xpath expr="//small[hasclass('oe_topbar_name')]" position="attributes">
+            <attribute name="t-if">false</attribute>
+        </xpath>
+
+        <xpath expr="//small[hasclass('oe_topbar_name')]" position="after">
+            <div class="oe_topbar_name text-start d-flex flex-column lh-1 text-truncate">
+                <span t-out="user.name" class="o-drawer--user-menu-name-size fw-bold mb-1 text-truncate"/>
+
+                <span class="small opacity-50 font-monospace text-truncate" t-if="env.debug">
+                    <i class="fa fa-database oi-small me-1"/><t t-out="user.db.name"/>
+                </span>
+
+                <span class="small opacity-50" t-else="">My account</span>
+            </div>
+        </xpath>
+
+        <xpath expr="//Dropdown/t[@t-foreach]" position="before">
+            <div class="dropdown-item menu-user-title">
+                <div class="oe_topbar_name text-start d-flex flex-column lh-1 text-truncate">
+                    <span t-out="user.name" class="o-drawer--user-menu-name-size fw-bold mb-1 text-truncate"/>
+
+                    <span class="small opacity-50 font-monospace text-truncate" t-if="env.debug">
+                        <i class="fa fa-database oi-small me-1"/><t t-out="user.db.name"/>
+                    </span>
+
+                    <span class="small opacity-50" t-else="">My account</span>
+                </div>
+            </div>
+
+            <div role="separator" class="dropdown-divider"></div>
+        </xpath>
+    </t>
+
+</templates>
