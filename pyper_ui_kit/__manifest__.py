@@ -28,6 +28,9 @@
         'pyper_web_theme_icons',
     ],
     'data': [
+        # Security
+        'security/res_groups.xml',
+
         # Views
         'views/webclient_templates.xml',
     ],
