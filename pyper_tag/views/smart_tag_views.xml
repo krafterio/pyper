@@ -21,7 +21,7 @@
                         title="Edit tag" 
                         icon="fa-pencil-square-o" 
                         class="btn-secondary"
-                        />
+                />
             </tree>
         </field>
     </record>

@@ -12,13 +12,16 @@
                 <field name="only_child" widget="boolean_toggle" optional="hide"/>
                 <field name="tag_ids" widget="many2many_tags" optional="show"
                     options="{'color_field': 'color_id', 'no_quick_create': True, 'no_create': False, 'no_edit': True, 'no_open': True, }"
+                    context="{'default_tag_model_name': tag_model_name, 'default_is_public': is_public, 'default_user_id': uid, 'default_family_id': id}"
+                    domain="[('tag_model_name', '=', tag_model_name), ('is_public', '=', is_public), ('family_id', '=', False), 
+                              '|', ('is_public', '=', True), ('user_id', '=', uid)]"
                 />
                 <button name="action_open_family_tag_form" 
                         type="object" 
                         title="Edit tag family" 
                         icon="fa-pencil-square-o" 
                         class="btn-secondary"
-                        />
+                />
             </tree>
         </field>
     </record>
@@ -44,7 +47,7 @@
                     <group class="col-6">
                         <field name="tag_ids" widget="many2many_tags" 
                                 context="{'default_tag_model_name': tag_model_name, 'default_is_public': is_public, 'default_user_id': user_id}"
-                                domain="[('tag_model_name', '=', tag_model_name), ('is_public', '=', is_public), '|', ('is_public', '=', True), ('user_id', '=', uid)]" 
+                                domain="[('tag_model_name', '=', tag_model_name), ('is_public', '=', is_public), ('family_id', '=', False), '|', ('is_public', '=', True), ('user_id', '=', uid)]" 
                                 placeholder="Select tags"
                                 options="{'color_field': 'color_id', 'no_quick_create': True, 'no_create': False, 'no_edit': True, 'no_open': True, }"
                         />
