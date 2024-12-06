@@ -1,0 +1,42 @@
+$o-workspace-menu-padding: 0 !default;
+$o-workspace-menu-gap: $o-drawer-item-padding-h !default;
+$o-workspace-menu-border-radius: $o-border-radius !default;
+$o-workspace-menu-border-width: 1px !default;
+$o-workspace-menu-border-color: transparent !default;
+$o-workspace-menu-border-color-hover: $o-gray-200 !default;
+$o-workspace-menu-bg: transparent !default;
+$o-workspace-menu-bg-hover: $o-workspace-menu-border-color-hover !default;
+
+$o-workspace-menu-category-padding: 0 5px !default;
+$o-workspace-menu-category-margin: 5px 0 0 0 !default;
+
+$o-workspace-menu-divider-margin-v: 2px !default;
+$o-workspace-menu-divider-color: $o-gray-200 !default;
+
+$o-workspace-menu-infos-padding: 4px 0 !default;
+$o-workspace-menu-title-color: inherit !default;
+$o-workspace-menu-title-line-height: 1 !default;
+$o-workspace-menu-title-font-size: 0.8125rem !default;
+
+$o-workspace-menu-subtitle-color: $o-gray-400 !default;
+$o-workspace-menu-subtitle-line-height: 1 !default;
+$o-workspace-menu-subtitle-font-size: 0.70rem !default;
+
+$o-workspace-menu-caret-color: $o-gray-500 !default;
+
+$o-workspace-dropdown-menu-gap: 0 !default;
+
+$o-workspace-menu-system-tray-counter-color: $o-gray-400 !default;
+
+$o-workspace-menu-item-padding: 3px 10px !default;
+
+$o-workspace-menu-item-avatar-margin-start: 2px !default;
+$o-workspace-menu-item-avatar-size: 26px !default;
+$o-workspace-menu-item-avatar-border-radius: 50% !default;
+$o-workspace-menu-item-avatar-border-radius-hover: $o-border-radius !default;
+$o-workspace-menu-item-avatar-initials-color: $o-gray-800 !default;
+$o-workspace-menu-item-avatar-initials-font-size: 1rem !default;
+$o-workspace-menu-item-avatar-initials-line-height: $o-workspace-menu-item-avatar-initials-font-size !default;
+$o-workspace-menu-item-avatar-initials-weight: bold !default;
+
+$o-workspace-menu-item-title-font-weight-active: bold !default;

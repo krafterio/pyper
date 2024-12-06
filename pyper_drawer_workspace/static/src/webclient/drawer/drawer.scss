@@ -1,0 +1,37 @@
+.o_drawer {
+    .o_drawer_workspace_menu {
+        .o_workspace_menu {
+            .dropdown-toggle {
+                margin-left: $o-drawer-item-padding-h;
+            }
+        }
+    }
+
+    &.o_drawer--nav {
+        .o_drawer_workspace_menu {
+            .o_workspace_menu {
+                .dropdown-toggle {
+                    margin-left: $o-drawer-item-padding-h;
+                }
+            }
+        }
+    }
+
+    &.o_drawer--mini {
+        .o_drawer_workspace_menu {
+            width: 100%;
+            justify-content: center;
+
+            .o_workspace_menu {
+                .dropdown-toggle {
+                    margin-left: 0;
+
+                    .o_workspace_menu--infos,
+                    .o_workspace_menu--caret {
+                        display: none !important;
+                    }
+                }
+            }
+        }
+    }
+}
