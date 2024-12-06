@@ -14,7 +14,7 @@
                 <field name="user_id" optional="hide"/>
                 <field name="is_public" widget="boolean_toggle" optional="hide"/>
                 <field name="family_id" options="{'no_create': True, 'no_edit': True}"
-                    domain="[('tag_model_name', '=', tag_model_name), '|', ('is_public', '=', True), ('user_id', '=', uid)]"
+                       domain="[('tag_model_name', '=', tag_model_name), '|', ('is_public', '=', True), ('user_id', '=', uid)]"
                 />
                 <button name="action_open_tag_form" 
                         type="object" 
@@ -49,15 +49,6 @@
                                 context="{'default_tag_model_name': tag_model_name, 'default_is_public': is_public, 'default_user_id': user_id}"
                             />
                     </group>
-                    <header>
-                        <button name="%(pyper_tag.action_smart_tag_family)d"
-                                string="Manage tag families"
-                                type="action"
-                                class="btn btn-secondary"
-                                icon="fa-cog"
-                                context="{'default_tag_model_name': tag_model_name, 'default_is_public': is_public, 'default_user_id': user_id}"
-                        />
-                    </header>
                     <hr />
                     <group>
                         <group string="Design">

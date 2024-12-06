@@ -43,8 +43,8 @@
                     <hr />
                     <group class="col-6">
                         <field name="tag_ids" widget="many2many_tags" 
-                                domain="[('tag_model_name', '=', tag_model_name), ('is_public', '=', is_public), '|', ('is_public', '=', True), ('user_id', '=', uid)]" 
                                 context="{'default_tag_model_name': tag_model_name, 'default_is_public': is_public, 'default_user_id': user_id}"
+                                domain="[('tag_model_name', '=', tag_model_name), ('is_public', '=', is_public), '|', ('is_public', '=', True), ('user_id', '=', uid)]" 
                                 placeholder="Select tags"
                                 options="{'color_field': 'color_id', 'no_quick_create': True, 'no_create': False, 'no_edit': True, 'no_open': True, }"
                         />
@@ -119,13 +119,5 @@
                 <filter string="My Tag Families" name="my_tag_families" domain="[('user_id', '=', uid)]"/>
             </search>
         </field>
-    </record>
-
-    <record id="action_smart_tag_family" model="ir.actions.act_window">
-        <field name="name">Tag Families</field>
-        <field name="res_model">smart.tag.family</field>
-        <field name="view_mode">tree,kanban,form</field>
-        <field name="search_view_id" ref="view_smart_tag_family_search"/>
-        <field name="domain">['|', ('is_public', '=', True), ('user_id', '=', uid), ('tag_model_name', '=', tag_model_name)]</field>
     </record>
 </odoo>
