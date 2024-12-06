@@ -20,9 +20,15 @@
         'web',
         'mail',
         'pyper_ui_kit',
+        'pyper_web_theme_activity',
         'pyper_web_theme_discuss',
     ],
     'data': [
         'data/mail_message_install_data.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'pyper_ui_kit_discuss/static/src/mail/**/*',
+        ],
+    },
 }

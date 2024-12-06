@@ -1,0 +1,9 @@
+.o-mail-Form-chatter {
+    display: contents;
+}
+
+.o-mail-ChatterContainer:not(.o-aside):not(.o-full-width) .o-mail-Chatter,
+.o-mail-Form-chatter:not(.o-aside):not(.o-full-width) .o-mail-Chatter {
+    margin-left: inherit;
+    margin-right: inherit;
+}

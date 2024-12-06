@@ -1,0 +1,95 @@
+// Kanban
+.o_kanban_renderer .o_kanban_record {
+    border-radius: $border-radius !important;
+}
+
+.btn-kanban-header{
+    width: 32px;
+    height: 32px;
+    line-height: 35px;
+    border: 1px solid $o-gray-200;
+    padding: 0;
+    font-size:18px;
+
+    &:hover{
+        background-color: $o-gray-100;
+    }
+}
+
+.kanban-counter {
+    height: 28px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.825rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    text-align: center;
+    background-color: $o-gray-100;
+    border-radius: $border-radius;
+}
+
+.o_kanban_record {
+    .o_field_progressbar {
+        width: 100%;
+
+        .o_progress {
+            width: 100%;
+            height: 6px;
+        }
+
+        .o_progressbar_value {
+            display: none !important;
+        }
+    }
+}
+
+
+.o_kanban_renderer .o_kanban_record > div:not(.o_dropdown_kanban),
+.o_kanban_renderer .o_kanban_quick_create {
+    background-color: $o-white !important;
+    border: 1px solid $o-gray-200;
+    border-radius: $border-radius !important;
+    padding: 1rem;
+
+    img {
+        border-radius: $border-radius !important;
+    }
+
+    .rounded-pill {
+        img.rounded {
+            border-radius: 100% !important;
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &:hover {
+        background-color: $o-gray-50 !important;
+    }
+}
+
+.o_kanban_card_header_title {
+    margin-bottom: 5px !important;
+
+    .o_kanban_card_header_title_name {
+        font-size: 2.4rem !important;
+        font-weight: bold !important;
+    }
+}
+
+.oe_kanban_global_click, .o_calendar_renderer, .o_calendar_header, .oe_kanban_color_0 {
+    background-color: $o-white !important;
+}
+
+.o_kanban_group{
+    .o_kanban_quick_create{
+        margin-top: 0 !important;
+        box-shadow: none !important;
+
+        &:hover{
+            background-color: inherit !important;
+        }
+    }
+}

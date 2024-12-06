@@ -1,0 +1,10 @@
+.order_right_block{
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+
+    .btn{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

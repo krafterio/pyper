@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="pyper_ui_kit.KanbanHeader" t-inherit="web.KanbanHeader" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('o_kanban_quick_add')]" position="attributes">
+            <attribute name="class" separator=" " add="btn-kanban-header" remove="pe-2 me-n2"/>
+        </xpath>
+
+        <xpath expr="//button[hasclass('o_kanban_quick_add')]/i" position="attributes">
+            <attribute name="class" separator=" " add="ph ph-plus-circle" remove="fa fa-plus opacity-75"/>
+        </xpath>
+
+        <xpath expr="//Dropdown[1]" position="attributes">
+            <attribute name="class"></attribute>
+            <attribute name="togglerClass">'btn btn-kanban-header me-1'</attribute>
+        </xpath>
+
+        <xpath expr="//Dropdown[1]//i" position="attributes">
+            <attribute name="class" separator=" " add="ph ph-gear-fine" remove="fa fa-gear opacity-50 opacity-100-hover"/>
+        </xpath>
+    </t>
+
+</templates>

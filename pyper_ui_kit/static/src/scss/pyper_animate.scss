@@ -1,0 +1,101 @@
+$o-animation-list-item-delay: 0.006s !default;
+$o-animation-kanban-item-delay: 0.012s !default;
+
+:root {
+    --animation-list-item-delay: #{$o-animation-list-item-delay};
+    --animation-kanban-item-delay: #{$o-animation-kanban-item-delay};
+}
+
+@keyframes fadeInLeftLight {
+    0% {
+        opacity: 0;
+    }
+    1% {
+        transform: translateX(-24px);
+    }
+}
+
+@keyframes fadeInDownLight {
+    0% {
+        opacity: 0;
+    }
+    1% {
+        transform: translateY(-24px);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+.fadeInLeftLight {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-name: fadeInLeftLight;
+}
+
+.fadeInDownLight {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-name: fadeInDownLight;
+}
+
+.o-dropdown--menu,
+.o_popover:not(.o_drawer--popover-item) {
+    animation-duration: 0.3s;
+    animation-name: fadeInDownLight;
+}
+
+.modal-content {
+    animation-duration: 0.6s;
+    animation-fill-mode: both;
+    animation-name: fadeInDownLight;
+}
+
+.pulse {
+    transform: scale(1);
+    animation: pulse 3s infinite;
+}
+
+.o_action.o_list_view .o_list_table .o_group_has_content,
+.o_action.o_list_view .o_list_table .o_data_row,
+.o_action.o_kanban_view .o_kanban_record {
+    animation-duration: 0.2s;
+    animation-name: fadeInDownLight;
+    animation-fill-mode: both;
+
+    &.clear-animation {
+        animation-fill-mode: none;
+    }
+}
+
+.o_action.o_list_view .o_list_table .o_group_has_content,
+.o_action.o_list_view .o_list_table .o_data_row {
+    animation-delay: calc(var(--item-idx, 0) * var(--animation-list-item-delay, 0));
+}
+
+.o_action.o_kanban_view .o_kanban_record {
+    animation-delay: calc(var(--item-idx, 0) * var(--animation-kanban-item-delay, 0));
+}

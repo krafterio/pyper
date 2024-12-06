@@ -1,0 +1,147 @@
+.table-primary {
+    --table-bg: #f5f5f5;
+    --table-striped-bg: #f5f5f5;
+    --table-accent-bg: #fff;
+    --table-striped-color: #000;
+    --table-active-bg: #f5f5f5;
+    --table-active-color: #000;
+    --table-hover-bg: #f5f5f5;
+    --table-hover-color: #000;
+    border-color: $o-gray-200
+}
+
+.o_list_view {
+    .o_list_renderer {
+        border: 1px solid $o-gray-200;
+        border-radius: $o-border-radius;
+
+        .o_list_table {
+            thead {
+                tr:first-child {
+                    th {
+                        border-top-color: transparent;
+                    }
+                }
+            }
+
+            tbody,
+            tfoot {
+                tr.o_data_row + tr:not(.o_data_row),
+                tr:last-child {
+                    td {
+                        border-bottom-color: transparent;
+                    }
+                }
+            }
+
+            td,
+            th {
+                border-color: $o-gray-200;
+                border-bottom-width: 1px;
+                border-bottom-style: solid;
+
+                &:first-child {
+                    border-left-color: transparent;
+                }
+
+                &:last-child {
+                    border-right-color: transparent;
+                }
+            }
+
+            tbody {
+                tr.o_data_row + tr:not(.o_data_row),
+                tr:last-child:not(.o_data_row) {
+                    td {
+                        border-top: 1px solid $o-gray-200;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.o_list_renderer {
+    .o_list_table {
+        .o_group_header {
+            &,
+            > th,
+            > td {
+                background-color: $o-gray-50;
+            }
+        }
+
+        td[name="name"],
+        td[name="image_1920"] {
+            img.img-fluid {
+                border-radius: 20px !important;
+            }
+        }
+
+        tbody tr td[colspan]:first-child:not(.o_field_x2many_list_row_add) {
+            display: none !important;
+        }
+
+        .o_list_record_selector,
+        .o_handle_cell,
+        .o_image_cell,
+        .o_priority_cell {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+
+            > .o_field_widget,
+            > .o-checkbox {
+                text-align: center;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+    }
+}
+
+.o_list_footer {
+    background-color: $o-gray-50;
+
+    td.o_list_number {
+        color: $body-color !important;
+    }
+}
+
+th.align-middle {
+    max-height: 40px;
+    padding-top: 0.3rem !important;
+    padding-bottom: 0.3rem !important;
+
+    span {
+        color: $o-main-color-muted !important;
+    }
+}
+
+th.o_list_actions_header {
+    padding: 0 !important;
+}
+
+
+.o_cp_searchview {
+
+    .close-search-bar-btn {
+        border-left: 1px solid $o-gray-200;
+        border-radius: 0;
+        padding: 0 9px;
+        display: flex;
+        height: 100%;
+        align-items: center;
+        border-right: none !important;
+        position: absolute;
+        right: 0;
+
+        &:hover {
+            background-color: $o-gray-100;
+        }
+    }
+
+    &.search-opened {
+        width: 500px;
+        max-width: 100%;
+    }
+}

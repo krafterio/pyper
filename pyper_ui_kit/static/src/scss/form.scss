@@ -1,0 +1,86 @@
+.o_form_view {
+    .oe_title {
+        h1, .h1 {
+            min-height: auto !important;
+        }
+    }
+}
+
+.contact-form-sheet{
+    > .o_form_sheet{
+        padding-top: 0;
+    }
+}
+
+.contact_avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.card {
+    .o_field_widget.o_readonly_modifier {
+        padding: 0;
+        min-height: auto !important;
+        border: none !important;
+        margin-bottom: 0 !important;
+
+        p:not(:last-of-type) {
+            margin-bottom: 0.5rem;
+        }
+
+        p:last-of-type{
+            margin-bottom: 0;
+        }
+    }
+}
+
+.o_notebook {
+    .o_inner_group {
+        .o_field_widget.o_readonly_modifier {
+            min-height: 44px;
+            display: flex;
+            align-items: start
+        }
+    }
+}
+
+.partner_actions {
+    .btn {
+        margin-bottom: 2rem;
+    }
+}
+
+.o_field_widget {
+    &.o_field_many2many_tags {
+        .o_field_tags {
+            .o_tag{
+                max-height: 24px;
+            }
+        }
+    }
+}
+
+.partner_main_data{
+    padding-top: 1rem;
+}
+
+.partner_activity_data{
+    background-color: $o-gray-100;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    border-left: 1px solid $o-gray-200;
+    border-top: 1px solid $o-gray-200;
+    border-right: 1px solid $o-gray-200;
+    min-height: calc(100vh - #{$o-navbar-height});
+}
+
+.enrich_in_progress_card {
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}

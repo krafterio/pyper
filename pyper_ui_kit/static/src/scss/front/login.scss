@@ -1,0 +1,30 @@
+.oe_login_form {
+    .form-control {
+        background-color: transparent;
+        border: 1px solid $o-gray-400 !important;
+        color: $o-white;
+
+        &:focus {
+            border-color: $o-white !important;
+        }
+    }
+
+    a, .btn.btn-sm {
+        color: $o-gray-500;
+    }
+
+    .btn-outline-white {
+        background-color: transparent;
+        border: 1px solid $o-white;
+        color: $o-white;
+
+        &::placeholder {
+            color: $o-gray-500;
+        }
+
+        &:hover {
+            background-color: #fff !important;
+            color: $o-brand-primary;
+        }
+    }
+}

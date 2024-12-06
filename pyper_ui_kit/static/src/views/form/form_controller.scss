@@ -1,0 +1,104 @@
+.o_form_view {
+    // Actions in Control Panel
+    .o_form_status_indicator_buttons {
+        &.invisible {
+            display: none !important;
+        }
+    }
+
+    &.o_xxl_form_view {
+        .o_form_sheet_bg {
+            overflow: inherit;
+        }
+    }
+
+    .o-form-button-actions {
+        .btn {
+            max-height: 38px;
+        }
+    }
+
+    // Sheet
+    .o_form_sheet {
+        --formView-sheet-padding-y: var(--formView-sheet-padding-y-xxl, 16px);
+        --formView-sheet-padding-x: var(--formView-sheet-padding-x-xxl, 0);
+        overflow-x: clip;
+    }
+
+    // Force chatter in bottom
+    .o_form_renderer {
+        flex-direction: column;
+    }
+
+    .o_inner_group {
+        gap: 4px $o-horizontal-padding;
+    }
+
+    .o_form_statusbar {
+        padding: 0;
+        margin-top: 0;
+    }
+
+    // Vertical group fields
+    .o_group {
+        justify-content: start;
+
+        .o_group_row {
+            .o_wrap_label {
+                &.text-900 {
+                    color: $form-label-color !important; // Reset form label color
+                }
+            }
+        }
+    }
+
+    .o_form_view .o_group .o_wrap_label .o_form_label,
+    .o_form_label {
+        font-weight: 400 !important;
+        font-size: 0.9rem;
+    }
+
+    .o_group_row {
+        .o_field_widget {
+            padding: 8px;
+            border: 1px solid $o-gray-200;
+            border-radius: $input-border-radius;
+            margin-bottom: 16px !important;
+
+            &.o_field_empty {
+                min-height: 44px;
+                display: flex;
+                align-items: start;
+            }
+
+            &.o_field_account-tax-totals-field,
+            &.o_field_priority,
+            &.o_field_boolean {
+                border-color: transparent !important;
+            }
+        }
+    }
+
+    // Notebook
+    .o_notebook {
+        > .tab-content {
+            > .tab-pane {
+                > :first-child {
+                    &:not(.o_group),
+                    &.o_invisible_modifier {
+                        .o_field_x2many.o_field_x2many_list {
+                            .o_list_renderer {
+                                margin-left: 0;
+                                margin-right: 0;
+                            }
+                        }
+                    }
+                }
+
+                > .o_group.row {
+                    overflow-x: clip;
+                }
+            }
+        }
+    }
+}

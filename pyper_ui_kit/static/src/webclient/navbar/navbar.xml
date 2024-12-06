@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pyper_ui_kit.NavBar" t-inherit="web.NavBar" t-inherit-mode="extension">
+        <xpath expr="//header[hasclass('o_navbar')]//DropdownItem[@t-if='currentApp']" position="after">
+             <MenuBreadcrumb/>
+        </xpath>
+    </t>
+</templates>
