@@ -1,6 +1,11 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
+from odoo.addons.pyper.tools.view_validation import extend_relaxng
+
+
+extend_relaxng('base/rng/tree_view.rng', 'pyper_ui_kit/rng/tree_view.rng')
+
 
 def post_init_hook(env):
     icp = env['ir.config_parameter'].sudo()
