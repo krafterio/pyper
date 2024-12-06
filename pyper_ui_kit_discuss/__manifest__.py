@@ -22,4 +22,7 @@
         'pyper_ui_kit',
         'pyper_web_theme_discuss',
     ],
+    'data': [
+        'data/mail_message_install_data.xml',
+    ],
 }
