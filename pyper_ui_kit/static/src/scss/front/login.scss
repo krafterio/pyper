@@ -2,7 +2,6 @@
     .form-control {
         background-color: transparent;
         border: 1px solid $o-gray-400 !important;
-        color: $o-white;
 
         &:focus {
             border-color: $o-white !important;
@@ -16,7 +15,6 @@
     .btn-outline-white {
         background-color: transparent;
         border: 1px solid $o-white;
-        color: $o-white;
 
         &::placeholder {
             color: $o-gray-500;
