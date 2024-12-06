@@ -9,6 +9,9 @@ def post_init_hook(env):
     if icp.get_param('pyper_drawer.drawer_props.nav', None) is None:
         icp.set_param('pyper_drawer.drawer_props.nav', 'True')
 
+    if icp.get_param('pyper_drawer.drawer_props.closeAction', None) is None:
+        icp.set_param('pyper_drawer.drawer_props.closeAction', 'True')
+
     if icp.get_param('pyper_drawer.drawer_props.showCategorySectionMinified', None) == 'True':
         icp.set_param('pyper_drawer.drawer_props.showCategorySectionMinified', False)
 
@@ -24,3 +27,6 @@ def post_init_hook(env):
     # Drawer Toggler
     if icp.get_param('pyper_drawer.drawer_toggler_props.useCaretIcon', None) == 'True':
         icp.set_param('pyper_drawer.drawer_toggler_props.useCaretIcon', False)
+
+    if icp.get_param('pyper_drawer.drawer_toggler_props.autoHide', None) is None:
+        icp.set_param('pyper_drawer.drawer_toggler_props.autoHide', 'True')
