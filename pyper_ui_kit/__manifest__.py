@@ -56,7 +56,6 @@
             'pyper_ui_kit/static/src/webclient/**/*',
 
             # Custom CSS
-            'pyper_ui_kit/static/src/scss/mail.scss',
             'pyper_ui_kit/static/src/scss/list.scss',
             'pyper_ui_kit/static/src/scss/form.scss',
             'pyper_ui_kit/static/src/scss/kanban.scss',
