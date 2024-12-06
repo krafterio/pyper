@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 {
-    'name': 'Web Theme Kit',
+    'name': 'UI Kit',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
-    'description': 'Full web theme kit of Pyper',
+    'description': 'Full UI Kit of Pyper',
     'version': '1.0',
     'author': 'Krafter SAS',
     'website': 'https://krafter.io',
