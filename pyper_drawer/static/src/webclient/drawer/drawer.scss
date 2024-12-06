@@ -59,8 +59,13 @@
         }
     }
 
-    .o_main_navbar + .o_drawer--menu {
-        padding-top: 0;
+    .o_main_navbar {
+        background-color: transparent;
+        border-bottom: transparent;
+
+        + .o_drawer--menu {
+            padding-top: 0;
+        }
     }
 
     &.o_drawer--ready {

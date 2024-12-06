@@ -1,4 +1,23 @@
 // = Drawer Variables
 // ============================================================================
 
+$o-drawer-width: 260px !default;
+$o-drawer-bg: $o-gray-100 !default;
+$o-drawer-border-color: $o-drawer-bg !default;
+$o-drawer-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1) !default;
+
+$o-drawer-item-color: $o-gray-500 !default;
+$o-drawer-item-hover-color: $o-brand-primary !default;
+$o-drawer-item-hover-bg: $o-gray-200 !default;
+$o-drawer-item-active-color: $o-brand-primary !default;
+$o-drawer-item-active-bg: $o-gray-200 !default;
+
+$o-drawer-item-icon-color: $o-drawer-item-color !default;
+
+$o-drawer-subitem-active-color: $o-drawer-item-active-color !default;
+$o-drawer-subitem-active-bg: $o-drawer-item-active-bg !default;
+
+$o-drawer-category-label-color: $o-gray-400 !default;
+$o-drawer-category-label-margin-bottom: 5px !default;
 $o-drawer-category-label-padding-h: 4px !default;
+$o-drawer-category-label-margin-top: 12px !default;
