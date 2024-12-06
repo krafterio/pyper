@@ -48,19 +48,7 @@ class SmartTagFamily(models.Model):
         default=True,
         help="If checked, you can't chose more than one child per family."
     )   
-            
-    # def get_tag_model_name_within_context(self):
-    #     for family in self:
-    #         if family.tag_model_name:
-    #             return family.tag_model_name
-    #         else:
-    #             context = self._context
-    #             if 'default_tag_model_name' in context:
-    #                 return context['default_tag_model_name']
-    #             elif 'tag_model_name' in context:
-    #                 return context['tag_model_name']
-    #             else:
-    #                 return 'tag_model_name'
+
 
     @api.onchange('tag_ids')
     def _onchange_tag_model_name(self):
@@ -78,3 +66,11 @@ class SmartTagFamily(models.Model):
             'res_id': self.id,
             'target': 'current',
         }
+
+    def write(self, vals):
+        res = super(SmartTagFamily, self).write(vals)
+        if 'is_public' in vals:
+            for family in self:
+                for tag in family.tag_ids:
+                    tag.is_public = vals['is_public']
+        return res
