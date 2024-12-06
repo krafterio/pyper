@@ -43,5 +43,5 @@ export class UrlShareMenu extends Component {
 registry.category('systray').add(
     'pyper_url_share.url_share_button',
     {Component: UrlShareMenu},
-    {sequence: 50},
+    {sequence: 90},
 );
