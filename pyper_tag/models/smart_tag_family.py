@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 from odoo import fields, models, api, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, AccessError
 
 
 class SmartTagFamily(models.Model):
@@ -55,23 +55,11 @@ class SmartTagFamily(models.Model):
         store=False
     )
 
-    can_become_public = fields.Boolean(
-        string='Can become public',
-        compute='_compute_can_become_public',
-        store=False
-    )
-
-    @api.depends('user_id')
-    def _compute_can_become_public(self):
-        public_smart_tag_group = self.env.ref('pyper_tag.group_public_smart_tag_manager')
-        for family in self:
-            family.can_become_public = family.is_public or public_smart_tag_group in family.user_id.groups_id
-
-    @api.depends('user_id')
+    @api.depends('user_id', 'is_public')
     def _compute_can_edit(self):
         public_smart_tag_group = self.env.ref('pyper_tag.group_public_smart_tag_manager')
         for family in self:
-            family.can_edit = not family.is_public or public_smart_tag_group in family.user_id.groups_id
+            family.can_edit = not family.is_public or public_smart_tag_group in self.env.user.groups_id or self.env.user.has_group('base.group_system')
 
     @api.onchange('tag_ids')
     def _onchange_tag_model_name(self):
@@ -93,7 +81,24 @@ class SmartTagFamily(models.Model):
     def write(self, vals):
         res = super(SmartTagFamily, self).write(vals)
         if 'is_public' in vals:
+            if not self.env.user.has_group('base.group_system') or not self.env.user.has_group('pyper_tag.group_public_smart_tag_manager'):
+                raise AccessError(_('Only administrators or public smart tag editors can change the visibility of public tag families.'))
             for family in self:
                 for tag in family.tag_ids:
                     tag.is_public = vals['is_public']
         return res
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('is_public') and not self.env.user.has_group('base.group_system') or not self.env.user.has_group('pyper_tag.group_public_smart_tag_manager'):
+                raise AccessError(_('Only administrators can create public tag families.'))
+        return super(SmartTagFamily, self).create(vals_list)
+
+    def unlink(self):
+        for family in self:
+            if family.is_public and not self.env.user.has_group('base.group_system'):
+                raise AccessError(_('Only administrators can delete public tags.'))
+            if family.is_public and not family.can_edit:
+                raise AccessError(_('You need access to public smart tag group permission to delete a public tag.'))
+        return super(SmartTagFamily, self).unlink()

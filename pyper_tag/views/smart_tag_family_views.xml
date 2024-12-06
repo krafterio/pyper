@@ -6,11 +6,10 @@
         <field name="model">smart.tag.family</field>
         <field name="arch" type="xml">
             <tree string="Tag Families" multi_edit="1" editable="bottom" expand="1">
-                <field name="can_edit"/>
-                <field name="can_become_public" column_invisible="1"/>
+                <field name="can_edit" column_invisible="1"/>
                 <field name="name" readonly="not can_edit"/>
                 <field name="tag_model_name" optional="hide"/>
-                <field name="is_public" widget="boolean_toggle" optional="hide" readonly="not can_become_public"/>
+                <field name="is_public" widget="boolean_toggle" optional="hide" readonly="not can_edit"/>
                 <field name="only_child" widget="boolean_toggle" optional="hide" readonly="not can_edit"/>
                 <field name="tag_ids" widget="many2many_tags" optional="show" readonly="not can_edit"
                     options="{'color_field': 'color_id', 'no_quick_create': True, 'no_create': False, 'no_edit': True, 'no_open': True, }"
@@ -38,9 +37,8 @@
                    <group>
                         <group>
                             <field name="can_edit" invisible="1"/>
-                            <field name="can_become_public" invisible="1"/>
                             <field name="name" readonly="not can_edit"/>
-                            <field name="is_public" widget="boolean_toggle" readonly="not can_become_public"/>
+                            <field name="is_public" widget="boolean_toggle" readonly="not can_edit"/>
                             <field name="only_child" widget="boolean_toggle" readonly="not can_edit"/>
                         </group>
                         <group>

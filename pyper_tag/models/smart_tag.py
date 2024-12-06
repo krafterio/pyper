@@ -58,23 +58,11 @@ class SmartTag(models.Model):
         store=False
     )
 
-    can_become_public = fields.Boolean(
-        string='Can become public',
-        compute='_compute_can_become_public',
-        store=False
-    )
-
     @api.depends('user_id', 'is_public')
     def _compute_can_edit(self):
         public_smart_tag_group = self.env.ref('pyper_tag.group_public_smart_tag_manager')
         for tag in self:
-            tag.can_edit = not tag.is_public or public_smart_tag_group in tag.user_id.groups_id
-
-    @api.depends('user_id')
-    def _compute_can_become_public(self):
-        public_smart_tag_group = self.env.ref('pyper_tag.group_public_smart_tag_manager')
-        for tag in self:
-            tag.can_become_public = tag.is_public or public_smart_tag_group in tag.user_id.groups_id
+            tag.can_edit = not tag.is_public or public_smart_tag_group in self.env.user.groups_id or self.env.user.has_group('base.group_system')
 
     @api.constrains('is_public', 'family_id')
     def _check_family_has_same_visibility(self):
@@ -142,12 +130,15 @@ class SmartTag(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if vals.get('is_public') and not self.env.user.has_group('base.group_system'):
+            if vals.get('is_public') and not self.env.user.has_group('base.group_system') or not self.env.user.has_group('pyper_tag.group_public_smart_tag_manager'):
                 raise AccessError(_('Only administrators can create public tags.'))
         return super(SmartTag, self).create(vals_list)
 
     def write(self, vals):
         for smart_tag in self:
+            if 'is_public' in vals:
+                if not self.env.user.has_group('base.group_system') or not self.env.user.has_group('pyper_tag.group_public_smart_tag_manager'):
+                    raise AccessError(_('Only administrators or public smart tag editors can change the visibility of public tags.'))
             if smart_tag.is_public and not self.env.user.has_group('base.group_system'):
                 raise AccessError(_('Only administrators can edit a public tag.'))
         return super(SmartTag, self).write(vals)
