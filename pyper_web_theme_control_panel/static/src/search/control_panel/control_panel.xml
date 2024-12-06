@@ -27,7 +27,7 @@
         </xpath>
 
         <xpath expr="//button[hasclass('o_back_button')]" position="attributes">
-            <attribute name="class" separator=" " remove="btn-primary me-2 gap-1" add="btn-outline-primary"/>
+            <attribute name="class" separator=" " remove="btn-primary me-2 gap-1" add="btn-outline-secondary"/>
         </xpath>
     </t>
 
