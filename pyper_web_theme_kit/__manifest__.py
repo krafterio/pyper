@@ -19,6 +19,7 @@
         'pyper_control_panel',
         'pyper_drawer',
         'pyper_drawer_user',
+        'pyper_drawer_workspace',
         'pyper_menu',
         'pyper_url_share',
         'pyper_web_view_menu',
