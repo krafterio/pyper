@@ -7,12 +7,10 @@
 
         <xpath expr="//link[@rel='apple-touch-icon']" position="attributes">
             <attribute name="href">/pyper_ui_kit/static/img/icon_light.svg</attribute>
-            <attribute name="data-id">app_logo</attribute>
         </xpath>
     </template>
 
     <template id="pyper_ui_kit.login_layout" inherit_id="web.login_layout">
-
         <xpath expr="//t[@t-set='body_classname']" position="replace">
             <t t-set="body_classname" t-value="'bg-white'"/>
         </xpath>
@@ -23,7 +21,6 @@
 
         <xpath expr="//div[1]/div[1]/div[1]/div[1]/img" position="attributes">
             <attribute name="t-attf-src">/pyper_ui_kit/static/img/icon_light.svg</attribute>
-            <attribute name="data-id">app_logo</attribute>
             <attribute name="style">width:40px</attribute>
         </xpath>
 
@@ -78,10 +75,5 @@
             <attribute name="style">border:1px solid #E3E3E3 !important;font-size:0.925rem</attribute>
             <attribute name="placeholder">Write your password</attribute>
         </xpath>
-
-        <xpath expr="//form[hasclass('oe_login_form')]/div[4]/button" position="replace">
-            <button type="submit" class="btn btn-primary mb-3 text-white">Jump in</button>
-        </xpath>
     </template>
-
 </odoo>

@@ -6,70 +6,42 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-24 14:20+0000\n"
-"PO-Revision-Date: 2024-11-24 15:20+0100\n"
+"POT-Creation-Date: 2024-12-06 21:58+0000\n"
+"PO-Revision-Date: 2024-12-06 22:59+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.5\n"
 
 #. module: pyper_ui_kit
 #. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/search/search_bar/external_search_bar_dropdown.js:0
-#, python-format
-msgid "Add"
-msgstr "Ajouter"
-
-#. module: pyper_ui_kit
-#. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/search/search_bar/external_search_bar_dropdown.js:0
-#: code:addons/pyper_ui_kit/static/src/search/search_bar/external_search_bar_dropdown.xml:0
-#, python-format
-msgid "Add Custom Filter"
-msgstr "Ajouter un filtre personnalisé"
-
-#. module: pyper_ui_kit
-#. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/views/list/external_order_by_dropdown.js:0
-#, python-format
-msgid "All fields"
-msgstr "Tous les champs"
-
-#. module: pyper_ui_kit
-#: model:ir.model,name:pyper_ui_kit.model_avatar_mixin
-msgid "Avatar Mixin"
-msgstr ""
-
-#. module: pyper_ui_kit
-#. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/search/search_bar/external_search_bar_dropdown.js:0
-#, python-format
-msgid "Cancel"
-msgstr "Annuler"
-
-#. module: pyper_ui_kit
-#. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/search/control_panel/selector_toggler.js:0
-#, python-format
-msgid "Disable selector"
-msgstr "Désactivé le sélecteur"
-
-#. module: pyper_ui_kit
-#: model:ir.ui.menu,name:pyper_ui_kit.menu_chrome_extension_link
-msgid "Download the Chrome extension"
-msgstr "Télécharger l’extension Chrome"
-
-#. module: pyper_ui_kit
-#. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/search/control_panel/selector_toggler.js:0
-#, python-format
-msgid "Enable selector"
-msgstr "Activé le sélecteur"
-
-#. module: pyper_ui_kit
-#. odoo-javascript
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/badge/badge_field.js:0
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/char/char_field.js:0
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/datetime/datetime_field.js:0
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/float/float_field.js:0
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/float_time/float_time_field.js:0
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/integer/integer_field.js:0
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/monetary/monetary_field.js:0
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/percentage/percentage_field.js:0
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/phone/phone_field.js:0
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/text/text_field.js:0
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/url/url_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/badge/badge_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/char/char_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/datetime/datetime_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/float/float_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/float_time/float_time_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/integer/integer_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/monetary/monetary_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/percentage/percentage_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/phone/phone_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/text/text_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/url/url_field.js:0
 #: code:addons/pyper_ui_kit/static/src/views/fields/badge/badge_field.js:0
 #: code:addons/pyper_ui_kit/static/src/views/fields/char/char_field.js:0
 #: code:addons/pyper_ui_kit/static/src/views/fields/datetime/datetime_field.js:0
@@ -86,43 +58,24 @@ msgid "Enter a value"
 msgstr "Saisir une valeur"
 
 #. module: pyper_ui_kit
-#. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/search/search_bar/external_group_by_dropdown.js:0
-#: code:addons/pyper_ui_kit/static/src/search/search_bar/external_group_by_dropdown.xml:0
-#, python-format
-msgid "Group by"
-msgstr "Regrouper par"
-
-#. module: pyper_ui_kit
-#: model:ir.model.fields.selection,name:pyper_ui_kit.selection__res_users__notification_type__email
-msgid "Handle by Emails"
-msgstr "Recevoir par e-mail"
-
-#. module: pyper_ui_kit
-#. odoo-python
-#: code:addons/pyper_ui_kit/models/res_users.py:0
-#, python-format
-msgid "Hello,"
-msgstr "Bonjour,"
-
-#. module: pyper_ui_kit
 #: model:res.groups,name:pyper_ui_kit.group_hidden
-msgid "Hidden"
+msgid "Hidden Group"
 msgstr "Caché"
 
 #. module: pyper_ui_kit
-#: model:ir.model.fields,field_description:pyper_ui_kit.field_ir_actions_server__icon
-#: model:ir.model.fields,field_description:pyper_ui_kit.field_ir_cron__icon
-msgid "Icon"
-msgstr "Icone"
+#: model:ir.model,name:pyper_ui_kit.model_ir_ui_menu
+msgid "Menu"
+msgstr ""
 
 #. module: pyper_ui_kit
-#: model_terms:ir.ui.view,arch_db:pyper_ui_kit.login
-msgid "Login"
-msgstr "Connexion"
+#: model:ir.model,name:pyper_ui_kit.model_ir_module_module
+msgid "Module"
+msgstr ""
 
 #. module: pyper_ui_kit
 #. odoo-javascript
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/form/button_actions.xml:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/form/button_actions.xml:0
 #: code:addons/pyper_ui_kit/static/src/views/form/button_actions.xml:0
 #, python-format
 msgid "More"
@@ -130,40 +83,10 @@ msgstr "Plus"
 
 #. module: pyper_ui_kit
 #. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/webclient/user_menu/user_menu.xml:0
-#, python-format
-msgid "My account"
-msgstr "Mon compte"
-
-#. module: pyper_ui_kit
-#: model:ir.model.fields,field_description:pyper_ui_kit.field_res_users__notification_type
-msgid "Notification"
-msgstr "Notifications"
-
-#. module: pyper_ui_kit
-#. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/views/list/external_order_by_dropdown.xml:0
-#, python-format
-msgid "Order by"
-msgstr "Trier par"
-
-#. module: pyper_ui_kit
-#. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/search/search_bar/external_search_bar_dropdown.xml:0
-#, python-format
-msgid "Quick filters"
-msgstr "Filtres rapides"
-
-#. module: pyper_ui_kit
-#. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/search/search_bar/external_search_bar_dropdown.js:0
-#: code:addons/pyper_ui_kit/static/src/search/search_bar/external_search_bar_dropdown.xml:0
-#, python-format
-msgid "Search"
-msgstr "Rechercher"
-
-#. module: pyper_ui_kit
-#. odoo-javascript
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/many2one/many2one_field.js:0
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/selection/selection_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/many2one/many2one_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/selection/selection_field.js:0
 #: code:addons/pyper_ui_kit/static/src/views/fields/many2one/many2one_field.js:0
 #: code:addons/pyper_ui_kit/static/src/views/fields/selection/selection_field.js:0
 #, python-format
@@ -172,55 +95,17 @@ msgstr "Sélectionner une valeur"
 
 #. module: pyper_ui_kit
 #. odoo-javascript
+#: code:addons/bendr/pyper/pyper_ui_kit/static/src/views/fields/many2many_tags/many2many_tags_field.js:0
+#: code:addons/pyper/pyper_ui_kit/static/src/views/fields/many2many_tags/many2many_tags_field.js:0
 #: code:addons/pyper_ui_kit/static/src/views/fields/many2many_tags/many2many_tags_field.js:0
 #, python-format
 msgid "Select values"
 msgstr "Sélectionner des valeurs"
 
 #. module: pyper_ui_kit
-#: model:ir.model,name:pyper_ui_kit.model_ir_actions_server
-msgid "Server Action"
-msgstr "Action de serveur"
-
-#. module: pyper_ui_kit
-#. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/views/list/external_optional_fields_dropdown.js:0
-#, python-format
-msgid "Show/Hide optional columns"
-msgstr "Afficher/Masquer les colonnes optionnelles"
-
-#. module: pyper_ui_kit
-#. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/views/list/external_order_by_dropdown.js:0
-#, python-format
-msgid "Sort the list"
-msgstr "Trier la liste"
-
-#. module: pyper_ui_kit
-#. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/search/search_bar/external_search_bar_dropdown.xml:0
-#, python-format
-msgid "Use Quick Filter"
-msgstr "Utiliser un filtre rapide"
-
-#. module: pyper_ui_kit
-#: model:ir.model,name:pyper_ui_kit.model_res_users
-msgid "User"
-msgstr "Utilisateur"
-
-#. module: pyper_ui_kit
-#. odoo-javascript
-#: code:addons/pyper_ui_kit/static/src/views/list/external_order_by_dropdown.xml:0
-#, python-format
-msgid "View fields"
-msgstr "Champs de la vue"
-
-#. module: pyper_ui_kit
-#. odoo-python
-#: code:addons/pyper_ui_kit/models/res_users.py:0
-#, python-format
-msgid "What about sending me an emoji for example ?"
-msgstr "Et si vous m’écriviez un émoji par exemple ?"
+#: model_terms:ir.ui.view,arch_db:pyper_ui_kit.login_layout
+msgid "Welcome"
+msgstr "Bienvenue"
 
 #. module: pyper_ui_kit
 #: model_terms:ir.ui.view,arch_db:pyper_ui_kit.login
