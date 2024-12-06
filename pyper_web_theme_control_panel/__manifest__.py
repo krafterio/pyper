@@ -20,4 +20,9 @@
         'pyper_control_panel',
         'pyper_web_theme',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'pyper_web_theme_control_panel/static/src/search/**/*',
+        ],
+    },
 }
