@@ -11,6 +11,18 @@
                 &.btn {
                     display: flex;
                     align-items: center;
+
+                    > span {
+                        text-align: start;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+
+                        @each $breakpoint, $width in $o-views-switcher-width-breakpoints {
+                            @include media-breakpoint-up($breakpoint) {
+                                width: $width;
+                            }
+                        }
+                    }
                 }
             }
         }
