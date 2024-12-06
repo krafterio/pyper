@@ -26,4 +26,8 @@
         'pyper_web_theme',
         'pyper_web_theme_icons',
     ],
+    'data': [
+        # Views
+        'views/webclient_templates.xml',
+    ],
 }
