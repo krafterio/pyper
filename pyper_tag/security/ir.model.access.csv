@@ -1,5 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
 access_smart_tag_user,smart.tag.user,model_smart_tag,base.group_user,1,0,0,0
-access_smart_tag_manager,smart.tag.manager,model_smart_tag,base.group_user,1,1,1,1
+manage_public_smart_tag,public.smart.tag.manager,model_smart_tag,pyper_tag.group_public_smart_tag_manager,1,1,1,1
+manage_smart_tag_manager,smart.tag.manager,model_smart_tag,base.group_user,1,1,1,1
+
 access_smart_tag_family_user,smart.tag.family.user,model_smart_tag_family,base.group_user,1,0,0,0
-access_smart_tag_family_manager,smart.tag.family.manager,model_smart_tag_family,base.group_user,1,1,1,1
+manage_public_smart_tag_family,public.smart.tag.family.manager,model_smart_tag_family,pyper_tag.group_public_smart_tag_manager,1,1,1,1
+manage_smart_tag_family_manager,smart.tag.family.manager,model_smart_tag_family,base.group_user,1,1,1,1

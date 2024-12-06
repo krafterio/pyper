@@ -44,13 +44,37 @@ class SmartTag(models.Model):
 
     family_id = fields.Many2one(
         'smart.tag.family', 
-        string="Tag family", 
-        help="The family to which this tag belongs"
+        string='Tag family', 
+        help='The family to which this tag belongs'
     )
 
     color_id = fields.Char('Tag color')
 
     emoji = fields.Char('Emoji')
+
+    can_edit = fields.Boolean(
+        string='Can edit',
+        compute='_compute_can_edit',
+        store=False
+    )
+
+    can_become_public = fields.Boolean(
+        string='Can become public',
+        compute='_compute_can_become_public',
+        store=False
+    )
+
+    @api.depends('user_id', 'is_public')
+    def _compute_can_edit(self):
+        public_smart_tag_group = self.env.ref('pyper_tag.group_public_smart_tag_manager')
+        for tag in self:
+            tag.can_edit = not tag.is_public or public_smart_tag_group in tag.user_id.groups_id
+
+    @api.depends('user_id')
+    def _compute_can_become_public(self):
+        public_smart_tag_group = self.env.ref('pyper_tag.group_public_smart_tag_manager')
+        for tag in self:
+            tag.can_become_public = tag.is_public or public_smart_tag_group in tag.user_id.groups_id
 
     @api.constrains('is_public', 'family_id')
     def _check_family_has_same_visibility(self):
@@ -132,5 +156,7 @@ class SmartTag(models.Model):
         for smart_tag in self:
             if smart_tag.is_public and not self.env.user.has_group('base.group_system'):
                 raise AccessError(_('Only administrators can delete public tags.'))
+            if smart_tag.is_public and not smart_tag.can_edit:
+                raise AccessError(_('You need access to public smart tag group permission to delete a public tag.'))
         return super(SmartTag, self).unlink()
                

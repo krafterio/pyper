@@ -47,8 +47,31 @@ class SmartTagFamily(models.Model):
         'Only child',
         default=True,
         help="If checked, you can't chose more than one child per family."
-    )   
+    )
 
+    can_edit = fields.Boolean(
+        string='Can edit',
+        compute='_compute_can_edit',
+        store=False
+    )
+
+    can_become_public = fields.Boolean(
+        string='Can become public',
+        compute='_compute_can_become_public',
+        store=False
+    )
+
+    @api.depends('user_id')
+    def _compute_can_become_public(self):
+        public_smart_tag_group = self.env.ref('pyper_tag.group_public_smart_tag_manager')
+        for family in self:
+            family.can_become_public = family.is_public or public_smart_tag_group in family.user_id.groups_id
+
+    @api.depends('user_id')
+    def _compute_can_edit(self):
+        public_smart_tag_group = self.env.ref('pyper_tag.group_public_smart_tag_manager')
+        for family in self:
+            family.can_edit = not family.is_public or public_smart_tag_group in family.user_id.groups_id
 
     @api.onchange('tag_ids')
     def _onchange_tag_model_name(self):

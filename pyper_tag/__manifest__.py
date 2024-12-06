@@ -18,11 +18,12 @@
        'web',
     ],
     'data': [
+        # Data
+        'data/groups.xml',
+        
         # Security
         'security/ir.model.access.csv',
-
-        # Data
-         'data/rules.xml',
+        'security/rules.xml',
 
         # Views
         'views/smart_tag_family_views.xml',
