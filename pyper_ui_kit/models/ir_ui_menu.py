@@ -16,4 +16,4 @@ class IrUiMenu(models.Model):
         menu = self.env.ref(menu_xmlid, False)
 
         if group_hidden and menu:
-            menu.groups_id = [Command.link(group_hidden.id)]
+            menu.groups_id = [Command.set([group_hidden.id])]
