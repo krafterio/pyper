@@ -1,9 +1,11 @@
 .o_main_navbar {
     .o_menu_systray {
+        padding-right: $o-horizontal-padding;
+
         > .dropdown,
         > .dropdown-item {
             &.o_switch_company_menu {
-                margin-right: $o-horizontal-padding;
+                margin-right: 0;
             }
         }
     }
