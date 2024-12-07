@@ -37,29 +37,9 @@
     }
 }
 
-.o_notebook {
-    .o_inner_group {
-        .o_field_widget.o_readonly_modifier {
-            min-height: 44px;
-            display: flex;
-            align-items: start
-        }
-    }
-}
-
 .partner_actions {
     .btn {
         margin-bottom: 2rem;
-    }
-}
-
-.o_field_widget {
-    &.o_field_many2many_tags {
-        .o_field_tags {
-            .o_tag{
-                max-height: 24px;
-            }
-        }
     }
 }
 

@@ -1,39 +1,28 @@
+// Form sheet
+// Exclude global modal and modal in action manager
+.o_action_manager {
+    .o_form_view {
+        &:not(.modal-content) {
+            .o_form_sheet_bg {
+                padding: 0;
+            }
+        }
+    }
+}
+
+// Form view
 .o_form_view {
-    // Actions in Control Panel
-    .o_form_status_indicator_buttons {
-        &.invisible {
-            display: none !important;
-        }
-    }
-
-    &.o_xxl_form_view {
-        .o_form_sheet_bg {
-            overflow: inherit;
-        }
-    }
-
-    .o-form-button-actions {
-        .btn {
-            max-height: 38px;
-        }
-    }
-
-    // Sheet
-    .o_form_sheet {
-        --formView-sheet-padding-y: var(--formView-sheet-padding-y-xxl, 16px);
-        --formView-sheet-padding-x: var(--formView-sheet-padding-x-xxl, 0);
-        overflow-x: clip;
-    }
-
     // Force chatter in bottom
     .o_form_renderer {
         flex-direction: column;
     }
 
+    // Group
     .o_inner_group {
         gap: 4px $o-horizontal-padding;
     }
 
+    // Statusbar
     .o_form_statusbar {
         padding: 0;
         margin-top: 0;
@@ -46,41 +35,260 @@
         .o_group_row {
             .o_wrap_label {
                 &.text-900 {
-                    color: $form-label-color !important; // Reset form label color
+                    color: $form-label-color; // Reset form label color
                 }
             }
         }
     }
 
-    .o_form_view .o_group .o_wrap_label .o_form_label,
+    // Label field
+    .o_group .o_wrap_label .o_form_label,
+    .o_checkbox_optional_field > .o_form_label,
     .o_form_label {
-        font-weight: 400 !important;
+        font-weight: 400;
         font-size: 0.9rem;
     }
 
-    .o_group_row {
+    // Field widgets
+    .o_form_sheet {
         .o_field_widget {
             padding: 8px;
             border: 1px solid $o-gray-200;
             border-radius: $input-border-radius;
-            margin-bottom: 16px !important;
+            margin-bottom: 16px;
+            min-height: 40px;
 
             &.o_field_empty {
-                min-height: 44px;
                 display: flex;
                 align-items: start;
             }
 
-            &.o_field_account-tax-totals-field,
-            &.o_field_priority,
-            &.o_field_boolean {
-                border-color: transparent !important;
+            &.o_field_boolean,
+            &.o_field_radio {
+                &:not(:first-child) {
+                    padding-left: 1rem;
+                }
             }
+
+            // Edit and delete buttons in hover of image field
+            &.o_field_image {
+                &,
+                img {
+                    border-radius: $o-border-radius;
+                }
+            }
+
+            // Remove native negative margin top for many2many tags avatar
+            &.o_field_many2many_tags_avatar {
+                margin-top: 0;
+            }
+
+            // Remove double border and double padding on dropdown
+            > .o-dropdown {
+                margin: -8px;
+
+                .dropdown-toggle {
+                    padding: 8px;
+                    border: none;
+                    border-radius: $o-border-radius*1.2 !important;
+                }
+            }
+
+            // Remove native padding on inputs
+            .o_input {
+                padding: 0;
+            }
+
+            // Remove native border bottom on inputs
+            &:not(.o_field_domain) {
+                .odoo-editor-editable,
+                .o_input,
+                input,
+                textarea {
+                    &:not([type="checkbox"]):not([type="radio"]) {
+                        border-bottom: none !important;
+                    }
+                }
+            }
+
+            &.o_field_domain {
+                .odoo-editor-editable,
+                .o_input,
+                input,
+                textarea {
+                    &:not(:hover):not(:focus) {
+                        border-color: $o-gray-200;
+                    }
+                }
+            }
+
+            // Hover and focus style
+            &:not(.o_readonly_modifier) {
+                &:hover,
+                &:focus-within {
+                    border-color: $o-gray-400 !important;
+                }
+            }
+
+            // Remove margin bottom
+            &.o_field_handle,
+            .o_field_widget {
+                margin-bottom: 0;
+            }
+
+            // Remove border and padding for specific field widgets
+            &.o_field_boolean,
+            &.o_field_radio,
+            &.o_field_image,
+            &.o_field_priority,
+            &.o_field_priority_switch,
+            &.o_field_selection_badge,
+            &.o_field_boolean_toggle,
+            &.o_field_one2many,
+            &.o_field_many2many,
+            &.o_field_many2many_checkboxes,
+            &.o_field_properties,
+            &.o_field_auto_save_res_partner,
+            &.o_field_account-tax-totals-field,
+            .o_field_widget {
+                border: none;
+                padding: 0;
+                display: inline-flex;
+                align-items: center;
+            }
+
+            // Remove min-height
+            .o_field_x2many {
+                .o_field_widget {
+                    min-height: auto;
+                }
+            }
+        }
+
+        // Widget field in title
+        .h6 {
+            > .o_field_widget {
+                padding-top: 2px;
+                padding-bottom: 2px;
+                min-height: auto;
+            }
+        }
+
+        // Inline button link
+        .o_form_label.d-inline-block {
+            + .btn-link.d-inline-block {
+                line-height: normal;
+                margin-right: 3px;
+            }
+        }
+    }
+
+    // Field widgets in title
+    .oe_title {
+        > h1,
+        > .h1,
+        > h2,
+        > .h2,
+        > h3,
+        > .h3 {
+            .o_field_widget {
+                &.o_readonly_modifier {
+                    border: none;
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+
+                > .dropdown {
+                    .dropdown-toggle {
+                        line-height: 34px;
+                    }
+                }
+            }
+        }
+    }
+
+    // Address fields
+    // Override native form controller address format
+    .o_form_editable .o_address_format {
+        .o_address_state {
+            width: 35%;
+            margin-right: 0;
+        }
+
+        .o_address_zip {
+            width: 23%;
+            margin-right: 2%;
+        }
+    }
+
+    // Use same style like form editable in readonly because field borders are always displayed
+    .o_form_renderer:not(.o_form_editable) .o_address_format {
+        .o_address_city {
+            display: inline-block;
+            width: 38%;
+            margin-right: 2%;
+        }
+
+        .o_address_state {
+            display: inline-block;
+            width: 35%;
+            margin-right: 0;
+        }
+
+        .o_address_zip {
+            display: inline-block;
+            width: 23%;
+            margin-right: 2%;
+        }
+
+        &.o_zip_city {
+            .o_address_zip {
+                width: 38%;
+                margin-right: 2%;
+            }
+
+            .o_address_city {
+                width: 60%;
+                margin-right: 0;
+            }
+
+            .o_address_state {
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+
+        &.o_city_state {
+            .o_address_city {
+                width: 50%;
+            }
+
+            .o_address_state {
+                width: 48%;
+                margin-right: 0;
+            }
+
+            .o_address_zip {
+                width: 100%;
+            }
+        }
+    }
+
+    // Image field
+    .o_field_image {
+        button {
+            display: flex;
+            align-items: center;
         }
     }
 
     // Notebook
     .o_notebook {
+        .nav {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
         > .tab-content {
             > .tab-pane {
                 > :first-child {
