@@ -6,7 +6,7 @@
         </xpath>
 
         <xpath expr="//t[@t-slot='icon_caret']/i" position="attributes">
-            <attribute name="class" separator=" " remove="fa fa-caret-right" add="ph-light ph-caret-right"/>
+            <attribute name="class" separator=" " remove="fa fa-caret-right" add="ph-fill ph-caret-right"/>
         </xpath>
     </t>
 </templates>

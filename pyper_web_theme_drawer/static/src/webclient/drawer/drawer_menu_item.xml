@@ -6,19 +6,19 @@
         </xpath>
 
         <xpath expr="//t[@t-slot='closed_caret_icon']/i" position="attributes">
-            <attribute name="class" separator=" " remove="fa fa-caret-right" add="ph-light ph-caret-right"/>
+            <attribute name="class" separator=" " remove="fa fa-caret-right" add="ph-fill ph-caret-right"/>
         </xpath>
 
         <xpath expr="//t[@t-slot='opened_caret_icon']/i" position="attributes">
-            <attribute name="class" separator=" " remove="fa fa-caret-down" add="ph-light ph-caret-down"/>
+            <attribute name="class" separator=" " remove="fa fa-caret-down" add="ph-fill ph-caret-down"/>
         </xpath>
 
         <xpath expr="//t[@t-slot='next_caret_icon']/i" position="attributes">
-            <attribute name="class" separator=" " remove="fa fa-caret-down" add="ph-light ph-caret-down"/>
+            <attribute name="class" separator=" " remove="fa fa-caret-down" add="ph-fill ph-caret-down"/>
         </xpath>
 
         <xpath expr="//t[@t-slot='next_caret_icon_opened']/i" position="attributes">
-            <attribute name="class" separator=" " remove="fa fa-caret-right" add="ph-light ph-caret-right"/>
+            <attribute name="class" separator=" " remove="fa fa-caret-right" add="ph-fill ph-caret-right"/>
         </xpath>
     </t>
 </templates>
