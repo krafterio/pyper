@@ -10,12 +10,12 @@
             }
 
             .oe_topbar_name {
-                margin-left: $o-drawer-item-padding-h;
+                margin-left: $o-drawer-user-avatar-gap;
             }
         }
 
         .o_user_avatar {
-            height: $o-drawer-icon-width !important;
+            height: $o-drawer-user-avatar-size !important;
         }
 
         .o-dropdown--menu {
@@ -39,8 +39,8 @@
 
             .dropdown-toggle {
                 &.btn {
-                    padding-left: $o-drawer-item-nav-padding-h - ($o-drawer-item-nav-margin-h/2);
-                    padding-right: $o-drawer-item-nav-padding-h - ($o-drawer-item-nav-margin-h/2);
+                    padding-left: $o-drawer-user-btn-padding-h;
+                    padding-right: $o-drawer-user-btn-padding-h;
                 }
             }
         }

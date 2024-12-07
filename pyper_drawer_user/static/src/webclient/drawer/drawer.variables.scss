@@ -1,1 +1,4 @@
 $o-drawer-user-button-padding: 2px 4px 2px 0 !default;
+$o-drawer-user-btn-padding-h: 6px !default;
+$o-drawer-user-avatar-size: ($o-drawer-icon-width + $o-drawer-user-btn-padding-h * 2) - 2px;
+$o-drawer-user-avatar-gap: ($o-drawer-user-btn-padding-h * 2) + 2px !default;
