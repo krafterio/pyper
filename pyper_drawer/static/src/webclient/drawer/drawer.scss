@@ -203,6 +203,7 @@
         .o_drawer--item-icon-caret {
             width: $o-drawer-item-padding-h;
             height: $o-drawer-item-padding-h;
+            margin-right: -$o-drawer-item-padding-h;
             text-align: center;
             display: flex;
             align-items: center;
@@ -557,6 +558,10 @@
                 padding-left: $o-drawer-item-nav-padding-h - ($o-drawer-item-nav-margin-h/2);
                 padding-right: $o-drawer-item-nav-padding-h - ($o-drawer-item-nav-margin-h/2);
             }
+        }
+
+        .o_drawer--item-icon-caret {
+            margin-right: -($o-drawer-item-nav-padding-h - ($o-drawer-item-nav-margin-h/2));
         }
     }
 
