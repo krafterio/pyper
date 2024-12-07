@@ -211,6 +211,10 @@
             align-items: center;
             justify-content: center;
             color: $o-drawer-item-caret-color;
+
+            i {
+                font-size: $o-drawer-item-caret-size;
+            }
         }
 
         .o_drawer--item-icon-counter {
@@ -469,6 +473,7 @@
         .o_drawer--menu-item-content {
             color: $o-drawer-item-active-color;
             background-color: $o-drawer-item-active-bg;
+            box-shadow: $o-drawer-item-active-shadow;
         }
 
         &:hover,
@@ -588,6 +593,7 @@
                 .o_drawer--menu-item-content {
                     color: $o-drawer-subitem-active-color;
                     background-color: $o-drawer-subitem-active-bg;
+                    box-shadow: $o-drawer-sub-item-active-shadow;
                 }
 
                 &:hover,

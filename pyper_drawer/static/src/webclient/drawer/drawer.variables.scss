@@ -41,6 +41,7 @@ $o-drawer-item-color: inherit !default;
 $o-drawer-item-bg: inherit !default;
 $o-drawer-item-icon-color: inherit !default;
 $o-drawer-item-caret-color: $o-gray-500 !default;
+$o-drawer-item-caret-size: $o-font-size-base !default;
 
 $o-drawer-item-counter-border-radius: $o-border-radius !default;
 $o-drawer-item-counter-padding-v: 1px !default;
@@ -61,6 +62,8 @@ $o-drawer-item-counter-hover-opacity: 1 !default;
 
 $o-drawer-item-active-color: $o-component-active-color !default;
 $o-drawer-item-active-bg: $o-component-active-bg !default;
+$o-drawer-item-active-shadow: none !default;
+$o-drawer-sub-item-active-shadow: none !default;
 $o-drawer-item-icon-active-color: $o-drawer-item-active-color !default;
 $o-drawer-item-caret-active-color: $o-brand-primary !default;
 $o-drawer-item-counter-active-color: $o-drawer-item-active-color !default;
