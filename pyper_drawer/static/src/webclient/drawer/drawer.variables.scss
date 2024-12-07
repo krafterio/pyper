@@ -12,10 +12,6 @@ $o-drawer-shadow: 0 10px 14px rgba(0, 0, 0, 0.12) !default;
 
 $o-drawer-menu-padding-h: $o-horizontal-padding/2 !default;
 
-$o-drawer-logo-name-font-weight: bold !default;
-$o-drawer-logo-name-font-size: 1rem !default;
-$o-drawer-logo-name-padding: 0 ($o-navbar-height*0.8) 0 2px !default;
-
 $o_drawer--closer-font-size: 1.2rem !default;
 $o_drawer--closer-color: $o-gray-300 !default;
 $o_drawer--closer-color-hover: $o-main-text-color !default;
@@ -117,6 +113,15 @@ $o-drawer-sub-panel-responsive-zindex: $o-drawer-zindex + 1 !default;
 $o-drawer-sub-panel-header-height: $o-navbar-height !default;
 $o-drawer-sub-panel-title-font-weight: bold !default;
 $o-drawer-sub-panel-title-font-size: 1.1rem !default;
+
+$o-drawer-logo-badge-width: $o-drawer-mini-width - $o-drawer-border-width !default;
+$o-drawer-logo-badge-img-width: $o-drawer-item-icon-width*1.4 !default;
+$o-drawer-logo-badge-img-border-radius: $o-border-radius !default;
+$o-drawer-logo-name-font-weight: bold !default;
+$o-drawer-logo-name-font-size: 1rem !default;
+$o-drawer-logo-name-padding: 0 ($o-navbar-height*0.8) 0 2px !default;
+$o-drawer-logo-padding-h: ($o-drawer-item-padding-h) - (($o-drawer-mini-width - $o-drawer-border-width - $o-drawer-item-icon-width) / 2) !default;
+$o-drawer-logo-nav-padding-h: ($o-drawer-item-nav-padding-h + ($o-drawer-item-nav-margin-h/2)) - (($o-drawer-mini-width - $o-drawer-border-width - $o-drawer-item-icon-width) / 2) !default;
 
 $o-drawer-toggler-locked-width: $o-drawer-width !default;
 $o-drawer-toggler-locked-width-with-apps-menu: ($o-drawer-toggler-locked-width - $o-navbar-apps-menu-width) !default;

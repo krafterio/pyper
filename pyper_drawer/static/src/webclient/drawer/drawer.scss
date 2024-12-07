@@ -59,10 +59,7 @@
         }
     }
 
-    .o_main_navbar {
-        background-color: transparent;
-        border-bottom: transparent;
-
+    .o_drawer_app_logo {
         + .o_drawer--menu {
             padding-top: 0;
         }
@@ -779,37 +776,67 @@
 }
 
 // App Logo
-.o_drawer_app_logo {
-    display: flex;
-    align-items: center;
-
-    .o_drawer_app_logo_badge {
-        width: $o-drawer-mini-width - $o-drawer-border-width;
+.o_drawer {
+    .o_drawer_app_logo {
+        // Main Navbar style
         display: flex;
-        justify-content: center;
+        height: var(--o-navbar-height);
+        min-width: min-content;
+        padding-top: $o-navbar-padding-v;
+        padding-bottom: $o-navbar-padding-v;
+        border-bottom: $o-navbar-border-bottom;
+        border-bottom-color: transparent;
+        background: transparent;
+        font-size: $o-navbar-font-size;
+        flex: 0 0 auto;
 
-        img {
-            width: $o-drawer-item-icon-width*1.4;
-            height: $o-drawer-item-icon-width*1.4;
-            max-width: $o-drawer-item-icon-width*1.4;
-            max-height: $o-drawer-item-icon-width*1.4;
-            border-radius: $o-border-radius;
+        // Drawer App Logo
+        align-items: center;
+        padding-left: $o-drawer-logo-padding-h;
+        padding-right: $o-drawer-logo-padding-h;
+
+        .o_drawer_app_logo_badge {
+            width: $o-drawer-logo-badge-width;
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: $o-drawer-logo-badge-img-width;
+                height: $o-drawer-logo-badge-img-width;
+                max-width: $o-drawer-logo-badge-img-width;
+                max-height: $o-drawer-logo-badge-img-width;
+                border-radius: $o-drawer-logo-badge-img-border-radius;
+            }
+        }
+
+        .o_drawer_app_logo_full {
+            flex-grow: 1;
+            display: flex;
+            padding: $o-drawer-logo-name-padding;
+
+            span {
+                font-weight: $o-drawer-logo-name-font-weight;
+                font-size: $o-drawer-logo-name-font-size;
+            }
+
+            img {
+                height: $o-drawer-item-font-size*1.2;
+                margin-left: $o-drawer-item-nav-margin-h/2;
+            }
         }
     }
 
-    .o_drawer_app_logo_full {
-        flex-grow: 1;
-        display: flex;
-        padding: $o-drawer-logo-name-padding;
-
-        span {
-            font-weight: $o-drawer-logo-name-font-weight;
-            font-size: $o-drawer-logo-name-font-size;
+    &.o_drawer--nav {
+        .o_drawer_app_logo {
+            padding-left: $o-drawer-logo-nav-padding-h;
+            padding-right: $o-drawer-logo-nav-padding-h;
         }
+    }
 
-        img {
-            height: $o-drawer-item-font-size*1.2;
-            margin-left: $o-drawer-item-nav-margin-h/2;
+    &.o_drawer--mini {
+        .o_drawer_app_logo {
+            padding-left: 0;
+            padding-right: 0;
         }
     }
 }
