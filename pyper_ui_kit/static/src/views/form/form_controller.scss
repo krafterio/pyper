@@ -151,14 +151,24 @@
             &.o_field_one2many,
             &.o_field_many2many,
             &.o_field_many2many_checkboxes,
-            &.o_field_properties,
-            &.o_field_auto_save_res_partner,
-            &.o_field_account-tax-totals-field,
             .o_field_widget {
                 border: none;
                 padding: 0;
                 display: inline-flex;
                 align-items: center;
+            }
+
+            // Remove all outline field style
+            &.o_field_payment,
+            &.o_field_properties,
+            &.o_field_auto_save_res_partner,
+            &.o_field_account-tax-totals-field,
+            .o_field_widget {
+                border: none;
+                border-radius: inherit;
+                padding: inherit;
+                margin-bottom: 0;
+                min-height: auto;
             }
 
             // Remove min-height
@@ -206,6 +216,17 @@
                     .dropdown-toggle {
                         line-height: 34px;
                     }
+                }
+            }
+        }
+
+        > .o_form_label {
+            .o_field_widget {
+                &.o_readonly_modifier {
+                    border: none;
+                    padding: 0;
+                    margin: 0;
+                    min-height: auto;
                 }
             }
         }

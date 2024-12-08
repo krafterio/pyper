@@ -3,6 +3,10 @@
         gap: 1rem;
         margin-bottom: 1rem;
 
+        &:empty {
+            display: none !important;
+        }
+
         .oe_stat_button {
             border-radius: $o-border-radius;
 
