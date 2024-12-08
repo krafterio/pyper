@@ -1,100 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <t t-name="pyper_web_theme_activity.Chatter.attachFiles" t-inherit="mail.Chatter.attachFiles" t-inherit-mode="extension">
-        <xpath expr="//button[hasclass('o-mail-Chatter-attachFiles')]" position="replace"/>
-    </t>
-
     <t t-name="pyper_web_theme_activity.Chatter" t-inherit="mail.Chatter" t-inherit-mode="extension">
-        <xpath expr="//div[hasclass('o-mail-AttachmentBox')]" position="attributes">
-            <attribute name="t-if" remove="state.isAttachmentBoxOpened"/>
+        <!-- Change display of log note button -->
+        <xpath expr="//button[hasclass('o-mail-Chatter-logNote')]" position="attributes">
+            <attribute name="t-if">props.hasMessageList and state.canWriteNotes</attribute>
         </xpath>
 
-        <xpath expr="//div[hasclass('o-mail-Chatter-top')]" position="attributes">
-            <attribute name="class" separator=" " add="p-3 pb-0"/>
-        </xpath>
-
-        <xpath expr="//div[hasclass('o-mail-AttachmentBox')]/div[1]" position="attributes">
-            <attribute name="class" add="d-none" separator=" "/>
-        </xpath>
-
-        <xpath expr="//div[hasclass('o-mail-Chatter')]" position="attributes">
-            <attribute name="class" add="p-0 border-start" separator=" "/>
-        </xpath>
-
-        <xpath expr="//div[hasclass('o-mail-Chatter')]" position="attributes">
-            <attribute name="class" remove="w-100" separator=" "/>
-        </xpath>
-
-        <xpath expr="//span[hasclass('o-mail-Chatter-topbarGrow')]" position="replace"/>
-
-        <xpath expr="//div[hasclass('o-mail-Chatter-topbar')]" position="attributes">
-            <attribute name="class">o-mail-Chatter-topbar px-0 d-flex align-items-center</attribute>
-        </xpath>
-
-        <xpath expr="//button[hasclass('o-mail-Chatter-logNote')]" position="replace">
-            <button t-if="props.hasMessageList and canWriteNotes" class="btn btn-secondary btn-quick p-0 me-2 text-nowrap" t-att-class="{
-                'btn-primary active': state.composerType === 'note',
-                'btn-secondary': state.composerType !== 'note',
-                'my-2': !props.compactHeight
-            }" data-hotkey="shift+m" t-on-click="() => this.toggleComposer('note')">
-                <i class="ph ph-note-pencil"/>
-                <i class="btn-quick-counter fa fa-plus"></i>
-            </button>
-        </xpath>
-
+        <!-- Change label of send message button -->
         <xpath expr="//button[hasclass('o-mail-Chatter-sendMessage')]" position="replace">
-           <button t-if="props.hasMessageList" class="o-mail-Chatter-sendMessage btn btn-secondary btn-quick p-0 me-2 text-nowrap" t-att-disabled="!state.thread.hasWriteAccess and !(state.thread.hasReadAccess and state.thread.canPostOnReadonly) and props.threadId" data-hotkey="m" t-on-click="() => this.toggleComposer('message')" title="Send message">
-               <i class="ph ph-chat-centered-text"/>
-               <i class="btn-quick-counter fa fa-plus"></i>
+            <button t-if="props.hasMessageList" class="o-mail-Chatter-sendMessage btn btn-sm text-nowrap me-1" t-att-class="{
+                'btn-primary': state.composerType !== 'note',
+                'btn-secondary': state.composerType === 'note',
+                'active': state.composerType === 'message',
+                'my-2': !props.compactHeight
+            }" t-att-disabled="!state.thread.hasWriteAccess and !(state.thread.hasReadAccess and state.thread.canPostOnReadonly) and props.threadId" data-hotkey="m" t-on-click="() => this.toggleComposer('message')">
+                Message
             </button>
         </xpath>
 
-        <xpath expr="//button[hasclass('o-mail-Chatter-activity')]" position="replace">
-           <button t-if="props.hasActivities" class="o-mail-Chatter-activity btn btn-secondary btn-quick me-2 text-nowrap"  data-hotkey="shift+a" t-on-click="scheduleActivity" title="Schedule activity">
-               <i class="ph ph-calendar-check fs-2 lh-lg"/>
-           </button>
+        <!-- Change size of log note button -->
+        <xpath expr="//button[hasclass('o-mail-Chatter-logNote')]" position="attributes">
+            <attribute name="class" separator=" " add="btn-sm"/>
         </xpath>
 
-        <xpath expr="//button[hasclass('o-mail-Chatter-sendMessage')]" position="after">
-            <FileUploader
-                multiUpload="true"
-
-                fileUploadClass="'o-mail-Chatter-fileUploader'"
-                onUploaded.bind="onUploaded"
-                onClick="(ev) => this.onClickAttachFile(ev)"
-            >
-                <t t-set-slot="toggler">
-                    <button class="o-mail-Chatter-uploadFile btn btn-secondary btn-quick p-0 me-2 text-nowrap"  type="button" t-att-disabled="!state.thread.hasWriteAccess" title="Attach files">
-                        <i class="ph ph-upload"/>
-                        <i class="btn-quick-counter fa fa-plus"></i>
-                    </button>
-                </t>
-            </FileUploader>
+        <!-- Change size of activity button -->
+        <xpath expr="//button[hasclass('o-mail-Chatter-activity')]" position="attributes">
+            <attribute name="class" separator=" " add="btn-sm"/>
         </xpath>
 
-        <xpath expr="//Dropdown[@t-if='props.hasFollowers']" position="attributes">
-            <attribute name="togglerClass">'o-mail-Followers-button btn btn-secondary btn-quick me-2 position-relative text-nowrap'</attribute>
+        <!-- Change size and remove text color of unfollow button -->
+        <xpath expr="//button[@t-ref='unfollow']" position="attributes">
+            <attribute name="class" separator=" " add="btn-sm text-muted"/>
+            <attribute name="t-att-class">{'my-2': !props.compactHeight}</attribute>
         </xpath>
 
-        <xpath expr="//button[@t-on-click='onClickUnfollow']" position="after">
-            <xpath expr="//button[@t-on-click='onClickSearch']" position="move"/>
+        <!-- Change style of follow button -->
+        <xpath expr="//button[hasclass('o-mail-Chatter-follow')]" position="attributes">
+            <attribute name="class" separator=" " remove="btn-link"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o-mail-AttachmentBox')]//FileUploader" position="replace"/>
+        <!-- Change style of search button -->
+        <xpath expr="//button[hasclass('btn')]/i[hasclass('oi-search')]/.." position="attributes">
+            <attribute name="class" separator=" " add="px-2"/>
+        </xpath>
 
-        <xpath expr="//button[@t-on-click='onClickFollow']" position="replace"/>
-
-        <xpath expr="//button[@t-on-click='onClickUnfollow']" position="replace">
-            <button t-if="props.hasFollowers and state.thread.selfFollower" class="btn btn-secondary btn-quick text-nowrap" t-att-class="{ 'text-primary': !unfollowHover.isHover}" t-att-disabled="!props.threadId" t-on-click="onClickUnfollow" t-ref="unfollow" title="Unfollow">
-                <i class="ph-fill ph-toggle-right"/>
+        <!-- Add audit log switcher button -->
+        <xpath expr="//span[hasclass('o-mail-Chatter-topbarGrow')]" position="after">
+            <button class="o-mail-Chatter-audit-log btn btn-link text-action px-2" t-att-class="{'o-active': state.isAuditLogEnabled}" aria-label="Display or hide audit logs" title="Display or hide audit logs" t-on-click="onClickAuditLog">
+                <i class="fa fa-history" role="img"/>
             </button>
-            <button t-if="!state.thread.selfFollower" class="o-mail-Chatter-follow btn btn-secondary btn-quick text-nowrap" t-on-click="onClickFollow" title="Follow">
-                <i class="ph-fill ph-toggle-left"/>
-            </button>
-        </xpath>
-
-        <xpath expr="//div[hasclass('o-mail-AttachmentBox')]//div[2]" position="attributes">
-            <attribute name="class" add="px-3 my-2" separator=" "/>
         </xpath>
     </t>
 </templates>

@@ -14,11 +14,6 @@
 
 // Form view
 .o_form_view {
-    // Force chatter in bottom
-    .o_form_renderer {
-        flex-direction: column;
-    }
-
     // Group
     .o_inner_group {
         gap: 4px $o-horizontal-padding;

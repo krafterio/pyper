@@ -1,51 +1,77 @@
-.o-mail-Message-bubble.o-mail-Message-bubble--self-authored {
-    background-color:$p-mail-message-bubble-self-authored-bg;
-    height: calc(100% - 4px) !important;
-}
+// Discuss Message style
+// ---------------------
 
-.o-mail-Message-bubble {
-    background-color:$p-mail-message-bubble-bg;
-    height: calc(100% - 4px) !important;
-}
-
-.o-mail-Message-body--self-authored{
-    color:$p-mail-message-bubble-self-authored-color;
-}
-
-.o-mail-Message-body--not-self-authored{
-    color:$p-mail-message-bubble-color;
-}
-
-.o-mail-Message-author {
-    strong {
-        font-weight: 400;
-        opacity: 0.50;
+.o-mail-Chatter,
+.o-mail-Discuss {
+    .o-mail-Composer-avatar {
+        &.o_avatar {
+            &.rounded {
+                border-radius: 50rem !important;
+            }
+        }
     }
-}
 
-.o-mail-DateSection{
-    font-size: 0.75rem;
-}
+    .o-mail-Message-avatar {
+        &.rounded {
+            border-radius: 50rem !important;
+        }
+    }
 
-.o-mail-Message-actions{
-    .btn{
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        height: 18px;
-        line-height: 18px;
-        opacity: 0.50;
+    .o-mail-Message-bubble {
+        background-color: $o-white;
 
-        &:hover{
-            opacity: 1;
-            background-color: transparent !important;
-            color:$o-brand-primary !important;
+        &.o-mail-Message-bubble--self-authored {
+            background-color: $p-mail-message-bubble-self-authored-bg;
+        }
+    }
+
+    .o-mail-Message-body--self-authored {
+        &,
+        a,
+        a:hover,
+        a:focus {
+            color: $p-mail-message-bubble-self-authored-color;
+        }
+    }
+
+    .o-mail-Message-body--not-self-authored {
+        &,
+        a,
+        a:hover,
+        a:focus {
+            color: $p-mail-message-bubble-color;
+        }
+    }
+
+    .o-mail-Message-author {
+        strong {
+            font-weight: 400;
+            opacity: 0.50;
+        }
+    }
+
+    .o-mail-DateSection {
+        font-size: 0.75rem;
+    }
+
+    .o-mail-Message-actions {
+        .btn {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            height: 18px;
+            line-height: 18px;
+            opacity: 0.50;
+
+            &:hover {
+                opacity: 1;
+                background-color: transparent !important;
+                color: $o-brand-primary !important;
+            }
         }
 
-    }
-
-
-    i {
-        font-size: 14px !important;
-        line-height: 1 !important;
+        i {
+            font-size: 14px !important;
+            line-height: 1 !important;
+        }
     }
 }

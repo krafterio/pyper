@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<templates xml:space="preserve">
-    <t t-name="pyper_web_theme.Composer" t-inherit="mail.Composer" t-inherit-mode="extension">
-        <xpath expr="//div[hasclass('o-mail-Composer')]" position="attributes">
-            <attribute name="class" separator=" " add="mt-3"/>
-        </xpath>
-    </t>
-</templates>

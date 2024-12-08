@@ -1,82 +1,107 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <t t-name="pyper_web_theme.Activity" t-inherit="mail.Activity" t-inherit-mode="extension">
-        <xpath expr="//div[hasclass('o-mail-Activity')]" position="attributes">
-            <attribute name="class" separator=" " remove="py-1 mb-2" add="py-3 border-top border-bottom"/>
-        </xpath>
-
-        <xpath expr="//div[hasclass('o-mail-Activity')]//img[hasclass('cursor-pointer')]" position="attributes">
+    <t t-name="pyper_web_theme_activity.Activity" t-inherit="mail.Activity" t-inherit-mode="extension">
+        <!-- Change style of user avatar -->
+        <xpath expr="//div[hasclass('o-mail-Activity-sidebar')]/img" position="attributes">
             <attribute name="class" separator=" " remove="rounded" add="rounded-pill"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[1]" position="attributes">
+        <xpath expr="//div[hasclass('o-mail-Activity-iconContainer')]" position="attributes">
+            <attribute name="t-if">false</attribute>
+        </xpath>
+
+        <!-- Change style of activity -->
+        <xpath expr="//div[hasclass('o-mail-Activity')]" position="attributes">
+            <attribute name="class" separator=" " remove="mb-2" add="pb-3 border-bottom"/>
+        </xpath>
+
+        <!-- Change style of activity Info titles -->
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]/span[hasclass('text-success')][1]" position="attributes">
             <attribute name="class" separator=" " remove="fw-bolder" add="fw-bold"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[2]" position="attributes">
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]/span[hasclass('text-success')][2]" position="attributes">
             <attribute name="class" separator=" " remove="fw-bolder" add="fw-bold"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[3]" position="attributes">
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]/span[hasclass('text-danger')][1]" position="attributes">
             <attribute name="class" separator=" " remove="fw-bolder" add="fw-bold"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[4]" position="attributes">
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]/span[hasclass('text-danger')][2]" position="attributes">
             <attribute name="class" separator=" " remove="fw-bolder" add="fw-bold"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[5]" position="attributes">
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]/span[hasclass('text-warning')]" position="attributes">
             <attribute name="class" separator=" " remove="fw-bolder" add="fw-bold"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[6]" position="attributes">
-            <attribute name="class" separator=" " remove="fw-bolder" add="fw-bold d-none"/>
+        <xpath expr="//div[hasclass('o-mail-Activity-info')]/span[hasclass('text-break')]" position="attributes">
+            <attribute name="class" separator=" " remove="fw-bolder px-2" add="fw-bold"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o-mail-Activity-info')]//span[hasclass('o-mail-Activity-user')]" position="attributes">
-            <attribute name="class" separator=" " add="d-none"/>
-        </xpath>
-
-        <xpath expr="//div[hasclass('o-mail-Activity-info')]//i" position="after">
-            <span class="fw-bold d-block text-break mt-1"><t t-out="displayName"/></span>
-
-            <div class="d-flex small align-items-center">
-                <span class="o-mail-Activity-user mt-2"><t t-out="activity.user_id[1]"/></span>
-            </div>
-        </xpath>
-
-        <xpath expr="//table[hasclass('o-mail-Activity-details')]" position="attributes">
-            <attribute name="class" separator=" " remove="mt-2" add="mt-3"/>
-        </xpath>
-
+        <!-- Change style of activity note -->
         <xpath expr="//div[hasclass('o-mail-Activity-note')]" position="attributes">
-            <attribute name="class" separator=" " add="mt-2"/>
+            <attribute name="class" separator=" " add="mt-2 text-muted"/>
         </xpath>
 
+        <!-- Change style of activity actions -->
         <xpath expr="//div[hasclass('lh-lg')]" position="attributes">
             <attribute name="class" separator=" " add="mt-2"/>
         </xpath>
 
-        <xpath expr="//span[hasclass('o-mail-Activity-markDone')]" position="replace">
-            <span class="o-mail-Activity-markDone btn btn-sm btn-primary" t-on-click="onClickMarkAsDone">
-                <i class="ph ph-check"/>
-            </span>
+        <!-- Wrap activity content -->
+        <xpath expr="//div[hasclass('o-mail-Activity')]" position="inside">
+            <div class="o-mail-Activity-header"/>
         </xpath>
 
-        <xpath expr="//t[@t-set-slot='toggler']/span[hasclass('btn')]" position="attributes">
-            <attribute name="class" separator=" " remove="btn-link text-action p-0 me-3" add="btn btn-sm btn-light"/>
+        <xpath expr="//div[hasclass('o-mail-Activity')]/div[hasclass('flex-grow')]" position="attributes">
+            <attribute name="class" separator=" " remove="px-3" add="o-mail-Activity-content"/>
         </xpath>
 
-        <xpath expr="//span[hasclass('o-mail-Activity-edit')]" position="replace">
-            <span class="o-mail-Activity-edit btn btn-sm btn-light ms-2" t-on-click="edit">
-                <i class="ph ph-pencil"/>
-            </span>
+        <xpath expr="//div[hasclass('o-mail-Activity')]/div[hasclass('o-mail-Activity-header')]" position="inside">
+            <xpath expr="//div[hasclass('o-mail-Activity')]/div[hasclass('flex-grow')]" position="move"/>
         </xpath>
 
-        <xpath expr="//span[@t-on-click='unlink']" position="replace">
-            <span class="btn btn-sm btn-light ms-2" t-on-click="unlink">
-                <i class="ph ph-x"/>
-            </span>
+        <!-- Add activity type in start -->
+        <xpath expr="//div[hasclass('o-mail-Activity-content')]" position="before">
+            <div class="d-flex justify-content-between mb-2">
+                <div class="o-mail-Activity-type">
+                    <span class="o-mail-Activity-type-icon me-2" t-if="activity.icon">
+                        <i class="fa" t-attf-class="{{ activity.icon }}"/>
+                    </span>
+
+                    <span class="o-mail-Activity-type-name" t-out="activity.activity_type_id[1]"></span>
+                </div>
+
+                <div class="o-mail-Activity-date"/>
+            </div>
+        </xpath>
+
+        <!-- Move activity user in activity header -->
+        <xpath expr="//div[hasclass('o-mail-Activity-type')]" position="inside">
+            <xpath expr="//span[hasclass('o-mail-Activity-user')]" position="move"/>
+        </xpath>
+
+        <!-- Move activity date in activity header -->
+        <xpath expr="//div[hasclass('o-mail-Activity-date')]" position="inside">
+            <xpath expr="//div[hasclass('o-mail-Activity-info')]/span[hasclass('text-success')]" position="move"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Activity-date')]" position="inside">
+            <xpath expr="//div[hasclass('o-mail-Activity-info')]/span[hasclass('text-success')]" position="move"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Activity-date')]" position="inside">
+            <xpath expr="//div[hasclass('o-mail-Activity-info')]/span[hasclass('text-danger')]" position="move"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Activity-date')]" position="inside">
+            <xpath expr="//div[hasclass('o-mail-Activity-info')]/span[hasclass('text-danger')]" position="move"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Activity-date')]" position="inside">
+            <xpath expr="//div[hasclass('o-mail-Activity-info')]/span[hasclass('text-warning')]" position="move"/>
         </xpath>
     </t>
 </templates>

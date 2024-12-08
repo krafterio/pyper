@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <t t-name="pyper_web_theme.Message" t-inherit="mail.Message" t-inherit-mode="extension">
+    <t t-name="pyper_web_theme_activity.Message" t-inherit="mail.Message" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o-mail-Message-header')]/following-sibling::div[1]" position="attributes">
+            <attribute name="class" separator=" " add="o-mail-Message-container"/>
+        </xpath>
+
         <xpath expr="//div[hasclass('o-mail-Message-core')]/div[2]/div[2]" position="after">
             <xpath expr="//div[hasclass('o-mail-Message-header')]" position="move"/>
         </xpath>
@@ -19,41 +23,42 @@
 
         <xpath expr="//div[hasclass('o-mail-Message-bubble')]" position="attributes">
             <attribute name="t-att-class">{
-                'border': state.isEditing
-                and !message.isNote,
-                'border border-light text-dark': !message.isSelfAuthored
-                and !message.isNote
-                and !message.isHighlightedFromMention,
-                'o-mail-Message-bubble--self-authored': message.isSelfAuthored
-                and !message.isNote
-                and !message.isHighlightedFromMention,
+                'border': state.isEditing and !message.isNote,
+                'border border-light text-dark': !message.isSelfAuthored and !message.isNote and !message.isHighlightedFromMention,
+                'o-mail-Message-bubble--self-authored': message.isSelfAuthored and !message.isNote and !message.isHighlightedFromMention,
                 'bg-warning-light border border-warning opacity-50': message.isHighlightedFromMention
             }</attribute>
         </xpath>
 
         <xpath expr="//div[hasclass('o-mail-Message-textContent')]//t[@t-else='']/div[1]/div[2]" position="attributes">
             <attribute name="t-att-class">{
-                'p-0': message.is_note,
-                'mb-0 py-2 px-2': !message.is_note,
-                'align-self-start rounded-end-3 rounded-bottom-3': !state.isEditing
-                and !message.is_note,
+                'mb-0 py-1 px-2 message_note': message.is_note,
+                'mb-0 py-1 px-2': !message.is_note,
+                'align-self-start rounded-end-3 rounded-bottom-3': !state.isEditing and !message.is_note,
                 'o-mail-Message-editable flex-grow-1': state.isEditing,
-                'o-mail-Message-body--self-authored': message.isSelfAuthored
-                and !message.isNote
-                and !message.isHighlightedFromMention,
-                'o-mail-Message-body--not-self-authored': !message.isSelfAuthored
-                and !message.isNote
-                and !message.isHighlightedFromMention,
+                'o-mail-Message-body--self-authored': message.isSelfAuthored and !message.isNote and !message.isHighlightedFromMention,
+                'o-mail-Message-body--not-self-authored': !message.isSelfAuthored and !message.isNote and !message.isHighlightedFromMention,
             }</attribute>
         </xpath>
 
-         <xpath expr="///div[hasclass('o-mail-Message-header')]" position="inside">
-             <xpath expr="//t[@t-call='mail.Message.actions']" position="move"/>
-         </xpath>
+        <xpath expr="///div[hasclass('o-mail-Message-header')]" position="inside">
+            <xpath expr="//t[@t-call='mail.Message.actions']" position="move"/>
+        </xpath>
 
+        <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingOld')]" position="before">
+            <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingField')]" position="move"/>
+        </xpath>
+
+        <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingField')]" position="replace">
+            <span class="o-mail-Message-trackingField me-1"><t t-out="trackingValue.changedField"/> :</span>
+        </xpath>
+
+        <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingNew')]" position="attributes">
+            <attribute name="class" separator=" " remove="text-info" add="text-primary"/>
+        </xpath>
     </t>
 
-    <t t-name="pyper_web_theme.Message.actions" t-inherit="mail.Message.actions" t-inherit-mode="extension">
+    <t t-name="pyper_web_theme_activity.Message.actions" t-inherit="mail.Message.actions" t-inherit-mode="extension">
         <xpath expr="//div[hasclass('o-mail-Message-actions')]" position="attributes">
             <attribute name="t-att-class">{
                 'visible': true,
@@ -66,7 +71,7 @@
         </xpath>
     </t>
 
-    <t t-name="pyper_web_theme.MessageReactions" t-inherit="mail.MessageReactions" t-inherit-mode="extension">
+    <t t-name="pyper_web_theme_activity.MessageReactions" t-inherit="mail.MessageReactions" t-inherit-mode="extension">
         <xpath expr="div[1]" position="attributes">
             <attribute name="t-attf-class">{{ props.message.is_discussion ? 'mt-1' : 'mt-1' }}</attribute>
             <attribute name="t-att-class">{
@@ -75,5 +80,4 @@
             }</attribute>
         </xpath>
     </t>
-
 </templates>

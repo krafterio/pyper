@@ -38,7 +38,6 @@
         ],
         'web.assets_backend': [
             'pyper_web_theme_activity/static/src/core/**/*',
-            'pyper_web_theme_activity/static/src/mail/**/*',
             'pyper_web_theme_activity/static/src/webclient/**/*',
         ],
     },

@@ -49,7 +49,6 @@
             'pyper_ui_kit/static/src/scss/pyper_animate.scss',
             'pyper_ui_kit/static/src/scss/style.scss',
             'pyper_ui_kit/static/src/core/**/*',
-            'pyper_ui_kit/static/src/mail/**/*',
             'pyper_ui_kit/static/src/search/**/*',
             'pyper_ui_kit/static/src/views/**/*',
             'pyper_ui_kit/static/src/webclient/**/*',

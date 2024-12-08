@@ -350,22 +350,6 @@ div[name='flow_report_ids'] {
     }
 }
 
-.o-mail-Message-bubble {
-    &.o-mail-Message-bubble--self-authored {
-        background-color: $o-brand-primary;
-        height: calc(100% - 4px) !important;
-
-        + .o-mail-Message-body {
-            color: $o-white;
-        }
-    }
-}
-
-.o-mail-Message-bubble {
-    background-color: #FFF;
-    height: calc(100% - 4px) !important;
-}
-
 .desk_activities_kanban {
     .o_kanban_record {
         width: 100% !important;
@@ -390,14 +374,6 @@ div[name='flow_report_ids'] {
 .o-mail-AttachmentImage {
     overflow: hidden;
     border-radius: $border-radius;
-}
-
-.o_form_sheet_full.mh-100, {
-    max-height: initial !important;
-}
-
-.o_form_renderer.h-100, {
-    height: auto !important;
 }
 
 .flow-info-zone {

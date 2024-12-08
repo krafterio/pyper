@@ -2,19 +2,15 @@
 <templates xml:space="preserve">
       <t t-name="pyper_web_theme.DateSection" t-inherit="mail.DateSection" t-inherit-mode="extension">
             <xpath expr="//div[hasclass('o-mail-DateSection')]" position="attributes">
-                  <attribute name="class" remove="fw-bolder" add="pt-3 text-uppercase" separator=" "/>
-            </xpath>
-
-            <xpath expr="//div[hasclass('o-mail-DateSection')]" position="attributes">
-                  <attribute name="t-attf-class" remove="{{ props.className }}"/>
+                  <attribute name="class" separator=" " remove="align-items-center fw-bolder" add="pt-3 text-uppercase"/>
             </xpath>
 
             <xpath expr="//div[hasclass('o-mail-DateSection')]/span" position="attributes">
                   <attribute name="class" remove="text-muted" separator=" "/>
             </xpath>
 
-            <xpath expr="//hr[1]" position="replace"/>
+            <xpath expr="//hr" position="replace"/>
 
-            <xpath expr="//hr[1]" position="replace"/>
+            <xpath expr="//hr" position="replace"/>
       </t>
 </templates>
