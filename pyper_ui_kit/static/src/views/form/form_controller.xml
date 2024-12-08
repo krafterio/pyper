@@ -5,6 +5,10 @@
             <t t-if="buttonActionsTemplate">
                 <t t-call="{{ buttonActionsTemplate }}" t-call-context="{ __comp__: Object.assign(Object.create(this), { this, props: { ...this.props, record: this.model.root } }) }"/>
             </t>
+
+            <t t-if="statusbarTemplate">
+                <t t-call="{{ statusbarTemplate }}" t-call-context="{ __comp__: Object.assign(Object.create(this), { this, props: { ...this.props, record: this.model.root } }) }"/>
+            </t>
         </xpath>
     </t>
 </templates>

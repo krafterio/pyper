@@ -193,20 +193,17 @@ i.btn-quick-counter {
 .o_statusbar_status {
     .btn {
         line-height: 28px;
+        margin-right: -1px;
+        border-width: 1px;
+        border-style: solid;
 
         &:not(.o_arrow_button_current) {
             background-color: $o-white !important;
-            border-width: 1px 1px 1px 0;
-            border-style: solid;
             border-color: $o-gray-200;
         }
 
         &:hover {
             background-color: $o-gray-100 !important;
-        }
-
-        &.o_last {
-            border-width: 1px 1px 1px 1px;
         }
 
         &:before, &:after {

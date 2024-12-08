@@ -15,6 +15,16 @@
         }
     }
 
+    .o_control_panel_actions {
+        gap: 0.25rem;
+
+        > div {
+            > .btn {
+                white-space: nowrap;
+            }
+        }
+    }
+
     @include media-breakpoint-up(lg) {
         .o_control_panel_actions {
             min-width: auto;
