@@ -4,7 +4,9 @@
     .o_form_view {
         &:not(.modal-content) {
             .o_form_sheet_bg {
-                padding: 0;
+                @include media-breakpoint-up(md) {
+                    padding: 0;
+                }
             }
         }
     }
