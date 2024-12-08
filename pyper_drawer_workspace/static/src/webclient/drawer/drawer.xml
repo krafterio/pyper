@@ -7,7 +7,7 @@
         </xpath>
 
         <xpath expr="." position="inside">
-            <div class="o_main_navbar o_drawer_workspace_menu" role="menu">
+            <div class="o_drawer_workspace_menu" role="menu">
                 <WorkspaceMenu/>
             </div>
         </xpath>

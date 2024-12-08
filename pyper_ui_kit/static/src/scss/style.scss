@@ -583,7 +583,7 @@ $content-padding-breakpoints: (
 
 @each $name, $padding in $content-padding-breakpoints {
     @include media-breakpoint-up($name) {
-        .o_main_navbar:not(.o_drawer_workspace_menu) {
+        .o_main_navbar {
             padding-left: calc(#{$padding} - #{$o-horizontal-padding});
             padding-right: calc(#{$padding} - #{$o-horizontal-padding});
         }

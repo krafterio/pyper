@@ -1,5 +1,18 @@
 .o_drawer {
     .o_drawer_workspace_menu {
+        // Main Navbar style
+        display: flex;
+        height: var(--o-navbar-height);
+        min-width: min-content;
+        padding-top: $o-navbar-padding-v;
+        padding-bottom: $o-navbar-padding-v;
+        border-bottom: $o-navbar-border-bottom;
+        border-bottom-color: transparent;
+        background: transparent;
+        font-size: $o-navbar-font-size;
+        flex: 0 0 auto;
+
+        // Drawer App Logo
         .o_workspace_menu {
             .dropdown-toggle {
                 margin-left: $o-drawer-item-padding-h;
