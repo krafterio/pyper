@@ -50,7 +50,7 @@
                             name="action_create_company_siret"
                             type="object"
                             class="btn btn-primary"
-                            icon="fa-arrow-right"
+                            icon="fa-plus"
                             title="Create company"
                             invisible="parent.identified_partner_id != False"
                         />
