@@ -5,14 +5,14 @@
         <field name="model">pappers.name.form</field>
         <field name="arch" type="xml">
             <form>
-                <group invisible="identified_partner_id != False">
+                <group invisible="not context.get('search_more') and identified_partner_id != False">
                     <div class="d-flex flex-row align-items-start" colspan="2">
                         <field
                             name="name"
                             placeholder="Search a company name"
                             default_focus="1"
                             class="flew-grow-1"
-                            readonly="results"
+                            readonly="not context.get('search_more') and results"
                         />
 
                         <button
@@ -21,7 +21,7 @@
                             string="Reset search"
                             class="btn btn-danger text-nowrap ms-2"
                             data-hotkey="g"
-                            invisible="identified_partner_id != False or not results"
+                            invisible="(not context.get('search_more') and identified_partner_id != False) or not results"
                         />
                     </div>
                     <field name="identified_partner_id" invisible="True"/>
@@ -72,7 +72,7 @@
                         string="Get companies"
                         class="btn-primary o_sale_warranty_configurator_add"
                         data-hotkey="g"
-                        invisible="identified_partner_id != False or results"
+                        invisible="not context.get('search_more') and (identified_partner_id != False or results)"
                     />
 
                     <button
