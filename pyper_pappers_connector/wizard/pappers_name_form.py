@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from odoo import fields, models, _
+from odoo import fields, models, _, Command
 from odoo.exceptions import UserError
 import requests
 
@@ -41,7 +41,7 @@ class PappersNameForm(models.TransientModel):
 
             if response.status_code == 200:
 
-                companies_info = []
+                companies_info = [Command.clear()]
 
                 for company in companies['resultats_nom_entreprise']:
                     companies_info.append((0, 0, {
