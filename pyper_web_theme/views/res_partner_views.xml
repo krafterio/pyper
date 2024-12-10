@@ -14,15 +14,15 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='child_ids']//t[@t-name='kanban-menu']" position="inside">
-                <t t-name="btn-see-profile">
-                    <button class="dropdown-item"
+            <xpath expr="//field[@name='child_ids']//div[hasclass('oe_kanban_details')]" position="inside">
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-sm btn-outline-secondary"
                             type="object"
                             name="open_contact_form"
-                            icon="fa-user me-2"
+                            icon="fa-arrow-right"
                             title="See profile"
-                    >See profile</button>
-                </t>
+                    />
+                </div>
             </xpath>
         </field>
     </record>
