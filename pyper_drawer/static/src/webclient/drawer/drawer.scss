@@ -782,6 +782,10 @@
 
 // App Logo
 .o_drawer {
+    .pyper-app-name{
+        color:$o-drawer-app-name-color;
+    }
+
     .o_drawer_app_logo {
         // Main Navbar style
         display: flex;
