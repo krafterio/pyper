@@ -130,6 +130,7 @@ class ResPartner(models.Model):
                         'default_name': record.name,
                         'default_results': companies_info,
                         'default_identified_partner_id': record.id,
+                        'search_more': True,
                     }},
                 }
 
