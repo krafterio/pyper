@@ -1,0 +1,22 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-12 09:25+0000\n"
+"PO-Revision-Date: 2024-12-12 09:25+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pyper_url_share
+#. odoo-javascript
+#: code:addons/pyper/pyper_url_share/static/src/webclient/url_share_menu/url_share_menu.js:0
+#, python-format
+msgid "The link has been copied to the clipboard"
+msgstr "Le lien a été copié dans le presse-papiers"
