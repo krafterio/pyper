@@ -24,7 +24,6 @@ export class UrlShareMenu extends Component {
             this.notificationService.add(
                 _t('The link has been copied to the clipboard'),
                 {
-                    sticky: true,
                     type: 'info',
                 },
             );
@@ -32,7 +31,6 @@ export class UrlShareMenu extends Component {
             this.notificationService.add(
                 _t('The link could not be copied to the clipboard'),
                 {
-                    sticky: true,
                     type: 'danger',
                 },
             );
