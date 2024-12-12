@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from odoo import fields, models, _, Command
+from odoo import fields, models, _, Command, api
 from odoo.exceptions import UserError
 import requests
 
@@ -23,6 +23,11 @@ class PappersNameForm(models.TransientModel):
     identified_partner_id = fields.Many2one(
         'res.partner',
         'Identified partner'
+    )
+
+    is_api_key_set = fields.Boolean(
+        'API Key set',
+        default=False,
     )
 
     def action_pappers_api_call(self):
@@ -88,3 +93,9 @@ class PappersNameForm(models.TransientModel):
             'view_mode': 'form',
             'target': 'new',
         }
+
+    @api.model
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
+        res['is_api_key_set'] = bool(self.env['ir.config_parameter'].sudo().get_param('pyper_pappers_connector.pappers_token_api'))
+        return res

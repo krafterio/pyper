@@ -39,6 +39,8 @@ class PappersNameResultForm(models.TransientModel):
         related="name_form.identified_partner_id"
     )
 
+    result_json = fields.Json()
+
     def action_create_company_siret(self):
         self.ensure_one()
 
@@ -137,4 +139,4 @@ class PappersNameResultForm(models.TransientModel):
         partner_id = self.env['res.partner'].search([('id', '=', identified_partner)])
         partner_id.siret = siret
 
-        partner_id.action_enrich_company_infos()
+        partner_id.action_enrich_company_infos(self.env.context.get('result_json'))

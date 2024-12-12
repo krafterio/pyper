@@ -25,6 +25,15 @@ msgstr ""
 "l'intégration de Pappers"
 
 #. module: pyper_pappers_connector
+#: model_terms:ir.ui.view,arch_db:pyper_pappers_connector.pappers_name_form_view
+msgid ""
+"Warning: The Pappers API key is not set, so the information will not be "
+"complete."
+msgstr ""
+"Attention: La clé API Pappers n'est pas définie, les informations ne seront "
+"donc pas complètes."
+
+#. module: pyper_pappers_connector
 #: model_terms:ir.ui.view,arch_db:pyper_pappers_connector.pappers_form
 msgid "Cancel"
 msgstr "Annuler"

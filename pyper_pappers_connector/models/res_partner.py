@@ -10,7 +10,7 @@ class ResPartner(models.Model):
 
     creation_date = fields.Date('Creation Date')
 
-    def action_enrich_company_infos(self):
+    def action_enrich_company_infos(self, result=None):
         for partner in self:
             if not partner.is_company:
                 raise UserError(_('You can only enrich company data from a..... company. Right ?'))
@@ -19,7 +19,34 @@ class ResPartner(models.Model):
             api_token = self.env['ir.config_parameter'].sudo().get_param('pyper_pappers_connector.pappers_token_api')
 
             if not api_token:
-                raise UserError(_('You have to complete your pappers token in the settings first.'))
+                if result:
+                    if result.get('numero_tva_intracommunautaire') and not partner.vat:
+                        partner.vat = result.get('numero_tva_intracommunautaire')
+
+                    if result.get('siege').get('adresse_ligne_1') and not partner.street:
+                        partner.street = result.get('siege').get('adresse_ligne_1').capitalize()
+
+                    if result.get('date_creation') and not partner.creation_date:
+                        partner.creation_date = result.get('date_creation')
+                    
+                    if result.get('code_naf') and not partner.ape:
+                        partner.ape = result.get('code_naf')
+
+                    if result.get('effectif_min') and not partner.number_employees_min:
+                        partner.number_employees_min = result.get('effectif_min')
+
+                    if result.get('siege').get('ville') and not partner.city:
+                        partner.city = result.get('siege').get('ville')
+
+                    if result.get('date_creation') and not partner.creation_date:
+                        partner.creation_date = result.get('date_creation')
+
+                    if result.get('siege').get('code_postal') and not partner.zip:
+                        partner.zip = result.get('siege').get('code_postal')
+
+                    return
+                else:
+                    raise UserError(_('You have to complete your pappers token in the settings first.'))
             else:
                 url = base_url + "/?api_token=%s" % (api_token)
 
@@ -108,6 +135,7 @@ class ResPartner(models.Model):
                         'siret': company['siege']['siret'],
                         'creation_date': company['date_creation'],
                         'zip': company['siege']['code_postal'],
+                        'result_json': company,
                     }))
 
                 for company in companies['resultats_siret']:
@@ -117,6 +145,7 @@ class ResPartner(models.Model):
                         'siret': company['siege']['siret'],
                         'creation_date': company['date_creation'],
                         'zip': company['siege']['code_postal'],
+                        'result_json': company,
                     }))
 
                 return {
@@ -134,5 +163,5 @@ class ResPartner(models.Model):
                     }},
                 }
 
-            elif response.status_code == 400:
+            elif response.status_code == 400 or response.status_code == 401:
                 raise UserError(response.json()['message'])

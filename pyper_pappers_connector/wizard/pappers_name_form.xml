@@ -5,6 +5,12 @@
         <field name="model">pappers.name.form</field>
         <field name="arch" type="xml">
             <form>
+                <field name="is_api_key_set" invisible="True"/>
+                <div invisible="is_api_key_set">
+                    <div class="alert alert-warning" role="alert">
+                        Warning: The Pappers API key is not set, so the information will not be complete.
+                    </div>
+                </div>
                 <group invisible="not context.get('search_more') and identified_partner_id != False">
                     <div class="d-flex flex-row align-items-start" colspan="2">
                         <field
