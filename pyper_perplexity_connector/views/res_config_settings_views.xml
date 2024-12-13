@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="1024"/>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app
+                    string="Perplexity connexion"
+                    name="perplexity_connexion"
+                    logo="/pyper_perplexity_connector/static/img/perplexity.svg"
+                >
+                    <block title="Perplexity Connector" name="pyper_perplexity_connector">
+                        <setting
+                            help="Automatically get information from perplexity integration"
+                            title="Use the Perplexity AI to get information"
+                            id="pyper_perplexity_connector">
+                            <field name="perplexity_token_api" password="True" placeholder="Perplexity API Token"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>
