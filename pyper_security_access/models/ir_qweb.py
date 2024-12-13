@@ -30,6 +30,6 @@ class IrQweb(models.AbstractModel):
             field = '.'.join(field_name.split('.')[1:])
             base = field_name.split('.', 1)[0]
 
-            node.set('t-if', 'is_granted(' + base + '._name, "' + field + '")')
+            node.set('t-if', 'is_granted(' + base + '._name, "' + field + '") if is_granted else True')
 
         return edited
