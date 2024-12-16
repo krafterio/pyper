@@ -169,7 +169,7 @@ msgstr ""
 #. module: pyper_pappers_connector
 #: model:ir.model.fields,field_description:pyper_pappers_connector.field_res_config_settings__pappers_token_api
 msgid "Pappers Token API"
-msgstr "Token API Pampers"
+msgstr "Token API Pappers"
 
 #. module: pyper_pappers_connector
 #: model:ir.model,name:pyper_pappers_connector.model_pappers_name_form
