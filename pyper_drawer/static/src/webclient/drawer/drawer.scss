@@ -733,6 +733,11 @@
 
 .o_drawer--sub-panel--header {
     min-height: $o-drawer-sub-panel-header-height;
+    color:$o-drawer-item-color;
+
+    i {
+        color:$o-drawer-item-color;
+    }
 }
 
 .o_drawer--sub-panel--header,
