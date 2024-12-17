@@ -24,16 +24,6 @@
                 }
             }
 
-            tbody,
-            tfoot {
-                tr.o_data_row + tr:not(.o_data_row),
-                tr:last-child {
-                    td {
-                        border-bottom-color: transparent;
-                    }
-                }
-            }
-
             td,
             th {
                 border-color: $o-gray-200;
@@ -54,6 +44,24 @@
                 tr:last-child:not(.o_data_row) {
                     td {
                         border-top: 1px solid $o-gray-200;
+                    }
+                }
+            }
+
+            tbody,
+            tfoot {
+                tr.o_data_row + tr:not(.o_data_row),
+                tr:last-child {
+                    td {
+                        border-bottom: none;
+                    }
+                }
+            }
+
+            tfoot {
+                tr:last-child {
+                    td:empty {
+                        display: none;
                     }
                 }
             }
