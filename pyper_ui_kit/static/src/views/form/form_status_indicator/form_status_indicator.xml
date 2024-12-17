@@ -8,5 +8,9 @@
         <xpath expr="//button[2]" position="attributes">
             <attribute name="class" separator=" " add="cp_btn btn-outline-primary" remove="btn-light btn-panel border-0"/>
         </xpath>
+
+        <xpath expr="//div[hasclass('o_form_status_indicator_buttons')]" position="attributes">
+            <attribute name="t-att-class">{ 'd-none': !(props.model.root.isNew or displayButtons) }</attribute>
+        </xpath>
     </t>
 </templates>
