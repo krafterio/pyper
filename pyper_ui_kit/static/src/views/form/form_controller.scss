@@ -192,6 +192,17 @@
         }
     }
 
+    // Field widget after field image
+    .o_field_image {
+        + .o_field_widget {
+            border: none;
+            border-radius: inherit;
+            padding: inherit;
+            margin-bottom: 0;
+            min-height: auto;
+        }
+    }
+
     // Field widgets in title
     .oe_title {
         > h1,
@@ -201,11 +212,13 @@
         > h3,
         > .h3 {
             .o_field_widget {
-                &.o_readonly_modifier {
-                    border: none;
-                    padding-left: 0;
-                    padding-right: 0;
-                }
+                border-radius: 0;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom-color: transparent;
+                padding-left: 0;
+                padding-right: 0;
 
                 > .dropdown {
                     .dropdown-toggle {
