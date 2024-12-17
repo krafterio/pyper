@@ -94,14 +94,24 @@
         .o_handle_cell,
         .o_image_cell,
         .o_priority_cell {
-            padding-left: 0 !important;
-            padding-right: 0 !important;
+            padding-left: $o-spacer/2 !important;
+            padding-right: $o-spacer/2 !important;
 
             > .o_field_widget,
             > .o-checkbox {
                 text-align: center;
                 margin-left: auto !important;
                 margin-right: auto !important;
+            }
+        }
+    }
+}
+
+.modal-body {
+    .o_list_renderer {
+        .o_list_table {
+            tbody tr td[colspan]:first-child:not(.o_field_x2many_list_row_add) {
+                display: inherit !important;
             }
         }
     }

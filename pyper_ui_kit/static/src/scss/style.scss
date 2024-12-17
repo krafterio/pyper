@@ -588,6 +588,13 @@ $content-padding-breakpoints: (
             padding-right: calc(#{$padding} - #{$o-horizontal-padding});
         }
 
+        .modal-body {
+            .o_control_panel_main {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
         .o_content {
             > .o_list_renderer,
             > .o_kanban_view,

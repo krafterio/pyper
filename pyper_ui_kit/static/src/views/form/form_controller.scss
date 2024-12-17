@@ -342,4 +342,16 @@
             }
         }
     }
+
+    // List
+    .o_form_sheet {
+        &,
+        .o_field_widget .o_field_widget {
+            .o_field_cell {
+                > .o_field_widget {
+                    padding: 0;
+                }
+            }
+        }
+    }
 }
