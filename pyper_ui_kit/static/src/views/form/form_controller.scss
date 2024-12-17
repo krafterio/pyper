@@ -354,4 +354,20 @@
             }
         }
     }
+
+    // Group Resume and Skills
+    .o_group_resume,
+    .o_group_skills {
+        > .o_field_widget {
+            padding: 0;
+            border: none;
+
+            > .o_list_view {
+                > .o_list_renderer {
+                    border: none;
+                    margin-top: 0 !important;
+                }
+            }
+        }
+    }
 }
