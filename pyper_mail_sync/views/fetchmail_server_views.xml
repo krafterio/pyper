@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="servermail_server_form" model="ir.ui.view">
+        <field name="model">fetchmail.server</field>
+        <field name="inherit_id" ref="mail.view_email_server_form" />
+        <field name="arch" type="xml">
+            <field name="user" position="before">
+                <field name="sync_all_available" invisible="True"/>
+                <field name="sync_all" invisible="not sync_all_available"/>
+            </field>
+
+            <field name="user" position="after">
+                <field name="user_id" invisible="not sync_all_available" required="sync_all_available"/>
+            </field>
+        </field>
+    </record>
+</odoo>
