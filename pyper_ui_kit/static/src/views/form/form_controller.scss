@@ -217,8 +217,7 @@
                 border-left: none;
                 border-right: none;
                 border-bottom-color: transparent;
-                padding-left: 0;
-                padding-right: 0;
+                padding:0;min-height: auto;
 
                 > .dropdown {
                     .dropdown-toggle {
@@ -229,6 +228,35 @@
         }
 
         > .o_form_label {
+            .o_field_widget {
+                &.o_readonly_modifier {
+                    border: none;
+                    padding: 0;
+                    margin: 0;
+                    min-height: auto;
+                }
+            }
+        }
+    }
+
+    .flat_field {
+        .o_field_widget {
+            border-radius: 0;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom-color: transparent;
+            padding: 0;
+            min-height: auto;
+
+            > .dropdown {
+                .dropdown-toggle {
+                    line-height: 34px;
+                }
+            }
+        }
+
+        .o_form_label {
             .o_field_widget {
                 &.o_readonly_modifier {
                     border: none;

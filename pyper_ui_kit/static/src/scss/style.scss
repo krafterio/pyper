@@ -279,7 +279,7 @@ i.btn-quick-counter {
             height: 22px;
             width: 22px;
             top: 6px;
-            border: 1px solid $o-gray-100;
+            border: 1px solid $o-gray-300;
             border-radius: 0.50rem;
         }
     }
@@ -616,6 +616,14 @@ $content-padding-breakpoints: (
                     margin-right: calc(#{$padding} - #{$o-horizontal-padding});
                 }
             }
+        }
+    }
+}
+
+.o_field_statusbar {
+    > .o_statusbar_status {
+        > .o_arrow_button:not(.d-none) {
+            padding-left: $o-horizontal-padding;
         }
     }
 }
