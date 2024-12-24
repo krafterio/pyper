@@ -100,10 +100,13 @@ input[type=range] {
             font-size: 0.875rem;
         }
 
+        $notebook-nav-link-border-radius: 20px !default;
+        $notebook-nav-link-active-bg: transparent !default;
+
         .nav-link {
             color: $o-gray-600;
             padding: 0.25rem 0.75rem;
-            border-radius: 20px;
+            border-radius: $notebook-nav-link-border-radius;
             border: 1px solid transparent;
         }
 
@@ -111,7 +114,7 @@ input[type=range] {
             color: $o-black;
             font-weight: 600;
             border: 1px solid $o-gray-200;
-            background-color: $o-white;
+            background-color: $notebook-nav-link-active-bg;
         }
     }
 }
