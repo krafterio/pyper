@@ -10,6 +10,10 @@ from odoo.tools import email_split
 class MailMessage(models.Model):
     _inherit = 'mail.message'
 
+    restrict_access = fields.Boolean(
+        string='Restrict Access',
+    )
+
     @api.model
     def message_new(self, msg_dict, custom_values=None):
         """Called by ``message_process`` when a new message is received
@@ -96,6 +100,11 @@ class MailMessage(models.Model):
                 partners.append(Command.link(recipient_partner.id))
                 partner_ids_set.add(recipient_partner.id)
 
+        # Add mail server user partner in partners (to allow access)
+        if mail_server.user_id.partner_id.id not in partner_ids_set:
+            partners.append(Command.link(mail_server.user_id.partner_id.id))
+            partner_ids_set.add(mail_server.user_id.partner_id.id)
+
         # Find first recipient
         first_recipient_id = False
 
@@ -138,6 +147,7 @@ class MailMessage(models.Model):
             'author_id': author.id,
             'reply_to': False,
             'reply_to_force_new': False,
+            'restrict_access': True,
             'partner_ids': partners,
             'subject': msg_dict.get('subject', False),
             'body': msg_dict.get('body', False),

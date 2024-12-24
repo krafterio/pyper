@@ -20,6 +20,7 @@
     'data': [
         # Security
         'security/ir_attachment_security.xml',
+        'security/mail_message_security.xml',
 
         # Views
         'views/fetchmail_server_views.xml',
