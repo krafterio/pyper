@@ -60,7 +60,7 @@
     @include media-breakpoint-up(lg) {
         .o-mail-Chatter-top,
         .o-mail-Chatter-content {
-            border: 1px solid $o-gray-200;
+            border: $o-mail-chatter-border;
             border-bottom-width: 0;
         }
 
@@ -88,7 +88,7 @@
 
     .o-mail-Chatter-top,
     .o-mail-Chatter-content {
-        background-color: $o-gray-100;
+        background-color: $o-mail-chatter-bg;
     }
 
     // Chatter Activities style
