@@ -18,6 +18,9 @@
         'mail',
     ],
     'data': [
+        # Security
+        'security/ir_attachment_security.xml',
+
         # Views
         'views/fetchmail_server_views.xml',
     ],

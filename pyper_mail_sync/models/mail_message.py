@@ -158,6 +158,7 @@ class MailMessage(models.Model):
                 'type': 'binary',
                 'res_model': 'mail.message',
                 'res_id': res.id,
+                'access_partner_ids': partners,
             })
             attachments.append(Command.link(attachment.id))
 
