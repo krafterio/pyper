@@ -149,8 +149,9 @@ class MailMessage(models.Model):
         res = self.env['mail.message'].sudo().create(data)
 
         # Create and link attachments
+        attachments = []
         for email_attachment in msg_dict.get('attachments', []):
-            self.env['ir.attachment'].create({
+            attachment = self.env['ir.attachment'].create({
                 'name': email_attachment.fname,
                 'raw': email_attachment.content,
                 'mimetype': email_attachment.info.get('encoding') if email_attachment.info else None,
@@ -158,6 +159,10 @@ class MailMessage(models.Model):
                 'res_model': 'mail.message',
                 'res_id': res.id,
             })
+            attachments.append(Command.link(attachment.id))
+
+        if attachments:
+            res.attachment_ids = attachments
 
         return res
 
