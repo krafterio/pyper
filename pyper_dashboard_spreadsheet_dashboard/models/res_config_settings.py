@@ -39,6 +39,11 @@ class ResConfigSettings(models.TransientModel):
         if menu:
             menu.active = True
 
+            dashboard_menu = self.env.ref('pyper_dashboard.menu_dashboard_root', raise_if_not_found=False)
+
+            if dashboard_menu:
+                menu.parent_id = dashboard_menu
+
         # Enable security group of spreadsheet dashboard
         group = self.env.ref('spreadsheet_dashboard.group_dashboard_manager', raise_if_not_found=False)
 
@@ -53,6 +58,7 @@ class ResConfigSettings(models.TransientModel):
 
         if menu:
             menu.active = False
+            menu.parent_id = False
 
         # Remove spreadsheet dashboard security groups for all users
         group = self.env.ref('spreadsheet_dashboard.group_dashboard_manager', raise_if_not_found=False)
