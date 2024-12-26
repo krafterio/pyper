@@ -1,7 +1,12 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
+import glob, os
+from pathlib import Path
+
 from odoo import api, fields, models, Command
+from odoo.modules import get_module_path
+from odoo.tools import TranslationImporter
 
 
 class ResConfigSettings(models.TransientModel):
@@ -43,6 +48,7 @@ class ResConfigSettings(models.TransientModel):
 
             if dashboard_menu:
                 menu.parent_id = dashboard_menu
+                self._translate_spreadsheet_dashboard_menus(True)
 
         # Enable security group of spreadsheet dashboard
         group = self.env.ref('spreadsheet_dashboard.group_dashboard_manager', raise_if_not_found=False)
@@ -59,6 +65,7 @@ class ResConfigSettings(models.TransientModel):
         if menu:
             menu.active = False
             menu.parent_id = False
+            self._translate_spreadsheet_dashboard_menus(False)
 
         # Remove spreadsheet dashboard security groups for all users
         group = self.env.ref('spreadsheet_dashboard.group_dashboard_manager', raise_if_not_found=False)
@@ -68,3 +75,29 @@ class ResConfigSettings(models.TransientModel):
             group.active = False
             group._update_user_groups_view()
             self.env.registry.clear_cache()
+
+    def _translate_spreadsheet_dashboard_menus(self, active: bool):
+        translation_importer = TranslationImporter(self.env.cr, verbose=False)
+
+        if active:
+            i18n_path = os.path.realpath(os.path.join(os.path.dirname(__file__), '../i18n_extra'))
+        else:
+            module_path = get_module_path('spreadsheet_dashboard')
+
+            if not module_path:
+                return
+
+            i18n_path = os.path.realpath(os.path.join(str(module_path), 'i18n'))
+
+        active_langs = self.env['res.lang'].search([('active', '=', True)]).mapped('code')
+        po_files = [Path(f) for f in glob.glob(os.path.join(i18n_path, '*.po'))]
+
+        for po_file in po_files:
+            file_lang = po_file.stem
+
+            matching_languages = [lang for lang in active_langs if lang.startswith(file_lang)]
+
+            for lang in matching_languages:
+                translation_importer.load_file(str(po_file), lang)
+
+        translation_importer.save(overwrite=True)
