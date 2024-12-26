@@ -33,6 +33,12 @@ class ResConfigSettings(models.TransientModel):
         return group and group.active
 
     def _enable_spreadsheet_dashboard(self):
+        # Unarchive menu items of spreadsheet dashboard
+        menu = self.env.ref('spreadsheet_dashboard.spreadsheet_dashboard_menu_root', raise_if_not_found=False)
+
+        if menu:
+            menu.active = True
+
         # Enable security group of spreadsheet dashboard
         group = self.env.ref('spreadsheet_dashboard.group_dashboard_manager', raise_if_not_found=False)
 
@@ -42,6 +48,12 @@ class ResConfigSettings(models.TransientModel):
             self.env.registry.clear_cache()
 
     def _disable_spreadsheet_dashboard(self):
+        # Archive menu items of spreadsheet dashboard
+        menu = self.env.ref('spreadsheet_dashboard.spreadsheet_dashboard_menu_root', raise_if_not_found=False)
+
+        if menu:
+            menu.active = False
+
         # Remove spreadsheet dashboard security groups for all users
         group = self.env.ref('spreadsheet_dashboard.group_dashboard_manager', raise_if_not_found=False)
 
