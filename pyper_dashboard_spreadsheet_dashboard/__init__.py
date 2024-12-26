@@ -5,4 +5,4 @@ from . import models
 
 
 def post_init_hook(env):
-    env['ir.ui.menu'].sudo()._disable_spreadsheet_dashboard()
+    env['res.config.settings'].sudo()._disable_spreadsheet_dashboard()
