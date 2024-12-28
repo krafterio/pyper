@@ -31,6 +31,14 @@ class ResConfigSettings(models.TransientModel):
         else:
             self.sudo()._disable_spreadsheet_dashboard()
 
+    def _update_spreadsheet_dashboard_settings(self):
+        settings = self.env['res.config.settings']
+
+        if settings._is_spreadsheet_dashboard_enabled():
+            settings._enable_spreadsheet_dashboard()
+        else:
+            settings._disable_spreadsheet_dashboard()
+
     @api.model
     def _is_spreadsheet_dashboard_enabled(self):
         group = self.env.ref('spreadsheet_dashboard.group_dashboard_manager', raise_if_not_found=False)

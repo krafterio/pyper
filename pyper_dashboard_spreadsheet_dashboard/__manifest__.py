@@ -26,6 +26,9 @@
         'spreadsheet_dashboard',
     ],
     'data': [
+        # Data
+        'data/res_config_settings.xml',
+
         # Views
         'views/res_config_settings_views.xml',
         'views/res_groups_views.xml',

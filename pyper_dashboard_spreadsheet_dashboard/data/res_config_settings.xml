@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <function model="res.config.settings" name="_update_spreadsheet_dashboard_settings">
+        <value model="res.config.settings"/>
+    </function>
+</odoo>
