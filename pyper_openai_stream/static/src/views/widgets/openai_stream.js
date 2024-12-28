@@ -2,6 +2,7 @@
 
 import {Component, onWillUnmount, useEffect} from '@odoo/owl';
 import {useService} from '@web/core/utils/hooks';
+import {_t} from '@web/core/l10n/translation';
 import {standardWidgetProps} from '@web/views/widgets/standard_widget_props';
 
 export class OpenAiStream extends Component {
@@ -102,7 +103,7 @@ export class OpenAiStream extends Component {
             this.eventSource.close();
             this.eventSource = null;
 
-            this.notification.add(e.data, {type: 'danger'});
+            this.notification.add(e.data || _t('Open AI Stream Error'), {type: 'danger'});
         });
     }
 }
