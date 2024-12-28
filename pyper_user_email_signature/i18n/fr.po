@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20241209\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-28 14:23+0000\n"
-"PO-Revision-Date: 2024-12-28 14:23+0000\n"
+"POT-Creation-Date: 2024-12-28 14:35+0000\n"
+"PO-Revision-Date: 2024-12-28 14:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -47,6 +47,26 @@ msgid "Email Signature"
 msgstr "Signature d’email"
 
 #. module: pyper_user_email_signature
+#: model:ir.model,name:pyper_user_email_signature.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr "Assistant de composition d'e-mails"
+
+#. module: pyper_user_email_signature
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_mail_compose_message__user_email_signature
+msgid "Email signature"
+msgstr "Signature d’email"
+
+#. module: pyper_user_email_signature
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_mail_compose_message__end_signature
+msgid "End signature"
+msgstr "Signature"
+
+#. module: pyper_user_email_signature
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_mail_compose_message__has_user_email_signature
+msgid "Has user email signature?"
+msgstr "A une signature d’email ?"
+
+#. module: pyper_user_email_signature
 #: model:ir.model.fields,field_description:pyper_user_email_signature.field_res_users_email_signature__id
 msgid "ID"
 msgstr ""
@@ -67,6 +87,11 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: pyper_user_email_signature
+#: model:ir.model.fields,help:pyper_user_email_signature.field_mail_compose_message__user_email_signature
+msgid "Use another email signature to send an email"
+msgstr "Utiliser une autre signature électronique pour envoyer un message"
+
+#. module: pyper_user_email_signature
 #: model:ir.model,name:pyper_user_email_signature.model_res_users
 #: model:ir.model.fields,field_description:pyper_user_email_signature.field_res_users_email_signature__user_id
 msgid "User"
@@ -76,3 +101,8 @@ msgstr "Utilisateur"
 #: model:ir.model,name:pyper_user_email_signature.model_res_users_email_signature
 msgid "User Emails"
 msgstr "Emails de l’utilisateur"
+
+#. module: pyper_user_email_signature
+#: model_terms:ir.ui.view,arch_db:pyper_user_email_signature.email_compose_message_wizard_form
+msgid "Your main email signature"
+msgstr "Votre signature email principale"

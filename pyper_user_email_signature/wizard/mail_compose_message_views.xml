@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="email_compose_message_wizard_form" model="ir.ui.view">
+        <field name="name">mail.compose.message.form.inherit</field>
+        <field name="model">mail.compose.message</field>
+        <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='author_id']" position="before">
+                <field name="has_user_email_signature" invisible="True"/>
+            </xpath>
+
+            <xpath expr="//div[@invisible]//field[@name='template_id']" position="before">
+                <field name="user_email_signature"
+                       placeholder="Your main email signature"
+                       invisible="not has_user_email_signature"
+                       options="{'no_create': True, 'no_edit': True}"
+                       class="w-50"
+                />
+            </xpath>
+
+            <xpath expr="//page[@name='page_content']//group/field[@name='template_id']" position="before">
+                <field name="user_email_signature"
+                       placeholder="Your main email signature"
+                       invisible="not has_user_email_signature"
+                       options="{'no_create': True, 'no_edit': True}"
+                       class="w-50"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -15,6 +15,7 @@
     'depends': [
         'base',
         'web',
+        'mail',
     ],
     'data': [
         # Security
@@ -23,5 +24,8 @@
 
         # Views
         'views/res_users_views.xml',
+
+        # Wizard
+        'wizard/mail_compose_message_views.xml',
     ],
 }
