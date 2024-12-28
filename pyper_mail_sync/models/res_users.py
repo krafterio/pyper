@@ -12,5 +12,4 @@ class ResUsers(models.Model):
         'user_id',
         'Fetch Mail Servers',
         domain=lambda self: [('user_id', '=', self.id), ('sync_all', '=', True)],
-        ondelete='cascade',
     )
