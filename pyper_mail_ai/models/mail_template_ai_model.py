@@ -14,9 +14,7 @@ class MailTemplateAiModel(models.Model):
 
     name = fields.Char(
         'Name',
-        translate=True,
         related='model_id.name',
-        store=True,
     )
 
     model_id = fields.Many2one(
