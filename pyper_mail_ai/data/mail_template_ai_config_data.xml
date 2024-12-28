@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+    <record id="mail_template_ai_config_email" model="mail.template.ai.config">
+        <field name="name">Enriched message</field>
+        <field name="instruction_subject" type="xml">
+            <p>
+                The answer:
+                <br/>
+                <ul>
+                    <li>must always be in plain text format</li>
+                    <li>should never start with a prefix like "Object: "</li>
+                    <li>should not include reference to contact information such as company or position</li>
+                    <li>must be a short subject of the message of less than 20 words in French format without a period at the end intended for contact</li>
+                </ul>
+            </p>
+        </field>
+        <field name="instruction_content" type="xml">
+            <h1>Instruction</h1>
+            <p>
+                The answer:
+                <br/>
+                <ul>
+                    <li>must be in HTML format containing only HTML tags dedicated to text formatting</li>
+                    <li>should only contain the content of the message</li>
+                    <li>must not refer to the prompt sent</li>
+                    <li>must not start with "html" or "'"</li>
+                    <li>must not add sender information at the end of the message</li>
+                    <li>should use the person's first name if possible</li>
+                    <li>must remove emojis present in the contact function</li>
+                    <li>must remove references to the company in the contact function (starts with "at...")</li>
+                    <li>must format the company name in a classic syntax with a first capital letter and the rest in lowercase</li>
+                    <li>must not contain replacement keywords</li>
+                    <li>must remove the signature or references to my personal information at the end of the message</li>
+                    <li>must not include a placeholder dedicated to the message signature</li>
+                </ul>
+            </p>
+        </field>
+    </record>
+</odoo>

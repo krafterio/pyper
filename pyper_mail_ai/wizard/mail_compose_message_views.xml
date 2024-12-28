@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="email_compose_message_wizard_form" model="ir.ui.view">
+        <field name="name">mail.compose.message.form.inherit</field>
+        <field name="model">mail.compose.message</field>
+        <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='author_id']" position="before">
+                <field name="prompt" invisible="True"/>
+                <field name="system_prompt_subject" invisible="True"/>
+                <field name="system_prompt_body" invisible="True"/>
+                <field name="end_signature" invisible="True"/>
+            </xpath>
+
+            <xpath expr="//field[@name='email_from']" position="before">
+                <widget name="openai_stream"
+                        target_field="subject"
+                        system_message_field="system_prompt_subject"
+                        user_message_field="prompt"
+                />
+                <widget name="openai_stream"
+                        target_field="body"
+                        system_message_field="system_prompt_body"
+                        user_message_field="prompt"
+                        end_message_field="end_signature"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

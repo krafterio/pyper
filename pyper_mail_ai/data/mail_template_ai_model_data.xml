@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+    <record id="mail_template_ai_model_partner" model="mail.template.ai.model">
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="model_information" type="xml">
+            <p>
+                Contact information to use:
+            </p>
+
+            <ul>
+                <li>Name: <t t-out="object.name"/></li>
+                <li>Title: <t t-out="object.function"/></li>
+                <li>Email: <t t-out="object.email"/></li>
+                <li>Mobile phone: <t t-out="object.mobile"/></li>
+                <li>Phone: <t t-out="object.phone"/></li>
+                <li>Company: <t t-out="object.parent_id.name"/></li>
+                <li>Company description: <t t-out="object.parent_id.comment"/></li>
+            </ul>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,314 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_mail_ai
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20241209\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-28 13:24+0000\n"
+"PO-Revision-Date: 2024-12-28 13:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pyper_mail_ai
+#: model:mail.template.ai.config,instruction_content:pyper_mail_ai.mail_template_ai_config_email
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<data><h1>Instruction</h1>\n"
+"            <p>\n"
+"                The answer:\n"
+"                <br/>\n"
+"                <ul>\n"
+"                    <li>must be in HTML format containing only HTML tags dedicated to text formatting</li>\n"
+"                    <li>should only contain the content of the message</li>\n"
+"                    <li>must not refer to the prompt sent</li>\n"
+"                    <li>must not start with \"html\" or \"'\"</li>\n"
+"                    <li>must not add sender information at the end of the message</li>\n"
+"                    <li>should use the person's first name if possible</li>\n"
+"                    <li>must remove emojis present in the contact function</li>\n"
+"                    <li>must remove references to the company in the contact function (starts with \"at...\")</li>\n"
+"                    <li>must format the company name in a classic syntax with a first capital letter and the rest in lowercase</li>\n"
+"                    <li>must not contain replacement keywords</li>\n"
+"                    <li>must remove the signature or references to my personal information at the end of the message</li>\n"
+"                    <li>must not include a placeholder dedicated to the message signature</li>\n"
+"                </ul>\n"
+"            </p>\n"
+"        </data>"
+msgstr ""
+"            <h1>Instruction</h1>\n"
+"            <p>\n"
+"                La réponse :\n"
+"                <br/>\n"
+"                <ul>\n"
+"                    <li>doit être au format HTML contenant que des tags HTML dédié au formattage du texte</li>\n"
+"                    <li>ne doit contenir que le contenu du message</li>\n"
+"                    <li>ne doit pas faire allusion au prompt envoyé</li>\n"
+"                    <li>ne doit pas commencer par \"html\" ou \"'\"</li>\n"
+"                    <li>ne doit pas ajouter des informations de l’expéditeur en fin de message</li>\n"
+"                    <li>doit utiliser le prénom de la personne si possible</li>\n"
+"                    <li>doit retirer les emojis présent dans la fonction du contact</li>\n"
+"                    <li>doit retirer les références vers la société dans la fonction du contact (commence par \"chez…\")</li>\n"
+"                    <li>doit formater le nom de la société dans une syntaxe classique avec une première majuscule et le reste en minuscule</li>\n"
+"                    <li>ne doit pas contenir de mots clés de remplacement</li>\n"
+"                    <li>doit supprimer la signature ou les références à mes informations personnelles à la fin du message</li>\n"
+"                    <li>ne doit pas inclure de placeholder dédié à la signature du message</li>\n"
+"                </ul>\n"
+"            </p>"
+
+#. module: pyper_mail_ai
+#: model:mail.template.ai.model,model_information:pyper_mail_ai.mail_template_ai_model_partner
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<data><p>\n"
+"                Contact information to use:\n"
+"            </p>\n"
+"\n"
+"            <ul>\n"
+"                <li>Name: <t t-out=\"object.name\"/></li>\n"
+"                <li>Title: <t t-out=\"object.function\"/></li>\n"
+"                <li>Email: <t t-out=\"object.email\"/></li>\n"
+"                <li>Mobile phone: <t t-out=\"object.mobile\"/></li>\n"
+"                <li>Phone: <t t-out=\"object.phone\"/></li>\n"
+"                <li>Company: <t t-out=\"object.parent_id.name\"/></li>\n"
+"                <li>Company description: <t t-out=\"object.parent_id.comment\"/></li>\n"
+"            </ul>\n"
+"        </data>"
+msgstr ""
+"            <p>\n"
+"                Informations du contact à utiliser :\n"
+"            </p>\n"
+"\n"
+"            <ul>\n"
+"                <li>Nom : <t t-out=\"object.name\"/></li>\n"
+"                <li>Titre : <t t-out=\"object.function\"/></li>\n"
+"                <li>Email: <t t-out=\"object.email\"/></li>\n"
+"                <li>Téléphone mobile : <t t-out=\"object.mobile\"/></li>\n"
+"                <li>Téléphone : <t t-out=\"object.phone\"/></li>\n"
+"                <li>Société : <t t-out=\"object.parent_id.name\"/></li>\n"
+"                <li>Description de la société : <t t-out=\"object.parent_id.comment\"/></li>\n"
+"            </ul>"
+
+#. module: pyper_mail_ai
+#: model:mail.template.ai.config,instruction_subject:pyper_mail_ai.mail_template_ai_config_email
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<p>\n"
+"                The answer:\n"
+"                <br/>\n"
+"                <ul>\n"
+"                    <li>must always be in plain text format</li>\n"
+"                    <li>should never start with a prefix like \"Object: \"</li>\n"
+"                    <li>should not include reference to contact information such as company or position</li>\n"
+"                    <li>must be a short subject of the message of less than 20 words in French format without a period at the end intended for contact</li>\n"
+"                </ul>\n"
+"            </p>\n"
+"        "
+msgstr ""
+"            <p>\n"
+"                La réponse :\n"
+"                <br/>\n"
+"                <ul>\n"
+"                    <li>doit toujours être au format texte brut</li>\n"
+"                    <li>ne doit jamais commencer par un préfix comme par exemple \"Object: \"</li>\n"
+"                    <li>ne doit pas inclure de référence aux informations du contact tel que sa société ou son poste</li>\n"
+"                    <li>doit être un sujet court du message de moins de 20 mots au format français sans point à la fin destiné au contact</li>\n"
+"                </ul>\n"
+"            </p>"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_compose_message__ai_config_id
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template__ai_config_id
+msgid "AI Config"
+msgstr "Configuration IA"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_compose_message__ai_model_id
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template__ai_model_id
+msgid "AI Model"
+msgstr "Modèle de message IA"
+
+#. module: pyper_mail_ai
+#: model_terms:ir.ui.view,arch_db:pyper_mail_ai.view_email_template_search
+msgid "AI Templates"
+msgstr "Modèles IA"
+
+#. module: pyper_mail_ai
+#: model:mail.template.ai.model,name:pyper_mail_ai.mail_template_ai_model_partner
+msgid "Contact"
+msgstr ""
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_config__instruction_content
+msgid "Content Instruction"
+msgstr "Instruction du contenu"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_config__create_uid
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_model__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_config__create_date
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_model__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,help:pyper_mail_ai.field_mail_template_ai_model__model_information
+msgid "Define the information to use for the selected template"
+msgstr "Définir les informations à utiliser pour le modèle sélectionné"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_config__display_name
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_model__display_name
+msgid "Display Name"
+msgstr "Nom"
+
+#. module: pyper_mail_ai
+#: model:ir.actions.act_window,name:pyper_mail_ai.action_mail_template_ai_config
+#: model:ir.model,name:pyper_mail_ai.model_mail_template_ai_config
+#: model:ir.ui.menu,name:pyper_mail_ai.menu_mail_template_ai_config
+msgid "Email Template AI Configurations"
+msgstr "Configurations IA des modèles d’email"
+
+#. module: pyper_mail_ai
+#: model:ir.actions.act_window,name:pyper_mail_ai.action_mail_template_ai_model
+#: model:ir.model,name:pyper_mail_ai.model_mail_template_ai_model
+#: model:ir.ui.menu,name:pyper_mail_ai.menu_mail_template_ai_model
+msgid "Email Template AI Models"
+msgstr "Modèles IA des modèles d’email"
+
+#. module: pyper_mail_ai
+#: model:ir.model,name:pyper_mail_ai.model_mail_template
+msgid "Email Templates"
+msgstr "Modèles d'e-mail"
+
+#. module: pyper_mail_ai
+#: model:ir.model,name:pyper_mail_ai.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr "Assistant de composition d'e-mails"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_compose_message__end_signature
+msgid "End signature"
+msgstr "Signature"
+
+#. module: pyper_mail_ai
+#: model:mail.template.ai.config,name:pyper_mail_ai.mail_template_ai_config_email
+msgid "Enriched message"
+msgstr "Message enrichi"
+
+#. module: pyper_mail_ai
+#: model_terms:ir.ui.view,arch_db:pyper_mail_ai.email_template_form
+msgid ""
+"Fill in the Content field with the AI prompt to use to generate the message."
+msgstr ""
+"Renseigner le champ Contenu avec le prompt IA à utiliser pour générer le "
+"message."
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_config__id
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_model__id
+msgid "ID"
+msgstr ""
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_model__model_information
+msgid "Information"
+msgstr ""
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_config__write_uid
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_model__write_uid
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_config__write_date
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_model__write_date
+msgid "Last Updated on"
+msgstr "Dernière modification le"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_compose_message__main_partner_id
+msgid "Main Partner"
+msgstr "Contact principal"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_config__user_model_name
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_model__model_id
+msgid "Model"
+msgstr "Modèle"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_model__model_name
+msgid "Model Name"
+msgstr "Nom du modèle"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_config__name
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_model__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_compose_message__prompt
+msgid "Prompt"
+msgstr ""
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_config__sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_config__instruction_subject
+msgid "Subject Instruction"
+msgstr "Instruction du sujet"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_compose_message__system_prompt_body
+msgid "System Prompt Body"
+msgstr "Prompt système du contenu"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_compose_message__system_prompt_subject
+msgid "System Prompt Subject"
+msgstr "Prompt système du sujet"
+
+#. module: pyper_mail_ai
+#: model:ir.model.constraint,message:pyper_mail_ai.constraint_mail_template_ai_model_unique_model_id
+msgid "The model must be unique."
+msgstr "Le modèle doit être unique."
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_compose_message__use_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template__use_ai
+msgid "Use AI"
+msgstr "Utiliser l’IA"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,help:pyper_mail_ai.field_mail_compose_message__use_ai
+#: model:ir.model.fields,help:pyper_mail_ai.field_mail_template__use_ai
+msgid "Use AI to write email in email composer"
+msgstr "Utiliser l’IA pour rédiger un email dans le compositeur d’email"
+
+#. module: pyper_mail_ai
+#: model:ir.model.fields,field_description:pyper_mail_ai.field_mail_template_ai_config__user_model_id
+msgid "User Model"
+msgstr "Modèle de l’utilisateur"
+
+#. module: pyper_mail_ai
+#. odoo-python
+#: code:addons/bendr/pyper/pyper_mail_ai/models/mail_template.py:0
+#: code:addons/pyper/pyper_mail_ai/models/mail_template.py:0
+#: code:addons/pyper_mail_ai/models/mail_template.py:0
+#, python-format
+msgid "with AI"
+msgstr "avec IA"

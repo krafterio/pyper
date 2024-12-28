@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="mail_template_ai_model_view_tree" model="ir.ui.view">
+        <field name="name">mail.template.ai.model.tree</field>
+        <field name="model">mail.template.ai.model</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="mail_template_ai_model_view_form" model="ir.ui.view">
+        <field name="name">mail.template.ai.model.form</field>
+        <field name="model">mail.template.ai.model</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="model_id" options="{'no_create': True, 'no_edit': True}"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <field name="model_name" invisible="True"/>
+
+                        <field name="model_information"
+                               widget="html"
+                               options="{
+                                   'dynamic_placeholder': True,
+                                   'dynamic_placeholder_model_reference_field': 'model_name',
+                               }"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mail_template_ai_model" model="ir.actions.act_window">
+        <field name="name">Email Template AI Models</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mail.template.ai.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

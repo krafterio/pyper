@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="email_template_tree" model="ir.ui.view">
+        <field name="name">mail.template.tree.inherit</field>
+        <field name="model">mail.template</field>
+        <field name="inherit_id" ref="mail.email_template_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='model_id']" position="after">
+                <field name="use_ai" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="email_template_form" model="ir.ui.view">
+        <field name="name">mail.template.form.inherit</field>
+        <field name="model">mail.template</field>
+        <field name="inherit_id" ref="mail.email_template_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='model_id']/.." position="before">
+                <group>
+                    <group col="2">
+                        <field name="use_ai"/>
+                    </group>
+
+                    <group>
+                        <field name="ai_config_id" invisible="not use_ai" required="use_ai"/>
+                    </group>
+                </group>
+            </xpath>
+
+            <xpath expr="//field[@name='subject']" position="attributes">
+                <attribute name="invisible">use_ai</attribute>
+            </xpath>
+
+            <xpath expr="//div[hasclass('oe_title')]" position="after">
+                <div class="alert alert-info" role="alert" invisible="not use_ai">
+                    Fill in the Content field with the AI prompt to use to generate the message.
+                </div>
+            </xpath>
+
+            <xpath expr="//field[@name='model_id']" position="attributes">
+                <attribute name="invisible">use_ai</attribute>
+                <attribute name="force_save">True</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='model_id']" position="after">
+                <field name="ai_model_id"
+                       required="True"
+                       invisible="not use_ai"
+                       options="{'no_create': True}"
+                       force_save="True"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_email_template_search" model="ir.ui.view">
+        <field name="name">email.template.search.inherit</field>
+        <field name="model">mail.template</field>
+        <field name="inherit_id" ref="mail.view_email_template_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='base_templates']" position="after">
+                <filter name="ai_templates" string="AI Templates" domain="[('use_ai', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

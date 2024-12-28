@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mail_template_ai_config_group_user,mail_template_ai_config group_user,model_mail_template_ai_config,base.group_user,1,1,1,1
+access_mail_template_ai_model_group_user,mail_template_ai_model group_user,model_mail_template_ai_model,base.group_user,1,1,1,1
