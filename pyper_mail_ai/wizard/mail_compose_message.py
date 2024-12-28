@@ -25,7 +25,6 @@ class MailComposerMessage(models.TransientModel):
     end_signature = fields.Html(
         'End signature',
         sanitize=False,
-        compute='_compute_end_signature',
     )
 
     main_partner_id = fields.Many2one(
@@ -44,12 +43,6 @@ class MailComposerMessage(models.TransientModel):
     system_prompt_body = fields.Text(
         compute='_compute_prompts',
     )
-
-    @api.depends('template_id', 'use_ai')
-    @api.depends_context('uid')
-    def _compute_end_signature(self):
-        for record in self:
-            record.end_signature = self.env.user.signature
 
     @api.depends('partner_ids')
     def _compute_main_partner_id(self):

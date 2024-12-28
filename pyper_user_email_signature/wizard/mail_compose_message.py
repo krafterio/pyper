@@ -22,18 +22,18 @@ class MailComposerMessage(models.TransientModel):
     end_signature = fields.Html(
         'End signature',
         sanitize=False,
-        compute='_compute_end_signature',
     )
 
-    @api.depends('template_id', 'user_email_signature')
-    @api.depends_context('uid')
-    def _compute_end_signature(self):
+    @api.depends('user_email_signature')
+    def _onchange_user_email_signature(self):
         for record in self:
-            record.end_signature = record.user_email_signature.signature or self.env.user.signature
+            record.end_signature = False
 
     def _compute_body(self):
         super()._compute_body()
 
         for record in self:
+            record.end_signature = record.user_email_signature.signature or self.env.user.signature
+
             if record.end_signature and record.body:
                 record.body += record.end_signature
