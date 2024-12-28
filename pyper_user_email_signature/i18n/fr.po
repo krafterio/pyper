@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_user_email_signature
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20241209\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-28 14:23+0000\n"
+"PO-Revision-Date: 2024-12-28 14:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pyper_user_email_signature
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_res_users__additional_email_signatures
+#: model_terms:ir.ui.view,arch_db:pyper_user_email_signature.view_users_form_simple_modif
+msgid "Additional email signatures"
+msgstr "Signatures d’email supplémentaires"
+
+#. module: pyper_user_email_signature
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_res_users_email_signature__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: pyper_user_email_signature
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_res_users_email_signature__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: pyper_user_email_signature
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_res_users_email_signature__display_name
+msgid "Display Name"
+msgstr "Nom"
+
+#. module: pyper_user_email_signature
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_res_users_email_signature__email
+msgid "Email"
+msgstr ""
+
+#. module: pyper_user_email_signature
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_res_users_email_signature__signature
+msgid "Email Signature"
+msgstr "Signature d’email"
+
+#. module: pyper_user_email_signature
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_res_users_email_signature__id
+msgid "ID"
+msgstr ""
+
+#. module: pyper_user_email_signature
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_res_users_email_signature__write_uid
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: pyper_user_email_signature
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_res_users_email_signature__write_date
+msgid "Last Updated on"
+msgstr "Dernière modification le"
+
+#. module: pyper_user_email_signature
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_res_users_email_signature__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: pyper_user_email_signature
+#: model:ir.model,name:pyper_user_email_signature.model_res_users
+#: model:ir.model.fields,field_description:pyper_user_email_signature.field_res_users_email_signature__user_id
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: pyper_user_email_signature
+#: model:ir.model,name:pyper_user_email_signature.model_res_users_email_signature
+msgid "User Emails"
+msgstr "Emails de l’utilisateur"
