@@ -30,3 +30,10 @@ class MailComposerMessage(models.TransientModel):
     def _compute_end_signature(self):
         for record in self:
             record.end_signature = record.user_email_signature.signature or self.env.user.signature
+
+    def _compute_body(self):
+        super()._compute_body()
+
+        for record in self:
+            if record.end_signature and record.body:
+                record.body += record.end_signature
