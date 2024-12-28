@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="ir_rule_users_email_signature" model="ir.rule">
+        <field name="name">User emails: groups</field>
+        <field name="model_id" ref="model_res_users_email_signature" />
+        <field name="groups" eval="[(4, ref('base.group_user'))]" />
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+    </record>
+</odoo>
