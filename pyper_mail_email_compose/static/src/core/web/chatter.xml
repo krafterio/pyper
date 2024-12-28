@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="pyper_mail_email_compose.Chatter" t-inherit="mail.Chatter" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('o-mail-Chatter-sendMessage')]" position="after">
+            <button t-if="props.hasMessageList" class="o-mail-Chatter-sendEmail btn btn-sm text-nowrap me-1" t-att-class="{
+                'btn-secondary': true,
+                'my-2': !props.compactHeight
+            }" t-att-disabled="!state.thread.hasWriteAccess and !(state.thread.hasReadAccess and state.thread.canPostOnReadonly) and props.threadId" data-hotkey="e" t-on-click="() => this.onClickSendEmail()">
+                Email
+            </button>
+        </xpath>
+    </t>
+</templates>
