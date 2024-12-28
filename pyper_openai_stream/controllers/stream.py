@@ -62,21 +62,21 @@ class Stream(http.Controller):
 
     @staticmethod
     def event_stream(api_key, model, system_message, user_message):
-        client = OpenAI(api_key=api_key)
-        messages = []
+        try:
+            client = OpenAI(api_key=api_key)
+            messages = []
 
-        if system_message:
+            if system_message:
+                messages.append({
+                    'role': 'system',
+                    'content': system_message,
+                })
+
             messages.append({
-                'role': 'system',
-                'content': system_message,
+                'role': 'user',
+                'content': user_message,
             })
 
-        messages.append({
-            'role': 'user',
-            'content': user_message,
-        })
-
-        try:
             response = client.chat.completions.create(
                 model=model,
                 stream=True,
