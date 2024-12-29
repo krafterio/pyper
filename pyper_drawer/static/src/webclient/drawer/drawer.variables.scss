@@ -39,6 +39,7 @@ $o-drawer-item-bg: inherit !default;
 $o-drawer-item-icon-color: inherit !default;
 $o-drawer-item-caret-color: $o-gray-500 !default;
 $o-drawer-item-caret-size: $o-font-size-base !default;
+$o-drawer-item-caret-margin-end: -$o-drawer-item-padding-h / 2 !default;
 
 $o-drawer-item-counter-border-radius: $o-border-radius !default;
 $o-drawer-item-counter-padding-v: 1px !default;
@@ -77,6 +78,7 @@ $o-drawer-item-counter-active-hover-opacity: $o-drawer-item-counter-hover-opacit
 $o-drawer-item-nav-margin-h: 5px !default;
 $o-drawer-item-nav-padding-h: $o-drawer-item-padding-h !default;
 $o-drawer-item-nav-margin-bottom: $o-drawer-item-nav-margin-h !default;
+$o-drawer-item-nav-caret-margin-end: -($o-drawer-item-nav-padding-h - ($o-drawer-item-nav-margin-h/2)) / 2 !default;
 
 $o-drawer-subitem-depth-base-with-icon: 20px !default;
 $o-drawer-subitem-depth-base: 0px !default;

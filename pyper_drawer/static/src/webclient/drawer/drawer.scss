@@ -203,7 +203,7 @@
         .o_drawer--item-icon-caret {
             width: $o-drawer-item-padding-h;
             height: $o-drawer-item-padding-h;
-            margin-right: -$o-drawer-item-padding-h;
+            margin-right: $o-drawer-item-caret-margin-end;
             text-align: center;
             display: flex;
             align-items: center;
@@ -561,7 +561,7 @@
         }
 
         .o_drawer--item-icon-caret {
-            margin-right: -($o-drawer-item-nav-padding-h - ($o-drawer-item-nav-margin-h/2));
+            margin-right: $o-drawer-item-nav-caret-margin-end;
         }
     }
 
