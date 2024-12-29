@@ -1,51 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem
-        id="contacts.menu_contacts"
-        name="Customers"
-    />
-
-    <menuitem
-        id="custom_contact_root"
-        name="Customers"
-        sequence="1"
-        parent="contacts.menu_contacts"
-    />
-
-    <menuitem
-        id="custom_customers_menu"
+        id="menu_companies"
         name="Companies"
         sequence="1"
-        parent="pyper_contact.custom_contact_root"
-        action="pyper_contact.action_simple_customers"
+        parent="contacts.menu_contacts"
+        action="pyper_contact.action_companies"
     />
 
     <menuitem
-        id="custom_contact_menu"
-        name="Contacts"
-        sequence="2"
-        parent="pyper_contact.custom_contact_root"
-        action="pyper_contact.action_simple_contacts"
+        id="menu_persons"
+        name="Persons"
+        sequence="1"
+        parent="contacts.menu_contacts"
+        action="pyper_contact.action_persons"
     />
 
     <menuitem
-        id="company_importer_root"
+        id="importer_root"
         name="Importer"
         sequence="5"
         parent="contacts.menu_contacts"
     />
 
     <menuitem
-        id="all_company_importer"
+        id="company_importer"
         name="Importer company"
         sequence="1"
-        parent="pyper_contact.company_importer_root"
+        parent="pyper_contact.importer_root"
     />
 
     <menuitem
-        id="all_contact_import"
-        name="Import contact"
+        id="person_importer"
+        name="Import person"
         sequence="2"
-        parent="pyper_contact.company_importer_root"
+        parent="pyper_contact.importer_root"
     />
 </odoo>

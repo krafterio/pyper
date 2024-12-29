@@ -15,6 +15,7 @@
     'application': True,
     'installable': True,
     'depends': [
+        'pyper_contact',
         'pyper_linkedin_partner',
     ],
     'data': [

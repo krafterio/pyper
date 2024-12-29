@@ -21,7 +21,7 @@
             id="pappers_name_form"
             name="Import company with name"
             sequence="1"
-            parent="pyper_contact.all_company_importer"
+            parent="pyper_contact.company_importer"
             action="pyper_pappers_connector.action_open_pappers_name_wizard"
         />
 
@@ -29,7 +29,7 @@
             id="pappers_siret_form"
             name="Import company with siret"
             sequence="2"
-            parent="pyper_contact.all_company_importer"
+            parent="pyper_contact.company_importer"
             action="pyper_pappers_connector.action_open_pappers_wizard"
         />
     </data>
