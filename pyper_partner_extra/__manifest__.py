@@ -2,7 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Pyper l10n extra',
+    'name': 'Partner Extra',
     'category': 'Sales/CRM',
     'license': 'Other proprietary',
     'description': 'Add extra partner administrative fields',
@@ -14,12 +14,4 @@
     ],
     'website': 'https://krafter.io',
     'installable': True,
-    'auto_install': [
-        'l10n_fr',
-    ],
-    'depends': [
-        'l10n_fr',
-    ],
-    'data': [
-    ],
 }
