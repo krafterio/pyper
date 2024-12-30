@@ -31,11 +31,7 @@ class MailMessage(models.Model):
     @api.depends('tracking_value_count', 'message_type', 'mail_activity_type_id', 'is_internal')
     def _compute_is_audit_log(self):
         for message in self:
-            message.is_audit_log = (message.tracking_value_count > 0
-                                    or (message.message_type == 'notification'
-                                        and not message.mail_activity_type_id
-                                        and message.is_internal)
-                                    )
+            message.is_audit_log = message.tracking_value_count > 0
 
     def _message_format_extras(self, format_reply):
         self.ensure_one()
