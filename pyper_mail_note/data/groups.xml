@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="group_can_write_notes" model="res.groups">
-        <field name="name">Can Write Notes</field>
+        <field name="name">Can write notes</field>
         <field name="category_id" ref="base.module_category_hidden"/>
     </record>
 </odoo>

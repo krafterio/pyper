@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_mail_note
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20241229\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-30 19:24+0000\n"
+"PO-Revision-Date: 2024-12-30 19:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pyper_mail_note
+#: model:res.groups,name:pyper_mail_note.group_can_write_notes
+msgid "Can write notes"
+msgstr "Peut écrire des notes"
+
+#. module: pyper_mail_note
+#: model_terms:ir.ui.view,arch_db:pyper_mail_note.res_config_settings_view_form
+msgid "Chatter"
+msgstr ""
+
+#. module: pyper_mail_note
+#: model:ir.model,name:pyper_mail_note.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: pyper_mail_note
+#: model:ir.model.fields,field_description:pyper_mail_note.field_res_config_settings__mail_display_note_button
+msgid "Display note button to chatter?"
+msgstr "Afficher le bouton note dans le chatter ?"
+
+#. module: pyper_mail_note
+#: model_terms:ir.ui.view,arch_db:pyper_mail_note.res_config_settings_view_form
+msgid "Enable this setting to display the Note button in the chatter"
+msgstr "Activer ce paramètre pour afficher le bouton Note dans le chatter"

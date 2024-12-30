@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-name="pyper_web_theme_activity.Chatter" t-inherit="mail.Chatter" t-inherit-mode="extension">
-        <!-- Change display of log note button -->
-        <xpath expr="//button[hasclass('o-mail-Chatter-logNote')]" position="attributes">
-            <attribute name="t-if">props.hasMessageList and state.canWriteNotes</attribute>
-        </xpath>
-
         <!-- Change label of send message button -->
         <xpath expr="//button[hasclass('o-mail-Chatter-sendMessage')]" position="replace">
             <button t-if="props.hasMessageList" class="o-mail-Chatter-sendMessage btn btn-sm text-nowrap me-1" t-att-class="{

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="pyper_mail_note.Chatter" t-inherit="mail.Chatter" t-inherit-mode="extension">
+        <!-- Change display of log note button -->
+        <xpath expr="//button[hasclass('o-mail-Chatter-logNote')]" position="attributes">
+            <attribute name="t-if">displayNoteButton</attribute>
+        </xpath>
+    </t>
+</templates>

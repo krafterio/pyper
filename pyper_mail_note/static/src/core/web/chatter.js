@@ -11,7 +11,11 @@ patch(Chatter.prototype, {
         this.user = useService('user');
 
         onWillStart(async () => {
-            this.state.canWriteNotes = await this.user.hasGroup('pyper_web_theme_activity.group_can_write_notes');
+            this.state.canWriteNotes = await this.user.hasGroup('pyper_mail_note.group_can_write_notes');
         });
+    },
+
+    get displayNoteButton() {
+        return this.props.hasMessageList && this.state.canWriteNotes;
     },
 });

@@ -8,8 +8,8 @@
         <field name="arch" type="xml">
             <xpath expr="//app[@name='pyper_settings']" position="inside">
                 <block title="Chatter" name="pyper_chatter_settings">
-                    <setting help="Enable this setting to show the Note button in the chatter">
-                        <field name="show_note_button"/>
+                    <setting help="Enable this setting to display the Note button in the chatter">
+                        <field name="mail_display_note_button"/>
                     </setting>
                 </block>
             </xpath>

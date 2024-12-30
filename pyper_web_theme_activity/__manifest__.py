@@ -25,12 +25,8 @@
         'pyper_web_theme',
     ],
     'data': [
-        # Data
-        'data/groups.xml',
-
         # Views
         'views/mail_message_views.xml',
-        'views/res_config_settings_views.xml',
     ],
     'assets': {
         'web._assets_secondary_variables': [
