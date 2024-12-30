@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="pyper_mail_audit_log.Chatter" t-inherit="mail.Chatter" t-inherit-mode="extension">
+        <!-- Add audit log switcher button -->
+        <xpath expr="//span[hasclass('o-mail-Chatter-topbarGrow')]" position="after">
+            <button class="o-mail-Chatter-audit-log btn btn-link text-action px-2" t-att-class="{'o-active': state.isAuditLogEnabled}" aria-label="Display or hide audit logs" title="Display or hide audit logs" t-on-click="onClickAuditLog">
+                <i class="fa fa-history" role="img"/>
+            </button>
+        </xpath>
+    </t>
+</templates>
