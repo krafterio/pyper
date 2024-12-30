@@ -240,6 +240,7 @@ patch(ListRenderer.prototype, {
     },
 
     removeEmptyCells() {
+        if (!this.tableRef.el.querySelector('tbody tr.o_data_row')) return;
         const lastRow = this.tableRef.el.querySelector('tfoot tr:last-child');
         if (!lastRow) return;
     
