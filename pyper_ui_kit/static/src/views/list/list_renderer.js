@@ -230,12 +230,27 @@ patch(ListRenderer.prototype, {
         });
 
         this.removeBorderBottomLastRow();
+        this.removeEmptyCells();
     },
 
     removeBorderBottomLastRow() {
         this.tableRef.el.querySelectorAll('tbody tr.o_data_row:last-child td').forEach(td => {
             td.style.borderBottom = 'none';
         });
+    },
+
+    removeEmptyCells() {
+        const lastRow = this.tableRef.el.querySelector('tfoot tr:last-child');
+        if (!lastRow) return;
+    
+        const cells = Array.from(lastRow.querySelectorAll('td'));
+        const allEmpty = cells.every(cell => cell.textContent.trim() === '');
+    
+        if (allEmpty) {
+            cells.forEach(cell => {
+                cell.style.display = 'none';
+            });
+        }
     },
 
     animateItems() {
