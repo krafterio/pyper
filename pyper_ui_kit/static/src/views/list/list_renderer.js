@@ -40,12 +40,6 @@ patch(ListRenderer.prototype, {
         this.prepareStickyColumns();
     },
 
-    get displayOptionalFields() {
-        // Allow to display the optional fields button in o2x relation and hide this button in root list to keep
-        // the absolute width of table columns on the init.
-        return 'view' !== this.props.activeActions.type;
-    },
-
     get hasSelectors() {
         return this.props.allowSelectors;
     },
