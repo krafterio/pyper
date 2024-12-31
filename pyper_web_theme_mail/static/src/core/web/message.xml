@@ -11,23 +11,30 @@
         </xpath>
 
         <xpath expr="//div[hasclass('o-mail-Message-header')]/span[hasclass('o-mail-Message-author')]" position="before">
-            <span class="o-mail-Message-type badge bg-secondary" t-if="message.mail_activity_type_icon or message.mail_activity_type_name">
-                <span class="o-mail-Message-type-icon me-2" t-if="message.mail_activity_type_icon">
-                    <i class="fa" t-attf-class="{{ message.mail_activity_type_icon }}"/>
+            <t t-set="mailMessageTypeIcon" t-value="message.mail_activity_type_icon"/>
+            <t t-set="mailMessageTypeName" t-value="message.mail_activity_type_name"/>
+
+            <t t-if="!mailMessageTypeName and message.is_note">
+                <t t-set="mailMessageTypeIcon" t-value="'fa-sticky-note'"/>
+                <t t-set="mailMessageTypeName">Note</t>
+            </t>
+
+            <t t-if="(message.trackingValues || []).length > 0">
+                <t t-set="mailMessageTypeIcon" t-value="'fa-history'"/>
+                <t t-set="mailMessageTypeName">History</t>
+            </t>
+
+            <t t-set="displayMessageType" t-value="mailMessageTypeIcon or mailMessageTypeName" />
+
+            <span class="o-mail-Message-type badge bg-secondary" t-if="displayMessageType">
+                <span class="o-mail-Message-type-icon me-2" t-if="mailMessageTypeIcon">
+                    <i class="fa" t-attf-class="{{ mailMessageTypeIcon }}"/>
                 </span>
 
-                <span class="o-mail-Message-type-name" t-if="message.mail_activity_type_name" t-out="message.mail_activity_type_name"/>
+                <span class="o-mail-Message-type-name" t-if="mailMessageTypeName" t-out="mailMessageTypeName"/>
             </span>
 
-            <span class="o-mail-Message-type badge bg-secondary o-mail-Message-type-note pe-1" t-elif="message.is_note">
-                <span class="o-mail-Message-type-icon me-2">
-                    <i class="fa fa-sticky-note"/>
-                </span>
-
-                <span class="o-mail-Message-type-name">Note</span>
-            </span>
-
-            <span class="mx-1" t-if="message.mail_activity_type_icon or message.mail_activity_type_name or message.is_note">by</span>
+            <span class="mx-1" t-if="displayMessageType">by</span>
         </xpath>
 
         <!-- Tracking values -->
