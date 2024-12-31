@@ -22,15 +22,12 @@
         'base',
         'web',
         'mail',
+        'pyper_mail',
         'pyper_web_theme',
-    ],
-    'data': [
-        # Views
-        'views/mail_message_views.xml',
     ],
     'assets': {
         'web._assets_secondary_variables': [
-            'pyper_web_theme_activity/static/src/core/**/*.variables.scss',
+            'pyper_web_theme_activity/static/src/**/*.variables.scss',
         ],
         'web.assets_backend': [
             'pyper_web_theme_activity/static/src/core/**/*',

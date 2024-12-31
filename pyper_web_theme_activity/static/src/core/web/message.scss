@@ -1,77 +1,63 @@
-// Discuss Message style
-// ---------------------
+// Mail Message
+// ------------
 
-.o-mail-Chatter,
-.o-mail-Discuss {
-    .o-mail-Composer-avatar {
-        &.o_avatar {
-            &.rounded {
-                border-radius: 50rem !important;
-            }
-        }
+// Tracking Value
+.o-mail-Message-tracking {
+    list-style: $o-mail-message-tracking-list-style;
+
+    .o-mail-Message-trackingOld {
+        font-weight: $o-mail-message-tracking-old-font-weight;
     }
 
-    .o-mail-Message-avatar {
-        &.rounded {
-            border-radius: 50rem !important;
-        }
+    .o-mail-Message-trackingNew {
+        font-weight: $o-mail-message-tracking-new-font-weight;
+    }
+}
+
+// Message Header
+.o-mail-Message-header {
+    min-height: $o-mail-Avatar-size;
+}
+
+.o-mail-Message-author {
+    strong {
+        font-weight: normal;
+    }
+}
+
+// Message Type
+.o-mail-Message-type {
+    display: flex;
+    align-items: center;
+    min-height: $o-mail-Avatar-size;
+}
+
+// Message Bubble
+.o-mail-Message-bubble {
+    // Not self authored message
+    &.border-info {
+        border-color: $o-mail-message-bubble-not-self-authored-border-color !important;
     }
 
-    .o-mail-Message-bubble {
-        background-color: $o-white;
-
-        &.o-mail-Message-bubble--self-authored {
-            background-color: $p-mail-message-bubble-self-authored-bg;
-        }
+    &.bg-info-light {
+        background-color: $o-mail-message-bubble-not-self-authored-bg !important;
     }
 
-    .o-mail-Message-body--self-authored {
-        &,
-        a,
-        a:hover,
-        a:focus {
-            color: $p-mail-message-bubble-self-authored-color;
-        }
+    // Self authored message
+    &.border-success {
+        border-color: $o-mail-message-bubble-self-authored-border-color !important;
     }
 
-    .o-mail-Message-body--not-self-authored {
-        &,
-        a,
-        a:hover,
-        a:focus {
-            color: $p-mail-message-bubble-color;
-        }
+    &.bg-success-light {
+        background-color: $o-mail-message-bubble-self-authored-bg !important;
     }
 
-    .o-mail-Message-author {
-        strong {
-            font-weight: 400;
-            opacity: 0.50;
-        }
+    // Highlighted from mention
+    &.border-warning {
+        border-color: $o-mail-message-bubble-highlighted-from-mention-border-color !important;
     }
 
-    .o-mail-DateSection {
-        font-size: 0.75rem;
-    }
-
-    .o-mail-Message-actions {
-        .btn {
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-            height: 18px;
-            line-height: 18px;
-            opacity: 0.50;
-
-            &:hover {
-                opacity: 1;
-                background-color: transparent !important;
-                color: $o-brand-primary !important;
-            }
-        }
-
-        i {
-            font-size: 14px !important;
-            line-height: 1 !important;
-        }
+    &.bg-warning-light {
+        background-color: $o-mail-message-bubble-highlighted-from-mention-bg !important;
     }
 }

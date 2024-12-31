@@ -41,13 +41,6 @@ small,
     }
 }
 
-.o-mail-Message-body {
-    .o_mail_redirect {
-        color: $o-white;
-        font-weight: bold;
-    }
-}
-
 .toggle-panel {
     border-radius:0.25rem;
 
@@ -67,31 +60,8 @@ small,
     }
 }
 
-.o-mail-Message-tracking {
-    list-style: none;
-}
-
-div.o-mail-Message-textContent {
-    ul {
-        padding-left: 0 !important;
-    }
-}
-
 .o_field_partner_quick_link {
     margin-bottom: 0 !important;
-}
-
-.o-mail-Message-tracking {
-    font-size: 0.9rem;
-}
-
-.o-mail-Message-tracking {
-    .o-mail-Message-trackingOld,
-    .o-mail-Message-trackingNew {
-        &.fw-bold {
-            font-weight: 400 !important;
-        }
-    }
 }
 
 .btn-quick {
@@ -112,7 +82,6 @@ div.o-mail-Message-textContent {
     }
 }
 
-.o-mail-Followers-counter,
 .btn-quick-counter {
     position: absolute;
     top: 3px;

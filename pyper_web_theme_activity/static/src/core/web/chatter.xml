@@ -1,42 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-name="pyper_web_theme_activity.Chatter" t-inherit="mail.Chatter" t-inherit-mode="extension">
-        <!-- Change label of send message button -->
-        <xpath expr="//button[hasclass('o-mail-Chatter-sendMessage')]" position="replace">
-            <button t-if="props.hasMessageList" class="o-mail-Chatter-sendMessage btn btn-sm text-nowrap me-1" t-att-class="{
-                'btn-primary': state.composerType !== 'note',
-                'btn-secondary': state.composerType === 'note',
-                'active': state.composerType === 'message',
-                'my-2': !props.compactHeight
-            }" t-att-disabled="!state.thread.hasWriteAccess and !(state.thread.hasReadAccess and state.thread.canPostOnReadonly) and props.threadId" data-hotkey="m" t-on-click="() => this.toggleComposer('message')">
-                Message
-            </button>
-        </xpath>
-
-        <!-- Change size of log note button -->
-        <xpath expr="//button[hasclass('o-mail-Chatter-logNote')]" position="attributes">
-            <attribute name="class" separator=" " add="btn-sm"/>
-        </xpath>
-
-        <!-- Change size of activity button -->
-        <xpath expr="//button[hasclass('o-mail-Chatter-activity')]" position="attributes">
-            <attribute name="class" separator=" " add="btn-sm"/>
-        </xpath>
-
-        <!-- Change size and remove text color of unfollow button -->
-        <xpath expr="//button[@t-ref='unfollow']" position="attributes">
-            <attribute name="class" separator=" " add="btn-sm text-muted"/>
-            <attribute name="t-att-class">{'my-2': !props.compactHeight}</attribute>
-        </xpath>
-
         <!-- Change style of follow button -->
         <xpath expr="//button[hasclass('o-mail-Chatter-follow')]" position="attributes">
             <attribute name="class" separator=" " remove="btn-link"/>
-        </xpath>
-
-        <!-- Change style of search button -->
-        <xpath expr="//button[hasclass('btn')]/i[hasclass('oi-search')]/.." position="attributes">
-            <attribute name="class" separator=" " add="px-2"/>
         </xpath>
     </t>
 </templates>

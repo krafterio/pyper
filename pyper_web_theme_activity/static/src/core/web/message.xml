@@ -1,50 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-name="pyper_web_theme_activity.Message" t-inherit="mail.Message" t-inherit-mode="extension">
-        <xpath expr="//div[hasclass('o-mail-Message-header')]/following-sibling::div[1]" position="attributes">
-            <attribute name="class" separator=" " add="o-mail-Message-container"/>
-        </xpath>
-
-        <xpath expr="//div[hasclass('o-mail-Message-core')]/div[2]/div[2]" position="after">
-            <xpath expr="//div[hasclass('o-mail-Message-header')]" position="move"/>
+        <!-- Message -->
+        <xpath expr="//img[hasclass('o-mail-Message-avatar')]" position="attributes">
+            <attribute name="class" separator=" " remove="rounded" add="rounded-pill"/>
         </xpath>
 
         <xpath expr="//div[hasclass('o-mail-Message-header')]" position="attributes">
-            <attribute name="class" add="small" separator=" " remove="mb-1"/>
+            <attribute name="class" separator=" " remove="align-items-baseline" add="align-items-center"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o-mail-Message-textContent')]" position="attributes">
-            <attribute name="t-att-class">{
-                'w-100': state.isEditing,
-                'message_type_notification': message.type === 'notification',
-                'message_type_comment': message.type !== 'notification'
-            }</attribute>
+        <xpath expr="//div[hasclass('o-mail-Message-header')]/span[hasclass('o-mail-Message-author')]" position="before">
+            <span class="o-mail-Message-type badge bg-secondary" t-if="message.mail_activity_type_icon or message.mail_activity_type_name">
+                <span class="o-mail-Message-type-icon me-2" t-if="message.mail_activity_type_icon">
+                    <i class="fa" t-attf-class="{{ message.mail_activity_type_icon }}"/>
+                </span>
+
+                <span class="o-mail-Message-type-name" t-if="message.mail_activity_type_name" t-out="message.mail_activity_type_name"/>
+            </span>
+
+            <span class="o-mail-Message-type badge bg-secondary o-mail-Message-type-note pe-1" t-elif="message.is_note">
+                <span class="o-mail-Message-type-icon me-2">
+                    <i class="fa fa-sticky-note"/>
+                </span>
+
+                <span class="o-mail-Message-type-name">Note</span>
+            </span>
+
+            <span class="mx-1" t-if="message.mail_activity_type_icon or message.mail_activity_type_name or message.is_note">by</span>
         </xpath>
 
-        <xpath expr="//div[hasclass('o-mail-Message-bubble')]" position="attributes">
-            <attribute name="t-att-class">{
-                'border': state.isEditing and !message.isNote,
-                'border border-light text-dark': !message.isSelfAuthored and !message.isNote and !message.isHighlightedFromMention,
-                'o-mail-Message-bubble--self-authored': message.isSelfAuthored and !message.isNote and !message.isHighlightedFromMention,
-                'bg-warning-light border border-warning opacity-50': message.isHighlightedFromMention
-            }</attribute>
-        </xpath>
-
-        <xpath expr="//div[hasclass('o-mail-Message-textContent')]//t[@t-else='']/div[1]/div[2]" position="attributes">
-            <attribute name="t-att-class">{
-                'mb-0 py-1 px-2 message_note': message.is_note,
-                'mb-0 py-1 px-2': !message.is_note,
-                'align-self-start rounded-end-3 rounded-bottom-3': !state.isEditing and !message.is_note,
-                'o-mail-Message-editable flex-grow-1': state.isEditing,
-                'o-mail-Message-body--self-authored': message.isSelfAuthored and !message.isNote and !message.isHighlightedFromMention,
-                'o-mail-Message-body--not-self-authored': !message.isSelfAuthored and !message.isNote and !message.isHighlightedFromMention,
-            }</attribute>
-        </xpath>
-
-        <xpath expr="///div[hasclass('o-mail-Message-header')]" position="inside">
-            <xpath expr="//t[@t-call='mail.Message.actions']" position="move"/>
-        </xpath>
-
+        <!-- Tracking values -->
         <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingOld')]" position="before">
             <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingField')]" position="move"/>
         </xpath>
@@ -53,31 +39,12 @@
             <span class="o-mail-Message-trackingField me-1"><t t-out="trackingValue.changedField"/> :</span>
         </xpath>
 
+        <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingOld')]" position="attributes">
+            <attribute name="class" separator=" " remove="text-muted fw-bold"/>
+        </xpath>
+
         <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingNew')]" position="attributes">
-            <attribute name="class" separator=" " remove="text-info" add="text-primary"/>
-        </xpath>
-    </t>
-
-    <t t-name="pyper_web_theme_activity.Message.actions" t-inherit="mail.Message.actions" t-inherit-mode="extension">
-        <xpath expr="//div[hasclass('o-mail-Message-actions')]" position="attributes">
-            <attribute name="t-att-class">{
-                'visible': true,
-                'o-expanded': state.expandOptions
-            }</attribute>
-        </xpath>
-
-        <xpath expr="//div[hasclass('o-mail-Message-actions')]/div" position="attributes">
-            <attribute name="class" remove="bg-view shadow-sm " separator=" "/>
-        </xpath>
-    </t>
-
-    <t t-name="pyper_web_theme_activity.MessageReactions" t-inherit="mail.MessageReactions" t-inherit-mode="extension">
-        <xpath expr="div[1]" position="attributes">
-            <attribute name="t-attf-class">{{ props.message.is_discussion ? 'mt-1' : 'mt-1' }}</attribute>
-            <attribute name="t-att-class">{
-                'flex-row-reverse me-3': env.inChatWindow and env.alignedRight,
-                'ms-0': true,
-            }</attribute>
+            <attribute name="class" separator=" " remove="text-info fw-bold"/>
         </xpath>
     </t>
 </templates>

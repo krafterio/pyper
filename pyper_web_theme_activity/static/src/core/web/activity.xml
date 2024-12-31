@@ -66,7 +66,7 @@
         <!-- Add activity type in start -->
         <xpath expr="//div[hasclass('o-mail-Activity-content')]" position="before">
             <div class="d-flex justify-content-between mb-2">
-                <div class="o-mail-Activity-type">
+                <div class="o-mail-Activity-type badge bg-secondary">
                     <span class="o-mail-Activity-type-icon me-2" t-if="activity.icon">
                         <i class="fa" t-attf-class="{{ activity.icon }}"/>
                     </span>
@@ -79,8 +79,12 @@
         </xpath>
 
         <!-- Move activity user in activity header -->
-        <xpath expr="//div[hasclass('o-mail-Activity-type')]" position="inside">
+        <xpath expr="//div[hasclass('o-mail-Activity-type')]" position="after">
             <xpath expr="//span[hasclass('o-mail-Activity-user')]" position="move"/>
+        </xpath>
+
+        <xpath expr="//span[hasclass('o-mail-Activity-user')]" position="attributes">
+            <attribute name="class" separator=" " add="flex-grow-1"/>
         </xpath>
 
         <!-- Move activity date in activity header -->
