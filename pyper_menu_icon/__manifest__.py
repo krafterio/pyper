@@ -5,7 +5,7 @@
     'name': 'Menu Icon',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
-    'description': 'Extend Web Interface of menu with icon.',
+    'description': '[DEPRECATED] Extend Web Interface of menu with icon.',
     'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [

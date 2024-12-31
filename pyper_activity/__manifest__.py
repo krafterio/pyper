@@ -5,7 +5,7 @@
     'name': 'Activity',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
-    'description': 'Pyper addons dedicated to activity override.',
+    'description': '[DEPRECATED] Pyper addons dedicated to activity override.',
     'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [

@@ -4,7 +4,7 @@
     'name': 'Web Theme Activity',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
-    'description': 'Add activity theme for Pyper Web Theme',
+    'description': '[DEPRECATED] Add activity theme for Pyper Web Theme',
     'version': '1.0',
     'author': 'Krafter SAS',
     'website': 'https://krafter.io',

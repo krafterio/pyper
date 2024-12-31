@@ -5,7 +5,7 @@
     'name': 'User Profile',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
-    'description': 'Pyper addons dedicated to handling user profile and rights.',
+    'description': '[DEPRECATED] Pyper addons dedicated to handling user profile and rights.',
     'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [
