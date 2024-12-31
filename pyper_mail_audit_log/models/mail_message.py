@@ -7,10 +7,6 @@ from odoo import api, fields, models
 class MailMessage(models.Model):
     _inherit = 'mail.message'
 
-    mail_activity_type_icon = fields.Char(
-        related='mail_activity_type_id.icon',
-    )
-
     tracking_value_count = fields.Integer(
         'Tracking Value Count',
         compute='_compute_tracking_value_count',
@@ -38,7 +34,6 @@ class MailMessage(models.Model):
         vals = super()._message_format_extras(format_reply)
         vals.update({
             'is_audit_log': self.is_audit_log,
-            'mail_activity_type_icon': self.mail_activity_type_icon,
         })
 
         return vals

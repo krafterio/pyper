@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 {
-    'name': 'Mail Audit Log',
+    'name': 'Mail Extra',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
-    'description': 'Hide tracking values in mail chatter',
+    'description': 'Add extra information',
     'version': '1.0',
     'author': 'Krafter SAS',
     'website': 'https://krafter.io',
@@ -16,7 +16,6 @@
         'base',
         'web',
         'mail',
-        'pyper_mail',
     ],
     'assets': {
         'web.assets_backend': [
