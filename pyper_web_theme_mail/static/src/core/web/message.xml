@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <t t-name="pyper_web_theme_activity.Message" t-inherit="mail.Message" t-inherit-mode="extension">
+    <t t-name="pyper_web_theme_mail.Message" t-inherit="mail.Message" t-inherit-mode="extension">
         <!-- Message -->
         <xpath expr="//img[hasclass('o-mail-Message-avatar')]" position="attributes">
             <attribute name="class" separator=" " remove="rounded" add="rounded-pill"/>

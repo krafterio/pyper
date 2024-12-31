@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 {
-    'name': 'Web Theme Activity',
+    'name': 'Web Theme Mail',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
-    'description': 'Add activity theme for Pyper Web Theme',
+    'description': 'Add mail theme for Pyper Web Theme',
     'version': '1.0',
     'author': 'Krafter SAS',
     'website': 'https://krafter.io',
@@ -20,7 +20,16 @@
     'depends': [
         'web',
         'mail',
+        'pyper_mail',
         'pyper_web_theme',
-        'pyper_web_theme_mail',
     ],
+    'assets': {
+        'web._assets_secondary_variables': [
+            'pyper_web_theme_mail/static/src/**/*.variables.scss',
+        ],
+        'web.assets_backend': [
+            'pyper_web_theme_mail/static/src/core/**/*',
+            'pyper_web_theme_mail/static/src/webclient/**/*',
+        ],
+    },
 }

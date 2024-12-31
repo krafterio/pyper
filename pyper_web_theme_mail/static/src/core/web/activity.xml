@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <t t-name="pyper_web_theme_activity.Activity" t-inherit="mail.Activity" t-inherit-mode="extension">
+    <t t-name="pyper_web_theme_mail.Activity" t-inherit="mail.Activity" t-inherit-mode="extension">
         <!-- Change style of user avatar -->
         <xpath expr="//div[hasclass('o-mail-Activity-sidebar')]/img" position="attributes">
             <attribute name="class" separator=" " remove="rounded" add="rounded-pill"/>
