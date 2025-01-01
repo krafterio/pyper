@@ -7,6 +7,10 @@ from odoo import fields, models
 class MailMessage(models.Model):
     _inherit = 'mail.message'
 
+    feedback = fields.Text(
+        'Feedback',
+    )
+
     mail_activity_type_icon = fields.Char(
         related='mail_activity_type_id.icon',
     )
@@ -19,6 +23,7 @@ class MailMessage(models.Model):
         self.ensure_one()
         vals = super()._message_format_extras(format_reply)
         vals.update({
+            'feedback': self.feedback if self.feedback else False,
             'mail_activity_type_icon': self.mail_activity_type_icon,
             'mail_activity_type_name': self.mail_activity_type_name,
         })

@@ -17,11 +17,6 @@ class MailActivity(models.Model):
                 message.subject = activity.summary
                 message.author_id = activity.user_id.partner_id
                 message.body = activity.note
-
-                if feedback:
-                    if message.body:
-                        message.body += Markup('<br>') + feedback
-                    else:
-                        message.body = feedback
+                message.feedback = feedback
 
         return res
