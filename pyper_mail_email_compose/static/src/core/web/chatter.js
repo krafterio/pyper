@@ -44,15 +44,22 @@ patch(Chatter.prototype, {
             }
         }
 
+        const partnerIds = [
+            ...this.thread.suggestedRecipients
+                .filter((recipient) => recipient.checked)
+                .map((recipient) => recipient.persona.id),
+            ...this.thread.followers
+                .filter((recipient) => !!recipient.partner_id)
+                .map((recipient) => recipient.partner_id),
+        ];
+
         const context = {
             default_attachment_ids: [],
             default_body: undefined,
             default_model: this.thread.model,
-            default_partner_ids: this.thread.suggestedRecipients
-                .filter((recipient) => recipient.checked)
-                .map((recipient) => recipient.persona.id),
+            default_partner_ids: partnerIds,
             default_res_ids: [this.thread.id],
-            default_subtype_xmlid: 'mail.mt_comment',
+            default_subtype_xmlid: 'mail.mt_activities',
             mail_post_autofollow: this.thread.hasWriteAccess,
             mail_email_compose: true,
         };

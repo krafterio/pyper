@@ -20,6 +20,9 @@
     'data': [
         # Data
         'data/mail_templates_email_layouts.xml',
+
+        # Views
+        'wizard/mail_compose_message.xml',
     ],
     'assets': {
         'web.assets_backend': [

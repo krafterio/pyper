@@ -14,6 +14,7 @@ class MailComposerMessage(models.TransientModel):
             res.update({
                 'is_internal': True,
                 'message_type': 'email_outgoing',
+                'subtype_id': self.env.ref('mail.mt_activities').id,
                 'mail_activity_type_id': self.env.ref('mail.mail_activity_data_email').id,
                 'email_layout_xmlid': 'pyper_user_email_signature.mail_simple_email_layout',
                 'email_add_signature': False,
