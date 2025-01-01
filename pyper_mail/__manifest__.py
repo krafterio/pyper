@@ -17,9 +17,4 @@
         'web',
         'mail',
     ],
-    'assets': {
-        'web.assets_backend': [
-            'pyper_mail_audit_log/static/src/core/**/*',
-        ],
-    },
 }
