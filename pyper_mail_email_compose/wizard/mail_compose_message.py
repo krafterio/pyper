@@ -18,6 +18,7 @@ class MailComposerMessage(models.TransientModel):
                 'mail_activity_type_id': self.env.ref('mail.mail_activity_data_email').id,
                 'email_layout_xmlid': 'pyper_user_email_signature.mail_simple_email_layout',
                 'email_add_signature': False,
+                'reply_to': self.author_id.email_formatted,
             })
 
         return res
