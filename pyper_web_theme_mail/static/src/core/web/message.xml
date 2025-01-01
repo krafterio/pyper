@@ -53,5 +53,10 @@
         <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingNew')]" position="attributes">
             <attribute name="class" separator=" " remove="text-info fw-bold"/>
         </xpath>
+
+        <!-- Activity to Message -->
+        <xpath expr="//t[@name='hasTrackingValue']//div[hasclass('o-mail-Message-body')]/t" position="before">
+            <em t-if="message.subject and !message.isSubjectSimilarToOriginThreadName and !message.isSubjectDefault" class="mb-1 me-2">Summary: <t t-out="props.messageSearch?.highlight(message.subject) ?? message.subject"/></em>
+        </xpath>
     </t>
 </templates>
