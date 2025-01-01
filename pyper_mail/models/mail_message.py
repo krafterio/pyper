@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class MailMessage(models.Model):
@@ -29,3 +29,15 @@ class MailMessage(models.Model):
         })
 
         return vals
+
+    @api.model
+    def _message_fetch(self, domain, search_term=None, before=None, after=None, around=None, limit=30):
+        res_ids = self.env.context.get('mail_message_with_children_res_ids', False)
+
+        if res_ids:
+            domain[:0] = [
+                '|',
+                ('res_id', 'in', res_ids),
+            ]
+
+        return super()._message_fetch(domain, search_term, before, after, around, limit)
