@@ -19,4 +19,7 @@ class MailActivity(models.Model):
                 message.body = activity.note
                 message.feedback = feedback
 
+                if message.mail_activity_type_id and message.mail_activity_type_id.id == self.env.ref('mail.mail_activity_data_email').id:
+                    message.message_type = 'email_outgoing'
+
         return res
