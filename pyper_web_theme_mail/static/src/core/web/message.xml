@@ -15,8 +15,15 @@
             <t t-set="mailMessageTypeName" t-value="message.mail_activity_type_name"/>
 
             <t t-if="!mailMessageTypeName and message.is_note">
-                <t t-set="mailMessageTypeIcon" t-value="'fa-sticky-note'"/>
-                <t t-set="mailMessageTypeName">Note</t>
+                <t t-if="message.type === 'notification'">
+                    <t t-set="mailMessageTypeIcon" t-value="'fa-dot-circle-o'"/>
+                    <t t-set="mailMessageTypeName">Notification</t>
+                </t>
+
+                <t t-else="">
+                    <t t-set="mailMessageTypeIcon" t-value="'fa-sticky-note'"/>
+                    <t t-set="mailMessageTypeName">Note</t>
+                </t>
             </t>
 
             <t t-if="(message.trackingValues || []).length > 0">
