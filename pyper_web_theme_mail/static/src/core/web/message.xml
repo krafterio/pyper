@@ -44,6 +44,11 @@
             <span class="mx-1" t-if="displayMessageType">by</span>
         </xpath>
 
+        <!-- Message is Persistent From Another Thread -->
+        <xpath expr="//small[@t-if='isPersistentMessageFromAnotherThread']" position="attributes">
+            <attribute name="class" separator=" " remove="ms-1" add="d-block my-2"/>
+        </xpath>
+
         <!-- Tracking values -->
         <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingOld')]" position="before">
             <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingField')]" position="move"/>
