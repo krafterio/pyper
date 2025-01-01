@@ -33,3 +33,14 @@ class IrQweb(models.AbstractModel):
             node.set('t-if', 'is_granted(' + base + '._name, "' + field + '")')
 
         return edited
+
+    def _render(self, template, values=None, **options):
+        values = values or {}
+        values.update({
+            'is_granted': self._is_granted,
+        })
+
+        return super()._render(template, values, **options)
+
+    def _is_granted(self, model: str, field: str, operation: str = 'read') -> bool:
+        return self.env['ir.model.fields.access'].check_field_access_right(model, field, operation)
