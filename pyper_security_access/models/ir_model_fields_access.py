@@ -118,6 +118,7 @@ class IrModelFieldsAccess(models.Model):
 
                 if sub_field_type in ['many2one', 'one2many', 'many2many']:
                     model = sub_field_info['relation']
+                    model_fields_info = self.env[model].fields_get()
 
                 # Check if current user has access right on intermediate relations
                 if sf_idx < sf_size and not self.get_field_access_rights(model, field).get(operation, True):
