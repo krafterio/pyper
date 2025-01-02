@@ -44,8 +44,6 @@
             ('prepend', 'pyper_fonts_phosphor/static/src/scss/phosphor-light.scss'),
             ('prepend', 'pyper_fonts_phosphor/static/src/scss/phosphor-fill.scss'),
 
-            'pyper_ui_kit/static/src/**/*.variables.scss',
-
             'pyper_ui_kit/static/src/scss/pyper_animate.scss',
             'pyper_ui_kit/static/src/scss/style.scss',
             'pyper_ui_kit/static/src/core/**/*',
