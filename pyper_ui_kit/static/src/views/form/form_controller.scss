@@ -195,6 +195,11 @@
         }
     }
 
+    // Field widget many2one avatar
+    .o_field_widget.o_field_many2one_avatar {
+        --fieldWidget-display: initial;
+    }
+
     // Field widget after field image
     .o_field_image {
         + .o_field_widget {
