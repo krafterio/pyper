@@ -34,7 +34,7 @@
             <t t-set="displayMessageType" t-value="mailMessageTypeIcon or mailMessageTypeName" />
 
             <span class="o-mail-Message-type badge bg-secondary" t-if="displayMessageType">
-                <span class="o-mail-Message-type-icon me-2" t-if="mailMessageTypeIcon">
+                <span class="o-mail-Message-type-icon me-1" t-if="mailMessageTypeIcon">
                     <i class="fa" t-attf-class="{{ mailMessageTypeIcon }}"/>
                 </span>
 
