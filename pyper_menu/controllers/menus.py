@@ -13,9 +13,14 @@ class MenuItems(http.Controller):
         values = {}
 
         for menu in menus:
-            if menu.action and 'domain' in menu.action and menu.action.domain:
+            if menu.action:
                 action = menu.action
-                values.update({menu.id: request.env[action.res_model].search_count(safe_eval(action.domain))})
+                domain = []
+
+                if 'domain' in action and action.domain:
+                    domain = safe_eval(action.domain)
+
+                values.update({menu.id: request.env[action.res_model].search_count(domain)})
 
         return {
             'menuCounters': values,
