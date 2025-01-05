@@ -1,0 +1,374 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_web_collection
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20250102\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-05 01:57+0000\n"
+"PO-Revision-Date: 2025-01-05 01:57+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pyper_web_collection
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_simple_form
+msgid "Access"
+msgstr "Accès"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__ir_action_id
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_search
+msgid "Action"
+msgstr ""
+
+#. module: pyper_web_collection
+#: model:ir.model,name:pyper_web_collection.model_ir_actions_act_window
+msgid "Action Window"
+msgstr "Fenêtre d'action"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__active
+msgid "Active"
+msgstr ""
+
+#. module: pyper_web_collection
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_wizard_form
+msgid "Add"
+msgstr "Ajouter"
+
+#. module: pyper_web_collection
+#. odoo-javascript
+#: code:addons/pyper/pyper_web_collection/static/src/views/form/form_controller.js:0
+#: code:addons/pyper/pyper_web_collection/static/src/views/form/form_controller.js:0
+#: code:addons/pyper/pyper_web_collection/static/src/views/list/list_controller.js:0
+#: code:addons/pyper_web_collection/static/src/views/form/form_controller.js:0
+#: code:addons/pyper_web_collection/static/src/views/form/form_controller.js:0
+#: code:addons/pyper_web_collection/static/src/views/list/list_controller.js:0
+#: model:ir.actions.act_window,name:pyper_web_collection.action_ir_collections_wizard_add
+#, python-format
+msgid "Add to collection"
+msgstr "Ajouter à une collection"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,help:pyper_web_collection.field_ir_collections__display_counter
+msgid "Allow to display a counter on menu item"
+msgstr "Permettre d’afficher un compteur sur l’élément du menu"
+
+#. module: pyper_web_collection
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_search
+msgid "Archived"
+msgstr "Archivée"
+
+#. module: pyper_web_collection
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_wizard_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__category
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_search
+msgid "Category"
+msgstr "Catégorie"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_actions_act_window__ir_collections_id
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections_wizard__collection_id
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_ui_menu__collection_id
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_simple_form
+msgid "Collection"
+msgstr ""
+
+#. module: pyper_web_collection
+#: model:ir.model,name:pyper_web_collection.model_collection_mixin
+msgid "Collection Mixin"
+msgstr "Mixin Collection"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__shared
+msgid "Collection shared"
+msgstr "Collection partagée"
+
+#. module: pyper_web_collection
+#: model:ir.model,name:pyper_web_collection.model_ir_collections_wizard
+msgid "Collection wizard"
+msgstr "Assistant de la collection"
+
+#. module: pyper_web_collection
+#: model:ir.actions.act_window,name:pyper_web_collection.action_ir_collections
+#: model:ir.model,name:pyper_web_collection.model_ir_collections
+#: model:ir.model.fields,field_description:pyper_web_collection.field_collection_mixin__collection_ids
+#: model:ir.ui.menu,name:pyper_web_collection.menu_settings_collections
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_search
+msgid "Collections"
+msgstr ""
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__color
+msgid "Color"
+msgstr "Couleur"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__create_uid
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__create_date
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__display_counter
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_search
+msgid "Display Counter"
+msgstr "Afficher le compteur"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__display_name
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections_wizard__display_name
+msgid "Display Name"
+msgstr "Nom"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__font_icon
+msgid "Font icon"
+msgstr "Icône Font"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__font_icon_color
+msgid "Font icon color"
+msgstr "Couleur Icône Font"
+
+#. module: pyper_web_collection
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_search
+msgid "Group By"
+msgstr "Grouper par"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__group_ids
+msgid "Groups"
+msgstr "Groupes"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__id
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,help:pyper_web_collection.field_ir_collections__group_ids
+msgid ""
+"If this field is empty, the collection applies to all users. Otherwise, the "
+"collection applies to the users of those groups only."
+msgstr ""
+"Si ce champ est vide, la collection est accessible à tous les utilisateurs. "
+"Sinon, la collection est accessible uniquement aux utilisateurs de ces "
+"groupes."
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__ir_action_id_field_domain
+msgid "Ir Action Id Field Domain"
+msgstr ""
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_model__is_collectionable
+msgid "Is collectionable ?"
+msgstr "Est collectionnable ?"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__system
+msgid "Is system?"
+msgstr "Est une collection système ?"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__write_uid
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__write_date
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections_wizard__write_date
+msgid "Last Updated on"
+msgstr "Dernière modification le"
+
+#. module: pyper_web_collection
+#: model:ir.model,name:pyper_web_collection.model_ir_ui_menu
+msgid "Menu"
+msgstr ""
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__menu_ir_action_id
+msgid "Menu Action"
+msgstr "Action du menu"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__menu_id
+msgid "Menu item"
+msgstr "Rubrique"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__res_model_id
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_search
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_simple_form
+msgid "Model"
+msgstr "Modèle"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__res_model_name
+msgid "Model name"
+msgstr "Nom du modèle"
+
+#. module: pyper_web_collection
+#: model:ir.model,name:pyper_web_collection.model_ir_model
+msgid "Models"
+msgstr "Modèles"
+
+#. module: pyper_web_collection
+#: model:ir.ui.menu.category,name:pyper_web_collection.menu_category_my_collections
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_search
+msgid "My collections"
+msgstr "Mes collections"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: pyper_web_collection
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_simple_form
+msgid "Name of your collection"
+msgstr "Nom de votre collection"
+
+#. module: pyper_web_collection
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_search
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_simple_form
+msgid "Owner"
+msgstr "Propriétaire"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields.selection,name:pyper_web_collection.selection__ir_collections__category__personal
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_search
+msgid "Personal"
+msgstr "Personnel"
+
+#. module: pyper_web_collection
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_wizard_form
+msgid "Remove"
+msgstr "Retirer"
+
+#. module: pyper_web_collection
+#. odoo-javascript
+#: code:addons/pyper/pyper_web_collection/static/src/views/form/form_controller.js:0
+#: code:addons/pyper/pyper_web_collection/static/src/views/list/list_controller.js:0
+#: code:addons/pyper_web_collection/static/src/views/form/form_controller.js:0
+#: code:addons/pyper_web_collection/static/src/views/list/list_controller.js:0
+#: model:ir.actions.act_window,name:pyper_web_collection.action_ir_collections_wizard_remove
+#, python-format
+msgid "Remove from collection"
+msgstr "Retirer de la collection"
+
+#. module: pyper_web_collection
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_form
+msgid "Security"
+msgstr "Sécurité"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: pyper_web_collection
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_simple_form
+msgid "Settings"
+msgstr "Configuration"
+
+#. module: pyper_web_collection
+#: model:ir.actions.act_window,name:pyper_web_collection.action_settings_menu_category_my_collections
+msgid "Settings my collections"
+msgstr "Configuration de mes collections"
+
+#. module: pyper_web_collection
+#: model:ir.actions.act_window,name:pyper_web_collection.action_settings_menu_category_shared_collections
+msgid "Settings shared collections"
+msgstr "Configuration des collections partagées"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields.selection,name:pyper_web_collection.selection__ir_collections__category__shared
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_search
+msgid "Shared"
+msgstr "Partagée"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__shared_user_ids_field_domain
+msgid "Shared User Ids Field Domain"
+msgstr ""
+
+#. module: pyper_web_collection
+#: model:ir.ui.menu.category,name:pyper_web_collection.menu_category_shared_collections
+msgid "Shared collections"
+msgstr "Collections partagées"
+
+#. module: pyper_web_collection
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_simple_form
+msgid "Sharing"
+msgstr "Partage"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields.selection,name:pyper_web_collection.selection__ir_collections__category__system
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_search
+msgid "System"
+msgstr "Système"
+
+#. module: pyper_web_collection
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_form
+msgid "Technical"
+msgstr "Technique"
+
+#. module: pyper_web_collection
+#: model_terms:ir.ui.view,arch_db:pyper_web_collection.view_ir_collections_form
+msgid "Technical information"
+msgstr "Information technique"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,help:pyper_web_collection.field_ir_collections__menu_ir_action_id
+msgid "The dedication action of collection"
+msgstr "L’action de dédicace de la collection"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__user_id
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_ui_menu__user_id
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_collections__shared_user_ids
+#: model:ir.model.fields,field_description:pyper_web_collection.field_ir_ui_menu__shared_user_ids
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,help:pyper_web_collection.field_ir_collections__shared_user_ids
+msgid ""
+"if this field is empty, the collection applies to all users. Otherwise, the "
+"collection applies to only selected users."
+msgstr ""
+"si ce champ est vide, la collection est accessible à tous les utilisateurs. "
+"Sinon, la collection est accessible uniquement aux utilisateurs "
+"sélectionnés."
+
+#. module: pyper_web_collection
+#: model:ir.model.fields,help:pyper_web_collection.field_ir_ui_menu__shared_user_ids
+msgid ""
+"if this field is empty, the menu applies to all users. Otherwise, the menu "
+"applies to only selected users."
+msgstr ""
+"si ce champ est vide, le menu est accessible à tous les utilisateurs. Sinon,"
+" le menu est accessible uniquement aux utilisateurs sélectionnés."

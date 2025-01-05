@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_ir_collections_simple_tree" model="ir.ui.view">
+        <field name="name">ir.collections.simple.tree</field>
+        <field name="model">ir.collections</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="res_model_name" column_invisible="True"/>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="res_model_id" optional="hide" options="{'no_create': True, 'no_edit': True}"/>
+                <field name="color" optional="hide" widget="color_picker"/>
+                <field name="category" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ir_collections_tree" model="ir.ui.view">
+        <field name="name">ir.collections.tree</field>
+        <field name="model">ir.collections</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" ref="view_ir_collections_simple_tree"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='sequence']" position="attributes">
+                <attribute name="column_invisible">True</attribute>
+            </xpath>
+
+            <xpath expr="//tree/field[@name='res_model_id']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+
+            <xpath expr="//tree/field[@name='category']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+
+            <xpath expr="//tree/field[@name='category']" position="after">
+                <field name="ir_action_id" optional="hide"/>
+                <field name="display_counter" optional="hide"/>
+                <field name="font_icon" optional="hide"/>
+                <field name="user_id" optional="hide" options="{'no_create': True, 'no_edit': True}"/>
+                <field name="shared_user_ids" optional="hide" widget="many2many_tags" options="{'no_create': True, 'no_edit': True}"/>
+                <field name="group_ids" optional="hide" widget="many2many_tags" options="{'no_create': True, 'no_edit': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_ir_collections_simple_form" model="ir.ui.view">
+        <field name="name">ir.collections.simple.form</field>
+        <field name="model">ir.collections</field>
+        <field name="type">form</field>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="Collection">
+                <field name="res_model_name" invisible="True"/>
+                <field name="category" invisible="True" force_save="1"/>
+                <field name="user_id" invisible="True" force_save="1"/>
+                <field name="group_ids" invisible="True" force_save="1"/>
+                <field name="ir_action_id" invisible="True" force_save="1"/>
+                <field name="shared_user_ids_field_domain" invisible="True"/>
+                <field name="ir_action_id_field_domain" invisible="True"/>
+
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <field
+                            class="fw-bold mb-4 h1"
+                            name="name"
+                            placeholder="Name of your collection"
+                        />
+                    </div>
+
+                    <group name="config">
+                        <group name="config_model" string="Model">
+                            <field name="res_model_id" options="{'no_create': True, 'no_edit': True}"/>
+
+                            <field name="ir_action_id" groups="base.group_no_one" domain="ir_action_id_field_domain" options="{'no_create': True, 'no_edit': True}"/>
+                        </group>
+
+                        <group name="config_collection" string="Settings">
+                            <field name="display_counter" widget="boolean_toggle" options="{'autosave': False}"/>
+                            <field name="color" widget="color_picker"/>
+                            <field name="font_icon"/>
+                            <field name="font_icon_color" widget="color" invisible="True"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="page_access" string="Access">
+                            <group>
+                                <group name="owner" string="Owner">
+                                    <field name="user_id" options="{'no_create': True, 'no_edit': True}"/>
+                                </group>
+
+                                <group name="sharing" string="Sharing">
+                                    <field name="shared" widget="boolean_toggle" options="{'autosave': False}"/>
+
+                                    <field name="shared_user_ids"
+                                           widget="many2many_tags"
+                                           options="{'no_create': True, 'no_edit': True}"
+                                           invisible="not shared"
+                                           domain="shared_user_ids_field_domain"
+                                    />
+
+                                    <field name="group_ids"
+                                           widget="many2many_tags"
+                                           options="{'no_create': True, 'no_edit': True}"
+                                           invisible="not shared"
+                                    />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ir_collections_form" model="ir.ui.view">
+        <field name="name">ir.collections.form</field>
+        <field name="model">ir.collections</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="view_ir_collections_simple_form"/>
+        <field name="mode">primary</field>
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[@name='page_access']" position="after">
+                <page name="page_technical" string="Technical">
+                    <group>
+                        <group name="info" string="Technical information" groups="base.group_no_one">
+                            <field name="menu_id"/>
+                            <field name="menu_ir_action_id"/>
+                        </group>
+
+                        <group name="security" string="Security">
+                            <field name="system" readonly="True" groups="base.group_no_one"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_ir_collections_search">
+        <field name="name">ir.collections.search</field>
+        <field name="model">ir.collections</field>
+        <field name="arch" type="xml">
+            <search string="Collections">
+                <filter string="My collections" name="my_collections" domain="[('user_id', '=', uid)]"/>
+                <separator/>
+                <filter string="Personal" name="personal" domain="[('category', '=', 'personal')]"/>
+                <filter string="Shared" name="shared" domain="[('category', '=', 'shared')]"/>
+                <filter string="System" name="system" domain="[('category', '=', 'system')]"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+
+                <group expand="0" string="Group By">
+                    <filter name="by_model" string="Model" domain="[]"  context="{'group_by': 'res_model_id'}"/>
+                    <filter name="by_category" string="Category" domain="[]"  context="{'group_by': 'category'}"/>
+                    <filter name="by_action" string="Action" domain="[]"  context="{'group_by': 'ir_action_id'}"/>
+                    <filter name="by_display_counter" string="Display Counter" domain="[]"  context="{'group_by': 'display_counter'}"/>
+                    <filter name="by_owner" string="Owner" domain="[]"  context="{'group_by': 'user_id'}"/>
+                </group>
+            </search>
+
+        </field>
+    </record>
+
+    <record id="action_ir_collections" model="ir.actions.act_window">
+        <field name="name">Collections</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ir.collections</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids"
+               eval="[
+                   Command.clear(),
+                   Command.create({'view_mode': 'tree', 'view_id': ref('view_ir_collections_tree')}),
+                   Command.create({'view_mode': 'form', 'view_id': ref('view_ir_collections_form')}),
+               ]"
+        />
+    </record>
+</odoo>

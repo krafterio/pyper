@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_ir_collections_wizard_form" model="ir.ui.view">
+        <field name="name">ir.collections.wizard.form</field>
+        <field name="model">ir.collections.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="collection_id"
+                           options="{'no_create': False, 'no_delete': True}"
+                           context="{
+                               'default_res_model_name': context.get('active_model', False),
+                               'default_ir_action_id': context.get('active_action_id', False),
+                           }"
+                           domain="[('res_model_name', '=', context.get('active_model', False))]"
+                           invisible="not context.get('link_action', False)"
+                    />
+
+                    <field name="collection_id"
+                           options="{'no_create': True, 'no_delete': True}"
+                           domain="[('res_model_name', '=', context.get('active_model', False))]"
+                           invisible="context.get('link_action', False)"
+                    />
+                </group>
+
+                <footer>
+                    <button
+                        invisible="not context.get('link_action', False)"
+                        name="save"
+                        type="object"
+                        string="Add"
+                        class="btn-primary"
+                        data-hotkey="s"
+                    />
+
+                    <button
+                        invisible="context.get('link_action', False)"
+                        name="save"
+                        type="object"
+                        string="Remove"
+                        class="btn-primary"
+                        data-hotkey="s"
+                    />
+
+                    <button
+                        string="Cancel"
+                        class="btn-secondary"
+                        data-hotkey="z"
+                        special="cancel"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ir_collections_wizard_add" model="ir.actions.act_window">
+        <field name="name">Add to collection</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ir.collections.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{
+            'link_action': True,
+        }</field>
+    </record>
+
+    <record id="action_ir_collections_wizard_remove" model="ir.actions.act_window">
+        <field name="name">Remove from collection</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ir.collections.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{
+            'link_action': False,
+        }</field>
+    </record>
+</odoo>

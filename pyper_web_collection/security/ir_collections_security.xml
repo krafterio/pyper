@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="rule_ir_collections_user" model="ir.rule">
+        <field name="name">My collection rules</field>
+        <field name="model_id" ref="model_ir_collections"/>
+        <field name="domain_force">[('user_id','=', user.id)]</field>
+        <field name="groups" eval="[Command.link(ref('base.group_user'))]"/>
+    </record>
+
+    <record id="rule_ir_collections_manager" model="ir.rule">
+        <field name="name">Manager collection rules</field>
+        <field name="model_id" ref="model_ir_collections"/>
+        <field name="domain_force">['|', ('shared_user_ids','=', user.id), ('group_ids', 'in', user.groups_id.ids)]</field>
+        <field name="groups" eval="[Command.link(ref('base.group_erp_manager'))]"/>
+    </record>
+</odoo>
