@@ -142,6 +142,7 @@ class IrCollections(models.Model):
     def get_menu_action_vals(self):
         self.ensure_one()
         action = self.ir_action_id.sudo()
+        action_views = [Command.create({**u.copy_data()[0], **{'act_window_id': False}}) for u in action.view_ids]
 
         return {
             'name': self.name,
@@ -156,7 +157,7 @@ class IrCollections(models.Model):
             'context': action.context,
             'limit': action.limit,
             'ir_collections_id': self.id,
-            'view_ids': [Command.clear(), *[Command.link(u.id) for u in action.view_ids]],
+            'view_ids': [Command.clear(), *action_views],
         }
 
     @api.model
