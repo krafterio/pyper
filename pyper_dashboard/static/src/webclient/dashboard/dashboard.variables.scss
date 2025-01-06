@@ -3,8 +3,11 @@ $pyper-dashboard-bg: $o-view-background-color !default;
 $pyper-dashboard-padding-h: 12px !default;
 $pyper-dashboard-padding-v: 12px !default;
 
+$pyper-dashboard-container-gap: 32px !default;
+
 $pyper-dashboard-header-padding-h: $pyper-dashboard-padding-h !default;
 $pyper-dashboard-header-padding-v: 8px !default;
+$pyper-dashboard-header-padding-bottom: $pyper-dashboard-header-padding-v !default;
 
 $pyper-dashboard-column-padding-v: 3px !default;
 $pyper-dashboard-column-padding-h: 3px !default;

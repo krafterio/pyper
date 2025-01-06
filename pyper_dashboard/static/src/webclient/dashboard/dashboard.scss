@@ -36,7 +36,7 @@
 .pyper_dashboard--container {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: $pyper-dashboard-container-gap;
     padding: $pyper-dashboard-padding-v $pyper-dashboard-padding-h;
 }
 
@@ -109,7 +109,10 @@
 .pyper_dashboard--action-header {
     display: flex;
     align-items: center;
-    padding: $pyper-dashboard-header-padding-v $pyper-dashboard-header-padding-h;
+    padding-top: $pyper-dashboard-header-padding-v;
+    padding-left: $pyper-dashboard-header-padding-h;
+    padding-right: $pyper-dashboard-header-padding-h;
+    padding-bottom: $pyper-dashboard-header-padding-bottom;
 }
 
 .pyper_dashboard--action-header-title {
