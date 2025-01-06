@@ -35,17 +35,13 @@ patch(FormController.prototype, {
     },
 
     async _onCollectionAction(actionName) {
-        const resIds = this.model.root.resIds;
-
-        if (resIds.length > 0) {
-            await this.actionService.doAction(actionName, {
-                additionalContext: {
-                    active_action_id: this.actionService.currentController?.action?.id,
-                    active_model: this.model.root.resModel,
-                    active_id: resIds[0],
-                    active_ids: resIds,
-                },
-            });
-        }
+        await this.actionService.doAction(actionName, {
+            additionalContext: {
+                active_action_id: this.actionService.currentController?.action?.id,
+                active_model: this.model.root.resModel,
+                active_id: this.model.root.resId,
+                active_ids: [this.model.root.resId],
+            },
+        });
     },
 });
