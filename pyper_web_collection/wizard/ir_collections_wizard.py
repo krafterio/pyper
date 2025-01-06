@@ -34,3 +34,5 @@ class CollectionsRemoveWizard(models.TransientModel):
         if model or ids:
             command = Command.link(self.collection_id.id) if link_action else Command.unlink(self.collection_id.id)
             self.env[model].browse(ids).collection_ids = [command]
+
+            self.env['bus.bus']._sendone(self.env.user.partner_id, 'user_menu_collection_items_changed', {})
