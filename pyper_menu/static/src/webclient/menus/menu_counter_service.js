@@ -7,6 +7,10 @@ import {debounce} from '@web/core/utils/timing';
 
 
 export class MenuCounterState {
+    constructor(bus) {
+        this.bus = bus;
+    }
+
     setup() {
         this.state = {
             request: null,
@@ -15,6 +19,7 @@ export class MenuCounterState {
         };
 
         this.loadCounters = debounce(this.loadCounters.bind(this), this.debounceDelay);
+        this.bus.addEventListener('MENUS-COUNTER:LOAD', this.loadCounters);
     }
 
     get debounceDelay() {
@@ -72,6 +77,7 @@ export class MenuCounterState {
 
             const res = await this.state.request;
             this.state.values = mergeValues(this.state.values, res.menuCounters);
+            this.bus.trigger('MENUS-COUNTER:LOADED', this.state.values);
         } catch (e) {
             // Skip errors
         } finally {
@@ -93,8 +99,8 @@ function mergeValues(obj1, obj2) {
 }
 
 export const drawerService = {
-    start() {
-        const menuCounterState = reactive(new MenuCounterState());
+    start(env) {
+        const menuCounterState = reactive(new MenuCounterState(env.bus));
         menuCounterState.setup();
 
         return menuCounterState;
