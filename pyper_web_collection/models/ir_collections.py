@@ -176,7 +176,7 @@ class IrCollections(models.Model):
                 if self.shared
                 else self.env.ref('pyper_web_collection.menu_category_my_collections').id,
             'collection_id': self.id,
-            'user_id': self.env.user.id,
+            'user_id': self.user_id.id,
             'shared_user_ids': [Command.clear(), *[Command.link(u.id) for u in self.shared_user_ids]],
             'groups_id': [Command.clear(), *[Command.link(g.id) for g in self.group_ids]],
         }

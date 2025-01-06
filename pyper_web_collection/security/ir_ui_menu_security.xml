@@ -14,14 +14,25 @@
     <record id="rule_ir_ui_menu_user" model="ir.rule">
         <field name="name">User menus rule for collections</field>
         <field name="model_id" ref="base.model_ir_ui_menu"/>
-        <field name="domain_force">[('collection_id','!=', False), ('user_id','=', user.id)]</field>
+        <field name="domain_force">['&amp;', ('collection_id', '!=', False), '|', '|', ('shared_user_ids', '=', user.id), ('groups_id', 'in', user.groups_id.ids), ('user_id', '=', user.id)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
         <field name="groups" eval="[Command.link(ref('base.group_user'))]"/>
+    </record>
+
+    <record id="rule_ir_ui_menu_user_my" model="ir.rule">
+        <field name="name">Manager menus rule for my collections</field>
+        <field name="model_id" ref="base.model_ir_ui_menu"/>
+        <field name="domain_force">[('collection_id', '!=', False), ('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[Command.link(ref('base.group_erp_manager'))]"/>
     </record>
 
     <record id="rule_ir_ui_menu_manager" model="ir.rule">
         <field name="name">Manager menus rule for collections</field>
         <field name="model_id" ref="base.model_ir_ui_menu"/>
-        <field name="domain_force">[('collection_id','!=', False), ('shared_user_ids','=', user.id)]</field>
-        <field name="groups" eval="[Command.link(ref('base.group_system'))]"/>
+        <field name="domain_force">['&amp;', ('collection_id', '!=', False), '|', '|', ('shared_user_ids', '=', user.id), ('groups_id', 'in', user.groups_id.ids), ('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[Command.link(ref('base.group_erp_manager'))]"/>
     </record>
 </odoo>
