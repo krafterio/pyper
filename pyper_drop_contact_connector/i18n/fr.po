@@ -123,7 +123,7 @@ msgstr ""
 #. module: pyper_drop_contact_connector
 #: model_terms:ir.ui.view,arch_db:pyper_drop_contact_connector.res_partner_view_form
 msgid "Find email &amp; Linkedin"
-msgstr "Trouver e-mail &amp; linkedIn"
+msgstr "Trouver e-mail &amp; LinkedIn"
 
 #. module: pyper_drop_contact_connector
 #: model:ir.model.fields.selection,name:pyper_drop_contact_connector.selection__res_partner_drop_contact_batch__state__getting_info

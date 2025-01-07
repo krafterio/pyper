@@ -28,7 +28,7 @@
                     name="search_piloterr_company"
                     icon="fa-building me-1"
                     data-tooltip-delay="0"
-                    invisible="not website or not is_company or (website and company_linkedin_url)"
+                    invisible="not website or not is_company or (website and company_linkedin)"
                     title="Find company infos"
                 >Find company infos</button>
             </xpath>

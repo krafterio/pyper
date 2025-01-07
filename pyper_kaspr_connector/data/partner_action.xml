@@ -1,6 +1,6 @@
 <odoo>
     <record model="ir.actions.server" id="link_update_linkedin_email">
-        <field name="name">Update infos from linkedIn profile</field>
+        <field name="name">Update infos from LinkedIn profile</field>
         <field name="model_id" ref="base.model_res_partner"/>
         <field name="binding_model_id" ref="base.model_res_partner"/>
         <field name="state">code</field>
@@ -10,7 +10,7 @@
     </record>
 
     <record model="ir.actions.server" id="link_update_linkedin_phone">
-        <field name="name">Update infos from linkedIn profile (with phone)</field>
+        <field name="name">Update infos from LinkedIn profile (with phone)</field>
         <field name="model_id" ref="base.model_res_partner"/>
         <field name="binding_model_id" ref="base.model_res_partner"/>
         <field name="state">code</field>

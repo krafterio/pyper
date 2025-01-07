@@ -6,14 +6,15 @@
         <field name="priority">10000</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='child_ids']//sheet//field[@name='function']" position="after">
-                <field name="linkedin_url" placeholder="LinkedIn profil URL" widget="url" invisible="type != 'contact'"/>
+                <field name="linkedin" placeholder="LinkedIn URL" widget="url" invisible="type != 'contact'"/>
             </xpath>
 
             <xpath expr="//field[@name='website']" position="after">
-                <field name="company_linkedin_url" string="Linkedin URL"
-                       placeholder="Linkedin URL" widget="url"
+                <field name="company_linkedin"
+                       widget="url"
                        invisible="is_company == False"/>
-                <field name="linkedin_url" string="Linkedin URL" widget="url"
+                <field name="linkedin"
+                       widget="url"
                        invisible="is_company == True"/>
             </xpath>
         </field>

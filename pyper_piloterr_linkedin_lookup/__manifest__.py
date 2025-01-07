@@ -5,8 +5,8 @@
     'name': 'Piloterr Linkedin lookup',
     'category': 'Sales/CRM',
     'license': 'Other proprietary',
-    'description': 'Add ability to get information from linkedIn',
-    'summary': 'Add ability to get information from linkedIn',
+    'description': 'Add ability to get information from LinkedIn',
+    'summary': 'Add ability to get information from LinkedIn',
     'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [

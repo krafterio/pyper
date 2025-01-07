@@ -7,18 +7,18 @@ from odoo import fields, models
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    linkedin_url = fields.Char(
-        'Linkedin url'
+    linkedin = fields.Char(
+        'LinkedIn',
     )
 
-    company_linkedin_url = fields.Char(
-        'Company LinkedIn Url',
+    company_linkedin = fields.Char(
+        'Company LinkedIn',
     )
 
     def import_contact_from_extension(self, data: dict, create_company = False, enrich = False):
-        linkedin_url = data.get('linkedInUrl', False)
-        if isinstance(linkedin_url, str) and self.search(
-                [('linkedin_url', 'ilike', f'{linkedin_url.rstrip("/")}%')],
+        linkedin = data.get('linkedInUrl', False)
+        if isinstance(linkedin, str) and self.search(
+                [('linkedin', 'ilike', f'{linkedin.rstrip("/")}%')],
                 limit=1):
             return
 
@@ -36,7 +36,7 @@ class ResPartner(models.Model):
         records = self.create({
             'name': data.get('fullName', False),
             'image_1920': data.get('avatarData', False),
-            'linkedin_url': linkedin_url,
+            'linkedin': linkedin,
             'function': data.get('function', False),
             'comment': data.get('description', False),
             'parent_id': company.id,
@@ -46,16 +46,16 @@ class ResPartner(models.Model):
             records._enrich_contact_from_import()
 
     def import_company_from_extension(self, data: dict, enrich = False):
-        linkedin_url = data.get('linkedInUrl', False)
-        if isinstance(linkedin_url, str) and self.search(
-                [('company_linkedin_url', 'ilike', f'{linkedin_url.rstrip("/")}%')],
+        linkedin = data.get('linkedInUrl', False)
+        if isinstance(linkedin, str) and self.search(
+                [('company_linkedin', 'ilike', f'{linkedin.rstrip("/")}%')],
                 limit=1):
             return
 
         records = self.create({
             'name': data.get('name', False),
             'image_1920': data.get('avatarData', False),
-            'company_linkedin_url': linkedin_url,
+            'company_linkedin': linkedin,
             'comment': data.get('description', False),
             'company_type': 'company',
         })

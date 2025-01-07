@@ -24,7 +24,7 @@ class ResPartner(models.Model):
                 raise UserError(_('You have to complete your Piloterr token in the settings first.'))
 
             url = "https://piloterr.com/api/v2/linkedin/profile/info?query="
-            url_with_contact = url + contact.linkedin_url
+            url_with_contact = url + contact.linkedin
 
             headers = {"x-api-key": api_token}
             try:
@@ -41,8 +41,8 @@ class ResPartner(models.Model):
                 if linkedin_info['full_name']:
                     contact.name = linkedin_info['full_name']
 
-                if len(linkedin_info['experiences']) > 0 and not contact.parent_id.company_linkedin_url:
-                    contact.parent_id.company_linkedin_url = linkedin_info['experiences'][0]['company_url']
+                if len(linkedin_info['experiences']) > 0 and not contact.parent_id.company_linkedin:
+                    contact.parent_id.company_linkedin = linkedin_info['experiences'][0]['company_url']
 
             except requests.exceptions.HTTPError as http_err:
                 # See 404, 500, etc. errors
@@ -65,7 +65,7 @@ class ResPartner(models.Model):
                 raise UserError(_('You have to complete your Piloterr token in the settings first.'))
 
             url = "https://piloterr.com/api/v2/linkedin/company/info?query="
-            url_with_contact = url + partner.company_linkedin_url
+            url_with_contact = url + partner.company_linkedin
 
             headers = {"x-api-key": api_token}
             try:
@@ -87,7 +87,7 @@ class ResPartner(models.Model):
                         raise UserError(_('You have to complete your Piloterr token in the settings first.'))
 
                     url = "https://piloterr.com/api/v2/linkedin/company/info?query="
-                    url_with_contact = url + partner.company_linkedin_url
+                    url_with_contact = url + partner.company_linkedin
 
                     headers = {"x-api-key": api_token}
                     try:

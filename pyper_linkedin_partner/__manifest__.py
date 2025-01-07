@@ -2,11 +2,11 @@
 # Krafter Proprietary License (see LICENSE file).
 
 {
-    'name': 'Linkedin partner',
+    'name': 'LinkedIn Partner',
     'category': 'Sales/CRM',
     'license': 'Other proprietary',
-    'description': 'Add fields dedicated to linkedIn in partners',
-    'summary': 'Add fields dedicated to linkedIn in partners',
+    'description': 'Add fields dedicated to LinkedIn in partners',
+    'summary': 'Add fields dedicated to LinkedIn in partners',
     'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [

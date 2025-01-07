@@ -46,17 +46,17 @@ class ResPartner(models.Model):
             if contact.is_company:
                 raise UserError(_('You can only enrich contact data from a..... contact. Right ?'))
 
-            if not contact.linkedin_url:
-                raise UserError(_('You have to fill linkedin url on contact profil.'))
+            if not contact.linkedin:
+                raise UserError(_('You have to fill LinkedIn URL on contact profil.'))
 
-            if 'linkedin.com/in/' not in contact.linkedin_url:
-                raise UserError(_('Not a linkedin URL. Please paste full linkedin URL'))
+            if 'linkedin.com/in/' not in contact.linkedin:
+                raise UserError(_('Not a linkedin URL. Please paste full LinkedIn URL'))
             api_token = self.env['ir.config_parameter'].sudo().get_param('pyper_kaspr_connector.kaspr_token_api')
 
             if not api_token:
                 raise UserError(_('You have to fill the Kaspr token API in the global settings first.'))
 
-            linkedin_id = contact.linkedin_url.split("linkedin.com/in/")[1].replace('/', '')
+            linkedin_id = contact.linkedin.split("linkedin.com/in/")[1].replace('/', '')
 
             url = "https://api.developers.kaspr.io/profile/linkedin"
 

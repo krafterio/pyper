@@ -12,13 +12,13 @@
                     name="action_search_piloterr_linkedin_company_profil"
                     icon="fa-linkedin me-1"
                     data-tooltip-delay="0"
-                    invisible="company_linkedin_url == False or (image_1920 and website and comment)"
-                    title="Get infos from linkedIn"
-                >Get infos from linkedIn</button>
+                    invisible="company_linkedin == False or (image_1920 and website and comment)"
+                    title="Get infos from LinkedIn"
+                >Get infos from LinkedIn</button>
             </xpath>
 
             <xpath expr="//field[@name='child_ids']//t[@t-name='kanban-menu']" position="inside">
-                <field name="linkedin_url" invisible="True"/>
+                <field name="linkedin" invisible="True"/>
 
                 <button
                     class="dropdown-item"
@@ -26,9 +26,9 @@
                     name="action_search_piloterr_linkedin_profil"
                     icon="fa-linkedin me-1"
                     data-tooltip-delay="0"
-                    invisible="linkedin_url == False"
-                    title="Get infos from linkedIn"
-                >Get infos from linkedIn</button>
+                    invisible="linkedin == False"
+                    title="Get infos from LinkedIn"
+                >Get infos from LinkedIn</button>
             </xpath>
         </field>
     </record>

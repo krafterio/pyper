@@ -94,7 +94,7 @@ class ResPartnerDropContactBatch(models.Model):
                 'full_name': partner.name,
                 'company': partner.parent_id.name,
                 'email': partner.email,
-                'linkedin': partner.linkedin_url if partner.linkedin_url else '',
+                'linkedin': partner.linkedin if partner.linkedin else '',
                 'website': partner.parent_id.website if partner.parent_id.website else '',
                 'siret': partner.parent_id.siret if partner.parent_id.siret else '',
             })
@@ -181,8 +181,8 @@ class ResPartnerDropContactBatch(models.Model):
         if 'mobile_phone' in info and not partner_id.mobile:
             partner_id.mobile = info['mobile_phone']
 
-        if 'linkedin' in info and not partner_id.linkedin_url:
-            partner_id.linkedin_url = info['linkedin']
+        if 'linkedin' in info and not partner_id.linkedin:
+            partner_id.linkedin = info['linkedin']
 
         if 'vat' in info and not partner_id.parent_id.vat:
             partner_id.parent_id.vat = info['vat']
@@ -210,8 +210,8 @@ class ResPartnerDropContactBatch(models.Model):
 
             partner_id.parent_id = parent
 
-        if 'company_linkedin' in info and not partner_id.parent_id.company_linkedin_url:
-            partner_id.parent_id.company_linkedin_url = info['company_linkedin']
+        if 'company_linkedin' in info and not partner_id.parent_id.company_linkedin:
+            partner_id.parent_id.company_linkedin = info['company_linkedin']
 
         if 'vat' in info and not partner_id.parent_id.vat:
                 partner_id.parent_id.vat = info['vat']
@@ -222,8 +222,8 @@ class ResPartnerDropContactBatch(models.Model):
         if 'siret' in info and not partner_id.parent_id.siret:
             partner_id.parent_id.siret = info['siret']
 
-        if 'company_linkedin' in info and not partner_id.company_linkedin_url:
-            partner_id.parent_id.company_linkedin_url = info['company_linkedin']
+        if 'company_linkedin' in info and not partner_id.company_linkedin:
+            partner_id.parent_id.company_linkedin = info['company_linkedin']
 
         self.env.cr.commit()
 

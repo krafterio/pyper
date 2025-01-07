@@ -7,7 +7,7 @@
             <form>
                 <group>
                     <field name="linkedin_name"/>
-                    <field name="linkedin_url"/>
+                    <field name="linkedin"/>
                     <field name="company_id"/>
                 </group>
 

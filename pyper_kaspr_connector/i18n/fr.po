@@ -116,8 +116,8 @@ msgid "Leave empty if you want to create company with contact automatically."
 msgstr ""
 
 #. module: pyper_kaspr_connector
-#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_kaspr_form__linkedin_url
-msgid "Linkedin URL"
+#: model:ir.model.fields,field_description:pyper_kaspr_connector.field_kaspr_form__linkedin
+msgid "LinkedIn"
 msgstr ""
 
 #. module: pyper_kaspr_connector
@@ -143,17 +143,17 @@ msgstr "Aucune info trouvé sur ce contact"
 #: code:addons/pyper_kaspr_connector/models/res_partner.py:0
 #: code:addons/pyper_kaspr_connector/wizard/kaspr_form.py:0
 #, python-format
-msgid "Not a linkedin URL. Please paste full linkedin URL"
+msgid "Not a LinkedIn URL. Please paste full LinkedIn URL"
 msgstr "Ceci n’est as une URL Linkedin valide."
 
 #. module: pyper_kaspr_connector
 #: model:ir.actions.server,name:pyper_kaspr_connector.link_update_linkedin_email
-msgid "Update infos from linkedIn profile"
+msgid "Update infos from LinkedIn profile"
 msgstr "Mettre à jour infos depuis LinkedIn"
 
 #. module: pyper_kaspr_connector
 #: model:ir.actions.server,name:pyper_kaspr_connector.link_update_linkedin_phone
-msgid "Update infos from linkedIn profile (with phone)"
+msgid "Update infos from LinkedIn profile (with phone)"
 msgstr "Mettre à jour infos depuis LinkedIn (avec téléphone)"
 
 #. module: pyper_kaspr_connector
@@ -172,14 +172,14 @@ msgstr ""
 #. odoo-python
 #: code:addons/pyper_kaspr_connector/wizard/kaspr_form.py:0
 #, python-format
-msgid "You have to fill linkedin url and name."
+msgid "You have to fill LinkedIn URL and name."
 msgstr ""
 
 #. module: pyper_kaspr_connector
 #. odoo-python
 #: code:addons/pyper_kaspr_connector/models/res_partner.py:0
 #, python-format
-msgid "You have to fill linkedin url on contact profil."
+msgid "You have to fill LinkedIn URL on contact profil."
 msgstr ""
 
 #. module: pyper_kaspr_connector

@@ -108,8 +108,8 @@ class PiloterrCompanyLookup(models.Model):
         if response['location']['lng'] and not obj.partner_longitude:
             setattr(obj, 'partner_longitude', response['location']['lng'])
 
-        if response['social_networks']['linkedin'] and not obj.company_linkedin_url:
-            setattr(obj, 'company_linkedin_url', response['social_networks']['linkedin'])
+        if response['social_networks']['linkedin'] and not obj.company_linkedin:
+            setattr(obj, 'company_linkedin', response['social_networks']['linkedin'])
 
         base_geolocalize_installed = self.env['ir.module.module'].search_count(
             [

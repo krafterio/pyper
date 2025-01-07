@@ -12,8 +12,8 @@ class KasprForm(models.TransientModel):
     _name = 'kaspr.form'
     _description = 'Kaspr Form'
 
-    linkedin_url = fields.Char(
-        'Linkedin URL'
+    linkedin = fields.Char(
+        'LinkedIn URL'
     )
 
     linkedin_name = fields.Char(
@@ -31,11 +31,11 @@ class KasprForm(models.TransientModel):
         self.ensure_one()
 
         for record in self:
-            if not record.linkedin_url or not record.linkedin_name:
-                raise UserError(_('You have to fill linkedin url and name.'))
+            if not record.linkedin or not record.linkedin_name:
+                raise UserError(_('You have to fill LinkedIn URL and name.'))
 
-            if 'linkedin.com/in/' not in record.linkedin_url:
-                raise UserError(_('Not a linkedin URL. Please paste full linkedin URL'))
+            if 'linkedin.com/in/' not in record.linkedin:
+                raise UserError(_('Not a LinkedIn URL. Please paste full LinkedIn URL'))
             else:
 
                 api_token = self.env['ir.config_parameter'].sudo().get_param('pyper_kaspr_connector.kaspr_token_api')
@@ -43,7 +43,7 @@ class KasprForm(models.TransientModel):
                 if not api_token:
                     raise UserError(_('You have to fill the Kaspr token API in the global settings first.'))
 
-                linkedin_id = record.linkedin_url.split("linkedin.com/in/")[1].replace('/', '')
+                linkedin_id = record.linkedin.split("linkedin.com/in/")[1].replace('/', '')
 
                 url = "https://api.developers.kaspr.io/profile/linkedin"
 
@@ -69,7 +69,7 @@ class KasprForm(models.TransientModel):
 
                 new_contact = {
                     'type': 'contact',
-                    'linkedin_url': record.linkedin_url,
+                    'linkedin': record.linkedin,
                 }
 
                 if bool(contact_infos) is False:
