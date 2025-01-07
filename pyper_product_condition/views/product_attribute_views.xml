@@ -6,8 +6,8 @@
         <field name="inherit_id" ref="product.product_attribute_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='attribute_values']//field[@name='value_ids']//field[@name='name']" position="after">
-                <field name="description" translate="True"/>
-                <field name="condition_type" readonly="True"/>
+                <field name="description" readonly="False" translate="True"/>
+                <field name="condition_type" readonly="False"/>
             </xpath>
         </field>
     </record>
