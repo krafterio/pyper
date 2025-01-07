@@ -10,8 +10,11 @@ class ProductCategory(models.Model):
         [
             ('none', 'None'),
             ('smartphone', 'Smartphone'),
+            ('screen', 'Screen'),
+            ('network', 'Network'),
             ('tablet', 'Tablet'),
             ('laptop_computer', 'Laptop computer'),
             ('desktop_computer', 'Desktop Computer'),
         ]
     )
+    
