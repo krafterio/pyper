@@ -31,7 +31,7 @@
                                             class="o_kanban_record_body"
                                         >
                                             <strong class="d-block fw-bolder mb-0">
-                                                <field name="product_condition_description"/>
+                                                <field name="product_condition_id"/>
                                             </strong>
                                             <div
                                                 class="quantity_badge"
