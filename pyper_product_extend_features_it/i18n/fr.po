@@ -41,6 +41,16 @@ msgid "Desktop Computer"
 msgstr "Ordinateur de bureau"
 
 #. module: pyper_product_extend_features_it
+#: model:ir.model.fields.selection,name:pyper_product_extend_features_it.selection__product_category__product_pattern__network
+msgid "Network"
+msgstr "Réseau"
+
+#. module: pyper_product_extend_features_it
+#: model:ir.model.fields.selection,name:pyper_product_extend_features_it.selection__product_category__product_pattern__screen
+msgid "Screen"
+msgstr "Ecran"
+
+#. module: pyper_product_extend_features_it
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_graphic_card__display_name
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_operating_system__display_name
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_processor__display_name

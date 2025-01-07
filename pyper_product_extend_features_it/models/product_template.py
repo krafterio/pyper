@@ -39,6 +39,11 @@ class ProductTemplate(models.Model):
         'product.screen.size',
         'Screen size',
     )
+    
+    screen_format_id = fields.Many2one(
+        'product.screen.format',
+        'Screen format',
+    )
 
     screen_quality_id = fields.Many2one(
         'product.screen.quality',
@@ -65,5 +70,16 @@ class ProductTemplate(models.Model):
     has_optical_drive = fields.Boolean(
         'Has optical drive',
     )
+    
+    height_adjustable = fields.Boolean(
+        'Height adjustable',
+    )
 
+    rotating = fields.Boolean(
+        'Rotating',
+    )
 
+    @api.depends('product_variant_ids.product_tmpl_id', 'attribute_line_ids.product_template_value_ids', 'attribute_line_ids')
+    def _compute_product_variant_count(self):
+        for template in self:
+            template.product_variant_count = len(template.attribute_line_ids.product_template_value_ids)

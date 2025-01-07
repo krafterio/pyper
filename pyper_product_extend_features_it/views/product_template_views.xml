@@ -17,14 +17,22 @@
                                invisible="product_pattern not in ['laptop_computer', 'desktop_computer']"/>
                         <field name="ram_capacity_id"
                                invisible="product_pattern not in ['laptop_computer', 'desktop_computer']"/>
+
+                        <field name="height_adjustable"
+                               invisible="product_pattern not in ['screen']"/>
+                        <field name="screen_size_id"
+                               invisible="product_pattern not in ['laptop_computer', 'smartphone', 'tablet', 'screen']"/>
+                        <field name="screen_quality_id"
+                               invisible="product_pattern not in ['laptop_computer', 'smartphone', 'tablet', 'screen']"/>
+                        <field name="rotating"
+                               invisible="product_pattern not in ['screen']"/>
+                        <field name="screen_format_id"
+                               invisible="product_pattern not in ['screen']"/>
+
                     </group>
                     <group string="Non editable features">
                         <field name="processor_id"
                                invisible="product_pattern not in ['laptop_computer', 'desktop_computer']"/>
-                        <field name="screen_size_id"
-                               invisible="product_pattern not in ['laptop_computer', 'smartphone', 'tablet']"/>
-                        <field name="screen_quality_id"
-                               invisible="product_pattern not in ['laptop_computer', 'smartphone', 'tablet']"/>
                         <field name="graphic_card_id"
                                invisible="product_pattern not in ['laptop_computer', 'desktop_computer']"/>
                         <field name="has_optical_drive"
