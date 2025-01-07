@@ -39,11 +39,6 @@ class ProductTemplate(models.Model):
         'product.screen.size',
         'Screen size',
     )
-    
-    screen_format_id = fields.Many2one(
-        'product.screen.format',
-        'Screen format',
-    )
 
     screen_quality_id = fields.Many2one(
         'product.screen.quality',
