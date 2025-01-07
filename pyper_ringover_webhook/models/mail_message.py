@@ -68,12 +68,14 @@ class MailMessage(models.Model):
                 '|',
                 ('phone_formatted', '=', number),
                 ('mobile_formatted', '=', number),
+                ('active', 'in', [True, False]),
             ], limit=1)
 
         def create_partner(number):
             return self.env['res.partner'].create({
-                'name': from_number,
-                'phone': from_number,
+                'name': number,
+                'phone': number,
+                'active': False,
             })
 
         if direction == 'outbound':
