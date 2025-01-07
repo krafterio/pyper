@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="pyper_ringover_webhook.Message" t-inherit="mail.Message" t-inherit-mode="extension">
+        <!-- Message -->
+        <xpath expr="//div[hasclass('o-mail-Message-textContent')]/t[1]" position="before">
+            <div t-if="isPhoneLog" class="d-flex">
+                <div>
+                    <span t-out="message.message_type_name" class="me-1"/>
+                </div>
+
+                <div>
+                    <span>(</span>
+                    <span t-out="message.phone_event_name"/>
+                    <span>)</span>
+                </div>
+
+                <div t-if="message.phone_call_duration > 0">
+                    <span class="mx-1">lasting</span>
+                    <span t-out="message.phone_call_duration" class="me-1"/>
+                    <span class="ms-1">seconds</span>
+                </div>
+            </div>
+        </xpath>
+    </t>
+</templates>

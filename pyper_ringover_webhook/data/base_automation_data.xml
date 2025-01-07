@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Webhook Ringover Phone Call Log -->
+    <record id="automation_webhook_ringover_phone_call_log" model="base.automation">
+        <field name="name">Webhook for Ringover phone call log</field>
+        <field name="model_id" ref="mail.model_mail_message"/>
+        <field name="trigger">on_webhook</field>
+        <field name="record_getter">model.env['mail.message'].ringover_phone_call_log(payload)</field>
+    </record>
+</odoo>
