@@ -26,8 +26,7 @@
                                invisible="product_pattern not in ['laptop_computer', 'smartphone', 'tablet', 'screen']"/>
                         <field name="rotating"
                                invisible="product_pattern not in ['screen']"/>
-                        <field name="screen_format_id"
-                               invisible="product_pattern not in ['screen']"/>
+
 
                     </group>
                     <group string="Non editable features">
