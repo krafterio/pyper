@@ -44,6 +44,17 @@ msgid "Condition"
 msgstr ""
 
 #. module: pyper_product_condition
+#: model:product.condition,description:pyper_product_condition.product_condition_a_minus
+msgid "Excellent state"
+msgstr "Très bon état"
+
+#. module: pyper_product_condition
+#: model:product.condition,description:pyper_product_condition.product_condition_b_plus
+msgid "Good state"
+msgstr "Bon état"
+
+
+#. module: pyper_product_condition
 #: model:ir.model,name:pyper_product_condition.model_res_config_settings
 msgid "Config Settings"
 msgstr "Paramètres de configuration"
@@ -231,8 +242,3 @@ msgstr ""
 #: model:product.condition,description:pyper_product_condition.product_condition_e
 msgid "Very Used"
 msgstr "Très usé"
-
-#. module: pyper_product_condition
-#: model:ir.model,name:pyper_product_condition.model_product_condition
-msgid "product.condition"
-msgstr ""
