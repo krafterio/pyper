@@ -26,7 +26,8 @@
                                invisible="product_pattern not in ['laptop_computer', 'smartphone', 'tablet', 'screen']"/>
                         <field name="rotating"
                                invisible="product_pattern not in ['screen']"/>
-
+                        <field name="video_port_ids" widget="many2many_tags"
+                               invisible="product_pattern not in ['desktop_computer', 'laptop_computer', 'screen']"/>
 
                     </group>
                     <group string="Non editable features">
