@@ -91,8 +91,7 @@ class IrUiMenu(models.Model):
 
         return menus
 
-    @staticmethod
-    def get_extra_fields():
+    def get_extra_fields(self):
         return [
             'id',
             'parent_path',
@@ -107,8 +106,7 @@ class IrUiMenu(models.Model):
             'display_counter',
         ]
 
-    @staticmethod
-    def inject_extra_fields(menu_value, vals):
+    def inject_extra_fields(self, menu_value, vals):
         position = menu_value.get('position')
         parent_path = [int(x) for x in menu_value.get('parent_path').split('/') if x]
         category = menu_value.get('category_id')
