@@ -81,6 +81,10 @@ export class DrawerMenuItem extends Component {
             type: Boolean,
             optional: true,
         },
+        className: {
+            type: String,
+            optional: true,
+        }
     }
 
     static defaultProps = {
@@ -137,6 +141,7 @@ export class DrawerMenuItem extends Component {
             'o_drawer--menu-item-with-icon': this.displayIcon,
             'o_drawer--menu-item-active': this.isActive,
             'o_drawer--menu-item-opened': this.isOpened,
+            ...(this.props.className || '').split(' ').reduce((obj, cls) => ({...obj, [cls]: true}), {}),
         };
     }
 
