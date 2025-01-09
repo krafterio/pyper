@@ -19,8 +19,9 @@
                     <i class="fa fa-database oi-small me-1"/><t t-out="user.db.name"/>
                 </span>
 
-                <span class="small opacity-50" t-else="">My account</span>
+                <span class="small opacity-50" t-else="" t-out="user.userName"/>
             </div>
+            <i class="fs-3 fa fa-ellipsis-v ms-auto opacity-50 pe-1"/>
         </xpath>
 
         <xpath expr="//Dropdown/t[@t-foreach]" position="before">
