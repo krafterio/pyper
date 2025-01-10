@@ -2,7 +2,7 @@
 <odoo>
     <template id="pyper.layout" inherit_id="web.layout">
         <xpath expr="//head/title" position="attributes">
-            <attribute name="t-out">title or 'Pyper'</attribute>
+            <attribute name="t-out">title</attribute>
         </xpath>
 
         <xpath expr="//head/link[@type='image/x-icon']" position="attributes">
