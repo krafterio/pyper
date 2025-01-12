@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="0">
+<odoo noupdate="1">
     <function model="res.partner" name="write">
         <value model="res.partner" eval="ref('base.partner_root')"/>
         <value eval="{'name': 'Pyper', 'email': 'bot@pyper.cc'}" />
