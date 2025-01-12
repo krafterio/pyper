@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ir_global_search_model_group_erp_manager,ir.global_search.model group_erp_manager,model_ir_global_search_model,base.group_erp_manager,1,1,1,1
+access_ir_global_search_model_group_user,ir.global_search.model group_user,model_ir_global_search_model,base.group_user,1,0,0,0

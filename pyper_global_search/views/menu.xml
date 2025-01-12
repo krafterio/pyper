@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="menu_settings_global_search_models"
+        parent="base.next_id_2"
+        sequence="3"
+        action="action_ir_global_search_models"
+    />
+</odoo>

@@ -1,0 +1,194 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_global_search
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20250110\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-12 18:09+0000\n"
+"PO-Revision-Date: 2025-01-12 18:09+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__action_id_domain
+msgid "Action Domain"
+msgstr "Domaine de l’action"
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__action_id
+msgid "Action Window"
+msgstr "Action de la fenêtre"
+
+#. module: pyper_global_search
+#: model:ir.model.fields,help:pyper_global_search.field_ir_global_search_model__action_id
+msgid "Action used to open record details or more search"
+msgstr ""
+"Action utilisée pour ouvrir les détails de l’enregistrement ou effectuer une"
+" recherche plus approfondie"
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: pyper_global_search
+#: model_terms:ir.ui.view,arch_db:pyper_global_search.view_ir_global_search_model_search
+msgid "All"
+msgstr "Tout"
+
+#. module: pyper_global_search
+#: model_terms:ir.ui.view,arch_db:pyper_global_search.view_ir_global_search_model_search
+msgid "Archived"
+msgstr "Archivé"
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__display_name
+msgid "Display Name"
+msgstr "Nom"
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__domain
+msgid "Domain"
+msgstr "Domaine"
+
+#. module: pyper_global_search
+#: model:ir.model,name:pyper_global_search.model_ir_global_search_model
+#: model_terms:ir.ui.view,arch_db:pyper_global_search.view_ir_global_search_model_form
+msgid "Global Search Model"
+msgstr "Modèle de la recherche globale"
+
+#. module: pyper_global_search
+#: model:ir.actions.act_window,name:pyper_global_search.action_ir_global_search_models
+#: model:ir.ui.menu,name:pyper_global_search.menu_settings_global_search_models
+#: model_terms:ir.ui.view,arch_db:pyper_global_search.view_ir_global_search_model_search
+msgid "Global Search Models"
+msgstr "Modèles de la recherche globale"
+
+#. module: pyper_global_search
+#: model_terms:ir.ui.view,arch_db:pyper_global_search.view_ir_global_search_model_search
+msgid "Group By"
+msgstr "Groupé par"
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__id
+msgid "ID"
+msgstr ""
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__write_uid
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__write_date
+msgid "Last Updated on"
+msgstr "Dernière modification par"
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__model_id
+#: model_terms:ir.ui.view,arch_db:pyper_global_search.view_ir_global_search_model_search
+msgid "Model"
+msgstr "Modèle"
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__model_name
+msgid "Model Name"
+msgstr "Nom du modèle"
+
+#. module: pyper_global_search
+#: model:ir.model,name:pyper_global_search.model_ir_module_module
+msgid "Module"
+msgstr ""
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: pyper_global_search
+#. odoo-javascript
+#: code:addons/pyper/pyper_global_search/static/src/webclient/commands/global_search_providers.js:0
+#: code:addons/pyper_global_search/static/src/webclient/commands/global_search_providers.js:0
+#, python-format
+msgid "No record found."
+msgstr "Aucun enregistrement trouvé."
+
+#. module: pyper_global_search
+#: model:ir.model.fields,help:pyper_global_search.field_ir_global_search_model__domain
+msgid ""
+"Optional domain filtering of the destination data, as a Python expression"
+msgstr ""
+"Filtrage de domaine facultatif des données de destination, sous forme "
+"d’expression Python"
+
+#. module: pyper_global_search
+#. odoo-javascript
+#: code:addons/pyper/pyper_global_search/static/src/webclient/global_search/global_search_input.xml:0
+#: code:addons/pyper_global_search/static/src/webclient/global_search/global_search_input.xml:0
+#, python-format
+msgid "Quick search"
+msgstr "Recherche rapide"
+
+#. module: pyper_global_search
+#. odoo-javascript
+#: code:addons/pyper/pyper_global_search/static/src/webclient/commands/global_search_providers.js:0
+#: code:addons/pyper_global_search/static/src/webclient/commands/global_search_providers.js:0
+#, python-format
+msgid "Quickly search records in all available models"
+msgstr ""
+"Recherchez rapidement des enregistrements dans tous les modèles disponibles"
+
+#. module: pyper_global_search
+#. odoo-javascript
+#: code:addons/pyper/pyper_global_search/static/src/webclient/commands/global_search_providers.js:0
+#: code:addons/pyper_global_search/static/src/webclient/commands/global_search_providers.js:0
+#, python-format
+msgid "Search a record..."
+msgstr "Rechercher un enregistrement…"
+
+#. module: pyper_global_search
+#: model:ir.model.fields,field_description:pyper_global_search.field_ir_global_search_model__sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: pyper_global_search
+#. odoo-javascript
+#: code:addons/pyper/pyper_global_search/static/src/webclient/commands/global_search_providers.js:0
+#: code:addons/pyper/pyper_global_search/static/src/webclient/commands/global_search_providers.js:0
+#: code:addons/pyper_global_search/static/src/webclient/commands/global_search_providers.js:0
+#: code:addons/pyper_global_search/static/src/webclient/commands/global_search_providers.js:0
+#, python-format
+msgid "Untitled"
+msgstr "Sans titre"
+
+#. module: pyper_global_search
+#. odoo-javascript
+#: code:addons/pyper/pyper_global_search/static/src/webclient/commands/global_search_providers.js:0
+#: code:addons/pyper_global_search/static/src/webclient/commands/global_search_providers.js:0
+#, python-format
+msgid "records"
+msgstr "enregistrements"
+
+#. module: pyper_global_search
+#. odoo-javascript
+#: code:addons/pyper/pyper_global_search/static/src/webclient/commands/global_search_heading_command.xml:0
+#: code:addons/pyper_global_search/static/src/webclient/commands/global_search_heading_command.xml:0
+#, python-format
+msgid "see more"
+msgstr "voir plus"

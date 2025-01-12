@@ -1,0 +1,19 @@
+xmlid,sequence,model_name,action_id,domain,name,name@fr
+pyper_global_search__model.res_partner_person,10,res.partner,base.action_partner_form,"[(""is_company"", ""="", False),(""type"", ""="", ""contact"")]",Person,Personne
+pyper_global_search__model.res_partner_company,20,res.partner,base.action_partner_form,"[(""is_company"", ""="", True)]",Company,Société
+pyper_global_search__model.crm_lead,30,crm.lead,crm.crm_lead_opportunities,,Sales Orders/Quotations,Bons de commandes/Devis
+pyper_global_search__model.sale_order,40,sale.order,sale.action_quotations,,,
+pyper_global_search__model.purchase_order,50,purchase.order,purchase.action_rfq_form,,Purchases Orders/RFQs,Demandes d'achat
+pyper_global_search__model.account_move,60,account.move,account.action_move_journal_line,,,
+pyper_global_search__model.project_project,70,project.project,project.open_view_project_all,,,
+pyper_global_search__model.mrp_production,80,mrp.production,mrp.mrp_production_action,,,
+pyper_global_search__model.repair_order,90,repair.order,repair.action_repair_order_tree,,,
+pyper_global_search__model.maintenance_request,100,maintenance.request,maintenance.hr_equipment_request_action,,,
+pyper_global_search__model.event_event,110,event.event,event.action_event_view,,,
+pyper_global_search__model.website_page,120,website.page,website.action_website_pages_list,,,
+pyper_global_search__model.blog_blog,130,blog.blog,website_blog.action_blog_blog,,,
+pyper_global_search__model.stock_picking,140,stock.picking,stock.action_picking_tree_all,,,
+pyper_global_search__model.stock_lot,150,stock.lot,stock.action_production_lot_form,,,
+pyper_global_search__model.mailing_mailing,160,mailing.mailing,mass_mailing.mailing_mailing_action_mail,,,
+pyper_global_search__model.fleet_vehicle,170,fleet.vehicle,fleet.fleet_vehicle_action,,,
+,,,,

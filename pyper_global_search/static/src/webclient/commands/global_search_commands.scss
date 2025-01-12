@@ -1,0 +1,21 @@
+.o_global_search_info_command {
+    // Hack to remove focused background
+    background-color: $o-view-background-color;
+}
+
+.o_global_search_heading_command {
+    .o_command_name {
+        font-weight: $o-font-weight-bold;
+    }
+
+    .o_global_search_heading_command_item {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.o_command:not(.focused) {
+    .o_global_search_heading_command_item_more {
+        opacity: 0;
+    }
+}

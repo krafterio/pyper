@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+<t t-name="pyper_global_search.GlobalSearchHeadingCommand" t-inherit="web.DefaultCommandItem" t-inherit-mode="primary">
+    <xpath expr="//div[hasclass('o_command_default')]" position="attributes">
+        <attribute name="class" separator=" " add="o_global_search_heading_command"/>
+    </xpath>
+
+    <xpath expr="//div[hasclass('o_command_default')]/t[@t-slot='name']" position="after">
+        <div class="o_global_search_heading_command_item"/>
+    </xpath>
+
+    <xpath expr="//div[hasclass('o_global_search_heading_command_item')]" position="inside">
+        <xpath expr="//div[hasclass('o_command_default')]/t[@t-slot='name']" position="move"/>
+        <span class="badge rounded-pill bg-secondary ms-2" t-out="props.count or 0"/>
+        <span class="ms-3 small text-muted o_global_search_heading_command_item_more">see more</span>
+    </xpath>
+</t>
+
+</templates>

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_ir_global_search_model_tree" model="ir.ui.view">
+        <field name="name">ir.global_search_model.tree</field>
+        <field name="model">ir.global_search.model</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="active" column_invisible="True"/>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="model_id" optional="show"/>
+                <field name="model_name" optional="hide"/>
+                <field name="domain" optional="hide"/>
+                <field name="action_id" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ir_global_search_model_form" model="ir.ui.view">
+        <field name="name">ir.global_search_model.form</field>
+        <field name="model">ir.global_search.model</field>
+        <field name="type">form</field>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="Global Search Model">
+                <field name="active" invisible="True"/>
+
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <field
+                            class="fw-bold mb-4 h1"
+                            name="name"
+                        />
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="model_id"/>
+                            <field name="model_name" groups="base.group_no_one"/>
+                        </group>
+
+                        <group>
+                            <field name="action_id_domain" invisible="True"/>
+                            <field name="action_id" domain="action_id_domain"/>
+
+                            <field name="domain" widget="domain" options="{'model': 'model_name', 'in_dialog': False}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_ir_global_search_model_search">
+        <field name="name">ir.global_search_model.search</field>
+        <field name="model">ir.global_search.model</field>
+        <field name="arch" type="xml">
+            <search string="Global Search Models">
+                <filter string="All" name="all" domain="[('active', 'in', [True, False])]"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+
+                <group expand="0" string="Group By">
+                    <filter name="by_model" string="Model" domain="[]"  context="{'group_by': 'model_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_ir_global_search_models" model="ir.actions.act_window">
+        <field name="name">Global Search Models</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ir.global_search.model</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids"
+               eval="[
+                   Command.clear(),
+                   Command.create({'view_mode': 'tree', 'view_id': ref('view_ir_global_search_model_tree')}),
+                   Command.create({'view_mode': 'form', 'view_id': ref('view_ir_global_search_model_form')}),
+               ]"
+        />
+        <field name="context">{}</field>
+    </record>
+</odoo>

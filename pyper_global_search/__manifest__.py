@@ -1,0 +1,36 @@
+# Copyright Krafter SAS <hey@krafter.io>
+# Krafter Proprietary License (see LICENSE file).
+{
+    'name': 'Global Search',
+    'category': 'Hidden/Tools',
+    'license': 'Other proprietary',
+    'description': 'Add global search for all available models',
+    'version': '1.0',
+    'author': 'Krafter SAS',
+    'website': 'https://krafter.io',
+    'maintainer': [
+        'Krafter SAS',
+    ],
+    'post_init_hook': 'post_init_hook',
+    'installable': True,
+    'application': False,
+    'depends': [
+        'base',
+        'web',
+    ],
+    'data': [
+        # Security
+        'security/ir.model.access.csv',
+
+        # Views
+        'views/ir_global_search_model_views.xml',
+
+        # Menu
+        'views/menu.xml',
+    ],
+    'assets': {
+        'web.assets_backend': [
+            'pyper_global_search/static/src/webclient/**/*',
+        ],
+    },
+}

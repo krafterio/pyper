@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+<t t-name="pyper_global_search.GlobalSearchRecordCommand" t-inherit="web.DefaultCommandItem" t-inherit-mode="primary">
+    <xpath expr="//div[hasclass('o_command_default')]" position="attributes">
+        <attribute name="class" separator=" " add="ps-5 o_global_search_record_command"/>
+    </xpath>
+</t>
+
+</templates>
