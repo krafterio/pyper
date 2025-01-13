@@ -27,9 +27,7 @@
                                 <t t-name="kanban-box">
                                     <div
                                         t-att-class="'oe_kanban_content oe_kanban_global_click' +  (record.qty_available.raw_value == 0.0 ? ' opacity-50' : '')">
-                                        <div
-                                            class="o_kanban_record_body"
-                                        >
+                                        <div class="o_kanban_record_body">
                                             <strong class="d-block fw-bolder mb-0">
                                                 <field name="product_condition_id"/>
                                             </strong>

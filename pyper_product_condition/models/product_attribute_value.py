@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from odoo import fields, models, api, _
+from odoo import fields, models
 
 
 class ProductAttributeValue(models.Model):

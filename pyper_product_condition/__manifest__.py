@@ -14,7 +14,7 @@
     'website': 'https://krafter.io',
     'installable': True,
     'application': True,
-    'post_init_hook': 'activate_variant_on_install',
+    'post_init_hook': 'post_init_hook',
     'depends': [
         'product',
         'pyper_product_catalog',
@@ -33,15 +33,16 @@
 
         # Views
         'views/product_attribute_views.xml',
-        'views/product_template_views.xml',
         'views/product_condition_views.xml',
-        'views/conf_setting_views.xml',
+        'views/product_template_views.xml',
+        'views/res_config_settings_views.xml',
 
+        # Menu
         'views/menu.xml',
     ],
     'assets': {
         'web.assets_backend': [
-            'pyper_product_condition/static/src/scss/style.scss',
+            'pyper_product_condition/static/src/views/**/*',
         ]
     },
 }

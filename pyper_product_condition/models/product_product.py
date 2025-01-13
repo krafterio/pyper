@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from odoo import fields, models, api, _
+from odoo import fields, models, api
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
@@ -15,7 +15,7 @@ class ProductProduct(models.Model):
 
     product_condition_description = fields.Char(
         related='product_condition_id.description',
-        string="Product Condition Description",
+        string='Product Condition Description',
     )
 
     @api.depends('product_template_attribute_value_ids')
@@ -28,4 +28,3 @@ class ProductProduct(models.Model):
                     break
 
             product.product_condition_id = product_condition_id
-
