@@ -1,0 +1,13 @@
+.o_drawer {
+    .o-global-search-input {
+        margin-top: $o-global-search-input-margin-v;
+        margin-bottom: $o-global-search-input-margin-v;
+    }
+
+    &:not(.o_drawer--nav) {
+        .o-global-search-input {
+            padding-left: $o-drawer-item-nav-margin-h;
+            padding-right: $o-drawer-item-nav-margin-h;
+        }
+    }
+}
