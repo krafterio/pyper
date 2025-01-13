@@ -10,4 +10,12 @@
             padding-right: $o-drawer-item-nav-margin-h;
         }
     }
+
+    &.o_drawer--nav {
+        .o-global-search-input {
+            .form-control {
+                border-radius: $o-drawer-item-icon-border-radius;
+            }
+        }
+    }
 }
