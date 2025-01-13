@@ -794,7 +794,7 @@
     .o_drawer_app_logo {
         // Main Navbar style
         display: flex;
-        height: var(--o-navbar-height);
+        height: $o-navbar-height;
         min-width: min-content;
         padding-top: $o-navbar-padding-v;
         padding-bottom: $o-navbar-padding-v;
