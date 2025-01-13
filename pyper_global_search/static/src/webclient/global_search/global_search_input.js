@@ -16,6 +16,10 @@ export class GlobalSearchInput extends Component {
             type: [Number, Boolean],
             optional: true,
         },
+        openOnEnter: {
+            type: Boolean,
+            optional: true,
+        },
         openOnFocus: {
             type: Boolean,
             optional: true,
@@ -24,6 +28,7 @@ export class GlobalSearchInput extends Component {
 
     static defaultProps = {
         debounceDelay: 350,
+        openOnEnter: false,
         openOnFocus: false,
     };
 
@@ -32,7 +37,7 @@ export class GlobalSearchInput extends Component {
         this.inputRef = useRef('input');
         this.compositionStart = false;
 
-        if (this.props.debounceDelay) {
+        if (!this.props.openOnEnter && this.props.debounceDelay) {
             this._onInputSearch = debounce(this._onInputSearch, this.props.debounceDelay, false);
         }
     }
@@ -44,6 +49,12 @@ export class GlobalSearchInput extends Component {
         };
     }
 
+    _onKeyup(e) {
+        if (this.props.openOnEnter && e.key === 'Enter' && this.inputRef.el.value) {
+            this._openPalette();
+        }
+    }
+
     _onClick() {
         if (this.props.openOnFocus) {
             this._openPalette();
@@ -53,7 +64,9 @@ export class GlobalSearchInput extends Component {
     }
 
     _onInputSearch() {
-        this._openPalette();
+        if (!this.props.openOnEnter) {
+            this._openPalette();
+        }
     }
 
     _openPalette() {

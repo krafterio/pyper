@@ -10,6 +10,7 @@
             data-hotkey="g"
             t-ref="input"
             t-on-click="_onClick"
+            t-on-keyup="_onKeyup"
             t-on-input="_onInputSearch"
             t-on-blur="_onInputBlur"
             t-on-compositionstart="_onCompositionStart"
