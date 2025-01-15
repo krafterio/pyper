@@ -1,0 +1,10 @@
+.o_searchview {
+    border: none !important;
+
+    .o_searchview_facet {
+        &.bg-200 {
+            background-color: $o-white !important;
+            border: 1px solid $o-gray-200;
+        }
+    }
+}

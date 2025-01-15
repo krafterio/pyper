@@ -38,7 +38,7 @@
             ('before', 'pyper_web_theme/static/src/scss/primary_variables.scss', 'pyper_ui_kit/static/src/scss/primary_variables.scss'),
         ],
         'web.assets_backend': [
-            ('prepend', 'pyper_ui_kit/static/src/font/archivo.scss'),
+            ('prepend', 'pyper_ui_kit/static/src/font/inter.scss'),
 
             ('prepend', 'pyper_fonts_phosphor/static/src/scss/phosphor-regular.scss'),
             ('prepend', 'pyper_fonts_phosphor/static/src/scss/phosphor-light.scss'),
@@ -62,7 +62,7 @@
         ],
 
         'web.assets_frontend': [
-            ('prepend', 'pyper_ui_kit/static/src/font/archivo.scss'),
+            ('prepend', 'pyper_ui_kit/static/src/font/inter.scss'),
             "pyper_ui_kit/static/src/scss/front/style.scss",
             'pyper_ui_kit/static/src/scss/pyper_animate.scss',
             "pyper_ui_kit/static/src/scss/style.scss",

@@ -3,17 +3,17 @@ $pyper-dashboard-bg: $o-view-background-color !default;
 $pyper-dashboard-padding-h: 12px !default;
 $pyper-dashboard-padding-v: 12px !default;
 
-$pyper-dashboard-container-gap: 32px !default;
+$pyper-dashboard-container-gap: 0 !default;
 
-$pyper-dashboard-header-padding-h: $pyper-dashboard-padding-h !default;
-$pyper-dashboard-header-padding-v: 8px !default;
+$pyper-dashboard-header-padding-h: 16px !default;
+$pyper-dashboard-header-padding-v: 16px !default;
 $pyper-dashboard-header-padding-bottom: $pyper-dashboard-header-padding-v !default;
 
 $pyper-dashboard-column-padding-v: 3px !default;
 $pyper-dashboard-column-padding-h: 3px !default;
 
 $pyper-dashboard-action-border-radius: $o-border-radius !default;
-$pyper-dashboard-action-box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.1) !default;
+$pyper-dashboard-action-box-shadow: none !default;
 $pyper-dashboard-action-font-size: 12px !default;
 
 $pyper-dashboard-dropdown-header-color: $o-brand-secondary !default;

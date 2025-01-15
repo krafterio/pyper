@@ -1,0 +1,32 @@
+.o_main_navbar {
+    .o_menu_systray {
+        .o-mail-DiscussSystray-class {
+            & > .dropdown-toggle {
+                width: auto;
+
+                .btn-tasks {
+                    border-radius: 7px;
+                    border: 1px solid $o-gray-200;
+                    color: $o-gray-700;
+                    font-weight: 500;
+                    padding: 2px 10px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    &:hover {
+                        background-color: $o-gray-700;
+                        color: #fff;
+                    }
+
+                    .o-mail-ActivityMenu-counter {
+                        transform: initial;
+                        margin: 0;
+                        padding: 2px;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+}

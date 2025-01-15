@@ -1,0 +1,32 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_ui_kit_queue_job
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20250112\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-15 20:22+0000\n"
+"PO-Revision-Date: 2025-01-15 20:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pyper_ui_kit_queue_job
+#. odoo-javascript
+#: code:addons/pyper/pyper_ui_kit_queue_job/static/src/core/web/queue_job_progress_menu.xml:0
+#: code:addons/pyper_ui_kit_queue_job/static/src/core/web/queue_job_progress_menu.xml:0
+#, python-format
+msgid "Background tasks"
+msgstr "Tâches en arrière-plan"
+
+#. module: pyper_ui_kit_queue_job
+#. odoo-javascript
+#: code:addons/pyper/pyper_ui_kit_queue_job/static/src/core/web/queue_job_progress_menu.xml:0
+#: code:addons/pyper_ui_kit_queue_job/static/src/core/web/queue_job_progress_menu.xml:0
+#, python-format
+msgid "Loading..."
+msgstr "Chargement..."

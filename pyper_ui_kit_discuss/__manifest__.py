@@ -26,4 +26,13 @@
     'data': [
         'data/mail_message_install_data.xml',
     ],
+    'assets': {
+        'web._assets_primary_variables': [
+            ('before', 'web/static/src/**/*.variables.scss', 'pyper_ui_kit_discuss/static/src/**/*.variables.scss'),
+        ],
+        'web.assets_backend': [
+            'pyper_ui_kit_discuss/static/src/core/**/*',
+            'pyper_ui_kit_discuss/static/src/webclient/**/*',
+        ],
+    },
 }

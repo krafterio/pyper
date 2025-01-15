@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="pyper_ui_kit_queue_job.ProgressMenu" t-inherit="pyper_queue_job_bus.ProgressMenu" t-inherit-mode="extension">
+        <xpath expr="//i[hasclass('fa-hourglass-o')]" position="replace">
+            <div class="spinner-border spinner-border-sm text-primary"  role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+
+            <p class="mb-0 ms-2 ">Background tasks</p>
+        </xpath>
+
+        <xpath expr="//span[hasclass('o-mail-QueueJobProgressMenu-counter')]" position="attributes">
+            <attribute name="class" remove="badge rounded-pill bg-primary" separator=" " add="ms-2 fw-bold"/>
+        </xpath>
+    </t>
+</templates>

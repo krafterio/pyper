@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0-20241205\n"
+"Project-Id-Version: Odoo Server 17.0-20250112\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-06 13:41+0000\n"
-"PO-Revision-Date: 2024-12-06 13:41+0000\n"
+"POT-Creation-Date: 2025-01-15 20:19+0000\n"
+"PO-Revision-Date: 2025-01-15 20:19+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,6 +22,14 @@ msgstr ""
 #, python-format
 msgid "Hello,"
 msgstr "Bonjour,"
+
+#. module: pyper_ui_kit_discuss
+#. odoo-javascript
+#: code:addons/pyper/pyper_ui_kit_discuss/static/src/core/web/mail/activity_menu.xml:0
+#: code:addons/pyper_ui_kit_discuss/static/src/core/web/mail/activity_menu.xml:0
+#, python-format
+msgid "My tasks"
+msgstr "Mes tâches"
 
 #. module: pyper_ui_kit_discuss
 #. odoo-python

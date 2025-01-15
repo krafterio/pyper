@@ -12,8 +12,8 @@
 
 .o_list_view {
     .o_list_renderer {
-        border: 1px solid $o-gray-200;
-        border-radius: $o-border-radius;
+        border: none;
+        border-radius: 0;
 
         .o_list_table {
             thead {
@@ -29,6 +29,10 @@
                 border-color: $o-gray-200;
                 border-bottom-width: 1px;
                 border-bottom-style: solid;
+                border-right-style: solid;
+                border-right-width: 1px;
+                padding-top: 0.4rem;
+                padding-bottom: 0.4rem;
 
                 &:first-child {
                     border-left-color: transparent;
@@ -37,6 +41,10 @@
                 &:last-child {
                     border-right-color: transparent;
                 }
+            }
+
+            th {
+                background-color: $o-gray-100 !important;
             }
 
             tbody {
@@ -71,10 +79,49 @@
             }
         }
 
-        td[name="name"],
-        td[name="image_1920"] {
-            img.img-fluid {
-                border-radius: 20px !important;
+        th {
+            &[data-name='category_id'] {
+                max-width: 120px !important;
+            }
+
+            &[data-name='parent_id'] {
+                max-width: 200px !important;
+            }
+
+            &[data-name='email'] {
+                min-width: 240px !important;
+            }
+        }
+
+        td {
+            &[name="name"],
+            &[name="image_1920"] {
+                img.img-fluid {
+                    border-radius: 20px !important;
+                }
+            }
+
+            &.o_url_cell,
+            &.o_email_cell {
+                a {
+                    text-decoration: underline;
+                }
+            }
+
+            &.o_many2many_tags_cell {
+                .o_field_tags {
+                    flex-wrap: nowrap !important;
+                }
+            }
+
+            &.o_phone_cell {
+                a.o_form_uri {
+                    text-decoration: underline;
+                }
+
+                .o_field_phone_sms {
+                    display: none !important;
+                }
             }
         }
 
@@ -138,7 +185,6 @@ th.o_list_actions_header {
 
 
 .o_cp_searchview {
-
     .close-search-bar-btn {
         border-left: 1px solid $o-gray-200;
         border-radius: 0;
@@ -159,4 +205,9 @@ th.o_list_actions_header {
         width: 500px;
         max-width: 100%;
     }
+}
+
+.o_list_button_add {
+    border: 1px solid $o-gray-200 !important;
+    color: $body-color !important;
 }

@@ -4,16 +4,17 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.fw-bold > input, .fw-bold textarea {
-    font-weight: 600
-}
-
 .fs-7 {
     font-size: 0.875rem;
 }
 
 .fw-bold {
-    font-weight: 600 !important;
+    font-weight: 500 !important;
+
+    > input,
+    .fw-bold textarea {
+        font-weight: 500;
+    }
 }
 
 small, .small {
@@ -27,7 +28,7 @@ small, .small {
 .contact-card {
     .o_inner_group {
         gap: 4px 16px;
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
 }
 
@@ -63,8 +64,8 @@ small, .small {
 }
 
 .cp_btn, .o_back_button {
-    width: 38px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
     padding-left: 0 !important;
     padding-right: 0 !important;
     text-align: center;
@@ -168,10 +169,67 @@ i.btn-quick-counter {
 }
 
 .o_form_view {
+    .oe_title {
+        max-width: 100% !important;
+
+        h1,
+        .h1 {
+            .o_field_widget {
+                font-weight: 600 !important;
+            }
+        }
+    }
+
     .o_inner_group {
         --columns: 1;
         gap: map-get($spacers, 1) $o-horizontal-padding;
         margin-bottom: map-get($spacers, 1);
+    }
+
+    .o_notebook {
+        .nav {
+            padding: 0 var(--notebook-padding-x, 0) !important;
+        }
+    }
+}
+
+.o_form_sheet {
+    .o-form-buttonbox {
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .contact_avatar {
+        width: 70px;
+        height: 70px;
+    }
+
+    .o_notebook {
+        .o_notebook_headers {
+            margin: 0 var(--notebook-margin-x, 0) !important;
+            border-bottom: 1px solid $o-gray-200;
+        }
+
+        .nav-link {
+            border: none !important;
+
+            &.active {
+                background-color: transparent !important;
+                color: $o-gray-800;
+                font-weight: 600;
+
+                &:after {
+                    content: "";
+                    height: 1px;
+                    width: 100%;
+                    background-color: $o-brand-primary;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+
+            }
+        }
     }
 }
 
@@ -558,12 +616,12 @@ div[name='flow_report_ids'] {
 }
 
 $content-padding-breakpoints: (
-  xs: $o-horizontal-padding,
-  sm: $o-horizontal-padding,
-  md: 1.0rem,
-  lg: 1.5rem,
-  xl: 2.0rem,
-  xxl: 2.0rem
+    xs: $o-horizontal-padding,
+    sm: $o-horizontal-padding,
+    md: 1rem,
+    lg: 1rem,
+    xl: 1rem,
+    xxl: 1rem
 );
 
 @each $name, $padding in $content-padding-breakpoints {
@@ -616,6 +674,98 @@ $content-padding-breakpoints: (
     > .o_statusbar_status {
         > .o_arrow_button:not(.d-none) {
             padding-left: $o-horizontal-padding;
+        }
+    }
+}
+
+body:not(.o_touch_device) {
+    .o_field_phone:not(:hover):not(:focus-within) {
+        input:not(:hover) ~ a:not(.o_field_phone_sms) {
+            display: flex !important;
+        }
+    }
+}
+
+body:not(.o_touch_device) {
+    .o_field_phone {
+        input ~ a.o_field_phone_sms {
+            display: none !important;
+        }
+    }
+}
+
+.o_phone_form_link {
+    padding: 2px 4px;
+    border-radius: $border-radius;
+    border: 1px solid $o-gray-300;
+
+    &:hover {
+        background-color: $o-brand-primary;
+        color: #fff;
+        border-color: $o-brand-primary;
+    }
+}
+
+.o_searchview:focus-within + .o-dropdown .o_searchview_dropdown_toggler {
+    border-color: $o-gray-200 !important;
+}
+
+.o_list_selection_box {
+    .list-group-item {
+        border-radius: $btn-border-radius !important;
+        background-color: transparent;
+
+        a.o_list_unselect_all {
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            line-height: 22px;
+            font-size: 12px;
+            margin: 0 5px;
+            border-radius: 100%;
+        }
+
+        &.active {
+            border-color: $o-gray-200 !important;
+        }
+    }
+}
+
+.o-command-QueueJobProgressSystray-class {
+    button {
+        border: 1px solid $o-gray-200 !important;
+        border-radius: $btn-border-radius;
+        padding: 2px 10px !important;
+        height: inherit !important;
+
+        &:hover {
+            border: 1px solid $o-gray-300 !important;
+            background-color: $o-gray-200 !important;
+        }
+
+        span, p {
+            color: $o-gray-700 !important;
+        }
+    }
+
+    .o-mail-QueueJobProgressMenu-counter {
+        width: 20px;
+        height: 20px;
+        background-color: $o-gray-200;
+        line-height: 20px;
+        font-size: 11px;
+        border-radius: 4px;
+    }
+}
+
+.pyper_dashboard--header {
+    padding-bottom: 0;
+}
+
+.pyper_dashboard--section {
+    .o_graph_renderer {
+        > div:first-of-type {
+            display: none !important;
         }
     }
 }
