@@ -19,5 +19,9 @@
                 <t t-if="message.feedback" t-out="props.messageSearch?.highlight(message.feedback) ?? message.feedback"/>
             </div>
         </xpath>
+
+        <xpath expr="//div[hasclass('o-mail-Message-body')]//div[@t-ref='shadowBody']" position="attributes">
+            <attribute name="t-if" separator=" " add="and message.body"/>
+        </xpath>
     </t>
 </templates>
