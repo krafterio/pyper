@@ -17,6 +17,7 @@ $o_drawer--closer-color: $o-gray-300 !default;
 $o_drawer--closer-color-hover: $o-main-text-color !default;
 
 $o-drawer-icon-width: 24px !default;
+$o-drawer-icon-mini-width: 24px !default;
 
 $o-drawer-category-label-color: $o-main-color-muted !default;
 $o-drawer-category-label-size: $o-font-size-base-small !default;
@@ -28,6 +29,10 @@ $o-drawer-category-label-margin-bottom: 8px !default;
 $o-drawer-item-icon-width: $o-drawer-icon-width !default;
 $o-drawer-item-icon-font-width: $o-drawer-item-icon-width !default;
 $o-drawer-item-icon-border-radius: $o-border-radius-lg !default;
+
+$o-drawer-item-icon-mini-width: $o-drawer-icon-mini-width !default;
+$o-drawer-item-icon-mini-font-width: $o-drawer-item-icon-mini-width !default;
+
 $o-drawer-item-padding-v: 4px !default;
 $o-drawer-item-padding-h: ($o-drawer-mini-width - $o-drawer-item-icon-width) / 2 !default;
 
@@ -79,6 +84,8 @@ $o-drawer-item-nav-margin-h: 5px !default;
 $o-drawer-item-nav-padding-h: $o-drawer-item-padding-h !default;
 $o-drawer-item-nav-margin-bottom: $o-drawer-item-nav-margin-h !default;
 $o-drawer-item-nav-caret-margin-end: -($o-drawer-item-nav-padding-h - ($o-drawer-item-nav-margin-h/2)) / 2 !default;
+
+$o-drawer-item-nav-mini-margin-h: 5px !default;
 
 $o-drawer-subitem-depth-base-with-icon: 20px !default;
 $o-drawer-subitem-depth-base: 0px !default;

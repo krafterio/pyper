@@ -276,11 +276,11 @@ $o-drawer-app-name-color: $o-main-text-color !default;
 
 $o-drawer-item-font-size: $font-size-base !default;
 $o-drawer-item-icon-width: 20px !default;
+$o-drawer-icon-mini-width: 22px !default;
 $o-drawer-item-color: $o-gray-500 !default;
 $o-drawer-item-hover-color: $o-drawer-item-color !default;
 $o-drawer-item-icon-color: $o-drawer-item-color !default;
 $o-drawer-item-padding-v: 4px !default;
-$o-drawer-item-nav-margin-h: 10px !default;
 $o-drawer-item-padding-h: 14px !default;
 $o-drawer-item-icon-gap: 8px !default;
 
@@ -291,6 +291,8 @@ $o-drawer-item-hover-bg: $o-gray-200 !default;
 $o-drawer-item-caret-size: 12px !default;
 $o-drawer-item-caret-color: $o-gray-400 !default;
 
+$o-drawer-item-nav-margin-h: 10px !default;
+$o-drawer-item-nav-mini-margin-h: 7px !default;
 $o-drawer-item-nav-margin-bottom: 0px !default;
 
 $o-drawer-subitem-margin-bottom: 0 !default;

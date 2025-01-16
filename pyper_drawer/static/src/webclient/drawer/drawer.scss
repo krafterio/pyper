@@ -162,6 +162,22 @@
 }
 
 .o_drawer.o_drawer--mini {
+    .o_drawer--item-icon {
+        width: $o-drawer-item-icon-mini-width;
+        max-height: $o-drawer-item-icon-mini-width;
+        font-size: $o-drawer-item-icon-mini-width;
+    }
+
+    .o_drawer--item-icon-emoji {
+        line-height: $o-drawer-item-icon-mini-width;
+    }
+
+    .o_drawer--item-icon-empty {
+        width: $o-drawer-item-icon-mini-width;
+        height: $o-drawer-item-icon-mini-width;
+        font-size: $o-drawer-item-icon-mini-font-width;
+    }
+
     .o_drawer--menu-item {
         &.dropdown-item {
             max-width: $o-drawer-mini-width - $o-drawer-border-width;
@@ -562,6 +578,9 @@
     &.o_drawer--mini {
         .o_drawer--menu-item {
             &.dropdown-item {
+                margin-left: $o-drawer-item-nav-mini-margin-h;
+                margin-right: $o-drawer-item-nav-mini-margin-h;
+
                 &:hover {
                     .o_drawer--menu-item-content {
                         border-top-right-radius: inherit;
