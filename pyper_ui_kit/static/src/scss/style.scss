@@ -432,17 +432,6 @@ div[name='flow_report_ids'] {
     border-left-width: 0.50em;
 }
 
-
-// Drawer
-.o-drawer--user-menu-block {
-    border-radius: $border-radius;
-}
-
-.o-drawer-header-messages-block, .o-drawer-header-activities-block {
-    border-radius: 0 !important;
-    box-shadow: none !important;
-}
-
 .o_drawer {
     .o_drawer--menu-item-children {
         animation-duration: 0.2s;
