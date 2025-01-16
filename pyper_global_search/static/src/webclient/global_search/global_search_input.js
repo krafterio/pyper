@@ -1,6 +1,7 @@
 /* @odoo-module */
 
 import {Component, useRef} from '@odoo/owl';
+import {_t} from '@web/core/l10n/translation';
 import {useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
 
@@ -10,6 +11,10 @@ export class GlobalSearchInput extends Component {
     static props = {
         className: {
             type: String,
+            optional: true,
+        },
+        minified: {
+            type: Boolean,
             optional: true,
         },
         debounceDelay: {
@@ -24,10 +29,15 @@ export class GlobalSearchInput extends Component {
             type: Boolean,
             optional: true,
         },
+        slots: {
+            type: Object,
+            optional: true,
+        },
     };
 
     static defaultProps = {
         debounceDelay: 350,
+        minified: false,
         openOnEnter: false,
         openOnFocus: false,
     };
@@ -49,14 +59,22 @@ export class GlobalSearchInput extends Component {
         };
     }
 
+    get placeholder() {
+        return _t('Quick search');
+    }
+
+    get hotkey() {
+        return 'g';
+    }
+
     _onKeyup(e) {
-        if (this.props.openOnEnter && e.key === 'Enter' && this.inputRef.el.value) {
+        if (this.props.openOnEnter && e.key === 'Enter' && this.inputRef.el?.value) {
             this._openPalette();
         }
     }
 
     _onClick() {
-        if (this.props.openOnFocus) {
+        if (this.props.openOnFocus || this.props.minified) {
             this._openPalette();
         } else {
             this.inputRef.el?.focus();
@@ -71,7 +89,7 @@ export class GlobalSearchInput extends Component {
 
     _openPalette() {
         const onClose = () => {};
-        const searchValue = this.compositionStart ? '>' : `>${this.inputRef.el.value.trim()}`;
+        const searchValue = this.compositionStart ? '>' : `>${this.inputRef.el?.value.trim() || ''}`;
         this.command.openMainPalette({searchValue}, onClose);
     }
 

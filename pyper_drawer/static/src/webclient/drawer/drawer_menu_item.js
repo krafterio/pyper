@@ -84,7 +84,11 @@ export class DrawerMenuItem extends Component {
         className: {
             type: String,
             optional: true,
-        }
+        },
+        onSelection: {
+            type: Function,
+            optional: true,
+        },
     }
 
     static defaultProps = {
@@ -176,7 +180,7 @@ export class DrawerMenuItem extends Component {
     }
 
     get menuItemHref() {
-        if (!this.props.menuId && !this.props.menuAction) {
+        if (!this.props.menuId && !this.props.menuAction && !this.props.onSelection) {
             return undefined;
         }
 
@@ -266,6 +270,10 @@ export class DrawerMenuItem extends Component {
             this.actionService.doAction(this.props.menuAction, {
                 clearBreadcrumbs: true,
             }).then();
+        }
+
+        if (this.props.onSelection) {
+            this.props.onSelection(this);
         }
     }
 

@@ -2,11 +2,11 @@
 
 import {patch} from '@web/core/utils/patch';
 import {Drawer} from '@pyper_drawer/webclient/drawer/drawer';
-import {GlobalSearchInput} from '@pyper_global_search/webclient/global_search/global_search_input';
+import {DrawerGlobalSearchItem} from './drawer_global_search_item';
 
 patch(Drawer.prototype, {
     setup() {
-        this.constructor.components.GlobalSearchInput = GlobalSearchInput;
+        this.constructor.components.DrawerGlobalSearchItem = DrawerGlobalSearchItem;
         super.setup();
     },
 });

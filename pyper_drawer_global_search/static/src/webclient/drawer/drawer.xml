@@ -2,7 +2,7 @@
 <templates id="template" xml:space="preserve">
     <t t-name="pyper_drawer_global_search.Drawer.SubHeader" t-inherit="pyper_drawer.Drawer.SubHeader" t-inherit-mode="extension">
         <xpath expr="." position="inside">
-            <GlobalSearchInput openOnEnter="true" className="'dropdown-item o_drawer--menu-item'"/>
+            <DrawerGlobalSearchItem/>
         </xpath>
     </t>
 </templates>

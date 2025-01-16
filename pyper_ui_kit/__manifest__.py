@@ -18,6 +18,7 @@
         'web',
         'pyper_control_panel',
         'pyper_drawer',
+        'pyper_drawer_global_search',
         'pyper_drawer_user',
         'pyper_menu',
         'pyper_url_share',

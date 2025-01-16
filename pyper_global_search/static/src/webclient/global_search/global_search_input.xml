@@ -3,12 +3,33 @@
 
 <t t-name="pyper_global_search.GlobalSearchInput">
     <div t-att-class="classes">
+        <t t-slot="minified"
+           t-if="props.minified"
+           placeholder="placeholder"
+           hotkey="hotkey"
+           onClick="_onClick.bind(this)"
+           onKeyup="_onKeyup.bind(this)"
+           onInputSearch="_onInputSearch.bind(this)"
+           onInputBlur="_onInputBlur.bind(this)"
+           onCompositionStart="_onCompositionStart.bind(this)"
+        >
+            <div
+                class="btn"
+                t-att-data-tooltip="placeholder"
+                t-att-data-hotkey="hotkey"
+                t-on-click="_onClick"
+            >
+                <i class="fa fa-search"/>
+            </div>
+        </t>
+
         <input
+            t-else=""
+            t-ref="input"
             type="text"
             class="form-control form-control-sm bg-white"
-            placeholder="Quick search"
-            data-hotkey="g"
-            t-ref="input"
+            t-att-placeholder="placeholder"
+            t-att-data-hotkey="hotkey"
             t-on-click="_onClick"
             t-on-keyup="_onKeyup"
             t-on-input="_onInputSearch"

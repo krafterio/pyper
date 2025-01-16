@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pyper_drawer_global_search.DrawerGlobalSearchItem">
+        <GlobalSearchInput
+            openOnEnter="true"
+            className="'dropdown-item o_drawer--menu-item'"
+            minified="isMinified"
+        >
+            <t t-set-slot="minified" t-slot-scope="scope">
+                <DrawerMenuItem
+                    label="scope.placeholder"
+                    withIcon="true"
+                    fontIcon="fontIcon"
+                    hotkey="scope.hotkey"
+                    onSelection="scope.onClick"
+                />
+            </t>
+        </GlobalSearchInput>
+    </t>
+</templates>
