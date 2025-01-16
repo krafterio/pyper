@@ -114,12 +114,6 @@ msgid "Has webcam"
 msgstr "Webcam"
 
 #. module: pyper_product_extend_features_it
-#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__has_wifi
-#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__has_wifi
-msgid "Has wifi"
-msgstr "Wifi"
-
-#. module: pyper_product_extend_features_it
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_graphic_card__id
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_operating_system__id
 #: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_processor__id

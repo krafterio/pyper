@@ -9,12 +9,16 @@ class ProductCategory(models.Model):
     product_pattern = fields.Selection(
         [
             ('none', 'None'),
-            ('smartphone', 'Smartphone'),
-            ('screen', 'Screen'),
-            ('network', 'Network'),
-            ('tablet', 'Tablet'),
-            ('laptop_computer', 'Laptop computer'),
+            ('all_in_one', 'All-in-one'),
             ('desktop_computer', 'Desktop Computer'),
+            ('docking_station', 'Docking station'),
+            ('laptop_computer', 'Laptop computer'),
+            ('printer', 'Printer'),
+            ('projector', 'Projector'),
+            ('screen', 'Screen'),
+            ('server', 'Server'),
+            ('smartphone', 'Smartphone'),
+            ('switch', 'Switch'),
+            ('tablet', 'Tablet'),
         ]
     )
-    

@@ -58,26 +58,85 @@ class ProductTemplate(models.Model):
         'Has bluetooth',
     )
 
-    has_wifi = fields.Boolean(
-        'Has wifi',
-    )
-
     has_optical_drive = fields.Boolean(
         'Has optical drive',
     )
-    
-    height_adjustable = fields.Boolean(
-        'Height adjustable',
+
+    has_adjustable_stand = fields.Boolean(
+        'Has adjustable stand',
     )
 
-    rotating = fields.Boolean(
-        'Rotating',
+    format = fields.Char(
+        'Format'
+    )
+
+    screen_format = fields.Char(
+        'Screen format'
     )
     
-    connectivity_ids = fields.Many2many(
-        'product.connectivity',
-        string='Connectivity',
+    flow = fields.Char(
+        'Flow'
     )
+    
+    number_of_displays = fields.Integer(
+        'Number of displays',
+    )
+    
+    focal = fields.Char(
+        'Focal',
+    )
+    
+    specific_informations = fields.Char(
+        'Specific informations'
+    )
+    
+    is_tactile = fields.Boolean(
+        'Tactile',
+    )
+    
+    is_usb_c = fields.Boolean(
+        'USB-C',
+    )
+    
+    is_printer_color = fields.Boolean(
+        'Printer color',
+    )
+    
+    is_printer_multifunction = fields.Boolean(
+        'Printer multifunction',
+    )
+    
+    is_videopro_interactive = fields.Boolean(
+        'Interactive',
+    )
+    
+    is_dual_sim = fields.Boolean(
+        'Dual sim',
+    )
+    
+    is_poe = fields.Boolean(
+        'POE'
+    )
+    
+    number_of_ports = fields.Integer(
+        'Number of ports',
+    )
+    
+    video_output_ids = fields.Many2many(
+        'product.video.output',
+        string='Video output'
+    )
+
+    video_input_ids = fields.Many2many(
+        'product.video.input',
+        string='Video input'
+    )
+
+    network_ids = fields.Many2many(
+        'product.network',
+        string='Network'
+    )
+    # ===================================================
 
     @api.depends('product_variant_ids.product_tmpl_id', 'attribute_line_ids.product_template_value_ids', 'attribute_line_ids')
     def _compute_product_variant_count(self):

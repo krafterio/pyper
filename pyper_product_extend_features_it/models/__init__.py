@@ -13,3 +13,5 @@ from . import product_screen_size
 from . import product_graphic_card
 from . import product_screen_quality
 from . import product_connectivity
+from . import product_video_output
+from . import product_video_input
