@@ -20,13 +20,13 @@ $link-color: $o-gray-800 !default;
 $o-opacity-disabled: .5 !default;
 $o-opacity-muted: .65 !default;
 
-$o-brand-odoo: $o-gray-800 !default;
-$o-brand-primary: $o-brand-odoo !default;
+$o-brand-primary: #1f2729 !default;
 $o-brand-secondary: $o-gray-700 !default;
 $o-brand-lightsecondary: $o-gray-100 !default;
+$o-brand-odoo: $o-brand-primary !default;
 
 $primary-light: lighten($o-brand-primary, 76%) !default;
-$primary-dark: darken($o-brand-primary, 10%) !default;
+$primary-dark: darken($o-brand-primary, 20%) !default;
 
 // Background
 $o-view-background-color: $o-white !default;
@@ -152,15 +152,15 @@ $btn-line-height: 1.6 !default;
 $o-btns-bs-override: () !default;
 $o-btns-bs-override: map-merge((
     'primary': (
-        background: $o-brand-primary,
-        border: $o-brand-primary,
-        color: $o-white,
-        hover-background: darken($o-brand-primary, 5%),
-        hover-border: darken($o-brand-primary, 10%),
-        hover-color: $o-white,
-        active-background: mix($o-brand-primary, $o-white, 10%),
-        active-border: $o-brand-primary,
-        active-color:$o-brand-primary,
+        background: lighten($primary-light, 10%),
+        border: lighten($primary-light, 10%),
+        color: $o-brand-primary,
+        hover-background: $primary-light,
+        hover-border: $primary-light,
+        hover-color: $o-brand-primary,
+        active-background: darken($primary-light, 5%),
+        active-border: darken($primary-light, 5%),
+        active-color: $o-brand-primary,
     ),
     'secondary': (
         background: $o-gray-100,
