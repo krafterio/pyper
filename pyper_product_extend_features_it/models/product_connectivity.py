@@ -3,9 +3,9 @@
 
 from odoo import fields, models
 
-class ProductVideoPort(models.Model):
-    _name = 'product.video.port'
-    _description = 'Product video port'
+class ProductConnectivity(models.Model):
+    _name = 'product.connectivity'
+    _description = 'Product connectivity'
     _order = 'sequence ASC'
 
     sequence = fields.Integer(string='Sequence')

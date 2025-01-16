@@ -286,6 +286,14 @@ msgid "Screen size"
 msgstr "Taille d’écran"
 
 #. module: pyper_product_extend_features_it
+#: model:ir.actions.act_window,name:pyper_product_extend_features_it.action_product_screen_quality
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_product__screen_quality_id
+#: model:ir.model.fields,field_description:pyper_product_extend_features_it.field_product_template__screen_quality_id
+#: model:ir.ui.menu,name:pyper_product_extend_features_it.product_screen_quality_menu
+msgid "Screen quality"
+msgstr "Résolution"
+
+#. module: pyper_product_extend_features_it
 #: model:ir.actions.act_window,name:pyper_product_extend_features_it.action_product_screen_size
 msgid "Screen sizes"
 msgstr "Tailles d’écran"

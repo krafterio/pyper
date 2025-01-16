@@ -74,9 +74,9 @@ class ProductTemplate(models.Model):
         'Rotating',
     )
     
-    video_port_ids = fields.Many2many(
-        'product.video.port',
-        string='Video port',
+    connectivity_ids = fields.Many2many(
+        'product.connectivity',
+        string='Connectivity',
     )
 
     @api.depends('product_variant_ids.product_tmpl_id', 'attribute_line_ids.product_template_value_ids', 'attribute_line_ids')
