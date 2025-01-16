@@ -17,4 +17,9 @@
         'web',
         'mail',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'pyper_mail/static/src/core/**/*',
+        ],
+    },
 }
