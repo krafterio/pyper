@@ -34,17 +34,17 @@
                                invisible="product_pattern not in ['switch']"/>
 
                         <field name="has_adjustable_stand"
-                               invisible="product_pattern not in ['screen']"/>
+                               invisible="product_pattern not in ['screen', 'all_in_one']"/>
                         <field name="screen_format"
                                invisible="product_pattern not in ['screen', 'all_in_one']"/>
                         <field name="format"
-                               invisible="product_pattern not in ['sever', 'desktop']"/>
+                               invisible="product_pattern not in ['sever', 'desktop_computer']"/>
                         <field name="screen_size_id"
                                invisible="product_pattern not in ['laptop_computer', 'smartphone', 'tablet', 'screen',
                                 'all_in_one']"/>
                         <field name="screen_quality_id"
                                invisible="product_pattern not in ['laptop_computer', 'smartphone', 'tablet', 'screen',
-                               'all_in_one']"/>
+                               'all_in_one', 'projector']"/>
                         <field name="number_of_displays"
                                invisible="product_pattern not in ['switch']"/>
                         <field name="focal"
@@ -52,16 +52,14 @@
                         <field name="is_tactile"
                                invisible="product_pattern not in ['laptop_computer', 'all_in_one', 'screen']"/>
                         <field name="is_usb_c"
-                               invisible="product_pattern not in ['laptop_computer', 'all_in_one', 'screen', 'desktop',
+                               invisible="product_pattern not in ['laptop_computer', 'all_in_one', 'screen', 'desktop_computer',
                                'tablet', 'projector', 'smartphone']"/>
                         <field name="is_dual_sim"
                                invisible="product_pattern not in ['smartphone']"/>
-                        <field name="is_poe"
-                               invisible="product_pattern not in ['switch']"/>
                         <field name="number_of_ports"
                                invisible="product_pattern not in ['switch']"/>
                         <field name="video_output_ids"
-                               invisible="product_pattern not in ['laptop_computer', 'desktop', 'all_in_one', 'server',
+                               invisible="product_pattern not in ['laptop_computer', 'desktop_computer', 'all_in_one', 'server',
                                'docking_station', 'tablet']"/>
                         <field name="video_input_ids"
                                invisible="product_pattern not in ['screen', 'projector']"/>
