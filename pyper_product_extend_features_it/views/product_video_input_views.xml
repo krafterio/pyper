@@ -11,7 +11,6 @@
         </field>
     </record>
 
-    <!-- Action pour product.video.input -->
     <record id="action_product_video_input" model="ir.actions.act_window">
         <field name="name">Video Inputs</field>
         <field name="type">ir.actions.act_window</field>

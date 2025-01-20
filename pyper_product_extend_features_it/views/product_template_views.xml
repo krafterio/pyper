@@ -46,24 +46,27 @@
                                invisible="product_pattern not in ['laptop_computer', 'smartphone', 'tablet', 'screen',
                                'all_in_one', 'projector']"/>
                         <field name="number_of_displays"
-                               invisible="product_pattern not in ['switch']"/>
+                               invisible="product_pattern not in ['docking_station']"/>
                         <field name="focal"
                                invisible="product_pattern not in ['projector']"/>
                         <field name="is_tactile"
                                invisible="product_pattern not in ['laptop_computer', 'all_in_one', 'screen']"/>
                         <field name="is_usb_c"
-                               invisible="product_pattern not in ['laptop_computer', 'all_in_one', 'screen', 'desktop_computer',
-                               'tablet', 'projector', 'smartphone']"/>
+                               invisible="product_pattern not in ['laptop_computer', 'all_in_one', 'screen',
+                               'desktop_computer', 'tablet', 'projector', 'smartphone']"/>
                         <field name="is_dual_sim"
                                invisible="product_pattern not in ['smartphone']"/>
                         <field name="number_of_ports"
                                invisible="product_pattern not in ['switch']"/>
                         <field name="video_output_ids"
-                               invisible="product_pattern not in ['laptop_computer', 'desktop_computer', 'all_in_one', 'server',
-                               'docking_station', 'tablet']"/>
+                               invisible="product_pattern not in ['laptop_computer', 'desktop_computer', 'all_in_one',
+                               'server', 'docking_station', 'tablet']"/>
                         <field name="video_input_ids"
                                invisible="product_pattern not in ['screen', 'projector']"/>
-                        <field name="network_ids"/>
+                        <field name="network_ids"
+                               invisible="product_pattern not in ['screen', 'laptop_computer', 'desktop_computer',
+                               'all_in_one', 'server', 'switch', 'projector', 'smartphone', 'docking_station', 'tablet',
+                               'printer']"/>
 
                         <field name="specific_informations"/>
 
