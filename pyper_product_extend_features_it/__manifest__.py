@@ -35,7 +35,10 @@
         'views/product_screen_size_views.xml',
         'views/product_graphic_card_views.xml',
         'views/product_screen_quality_views.xml',
-
+        'views/product_networks_views.xml',
+        'views/product_video_input_views.xml',
+        'views/product_video_output_views.xml',
+        
         # Menu
         'views/menu.xml',
     ],
