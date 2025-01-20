@@ -39,7 +39,7 @@
 
                     <div class="row mh-100 m-0">
                         <div
-                            class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-2 bg-white col-info border-end mh-100 p-0"
+                                class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-2 bg-white col-info border-end mh-100 p-0"
                         >
                             <div class="text-center pt-4">
                                 <field name="image_1920" class="product_image" widget="image"
@@ -189,7 +189,7 @@
                                         <field colspan="2" name="packaging_ids" nolabel="1"
                                                context="{'tree_view_ref':'product.product_packaging_tree_view2', 'default_company_id': company_id}"/>
                                     </group>
-                                    <group class="py-4 px-5" >
+                                    <group class="py-4 px-5">
                                         <group name="technical_information" string="Technical data">
                                             <field name="ean_upc"/>
                                             <field name="gtin"/>
@@ -239,7 +239,8 @@
         <field name="context">{
             'default_sale_ok': True,
             'default_purchase_ok': True,
-        }</field>
+            }
+        </field>
     </record>
 
 </odoo>
