@@ -71,8 +71,8 @@
         right: 0;
         width: $o-navbar-height*0.8;
         height: $o-navbar-height;
-        color: $o_drawer--closer-color;
-        font-size: $o_drawer--closer-font-size;
+        color: $o-drawer-closer-color;
+        font-size: $o-drawer-closer-font-size;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -80,7 +80,7 @@
 
         &:hover,
         &:focus {
-            color: $o_drawer--closer-color-hover;
+            color: $o-drawer-closer-color-hover;
         }
     }
 }
