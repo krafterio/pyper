@@ -17,7 +17,7 @@ class IrConfigParameter(models.Model):
 
     @api.model
     def _get_web_xicon_path(self):
-        return 'pyper/static/img/badge-512x512.svg'
+        return '/pyper/static/img/badge-512x512.svg'
 
     @api.model
     def _get_web_badge_ios_path(self):
@@ -25,7 +25,7 @@ class IrConfigParameter(models.Model):
 
     @api.model
     def _get_offline_icon_path(self):
-        return self._get_web_xicon_path()
+        return self._get_web_xicon_path().lstrip('/')
 
     @api.model
     def _get_login_icon_path(self):
