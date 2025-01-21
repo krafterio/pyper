@@ -136,9 +136,3 @@ class ProductTemplate(models.Model):
         'product.network',
         string='Network'
     )
-    # ===================================================
-
-    @api.depends('product_variant_ids.product_tmpl_id', 'attribute_line_ids.product_template_value_ids', 'attribute_line_ids')
-    def _compute_product_variant_count(self):
-        for template in self:
-            template.product_variant_count = len(template.attribute_line_ids.product_template_value_ids)
