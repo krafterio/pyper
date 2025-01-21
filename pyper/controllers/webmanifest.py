@@ -16,25 +16,22 @@ from odoo.tools import ustr, file_open
 class WebExtraWebManifest(webmanifest.WebManifest):
 
     def _get_default_web_app_name(self):
-        return 'Pyper'
+        return request.env['ir.config_parameter'].sudo()._get_web_app_name()
 
     def _get_offline_icon_path(self):
-        return 'pyper/static/img/badge-512x512.svg'
+        return request.env['ir.config_parameter'].sudo()._get_offline_icon_path()
 
     def _get_manifest_icon_sizes(self):
-        return {
-            '192x192': '/pyper/static/img/badge-192x192.png',
-            '512x512': '/pyper/static/img/badge-512x512.png',
-        }
+        return request.env['ir.config_parameter'].sudo()._get_manifest_icon_sizes()
 
     def _get_manifest_background_color(self):
-        return '#35bfe5'
+        return request.env['ir.config_parameter'].sudo()._get_manifest_background_color()
 
     def _get_manifest_theme_color(self):
-        return '#ffffff'
+        return request.env['ir.config_parameter'].sudo()._get_manifest_theme_color()
 
     def _get_shortcuts_module_names(self):
-        return []
+        return request.env['ir.config_parameter'].sudo()._get_shortcuts_module_names()
 
     def _get_shortcuts(self):
         module_names = self._get_shortcuts_module_names()

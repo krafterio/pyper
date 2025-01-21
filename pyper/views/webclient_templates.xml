@@ -5,18 +5,22 @@
             <attribute name="t-out">title</attribute>
         </xpath>
 
+        <xpath expr="//head/title" position="after">
+            <meta name="web-app-name" t-att-content="_web_app_name"/>
+        </xpath>
+
         <xpath expr="//head/link[@type='image/x-icon']" position="attributes">
-            <attribute name="t-att-href">x_icon or '/pyper/static/img/badge-512x512.svg'</attribute>
+            <attribute name="t-att-href">x_icon or env['ir.config_parameter']._get_web_xicon_path()</attribute>
         </xpath>
     </template>
 
     <template id="pyper.webclient_bootstrap" inherit_id="web.webclient_bootstrap">
         <xpath expr="//meta[@name='theme-color']" position="attributes">
-            <attribute name="content">#ffffff</attribute>
+            <attribute name="t-att-content">env['ir.config_parameter']._get_web_theme_color()</attribute>
         </xpath>
 
         <xpath expr="//link[@rel='apple-touch-icon']" position="attributes">
-            <attribute name="href">/pyper/static/img/badge-ios.png</attribute>
+            <attribute name="t-att-href">env['ir.config_parameter']._get_web_badge_ios_path()</attribute>
         </xpath>
     </template>
 

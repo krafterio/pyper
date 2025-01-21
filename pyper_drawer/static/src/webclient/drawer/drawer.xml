@@ -56,7 +56,7 @@
     <t t-name="pyper_drawer.Drawer.Header">
         <div class="o_drawer_app_logo">
             <div class="o_drawer_app_logo_badge">
-                <img src="/pyper_drawer/static/img/pyper_badge.svg"
+                <img t-att-src="headerBadgeUrl"
                      class="pyper-badge"
                 />
             </div>

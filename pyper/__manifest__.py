@@ -35,6 +35,7 @@
             'pyper/static/src/views/fields/**/*',
             'pyper/static/src/views/form/**/*',
             'pyper/static/src/webclient/menus/**/*',
+            'pyper/static/src/webclient/window/**/*',
         ],
     },
 }

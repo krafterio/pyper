@@ -10,11 +10,9 @@ export class PyperSetupService {
         /** @type {import("@web/core/network/rpc_service").rpcService} */
         this._rpcService = rpc;
         this._registeredPrefixes = reactive({});
-        this.settings = reactive({});
-
-        this.register('web.', {
-            'web_app_name': this.defaultAppName,
-        }).then();
+        this.settings = reactive({
+            '_appName': null,
+        });
     }
 
     get defaultAppName() {
@@ -22,7 +20,12 @@ export class PyperSetupService {
     }
 
     get appName() {
-        return this.settings?.['web.']?.web_app_name || this.defaultAppName;
+        if (!this.settings['_appName']) {
+            this.settings['_appName'] = document.querySelector('meta[name="web-app-name"]')
+                ?.getAttribute('content');
+        }
+
+        return this.settings['_appName'] || this.defaultAppName;
     }
 
     /**

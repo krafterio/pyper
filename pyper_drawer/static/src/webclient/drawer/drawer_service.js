@@ -35,6 +35,7 @@ export class DrawerState {
             closeAllUnactivatedItemsOnClick: false,
             subPanelOpened: false,
             subPanelMenu: null,
+            headerBadgeUrl: null,
         };
     }
 
@@ -238,6 +239,15 @@ export class DrawerState {
 
     get isSubPanelOpened() {
         return (this.isOpened || this.isLocked) && this.subPanelOpened;
+    }
+
+    get headerBadgeUrl() {
+        if (!this.state.headerBadgeUrl) {
+            this.state.headerBadgeUrl = document.querySelector('link[type="image/x-icon"]')
+                ?.getAttribute('href');
+        }
+
+        return this.state.headerBadgeUrl;
     }
 
     restoreMinified(defaultMinified) {

@@ -361,6 +361,10 @@ export class Drawer extends Component {
         return this.pyperSetupService.appName;
     }
 
+    get headerBadgeUrl() {
+        return this.drawerService.headerBadgeUrl;
+    }
+
     get displayCategoryName() {
         return (!this.isMinified && !this.settings.hideCategoryLabelFull)
             ||
