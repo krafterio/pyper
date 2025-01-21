@@ -309,6 +309,7 @@
 
         .o_drawer--item-label {
             font-weight: $o-drawer-popover-item-font-weight;
+            line-height: $o-drawer-item-icon-mini-font-width;
 
             &:first-child {
                 padding-left: 0;
