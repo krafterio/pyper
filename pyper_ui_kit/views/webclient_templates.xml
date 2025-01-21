@@ -10,7 +10,7 @@
         </xpath>
 
         <xpath expr="//div[1]/div[1]/div[1]/div[1]/img" position="attributes">
-            <attribute name="t-att-src">env['ir.config_parameter']._get_web_xicon_path()</attribute>
+            <attribute name="t-att-src">env['ir.config_parameter']._get_login_icon_path()</attribute>
             <attribute name="style">width:60px</attribute>
         </xpath>
 
