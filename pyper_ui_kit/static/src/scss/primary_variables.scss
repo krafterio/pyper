@@ -152,15 +152,15 @@ $btn-line-height: 1.6 !default;
 $o-btns-bs-override: () !default;
 $o-btns-bs-override: map-merge((
     'primary': (
-        background: lighten($primary-light, 10%),
-        border: lighten($primary-light, 10%),
-        color: $o-brand-primary,
-        hover-background: $primary-light,
-        hover-border: $primary-light,
-        hover-color: $o-brand-primary,
-        active-background: darken($primary-light, 5%),
-        active-border: darken($primary-light, 5%),
-        active-color: $o-brand-primary,
+        background: $o-brand-primary,
+        border: $o-brand-primary,
+        color: $o-white,
+        hover-background: lighten($o-brand-primary, 5%),
+        hover-border: lighten($o-brand-primary, 5%),
+        hover-color: $o-white,
+        active-background: lighten($o-brand-primary, 10%),
+        active-border: lighten($o-brand-primary, 10%),
+        active-color: $o-white,
     ),
     'secondary': (
         background: $o-gray-100,
@@ -318,6 +318,7 @@ $o-drawer-header-margin-top: 0 !default;
 $o-drawer-header-bottom-margin: 0 !default;
 $o-drawer-header-activity-btn-border: none !default;
 $o-drawer-header-activity-btn-border-hover: none !default;
+
 $o-drawer-activity-title-color: $o-gray-800 !default;
 
 $o-drawer-messages-block-bg: $o-drawer-bg !default;

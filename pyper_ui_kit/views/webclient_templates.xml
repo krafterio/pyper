@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="pyper_ui_kit.webclient_bootstrap" inherit_id="pyper.webclient_bootstrap">
-        <xpath expr="//meta[@name='theme-color']" position="attributes">
-            <attribute name="content">#FFF</attribute>
-        </xpath>
-
-        <xpath expr="//link[@rel='apple-touch-icon']" position="attributes">
-            <attribute name="href">/pyper_ui_kit/static/img/icon_light.svg</attribute>
-        </xpath>
-    </template>
-
     <template id="pyper_ui_kit.login_layout" inherit_id="web.login_layout">
         <xpath expr="//t[@t-set='body_classname']" position="replace">
             <t t-set="body_classname" t-value="'bg-white'"/>
@@ -20,8 +10,8 @@
         </xpath>
 
         <xpath expr="//div[1]/div[1]/div[1]/div[1]/img" position="attributes">
-            <attribute name="t-attf-src">/pyper_ui_kit/static/img/icon_light.svg</attribute>
-            <attribute name="style">width:40px</attribute>
+            <attribute name="t-att-src">env['ir.config_parameter']._get_web_xicon_path()</attribute>
+            <attribute name="style">width:60px</attribute>
         </xpath>
 
         <xpath expr="//div[1]/div[1]/div[1]/div[1]" position="attributes">
