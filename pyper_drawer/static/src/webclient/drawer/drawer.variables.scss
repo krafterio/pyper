@@ -134,6 +134,7 @@ $o-drawer-logo-padding-h: ($o-drawer-item-padding-h) - (($o-drawer-mini-width - 
 $o-drawer-logo-nav-padding-h: ($o-drawer-item-nav-padding-h + ($o-drawer-item-nav-margin-h/2)) - (($o-drawer-mini-width - $o-drawer-border-width - $o-drawer-item-icon-width) / 2) !default;
 
 $o-drawer-app-name-color: inherit !default;
+$o-drawer-app-border-bottom-color: transparent !default;
 
 $o-drawer-toggler-locked-width: $o-drawer-width !default;
 $o-drawer-toggler-locked-width-with-apps-menu: ($o-drawer-toggler-locked-width - $o-navbar-apps-menu-width) !default;

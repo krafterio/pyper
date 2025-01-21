@@ -814,7 +814,7 @@
         padding-top: $o-navbar-padding-v;
         padding-bottom: $o-navbar-padding-v;
         border-bottom: $o-navbar-border-bottom;
-        border-bottom-color: transparent;
+        border-bottom-color: $o-drawer-app-border-bottom-color;
         background: transparent;
         font-size: $o-navbar-font-size;
         flex: 0 0 auto;
