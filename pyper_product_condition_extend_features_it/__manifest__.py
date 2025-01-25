@@ -13,7 +13,6 @@
     ],
     'website': 'https://krafter.io',
     'installable': True,
-    'application': True,
     'auto_install': [
         'pyper_product_condition',
         'pyper_product_extend_features_it',

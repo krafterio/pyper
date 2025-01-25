@@ -9,7 +9,7 @@
     'summary': 'Add ability to use Open AI API',
     'version': '1.0',
     'author': 'Krafter SAS',
-    'application': True,
+    'installable': True,
     'maintainer': [
         'Krafter SAS',
     ],

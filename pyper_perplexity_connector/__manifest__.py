@@ -9,7 +9,6 @@
     'summary': 'Add ability to use Perplexity AI API',
     'version': '1.0',
     'author': 'Krafter SAS',
-    'application': True,
     'maintainer': [
         'Krafter SAS',
     ],

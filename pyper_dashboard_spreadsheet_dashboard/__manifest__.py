@@ -12,7 +12,7 @@
         'Krafter SAS',
     ],
     'website': 'https://krafter.io',
-    'application': True,
+    'installable': True,
     'post_init_hook': 'post_init_hook',
     'auto_install': [
         'pyper_dashboard',

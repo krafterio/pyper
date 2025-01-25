@@ -13,7 +13,6 @@
     ],
     'website': 'https://krafter.io',
     'installable': True,
-    'application': True,
     'depends': [
         'product',
         'pyper_product_catalog',

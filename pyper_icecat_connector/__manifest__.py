@@ -12,7 +12,6 @@
         'Krafter SAS',
     ],
     'website': 'https://krafter.io',
-    'application': True,
     'installable': True,
     'depends': [
         'product',
