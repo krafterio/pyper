@@ -37,6 +37,8 @@ export class TimelineArchParser {
         let fieldDateStart = null;
         let fieldDateEnd = null;
         let fieldColor = null;
+        let fieldHtmlColor = null;
+        let fieldHtmlColorOpacity = 0.4;
         let defaultGroupBy = [];
         let defaultOrderBy = null;
         let groupOrderBy = {};
@@ -123,6 +125,8 @@ export class TimelineArchParser {
                     fieldDateStart = node.getAttribute('field_date_start');
                     fieldDateEnd = node.getAttribute('field_date_end');
                     fieldColor = node.getAttribute('field_color');
+                    fieldHtmlColor = node.getAttribute('field_html_color');
+                    fieldHtmlColorOpacity = node.getAttribute('field_html_color_opacity');
                     jsClass = node.getAttribute('js_class');
 
                     if (node.hasAttribute('scales')) {
@@ -586,6 +590,10 @@ export class TimelineArchParser {
             fieldNextIds[fieldDateEnd] = 0;
         }
 
+        if (fields[fieldHtmlColor] && !(fieldHtmlColor in fieldNextIds)) {
+            fieldNextIds[fieldHtmlColor] = 0;
+        }
+
         if (fields.display_name && !('display_name' in fieldNextIds)) {
             fieldNextIds['display_name'] = 0;
         }
@@ -626,6 +634,8 @@ export class TimelineArchParser {
             fieldDateStart,
             fieldDateEnd,
             fieldColor,
+            fieldHtmlColor,
+            fieldHtmlColorOpacity,
             defaultGroupBy,
             defaultOrderBy,
             groupOrderBy,

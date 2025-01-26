@@ -100,14 +100,19 @@
         }
 
         .vis-item {
-            box-shadow: $pyper-timeline-item-spliter-width 0 0 0 $pyper-timeline-item-spliter-color;
+            box-shadow: $pyper-timeline-item-box-shadow;
             color: $pyper-timeline-item-color;
             border-width: $pyper-timeline-item-border-width;
             border-color: $pyper-timeline-item-border-color;
             background-color: $pyper-timeline-item-bg;
 
             &.o_timeline_past_item {
-                opacity: $pyper-timeline-item-past-opacity;
+                border-color: $pyper-timeline-item-past-border-color;
+                background-color: $pyper-timeline-item-past-bg;
+
+                > * {
+                    opacity: $pyper-timeline-item-past-opacity;
+                }
             }
 
             &.vis-range {
@@ -125,7 +130,12 @@
                 background-color: $pyper-timeline-item-selected-bg;
 
                 &.o_timeline_past_item {
-                    opacity: 1;
+                    border-color: $pyper-timeline-item-selected-border-color;
+                    background-color: $pyper-timeline-item-selected-bg;
+
+                    > * {
+                        opacity: 1;
+                    }
                 }
             }
 
@@ -136,7 +146,6 @@
 
             .vis-item-content {
                 padding: $pyper-timeline-item-content-padding !important;
-                border-radius: $pyper-timeline-item-border-radius;
                 min-width: 100%;
                 min-height: $pyper-timeline-item-min-height;
             }
@@ -188,7 +197,12 @@
                     background-color: $pyper-timeline-item-bg-hover !important;
 
                     &.o_timeline_past_item {
-                        opacity: 1;
+                        border-color: $pyper-timeline-item-border-color;
+                        background-color: $pyper-timeline-item-bg-hover !important;
+
+                        > * {
+                            opacity: 1;
+                        }
                     }
 
                     .vis-item-overflow {

@@ -518,6 +518,14 @@ export class TimelineRenderer extends Component {
         // Render single item
         const readonly = !this.props.model.canEdit;
 
+        // Render background color
+        const fColor = this.props.model.archInfo.fieldHtmlColor;
+        const fColorOpacity = this.props.model.archInfo.fieldHtmlColorOpacity;
+
+        if (fColor && item.record.data[fColor]) {
+            element.style.backgroundColor = item.record.data[fColor] + (fColorOpacity ? fColorOpacity * 100 : '');
+        }
+
         return this.renderTemplateRecord(item, element, 'itemTemplate', readonly);
     }
 
