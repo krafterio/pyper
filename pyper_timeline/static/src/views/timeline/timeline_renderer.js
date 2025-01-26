@@ -12,7 +12,7 @@ import {
     useState,
 } from '@odoo/owl';
 import {templates} from '@web/core/assets';
-import {formatDateTime, serializeDateTime} from '@web/core/l10n/dates';
+import {formatDateTime, serializeDateTime, serializeDate} from '@web/core/l10n/dates';
 import {localization} from '@web/core/l10n/localization';
 import {_t} from '@web/core/l10n/translation';
 import {usePopover} from '@web/core/popover/popover_hook';
@@ -724,13 +724,32 @@ export class TimelineRenderer extends Component {
             this.popover.close();
         }
 
+        let serialize = serializeDateTime;
+
+        // Adjust start and end dates
+        if ('date' === this.props.model.archInfo.fieldDateEnd) {
+            serialize = serializeDate;
+
+            if (item.end) {
+                const endValue = DateTime.fromJSDate(item.end);
+
+                if (!endValue.hasSame(endValue.startOf('day'), 'second')) {
+                    item.endOriginal = endValue.startOf('day').toJSDate();
+                    item.end = DateTime.fromJSDate(item.endOriginal).plus({days: 1}).toJSDate();
+                } else {
+                    item.endOriginal = DateTime.fromJSDate(item.end).minus({days: 1}).toJSDate();
+                }
+            }
+        }
+
         const record = {
             id: item.record.resId,
-            [this.props.model.archInfo.fieldDateStart]: serializeDateTime(DateTime.fromJSDate(item.start)),
+            [this.props.model.archInfo.fieldDateStart]: serialize(DateTime.fromJSDate(item.start)),
         };
 
         if (this.props.model.archInfo.fieldDateEnd) {
-            record[this.props.model.archInfo.fieldDateEnd] = item.end ? serializeDateTime(DateTime.fromJSDate(item.end)) : false;
+            const endValue = item.endOriginal || item.end;
+            record[this.props.model.archInfo.fieldDateEnd] = endValue ? serialize(DateTime.fromJSDate(endValue)) : false;
         }
 
         // Restore value of end date field
