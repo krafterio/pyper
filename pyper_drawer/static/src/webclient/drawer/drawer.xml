@@ -128,7 +128,24 @@
     </t>
 
     <t t-name="pyper_drawer.Drawer.QuickActions">
-        <div class="o_drawer--quick-actions-content">
+        <DrawerMenuItem
+            t-if="isMinified"
+            menuXmlid="mainQuickAction.xmlid"
+            menuId="mainQuickAction.id"
+            menuAction="mainQuickAction.actionID || undefined"
+            className="mainQuickAction.className || undefined"
+            childrenDepth="0"
+            children="mainQuickAction.childrenTree"
+            withIcon="settings.showRootApp"
+            iconData="mainQuickAction.webIconData"
+            fontIcon="mainQuickAction.fontIcon"
+            fontIconColor="mainQuickAction.fontIconColor"
+            preferWebIcon="settings.preferWebIcon"
+            emojiIcon="mainQuickAction.emojiIcon"
+            label="mainQuickAction.name"
+        />
+
+        <div class="o_drawer--quick-actions-content" t-else="">
             <div class="btn-group btn-quick-action-group">
                 <button
                     type="button"
