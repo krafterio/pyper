@@ -13,7 +13,4 @@ class IrUiView(models.Model):
 
         values.update({'_web_app_name': web_app_name})
 
-        if 'title' not in values:
-            values.update({'title': web_app_name})
-
         return self.env['ir.qweb']._render(template, values)
