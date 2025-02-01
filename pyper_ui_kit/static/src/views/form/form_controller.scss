@@ -144,8 +144,6 @@
             &.o_field_priority_switch,
             &.o_field_selection_badge,
             &.o_field_boolean_toggle,
-            &.o_field_statusbar,
-            &.o_field_statusbar_duration,
             &.o_field_one2many,
             &.o_field_many2many,
             &.o_field_many2many_checkboxes,
@@ -154,6 +152,12 @@
                 padding: 0;
                 display: inline-flex;
                 align-items: center;
+            }
+
+            &.o_field_statusbar,
+            &.o_field_statusbar_duration {
+                border: none;
+                padding: 0;
             }
 
             // Remove all outline field style

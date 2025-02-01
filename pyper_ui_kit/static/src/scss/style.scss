@@ -425,7 +425,14 @@ div[name='flow_report_ids'] {
     padding: 1rem;
 }
 
-.o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_first):before, .o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_first):before, .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_first):after, .o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_first):after, .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_last):before, .o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_last):before, .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_last):after, .o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_last):after {
+.o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_first):before,
+.o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_first):before,
+.o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_first):after,
+.o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_first):after,
+.o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_last):before,
+.o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_last):before,
+.o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_last):after,
+.o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none):not(.o_last):after {
     right: -0.50em;
     border-top: 17px solid transparent;
     border-bottom: 16px solid transparent;
