@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="login_layout" inherit_id="web.login">
+        <xpath expr="//p[contains(@class, 'alert alert-danger')]" position="before">
+            <t t-if="not request.env['ir.config_parameter'].sudo().get_param('oauth_client.hide_username_password_login')" name="login-t-if">
+            </t>
+        </xpath>
+        <xpath expr="//t[@name='login-t-if']" position="inside">
+            <xpath expr="//div[@class='mb-3 field-login']" position="move"/>
+            <xpath expr="//input[@type='password']/.." position="move"/>
+        </xpath>
+
+        <xpath expr="//div[@class='o_login_auth']/.." position="inside">
+            <t t-if="not request.env['ir.config_parameter'].sudo().get_param('oauth_client.hide_username_password_login')" name="submit-t-if">
+            </t>
+        </xpath>
+        
+        <xpath expr="//t[@name='submit-t-if']" position="inside">
+            <xpath expr="//div[@class='o_login_auth']/..//button[@type='submit']" position="move"/>
+            <xpath expr="//t[@t-if='debug']" position="move"/>
+            <xpath expr="//div[@class='o_login_auth']" position="move"/>
+        </xpath>
+    </template>
+    <template id="remove_signup_reset_links" inherit_id="auth_signup.login">
+        <xpath expr="//div[contains(@class, 'justify-content-between mt-2 d-flex small')]" position="replace">
+            <t t-if="not request.env['ir.config_parameter'].sudo().get_param('oauth_client.hide_username_password_login')">
+                <div class="justify-content-between mt-2 d-flex small">
+                    <a t-if="signup_enabled" t-attf-href="/web/signup?{{ keep_query() }}">Don't have an account?</a>
+                    <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}">Reset Password</a>
+                </div>
+            </t>
+        </xpath>
+    </template>
+    
+    <template id="providers" inherit_id="auth_oauth.providers">
+        <xpath expr="//em" position="replace">
+            <t t-if="not request.env['ir.config_parameter'].sudo().get_param('oauth_client.hide_username_password_login')">
+                <em t-attf-class="d-block text-center text-muted small my-#{len(providers) if len(providers) &lt; 3 else 3}">- or -</em>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* oauth_client
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-22 09:18+0000\n"
+"PO-Revision-Date: 2025-01-22 09:18+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: oauth_client
+#: model:ir.model.fields.selection,name:oauth_client.selection__auth_oauth_provider__type_user_create__internal
+msgid "Internal User"
+msgstr "Utilisateur interne"
+
+#. module: oauth_client
+#: model:ir.model,name:oauth_client.model_auth_oauth_provider
+msgid "OAuth2 provider"
+msgstr "Fournisseur OAuth2"
+
+#. module: oauth_client
+#: model:ir.model.fields.selection,name:oauth_client.selection__auth_oauth_provider__type_user_create__portal
+msgid "Portal User"
+msgstr "Utilisateur Portail"
+
+#. module: oauth_client
+#. odoo-python
+#: code:addons/oauth_client/models/res_users.py:0
+#, python-format
+msgid "Signup: invalid template user"
+msgstr "Inscription : modèle d'utilisateur invalide"
+
+#. module: oauth_client
+#: model_terms:ir.ui.view,arch_db:oauth_client.providers
+msgid "- or -"
+msgstr "- ou -"
+
+#. module: oauth_client
+#: model_terms:ir.ui.view,arch_db:oauth_client.res_config_settings_view_form
+msgid "OAuth Settings"
+msgstr "Paramètres OAuth"
+
+#. module: oauth_client
+#: model:ir.model.fields,field_description:oauth_client.field_res_config_settings__hide_username_password_login
+msgid "Disable Username/Password Login"
+msgstr "Désactiver la connexion par nom d'utilisateur/mot de passe"
+
+#. module: oauth_client
+#: model_terms:ir.ui.view,arch_db:oauth_client.remove_signup_reset_links
+msgid "Don't have an account?"
+msgstr "Vous n'avez pas de compte ?"
+
+#. module: oauth_client
+#: model:ir.model.fields,field_description:oauth_client.field_res_users__refresh_token
+msgid "Refresh Token"
+msgstr "Token de rafraîchissement"
+
+#. module: oauth_client
+#: model_terms:ir.ui.view,arch_db:oauth_client.remove_signup_reset_links
+msgid "Reset Password"
+msgstr "Réinitialiser le mot de passe"
+
+#. module: oauth_client
+#: model_terms:ir.ui.view,arch_db:oauth_client.view_users_form
+msgid "Revoke Access Token"
+msgstr "Révoquer le jeton d'accès"
+
+#. module: oauth_client
+#: model_terms:ir.ui.view,arch_db:oauth_client.res_config_settings_view_form
+msgid ""
+"This setting will determine if the it's only possible to login with OAuth or"
+" not."
+msgstr ""
+"Cette configuration déterminera s'il est possible de se connecter uniquement"
+" avec OAuth ou non."
+
+#. module: oauth_client
+#: model:ir.model.fields,field_description:oauth_client.field_auth_oauth_provider__client_secret
+msgid "Secret Key"
+msgstr "Clé secrète"
+
+#. module: oauth_client
+#. odoo-python
+#: code:addons/oauth_client/models/res_users.py:0
+#, python-format
+msgid "Signup: no login given for new user"
+msgstr "Inscription : aucun identifiant donné pour le nouvel utilisateur"
+
+#. module: oauth_client
+#: model:ir.model.fields,field_description:oauth_client.field_auth_oauth_provider__token_endpoint
+msgid "Token Endpoint"
+msgstr "Point de terminaison du jeton"
+
+#. module: oauth_client
+#. odoo-python
+#: code:addons/oauth_client/models/res_users.py:0
+#, python-format
+msgid "Signup: no name or partner given for new user"
+msgstr "Inscription : aucun nom ou partenaire donné pour le nouvel utilisateur"
+
+#. module: oauth_client
+#: model:ir.model,name:oauth_client.model_res_users
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: oauth_client
+#: model:ir.model.fields,field_description:oauth_client.field_auth_oauth_provider__type_user_create
+msgid "User Type"
+msgstr "Type d'utilisateur"

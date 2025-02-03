@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_users_form" model="ir.ui.view">
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='oauth']" position="inside">
+                <button 
+                    name="revoke_oauth_access_token" 
+                    string="Revoke Access Token" 
+                    type="object" 
+                    class="btn-primary"
+                    invisible="oauth_access_token == False"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

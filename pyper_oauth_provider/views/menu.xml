@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_oauth_clients" model="ir.actions.act_window">
+        <field name="name">OAuth Clients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">oauth.client</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_oauth_scopes" model="ir.actions.act_window">
+        <field name="name">OAuth Scopes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">oauth.scope</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_oauth" name="OAuth" parent="base.menu_administration" sequence="10"/>
+
+    <menuitem id="menu_oauth_clients" name="Clients" parent="menu_oauth" sequence="10" action="action_oauth_clients"/>
+
+    <menuitem id="menu_oauth_scopes" name="Scopes" parent="menu_oauth" sequence="11" action="action_oauth_scopes"/>
+
+    <record id="view_oauth_client_form" model="ir.ui.view">
+        <field name="name">oauth.client.form</field>
+        <field name="model">oauth.client</field>
+        <field name="arch" type="xml">
+            <form string="OAuth Client">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="client_id"/>
+                        <field name="scopes" readonly="1"/>
+                        <field name="redirect_uris"/>
+                        <field name="client_secret"/>
+                        <field name="skip_authorization"/>
+                        <field name="user_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
