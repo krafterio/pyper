@@ -289,20 +289,12 @@ i.btn-quick-counter {
     }
 }
 
-.o_field_many2one_badge {
-    span, a {
-        border-radius: $border-radius !important;
-        font-size: 0.875rem;
-    }
-}
-
 .o_field_many2one_avatar_user {
     .o_avatar {
         img {
             border-radius: 100% !important;
         }
     }
-
 }
 
 .o_field_many2one_selection {
