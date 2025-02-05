@@ -20,8 +20,8 @@
         <field name="model">website.banner</field>
         <field name="arch" type="xml">
             <form string="Website Banner">
-                <group>
-                    <group>
+                <group string="Banner">
+                    <group class="mt-4">
                         <field name="name"/>
                         <field name="start_date"/>
                         <field name="end_date"/>
@@ -39,8 +39,10 @@
                             <field name="outline_color" widget="color"/>
                         </group>
                     </group>
+                </group>
 
-                    <field name="element_ids" class="mt-5">
+                <group string="Elements" class="mt-5">
+                    <field name="element_ids" class="mt-3" string="">
                         <tree create="1" edit="1">
                             <field name="content"/>
                             <field name="is_btn"/>
@@ -52,8 +54,8 @@
                             <field name="page_id"/>
                         </tree>
                     </field>
-
                 </group>
+
             </form>
         </field>
     </record>
