@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_website_banner_tree" model="ir.ui.view">
+        <field name="name">website.banner.tree</field>
+        <field name="model">website.banner</field>
+        <field name="arch" type="xml">
+            <tree string="Website Banner">
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="bg_color" widget="color"/>
+                <field name="only_shop"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_website_banner_form" model="ir.ui.view">
+        <field name="name">website.banner.form</field>
+        <field name="model">website.banner</field>
+        <field name="arch" type="xml">
+            <form string="Website Banner">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="only_shop"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="bg_color" widget="color"/>
+                            <field name="has_second_bg_color"/>
+                            <field name="second_bg_color" widget="color"
+                                   help="Add a second color to create a gradient"/>
+                        </group>
+                        <group>
+                            <field name="has_outline"/>
+                            <field name="outline_color" widget="color"/>
+                        </group>
+                    </group>
+
+                    <field name="element_ids" class="mt-5">
+                        <tree create="1" edit="1">
+                            <field name="content"/>
+                            <field name="is_btn"/>
+                            <field name="text_color" widget="color"/>
+                            <field name="bg_color" widget="color"/>
+                            <field name="outline_color" widget="color"/>
+                            <field name="link"/>
+                            <field name="product_tmpl_id"/>
+                            <field name="page_id"/>
+                        </tree>
+                    </field>
+
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_website_banner" model="ir.actions.act_window">
+        <field name="name">Website Banner</field>
+        <field name="res_model">website.banner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+            id="menu_website_banner_root"
+            name="Website Banner"
+            parent="website.menu_website_configuration"
+            action="action_website_banner"
+            sequence="10"
+    />
+
+</odoo>
