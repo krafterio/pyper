@@ -5,53 +5,63 @@
             <t t-set="_record" t-value="request.env['website.banner']._get_website_banner()"/>
             <t t-if="not _record.only_shop">
                 <div t-if="_record" class="d-flex justify-content-center align-items-center"
-                         t-attf-style="{{ 'background-image: linear-gradient(to right, ' + _record.bg_color + ' 50%, '
+                     t-attf-style="{{ 'background-image: linear-gradient(to right, ' + _record.bg_color + ' 50%, '
                          + _record.second_bg_color + ' 100%)' if _record.has_second_bg_color else 'background-color: ' + _record.bg_color }};
                             {{'border: 1px solid ' + _record.outline_color if _record.has_outline and _record.outline_color else ''}};">
 
-                        <t t-foreach="sorted(_record.element_ids, key=lambda e: e.sequence)" t-as="element_id">
+                    <t t-foreach="sorted(_record.element_ids, key=lambda e: e.sequence)" t-as="element_id">
 
-                            <t t-if="element_id.link">
-                                <a t-attf-href="{{element_id.link}}" t-out="element_id.content"
-                                   t-attf-class='m-0 mx-1 {{ "btn py-0 my-1" if element_id.is_btn else "" }}'
+                        <t t-if="element_id.link">
+                            <a t-attf-href="{{element_id.link}}" t-out="element_id.content"
+                               t-attf-class='m-0 mx-1 {{ "btn py-0 my-1" if element_id.is_btn else "" }}'
 
-                                   t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.bg_color else ''}};
+                               t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.bg_color else ''}};
                                    {{ 'color: ' + element_id.text_color if element_id.text_color else ''}};
-                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};">
-                                </a>
-                            </t>
-                            <t t-elif="element_id.product_tmpl_id">
-                                <a t-attf-href="{{element_id.product_tmpl_id.website_url}}" t-out="element_id.content"
-                                   t-attf-class='m-0 mx-1 {{ "btn py-0 my-1" if element_id.is_btn else "" }}'
+                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};
+                                    {{ 'font-weight: bold' if element_id.is_bold else ''}};
+                                    {{ 'font-style: italic' if element_id.is_italic else ''}};
+                                    ">
+                            </a>
+                        </t>
+                        <t t-elif="element_id.product_tmpl_id">
+                            <a t-attf-href="{{element_id.product_tmpl_id.website_url}}" t-out="element_id.content"
+                               t-attf-class='m-0 mx-1 {{ "btn py-0 my-1" if element_id.is_btn else "" }}'
 
-                                   t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.bg_color else ''}};
+                               t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.bg_color else ''}};
                                    {{ 'color: ' + element_id.text_color if element_id.text_color else ''}};
-                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};">
-                                </a>
-                            </t>
-                            <t t-elif="element_id.sudo().page_id">
-                                <a t-attf-href="{{element_id.sudo().page_id.url}}" t-out="element_id.content"
-                                   t-attf-class='m-0 mx-1 {{ "btn py-0 my-1" if element_id.is_btn else "" }}'
+                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};
+                                    {{ 'font-weight: bold' if element_id.is_bold else ''}};
+                                    {{ 'font-style: italic' if element_id.is_italic else ''}};
+                               ">
+                            </a>
+                        </t>
+                        <t t-elif="element_id.sudo().page_id">
+                            <a t-attf-href="{{element_id.sudo().page_id.url}}" t-out="element_id.content"
+                               t-attf-class='m-0 mx-1 {{ "btn py-0 my-1" if element_id.is_btn else "" }}'
 
-                                   t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.bg_color else ''}};
+                               t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.bg_color else ''}};
                                    {{ 'color: ' + element_id.text_color if element_id.text_color else ''}};
-                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};"
-                                >
-                                </a>
-                            </t>
-
-                            <t t-else="">
-                                <p t-out="element_id.content" class="m-0 px-1 mx-1"
-                                   t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.bg_color else ''}};
-                                    {{ 'color: ' + element_id.text_color if element_id.text_color else ''}};
-                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};"
-                                >
-                                </p>
-                            </t>
-
+                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};
+                                    {{ 'font-weight: bold' if element_id.is_bold else ''}};
+                                    {{ 'font-style: italic' if element_id.is_italic else ''}};
+                               ">
+                            </a>
                         </t>
 
-                    </div>
+                        <t t-else="">
+                            <p t-out="element_id.content" class="m-0 px-1 mx-1"
+                               t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.bg_color else ''}};
+                                    {{ 'color: ' + element_id.text_color if element_id.text_color else ''}};
+                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};
+                                    {{ 'font-weight: bold' if element_id.is_bold else ''}};
+                                    {{ 'font-style: italic' if element_id.is_italic else ''}};
+                               ">
+                            </p>
+                        </t>
+
+                    </t>
+
+                </div>
             </t>
             <t t-else="">
                 <t t-set="current_path" t-value="request.httprequest.path"/>
@@ -59,7 +69,10 @@
                     <div t-if="_record" class="d-flex justify-content-center align-items-center"
                          t-attf-style="{{ 'background-image: linear-gradient(to right, ' + _record.bg_color + ' 50%, '
                          + _record.second_bg_color + ' 100%)' if _record.has_second_bg_color else 'background-color: ' + _record.bg_color }};
-                            {{'border: 1px solid ' + _record.outline_color if _record.has_outline and _record.outline_color else ''}};">
+                            {{'border: 1px solid ' + _record.outline_color if _record.has_outline and _record.outline_color else ''}};
+                            {{ 'font-weight: bold' if element_id.is_bold else ''}};
+                            {{ 'font-style: italic' if element_id.is_italic else ''}};
+                        ">
 
                         <t t-foreach="_record.element_ids" t-as="element_id">
 
@@ -68,8 +81,11 @@
                                    t-attf-class='m-0 mx-1 {{ "btn py-0 my-1" if element_id.is_btn else "" }}'
 
                                    t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.bg_color else ''}};
-                                   {{ 'color: ' + element_id.text_color if element_id.text_color else ''}};
-                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};">
+                                    {{ 'color: ' + element_id.text_color if element_id.text_color else ''}};
+                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};
+                                    {{ 'font-weight: bold' if element_id.is_bold else ''}};
+                                    {{ 'font-style: italic' if element_id.is_italic else ''}};
+                                ">
                                 </a>
                             </t>
                             <t t-elif="element_id.product_tmpl_id">
@@ -78,7 +94,9 @@
 
                                    t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.bg_color else ''}};
                                    {{ 'color: ' + element_id.text_color if element_id.text_color else ''}};
-                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};">
+                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};                                    {{ 'font-weight: bold' if element_id.is_bold else ''}};
+                                    {{ 'font-style: italic' if element_id.is_italic else ''}};
+                                ">
                                 </a>
                             </t>
                             <t t-elif="element_id.sudo().page_id">
@@ -87,8 +105,10 @@
 
                                    t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.bg_color else ''}};
                                    {{ 'color: ' + element_id.text_color if element_id.text_color else ''}};
-                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};"
-                                >
+                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};
+                                   {{ 'font-weight: bold' if element_id.is_bold else ''}};
+                                    {{ 'font-style: italic' if element_id.is_italic else ''}};
+                                ">
                                 </a>
                             </t>
 
@@ -96,8 +116,10 @@
                                 <p t-out="element_id.content" class="m-0 px-1 mx-1"
                                    t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.bg_color else ''}};
                                     {{ 'color: ' + element_id.text_color if element_id.text_color else ''}};
-                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};"
-                                >
+                                    {{ 'border: 1px solid ' + element_id.outline_color if element_id.outline_color else ''}};
+                                   {{ 'font-weight: bold' if element_id.is_bold else ''}};
+                                    {{ 'font-style: italic' if element_id.is_italic else ''}};
+                                ">
                                 </p>
                             </t>
 

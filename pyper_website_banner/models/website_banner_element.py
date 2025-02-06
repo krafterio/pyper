@@ -19,7 +19,9 @@ class WebsiteBannerElement(models.Model):
     is_btn = fields.Boolean('Button style')
     bg_color = fields.Char('Background color')
     outline_color = fields.Char('Border color')
+    
     is_bold = fields.Boolean('Bold')
+    is_italic = fields.Boolean('Italic')
 
     product_tmpl_id = fields.Many2one('product.template', 'Product')
     page_id = fields.Many2one('website.page', 'Page')
