@@ -9,6 +9,8 @@ class WebsiteBannerElement(models.Model):
     _name = 'website.banner.element'
     _description = 'Banner header\'s element on website'
     
+    sequence = fields.Integer()
+
     content = fields.Char()
     text_color = fields.Char()
 
@@ -18,6 +20,6 @@ class WebsiteBannerElement(models.Model):
     bg_color = fields.Char('Background color')
     outline_color = fields.Char('Border color')
     is_bold = fields.Boolean('Bold')
-    
+
     product_tmpl_id = fields.Many2one('product.template', 'Product')
     page_id = fields.Many2one('website.page', 'Page')
