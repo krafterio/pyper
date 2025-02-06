@@ -4,7 +4,7 @@
         <xpath expr="//body" position="before">
             <t t-set="_record" t-value="request.env['website.banner']._get_website_banner()"/>
             <t t-if="not _record.only_shop">
-                <div t-if="_record" class="d-flex justify-content-center align-items-center"
+                <div t-if="_record" class="d-flex justify-content-center align-items-center flex-wrap"
                      t-attf-style="{{ 'background-image: linear-gradient(to right, ' + _record.bg_color + ' 50%, '
                          + _record.second_bg_color + ' 100%)' if _record.has_second_bg_color else 'background-color: ' + _record.bg_color }};
                             {{'border: 1px solid ' + _record.outline_color if _record.has_outline and _record.outline_color else ''}};">
@@ -66,7 +66,7 @@
             <t t-else="">
                 <t t-set="current_path" t-value="request.httprequest.path"/>
                 <t t-if="current_path.startswith('/shop')">
-                    <div t-if="_record" class="d-flex justify-content-center align-items-center"
+                    <div t-if="_record" class="d-flex justify-content-center align-items-center flex-wrap"
                          t-attf-style="{{ 'background-image: linear-gradient(to right, ' + _record.bg_color + ' 50%, '
                          + _record.second_bg_color + ' 100%)' if _record.has_second_bg_color else 'background-color: ' + _record.bg_color }};
                             {{'border: 1px solid ' + _record.outline_color if _record.has_outline and _record.outline_color else ''}};
