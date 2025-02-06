@@ -70,8 +70,6 @@
                          t-attf-style="{{ 'background-image: linear-gradient(to right, ' + _record.bg_color + ' 50%, '
                          + _record.second_bg_color + ' 100%)' if _record.has_second_bg_color else 'background-color: ' + _record.bg_color }};
                             {{'border: 1px solid ' + _record.outline_color if _record.has_outline and _record.outline_color else ''}};
-                            {{ 'font-weight: bold' if element_id.is_bold else ''}};
-                            {{ 'font-style: italic' if element_id.is_italic else ''}};
                         ">
 
                         <t t-foreach="_record.element_ids" t-as="element_id">
