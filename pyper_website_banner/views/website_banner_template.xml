@@ -74,7 +74,7 @@
 
                         <t t-foreach="_record.element_ids" t-as="element_id">
 
-                            <t t-if="element_id.link">
+                            <t t-if="element_id.type == 'link' and element_id.link">
                                 <a t-attf-href="{{element_id.link}}" t-out="element_id.content"
                                    t-attf-class='m-0 mx-1 {{ "btn py-0 my-1" if element_id.is_btn else "" }}'
 
@@ -86,7 +86,7 @@
                                 ">
                                 </a>
                             </t>
-                            <t t-elif="element_id.product_tmpl_id">
+                            <t t-elif="element_id.type == 'product' and element_id.product_tmpl_id">
                                 <a t-attf-href="{{element_id.product_tmpl_id.website_url}}" t-out="element_id.content"
                                    t-attf-class='m-0 mx-1 {{ "btn py-0 my-1" if element_id.is_btn else "" }}'
 
@@ -97,7 +97,7 @@
                                 ">
                                 </a>
                             </t>
-                            <t t-elif="element_id.sudo().page_id">
+                            <t t-elif="element_id.type == 'page' and element_id.sudo().page_id">
                                 <a t-attf-href="{{element_id.sudo().page_id.url}}" t-out="element_id.content"
                                    t-attf-class='m-0 mx-1 {{ "btn py-0 my-1" if element_id.is_btn else "" }}'
 
@@ -110,7 +110,7 @@
                                 </a>
                             </t>
 
-                            <t t-else="">
+                            <t t-elif="element_id.type == 'text'">
                                 <p t-out="element_id.content" class="m-0 px-1 mx-1"
                                    t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.bg_color else ''}};
                                     {{ 'color: ' + element_id.text_color if element_id.text_color else ''}};
