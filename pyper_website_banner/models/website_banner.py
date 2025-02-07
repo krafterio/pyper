@@ -1,7 +1,7 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from odoo import _, fields, models
+from odoo import api, _, fields, models
 from datetime import datetime
 
 
@@ -17,10 +17,16 @@ class WebsiteBanner(models.Model):
 
     has_outline = fields.Boolean('Has Outline')
     outline_color = fields.Char('Outline Color')
-    # height_banner = fields.Integer()
 
+    padding = fields.Integer()
+
+    activate_mode = fields.Selection([
+        ('date', 'Date'),
+        ('manually', 'Manually'),
+    ])
     start_date = fields.Date()
     end_date = fields.Date()
+    activate = fields.Boolean()
 
     only_shop = fields.Boolean()
     
@@ -28,9 +34,25 @@ class WebsiteBanner(models.Model):
     
     def _get_website_banner(self):
         today = datetime.today().date()
-
+        
         banner = self.env['website.banner'].search([
+            ('activate_mode', '=', 'date'),
             ('start_date', '<=', today),
-            ('end_date', '>=', today)
+            ('end_date', '>=', today),
         ], limit=1)
+        if not banner:
+            banner = self.env['website.banner'].search([
+                ('activate_mode', '=', 'manually'),
+                ('activate', '=', True)
+            ], limit=1)
+        
+        
         return banner
+
+    @api.onchange('activate_mode')
+    def _onchange_activate_mode(self):
+        if self.activate_mode != 'manually':
+            self.activate = False
+        elif self.activate_mode != 'date':
+            self.start_date = False
+            self.end_date = False

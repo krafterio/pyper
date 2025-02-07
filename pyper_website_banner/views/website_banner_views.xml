@@ -7,10 +7,11 @@
         <field name="arch" type="xml">
             <tree string="Website Banner">
                 <field name="name"/>
+                <field name="only_shop"/>
+                <field name="activate" string="Manually activated"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
                 <field name="bg_color" widget="color"/>
-                <field name="only_shop"/>
             </tree>
         </field>
     </record>
@@ -23,9 +24,11 @@
                 <group string="Banner">
                     <group class="mt-4">
                         <field name="name"/>
-                        <field name="start_date"/>
-                        <field name="end_date"/>
                         <field name="only_shop"/>
+                        <field name="activate_mode"/>
+                        <field name="activate" invisible="activate_mode != 'manually'"/>
+                        <field name="start_date" invisible="activate_mode != 'date'"/>
+                        <field name="end_date" invisible="activate_mode != 'date'"/>
                     </group>
                     <group>
                         <group>
@@ -38,6 +41,10 @@
                             <field name="has_outline"/>
                             <field name="outline_color" widget="color" invisible="not has_outline"/>
                         </group>
+                        <group>
+                            <field name="padding"/>
+                        </group>
+
                     </group>
                 </group>
 
@@ -57,6 +64,7 @@
                         <form create="1" edit="1">
                             <group class="row">
                                 <group string="Utilisation">
+                                    <field name="content"/>
                                     <field name="type"/>
                                     <field name="link" invisible="type != 'link'"/>
                                     <field name="product_tmpl_id" invisible="type != 'product'"/>
@@ -123,3 +131,6 @@
     />
 
 </odoo>
+
+
+        <!--TODO padding en option sur banner et domain sur tree element -->
