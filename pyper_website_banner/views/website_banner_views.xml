@@ -75,7 +75,7 @@
                                             <field name="text_color" widget="color" string="Text"/>
                                             <button name="action_remove_color_text" type="object"
                                                     class="mb-1 btn btn-primary p-1 rounded badge rounded-pill">
-                                                <i class="fa fa-times"></i>
+                                                <i class="fa fa-times" title="Remove color"></i>
                                             </button>
                                         </div>
 
@@ -84,7 +84,7 @@
                                             <field name="bg_color" widget="color" string="Background"/>
                                             <button name="action_remove_color_bg" type="object"
                                                     class="mb-1 btn btn-primary p-1 rounded badge rounded-pill">
-                                                <i class="fa fa-times"></i>
+                                                <i class="fa fa-times" title="Remove color"></i>
                                             </button>
                                         </div>
 
@@ -93,7 +93,7 @@
                                             <field name="outline_color" widget="color" string="Outline"/>
                                             <button name="action_remove_color_outline" type="object"
                                                     class="mb-1 btn btn-primary p-1 rounded badge rounded-pill">
-                                                <i class="fa fa-times"></i>
+                                                <i class="fa fa-times" title="Remove color"></i>
                                             </button>
                                         </div>
 
