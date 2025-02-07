@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-06 08:58+0000\n"
-"PO-Revision-Date: 2025-02-06 08:58+0000\n"
+"POT-Creation-Date: 2025-02-07 09:38+0000\n"
+"PO-Revision-Date: 2025-02-07 09:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,13 +26,14 @@ msgid "Add a second color to create a gradient"
 msgstr "Ajoutez une deuxième couleur afin de créer un dégradé"
 
 #. module: pyper_website_banner
-#: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner__bg_color
-msgid "Background Color"
-msgstr "Couleur de fond"
+#: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner_element__bg_color
+#: model_terms:ir.ui.view,arch_db:pyper_website_banner.view_website_banner_form
+msgid "Background"
+msgstr "Fond"
 
 #. module: pyper_website_banner
-#: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner_element__bg_color
-msgid "Background color"
+#: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner__bg_color
+msgid "Background Color"
 msgstr "Couleur de fond"
 
 #. module: pyper_website_banner
@@ -56,19 +57,19 @@ msgid "Bold"
 msgstr "Gras"
 
 #. module: pyper_website_banner
-#: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner_element__is_italic
-msgid "Italic"
-msgstr "Italique"
-
-#. module: pyper_website_banner
 #: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner_element__outline_color
-msgid "Border color"
-msgstr "Couleur de la bordure"
+msgid "Border"
+msgstr "Bordure"
 
 #. module: pyper_website_banner
 #: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner_element__is_btn
 msgid "Button style"
 msgstr "Style \"bouton\""
+
+#. module: pyper_website_banner
+#: model_terms:ir.ui.view,arch_db:pyper_website_banner.view_website_banner_form
+msgid "Colors"
+msgstr "Couleurs"
 
 #. module: pyper_website_banner
 #: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner_element__content
@@ -120,6 +121,11 @@ msgid "ID"
 msgstr ""
 
 #. module: pyper_website_banner
+#: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner_element__is_italic
+msgid "Italic"
+msgstr "Italique"
+
+#. module: pyper_website_banner
 #: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner__write_uid
 #: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner_element__write_uid
 msgid "Last Updated by"
@@ -133,6 +139,7 @@ msgstr ""
 
 #. module: pyper_website_banner
 #: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner_element__link
+#: model:ir.model.fields.selection,name:pyper_website_banner.selection__website_banner_element__type__link
 msgid "Link"
 msgstr "Lien"
 
@@ -147,17 +154,24 @@ msgid "Only Shop"
 msgstr "Seulement sur la boutique"
 
 #. module: pyper_website_banner
+#: model_terms:ir.ui.view,arch_db:pyper_website_banner.view_website_banner_form
+msgid "Outline"
+msgstr "Bordure"
+
+#. module: pyper_website_banner
 #: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner__outline_color
 msgid "Outline Color"
 msgstr "Couleur de la bordure"
 
 #. module: pyper_website_banner
 #: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner_element__page_id
+#: model:ir.model.fields.selection,name:pyper_website_banner.selection__website_banner_element__type__page
 msgid "Page"
 msgstr ""
 
 #. module: pyper_website_banner
 #: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner_element__product_tmpl_id
+#: model:ir.model.fields.selection,name:pyper_website_banner.selection__website_banner_element__type__product
 msgid "Product"
 msgstr "Produit"
 
@@ -177,9 +191,26 @@ msgid "Start Date"
 msgstr "Date de début"
 
 #. module: pyper_website_banner
+#: model_terms:ir.ui.view,arch_db:pyper_website_banner.view_website_banner_form
+msgid "Style"
+msgstr ""
+
+#. module: pyper_website_banner
 #: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner_element__text_color
-msgid "Text Color"
-msgstr "Couleur du text"
+#: model:ir.model.fields.selection,name:pyper_website_banner.selection__website_banner_element__type__text
+#: model_terms:ir.ui.view,arch_db:pyper_website_banner.view_website_banner_form
+msgid "Text"
+msgstr "Texte"
+
+#. module: pyper_website_banner
+#: model:ir.model.fields,field_description:pyper_website_banner.field_website_banner_element__type
+msgid "Type"
+msgstr ""
+
+#. module: pyper_website_banner
+#: model_terms:ir.ui.view,arch_db:pyper_website_banner.view_website_banner_form
+msgid "Utilisation"
+msgstr ""
 
 #. module: pyper_website_banner
 #: model:ir.actions.act_window,name:pyper_website_banner.action_website_banner
