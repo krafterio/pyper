@@ -501,3 +501,6 @@ class IrViews(models.Model):
 
         if self.no_records_draggable:
             root.attrib['records_draggable'] = 'false'
+
+    def _update_arch(self):
+        self.sudo().search([('active', 'in', [True, False])])._compute_arch()

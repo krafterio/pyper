@@ -2,6 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 from . import ir_actions_act_window
+from . import ir_module_module
 from . import ir_ui_view
 from . import ir_views
 from . import ir_views_field
