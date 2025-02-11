@@ -48,6 +48,7 @@ class PyperSaas:
         'phone_validation',
         'resource',
         'sms',
+        'uom',
         'web',
         'web_editor',
         'web_tour',
