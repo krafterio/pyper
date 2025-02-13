@@ -34,19 +34,18 @@ class WebsiteBanner(models.Model):
     
     def _get_website_banner(self):
         today = datetime.today().date()
-        
+
         banner = self.env['website.banner'].search([
             ('activate_mode', '=', 'date'),
             ('start_date', '<=', today),
             ('end_date', '>=', today),
-        ], limit=1)
+        ], order='start_date asc, end_date asc', limit=1)
         if not banner:
             banner = self.env['website.banner'].search([
                 ('activate_mode', '=', 'manually'),
                 ('activate', '=', True)
             ], limit=1)
-        
-        
+
         return banner
 
     @api.onchange('activate_mode')
