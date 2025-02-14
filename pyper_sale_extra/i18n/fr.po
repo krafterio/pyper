@@ -53,8 +53,8 @@ msgstr "<strong>Durée de validité :</strong>"
 #: model_terms:ir.ui.view,arch_db:pyper_sale_extra.res_config_settings_view_form
 msgid "Add custom text for dedicated signature section in sale order report"
 msgstr ""
-"Ajouter un texte personnalisé pour la section dédiée de la signature dans le"
-" document de commande de vente"
+"Ajouter un texte personnalisé pour la section dédiée de la signature dans "
+"le document de commande de vente"
 
 #. module: pyper_sale_extra
 #: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
@@ -62,6 +62,7 @@ msgid "BIC Number"
 msgstr "Numéro BIC"
 
 #. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_res_company__sale_bank_account_in_report
 #: model:ir.model.fields,field_description:pyper_sale_extra.field_res_config_settings__sale_bank_account_in_report
 msgid "Bank account in sale order document?"
 msgstr "Compte bancaire sur le document de vente ?"
@@ -85,6 +86,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order__display_bank_account_on_document
 msgid "Display Bank Account On Document"
 msgstr "Afficher le compte bancaire sur le document"
+
+#. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order__display_signature_information_on_document
+msgid "Display Signature Information On Document"
+msgstr "Afficher les informations de signature sur le document"
 
 #. module: pyper_sale_extra
 #: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
@@ -113,6 +119,7 @@ msgid "Sales Order"
 msgstr "Bon de commande"
 
 #. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_res_company__sale_signature_information_in_report
 #: model:ir.model.fields,field_description:pyper_sale_extra.field_res_config_settings__sale_signature_information_in_report
 msgid "Signature information in sale order document?"
 msgstr "Informations de signature dans le document de commande de vente ?"
