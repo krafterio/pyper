@@ -18,6 +18,7 @@
     ],
     'data': [
         # Views
+        'views/account_move_views.xml',
         'views/res_config_settings_views.xml',
 
         # Reports
