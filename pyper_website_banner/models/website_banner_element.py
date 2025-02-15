@@ -20,11 +20,7 @@ class WebsiteBannerElement(models.Model):
     content = fields.Char()
     
     is_btn = fields.Boolean('Button style')
-    text_color = fields.Char('Text')
     bg_color = fields.Char('Background')
-    outline_color = fields.Char('Border')
-    is_bold = fields.Boolean('Bold')
-    is_italic = fields.Boolean('Italic')
 
     link = fields.Char()
     product_tmpl_id = fields.Many2one('product.template', 'Product')
@@ -38,3 +34,12 @@ class WebsiteBannerElement(models.Model):
         
     def action_remove_color_outline(self):
         self.outline_color = False
+        
+    @api.onchange('type')
+    def _onchange_elements_type(self):
+        if self.type != 'link':
+            self.link = False
+        if self.type != 'product':
+            self.product_tmpl_id = False
+        if self.type != 'page':
+            self.page_id = False
