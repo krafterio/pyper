@@ -1,7 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
 manage_website_banner_group_user,website_banner group_user,model_website_banner,base.group_user,1,1,1,1
-access_website_banner_group_portal,website_banner group_public,model_website_banner,base.group_public,1,0,0,0
+access_website_banner_group_public,website_banner group_public,model_website_banner,base.group_public,1,0,0,0
+access_website_banner_group_portal,website_banner group_portal,model_website_banner,base.group_portal,1,0,0,0
 
 manage_website_banner_element_element_group_user,website_banner_element group_user,model_website_banner_element,base.group_user,1,1,1,1
-access_website_banner_element_group_portal,website_banner_element group_portal,model_website_banner_element,base.group_public,1,0,0,0
+access_website_banner_element_group_public,website_banner_element group_public,model_website_banner_element,base.group_public,1,0,0,0
+access_website_banner_element_group_portal,website_banner_element group_portal,model_website_banner_element,base.group_portal,1,0,0,0
