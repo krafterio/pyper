@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <tree string="Website Banner">
                 <field name="name"/>
+                <field name="website_id"/>
                 <field name="only_shop"/>
                 <field name="activate" string="Manually activated"/>
                 <field name="start_date"/>
@@ -24,6 +25,7 @@
                 <group string="Banner">
                     <group class="mt-4">
                         <field name="name"/>
+                        <field name="website_id"/>
                         <field name="only_shop"/>
                         <field name="activate_mode"/>
                         <field name="activate" invisible="activate_mode != 'manually'"/>
@@ -39,42 +41,13 @@
                                    help="Add a second color to create a gradient"/>
                         </group>
                         <group>
-                            <field name="padding"/>
+                            <field name="padding" help="Add space at the top and bottom of content (in pixels)"/>
                         </group>
-
+                    </group>
+                    <group string="Content">
+                        <field name="content" widget="html"/>
                     </group>
                 </group>
-
-                <group string="Elements" class="mt-5">
-                    <field name="element_ids" class="mt-3" string="">
-                        <tree create="1" edit="1">
-                            <field name="sequence" widget="handle"/>
-                            <field name="content"/>
-                            <field name="type"/>
-                            <field name="link"/>
-                            <field name="product_tmpl_id"/>
-                            <field name="page_id"/>
-                        </tree>
-                        <form create="1" edit="1">
-                            <group class="row">
-                                <group string="Utilisation">
-                                    <field name="content" widget="html"/>
-                                    <field name="type"/>
-                                    <field name="link" invisible="type != 'link'"/>
-                                    <field name="product_tmpl_id" invisible="type != 'product'"/>
-                                    <field name="page_id" invisible="type != 'page'"/>
-                                </group>
-                                <div class="d-flex flex-column">
-                                    <group string="Style">
-                                        <field name="is_btn" invisible="type == 'text'"/>
-                                        <field name="bg_color" widget="color" invisible="not is_btn"/>
-                                    </group>
-                                </div>
-                            </group>
-                        </form>
-                    </field>
-                </group>
-
             </form>
         </field>
     </record>
@@ -94,6 +67,3 @@
     />
 
 </odoo>
-
-
-        <!--TODO padding en option sur banner et domain sur tree element -->

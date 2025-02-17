@@ -22,4 +22,9 @@
         'views/website_banner_template.xml',
         'security/ir.model.access.csv',
     ],
+    'assets': {
+        'web.assets_frontend': [
+            ('prepend', 'pyper_website_banner/static/src/scss/**.scss'),
+        ]
+    },
 }

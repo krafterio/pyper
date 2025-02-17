@@ -5,47 +5,15 @@
             <t t-set="_record" t-value="request.env['website.banner']._get_website_banner()"/>
             <t t-set="current_path" t-value="request.httprequest.path"/>
 
-            <t t-if="_record.only_shop and current_path.startswith('/shop') or not _record.only_shop">
-                <div t-if="_record" class="d-flex justify-content-center align-items-center flex-wrap"
+            <t t-if="_record.website_id.id == request.website.id and (_record.only_shop and current_path.startswith('/shop') or not _record.only_shop)">
+                <div t-if="_record" class="banner d-flex justify-content-center align-items-center flex-wrap"
                      t-attf-style="{{ 'background-image: linear-gradient(to right, ' + _record.bg_color + ' 50%, '
                          + _record.second_bg_color + ' 100%)' if _record.has_second_bg_color else 'background-color: ' + _record.bg_color }};
                             {{'padding: ' + str(_record.padding) + 'px 0'}};
                         ">
-
-                    <t t-foreach="sorted(_record.element_ids, key=lambda e: e.sequence)" t-as="element_id">
-
-                        <t t-if="element_id.link">
-                            <a t-attf-href="{{element_id.link}}" t-raw="element_id.content"
-                               t-attf-class='m-0 mx-1 {{ "btn py-0 my-1" if element_id.is_btn else "" }}'
-                               t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.is_btn and element_id.bg_color else ''}};
-                            ">
-                            </a>
-                        </t>
-                        <t t-elif="element_id.product_tmpl_id">
-                            <a t-attf-href="{{element_id.product_tmpl_id.website_url}}" t-raw="element_id.content"
-                               t-attf-class='m-0 mx-1 {{ "btn py-0 my-1" if element_id.is_btn else "" }}'
-
-                               t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.is_btn and element_id.bg_color else ''}};
-                               ">
-                            </a>
-                        </t>
-                        <t t-elif="element_id.sudo().page_id">
-                            <a t-attf-href="{{element_id.sudo().page_id.url}}" t-raw="element_id.content"
-                               t-attf-class='m-0 mx-1 {{ "btn py-0 my-1" if element_id.is_btn else "" }}'
-                               t-attf-style="{{ 'background: ' + element_id.bg_color if element_id.is_btn and element_id.bg_color else ''}};
-                            ">
-                            </a>
-                        </t>
-
-                        <t t-else="">
-                            <p t-raw="element_id.content" class="m-0 px-1 mx-1">
-                            </p>
-                        </t>
-
-                    </t>
-
+                    <t t-raw="_record.content"/>
                 </div>
             </t>
-            </xpath>
+        </xpath>
     </template>
 </odoo>

@@ -10,13 +10,11 @@ class WebsiteBanner(models.Model):
     _description = 'Banner header on website'
 
     name = fields.Char()
+    website_id = fields.Many2one('website', ondelete='cascade', required=True)
 
     bg_color = fields.Char(string='Background Color', default='#FFFFFF')
     has_second_bg_color = fields.Boolean('Activate second background Color')
     second_bg_color = fields.Char('Second background Color')
-
-    has_outline = fields.Boolean('Has Outline')
-    outline_color = fields.Char('Outline Color')
 
     padding = fields.Integer()
 
@@ -29,9 +27,9 @@ class WebsiteBanner(models.Model):
     activate = fields.Boolean()
 
     only_shop = fields.Boolean()
-    
-    element_ids = fields.Many2many('website.banner.element')
-    
+
+    content = fields.Char()
+
     def _get_website_banner(self):
         today = datetime.today().date()
 
