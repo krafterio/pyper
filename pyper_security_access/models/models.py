@@ -178,6 +178,7 @@ class SecuredBase(models.AbstractModel):
 
 
 def check_access_right_field_names(self, fields):
+    fields = [n for n in self._fields] if fields is None else fields
     if self.has_check_field_access_rights():
         check_right = self.env['ir.model.fields.access'].check_field_access_right
         fields = [f for f in fields if check_right(self._name, f, 'read')]
