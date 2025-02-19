@@ -17,6 +17,8 @@ class GlobalSearch(http.Controller):
         search_models = request.env['ir.global_search.model'].search([])
 
         for search_model in search_models:
+            if not request.env[search_model.model_name].check_access_rights('read', raise_exception=False):
+                continue
             model_result, model_count = self._search_by_model(search_model, search_value, limit)
 
             if model_result:
@@ -56,8 +58,8 @@ class GlobalSearch(http.Controller):
         domains = []
 
         # Add domain of action window
-        if search_model.action_id.domain:
-            domains.append(safe_eval(search_model.action_id.domain))
+        if search_model.sudo().action_id.domain:
+            domains.append(safe_eval(search_model.sudo().action_id.domain))
 
         # Add domain of searchable fields
         for field_name in search_fnames:
