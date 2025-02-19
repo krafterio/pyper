@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="mail.Composer" t-inherit-mode="extension">
+        <xpath expr="//textarea[hasclass('o-mail-Composer-input')]" position="before">
+            <t t-set="is_activity" t-value="this.props.composer.message and this.props.composer.message.mail_activity_type_name"/>
+            <div t-if="state.activityTypes and is_activity" class="p-3">
+                <t t-set="defaultType" t-value="this.props.composer.message.mail_activity_type_name"/>
+                <select t-on-change="this.updateSelectedType" class="form-control px-3">
+                    <t t-foreach="state.activityTypes"
+                        t-as="activityType"
+                        t-key="activityType.name">
+                        <option t-esc="activityType.name"
+                                t-att-value="activityType.id"
+                                t-att-selected="defaultType === activityType.name"/>
+                    </t>
+                </select>
+            </div>
+        </xpath>
+    </t>
+</templates>
