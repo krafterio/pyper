@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <function name="write" model="ir.model.data">
+        <value model="ir.model.data" search="[('name', '=', 'hr_expense_template_register_no_user'), ('module', '=', 'hr_expense')]"/>
+        <value eval="{'noupdate': False}"/>
+    </function>
+
+    <template id="pyper_hr_expense_saas.hr_expense_template_register_no_user" inherit_id="hr_expense.hr_expense_template_register_no_user">
+        <xpath expr="//p[contains(., 'Powered by')]" position="replace">
+        </xpath>
+    </template>
+
+    <function name="write" model="ir.model.data">
+        <value model="ir.model.data" search="[('name', '=', 'hr_expense_template_register_no_user'), ('module', '=', 'hr_expense')]"/>
+        <value eval="{'noupdate': True}"/>
+    </function>
+</odoo>

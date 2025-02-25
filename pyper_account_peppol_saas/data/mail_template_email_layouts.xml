@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="mail_notification_layout_with_responsible_signature_and_peppol" inherit_id="account_peppol.mail_notification_layout_with_responsible_signature_and_peppol" priority="34">
+        <xpath expr="//t[@t-if=&quot;not peppol_info['is_peppol_sent']&quot;]" position="replace">
+            <p style="min-width: 590px;">
+                PS: <b style="color: $o-enterprise-action-color;">We did not send your invoice on Peppol.</b>
+            </p>            
+        </xpath>
+    </template>
+
+</odoo>

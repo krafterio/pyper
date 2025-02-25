@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="pyper_website_sale_autocomplete_saas.AutocompleteDropDown" 
+       t-inherit="website_sale_autocomplete.AutocompleteDropDown" 
+       t-inherit-mode="primary">
+        <xpath expr="//img[@alt='Powered by Google']" position="replace">
+        </xpath>
+    </t>
+</templates>

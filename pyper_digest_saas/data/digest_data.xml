@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <function name="write" model="ir.model.data">
+        <value model="ir.model.data" search="[('name', '=', 'digest_mail_main'), ('module', '=', 'digest')]"/>
+        <value eval="{'noupdate': False}"/>
+    </function>
+
+    <template id="pyper_digest_saas.digest_mail_main" inherit_id="digest.digest_mail_main">
+        <xpath expr="//p[contains(@class, 'by_odoo') and contains(., 'Powered by')]" position="replace">
+        </xpath>
+    </template>
+
+    <function name="write" model="ir.model.data">
+        <value model="ir.model.data" search="[('name', '=', 'digest_mail_main'), ('module', '=', 'digest')]"/>
+        <value eval="{'noupdate': True}"/>
+    </function>
+</odoo>

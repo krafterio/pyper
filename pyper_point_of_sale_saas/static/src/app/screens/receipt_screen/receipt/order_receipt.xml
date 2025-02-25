@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="pyper_point_of_sale_saas.OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="primary">
+        <xpath expr="//div[contains(@class, 'pos-receipt-order-data')]//p[text()='Powered by Odoo']" position="replace">
+        </xpath>
+    </t>
+</templates>

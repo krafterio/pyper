@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <function name="write" model="ir.model.data">
+        <value model="ir.model.data" search="[('name', '=', 'livechat_email_template'), ('module', '=', 'im_livechat')]"/>
+        <value eval="{'noupdate': False}"/>
+    </function>
+
+    <template id="pyper_im_livechat_saas.livechat_email_template" inherit_id="im_livechat.livechat_email_template">
+        <xpath expr="//td[contains(., 'Powered by')]/.." position="replace">
+        </xpath>
+    </template>
+
+    <function name="write" model="ir.model.data">
+        <value model="ir.model.data" search="[('name', '=', 'livechat_email_template'), ('module', '=', 'im_livechat')]"/>
+        <value eval="{'noupdate': True}"/>
+    </function>
+</odoo>

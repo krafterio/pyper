@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <function name="write" model="ir.model.data">
+        <value model="ir.model.data" search="[('name', '=', 'mail_notification_channel_invite'), ('module', '=', 'website_slides')]"/>
+        <value eval="{'noupdate': False}"/>
+    </function>
+
+    <template id="pyper_website_slides_saas.mail_notification_channel_invite" inherit_id="website_slides.mail_notification_channel_invite">
+        <xpath expr="//tr[td//a[contains(@href, 'odoo.com') and text()='Odoo']]" position="replace">
+        </xpath>
+    </template>
+
+    <function name="write" model="ir.model.data">
+        <value model="ir.model.data" search="[('name', '=', 'mail_notification_channel_invite'), ('module', '=', 'website_slides')]"/>
+        <value eval="{'noupdate': True}"/>
+    </function>
+</odoo>

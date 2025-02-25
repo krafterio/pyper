@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="pyper_im_livechat_saas.support_page" inherit_id="im_livechat.support_page">
+        <xpath expr="//div[contains(., 'Website Live Chat Powered by')]//div" position="replace">
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="pyper_auth_signup_saas.reset_password_email" inherit_id="auth_signup.reset_password_email" name="User Reset Password">
+        <xpath expr="//tr[td[contains(text(), 'Powered by')]]/../../.." position="replace">
+        </xpath>
+    </template>
+
+    <template id="pyper_auth_signup_saas.alert_login_new_device" inherit_id="auth_signup.alert_login_new_device">
+        <xpath expr="//tr[td[contains(text(), 'Powered by')]]/../../.." position="replace">
+        </xpath>
+    </template>
+</odoo>
