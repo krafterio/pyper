@@ -1,0 +1,89 @@
+<odoo>
+    <template id="report_sale_management_inherit" inherit_id="sale_management.report_saleorder_document_inherit_sale_management">
+        <xpath expr="//table[@name='table_optional_products']/thead" position="before">
+            <t t-set="option_current_subtotal" t-value="0"/>
+            <t t-set="option_current_total" t-value="0"/>            
+        </xpath>
+
+        <xpath expr="//td[@name='td_option_name']" position="before">
+            <t t-set="option_current_subtotal" t-value="option_current_subtotal + option.price_subtotal"/>
+            <t t-set="option_current_total" t-value="option_current_total + option.price_total"/>
+        </xpath>
+
+        <xpath expr="//td[@name='th_option_name']" position="after">
+            <td name="th_option_quantity" class="text-end" t-if="doc.display_details_optional_products">Quantity</td>
+        </xpath>
+
+        <xpath expr="//td[@name='th_option_price_unit']" position="after">
+            <td t-if="has_option_discount and doc.display_details_optional_products" name="th_option_discount_detailed" groups="product.group_discount_per_so_line" class="text-end">Disc.%</td>
+            <td t-if="doc.display_details_optional_products" name="th_option_tax" class="text-end">Taxes</td>
+            <td name="th_option_subtotal" class="text-end" t-if="doc.display_details_optional_products">Subtotal</td>
+        </xpath>
+
+        <xpath expr="//td[@name='th_option_discount']" position="attributes">
+            <attribute name="class">text-end</attribute>
+            <attribute name="t-if" separator=" and " add="not doc.display_details_optional_products"/>
+        </xpath>
+
+        <xpath expr="//td[@name='td_option_discount']" position="attributes">
+            <attribute name="class">text-end</attribute>
+            <attribute name="t-if" separator=" and " add="not doc.display_details_optional_products"/>
+        </xpath>
+
+        <xpath expr="//td[@name='td_option_price_unit']" position="after">
+            <!-- Displace discount column to match order lines-->
+            <td t-if="has_option_discount and doc.display_details_optional_products" name="td_option_discount_detailed" groups="product.group_discount_per_so_line" class="text-end">
+                <strong t-if="option.discount != 0.0" class="text-info">
+                    <t t-out="((option.discount % 1) and '%s' or '%d') % option.discount">-</t>%
+                </strong>
+            </td>
+
+            <td name="td_option_taxes" class="text-end" t-if="doc.display_details_optional_products">
+                <span t-out="', '.join([(tax.invoice_label or tax.name) for tax in option.tax_id])"/>
+            </td>
+        
+            <td name="td_option_subtotal" class="text-end" t-if="doc.display_details_optional_products">
+                <span
+                    t-field="option.price_subtotal"
+                    t-options='{"widget": "monetary", "display_currency": option.currency_id}'
+                >1.5</span>
+            </td>
+        </xpath>
+
+        <xpath expr="//td[@name='td_option_name']" position="after">
+            <td name="td_option_quantity" class="text-end" t-if="doc.display_details_optional_products">
+                <span t-field="option.quantity">1</span>
+            </td>
+        </xpath>
+
+        <xpath expr="//table[@name='table_optional_products']" position="inside">
+            <tr class="is-subtotal text-end" t-if="doc.display_details_optional_products">
+                <td name="td_section_subtotal" colspan="99">
+                    <strong class="mr16">Optional Products Total Excl. Tax</strong>
+                    <span
+                        t-out="option_current_subtotal"
+                        t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
+                    >31.05</span>
+                </td>
+            </tr>
+            <tr class="is-subtotal text-end" t-if="doc.display_details_optional_products">
+                <td name="td_section_option_total" colspan="99">
+                    <strong class="mr16">Optional Products Total Incl. Tax</strong>
+                    <span
+                        t-out="option_current_total"
+                        t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
+                    >31.05</span>
+                </td>
+            </tr>
+            <tr class="is-subtotal text-end" t-if="doc.display_details_optional_products">
+                <td name="td_section_subtotal" colspan="99">
+                    <strong class="mr16">Total (Products + Optional Products) Incl. Tax </strong>
+                    <span
+                        t-out="doc.amount_total + option_current_total"
+                        t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
+                    >31.05</span>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+</odoo>

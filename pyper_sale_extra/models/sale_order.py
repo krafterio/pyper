@@ -43,6 +43,11 @@ class SaleOrder(models.Model):
         readonly=False,
     )
 
+    display_details_optional_products = fields.Boolean(
+        string='Display details of optional products on the document',
+        default=True,
+    )
+
     @api.depends('partner_id')
     def _compute_main_partner_id(self):
         for move in self:
@@ -52,6 +57,7 @@ class SaleOrder(models.Model):
                 partner = partner.parent_id
 
             move.main_partner_id = partner
+
 
     @api.depends('payment_method_id')
     def _compute_display_bank_account_on_document(self):

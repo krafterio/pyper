@@ -4,16 +4,26 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0-20250205\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-14 09:30+0000\n"
-"PO-Revision-Date: 2025-02-14 10:30+0100\n"
+"POT-Creation-Date: 2025-03-21 10:44+0000\n"
+"PO-Revision-Date: 2025-03-21 10:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_sale_management_inherit
+msgid "1.5"
+msgstr ""
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_sale_management_inherit
+msgid "31.05"
+msgstr ""
 
 #. module: pyper_sale_extra
 #: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
@@ -45,6 +55,24 @@ msgid "<strong class=\"me-3\">IBAN</strong>"
 msgstr ""
 
 #. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_sale_management_inherit
+msgid "<strong class=\"mr16\">Optional Products Total Excl. Tax</strong>"
+msgstr "<strong class=\"mr16\">Produits Optionnels Total HT</strong>"
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_sale_management_inherit
+msgid "<strong class=\"mr16\">Optional Products Total Incl. Tax</strong>"
+msgstr "<strong class=\"mr16\">Produits Optionnels Total TTC</strong>"
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_sale_management_inherit
+msgid ""
+"<strong class=\"mr16\">Total (Products + Optional Products) Incl. Tax "
+"</strong>"
+msgstr ""
+"<strong class=\"mr16\">Total (produits + produits optionnels) TTC </strong>"
+
+#. module: pyper_sale_extra
 #: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
 msgid "<strong>Period of validity:</strong>"
 msgstr "<strong>Durée de validité :</strong>"
@@ -53,8 +81,8 @@ msgstr "<strong>Durée de validité :</strong>"
 #: model_terms:ir.ui.view,arch_db:pyper_sale_extra.res_config_settings_view_form
 msgid "Add custom text for dedicated signature section in sale order report"
 msgstr ""
-"Ajouter un texte personnalisé pour la section dédiée de la signature dans "
-"le document de commande de vente"
+"Ajouter un texte personnalisé pour la section dédiée de la signature dans le"
+" document de commande de vente"
 
 #. module: pyper_sale_extra
 #: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
@@ -83,6 +111,16 @@ msgid "Contact"
 msgstr ""
 
 #. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order_option__currency_id
+msgid "Currency"
+msgstr "Devise"
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_sale_management_inherit
+msgid "Disc.%"
+msgstr "Rem.%"
+
+#. module: pyper_sale_extra
 #: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order__display_bank_account_on_document
 msgid "Display Bank Account On Document"
 msgstr "Afficher le compte bancaire sur le document"
@@ -91,6 +129,16 @@ msgstr "Afficher le compte bancaire sur le document"
 #: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order__display_signature_information_on_document
 msgid "Display Signature Information On Document"
 msgstr "Afficher les informations de signature sur le document"
+
+#. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order__display_details_optional_products
+msgid "Display details of optional products on the document"
+msgstr "Afficher les détails des produits optionnels sur le document"
+
+#. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.view_order_form
+msgid "Documents"
+msgstr ""
 
 #. module: pyper_sale_extra
 #: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_saleorder_document
@@ -119,6 +167,16 @@ msgid "Payment method"
 msgstr "Méthode de paiement"
 
 #. module: pyper_sale_extra
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_sale_management_inherit
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: pyper_sale_extra
+#: model:ir.model,name:pyper_sale_extra.model_sale_order_option
+msgid "Sale Options"
+msgstr "Options de vente"
+
+#. module: pyper_sale_extra
 #: model:ir.model,name:pyper_sale_extra.model_sale_order
 msgid "Sales Order"
 msgstr "Bon de commande"
@@ -130,11 +188,28 @@ msgid "Signature information in sale order document?"
 msgstr "Informations de signature dans le document de commande de vente ?"
 
 #. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order_option__price_subtotal
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_sale_management_inherit
+msgid "Subtotal"
+msgstr "Montant"
+
+#. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order_option__tax_id
+#: model_terms:ir.ui.view,arch_db:pyper_sale_extra.report_sale_management_inherit
+msgid "Taxes"
+msgstr "Taxes"
+
+#. module: pyper_sale_extra
 #: model:ir.model.fields,field_description:pyper_sale_extra.field_res_company__sale_signature_information_text_in_report
 #: model:ir.model.fields,field_description:pyper_sale_extra.field_res_config_settings__sale_signature_information_text_in_report
 msgid "Text for signature information in sale order document"
 msgstr ""
 "Texte de l’informations de signature dans le document de commande de vente"
+
+#. module: pyper_sale_extra
+#: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order_option__price_total
+msgid "Total"
+msgstr "Montant TTC"
 
 #. module: pyper_sale_extra
 #: model:ir.model.fields,field_description:pyper_sale_extra.field_sale_order__validity_days

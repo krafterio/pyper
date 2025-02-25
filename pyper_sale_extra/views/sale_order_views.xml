@@ -26,6 +26,19 @@
             <xpath expr="//group[@name='order_details']/field[@name='payment_term_id']" position="after">
                 <field name="payment_method_id" options="{'no_create': True, 'no_edit': True}"/>
             </xpath>
+
+            <xpath expr="//page[@name='optional_products']" position="inside">
+                <group string="Documents">
+                    <field name="display_details_optional_products"/>
+                </group>
+            </xpath>
+
+            <xpath expr="//page[@name='optional_products']//field[@name='sale_order_option_ids']/tree/field[@name='discount']" position="after">
+                <field name="tax_id" widget="many2many_tags" optional="show"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="price_subtotal" optional="hide"/>
+                <field name="price_total" optional="hide"/>
+            </xpath>
         </field>
     </record>
 </odoo>
