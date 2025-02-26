@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="1024"/>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='pyper_settings']" position="inside">
+                <block title="Mail SaaS Configuration" name="mail_saas_setting">
+                    <setting help="Configure the assignation system for the mail SaaS" id="block_assignation_mail" name="block_assignation_mail" string="Block assignation mail" type="boolean">
+                        <div class="mt16">
+                            <field name="block_assignation_mail" string="Block assignation mail"/>
+                        </div>
+                    </setting>
+                    <setting help="Choose if all the assignation should be bloecked" id="block_all_assignation" name="block_all_assignation" string="Block all assignation">
+                        <div class="mt16">
+                            <field name="block_all_assignation_mail" string="Block all assignation"/>
+                        </div>
+                    </setting>
+                    <setting help="Choose the models to block" id="models_to_block" name="models_to_block" string="Models to block" invisible="not block_assignation_mail">
+                        <div class="mt16" invisible="not block_assignation_mail">
+                            <field name="models_to_block" string="Models to block" widget="many2many_tags"/>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

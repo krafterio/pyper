@@ -1,4 +1,5 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 
-from . import models
+from . import res_config_settings
+from . import mail_thread

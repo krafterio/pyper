@@ -21,10 +21,12 @@
         'base',
         'web',
         'mail',
+        'pyper_setup',
         'pyper_saas',
     ],
     'data': [
         # Data
         'data/mail_tempates_email_layouts.xml',
+        'views/res_config_settings.xml',
     ],
 }

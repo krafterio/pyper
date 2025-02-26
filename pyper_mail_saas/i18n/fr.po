@@ -1,0 +1,83 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_mail_saas
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-26 15:33+0000\n"
+"PO-Revision-Date: 2025-02-26 15:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pyper_mail_saas
+#: model_terms:ir.ui.view,arch_db:pyper_mail_saas.res_config_settings_view_form
+msgid "Block all assignation"
+msgstr "Bloquer toutes les assignations"
+
+#. module: pyper_mail_saas
+#: model:ir.model.fields,field_description:pyper_mail_saas.field_res_config_settings__block_all_assignation_mail
+msgid "Block all assignation mail"
+msgstr "Bloquer tous les emails d'assignation"
+
+#. module: pyper_mail_saas
+#: model:ir.model.fields,field_description:pyper_mail_saas.field_res_config_settings__block_assignation_mail
+#: model_terms:ir.ui.view,arch_db:pyper_mail_saas.res_config_settings_view_form
+msgid "Block assignation mail"
+msgstr "Bloquer les emails d'assignation"
+
+#. module: pyper_mail_saas
+#: model_terms:ir.ui.view,arch_db:pyper_mail_saas.res_config_settings_view_form
+msgid "Choose if all the assignation should be bloecked"
+msgstr "Choisir si toutes les assignations doivent être bloquées"
+
+#. module: pyper_mail_saas
+#: model_terms:ir.ui.view,arch_db:pyper_mail_saas.res_config_settings_view_form
+msgid "Choose the models to block"
+msgstr "Choisir les modèles à bloquer"
+
+#. module: pyper_mail_saas
+#: model:ir.model,name:pyper_mail_saas.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: pyper_mail_saas
+#: model_terms:ir.ui.view,arch_db:pyper_mail_saas.res_config_settings_view_form
+msgid "Configure the assignation system for the mail SaaS"
+msgstr "Configurer le système d'assignation pour le mail SaaS"
+
+#. module: pyper_mail_saas
+#: model:ir.model,name:pyper_mail_saas.model_mail_thread
+msgid "Email Thread"
+msgstr "Discussion par email"
+
+#. module: pyper_mail_saas
+#: model_terms:ir.ui.view,arch_db:pyper_mail_saas.res_config_settings_view_form
+msgid "Mail SaaS Configuration"
+msgstr "Configuration du mail SaaS"
+
+#. module: pyper_mail_saas
+#: model:ir.model.fields,field_description:pyper_mail_saas.field_res_config_settings__models_to_block
+msgid "Models to Block"
+msgstr "Modèles à bloquer"
+
+#. module: pyper_mail_saas
+#: model_terms:ir.ui.view,arch_db:pyper_mail_saas.res_config_settings_view_form
+msgid "Models to block"
+msgstr "Modèles à bloquer"
+
+#. module: pyper_mail_saas
+#: model:ir.model.fields,help:pyper_mail_saas.field_res_config_settings__models_to_block
+msgid "Select models for which assignation emails should be blocked"
+msgstr "Sélectionner les modèles pour lesquels les emails d'assignation doivent être bloqués"
+
+#. module: pyper_mail_saas
+#: model_terms:ir.ui.view,arch_db:pyper_mail_saas.mail_notification_layout
+#: model_terms:ir.ui.view,arch_db:pyper_mail_saas.mail_notification_light
+msgid "Unfollow"
+msgstr "Ne plus suivre"
