@@ -20,6 +20,8 @@
     'assets': {
         'web.assets_backend': [
             'pyper_mail/static/src/core/**/*',
+            'pyper_mail/static/src/web/**/*',
+            'pyper_mail/static/src/form/**/*',
         ],
     },
 }

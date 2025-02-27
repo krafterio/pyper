@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_web_theme.FormView" t-inherit="web.FormView" t-inherit-mode="extension">
+        <xpath expr="//t[@t-set-slot='control-panel-additional-actions']" position="inside">
+            <t t-if="state.hasChatter">
+                <button
+                        class="btn btn-secondary text-nowrap"
+                        t-on-click="() => this.toggleChatterFromForm()">
+                    <i class="fa fa-envelope"/>
+                </button>
+            </t>
+        </xpath>
+    </t>
+</templates>
