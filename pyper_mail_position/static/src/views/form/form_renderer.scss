@@ -1,0 +1,14 @@
+.o-mail-Form-chatter {
+    &:not(.o-aside):not(.o-full-width) {
+        margin-left: inherit;
+        margin-right: inherit;
+
+        &.o-mail-ChatterContainer {
+            border-left: none;
+        }
+
+        .o-mail-Chatter {
+            max-width: $o-form-view-sheet-max-width;
+        }
+    }
+}
