@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # Krafter Proprietary License (see LICENSE file).
 {
-    'name': 'Mail Note',
+    'name': 'Mail Setup',
     'category': 'Hidden/Tools',
     'license': 'Other proprietary',
-    'description': 'Display the note button in chatter',
+    'description': 'Base to setup Pyper mail addons',
     'version': '1.0',
     'author': 'Krafter SAS',
     'website': 'https://krafter.io',
@@ -15,19 +15,10 @@
     'depends': [
         'base',
         'web',
-        'mail',
-        'pyper_mail_setup',
+        'pyper_setup',
     ],
     'data': [
-        # Data
-        'data/groups.xml',
-
         # Views
         'views/res_config_settings_views.xml',
     ],
-    'assets': {
-        'web.assets_backend': [
-            'pyper_mail_note/static/src/core/**/*',
-        ],
-    },
 }
