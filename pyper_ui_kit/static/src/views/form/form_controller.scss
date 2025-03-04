@@ -50,6 +50,7 @@
     }
 
     // Field widgets
+    &.modal-content,
     .o_form_sheet {
         .o_field_widget {
             padding: 8px;
@@ -407,6 +408,16 @@
                     border: none;
                     margin-top: 0 !important;
                 }
+            }
+        }
+    }
+
+    // Modal style for .o_form_view class in contentClass props of Dialog component
+    &.modal-content {
+        .modal-header,
+        .modal-footer {
+            .o_field_widget {
+                margin-bottom: 0;
             }
         }
     }
