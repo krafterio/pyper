@@ -8,7 +8,7 @@ patch(Field.prototype, {
     async onJsEvent(event) {
         const code = event.code ? event.code.toLowerCase() : undefined;
 
-        if (this.props.fieldInfo.jsOn[event.type] && this.props.fieldInfo.jsOn[event.type][code]) {
+        if (this.props.fieldInfo?.jsOn[event.type] && this.props.fieldInfo.jsOn[event.type][code]) {
             const value = this.props.fieldInfo.jsOn[event.type][code];
             const parts = value.split(':');
             let method = parts[0];
