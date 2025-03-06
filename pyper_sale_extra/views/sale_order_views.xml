@@ -18,7 +18,7 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='order_details']/field[@name='validity_date']" position="before">
                 <label for="validity_days" invisible="state in ['sale', 'done']"/>
-                <div invisible="state in ['sale', 'done']">
+                <div invisible="state in ['sale', 'done']" name="validity_days">
                     <field name="validity_days" class="oe_inline"/> days
                 </div>
             </xpath>
