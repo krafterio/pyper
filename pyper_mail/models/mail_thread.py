@@ -2,6 +2,7 @@
 # Krafter Proprietary License (see LICENSE file).
 
 from odoo import _, models
+from odoo.exceptions import UserError
 
 
 class MailThread(models.AbstractModel):
@@ -19,16 +20,10 @@ class MailThread(models.AbstractModel):
         return super()._creation_message()
 
     def _check_can_update_message_content(self, messages):
-        messages_notification_ids = []
-        for message in messages:
-            if message.message_type == 'notification':
-                messages_notification_ids.append(message.id)
-                message.message_type = 'comment'
-        res = super()._check_can_update_message_content(messages)
-        for message in messages:
-            if message.id in messages_notification_ids:
-                message.message_type = 'notification'
-        return res
+        notification_messages = messages.filtered(lambda m: m.message_type == 'notification')
+        super()._check_can_update_message_content(messages - notification_messages)
+        if notification_messages.tracking_value_ids:
+            raise UserError(_("Messages with tracking values cannot be modified"))
 
 
 

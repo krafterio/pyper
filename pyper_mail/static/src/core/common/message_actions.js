@@ -10,6 +10,6 @@ messageActionsRegistry
         condition: (component) => component.canEditActivity,
         icon: "fa fa-pencil",
         title: _t("Edit Activity"),
-        onClick: (component) => component.onClickEdit(),
+        onClick: (component) => component.onClickEditActivity(),
         sequence: 80,
     })

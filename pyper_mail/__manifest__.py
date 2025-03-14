@@ -22,4 +22,7 @@
             'pyper_mail/static/src/core/**/*',
         ],
     },
+    'data': [
+        'views/mail_message_views.xml',
+    ]
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_mail_message_edit_form" model="ir.ui.view">
+        <field name="name">mail.message.edit.form</field>
+        <field name="model">mail.message</field>
+        <field name="arch" type="xml">
+            <form string="Edit Message">
+                <sheet>
+                    <group>
+                        <div invisible="not mail_activity_type_id">
+                            <label for="mail_activity_type_id" string="Activity type"/>
+                            <field name="mail_activity_type_id"
+                                   options="{'no_open': True, 'no_create': True}"
+                            />
+                        </div>
+                        <field name="body" widget="html" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
