@@ -196,6 +196,7 @@ export class Drawer extends Component {
         this.menuService = useService('menu');
         this.root = useRef('root');
         this.appSubMenus = useRef('appSubMenus');
+        this.mountCheckTimeout = undefined;
         this.dragScrollables = undefined;
         this.dragScrolling = undefined;
         this.dragStartX = undefined;
@@ -252,6 +253,18 @@ export class Drawer extends Component {
                     menuEl.classList.add('o_navbar_apps_menu--hide');
                 }
             }
+
+            // Allows to force drawer mounting when the PWA is opened from push notifications
+            this.mountCheckTimeout = setTimeout(() => {
+                if (!this.drawerService.mounted) {
+                    this.drawerService.mounted = true;
+                }
+
+                if (this.drawerService.mounted && this.mountCheckTimeout) {
+                    clearTimeout(this.mountCheckTimeout);
+                    this.mountCheckTimeout = undefined;
+                }
+            }, 1000);
         });
 
         onPatched(() => {
