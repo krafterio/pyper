@@ -67,7 +67,7 @@
                     </tree>
                 </field>
 
-                <div class="alert alert-info" invisible="results">
+                <div class="alert alert-info" role="alert" invisible="results">
                     <p class="mb-0">Search a company in the top area and the matching results will appear here.</p>
                 </div>
 
