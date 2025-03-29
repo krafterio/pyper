@@ -27,17 +27,20 @@
     ],
     'assets': {
         'web._assets_primary_variables': [
-            ('before', 'web/static/src/scss/primary_variables.scss', 'pyper_web_theme/static/src/scss/primary_variables.scss'),
+            ('before', 'web/static/src/scss/primary_variables.scss',
+             'pyper_web_theme/static/src/scss/primary_variables.scss'),
             ('before', 'web/static/src/**/*.variables.scss', 'pyper_web_theme/static/src/**/*.variables.scss'),
         ],
         'web._assets_secondary_variables': [
-            ('before', 'web/static/src/scss/secondary_variables.scss', 'pyper_web_theme/static/src/scss/secondary_variables.scss'),
+            ('before', 'web/static/src/scss/secondary_variables.scss',
+             'pyper_web_theme/static/src/scss/secondary_variables.scss'),
         ],
         'web._assets_frontend_helpers': [
             ('prepend', 'pyper_web_theme/static/src/scss/bootstrap_overridden.scss'),
         ],
         'web._assets_backend_helpers': [
-            ('before', 'web/static/src/scss/bootstrap_overridden.scss', 'pyper_web_theme/static/src/scss/bootstrap_overridden.scss'),
+            ('before', 'web/static/src/scss/bootstrap_overridden.scss',
+             'pyper_web_theme/static/src/scss/bootstrap_overridden.scss'),
         ],
         'web.assets_frontend': [
             'pyper_web_theme/static/src/scss/style.scss',
@@ -45,8 +48,10 @@
         'web.assets_backend': [
             ('prepend', 'pyper_fonts_phosphor/static/src/scss/phosphor-regular.scss'),
             ('prepend', 'pyper_fonts_phosphor/static/src/scss/phosphor-light.scss'),
+            ('prepend', 'pyper_fonts_phosphor/static/src/scss/phosphor-bold.scss'),
             ('prepend', 'pyper_fonts_phosphor/static/src/scss/phosphor-fill.scss'),
-            ('after', 'web/static/src/search/search_bar/search_bar.xml', 'pyper_web_theme/static/src/search/search_bar/search_bar.xml'),
+            ('after', 'web/static/src/search/search_bar/search_bar.xml',
+             'pyper_web_theme/static/src/search/search_bar/search_bar.xml'),
             ('after', 'web/static/src/scss/utilities_custom.scss', 'pyper_web_theme/static/src/utilities/**/*'),
             'pyper_web_theme/static/src/scss/style.scss',
             'pyper_web_theme/static/src/legacy/**/*',
