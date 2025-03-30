@@ -86,11 +86,21 @@
                 border-color: $pyper-timeline-panel-border-color;
                 min-width: $pyper-timeline-panel-left-min-width;
                 max-width: $pyper-timeline-panel-left-max-width;
+
+                // Inverse scrollbar position to avoid flickering
+                &.vis-vertical-scroll {
+                    direction: ltr;
+                }
             }
 
             &.vis-right {
                 background: $pyper-timeline-panel-right-bg;
                 border-color: $pyper-timeline-panel-border-color;
+
+                // Inverse scrollbar position to avoid flickering
+                &.vis-vertical-scroll {
+                    direction: rtl;
+                }
             }
 
             &.vis-center {

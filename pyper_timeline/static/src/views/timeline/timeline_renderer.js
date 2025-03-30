@@ -686,12 +686,8 @@ export class TimelineRenderer extends Component {
     }
 
     onItemsChange() {
-        this.resetRendererRecords();
-        this.timeline.setData({
-            groups: this.props.model.groups,
-            items: this.props.model.items,
-        });
-        this.redraw();
+        this._diffAndUpdateDataSet(this.timeline.groupsData.getDataSet(), this.props.model.groups);
+        this._diffAndUpdateDataSet(this.timeline.itemsData, this.props.model.items);
     }
 
     onTimelineAdd(item, callback) {
@@ -784,5 +780,27 @@ export class TimelineRenderer extends Component {
         }
 
         return res;
+    }
+
+    _diffAndUpdateDataSet(dataSet, newItems) {
+        const newIds = new Set(newItems.map(item => item.id));
+        const existingIds = new Set(dataSet.getIds());
+
+        const toUpdate = [];
+        const toAdd = [];
+
+        for (const item of newItems) {
+            if (existingIds.has(item.id)) {
+                toUpdate.push(item);
+            } else {
+                toAdd.push(item);
+            }
+        }
+
+        const toRemove = [...existingIds].filter(id => !newIds.has(id));
+
+        dataSet.update(toUpdate);
+        dataSet.add(toAdd);
+        dataSet.remove(toRemove);
     }
 }
