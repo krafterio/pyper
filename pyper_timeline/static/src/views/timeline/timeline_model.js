@@ -417,7 +417,6 @@ export class TimelineModel extends Model {
 
                 let itemStartDate = item[this.archInfo.fieldDateStart]?.toJSDate();
                 let itemEndDate = item[this.archInfo.fieldDateEnd]?.toJSDate();
-                let itemEndDateOriginal = undefined;
                 let className = '';
                 let hasDate = true;
 
@@ -429,14 +428,6 @@ export class TimelineModel extends Model {
                 if (!itemStartDate && itemEndDate) {
                     itemStartDate = itemEndDate;
                     itemEndDate = undefined;
-                }
-
-                if (itemEndDate) {
-                    itemEndDateOriginal = itemEndDate ? DateTime.fromJSDate(itemEndDate).toJSDate() : undefined;
-
-                    if ('date' === this.archInfo.fieldDateEnd) {
-                        itemEndDate = DateTime.fromJSDate(itemEndDate).plus({days: 1}).toJSDate();
-                    }
                 }
 
                 if (!itemStartDate && !itemEndDate) {
@@ -470,7 +461,6 @@ export class TimelineModel extends Model {
                     groupByField: groupByField,
                     start: itemStartDate,
                     end: itemEndDate,
-                    endOriginal: itemEndDateOriginal,
                     type: itemEndDate ? this.archInfo.itemRangeType : this.archInfo.itemType,
                     content: item.display_name || item.id,
                     record: this.generateRecord(this.meta.resModel, item.id, this.meta.fields, this.meta.archInfo.fieldNames, item),
