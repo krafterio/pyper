@@ -725,8 +725,7 @@ export class TimelineRenderer extends Component {
             this.popover.close();
         }
 
-        // Field type has always the same value for all nodes of a field
-        const fieldDateEndType = this.props.model.archInfo.fieldNodes[this.props.model.archInfo.fieldDateEnd + '_0'].type;
+        const fieldDateEndType = this.props.model.meta.fields[this.props.model.archInfo.fieldDateEnd].type;
         const serialize = 'date' === fieldDateEndType ? serializeDate : serializeDateTime;
 
         const record = {
