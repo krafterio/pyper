@@ -12,7 +12,7 @@ import {
     useState,
 } from '@odoo/owl';
 import {templates} from '@web/core/assets';
-import {formatDateTime, serializeDateTime} from '@web/core/l10n/dates';
+import {formatDateTime, serializeDateTime, serializeDate} from '@web/core/l10n/dates';
 import {localization} from '@web/core/l10n/localization';
 import {_t} from '@web/core/l10n/translation';
 import {usePopover} from '@web/core/popover/popover_hook';
@@ -724,13 +724,17 @@ export class TimelineRenderer extends Component {
             this.popover.close();
         }
 
+        // Field type has always the same value for all nodes of a field
+        const fieldDateEndType = this.props.model.archInfo.fieldNodes[this.props.model.archInfo.fieldDateEnd + '_0'].type;
+        const serialize = 'date' === fieldDateEndType ? serializeDate : serializeDateTime;
+
         const record = {
             id: item.record.resId,
-            [this.props.model.archInfo.fieldDateStart]: serializeDateTime(DateTime.fromJSDate(item.start)),
+            [this.props.model.archInfo.fieldDateStart]: serialize(DateTime.fromJSDate(item.start)),
         };
 
         if (this.props.model.archInfo.fieldDateEnd) {
-            record[this.props.model.archInfo.fieldDateEnd] = item.end ? serializeDateTime(DateTime.fromJSDate(item.end)) : false;
+            record[this.props.model.archInfo.fieldDateEnd] = item.end ? serialize(DateTime.fromJSDate(item.end)) : false;
         }
 
         // Restore value of end date field
