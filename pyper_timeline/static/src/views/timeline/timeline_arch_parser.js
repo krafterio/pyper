@@ -42,6 +42,7 @@ export class TimelineArchParser {
         let defaultGroupBy = [];
         let defaultOrderBy = null;
         let groupOrderBy = {};
+        let groupByAllRecords = false;
         let useTimelineDelete = false;
         let forceEmptyGroup = false;
         let dialogSize = 'fs';
@@ -160,6 +161,10 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('zoomable')) {
                         zoomable = archParseBoolean(node.getAttribute('zoomable'), zoomable);
+                    }
+
+                    if (node.hasAttribute('group_by_all_records')) {
+                        groupByAllRecords = archParseBoolean(node.getAttribute('group_by_all_records'), zoomable);
                     }
 
                     if (node.hasAttribute('default_group_by')) {
@@ -639,6 +644,7 @@ export class TimelineArchParser {
             defaultGroupBy,
             defaultOrderBy,
             groupOrderBy,
+            groupByAllRecords,
             useTimelineDelete,
             forceEmptyGroup,
             dialogSize,

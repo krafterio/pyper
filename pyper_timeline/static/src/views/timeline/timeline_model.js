@@ -373,7 +373,7 @@ export class TimelineModel extends Model {
         }
 
         // Add unassigned group if it is not defined and force option is enabled
-        if (!groups[emptyGroupId] && this.archInfo.forceEmptyGroup && res.length > 0) {
+        if (!groups[emptyGroupId] && this.archInfo.forceEmptyGroup && (res.length > 0 || this.meta.archInfo.groupByAllRecords)) {
             groups[emptyGroupId] = this.createGroup({
                 id: emptyGroupId,
                 content: emptyGroupLabel,
@@ -470,8 +470,15 @@ export class TimelineModel extends Model {
             }
         }
 
-        if (groupByModel && groupIds && Object.keys(groupIds).length > 0) {
-            const groupDomain = [['id', 'in', Object.keys(groupIds)]];
+        // If all records for relational group by must be rendered and no group exists, force the group by model
+        if (this.meta.archInfo.groupByAllRecords && !groupByModel && ['one2many', 'many2many', 'many2one'].includes(groupByFieldInfo?.type) && groupByFieldInfo?.relation) {
+            groupByModel = groupByFieldInfo?.relation;
+            groupIds = {};
+            Object.assign(groupFields, await this.field.loadFields(groupByModel) || {});
+        }
+
+        if (groupByModel && groupIds && (Object.keys(groupIds).length > 0 || this.meta.archInfo.groupByAllRecords)) {
+            const groupDomain = this.meta.archInfo.groupByAllRecords ? [] : [['id', 'in', Object.keys(groupIds)]];
             const groupRes = await this.orm.searchRead(groupByModel, groupDomain, groupByFieldNames || ['display_name'], {
                 order: orderByToString(this.archInfo.groupOrderBy[groupByField] || []),
                 limit: undefined,
@@ -480,6 +487,15 @@ export class TimelineModel extends Model {
             let groupOrder = 1;
 
             groupRes.forEach(group => {
+                if (this.meta.archInfo.groupByAllRecords && !groups[groupIds[group.id]]) {
+                    groupIds[group.id] = Object.keys(groups).length + 1;
+                    groups[groupIds[group.id]] = this.createGroup({
+                        id: group.id,
+                        content: group[(groupByFieldNames || ['display_name'])[0]],
+                        notUseGroupTemplate: false,
+                    });
+                }
+
                 if (groups[groupIds[group.id]]) {
                     groups[groupIds[group.id]].order = groupOrder;
                     groups[groupIds[group.id]].record = this.generateRecord(groupByModel, group.id, groupFields, groupByFieldNames, group);
