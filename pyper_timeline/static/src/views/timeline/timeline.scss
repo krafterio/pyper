@@ -188,6 +188,14 @@
         }
     }
 
+    .o_timeline_renderer.timeline-items-always-draggable {
+        .vis-timeline {
+            .vis-item {
+                cursor: move;
+            }
+        }
+    }
+
     .o_timeline_renderer.overflow-visibility {
         .vis-timeline {
             .vis-item {
