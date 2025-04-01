@@ -361,7 +361,7 @@ export class TimelineController extends Component {
             };
         }
 
-        this.closeDialog = this.dialogService.add(
+        this.dialogService.add(
             FormViewDialog,
             {
                 title,
@@ -377,8 +377,8 @@ export class TimelineController extends Component {
             },
             {
                 ...options,
-                onClose: () => {
-                    this.closeDialog = null;
+                onClose: async () => {
+                    await this.model.load();
                 },
             }
         );
