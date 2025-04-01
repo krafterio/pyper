@@ -49,6 +49,8 @@ export class TimelineArchParser {
         const groupFieldNextIds = {};
         let groupTemplates = {};
         let itemTemplate = null;
+        let createItemTemplate = null;
+        let createItemDefaultDurationMinutes = 60;
         let popoverTemplate = undefined;
         let tooltipTemplate = undefined;
         let tooltipUpdateTemplate = undefined;
@@ -165,6 +167,12 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('group_by_all_records')) {
                         groupByAllRecords = archParseBoolean(node.getAttribute('group_by_all_records'), zoomable);
+                    }
+
+                    // Create item default duration
+                    if (node.hasAttribute('default_duration')) {
+                        const defaultDurationVal = parseInt(node.getAttribute('default_duration'), 10);
+                        createItemDefaultDurationMinutes = defaultDurationVal || createItemDefaultDurationMinutes;
                     }
 
                     if (node.hasAttribute('default_group_by')) {
@@ -562,6 +570,14 @@ export class TimelineArchParser {
                         templateRendererModes['itemTemplate'] = itemTemplate.getAttribute('renderer_mode') || 'static';
                     }
 
+                    // Create item template
+                    createItemTemplate = node.querySelector('[t-name=timeline-item-create]') || null;
+
+                    if (createItemTemplate) {
+                        createItemTemplate.removeAttribute('t-name');
+                        templateRendererModes['createItemTemplate'] = createItemTemplate.getAttribute('renderer_mode') || 'static';
+                    }
+
                     // Popover template
                     popoverTemplate = node.querySelector('[t-name=timeline-popover]') || null;
 
@@ -651,6 +667,8 @@ export class TimelineArchParser {
             groupFieldNames,
             groupTemplates,
             itemTemplate,
+            createItemTemplate,
+            createItemDefaultDurationMinutes,
             popoverTemplate,
             tooltipTemplate,
             tooltipUpdateTemplate,

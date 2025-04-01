@@ -116,6 +116,23 @@
             border-color: $pyper-timeline-item-border-color;
             background-color: $pyper-timeline-item-bg;
 
+            &.o_timeline_create_item_zone {
+                pointer-events: none;
+                background-color: $pyper-timeline-item-create-bg;
+                border: $pyper-timeline-item-create-border-width $pyper-timeline-item-create-border-style $pyper-timeline-item-create-border-bg;
+                border-radius: $pyper-timeline-item-border-radius;
+                color: $pyper-timeline-item-create-color;
+                font-size: $pyper-timeline-item-create-font-size;
+                font-weight: $pyper-timeline-item-create-font-weight;
+
+                .vis-item-content {
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
             &.o_timeline_past_item {
                 border-color: $pyper-timeline-item-past-border-color;
                 background-color: $pyper-timeline-item-past-bg;

@@ -125,6 +125,8 @@ export class TimelineRenderer extends Component {
         this.notificationService = useService('notification');
         this.timelineRef = useRef('timeline');
         this.timeline = null;
+        this.itemCreate = null;
+        this.inMouseAction = false;
         this.rendererRecords = new Map();
         this.toRendererRecords = new Map();
         this.state = useState({
@@ -139,6 +141,7 @@ export class TimelineRenderer extends Component {
         const {
             groupTemplates,
             itemTemplate,
+            createItemTemplate,
             templateRendererModes,
             popoverTemplate,
             tooltipTemplate,
@@ -152,6 +155,10 @@ export class TimelineRenderer extends Component {
 
         if (itemTemplate) {
             templates['itemTemplate'] = itemTemplate;
+        }
+
+        if (createItemTemplate) {
+            templates['createItemTemplate'] = createItemTemplate;
         }
 
         if (popoverTemplate) {
@@ -183,19 +190,29 @@ export class TimelineRenderer extends Component {
             this.timeline.on('changed', this.onTimelineChanged.bind(this));
             this.timeline.on('rangechange', this.onTimelineRangeChange.bind(this));
             this.timeline.on('rangechanged', this.onTimelineRangeChanged.bind(this));
+            this.timeline.on('mouseOver', this.onTimelineMouseOver.bind(this));
+            this.timeline.on('mouseMove', this.onTimelineMouseMove.bind(this));
+            this.timeline.on('mouseDown', this.onTimelineMouseDown.bind(this));
+            this.timeline.on('mouseUp', this.onTimelineMouseUp.bind(this));
             this.timeline.on('click', this.onClick.bind(this));
             this.timeline.on('doubleClick', this.doubleClick.bind(this));
         });
 
         onWillUnmount(() => {
             this.resetRendererRecords();
-            this.timeline.off('changed', this.onTimelineChanged.bind(this));
-            this.timeline.off('rangechange', this.onTimelineRangeChange.bind(this));
-            this.timeline.off('rangechanged', this.onTimelineRangeChanged.bind(this));
-            this.timeline.off('click', this.onClick.bind(this));
-            this.timeline.off('doubleClick', this.doubleClick.bind(this));
-            this.timeline.destroy();
+            this.timeline?.off('changed', this.onTimelineChanged.bind(this));
+            this.timeline?.off('rangechange', this.onTimelineRangeChange.bind(this));
+            this.timeline?.off('rangechanged', this.onTimelineRangeChanged.bind(this));
+            this.timeline?.off('mouseOver', this.onTimelineMouseOver.bind(this));
+            this.timeline?.off('mouseMove', this.onTimelineMouseMove.bind(this));
+            this.timeline?.off('mouseDown', this.onTimelineMouseDown.bind(this));
+            this.timeline?.off('mouseUp', this.onTimelineMouseUp.bind(this));
+            this.timeline?.off('click', this.onClick.bind(this));
+            this.timeline?.off('doubleClick', this.doubleClick.bind(this));
+            this.timeline?.destroy();
             this.timeline = null;
+            this.itemCreate = null;
+            this.inMouseAction = false;
         });
 
         onWillDestroy(() => {
@@ -511,8 +528,11 @@ export class TimelineRenderer extends Component {
     }
 
     renderTemplateItem(item, element) {
+        const isCreate = 'createItemBackground' === item.id;
+        const tplName = isCreate ? 'createItemTemplate' : 'itemTemplate';
+
         // Render clustered items or single item without template
-        if (item.uiItems || !this.timelineTemplates['itemTemplate']) {
+        if (item.uiItems || !this.timelineTemplates[tplName]) {
             return item.content;
         }
 
@@ -527,7 +547,7 @@ export class TimelineRenderer extends Component {
             element.style.backgroundColor = item.record.data[fColor] + (fColorOpacity ? fColorOpacity * 100 : '');
         }
 
-        return this.renderTemplateRecord(item, element, 'itemTemplate', readonly);
+        return this.renderTemplateRecord(item, element, tplName, readonly);
     }
 
     renderTemplateRecord(item, element, templateName, readonly) {
@@ -640,6 +660,53 @@ export class TimelineRenderer extends Component {
         }
     }
 
+    async onTimelineMouseOver() {
+        if (this.itemCreate) {
+            this.timeline?.itemsData?.remove?.(this.itemCreate);
+            this.itemCreate = null;
+        }
+    }
+
+    async onTimelineMouseMove(event) {
+        if (this.props.model.canCreate && !this.inMouseAction && event.items === null && event.group !== null && event.x >= 0) {
+            const duration = this.props.model.meta.createItemDefaultDurationMinutes;
+            const dt = DateTime.fromJSDate(event.time).set({second: 0, millisecond: 0});
+            const roundedMinutes = Math.floor(dt.minute / duration) * duration;
+            const startDate = dt.set({minute: roundedMinutes});
+            const endDate = startDate.plus({minutes: duration});
+
+            if (!this.itemCreate) {
+                this.itemCreate = {
+                    id: 'createItemBackground',
+                    group: event.group,
+                    start: startDate.toJSDate(),
+                    end: endDate.toJSDate(),
+                    type: 'background',
+                    content: '+',
+                    className: 'o_timeline_create_item_zone',
+                    hasDate: true,
+                };
+            } else {
+                this.itemCreate.group = event.group;
+                this.itemCreate.start = startDate.toJSDate();
+                this.itemCreate.end = endDate.toJSDate();
+            }
+
+            this.timeline.itemsData.update(this.itemCreate);
+        } else if (this.itemCreate) {
+            this.timeline?.itemsData?.remove?.(this.itemCreate);
+            this.itemCreate = null;
+        }
+    }
+
+    onTimelineMouseDown() {
+        this.inMouseAction = true;
+    }
+
+    onTimelineMouseUp() {
+        this.inMouseAction = false;
+    }
+
     onClick(eventProps) {
         const item = this.timeline.itemsData.get(eventProps.item);
 
@@ -693,8 +760,13 @@ export class TimelineRenderer extends Component {
     onTimelineAdd(item, callback) {
         const context = {};
         const ctxFieldStart = 'default_' + this.props.model.archInfo.fieldDateStart;
+        const ctxFieldEnd = 'default_' + this.props.model.archInfo.fieldDateEnd;
 
-        context[ctxFieldStart] = serializeDateTime(DateTime.fromJSDate(item.start));
+        context[ctxFieldStart] = serializeDateTime(DateTime.fromJSDate(this.itemCreate?.start || item.start));
+
+        if (this.itemCreate?.end) {
+            context[ctxFieldEnd] = serializeDateTime(DateTime.fromJSDate(this.itemCreate?.end));
+        }
 
         const groupId = this.props.model.getGroupRecordId(item.group);
 

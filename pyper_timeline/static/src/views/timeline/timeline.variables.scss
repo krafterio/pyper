@@ -47,5 +47,14 @@ $pyper-timeline-item-selected-border-color: $o-gray-500 !default;
 $pyper-timeline-item-selected-bg: $pyper-timeline-item-bg !default;
 $pyper-timeline-item-selected-outline-width: 1px !default;
 
+$pyper-timeline-item-create-color: rgba($o-brand-secondary, 0.5) !default;
+$pyper-timeline-item-create-bg: rgba($o-brand-secondary, 0.1) !default;
+$pyper-timeline-item-create-border-width: 1px !default;
+$pyper-timeline-item-create-border-style: dashed !default;
+$pyper-timeline-item-create-border-bg: rgba($o-brand-secondary, 0.3) !default;
+$pyper-timeline-item-create-border-radius: $pyper-timeline-item-border-radius !default;
+$pyper-timeline-item-create-font-size: 18px !default;
+$pyper-timeline-item-create-font-weight: normal !default;
+
 $pyper-timeline-delete-bg: #fee2e2 !default;
 $pyper-timeline-delete-border-radius: $pyper-timeline-item-border-radius !default;

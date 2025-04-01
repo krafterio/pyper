@@ -34,6 +34,7 @@ export class TimelineModel extends Model {
             fields,
             firstDayOfWeek: (localization.weekStart || 0) % 7,
             formViewId: params.archInfo.formViewId || formViewIdFromConfig,
+            createItemDefaultDurationMinutes: params.archInfo.createItemDefaultDurationMinutes,
             scale: params.archInfo.scales.includes(params.archInfo.scale)
                 ? params.archInfo.scale
                 : params.archInfo.scales[0],
