@@ -126,7 +126,7 @@
                 font-weight: $pyper-timeline-item-create-font-weight;
 
                 .vis-item-content {
-                    height: 100%;
+                    height: $pyper-timeline-item-min-height;
                     display: flex;
                     align-items: center;
                     justify-content: center;

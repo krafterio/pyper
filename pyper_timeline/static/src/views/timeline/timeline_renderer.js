@@ -681,10 +681,11 @@ export class TimelineRenderer extends Component {
                     group: event.group,
                     start: startDate.toJSDate(),
                     end: endDate.toJSDate(),
-                    type: 'background',
+                    type: 'range',
                     content: '+',
                     className: 'o_timeline_create_item_zone',
                     hasDate: true,
+                    editable: false,
                 };
             } else {
                 this.itemCreate.group = event.group;
