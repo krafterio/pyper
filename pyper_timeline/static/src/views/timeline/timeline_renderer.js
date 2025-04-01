@@ -276,20 +276,22 @@ export class TimelineRenderer extends Component {
     get timelineOptions() {
         const hiddenDates = [];
 
-        if (this.visibleTimeRangeStart) {
-            hiddenDates.push({
-                start: '0000-01-01 00:00:00',
-                end: '0000-01-01 ' + this.visibleTimeRangeStart,
-                repeat: 'daily',
-            });
-        }
+        if (this.props.model.archInfo.hideUnworkedTimes) {
+            if (this.visibleTimeRangeStart) {
+                hiddenDates.push({
+                    start: '0000-01-01 00:00:00',
+                    end: '0000-01-01 ' + this.visibleTimeRangeStart,
+                    repeat: 'daily',
+                });
+            }
 
-        if (this.visibleTimeRangeEnd) {
-            hiddenDates.push({
-                start: '0000-01-01 ' + this.visibleTimeRangeEnd,
-                end: '0000-01-02 00:00:00',
-                repeat: 'daily',
-            });
+            if (this.visibleTimeRangeEnd) {
+                hiddenDates.push({
+                    start: '0000-01-01 ' + this.visibleTimeRangeEnd,
+                    end: '0000-01-02 00:00:00',
+                    repeat: 'daily',
+                });
+            }
         }
 
         if (!this.props.isWeekendVisible && this.props.model.weekends.length === 2) {
@@ -532,7 +534,7 @@ export class TimelineRenderer extends Component {
         const tplName = isCreate ? 'createItemTemplate' : 'itemTemplate';
 
         // Render clustered items or single item without template
-        if (item.uiItems || !this.timelineTemplates[tplName]) {
+        if (item.simpleRenderer || item.uiItems || !this.timelineTemplates[tplName]) {
             return item.content;
         }
 
@@ -759,7 +761,7 @@ export class TimelineRenderer extends Component {
 
     onItemsChange() {
         this._diffAndUpdateDataSet(this.timeline.groupsData.getDataSet(), this.props.model.groups);
-        this._diffAndUpdateDataSet(this.timeline.itemsData, this.props.model.items);
+        this._diffAndUpdateDataSet(this.timeline.itemsData, [...this.props.model.items, ...this._generateUnworkedRangeItems()]);
     }
 
     onTimelineAdd(item, callback) {
@@ -859,6 +861,43 @@ export class TimelineRenderer extends Component {
         dataSet.update(toUpdate);
         dataSet.add(toAdd);
         dataSet.remove(toRemove);
+    }
+
+    _generateUnworkedRangeItems() {
+        const unworkedRangeItems = [];
+        const startTime = this.visibleTimeRangeStart;
+        const endTime = this.visibleTimeRangeEnd;
+
+        if (!this.props.model.archInfo.hideUnworkedTimes && startTime && endTime) {
+            const daySpan = this.props.model.rangeEnd.diff(this.props.model.rangeStart, 'days').days;
+            const rangeStart = this.props.model.rangeStart.minus({days: daySpan}).startOf('day');
+            const extendedDaySpan = daySpan * 3;
+
+            for (let i = 0; i < extendedDaySpan; i++) {
+                const currentDay = rangeStart.plus({days: i});
+
+                unworkedRangeItems.push(
+                    {
+                        id: `unworked-times-morning-${i}`,
+                        start: DateTime.fromISO(currentDay.toISODate() + 'T00:00:00').toJSDate(),
+                        end: DateTime.fromISO(currentDay.toISODate() + 'T' + startTime).toJSDate(),
+                        type: 'background',
+                        className: 'o_timeline_unworked_times',
+                        simpleRenderer: true,
+                    },
+                    {
+                        id: `unworked-times-evening-${i}`,
+                        start: DateTime.fromISO(currentDay.toISODate() + 'T' + endTime).toJSDate(),
+                        end: DateTime.fromISO(currentDay.plus({days: 1}).toISODate() + 'T00:00:00').toJSDate(),
+                        type: 'background',
+                        className: 'o_timeline_unworked_times',
+                        simpleRenderer: true,
+                    }
+                );
+            }
+        }
+
+        return unworkedRangeItems;
     }
 
     _openCreateDialog(group, start, end, callback = undefined) {

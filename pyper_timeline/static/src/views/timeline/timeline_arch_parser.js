@@ -56,6 +56,7 @@ export class TimelineArchParser {
         let tooltipTemplate = undefined;
         let tooltipUpdateTemplate = undefined;
         let templateRendererModes = {};
+        let hideUnworkedTimes = false;
         let itemPointType = 'box';
         let itemRangeType = 'range';
         let align = 'auto';
@@ -204,6 +205,10 @@ export class TimelineArchParser {
 
                     if (node.hasAttribute('dialog_size')) {
                         dialogSize = archParseBoolean(node.getAttribute('dialog_size'), dialogSize);
+                    }
+
+                    if (node.hasAttribute('hide_unworked_times')) {
+                        hideUnworkedTimes = archParseBoolean(node.getAttribute('hide_unworked_times'), hideUnworkedTimes);
                     }
 
                     if (node.hasAttribute('item_point_type')) {
@@ -680,6 +685,7 @@ export class TimelineArchParser {
             tooltipTemplate,
             tooltipUpdateTemplate,
             templateRendererModes,
+            hideUnworkedTimes,
             itemPointType,
             itemRangeType,
             align,

@@ -133,6 +133,18 @@
                 }
             }
 
+            &.o_timeline_unworked_times {
+                pointer-events: none;
+                background-color: $pyper-timeline-item-unworked-times-bg;
+                background-image: repeating-linear-gradient(
+                    $pyper-timeline-item-unworked-times-bg-striped-angle,
+                    $pyper-timeline-item-unworked-times-bg-striped-gradiant1-color,
+                    $pyper-timeline-item-unworked-times-bg-striped-gradiant1-color $pyper-timeline-item-unworked-times-bg-striped-gradiant1-width,
+                    $pyper-timeline-item-unworked-times-bg-striped-gradiant2-color $pyper-timeline-item-unworked-times-bg-striped-gradiant1-width,
+                    $pyper-timeline-item-unworked-times-bg-striped-gradiant2-color $pyper-timeline-item-unworked-times-bg-striped-gradiant2-width
+                );
+            }
+
             &.o_timeline_past_item {
                 border-color: $pyper-timeline-item-past-border-color;
                 background-color: $pyper-timeline-item-past-bg;
