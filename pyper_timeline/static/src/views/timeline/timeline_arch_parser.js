@@ -51,6 +51,7 @@ export class TimelineArchParser {
         let itemTemplate = null;
         let createItemTemplate = null;
         let createItemDefaultDurationMinutes = 60;
+        let createItemOnSingleClick = false;
         let popoverTemplate = undefined;
         let tooltipTemplate = undefined;
         let tooltipUpdateTemplate = undefined;
@@ -166,13 +167,18 @@ export class TimelineArchParser {
                     }
 
                     if (node.hasAttribute('group_by_all_records')) {
-                        groupByAllRecords = archParseBoolean(node.getAttribute('group_by_all_records'), zoomable);
+                        groupByAllRecords = archParseBoolean(node.getAttribute('group_by_all_records'), groupByAllRecords);
                     }
 
                     // Create item default duration
                     if (node.hasAttribute('default_duration')) {
                         const defaultDurationVal = parseInt(node.getAttribute('default_duration'), 10);
                         createItemDefaultDurationMinutes = defaultDurationVal || createItemDefaultDurationMinutes;
+                    }
+
+                    // Create item on single click
+                    if (node.hasAttribute('create_single_click')) {
+                        createItemOnSingleClick = archParseBoolean(node.getAttribute('create_single_click'), createItemOnSingleClick);
                     }
 
                     if (node.hasAttribute('default_group_by')) {
@@ -669,6 +675,7 @@ export class TimelineArchParser {
             itemTemplate,
             createItemTemplate,
             createItemDefaultDurationMinutes,
+            createItemOnSingleClick,
             popoverTemplate,
             tooltipTemplate,
             tooltipUpdateTemplate,

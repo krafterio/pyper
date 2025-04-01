@@ -195,7 +195,7 @@ export class TimelineRenderer extends Component {
             this.timeline.on('mouseDown', this.onTimelineMouseDown.bind(this));
             this.timeline.on('mouseUp', this.onTimelineMouseUp.bind(this));
             this.timeline.on('click', this.onClick.bind(this));
-            this.timeline.on('doubleClick', this.doubleClick.bind(this));
+            this.timeline.on('doubleClick', this.onDoubleClick.bind(this));
         });
 
         onWillUnmount(() => {
@@ -208,7 +208,7 @@ export class TimelineRenderer extends Component {
             this.timeline?.off('mouseDown', this.onTimelineMouseDown.bind(this));
             this.timeline?.off('mouseUp', this.onTimelineMouseUp.bind(this));
             this.timeline?.off('click', this.onClick.bind(this));
-            this.timeline?.off('doubleClick', this.doubleClick.bind(this));
+            this.timeline?.off('doubleClick', this.onDoubleClick.bind(this));
             this.timeline?.destroy();
             this.timeline = null;
             this.itemCreate = null;
@@ -709,9 +709,13 @@ export class TimelineRenderer extends Component {
     }
 
     onClick(eventProps) {
-        const item = this.timeline.itemsData.get(eventProps.item);
+        const item = eventProps.item ? this.timeline.itemsData.get(eventProps.item) : null;
 
         if (eventProps.what !== 'item' || !item || this.state.saving) {
+            if (!item && this.itemCreate && this.props.model.archInfo.createItemOnSingleClick) {
+                this._openCreateDialog(this.itemCreate.group, this.itemCreate.start, this.itemCreate.end);
+            }
+
             return;
         }
 
@@ -732,7 +736,7 @@ export class TimelineRenderer extends Component {
         this.popover.open(popoverTarget, this.getPopoverProps(item));
     }
 
-    doubleClick(eventProps) {
+    onDoubleClick(eventProps) {
         if (this.popover?.isOpen) {
             this.popover.close();
         }
@@ -759,32 +763,12 @@ export class TimelineRenderer extends Component {
     }
 
     onTimelineAdd(item, callback) {
-        const context = {};
-        const ctxFieldStart = 'default_' + this.props.model.archInfo.fieldDateStart;
-        const ctxFieldEnd = 'default_' + this.props.model.archInfo.fieldDateEnd;
-
-        context[ctxFieldStart] = serializeDateTime(DateTime.fromJSDate(this.itemCreate?.start || item.start));
-
-        if (this.itemCreate?.end) {
-            context[ctxFieldEnd] = serializeDateTime(DateTime.fromJSDate(this.itemCreate?.end));
-        }
-
-        const groupId = this.props.model.getGroupRecordId(item.group);
-
-        if (groupId && this.props.model.groupBy.length > 0) {
-            context['default_' + this.props.model.groupBy[0]] = groupId;
-        }
-
-        this.props.model.mutex.exec(() => this.props.openDialog({
-            context,
-            onRecordSaved: async () => {
-                callback(null);
-                await this.props.model.load();
-            },
-            onRecordDiscarded: async () => {
-                callback(null);
-            },
-        }));
+        this._openCreateDialog(
+            this.itemCreate?.group || item.group,
+            this.itemCreate?.start || item.start,
+            this.itemCreate?.end,
+            callback,
+        );
     }
 
     async onTimelineMove(item, callback) {
@@ -875,5 +859,34 @@ export class TimelineRenderer extends Component {
         dataSet.update(toUpdate);
         dataSet.add(toAdd);
         dataSet.remove(toRemove);
+    }
+
+    _openCreateDialog(group, start, end, callback = undefined) {
+        const context = {};
+        const ctxFieldStart = 'default_' + this.props.model.archInfo.fieldDateStart;
+        const ctxFieldEnd = 'default_' + this.props.model.archInfo.fieldDateEnd;
+
+        context[ctxFieldStart] = serializeDateTime(DateTime.fromJSDate(start));
+
+        if (end) {
+            context[ctxFieldEnd] = serializeDateTime(DateTime.fromJSDate(end));
+        }
+
+        const groupId = this.props.model.getGroupRecordId(group);
+
+        if (groupId && this.props.model.groupBy.length > 0) {
+            context['default_' + this.props.model.groupBy[0]] = groupId;
+        }
+
+        this.props.model.mutex.exec(() => this.props.openDialog({
+            context,
+            onRecordSaved: async () => {
+                callback?.(null);
+                await this.props.model.load();
+            },
+            onRecordDiscarded: async () => {
+                callback?.(null);
+            },
+        }));
     }
 }
