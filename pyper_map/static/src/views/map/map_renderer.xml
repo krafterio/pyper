@@ -1,0 +1,35 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pyper_map.MapRenderer" t-inherit="web.KanbanRenderer" t-inherit-mode="primary">
+        <xpath expr="//div[hasclass('o_kanban_renderer')]" position="attributes">
+            <attribute name="class" separator=" " add="o-pyper-map-item-renderer"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o_kanban_renderer')]" position="before">
+            <div class="o-pyper-map-renderer">
+                <div class="o-pyper-map-renderer-sidebar" t-att-class="{'d-none': !expendedSidebar}"/>
+
+                <div class="o-pyper-map-renderer-map">
+                    <t t-if="props.model.data.fetchingCoordinates">
+                        <t t-call="pyper_map.MapRenderer.FetchingCoordinates"/>
+                    </t>
+
+                    <Map
+                        setupLeaflet.bind="onSetupLeaflet"
+                        onUpdateMap.bind="onUpdateMap"
+                    />
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o-pyper-map-renderer-sidebar')]" position="inside">
+            <xpath expr="//div[hasclass('o_kanban_renderer')]" position="move"/>
+        </xpath>
+    </t>
+
+    <t t-name="pyper_map.MapRenderer.FetchingCoordinates">
+        <div class="o-pyper-map-alert alert alert-info col col-md-10 px-5 mb-0 text-center position-absolute" role="status">
+            <i class="fa fa-spin fa-circle-o-notch"/> Locating new addresses...
+        </div>
+    </t>
+</templates>

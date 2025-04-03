@@ -1,0 +1,83 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pyper_map.Map">
+        <div class="o-pyper-map">
+            <div t-if="displayMap" class="o-pyper-map-renderer--container h-100" t-ref="map"/>
+
+            <t t-elif="invalidTokenProvider">
+                <t t-call="pyper_map.Map.InvalidTokenProvider"/>
+            </t>
+
+            <t t-else="">
+                <t t-call="pyper_map.Map.InvalidProvider"/>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="pyper_map.Map.InvalidTokenProvider">
+        <div class="o-pyper-map-alert alert alert-danger px-5 mb-0 text-center h-100" role="status">
+            <i class="fa fa-exclamation-triangle"/> The map provider required to configure the access token in global settings
+        </div>
+    </t>
+
+    <t t-name="pyper_map.Map.InvalidProvider">
+        <div class="o-pyper-map-alert alert alert-danger px-5 mb-0 text-center h-100" role="status">
+            <i class="fa fa-exclamation-triangle"/> The map provider must be configured in global settings
+        </div>
+    </t>
+
+    <t t-name="pyper_map.marker">
+        <div t-att-style="color and ('color:' + color)">
+            <t t-call="pyper_map.markerPin" />
+            <t t-if="numbering" t-call="pyper_map.markerNumber"/>
+            <t t-elif="isMulti" t-call="pyper_map.markerBadge"/>
+        </div>
+    </t>
+
+    <t t-name="pyper_map.markerPin">
+        <t t-if="numbering">
+            <t t-call="pyper_map.markerPinNoDot" />
+        </t>
+        <t t-else="">
+            <t t-call="pyper_map.markerPinDot" />
+        </t>
+    </t>
+
+    <t t-name="pyper_map.markerPinNoDot">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 154 196" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:currentColor;stroke:color-mix(in srgb,currentColor 80%,white);stroke-width:4;}
+            </style>
+            <path class="st0" d="M77,0C34.494061.048221.048219,34.494409,0,77.00077c0,65.888161,70,115.649904,72.983753,117.73243,2.411123,1.689068,5.62137,1.689068,
+                8.032494,0,2.983753-2.082525,72.983753-51.844268,72.983753-117.73243C153.951775,34.494409,119.505939.048221,77,0Z"
+            />
+        </svg>
+    </t>
+
+    <t t-name="pyper_map.markerPinDot">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 154 196" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:currentColor;stroke:color-mix(in srgb,currentColor 70%,black);stroke-width:4;}
+            </style>
+            <path class="st0" d="M77,0C34.494061.048221.048219,34.494409,0,77.00077c0,65.888161,70,115.649904,72.983753,117.73243,2.411123,1.689068,5.62137,1.689068,
+                8.032494,0,2.983753-2.082525,72.983753-51.844268,72.983753-117.73243C153.951775,34.494409,119.505939.048221,77,0ZM77,49.00049c15.463972,0,
+                28,12.536153,28,28.00028s-12.536028,28.00028-28,28.00028-28-12.536153-28-28.00028,12.536028-28.00028,28-28.00028Z"
+            />
+        </svg>
+    </t>
+
+    <t t-name="pyper_map.markerNumber">
+        <p class="o-pyper-map-marker-number position-relative text-center">
+            <t t-esc="number"/>
+            <t t-if="count gt 1">
+                <t t-call="pyper_map.markerBadge"/>
+            </t>
+        </p>
+    </t>
+
+    <t t-name="pyper_map.markerBadge">
+        <span class="o-pyper-map-marker-badge badge text-bg-danger rounded-pill" t-att-style="color and `background-color: ${color} !important`">
+            <t t-esc="count"/>
+        </span>
+    </t>
+</templates>

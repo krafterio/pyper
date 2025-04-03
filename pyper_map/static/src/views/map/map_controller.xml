@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_map.MapView" t-inherit="web.KanbanView" t-inherit-mode="primary">
+        <xpath expr="//t[@t-component='props.Renderer']" position="attributes">
+            <attribute name="bus">bus</attribute>
+            <attribute name="model">model</attribute>
+            <attribute name="openRecords.bind">openRecords</attribute>
+        </xpath>
+    </t>
+
+    <t t-name="pyper_map.MapView.Buttons" t-inherit="web.KanbanView.Buttons" t-inherit-mode="primary"/>
+</templates>

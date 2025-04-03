@@ -1,0 +1,31 @@
+.o-pyper-map-renderer {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+
+    @include media-breakpoint-down(md) {
+        height: calc(100% - #{$o-navbar-height});
+    }
+}
+
+.o-pyper-map-renderer-sidebar {
+    width: $o-pyper-map-renderer-sidebar-width;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.o-pyper-map-item-renderer {
+    &.o_kanban_renderer {
+        &.o_kanban_ungrouped {
+            .o_kanban_record {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.o-pyper-map-renderer-map {
+    flex-grow: 1;
+}

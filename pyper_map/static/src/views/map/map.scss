@@ -1,0 +1,66 @@
+.o-pyper-map {
+    height: 100%;
+
+    // Disabled opening animation for the popups
+    .leaflet-fade-anim {
+        .leaflet-popup {
+            transition: none;
+
+            .leaflet-popup-content-wrapper {
+                border-radius: 10px;
+
+                .leaflet-popup-content {
+                    margin: 24px 20px 20px 20px;
+                }
+            }
+
+            .leaflet-popup-close-button {
+                color: #666666;
+            }
+        }
+    }
+
+    // Fix preventing rtlcss to reverse the map position
+    .leaflet-pane,
+    .leaflet-tile,
+    .leaflet-marker-icon,
+    .leaflet-marker-shadow,
+    .leaflet-tile-container,
+    .leaflet-pane > svg,
+    .leaflet-pane > canvas,
+    .leaflet-zoom-box,
+    .leaflet-image-layer,
+    .leaflet-layer {
+        left: 0 #{"/*rtl:ignore*/"};
+        right: auto #{"/*rtl:ignore*/"};
+    }
+}
+
+.o-pyper-map-alert {
+    // Leaflet zindex is 400
+    z-index: 401;
+}
+
+.o-pyper-map-marker {
+    height: 40px !important;
+    width: 30px !important;
+    margin-top: -40px !important;
+    margin-left: -15px !important;
+    color: $o-pyper-map-marker-color;
+
+    &.selected {
+        color: $o-pyper-map-marker-selected-color;
+    }
+
+    &-badge {
+        @include o-position-absolute($top: -8px, $right: -10px);
+        font-size: 12px;
+    }
+
+    &-number {
+        top: -40px;
+        color: $o-pyper-map-marker-number-color;
+        font-size: $o-pyper-map-marker-number-font-size;
+        margin-top: $o-pyper-map-marker-number-margin-top;
+    }
+}

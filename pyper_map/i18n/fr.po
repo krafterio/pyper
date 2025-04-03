@@ -1,0 +1,205 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pyper_map
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20250330\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-03 21:35+0000\n"
+"PO-Revision-Date: 2025-04-03 21:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pyper_map
+#. odoo-javascript
+#: code:addons/pyper_map/static/src/views/map/map.xml:0
+#, python-format
+msgid ""
+".st0{fill:currentColor;stroke:color-mix(in srgb,currentColor "
+"70%,black);stroke-width:4;}"
+msgstr ""
+
+#. module: pyper_map
+#. odoo-javascript
+#: code:addons/pyper_map/static/src/views/map/map.xml:0
+#, python-format
+msgid ""
+".st0{fill:currentColor;stroke:color-mix(in srgb,currentColor "
+"80%,white);stroke-width:4;}"
+msgstr ""
+
+#. module: pyper_map
+#: model_terms:ir.ui.view,arch_db:pyper_map.res_config_settings_view_form
+msgid ""
+"<i class=\"oi oi-arrow-right\"/>\n"
+"                                    <span>Sign up to MapBox to get a free token</span>"
+msgstr ""
+"<i class=\"oi oi-arrow-right\"/>\n"
+"                                    <span>Inscrivez-vous sur MapBox pour obtenir un "
+"token gratuit</span>"
+
+#. module: pyper_map
+#: model:ir.model,name:pyper_map.model_ir_actions_act_window_view
+msgid "Action Window View"
+msgstr "Vue de la fenêtre d'action"
+
+#. module: pyper_map
+#: model:ir.model.fields,help:pyper_map.field_res_partner__state_name
+#: model:ir.model.fields,help:pyper_map.field_res_users__state_name
+msgid ""
+"Administrative divisions of a country. E.g. Fed. State, Departement, Canton"
+msgstr ""
+
+#. module: pyper_map
+#: model:ir.model,name:pyper_map.model_base
+msgid "Base"
+msgstr ""
+
+#. module: pyper_map
+#: model:ir.model,name:pyper_map.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: pyper_map
+#: model:ir.model,name:pyper_map.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: pyper_map
+#. odoo-javascript
+#: code:addons/pyper_map/static/src/views/map/map_model.js:0
+#, python-format
+msgid "Geocoding Provider's request limit exceeded, try again later."
+msgstr ""
+"La limite de demande du fournisseur de géocodage a été dépassée, réessayez "
+"plus tard."
+
+#. module: pyper_map
+#: model:ir.model,name:pyper_map.model_ir_http
+msgid "HTTP Routing"
+msgstr "Routage HTTP"
+
+#. module: pyper_map
+#. odoo-javascript
+#: code:addons/pyper_map/static/src/views/map/map_renderer.xml:0
+#, python-format
+msgid "Locating new addresses..."
+msgstr "Localisation de nouvelles adresses..."
+
+#. module: pyper_map
+#. odoo-javascript
+#: code:addons/pyper_map/static/src/views/map/map_view.js:0
+#: model:ir.model.fields.selection,name:pyper_map.selection__ir_actions_act_window_view__view_mode__pyper_map
+#: model:ir.model.fields.selection,name:pyper_map.selection__ir_ui_view__type__pyper_map
+#: model_terms:ir.ui.view,arch_db:pyper_map.res_config_settings_view_form
+#, python-format
+msgid "Map"
+msgstr ""
+
+#. module: pyper_map
+#: model:ir.model.fields.selection,name:pyper_map.selection__res_config_settings__pyper_map_provider__mapbox
+msgid "Mapbox"
+msgstr ""
+
+#. module: pyper_map
+#: model:ir.model.fields,field_description:pyper_map.field_res_config_settings__pyper_map_mapbox_token
+msgid "Mapbox Token"
+msgstr ""
+
+#. module: pyper_map
+#: model:ir.model.fields.selection,name:pyper_map.selection__res_config_settings__pyper_map_provider__openstreetmap
+msgid "OpenStreetMap"
+msgstr ""
+
+#. module: pyper_map
+#: model_terms:ir.ui.view,arch_db:pyper_map.res_config_settings_view_form
+msgid "Provider"
+msgstr "Fournisseur"
+
+#. module: pyper_map
+#: model:ir.model.fields,field_description:pyper_map.field_res_config_settings__pyper_map_provider
+msgid "Pyper Map Provider"
+msgstr ""
+
+#. module: pyper_map
+#: model:ir.model.fields,field_description:pyper_map.field_res_partner__state_name
+#: model:ir.model.fields,field_description:pyper_map.field_res_users__state_name
+msgid "State Name"
+msgstr "Nom de l’état"
+
+#. module: pyper_map
+#. odoo-python
+#: code:addons/pyper_map/models/res_config_settings.py:0
+#, python-format
+msgid "The MapBox server is unreachable"
+msgstr "Le serveur MapBox est inaccessible"
+
+#. module: pyper_map
+#. odoo-javascript
+#: code:addons/pyper_map/static/src/views/map/map.xml:0
+#, python-format
+msgid "The map provider must be configured in global settings"
+msgstr ""
+"Le fournisseur de carte doit être configuré dans les paramètres globaux"
+
+#. module: pyper_map
+#. odoo-javascript
+#: code:addons/pyper_map/static/src/views/map/map.xml:0
+#, python-format
+msgid ""
+"The map provider required to configure the access token in global settings"
+msgstr ""
+"Le fournisseur de cartes doit être configurer avec le jeton d'accès dans les"
+" paramètres globaux"
+
+#. module: pyper_map
+#. odoo-javascript
+#: code:addons/pyper_map/static/src/views/map/map_renderer.js:0
+#, python-format
+msgid "The selected record does not have an geolocalized address."
+msgstr "L'enregistrement sélectionné n'a pas d'adresse géolocalisée."
+
+#. module: pyper_map
+#. odoo-python
+#: code:addons/pyper_map/models/res_config_settings.py:0
+#, python-format
+msgid "The token input is not valid"
+msgstr "Le jeton saisi n'est pas valide"
+
+#. module: pyper_map
+#. odoo-python
+#: code:addons/pyper_map/models/res_config_settings.py:0
+#, python-format
+msgid "This referer is not authorized"
+msgstr "Ce référent n'est pas autorisé"
+
+#. module: pyper_map
+#. odoo-javascript
+#: code:addons/pyper_map/static/src/views/map/map_controller.js:0
+#, python-format
+msgid "Untitled"
+msgstr "Sans titre"
+
+#. module: pyper_map
+#: model:ir.model,name:pyper_map.model_ir_ui_view
+msgid "View"
+msgstr "Vue"
+
+#. module: pyper_map
+#: model:ir.model.fields,field_description:pyper_map.field_ir_actions_act_window_view__view_mode
+#: model:ir.model.fields,field_description:pyper_map.field_ir_ui_view__type
+msgid "View Type"
+msgstr "Type de vue"
+
+#. module: pyper_map
+#. odoo-python
+#: code:addons/pyper_map/models/models.py:0
+#, python-format
+msgid "You need to set a Contact field on this model to use the Map View"
+msgstr ""
+"Vous devez définir un champ Contact sur ce modèle pour utiliser la vue Carte"
