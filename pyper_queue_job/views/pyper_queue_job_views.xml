@@ -135,24 +135,24 @@
     <record id="pyper_queue_job_simple_tree" model="ir.ui.view">
         <field name="name">pyper.queue.job.tree.simple</field>
         <field name="model">pyper.queue.job</field>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="arch" type="xml">
-            <tree create="False" export_xlsx="0" decoration-warning="state in ['stopped']" decoration-danger="state in ['failed']">
+            <list create="False" export_xlsx="0" decoration-warning="state in ['stopped']" decoration-danger="state in ['failed']">
                 <field name="name"/>
                 <field name="state" widget="badge" decoration-warning="state in ['stopped']" decoration-danger="state in ['failed']"/>
                 <field name="date_enqueued" optional="hide"/>
                 <field name="date_started" optional="hide"/>
                 <field name="company_id" optional="hide"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="pyper_queue_job_tree" model="ir.ui.view">
         <field name="name">pyper.queue.job.tree</field>
         <field name="model">pyper.queue.job</field>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="arch" type="xml">
-            <tree create="False">
+            <list create="False">
                 <field name="hide_advanced_context" column_invisible="True"/>
                 <field name="name"/>
                 <field name="date_created" optional="hide"/>
@@ -177,7 +177,7 @@
                 <field name="log_warning_count" optional="hide"/>
                 <field name="log_error_count" optional="hide"/>
                 <field name="state" widget="badge"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -216,19 +216,19 @@
         <field name="name">Queue Jobs</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">pyper.queue.job</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="pyper_queue_job_action_simple" model="ir.actions.act_window">
         <field name="name">Queue Jobs</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">pyper.queue.job</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('user_id', '=', uid), ('state', 'not in', ['done', 'cancelled'])]</field>
         <field name="target">main</field>
         <field name="view_ids" eval="[
             Command.clear(),
-            Command.create({'view_mode': 'tree', 'view_id': ref('pyper_queue_job_simple_tree')})
+            Command.create({'view_mode': 'list', 'view_id': ref('pyper_queue_job_simple_tree')})
         ]"/>
     </record>
 

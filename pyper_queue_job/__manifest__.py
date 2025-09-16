@@ -6,7 +6,7 @@
     'category': 'Hidden/Tools',
     'license': 'LGPL-3',
     'description': 'Base to create and manage queue jobs.',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
