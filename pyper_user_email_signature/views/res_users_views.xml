@@ -9,11 +9,11 @@
             <xpath expr="//notebook/page[@name='preferences_page']" position="after">
                 <page string="Additional email signatures" name="additional_email_signatures_page">
                     <field name="additional_email_signatures">
-                        <tree>
+                        <list>
                             <field name="name"/>
                             <field name="email" widget="email"/>
                             <field name="signature"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>
