@@ -2,6 +2,7 @@
 # LGPL-3 License (see LICENSE file).
 
 from odoo import api, fields, models
+from odoo.tools import SQL
 
 
 class AccountInvoiceReport(models.Model):
@@ -21,12 +22,16 @@ class AccountInvoiceReport(models.Model):
 
     @api.model
     def _select(self):
-        return super()._select() + ''',
-                move.date_range_fy_id
-        '''
+        return SQL(
+            '%s %s',
+            super()._select(),
+            SQL(", move.date_range_fy_id")
+        )
 
     @api.model
     def _from(self):
-        return super()._from() + '''
-                LEFT JOIN account_fiscal_year fiscal_year ON fiscal_year.id = move.date_range_fy_id
-        '''
+        return SQL(
+            '%s %s',
+            super()._from(),
+            SQL('LEFT JOIN account_fiscal_year fiscal_year ON fiscal_year.id = move.date_range_fy_id')
+        )
