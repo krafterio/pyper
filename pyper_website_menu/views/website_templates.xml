@@ -4,7 +4,7 @@
 <template id="submenu" inherit_id="website.submenu">
     <xpath expr="//li[1]" position="after">
         <li t-elif="show_dropdown and submenu.is_structured_menu" t-attf-class="#{item_class or ''} dropdown #{submenu.is_structured_menu and 'position-static'}">
-            <a t-attf-class="#{link_class or ''} dropdown-toggle #{submenu._is_active() and 'active'} #{dropdown_toggler_classes}"
+            <a t-attf-class="#{link_class or ''} dropdown-toggle o-dropdown #{submenu._is_active() and 'active'} #{dropdown_toggler_classes}"
                data-bs-toggle="dropdown"
                data-bs-display="static"
                href="#"

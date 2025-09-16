@@ -25,7 +25,7 @@
         <field name="model">website.menu</field>
         <field name="inherit_id" ref="website.menu_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//tree//field[@name='is_mega_menu']" position="after">
+            <xpath expr="//list//field[@name='is_mega_menu']" position="after">
                 <field name="is_structured_menu"/>
             </xpath>
         </field>

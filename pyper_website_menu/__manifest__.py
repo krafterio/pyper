@@ -5,7 +5,7 @@
     'category': 'Hidden/Tools',
     'license': 'LGPL-3',
     'description': 'Use menu items to build structured mega menu for website',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'installable': True,
     'application': False,
