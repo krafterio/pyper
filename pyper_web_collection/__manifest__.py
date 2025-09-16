@@ -5,7 +5,7 @@
     'category': 'Hidden/Tools',
     'license': 'LGPL-3',
     'description': 'Link records in collections',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'website': 'https://krafter.io',
     'maintainer': [
