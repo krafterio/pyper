@@ -15,6 +15,7 @@ import {templates} from '@web/core/assets';
 import {formatDateTime, serializeDateTime, serializeDate} from '@web/core/l10n/dates';
 import {localization} from '@web/core/l10n/localization';
 import {_t} from '@web/core/l10n/translation';
+import {user} from '@web/core/user';
 import {usePopover} from '@web/core/popover/popover_hook';
 import {useService} from '@web/core/utils/hooks';
 import {debounce} from '@web/core/utils/timing';
@@ -561,7 +562,7 @@ export class TimelineRenderer extends Component {
                     luxon,
                     label: item?.content,
                     record: item?.record ? getFormattedRecord(item.record) : {},
-                    user_context: this.env.services.user.context,
+                    user_context: user.context,
                     groupByModel: item?.groupByModel,
                     groupByField: item?.groupByField,
                 });

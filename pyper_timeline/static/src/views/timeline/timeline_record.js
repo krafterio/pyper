@@ -2,6 +2,7 @@
 
 import {Component} from '@odoo/owl';
 import {url} from '@web/core/utils/urls';
+import {user} from '@web/core/user';
 import {Field} from '@web/views/fields/field';
 import {fileTypeMagicWordMap, imageCacheKey} from '@web/views/fields/image/image_field';
 import {Widget} from '@web/views/widgets/widget';
@@ -108,7 +109,7 @@ export class TimelineRecord extends Component {
             luxon,
             label: this.props.label,
             record: this.props.record,
-            user_context: this.constructor.env.services.user.context,
+            user_context: user.context,
             __comp__: Object.assign(Object.create(this), {this: this}),
         }
     }

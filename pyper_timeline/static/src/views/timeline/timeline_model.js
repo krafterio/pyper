@@ -3,6 +3,7 @@
 import {_t} from '@web/core/l10n/translation';
 import {deserializeDate, deserializeDateTime, serializeDateTime} from '@web/core/l10n/dates';
 import {localization} from '@web/core/l10n/localization';
+import {user} from '@web/core/user';
 import {KeepLast, Mutex} from '@web/core/utils/concurrency';
 import {Model} from '@web/model/model';
 import {extractFieldsFromArchInfo} from '@web/model/relational_model/utils';
@@ -15,10 +16,9 @@ const {DateTime} = luxon;
 export const EMPTY_GROUP_ID = -1;
 
 export class TimelineModel extends Model {
-    static services = ['user', 'field'];
+    static services = ['field'];
 
     setup(params, services) {
-        this.user = services.user;
         this.field = services.field;
         this.keepLast = new KeepLast();
         this.mutex = new Mutex();
@@ -280,7 +280,7 @@ export class TimelineModel extends Model {
             res = [await this.orm.searchRead(this.meta.resModel, domain, readFieldNames, {
                 order: orderByToString(this.meta.orderBy || this.archInfo.defaultOrderBy || []),
                 limit: this.archInfo.limit,
-                context: {...this.user.context},
+                context: {...user.context},
             })];
         } else {
             // Search items with groups
@@ -288,7 +288,7 @@ export class TimelineModel extends Model {
 
             const groupRes = await this.orm.readGroup(this.meta.resModel, domain, readFieldNames, [groupByField], {
                 limit: this.archInfo.limit,
-                context: {...this.user.context},
+                context: {...user.context},
             });
             const allPromises = [];
 
@@ -298,7 +298,7 @@ export class TimelineModel extends Model {
                     this.orm.searchRead(this.meta.resModel, groupRes[i].__domain, readFieldNames, {
                         order: orderByToString(this.meta.orderBy || this.archInfo.defaultOrderBy || []),
                         limit: this.archInfo.limit,
-                        context: {...this.user.context},
+                        context: {...user.context},
                     }).then(result => {
                         resolve(result);
                     }).catch((e) => reject(e));
@@ -483,7 +483,7 @@ export class TimelineModel extends Model {
             const groupRes = await this.orm.searchRead(groupByModel, groupDomain, groupByFieldNames || ['display_name'], {
                 order: orderByToString(this.archInfo.groupOrderBy[groupByField] || []),
                 limit: undefined,
-                context: {...this.user.context},
+                context: {...user.context},
             });
             let groupOrder = 1;
 
