@@ -7,7 +7,7 @@
     'license': 'LGPL-3',
     'description': 'Add extra partner administrative fields',
     'summary': 'Add extra partner administrative fields',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
