@@ -7,11 +7,12 @@
             <attribute name="class" separator=" " remove="pe-2"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o_cp_action_menus')]//Dropdown[1]" position="attributes">
-            <attribute name="togglerClass">'btn btn-secondary px-2'</attribute>
+        <xpath expr="//div[hasclass('o_cp_action_menus')]//Dropdown[1]/button" position="attributes">
+            <attribute name="class">btn btn-secondary px-2</attribute>
+            <attribute name="t-att-class"></attribute>
         </xpath>
 
-        <xpath expr="//button[hasclass('btn')]/i" position="attributes">
+        <xpath expr="//div[hasclass('o_cp_action_menus')]//Dropdown[1]/button/i" position="attributes">
             <attribute name="class" separator=" " remove="fa fa-cog" add="fa fa-ellipsis-v fa-fw"/>
         </xpath>
     </t>
