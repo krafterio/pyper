@@ -1,8 +1,9 @@
 /** @odoo-module */
 
-import {Chatter} from '@mail/core/web/chatter';
+import {Chatter} from '@mail/chatter/web_portal/chatter';
 import {patch} from '@web/core/utils/patch';
 import {_t} from '@web/core/l10n/translation';
+import {rpc} from '@web/core/network/rpc';
 
 patch(Chatter.prototype, {
     get thread() {
@@ -28,7 +29,7 @@ patch(Chatter.prototype, {
                     recipient.defaultCreateValues || {};
             });
 
-            const partners = await this.rpc('/mail/partner/from_email', {
+            const partners = await rpc('/mail/partner/from_email', {
                 emails: recipientEmails,
                 additional_values: recipientAdditionalValues,
             });

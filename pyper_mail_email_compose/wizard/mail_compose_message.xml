@@ -4,11 +4,6 @@
         <field name="model">mail.compose.message</field>
         <field name="inherit_id" ref="mail.email_compose_message_wizard_form" />
         <field name="arch" type="xml">
-            <xpath expr="//span[@name='document_followers_text']" position="attributes">
-                <attribute name="invisible" separator=" " add=" or context.get('mail_email_compose', False)"/>
-                <attribute name="required">context.get('mail_email_compose', False)</attribute>
-            </xpath>
-
             <xpath expr="//field[@name='partner_ids']" position="attributes">
                 <attribute name="required">context.get('mail_email_compose', False)</attribute>
             </xpath>
