@@ -6,7 +6,7 @@
     'category': 'Hidden',
     'license': 'LGPL-3',
     'description': 'Maintenance mode for all frontend features like website, portal and eCommerce',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
