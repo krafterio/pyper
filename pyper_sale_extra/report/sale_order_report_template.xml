@@ -5,7 +5,7 @@
             <strong>Period of validity:</strong>
         </xpath>
 
-        <xpath expr="//div[@name='expiration_date']/span[@t-field='doc.validity_date']" position="replace">
+        <xpath expr="//div[@name='expiration_date']/div[@t-field='doc.validity_date']" position="replace">
             <span class="m-0">
                 <span t-field="doc.validity_days"/>
                 <span class="ms-1">days</span>

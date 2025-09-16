@@ -33,7 +33,7 @@
                 </group>
             </xpath>
 
-            <xpath expr="//page[@name='optional_products']//field[@name='sale_order_option_ids']/tree/field[@name='discount']" position="after">
+            <xpath expr="//page[@name='optional_products']//field[@name='sale_order_option_ids']/list/field[@name='discount']" position="after">
                 <field name="tax_id" widget="many2many_tags" optional="show"/>
                 <field name="currency_id" column_invisible="True"/>
                 <field name="price_subtotal" optional="hide"/>
