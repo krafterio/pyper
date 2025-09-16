@@ -34,18 +34,14 @@ class IapAccount(models.Model):
         related=None,
     )
 
-    @api.depends('account_info_id', 'account_info_id.warning_threshold', 'provider_warning_threshold')
+    @api.depends('warning_threshold', 'provider_warning_threshold')
     def _compute_warning_threshold(self):
         for account in self:
-            if account.account_info_id:
-                account.warning_threshold = account.account_info_id.warning_threshold
-            else:
-                account.warning_threshold = account.provider_warning_threshold
+            account.warning_threshold = account.provider_warning_threshold
 
     def _inverse_warning_threshold(self):
         for account in self:
-            if account.account_info_id:
-                account.account_info_id.warning_threshold = account.warning_threshold
+            account.warning_threshold = account.warning_threshold
 
     def _reset_account_provider_info(self):
         super()._reset_account_provider_info()
