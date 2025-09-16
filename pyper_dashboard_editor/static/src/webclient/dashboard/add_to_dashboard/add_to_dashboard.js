@@ -6,6 +6,8 @@ import {Dropdown} from '@web/core/dropdown/dropdown';
 import {registry} from '@web/core/registry';
 import {useAutofocus, useService} from '@web/core/utils/hooks';
 import {Component, onWillStart, useState} from '@odoo/owl';
+import {rpc} from "@web/core/network/rpc";
+import { user } from "@web/core/user";
 
 const cogMenuRegistry = registry.category('cogMenu');
 
@@ -36,9 +38,7 @@ export class AddToDashboard extends Component {
 
     setup() {
         this.notification = useService('notification');
-        this.rpc = useService('rpc');
         this.orm = useService('orm');
-        this.user = useService('user');
         this.state = useState({
             name: this.env.config.getDisplayName(),
             boards: [],
@@ -50,7 +50,7 @@ export class AddToDashboard extends Component {
         onWillStart(async () => {
             const boardDomain = [['is_editable', '=', true]];
 
-            if (await this.user.hasGroup('pyper_dashboard.group_dashboard_admin')) {
+            if (await user.hasGroup('pyper_dashboard.group_dashboard_admin')) {
                 const boards = await this.orm.searchRead('dashboard.dashboard', boardDomain, ['id', 'full_name', 'category_id'], {
                     'order': 'category_sequence asc, sequence asc',
                 });
@@ -111,7 +111,7 @@ export class AddToDashboard extends Component {
             contextToSave.comparison = comparison;
         }
 
-        const result = await this.rpc('/dashboard/add_to_dashboard', {
+        const result = await rpc('/dashboard/add_to_dashboard', {
             action_id: this.env.config.actionId || false,
             context_to_save: contextToSave,
             domain,
@@ -151,7 +151,7 @@ export const addToDashboardItem = {
     Component: AddToDashboard,
     groupNumber: 20,
     isDisplayed: async (env) => {
-        if (!await env.services.user.hasGroup('pyper_dashboard.group_dashboard_user')) {
+        if (!await user.hasGroup('pyper_dashboard.group_dashboard_user')) {
             return false;
         }
 

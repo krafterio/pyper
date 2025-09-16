@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="pyper_dashboard_editor.AddToDashboard">
-        <Dropdown class="'pyper_dashboard--add-to-dashboard'">
-            <t t-set-slot="toggler">
+        <Dropdown>
+            <button class="pyper_dashboard--add-to-dashboard">
                 <t t-call="pyper_dashboard_editor.AddToDashboard.Icon"/>
                 Dashboards
-            </t>
-
-            <t t-foreach="boards" t-as="board" t-key="board.id">
-                <Dropdown>
-                    <t t-set-slot="toggler">
-                        <t t-out="board.name"/>
-                    </t>
-
-                    <t t-call="pyper_dashboard_editor.AddToDashboard.Card">
-                        <t t-set="boardId" t-value="board.id"/>
-                    </t>
-                </Dropdown>
+            </button>
+            <t t-set-slot="content">
+                <t t-foreach="boards" t-as="board" t-key="board.id">
+                    <Dropdown>
+                        <button>
+                            <t t-out="board.name"/>
+                        </button>
+                        <t t-set-slot="content">
+                            <t t-call="pyper_dashboard_editor.AddToDashboard.Card">
+                                <t t-set="boardId" t-value="board.id"/>
+                            </t>
+                        </t>
+                    </Dropdown>
+                </t>
             </t>
         </Dropdown>
     </t>

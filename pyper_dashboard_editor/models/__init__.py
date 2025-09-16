@@ -3,3 +3,4 @@
 
 from . import dashboard_board
 from . import dashboard_dashboard
+from . import ir_ui_view_custom
