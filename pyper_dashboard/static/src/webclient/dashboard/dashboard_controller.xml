@@ -22,12 +22,12 @@
             </div>
 
             <div class="flex-grow-1 ps-2" t-if="dashboard.useSwitcher and boards.length > 1">
-                <Dropdown togglerClass="'btn btn-outline-secondary px-2'">
-                    <t t-set-slot="toggler">
+                <Dropdown>
+                  <button class="btn btn-outline-secondary px-2 py-1">
                         <i class="fa fa-fw fa-chevron-down" aria-label="Dashboard switcher" role="img" title="Dashboard switcher"/>
-                    </t>
-
-                    <t t-foreach="categoryBoards" t-as="category" t-key="category.id">
+                  </button>
+                    <t t-set-slot="content">
+                      <t t-foreach="categoryBoards" t-as="category" t-key="category.id">
                         <hr class="dropdown-divider"/>
                         <div class="dropdown-header" t-out="category.name" t-if="category.name"/>
 
@@ -37,23 +37,22 @@
                             </DropdownItem>
                         </t>
                     </t>
+                  </t>
                 </Dropdown>
             </div>
 
             <div>
-                <Dropdown
-                    togglerClass="'btn btn-outline-secondary'"
-                    t-if="filteredOptionsItems.length > 0"
-                >
-                    <t t-set-slot="toggler">
+                <Dropdown t-if="filteredOptionsItems.length > 0">
+                    <button class="btn btn-outline-secondary py-1" >
                         <i class="fa fa-fw fa-ellipsis-v" aria-label="Options" role="img" title="Options"/>
-                    </t>
-
-                    <t t-foreach="filteredOptionsItems" t-as="item" t-key="item.id">
-                        <DropdownItem onSelected="item.onSelected">
-                            <i t-attf-class="item.icon"></i>
-                            <t t-out="item.label"/>
-                        </DropdownItem>
+                    </button>
+                    <t t-set-slot="content">
+                        <t t-foreach="filteredOptionsItems" t-as="item" t-key="item.id">
+                            <DropdownItem onSelected="item.onSelected">
+                                <i t-attf-class="item.icon"></i>
+                                <t t-out="item.label"/>
+                            </DropdownItem>
+                        </t>
                     </t>
                 </Dropdown>
             </div>

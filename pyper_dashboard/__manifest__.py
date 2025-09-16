@@ -36,7 +36,14 @@
 
         'web.assets_backend': [
             'pyper_dashboard/static/src/views/**/*',
+            ('remove', 'pyper_dashboard/static/src/views/graph/**'),
+            ('remove', 'pyper_dashboard/static/src/views/pivot/**'),
+
             'pyper_dashboard/static/src/webclient/**/*',
+        ],
+        'web.assets_backend_lazy': [
+            'pyper_dashboard/static/src/views/graph/**',
+            'pyper_dashboard/static/src/views/pivot/**',
         ],
     },
 }

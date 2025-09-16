@@ -5,9 +5,11 @@ import {Dropdown} from '@web/core/dropdown/dropdown';
 import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {_t} from '@web/core/l10n/translation';
 import {useService} from '@web/core/utils/hooks';
+import {router} from '@web/core/browser/router';
 import {standardViewProps} from '@web/views/standard_view_props';
 import {Component, onWillStart, useState} from '@odoo/owl';
 import {View} from '@web/views/view';
+import {user} from '@web/core/user';
 import {DashboardAction} from './dashboard_action';
 import {DashboardArchParser} from './dashboard_arch_parser';
 import {DashboardColumn} from './dashboard_column';
@@ -32,10 +34,7 @@ export class DashboardController extends Component {
 
     setup() {
         this.dashboard = useState({});
-        this.rpc = useService('rpc');
         this.orm = useService('orm');
-        this.router = useService('router');
-        this.user = useService('user');
         this.actionService = useService('action');
         this.dialogService = useService('dialog');
         this.state = useState({
@@ -55,11 +54,11 @@ export class DashboardController extends Component {
                 });
                 this.state.boards.length = 0;
                 this.state.boards.push(...orderDashboards(boards));
-                this.selectBoard(this.router?.current?.hash?.board || null);
+                this.selectBoard(router?.current?.hash?.board || null);
             }
 
             if ('dashboard.dashboard' === this.props.resModel) {
-                this.state.isAdmin = await this.user.hasGroup('pyper_dashboard.group_dashboard_admin');
+                this.state.isAdmin = await user.hasGroup('pyper_dashboard.group_dashboard_admin');
             }
         });
     }
@@ -145,7 +144,7 @@ export class DashboardController extends Component {
 
         if (this.dashboard.useSwitcher && this.state.selectedBoard?.id) {
             browser.setTimeout(() => {
-                this.router.replaceState({board: this.state.selectedBoard.id});
+                router.replaceState({board: this.state.selectedBoard.id});
             }, 200); // history.pushState is a little async
         }
     }

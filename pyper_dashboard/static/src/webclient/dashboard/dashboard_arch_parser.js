@@ -4,7 +4,8 @@ import {makeContext} from '@web/core/context';
 import {Domain} from '@web/core/domain';
 import {visitXML} from '@web/core/utils/xml';
 import {_t} from '@web/core/l10n/translation';
-import {archParseBoolean, getActiveActions} from '@web/views/utils';
+import {getActiveActions} from '@web/views/utils';
+import {exprToBoolean} from '@web/core/utils/strings';
 
 export class DashboardArchParserError extends Error {}
 
@@ -36,7 +37,7 @@ export class DashboardArchParser {
                 case 'dashboard':
                     hasDashboard = true;
                     archInfo.title = node.getAttribute('string') || archInfo.title;
-                    archInfo.useSwitcher = archParseBoolean(node.getAttribute('switcher'), true);
+                    archInfo.useSwitcher = exprToBoolean(node.getAttribute('switcher'), true);
                     archInfo.activeActions = getActiveActions(node);
                     break;
                 case 'section':
@@ -91,7 +92,7 @@ export class DashboardArchParser {
 export const createSection = function(node) {
     return createSectionData(
         node.getAttribute('layout') || '1',
-        archParseBoolean(node.getAttribute('layout_editable'), true),
+        exprToBoolean(node.getAttribute('layout_editable'), true),
         node.getAttribute('string') || undefined,
     );
 }
@@ -146,11 +147,11 @@ export const createAction = function(id, node) {
     const action = {
         id,
         actionId,
-        title: node.getAttribute('string') || undefined,
+        title: node.getAttribute('string'),
         viewMode: node.getAttribute('view_mode'),
         context: {},
         domain: [],
-        isFolded: archParseBoolean(node.getAttribute('fold')),
+        isFolded: exprToBoolean(node.getAttribute('fold')),
     };
 
     if (node.hasAttribute('context')) {

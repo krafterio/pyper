@@ -26,7 +26,7 @@
         <field name="name">dashboard.dashboard.tree</field>
         <field name="model">dashboard.dashboard</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="category_id"/>
@@ -34,7 +34,7 @@
                 <field name="full_name" optional="hide"/>
                 <field name="view_id" optional="hide"/>
                 <button name="action_dashboard_debug_view" type="object" title="Settings" icon="fa-bug fa-lg" groups="base.group_no_one"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -88,7 +88,7 @@
         <field name="name">Dashboards</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">dashboard.dashboard</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_dashboard_dashboard_search"/>
     </record>
 </odoo>

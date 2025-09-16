@@ -4,6 +4,8 @@ import {Component, onWillStart} from '@odoo/owl';
 import {useService} from '@web/core/utils/hooks';
 import {makeContext} from '@web/core/context';
 import {View} from '@web/views/view';
+import {rpc} from '@web/core/network/rpc';
+import {user} from '@web/core/user';
 
 export class DashboardAction extends Component {
     static template = 'pyper_dashboard.DashboardAction';
@@ -45,8 +47,6 @@ export class DashboardAction extends Component {
     static cache = {};
 
     setup() {
-        const rpc = useService('rpc');
-        const userService = useService('user');
         this.actionService = useService('action');
         this.formViewId = false;
         this.isValid = true;
@@ -99,7 +99,7 @@ export class DashboardAction extends Component {
             if (this.props.context) {
                 this.viewProps.context = makeContext([
                     this.props.context,
-                    {lang: userService.context.lang},
+                    {lang: user.context.lang},
                 ]);
 
                 if ('group_by' in this.viewProps.context) {
