@@ -7,7 +7,7 @@
     'license': 'LGPL-3',
     'description': 'Add fields dedicated to LinkedIn in partners',
     'summary': 'Add fields dedicated to LinkedIn in partners',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
