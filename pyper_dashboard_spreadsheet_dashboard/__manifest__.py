@@ -6,7 +6,7 @@
     'category': 'Productivity',
     'license': 'LGPL-3',
     'description': 'Make compatible Spreadsheet Dashboard with Pyper Dashboard',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',

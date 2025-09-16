@@ -6,7 +6,7 @@ from pathlib import Path
 
 from odoo import api, fields, models, Command
 from odoo.modules import get_module_path
-from odoo.tools import TranslationImporter
+from odoo.tools.translate import TranslationImporter
 
 
 class ResConfigSettings(models.TransientModel):
