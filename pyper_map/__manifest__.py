@@ -6,7 +6,7 @@
     'category': 'Tools',
     'license': 'LGPL-3',
     'description': 'Map component to create views with map',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
