@@ -12,7 +12,7 @@ Pyper AWS SES
 
 Allow to retrieve inbound emails from AWS SES (Simple Email Service) stored in AWS S3.
     """,
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
