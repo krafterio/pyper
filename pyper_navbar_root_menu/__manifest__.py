@@ -6,7 +6,7 @@
     'category': 'Hidden/Tools',
     'license': 'LGPL-3',
     'description': 'Extend Web Interface with Root Menu in main navbar.',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
