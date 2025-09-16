@@ -3,7 +3,7 @@
 
     <t t-name="pyper_overlay_menu.OverlayMenuToggler">
         <div t-att-class="classes">
-            <button class="dropdown-toggle"
+            <button class="dropdown-toggle o-dropdown"
                     title="Toggle Overlay Menu"
                     data-hotkey="a"
                     tabindex="0"

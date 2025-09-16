@@ -64,7 +64,7 @@
 
                 <img t-elif="menu.webIconData"
                     class="o_overlay_menu--item-icon"
-                    t-attf-src="data:image/jpeg;base64, {{menu.webIconData}}"
+                     t-att-src="menu.webIconData"
                 />
 
                 <div t-else="withIcon" class="o_overlay_menu--item-icon-empty">
