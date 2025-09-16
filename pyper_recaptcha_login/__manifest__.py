@@ -6,7 +6,7 @@
     'category': 'Hidden',
     'license': 'LGPL-3',
     'description': 'Securing login page with Google reCAPTCHA',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
