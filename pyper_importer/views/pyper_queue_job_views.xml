@@ -39,7 +39,7 @@
     <record id="pyper_queue_job_tree" model="ir.ui.view">
         <field name="name">pyper.queue.job.tree.inherit</field>
         <field name="model">pyper.queue.job</field>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="inherit_id" ref="pyper_queue_job.pyper_queue_job_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='log_success_count']" position="after">

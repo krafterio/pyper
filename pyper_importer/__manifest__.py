@@ -6,7 +6,7 @@
     'category': 'Hidden/Tools',
     'license': 'LGPL-3',
     'description': 'Base to create and manage import from external service.',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',

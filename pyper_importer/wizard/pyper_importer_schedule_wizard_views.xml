@@ -43,9 +43,9 @@
                 </group>
 
                 <field name="importer_provider_ids" readonly="True" invisible="importer_provider_count == 1">
-                    <tree create="False" edit="False">
+                    <list create="False" edit="False">
                         <field name="name"/>
-                    </tree>
+                    </list>
                 </field>
 
                 <footer>

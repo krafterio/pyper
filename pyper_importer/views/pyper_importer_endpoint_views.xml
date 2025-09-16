@@ -48,14 +48,14 @@
     <record id="pyper_importer_endpoint_tree" model="ir.ui.view">
         <field name="name">pyper.importer.endpoint.tree</field>
         <field name="model">pyper.importer.endpoint</field>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="endpoint_base_url"/>
                 <field name="auth_type"/>
                 <field name="auth_username" optional="hide"/>
                 <field name="default_batch_size" optional="hide"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -81,7 +81,7 @@
         <field name="name">Importer Endpoints</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">pyper.importer.endpoint</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem

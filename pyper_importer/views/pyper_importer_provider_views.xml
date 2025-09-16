@@ -57,16 +57,16 @@
     <record id="pyper_importer_provider_tree" model="ir.ui.view">
         <field name="name">pyper.importer.provider.tree</field>
         <field name="model">pyper.importer.provider</field>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="allow_update" optional="show"/>
                 <field name="class_name" optional="hide"/>
                 <field name="module_name" optional="hide"/>
                 <field name="default_company_ids" widget="many2many_tags" optional="hide" groups="base.group_multi_company"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -74,7 +74,7 @@
         <field name="name">Importer Providers</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">pyper.importer.provider</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem
