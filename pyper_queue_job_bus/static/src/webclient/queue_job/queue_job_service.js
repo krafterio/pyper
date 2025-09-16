@@ -2,12 +2,12 @@
 
 import {reactive} from '@odoo/owl';
 import {registry} from '@web/core/registry';
+import {user} from '@web/core/user';
 
 export class QueueJobState {
-    constructor(busService, orm, user) {
+    constructor(busService, orm) {
         this.bus = busService;
         this.orm = orm;
-        this.user = user;
     }
 
     setup() {
@@ -25,16 +25,16 @@ export class QueueJobState {
 
     async _onUpdated() {
         this.state.counter = await this.orm.searchCount('pyper.queue.job', [
-            ['user_id', '=', this.user.userId],
+            ['user_id', '=', user.userId],
             ['state', 'not in', ['done', 'cancelled']],
         ]);
     }
 }
 
 export const queueJobService = {
-    dependencies: ['bus_service', 'orm', 'user'],
-    start(env, {bus_service, orm, user}) {
-        const queueJobState = reactive(new QueueJobState(bus_service, orm, user));
+    dependencies: ['bus_service', 'orm'],
+    start(env, {bus_service, orm}) {
+        const queueJobState = reactive(new QueueJobState(bus_service, orm));
         queueJobState.setup();
 
         return queueJobState;
