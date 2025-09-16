@@ -11,12 +11,12 @@
 
             <xpath expr="//page[@name='fields']//form//page[@name='groups']/field[@name='groups']" position="after">
                 <field name="access_ids">
-                    <tree create="False" edit="False" delete="False">
+                    <list create="False" edit="False" delete="False">
                         <field name="group_id" width="100"/>
                         <field name="perm_read" width="100"/>
                         <field name="perm_write" width="100"/>
                         <field name="perm_invisible" width="100"/>
-                    </tree>
+                    </list>
                 </field>
             </xpath>
         </field>

@@ -27,14 +27,14 @@
         <field name="name">ir.model.fields.access.tree</field>
         <field name="model">ir.model.fields.access</field>
         <field name="arch" type="xml">
-            <tree string="Field Access Rights" editable="bottom">
+            <list string="Field Access Rights" editable="bottom">
                 <field name="field_id" options="{'no_create':True}"/>
                 <field name="model_id"/>
                 <field name="group_id" options="{'no_create':True}"/>
                 <field name="perm_read" width="100px"/>
                 <field name="perm_write" width="100px"/>
                 <field name="perm_invisible" width="100px"/>
-            </tree>
+            </list>
         </field>
     </record>
 
