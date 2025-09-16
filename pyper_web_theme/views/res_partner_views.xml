@@ -14,7 +14,7 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='child_ids']//div[hasclass('oe_kanban_details')]" position="inside">
+            <xpath expr="//field[@name='child_ids']//kanban//main" position="inside">
                 <div class="d-flex justify-content-end">
                     <button class="btn btn-sm btn-outline-secondary"
                             type="object"
