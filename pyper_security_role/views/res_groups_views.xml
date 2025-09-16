@@ -5,9 +5,9 @@
         <field name="name">res.groups.tree</field>
         <field name="model">res.groups</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="full_name"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -15,7 +15,7 @@
         <field name="domain">[('is_role', '=', False)]</field>
         <field name="view_ids" eval="[
             Command.clear(),
-            Command.create({'view_mode': 'tree', 'view_id': ref('view_groups_tree')}),
+            Command.create({'view_mode': 'list', 'view_id': ref('view_groups_tree')}),
         ]"/>
     </record>
 
@@ -24,9 +24,9 @@
         <field name="name">res.groups.security.role.tree</field>
         <field name="model">res.groups</field>
         <field name="arch" type="xml">
-            <tree string="Roles">
+            <list string="Roles">
                 <field name="name"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -135,7 +135,7 @@
         <field name="search_view_id" ref="view_security_role_search"/>
         <field name="view_ids" eval="[
             Command.clear(),
-            Command.create({'view_mode': 'tree', 'view_id': ref('view_security_role_tree')}),
+            Command.create({'view_mode': 'list', 'view_id': ref('view_security_role_tree')}),
             Command.create({'view_mode': 'form', 'view_id': ref('view_security_role_form')}),
         ]"/>
         <field name="help">A role is a set of security groups that will be assigned to the user in order to give them access and rights to specific applications and tasks in the system. You can create custom roles or edit the ones existing by default in order to customize the view of the menu that users will be able to see.</field>

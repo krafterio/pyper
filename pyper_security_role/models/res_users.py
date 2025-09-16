@@ -87,8 +87,8 @@ class ResUsers(models.Model):
     def action_show_groups(self):
         action = super().action_show_groups()
         tree_view_id = self.env.ref('pyper_security_role.view_groups_tree').id
-        action['views'] = [(tree_view_id, 'tree')] + [
-            view for view in action.get('views', []) if view[1] != 'tree'
+        action['views'] = [(tree_view_id, 'list')] + [
+            view for view in action.get('views', []) if view[1] != 'list'
         ]
 
         return action

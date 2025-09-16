@@ -6,7 +6,7 @@
     'category': 'Technical',
     'license': 'LGPL-3',
     'description': 'Allow to add security role included security groups on user.',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
