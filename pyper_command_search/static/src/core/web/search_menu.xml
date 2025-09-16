@@ -5,7 +5,7 @@
     <div class="o-dropdown dropdown o-dropdown--no-caret o-command-search-SearchSystray-class">
         <button
             type="button"
-            class="dropdown-toggle"
+            class="dropdown-toggle o-dropdown"
             tabindex="0"
             aria-expanded="false"
             t-on-click="() => this.onClick()"
