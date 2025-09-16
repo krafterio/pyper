@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Pyper l10n_Fr',
     'category': 'Sales/CRM',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Add fields dedicated to French market',
     'summary': 'Add fields dedicated to French market',
     'version': '1.0',

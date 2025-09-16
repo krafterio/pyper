@@ -1,9 +1,9 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 {
     'name': 'Mail Note',
     'category': 'Hidden/Tools',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Display the note button in chatter',
     'version': '1.0',
     'author': 'Krafter SAS',

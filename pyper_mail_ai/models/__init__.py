@@ -1,5 +1,5 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 from . import mail_template
 from . import mail_template_ai_config

@@ -1,9 +1,9 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 {
     'name': 'Website Menu',
     'category': 'Hidden/Tools',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Use menu items to build structured mega menu for website',
     'version': '1.0',
     'author': 'Krafter SAS',

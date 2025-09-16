@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Map',
     'category': 'Tools',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Map component to create views with map',
     'version': '1.0',
     'author': 'Krafter SAS',

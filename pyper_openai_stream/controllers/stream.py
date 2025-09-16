@@ -1,5 +1,5 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 from openai import OpenAI, APIError
 from werkzeug.exceptions import BadRequest, NotFound

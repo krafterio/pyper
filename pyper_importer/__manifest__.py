@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Importer',
     'category': 'Hidden/Tools',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Base to create and manage import from external service.',
     'version': '1.0',
     'author': 'Krafter SAS',

@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Website Maintenance',
     'category': 'Hidden',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Maintenance mode for all frontend features like website, portal and eCommerce',
     'version': '1.0',
     'author': 'Krafter SAS',

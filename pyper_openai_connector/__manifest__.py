@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Open AI Connector',
     'category': 'Hidden/Tools',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Add ability to use Open AI API',
     'summary': 'Add ability to use Open AI API',
     'version': '1.0',

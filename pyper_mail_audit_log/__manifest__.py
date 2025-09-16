@@ -1,9 +1,9 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 {
     'name': 'Mail Audit Log',
     'category': 'Hidden/Tools',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Hide tracking values in mail chatter',
     'version': '1.0',
     'author': 'Krafter SAS',

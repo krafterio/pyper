@@ -7,7 +7,7 @@ Pyper is a **set of reusable Odoo Addons** dedicated to build **Business Applica
 License
 -------
 
-Pyper is released under the [Proprietary License][1].
+Pyper is released under the [LGPL-3 License][1].
 
 About
 -----

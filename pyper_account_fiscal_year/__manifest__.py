@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Account Fiscal Year',
     'category': 'Accounting/Accounting',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Add Fiscal Year for Community Edition.',
     'version': '1.0',
     'author': 'Krafter SAS',

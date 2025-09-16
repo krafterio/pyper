@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Drawer User',
     'category': 'Tools',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Move user menu in drawer.',
     'version': '1.0',
     'author': 'Krafter SAS',

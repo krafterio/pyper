@@ -1,9 +1,9 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 {
     'name': 'Web Theme Overlay Menu',
     'category': 'Hidden/Tools',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Make compatible Overlay Menu with Pyper Web Theme',
     'version': '1.0',
     'author': 'Krafter SAS',

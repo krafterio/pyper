@@ -1,11 +1,11 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Pyper',
     'category': 'Hidden/Tools',
-    'license': 'Other proprietary',
-    'description': 'Pyper addons superset to build .',
+    'license': 'LGPL-3',
+    'description': 'Base of Pyper addons.',
     'version': '1.0',
     'author': 'Krafter SAS',
     'maintainer': [

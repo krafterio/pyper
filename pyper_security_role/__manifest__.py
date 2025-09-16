@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Security Role',
     'category': 'Technical',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Allow to add security role included security groups on user.',
     'version': '1.0',
     'author': 'Krafter SAS',

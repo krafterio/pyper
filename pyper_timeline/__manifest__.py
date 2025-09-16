@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Timeline',
     'category': 'Tools',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Timeline component to create views with timeline chart',
     'version': '1.0',
     'author': 'Krafter SAS',

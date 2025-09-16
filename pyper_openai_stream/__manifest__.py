@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Open AI Stream',
     'category': 'Technical',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Base to send message to Open AI and receive a stream in live.',
     'version': '1.0',
     'author': 'Krafter SAS',

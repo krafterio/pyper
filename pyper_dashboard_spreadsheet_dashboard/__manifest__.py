@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Dashboard Spreadsheet Integration',
     'category': 'Productivity',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Make compatible Spreadsheet Dashboard with Pyper Dashboard',
     'version': '1.0',
     'author': 'Krafter SAS',

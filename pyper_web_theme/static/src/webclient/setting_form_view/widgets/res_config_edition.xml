@@ -22,7 +22,7 @@
                 <div>
                     <div class="tab-content">
                         <div role="tabpanel" id="pyper_settings" class="tab-pane active text-muted o_web_settings_compact_subtitle">
-                            <small>Copyright © <a target="_blank" href="https://krafter.io" style="text-decoration: underline;">Krafter SAS</a> <span id="pyper_license">Krafter Proprietary License</span></small>
+                            <small>Copyright © <a target="_blank" href="https://krafter.io" style="text-decoration: underline;">Krafter SAS</a> <span id="pyper_license">LGPL-3 License</span></small>
                         </div>
                     </div>
                 </div>

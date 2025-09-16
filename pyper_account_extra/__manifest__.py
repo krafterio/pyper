@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Account Extra',
     'category': 'Accounting/Payment',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Extend Account features.',
     'version': '1.0',
     'author': 'Krafter SAS',

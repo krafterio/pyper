@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Mail AI',
     'category': 'Productivity/Discuss',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Sync all messages from IMAP account',
     'version': '1.0',
     'author': 'Krafter SAS',

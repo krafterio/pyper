@@ -1,10 +1,10 @@
 # Copyright Krafter SAS <hey@krafter.io>
-# Krafter Proprietary License (see LICENSE file).
+# LGPL-3 License (see LICENSE file).
 
 {
     'name': 'Dashboard',
     'category': 'Productivity',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'description': 'Build custom dashboards',
     'version': '1.0',
     'author': 'Krafter SAS',
