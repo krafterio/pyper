@@ -7,7 +7,7 @@
     'license': 'LGPL-3',
     'description': 'Add fields dedicated to French market',
     'summary': 'Add fields dedicated to French market',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
