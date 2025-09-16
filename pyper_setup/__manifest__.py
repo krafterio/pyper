@@ -6,7 +6,7 @@
     'category': 'Hidden/Tools',
     'license': 'LGPL-3',
     'description': 'Add dedicated app section for Pyper addons in Settings application.',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',

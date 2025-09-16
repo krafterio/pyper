@@ -3,12 +3,11 @@
 import {reactive} from '@odoo/owl';
 import {evaluateExpr} from '@web/core/py_js/py';
 import {registry} from '@web/core/registry';
+import {rpc} from '@web/core/network/rpc';
 
 
 export class PyperSetupService {
-    constructor(rpc) {
-        /** @type {import("@web/core/network/rpc_service").rpcService} */
-        this._rpcService = rpc;
+    constructor() {
         this._registeredPrefixes = reactive({});
         this.settings = reactive({
             '_appName': null,
@@ -50,7 +49,7 @@ export class PyperSetupService {
         this.settings[prefix] = {};
         const paramsMap = {};
 
-        const params = await this._rpcService('/pyper_setup/settings', {
+        const params = await rpc('/pyper_setup/settings', {
             'prefix': prefix,
         });
 
@@ -110,9 +109,8 @@ export class PyperSetupService {
 }
 
 export const pyperSetupService = {
-    dependencies: ['rpc'],
-    start(env, {rpc}) {
-        return reactive(new PyperSetupService(rpc));
+    start() {
+        return reactive(new PyperSetupService());
     },
 };
 
