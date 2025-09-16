@@ -13,23 +13,12 @@
                     <group>
                         <field name="twilio_account_sid" required="provider == 'sms_twilio'" />
 
-                        <field name="show_token" invisible="1" />
                         <label for="twilio_auth_token" />
                         <div class="o_row">
                             <field name="twilio_auth_token" password="False"
-                                invisible="not show_token"/>
+                                groups="base.group_no_one"/>
                             <field name="twilio_auth_token" password="True"
-                                invisible="show_token"/>
-                            <button name="action_toggle_show_token" icon="fa-eye"
-                                type="object"
-                                class="oe_stat_button"
-                                invisible="show_token"
-                                title="Show Token"/>
-                            <button name="action_toggle_show_token" icon="fa-eye-slash"
-                                type="object"
-                                class="oe_stat_button"
-                                invisible="not show_token"
-                                title="Hide Token"/>
+                                groups="!base.group_no_one"/>
                         </div>
                     </group>
 
