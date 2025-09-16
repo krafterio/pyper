@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_res_users_profile,access_res_users_profile,model_res_users_profile,base.group_user,1,0,0,0
-manage_res_users_profile,manage_res_users_profile,model_res_users_profile,pyper_user_profile.user_profile_manager_group,1,1,1,1
-access_res_users_role,access_res_users_role,model_res_users_role,base.group_user,1,0,0,0
-manage_res_users_role,manage_res_users_role,model_res_users_role,pyper_user_profile.user_role_manager_group,1,1,1,1

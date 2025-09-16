@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<templates xml:space="preserve">
-    <t t-name="pyper_ui_kit.Form.InnerGroup" t-inherit="web.Form.InnerGroup" t-inherit-mode="extension">
-        <xpath expr="//div[hasclass('o_inner_group')]" position="attributes">
-            <attribute name="class" separator=" " remove="grid" add="o_group_row"/>
-        </xpath>
-    </t>
-</templates>

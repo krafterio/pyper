@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<odoo>
-    <record model="res.groups" id="pyper_ui_kit.group_hidden">
-        <field name="name">Hidden Group</field>
-        <field name="category_id" ref="base.module_category_hidden"/>
-    </record>
-</odoo>

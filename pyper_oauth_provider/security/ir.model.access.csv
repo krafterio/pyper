@@ -1,6 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-custom_oauth_provider.access_oauth_client,access_oauth_client,custom_oauth_provider.model_oauth_client,base.group_user,1,1,1,1
-custom_oauth_provider.access_oauth_authorization,access_oauth_authorization,custom_oauth_provider.model_oauth_authorization,base.group_user,1,1,1,1
-custom_oauth_provider.access_oauth_token,access_oauth_token,custom_oauth_provider.model_oauth_token,base.group_user,1,1,1,1
-ustom_oauth_provider.access_oauth_refresh_token,access_oauth_refresh_token,custom_oauth_provider.model_oauth_refresh_token,base.group_user,1,1,1,1
-custom_oauth_provider.access_oauth_scope,access_oauth_scope,custom_oauth_provider.model_oauth_scope,base.group_user,1,1,1,1

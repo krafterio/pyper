@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_code_language_group_user,code_language group_user,model_code_language,,1,1,1,1
-access_technology_group_user,technology group_user,model_technology,,1,1,1,1
-access_technology_type_group_user,technology_type group_user,model_technology_type,,1,1,1,1

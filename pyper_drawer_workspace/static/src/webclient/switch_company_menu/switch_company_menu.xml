@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<templates xml:space="preserve">
-    <t t-name="pyper_drawer_workspace.SwitchCompanyMenu" t-inherit="web.SwitchCompanyMenu" t-inherit-mode="extension">
-        <xpath expr="//Dropdown" position="attributes">
-            <attribute name="t-if">false</attribute>
-        </xpath>
-    </t>
-</templates>

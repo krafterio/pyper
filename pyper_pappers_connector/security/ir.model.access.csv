@@ -1,6 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_pappers_form_group_user,pappers_form group_user,model_pappers_form,,1,1,1,1
-access_pappers_name_form_group_user,pappers_name_form group_user,model_pappers_name_form,,1,1,1,1
-access_pappers_name_result_form_group_user,pappers_name_result_form group_user,model_pappers_name_result_form,,1,1,1,1
-
-
