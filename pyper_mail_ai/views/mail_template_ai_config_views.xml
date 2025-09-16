@@ -3,12 +3,12 @@
     <record id="mail_template_ai_config_view_tree" model="ir.ui.view">
         <field name="name">mail.template.ai.config.tree</field>
         <field name="model">mail.template.ai.config</field>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -41,6 +41,6 @@
         <field name="name">Email Template AI Configurations</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mail.template.ai.config</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>
