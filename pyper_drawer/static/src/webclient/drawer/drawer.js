@@ -189,7 +189,6 @@ export class Drawer extends Component {
     static SETUP_PREFIX = 'pyper_drawer.drawer_props.';
 
     setup() {
-        this.rpc = useService('rpc');
         this.pyperSetupService = useService('pyper_setup');
         this.drawerService = useState(useService('drawer'));
         this.actionService = useState(useService('action'));

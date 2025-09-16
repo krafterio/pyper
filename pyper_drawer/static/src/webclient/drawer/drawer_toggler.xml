@@ -3,7 +3,7 @@
 
     <t t-name="pyper_drawer.DrawerToggler">
         <div t-if="display" t-att-class="classes">
-            <button class="dropdown-toggle"
+            <button class="dropdown-toggle o-dropdown"
                     title="Toggle Drawer"
                     data-hotkey="d"
                     tabindex="0"

@@ -5,9 +5,15 @@
         <DropdownItem
             class="classes"
             styles="styles"
-            href="menuItemHref"
-            hotkey="props.hotkey"
-            dataset="{depth: props.depth, menuXmlid: props.menuXmlid, menu: props.menuId, tooltip: drawerService.isMinified and !drawerService.isPopoverMinified ? props.label : undefined, tooltipPosition: 'right'}"
+            attrs="{
+                'href': menuItemHref,
+                'data-hotkey': props.hotkey,
+                'data-depth': props.depth,
+                'data-menu-xmlid': props.menuXmlid,
+                'data-menu': props.menuId,
+                'data-tooltip': drawerService.isMinified and !drawerService.isPopoverMinified ? props.label : undefined,
+                'data-tooltip-position': 'right'
+            }"
             onSelected="() => this.onItemSelection()"
         >
             <t t-call="pyper_drawer.DrawerMenuItem.Content">
@@ -66,7 +72,7 @@
 
             <img t-elif="withIcon and iconData"
                 class="o_drawer--item-icon"
-                t-attf-src="data:image/jpeg;base64, {{iconData}}"
+                t-att-src="iconData"
             />
 
             <div t-elif="withIcon" class="o_drawer--item-icon-empty">
