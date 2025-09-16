@@ -207,9 +207,9 @@ export class TimelineModel extends Model {
     async updateData(data) {
         if (data.hasCreateRight === null || data.hasWriteRight === null || data.hasUnlinkRight === null) {
             const resRights = await Promise.all([
-                this.orm.call(this.meta.resModel, 'check_access_rights', ['create', false]),
-                this.orm.call(this.meta.resModel, 'check_access_rights', ['write', false]),
-                this.orm.call(this.meta.resModel, 'check_access_rights', ['unlink', false]),
+                this.orm.call(this.meta.resModel, 'check_access', ['create', false]),
+                this.orm.call(this.meta.resModel, 'check_access', ['write', false]),
+                this.orm.call(this.meta.resModel, 'check_access', ['unlink', false]),
             ]);
 
             data.hasCreateRight = resRights[0];

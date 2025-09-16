@@ -17,7 +17,7 @@ class GlobalSearch(http.Controller):
         search_models = request.env['ir.global_search.model'].search([])
 
         for search_model in search_models:
-            if not request.env[search_model.model_name].check_access_rights('read', raise_exception=False):
+            if not request.env[search_model.model_name].has_access('read'):
                 continue
             model_result, model_count = self._search_by_model(search_model, search_value, limit)
 
