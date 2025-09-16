@@ -2,16 +2,16 @@
 
 import {patch} from '@web/core/utils/patch';
 import {useService} from '@web/core/utils/hooks';
-import {Chatter} from '@mail/core/web/chatter';
+import {user} from '@web/core/user';
+import {Chatter} from '@mail/chatter/web_portal/chatter';
 import {onWillStart} from '@odoo/owl';
 
 patch(Chatter.prototype, {
     setup() {
         super.setup();
-        this.user = useService('user');
 
         onWillStart(async () => {
-            this.state.canWriteNotes = await this.user.hasGroup('pyper_mail_note.group_can_write_notes');
+            this.state.canWriteNotes = user.hasGroup('pyper_mail_note.group_can_write_notes');
         });
     },
 
