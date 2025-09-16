@@ -52,11 +52,11 @@ class IrViews(models.Model):
 
     view_mode = fields.Selection(
         [
-            ('tree', 'List'),
+            ('list', 'List'),
             ('kanban', 'Kanban'),
         ],
         string='View Mode',
-        default='tree',
+        default='list',
         required=True,
     )
 
@@ -320,11 +320,11 @@ class IrViews(models.Model):
 
     @api.model
     def _available_view_mode_custom_view(self):
-        return ['tree']
+        return ['list']
 
     @api.model
     def _available_view_mode_fields(self):
-        return ['tree']
+        return ['list']
 
     @api.depends('view_mode')
     def _compute_display_page_fields(self):

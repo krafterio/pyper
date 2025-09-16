@@ -180,7 +180,7 @@ export class ViewsSwitcher extends Component {
 
     get viewModeIcons() {
         return {
-            'tree': 'oi oi-view-list',
+            'list': 'oi oi-view-list',
             'kanban': 'oi oi-view-kanban',
             undefined: 'fa fa-folder-o',
         }
@@ -212,10 +212,10 @@ export class ViewsSwitcher extends Component {
 
     get availableViewTypes() {
         return {
-            'tree': 'tree',
-            'list': 'tree',
+            'tree': 'list',
+            'list': 'list',
             'kanban': 'kanban',
-            undefined: 'tree',
+            undefined: 'list',
         }
     }
 
