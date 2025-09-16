@@ -15,7 +15,7 @@
             <attribute name="t-if">false</attribute>
         </xpath>
 
-        <xpath expr="//Dropdown[contains(@class, 'o_cp_switch_buttons')]" position="attributes">
+        <xpath expr="//div[contains(@class, 'o_cp_switch_buttons')]" position="attributes">
             <attribute name="class" separator=" " remove="d-xl-none"/>
             <attribute name="togglerClass">'btn btn-outline-secondary'</attribute>
         </xpath>
