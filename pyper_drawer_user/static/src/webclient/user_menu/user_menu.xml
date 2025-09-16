@@ -2,9 +2,12 @@
 <templates xml:space="preserve">
 
     <t t-name="pyper_drawer_user.UserMenu" t-inherit="web.UserMenu" t-inherit-mode="extension">
-        <xpath expr="//Dropdown" position="attributes">
-            <attribute name="class">'o_user_menu dropdown-item o_drawer--menu-item'</attribute>
-            <attribute name="togglerClass">'o_drawer--menu-item-content btn'</attribute>
+        <xpath expr="//div[hasclass('o_user_menu')]" position="attributes">
+            <attribute name="class" separator=" " add="o_user_menu dropdown-item o_drawer--menu-item"/>
+        </xpath>
+
+        <xpath expr="//Dropdown/button" position="attributes">
+            <attribute name="class" separator=" " add="o_drawer--menu-item-content btn"/>
         </xpath>
 
         <xpath expr="//small[hasclass('oe_topbar_name')]" position="attributes">
@@ -13,24 +16,24 @@
 
         <xpath expr="//small[hasclass('oe_topbar_name')]" position="after">
             <div class="oe_topbar_name text-start d-flex flex-column lh-1 text-truncate">
-                <span t-out="user.name" class="o-drawer--user-menu-name-size fw-bold mb-1 text-truncate"/>
+                <span t-out="userName" class="o-drawer--user-menu-name-size fw-bold mb-1 text-truncate"/>
 
                 <span class="small opacity-50 font-monospace text-truncate" t-if="env.debug">
-                    <i class="fa fa-database oi-small me-1"/><t t-out="user.db.name"/>
+                    <i class="fa fa-database oi-small me-1"/><t t-out="dbName"/>
                 </span>
 
-                <span class="small opacity-50" t-else="" t-out="user.userName"/>
+                <span class="small opacity-50" t-else="" t-out="userName"/>
             </div>
             <i class="fs-3 fa fa-ellipsis-v ms-auto opacity-50 pe-1" t-if="!env.services.drawer.isMinified"/>
         </xpath>
 
-        <xpath expr="//Dropdown/t[@t-foreach]" position="before">
+        <xpath expr="//Dropdown//t[@t-foreach]" position="before">
             <div class="dropdown-item menu-user-title">
                 <div class="oe_topbar_name text-start d-flex flex-column lh-1 text-truncate">
-                    <span t-out="user.name" class="o-drawer--user-menu-name-size fw-bold mb-1 text-truncate"/>
+                    <span t-out="userName" class="o-drawer--user-menu-name-size fw-bold mb-1 text-truncate"/>
 
                     <span class="small opacity-50 font-monospace text-truncate" t-if="env.debug">
-                        <i class="fa fa-database oi-small me-1"/><t t-out="user.db.name"/>
+                        <i class="fa fa-database oi-small me-1"/><t t-out="dbName"/>
                     </span>
 
                     <span class="small opacity-50" t-else="">My account</span>
