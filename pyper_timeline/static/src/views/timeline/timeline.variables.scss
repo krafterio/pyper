@@ -1,11 +1,11 @@
 $pyper-timeline-bg: transparent !default;
 
 $pyper-timeline-time-axis-odd-bg: $o-white !default;
-$pyper-timeline-time-axis-even-bg: lighten($o-gray-50, 1%) !default;
+$pyper-timeline-time-axis-even-bg: lighten($o-gray-100, 1%) !default;
 $pyper-timeline-time-axis-major-border-color: $o-gray-400 !default;
-$pyper-timeline-line-bottom-border-color: $border-color !default;
+$pyper-timeline-line-bottom-border-color: $o-gray-300 !default;
 
-$pyper-timeline-panel-border-color: $border-color !default;
+$pyper-timeline-panel-border-color: $o-gray-300 !default;
 $pyper-timeline-panel-top-bg: transparent !default;
 $pyper-timeline-panel-bottom-bg: transparent !default;
 $pyper-timeline-panel-left-min-width: 150px;
@@ -21,7 +21,7 @@ $pyper-timeline-label-padding: 4px !default;
 $pyper-timeline-item-min-height: 22px !default;
 $pyper-timeline-item-color: $o-main-text-color !default;
 $pyper-timeline-item-border-width: 1px !default;
-$pyper-timeline-item-border-color: darken($border-color, 5%) !default;
+$pyper-timeline-item-border-color: darken($o-gray-300, 5%) !default;
 $pyper-timeline-item-border-radius: $o-border-radius !default;
 $pyper-timeline-item-bg: $o-view-background-color !default;
 $pyper-timeline-item-bg-hover: $o-view-background-color !default;
@@ -36,7 +36,7 @@ $pyper-timeline-item-past-border-color: lighten($pyper-timeline-item-border-colo
 $pyper-timeline-item-past-bg: $pyper-timeline-item-bg !default;
 
 $pyper-timeline-item-spliter-width: 2px !default;
-$pyper-timeline-item-spliter-color: $border-color !default;
+$pyper-timeline-item-spliter-color: $o-gray-300 !default;
 
 $pyper-timeline-item-overflow: hidden !default;
 $pyper-timeline-item-overflow-hover: visible !default;
