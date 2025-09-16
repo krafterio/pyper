@@ -15,7 +15,7 @@
             <attribute name="class">'o_nav_entry' + (sectionIsSelected(section) ? ' o_nav_entry--active' : '')</attribute>
         </xpath>
 
-        <xpath expr="//MenuDropdown" position="attributes">
+        <xpath expr="//t[@t-else]/Dropdown" position="attributes">
             <attribute name="class">(sectionIsSelected(section) ? 'o_nav_entry--active' : '')</attribute>
         </xpath>
     </t>

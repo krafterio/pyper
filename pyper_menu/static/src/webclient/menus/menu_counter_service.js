@@ -2,7 +2,7 @@
 
 import {reactive} from '@odoo/owl';
 import {registry} from '@web/core/registry';
-import {jsonrpc} from '@web/core/network/rpc_service';
+import {rpc} from '@web/core/network/rpc';
 import {debounce} from '@web/core/utils/timing';
 
 
@@ -73,7 +73,7 @@ export class MenuCounterState {
         }
 
         try {
-            this.state.request = jsonrpc('/web/webclient/load_menu_counters', {ids});
+            this.state.request = rpc('/web/webclient/load_menu_counters', {ids});
 
             const res = await this.state.request;
             this.state.values = mergeValues(this.state.values, res.menuCounters);
