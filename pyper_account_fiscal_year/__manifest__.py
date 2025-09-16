@@ -6,7 +6,7 @@
     'category': 'Accounting/Accounting',
     'license': 'LGPL-3',
     'description': 'Add Fiscal Year for Community Edition.',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
