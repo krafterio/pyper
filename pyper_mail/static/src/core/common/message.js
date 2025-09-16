@@ -2,6 +2,7 @@
 
 import { Message } from "@mail/core/common/message";
 import { useService } from "@web/core/utils/hooks";
+import {user} from '@web/core/user';
 import { patch } from "@web/core/utils/patch";
 import { FormViewDialog } from "@web/views/view_dialogs/form_view_dialog";
 
@@ -10,7 +11,7 @@ patch(Message.prototype, {
         super.setup();
         this.orm = useService("orm");
         this.dialogService = useService("dialog");
-        this.isAdmin = await useService("user").hasGroup("base.group_system");
+        this.isAdmin = user.hasGroup("base.group_system");
     },
 
     get canEditActivity() {
