@@ -2,6 +2,7 @@
 
 import {_t} from '@web/core/l10n/translation';
 import {registry} from '@web/core/registry';
+import {rpc} from '@web/core/network/rpc';
 import {GlobalSearchRecordCommand} from './global_search_record_command';
 import {GlobalSearchHeadingCommand} from './global_search_heading_command';
 import {GlobalSearchInfoCommand} from './global_search_info_command';
@@ -30,7 +31,7 @@ const fn = () => {
             }];
         }
 
-        recordsData = await env.services.rpc('/web/global-search', {search_value: options.searchValue});
+        recordsData = await rpc('/web/global-search', {search_value: options.searchValue});
 
         if (recordsData.length === 0) {
             return [];
