@@ -17,7 +17,7 @@ patch(ViewsSwitcher.prototype, {
     get viewModeIcons() {
         return {
             ...super.viewModeIcons,
-            'tree': 'ph ph-table',
+            'list': 'ph ph-table',
             'kanban': 'ph ph-kanban',
         }
     },
