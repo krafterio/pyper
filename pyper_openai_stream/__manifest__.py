@@ -6,7 +6,7 @@
     'category': 'Technical',
     'license': 'LGPL-3',
     'description': 'Base to send message to Open AI and receive a stream in live.',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',

@@ -3,6 +3,7 @@
 import {Component, onWillUnmount, useEffect} from '@odoo/owl';
 import {useService} from '@web/core/utils/hooks';
 import {_t} from '@web/core/l10n/translation';
+import {rpc} from "@web/core/network/rpc";
 import {standardWidgetProps} from '@web/views/widgets/standard_widget_props';
 
 export class OpenAiStream extends Component {
@@ -31,7 +32,6 @@ export class OpenAiStream extends Component {
     };
 
     setup() {
-        this.rpc = useService('rpc');
         this.notification = useService('notification');
         this.eventSource = null;
 
@@ -74,7 +74,7 @@ export class OpenAiStream extends Component {
             return;
         }
 
-        const res = await this.rpc('/openai/stream', {
+        const res = await rpc('/openai/stream', {
             'model': this.props.model,
             'system_message': systemMessage,
             'user_message': userMessage,
