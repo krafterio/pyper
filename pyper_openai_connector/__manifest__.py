@@ -7,7 +7,7 @@
     'license': 'LGPL-3',
     'description': 'Add ability to use Open AI API',
     'summary': 'Add ability to use Open AI API',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Krafter SAS',
     'installable': True,
     'maintainer': [
