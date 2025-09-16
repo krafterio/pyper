@@ -1,9 +1,9 @@
 /** @odoo-module */
 
 import {patch} from '@web/core/utils/patch';
-import {ThreadService} from '@mail/core/common/thread_service';
+import {Thread} from '@mail/core/common/thread';
 
-patch(ThreadService.prototype, {
+patch(Thread.prototype, {
     chatterWithAuditLog: false,
 
     /**

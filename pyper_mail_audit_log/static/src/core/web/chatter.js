@@ -2,7 +2,7 @@
 
 import {patch} from '@web/core/utils/patch';
 import {useService} from '@web/core/utils/hooks';
-import {Chatter} from '@mail/core/web/chatter';
+import {Chatter} from '@mail/chatter/web_portal/chatter';
 import {onWillUpdateProps, useEffect} from '@odoo/owl';
 
 patch(Chatter.prototype, {
@@ -16,11 +16,10 @@ patch(Chatter.prototype, {
 
         super.setup();
 
-        this.user = useService('user');
         this.state.isAuditLogEnabled = false;
 
         useEffect(() => {
-            const forceLoad = this.state.isAuditLogEnabled !== this.threadService.chatterWithAuditLog;
+            const forceLoad = this.state.isAuditLogEnabled !== this.state.thread.chatterWithAuditLog;
 
             if (!forceLoad) {
                 return;
@@ -36,7 +35,7 @@ patch(Chatter.prototype, {
     },
 
     _resetThread() {
-        this.threadService.chatterWithAuditLog = this.state.isAuditLogEnabled;
+        this.state.thread.chatterWithAuditLog = this.state.isAuditLogEnabled;
         this.state.thread.isLoaded = false;
         this.state.thread.status = 'new';
         this.state.thread.messages = [];
