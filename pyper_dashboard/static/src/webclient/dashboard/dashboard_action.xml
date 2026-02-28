@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="pyper_dashboard.DashboardAction">
-        <div class="pyper_dashboard--action bg-view border" t-att="props.attr">
+        <div class="pyper_dashboard--action bg-view border" t-att="props.attr" t-att-style="(props.height ? 'height: ' + props.height + '; overflow: hidden;' : '') + (props.minHeight ? ' min-height: ' + props.minHeight + ';' : '') + (props.maxHeight ? ' max-height: ' + props.maxHeight + '; overflow: hidden;' : '')" t-att-data-height="props.height || undefined" t-att-data-max-height="props.maxHeight || undefined" t-att-data-min-height="props.minHeight || undefined">
             <div class="pyper_dashboard--action-header" t-attf-class="{{props.title ? '' : 'oe_header_empty'}}" name="pyper_dashboard_action_header">
-                <div t-attf-class="pyper_dashboard--action-header-title {{props.title ? '' : 'oe_header_empty'}}">
+                <div t-attf-class="pyper_dashboard--action-header-title {{props.title ? '' : 'oe_header_empty'}}" t-att-title="props.title || undefined">
                     <h3 t-out="props.title"></h3>
                 </div>
             </div>

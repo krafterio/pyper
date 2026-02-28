@@ -56,6 +56,9 @@ patch(DashboardAction.prototype, {
     editAction() {
         this.dialogService.add(DashboardActionDialog, {
             title: this.props.title,
+            height: this.props.height,
+            minHeight: this.props.minHeight,
+            maxHeight: this.props.maxHeight,
             saveLabel: _t('Edit'),
             save: async (data) => {
                 await this.props.edit(data);

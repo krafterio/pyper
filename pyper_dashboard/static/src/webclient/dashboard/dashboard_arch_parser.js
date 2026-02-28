@@ -152,6 +152,9 @@ export const createAction = function(id, node) {
         context: {},
         domain: [],
         isFolded: exprToBoolean(node.getAttribute('fold')),
+        height: node.getAttribute('height') || undefined,
+        minHeight: node.getAttribute('min_height') || undefined,
+        maxHeight: node.getAttribute('max_height') || undefined,
     };
 
     if (node.hasAttribute('context')) {
