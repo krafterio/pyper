@@ -3,7 +3,8 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.osv import expression
+from odoo.fields import Domain
+from odoo.orm.domains import NEGATIVE_CONDITION_OPERATORS
 
 
 class DashboardBoardItem(models.Model):
@@ -103,18 +104,18 @@ class DashboardBoardItem(models.Model):
                 [('name', operator, [category_name] if lst else category_name)])
             category_domain = [('category_id', 'in', category_ids)]
 
-            if operator in expression.NEGATIVE_TERM_OPERATORS and not values:
-                category_domain = expression.OR([category_domain, [('category_id', '=', False)]])
+            if operator in NEGATIVE_CONDITION_OPERATORS and not values:
+                category_domain = Domain.OR([category_domain, [('category_id', '=', False)]])
 
-            if (operator in expression.NEGATIVE_TERM_OPERATORS) == (not values):
-                sub_where = expression.AND([group_domain, category_domain])
+            if (operator in NEGATIVE_CONDITION_OPERATORS) == (not values):
+                sub_where = Domain.AND([group_domain, category_domain])
             else:
-                sub_where = expression.OR([group_domain, category_domain])
+                sub_where = Domain.OR([group_domain, category_domain])
 
-            if operator in expression.NEGATIVE_TERM_OPERATORS:
-                where = expression.AND([where, sub_where])
+            if operator in NEGATIVE_CONDITION_OPERATORS:
+                where = Domain.AND([where, sub_where])
             else:
-                where = expression.OR([where, sub_where])
+                where = Domain.OR([where, sub_where])
 
         return where
 
