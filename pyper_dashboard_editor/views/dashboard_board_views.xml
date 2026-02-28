@@ -15,6 +15,7 @@
         <field name="name">My dashboard</field>
         <field name="res_model">dashboard.board</field>
         <field name="view_mode">form</field>
+        <field name="path">my-dashboard</field>
         <field name="context">{'disable_toolbar': True}</field>
         <field name="usage">menu</field>
         <field name="view_id" ref="view_dashboard_board"/>
