@@ -7,7 +7,7 @@ from odoo.http import Controller, route, request
 
 
 class Dashboard(Controller):
-    @route('/dashboard/add_to_dashboard', type='json', auth='user')
+    @route('/dashboard/add_to_dashboard', type='jsonrpc', auth='user')
     def add_to_dashboard(self, action_id, context_to_save, domain, view_mode, board_id=None, name=''):
         if board_id:
             return _add_to_board_dashboard(action_id, context_to_save, domain, view_mode, board_id, name)
