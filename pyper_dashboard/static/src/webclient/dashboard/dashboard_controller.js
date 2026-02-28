@@ -1,11 +1,9 @@
 /** @odoo-module **/
 
-import {browser} from '@web/core/browser/browser';
 import {Dropdown} from '@web/core/dropdown/dropdown';
 import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {_t} from '@web/core/l10n/translation';
 import {useService} from '@web/core/utils/hooks';
-import {router} from '@web/core/browser/router';
 import {standardViewProps} from '@web/views/standard_view_props';
 import {Component, onWillStart, useState} from '@odoo/owl';
 import {View} from '@web/views/view';
@@ -54,7 +52,7 @@ export class DashboardController extends Component {
                 });
                 this.state.boards.length = 0;
                 this.state.boards.push(...orderDashboards(boards));
-                this.selectBoard(router?.current?.hash?.board || null);
+                this.selectBoard(this.props.resId || null);
             }
 
             if ('dashboard.dashboard' === this.props.resModel) {
@@ -142,10 +140,8 @@ export class DashboardController extends Component {
         const arch = this.state.selectedBoard?.arch || this.props.arch;
         Object.assign(this.dashboard, new DashboardArchParser().parse(arch, this.props.info.customViewId));
 
-        if (this.dashboard.useSwitcher && this.state.selectedBoard?.id) {
-            browser.setTimeout(() => {
-                router.replaceState({board: this.state.selectedBoard.id});
-            }, 200); // history.pushState is a little async
+        if (this.state.selectedBoard?.id) {
+            this.props.updateActionState?.({resId: this.state.selectedBoard.id});
         }
     }
 
