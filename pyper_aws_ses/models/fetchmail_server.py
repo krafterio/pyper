@@ -8,6 +8,8 @@ from dataclasses import dataclass
 from os import path
 
 from odoo import api, fields, models, _
+from odoo.addons.mail.models.fetchmail import MAIL_SERVER_DEACTIVATE_TIME
+from odoo.tools import exception_to_unicode
 
 _logger = logging.getLogger(__name__)
 
@@ -99,10 +101,10 @@ class FetchmailServer(models.Model):
         self.ensure_one()
         return 'aws_ses_s3' if self.server_type == 'aws_ses_s3' else super()._get_connection_type()
 
-    def connect(self, allow_archived=False):
+    def _connect__(self, allow_archived=False):  # noqa: PLW3201
         # Connection variable in parent method is not defined if connection type is not defined.
         try:
-            connection = super(FetchmailServer, self).connect(allow_archived)
+            connection = super(FetchmailServer, self)._connect__(allow_archived)
         except Exception as err:
             connection = False
             if not isinstance(err, UnboundLocalError):
@@ -113,13 +115,13 @@ class FetchmailServer(models.Model):
 
         return connection
 
-    def fetch_mail(self):
+    def _fetch_mail(self, batch_limit=50) -> Exception | None:
         """ WARNING: meant for cron usage only - will commit() after each email! """
         aws_servers = self.filtered(lambda fms: fms._get_connection_type() == 'aws_ses_s3')
         other_servers = self.filtered(lambda fms: fms._get_connection_type() != 'aws_ses_s3')
 
         # Fetch other email servers
-        res = super(FetchmailServer, other_servers).fetch_mail()
+        result_exception = super(FetchmailServer, other_servers)._fetch_mail(batch_limit)
 
         # Fetch AWS SES S3 email servers
         additionnal_context = {
@@ -131,6 +133,7 @@ class FetchmailServer(models.Model):
             additionnal_context['default_fetchmail_server_id'] = server.id
             count, failed = 0, 0
             s3_client = self._get_s3_client()
+            server_type_and_name = server.server_type, server.name  # avoid reading this after each commit
 
             try:
                 while True:
@@ -176,15 +179,23 @@ class FetchmailServer(models.Model):
                         )
                     else:
                         break
-            except Exception:
+            except Exception as e:  # noqa: BLE001
+                result_exception = e
                 _logger.info(
                     'General failure when trying to fetch mail from %s server %s.',
                     server.server_type,
                     server.name,
                     exc_info=True
                 )
+                if not server.error_date:
+                    server.error_date = fields.Datetime.now()
+                    server.error_message = exception_to_unicode(e)
+                elif server.error_date < fields.Datetime.now() - MAIL_SERVER_DEACTIVATE_TIME:
+                    message = "Deactivating fetchmail %s server %s (too many failures)" % server_type_and_name
+                    server.set_draft()
+                    server.env['ir.cron']._notify_admin(message)
 
-        return res
+        return result_exception
 
     def _get_s3_email_files(self) -> list[AwsS3File]:
         self.ensure_one()
