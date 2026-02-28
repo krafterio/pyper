@@ -79,6 +79,9 @@
                                     viewMode="action.viewMode"
                                     context="action.context"
                                     domain="action.domain"
+                                    height="action.height"
+                                    minHeight="action.minHeight"
+                                    maxHeight="action.maxHeight"
                                     attr="{'data-idx': action_index}"
                                 />
                             </t>

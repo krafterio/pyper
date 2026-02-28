@@ -37,6 +37,9 @@
                                 t-att-context="action.context"
                                 t-att-domain="action.domain"
                                 t-att-fold="action.isFolded ? 'True' : undefined"
+                                t-att-height="action.height || undefined"
+                                t-att-min_height="action.minHeight || undefined"
+                                t-att-max_height="action.maxHeight || undefined"
                             />
                         </t>
                     </column>

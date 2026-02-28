@@ -19,6 +19,56 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <label class="o_form_label mb-2" for="height_0">
+                        Height
+                    </label>
+
+                    <div>
+                        <input type="text"
+                               id="height_0"
+                               t-model="height.input.value"
+                               class="o_input"
+                               t-att-class="{'is-invalid': height.input.hasError}"
+                               placeholder="auto"
+                        />
+                    </div>
+                </div>
+
+                <div class="col">
+                    <label class="o_form_label mb-2" for="min_height_0">
+                        Min Height
+                    </label>
+
+                    <div>
+                        <input type="text"
+                               id="min_height_0"
+                               t-model="minHeight.input.value"
+                               class="o_input"
+                               t-att-class="{'is-invalid': minHeight.input.hasError}"
+                               placeholder="auto"
+                        />
+                    </div>
+                </div>
+
+                <div class="col">
+                    <label class="o_form_label mb-2" for="max_height_0">
+                        Max Height
+                    </label>
+
+                    <div>
+                        <input type="text"
+                               id="max_height_0"
+                               t-model="maxHeight.input.value"
+                               class="o_input"
+                               t-att-class="{'is-invalid': maxHeight.input.hasError}"
+                               placeholder="auto"
+                        />
+                    </div>
+                </div>
+            </div>
         </xpath>
     </t>
 </templates>

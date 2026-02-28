@@ -37,6 +37,18 @@ export class DashboardAction extends Component {
             type: Object,
             optional: true,
         },
+        height: {
+            type: String,
+            optional: true,
+        },
+        minHeight: {
+            type: String,
+            optional: true,
+        },
+        maxHeight: {
+            type: String,
+            optional: true,
+        },
     };
 
     static defaultProps = {
