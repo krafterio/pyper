@@ -42,8 +42,11 @@
             </div>
 
             <div>
+                <button class="btn btn-outline-secondary py-1 ms-1" t-on-click="refreshDashboard">
+                    <i class="fa fa-fw fa-refresh" aria-label="Refresh" role="img" title="Refresh"/>
+                </button>
                 <Dropdown t-if="filteredOptionsItems.length > 0">
-                    <button class="btn btn-outline-secondary py-1" >
+                    <button class="btn btn-outline-secondary py-1 ms-1" >
                         <i class="fa fa-fw fa-ellipsis-v" aria-label="Options" role="img" title="Options"/>
                     </button>
                     <t t-set-slot="content">
@@ -69,7 +72,7 @@
                 >
                     <t t-foreach="section.columns" t-as="column" t-key="column_index">
                         <DashboardColumn attr="{'data-idx': column_index}">
-                            <t t-foreach="column.actions" t-as="action" t-key="selectedBoard?.id + '__' + action.id">
+                            <t t-foreach="column.actions" t-as="action" t-key="selectedBoard?.id + '__' + action.id + '__' + state.refreshKey">
                                 <DashboardAction
                                     title="action.title"
                                     actionId="action.actionId"

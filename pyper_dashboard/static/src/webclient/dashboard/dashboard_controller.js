@@ -40,6 +40,7 @@ export class DashboardController extends Component {
             selectedBoard: null,
             useSwitcher: false,
             isAdmin: false,
+            refreshKey: 0,
         });
 
         onWillStart(async () => {
@@ -143,6 +144,11 @@ export class DashboardController extends Component {
         if (this.state.selectedBoard?.id) {
             this.props.updateActionState?.({resId: this.state.selectedBoard.id});
         }
+    }
+
+    refreshDashboard() {
+        DashboardAction.cache = {};
+        this.state.refreshKey++;
     }
 
     actionSettings() {
