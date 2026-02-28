@@ -1,5 +1,6 @@
 /** @odoo-module **/
 
+import {captureSearchModelState} from '../dashboard_search_model_utils';
 import {orderDashboards} from '@pyper_dashboard/webclient/dashboard/utils';
 import {_t} from '@web/core/l10n/translation';
 import {Dropdown} from '@web/core/dropdown/dropdown';
@@ -7,7 +8,7 @@ import {registry} from '@web/core/registry';
 import {useAutofocus, useService} from '@web/core/utils/hooks';
 import {Component, onWillStart, useState} from '@odoo/owl';
 import {rpc} from "@web/core/network/rpc";
-import { user } from "@web/core/user";
+import {user} from "@web/core/user";
 
 const cogMenuRegistry = registry.category('cogMenu');
 
@@ -88,28 +89,7 @@ export class AddToDashboard extends Component {
     }
 
     async addToDashboard(boardId) {
-        const {domain, globalContext} = this.env.searchModel;
-        const {context, groupBys, orderBy} = this.env.searchModel.getPreFavoriteValues();
-        const limit = this.env?.config?.pagerProps?.limit || false;
-        const comparison = this.env.searchModel.comparison;
-        const contextToSave = {
-            ...Object.fromEntries(
-                Object.entries(globalContext).filter(
-                    (entry) => !entry[0].startsWith('search_default_')
-                )
-            ),
-            ...context,
-            order_by: orderBy,
-            group_by: groupBys,
-        };
-
-        if (limit) {
-            contextToSave.limit = limit;
-        }
-
-        if (comparison) {
-            contextToSave.comparison = comparison;
-        }
+        const {context: contextToSave, domain} = captureSearchModelState(this.env.searchModel);
 
         const result = await rpc('/dashboard/add_to_dashboard', {
             action_id: this.env.config.actionId || false,

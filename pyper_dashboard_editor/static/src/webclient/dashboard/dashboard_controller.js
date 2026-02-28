@@ -6,9 +6,11 @@ import {_t} from '@web/core/l10n/translation';
 import {patch} from '@web/core/utils/patch';
 import {renderToString} from '@web/core/utils/render';
 import {useSortable} from '@web/core/utils/sortable_owl';
-import {createColumnData, createSectionData} from '@pyper_dashboard/webclient/dashboard/dashboard_arch_parser';
+import {createActionData, createColumnData, createSectionData, serializePythonDict} from '@pyper_dashboard/webclient/dashboard/dashboard_arch_parser';
+import {DashboardAction} from '@pyper_dashboard/webclient/dashboard/dashboard_action';
 import {DashboardController} from '@pyper_dashboard/webclient/dashboard/dashboard_controller';
 import {DEFAULT_LAYOUT} from '@pyper_dashboard/webclient/dashboard/dashboard_section';
+import {DashboardActionDialog} from './dashboard_action_dialog';
 import {DashboardSectionDialog} from './dashboard_section_dialog';
 
 const xmlSerializer = new XMLSerializer();
@@ -80,17 +82,11 @@ patch(DashboardController.prototype, {
     },
 
     get canEdit() {
-        if (!this.dashboard?.isEmpty) {
-            const editable = !!this.dashboard?.activeActions?.edit || !this.selectedBoard;
-
-            if (this.selectedBoard && !this.selectedBoard.is_editable) {
-                return false;
-            }
-
-            return editable;
+        if (this.selectedBoard && !this.selectedBoard.is_editable) {
+            return false;
         }
 
-        return !!this.dashboard?.activeActions?.edit;
+        return !!this.dashboard?.activeActions?.edit || !this.selectedBoard;
     },
 
     get canAdmin() {
@@ -125,7 +121,7 @@ patch(DashboardController.prototype, {
                 label: _t('Add a section'),
                 icon: 'oi-fw oi-fw me-1 fa fa-plus',
                 onSelected: () => this.addSection(),
-                isShown: () => !this.dashboard?.isEmpty && this.isEditMode,
+                isShown: () => this.isEditMode,
             },
             ...super.optionsItems,
         ];
@@ -140,7 +136,12 @@ patch(DashboardController.prototype, {
             title: this.props.title,
             saveLabel: _t('Add'),
             save: async (data) => {
+                if (!this.dashboard.sections) {
+                    this.dashboard.sections = [];
+                }
+
                 this.dashboard.sections.push(createSectionData(DEFAULT_LAYOUT, true, data.title));
+                this.dashboard.isEmpty = false;
                 this.saveBoard();
             },
         });
@@ -242,8 +243,37 @@ patch(DashboardController.prototype, {
         this.saveBoard();
     },
 
+    addAction(section) {
+        this.dialogService.add(DashboardActionDialog, {
+            saveLabel: _t('Add'),
+            save: async (data) => {
+                const nextId = this.dashboard.sections.reduce((max, s) =>
+                    s.columns.reduce((m, c) =>
+                        c.actions.reduce((mx, a) => Math.max(mx, a.id), m), max), 0) + 1;
+                const action = createActionData(nextId, data);
+                section.columns[0].actions.push(action);
+                section.isEmpty = false;
+                this.dashboard.isEmpty = false;
+                this.saveBoard();
+            },
+        });
+    },
+
     editAction(action, actionData) {
+        if (actionData.context) {
+            const ctx = actionData.context;
+            const ctxStr = Object.keys(ctx).length > 0 ? serializePythonDict(ctx) : '';
+            ctx.toString = () => ctxStr;
+        }
+
+        if (actionData.domain) {
+            const dom = actionData.domain;
+            dom.toString = () => dom.length > 0 ? JSON.stringify(dom) : '';
+        }
+
         Object.assign(action, {...actionData});
+        DashboardAction.cache = {};
+        this.state.refreshKey++;
         this.saveBoard();
     },
 

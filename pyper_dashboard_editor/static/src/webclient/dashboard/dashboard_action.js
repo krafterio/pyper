@@ -55,6 +55,12 @@ patch(DashboardAction.prototype, {
 
     editAction() {
         this.dialogService.add(DashboardActionDialog, {
+            type: this.props.resModel ? 'view' : 'action',
+            actionId: this.props.actionId,
+            resModel: this.props.resModel,
+            viewMode: this.props.viewMode,
+            context: this.props.context,
+            domain: this.props.domain,
             title: this.props.title,
             height: this.props.height,
             minHeight: this.props.minHeight,

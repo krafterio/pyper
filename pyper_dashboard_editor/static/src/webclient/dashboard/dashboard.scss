@@ -9,3 +9,31 @@
         --oi-color: currentColor;
     }
 }
+
+// Dashboard Action Dialog
+.pyper_dashboard--action-dialog {
+    flex: 1;
+    min-height: 0;
+}
+
+.pyper_dashboard--action-dialog-sidebar {
+    width: 240px;
+    min-width: 240px;
+    overflow-y: auto;
+}
+
+.pyper_dashboard--preview {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+
+    .o_control_panel_breadcrumbs {
+        min-width: auto;
+    }
+
+    .o_last_breadcrumb_item {
+        &.active {
+            display: none !important;
+        }
+    }
+}

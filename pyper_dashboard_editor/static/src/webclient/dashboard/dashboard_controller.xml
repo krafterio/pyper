@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
+    <t t-name="pyper_dashboard_editor.DashboardView" t-inherit="pyper_dashboard.DashboardView" t-inherit-mode="extension">
+        <xpath expr="//t[@t-if='dashboard.isEmpty']" position="attributes">
+            <attribute name="t-if">dashboard.isEmpty and !this.isEditMode</attribute>
+        </xpath>
+        <xpath expr="//t[@t-else='']" position="attributes">
+            <attribute name="t-if">!dashboard.isEmpty or this.isEditMode</attribute>
+            <attribute name="t-else" remove="true"/>
+        </xpath>
+    </t>
+
     <t t-name="pyper_dashboard_editor.DashboardContent" t-inherit="pyper_dashboard.DashboardContent" t-inherit-mode="extension">
         <xpath expr="//DashboardSection" position="attributes">
             <attribute name="selectLayout">(layout, save) => this.selectLayout(section, layout, save, section_index)</attribute>
             <attribute name="edit">(data) => this.editSection(section, data)</attribute>
             <attribute name="remove">() => this.removeSection(section_index)</attribute>
+            <attribute name="addAction">() => this.addAction(section)</attribute>
             <attribute name="layoutEditable">section.layoutEditable and this.canEdit and this.isEditMode</attribute>
         </xpath>
 
@@ -31,11 +42,13 @@
                     <column t-foreach="section.columns" t-as="column" t-key="column_index">
                         <t t-foreach="column.actions" t-as="action" t-key="action_index">
                             <action
-                                t-att-name="action.actionId"
-                                t-att-string="action.title"
+                                t-att-type="action.actionId ? undefined : action.type"
+                                t-att-name="action.actionId || undefined"
+                                t-att-model="action.actionId ? undefined : action.resModel"
+                                t-att-string="action.title || undefined"
                                 t-att-view_mode="action.viewMode"
-                                t-att-context="action.context"
-                                t-att-domain="action.domain"
+                                t-att-context="Object.keys(action.context).filter(k =&gt; k !== 'toString').length ? action.context : undefined"
+                                t-att-domain="action.domain and action.domain.length ? action.domain : undefined"
                                 t-att-fold="action.isFolded ? 'True' : undefined"
                                 t-att-height="action.height || undefined"
                                 t-att-min_height="action.minHeight || undefined"

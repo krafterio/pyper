@@ -18,6 +18,11 @@
                         Delete
                     </DropdownItem>
 
+                    <DropdownItem onSelected="() => this.props.addAction()">
+                        <i class="oi-fw oi-fw me-1 fa fa-plus"></i>
+                        Add action
+                    </DropdownItem>
+
                     <DropdownItem class="'disabled'">
                         <i class="oi-fw oi-fw me-1 fa fa-th-large"></i>
                         Layout

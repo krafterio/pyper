@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_dashboard_editor.DashboardPreview">
+        <div class="pyper_dashboard--preview border rounded">
+            <View t-if="isValid and viewProps.resModel" t-props="viewProps"/>
+            <div t-else="" class="text-center text-muted p-3">
+                Select a model and view type to preview
+            </div>
+        </div>
+    </t>
+</templates>

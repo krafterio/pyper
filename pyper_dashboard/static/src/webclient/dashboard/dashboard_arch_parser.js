@@ -144,10 +144,15 @@ export const createAction = function(id, node) {
         actionId = actionIdInt;
     }
 
+    const hasActionId = actionId !== undefined && actionId !== null;
+    const type = hasActionId ? 'action' : (node.getAttribute('type') || 'action');
+
     const action = {
         id,
-        actionId,
-        title: node.getAttribute('string'),
+        type,
+        actionId: hasActionId ? actionId : undefined,
+        resModel: !hasActionId ? (node.getAttribute('model') || undefined) : undefined,
+        title: node.getAttribute('string') || undefined,
         viewMode: node.getAttribute('view_mode'),
         context: {},
         domain: [],
@@ -157,11 +162,11 @@ export const createAction = function(id, node) {
         maxHeight: node.getAttribute('max_height') || undefined,
     };
 
-    if (node.hasAttribute('context')) {
+    if (node.hasAttribute('context') && node.getAttribute('context')) {
         action.context = makeContext([node.getAttribute('context')]);
     }
 
-    if (node.hasAttribute('domain')) {
+    if (node.hasAttribute('domain') && node.getAttribute('domain')) {
         action.domain = new Domain(node.getAttribute('domain')).toList({});
     }
 
@@ -171,3 +176,60 @@ export const createAction = function(id, node) {
 
     return action;
 }
+
+/**
+ * @param {*} value
+ * @returns {String}
+ */
+export const serializePythonValue = function(value) {
+    if (typeof value === 'string') return `'${value}'`;
+    if (typeof value === 'boolean') return value ? 'True' : 'False';
+    if (typeof value === 'number') return String(value);
+    if (Array.isArray(value)) return `[${value.map(serializePythonValue).join(', ')}]`;
+    if (value === null || value === undefined) return 'None';
+    if (typeof value === 'object') return serializePythonDict(value);
+    return String(value);
+};
+
+/**
+ * @param {Object} obj
+ * @returns {String}
+ */
+export const serializePythonDict = function(obj) {
+    const entries = Object.entries(obj)
+        .filter(([k]) => !k.startsWith('_') && k !== 'toString')
+        .map(([k, v]) => `'${k}': ${serializePythonValue(v)}`);
+    return entries.length ? `{${entries.join(', ')}}` : '';
+};
+
+/**
+ * @param {Number} id
+ * @param {Object} data
+ * @returns {Object}
+ */
+export const createActionData = function(id, data) {
+    const hasActionId = !!data.actionId;
+    const action = {
+        id,
+        type: hasActionId ? 'action' : (data.type || 'view'),
+        actionId: hasActionId ? data.actionId : undefined,
+        resModel: !hasActionId ? data.resModel : undefined,
+        title: data.title || undefined,
+        viewMode: data.viewMode,
+        context: data.context || {},
+        domain: data.domain || [],
+        isFolded: false,
+        height: data.height || undefined,
+        minHeight: data.minHeight || undefined,
+        maxHeight: data.maxHeight || undefined,
+    };
+
+    const contextStr = Object.keys(action.context).length > 0
+        ? serializePythonDict(action.context)
+        : '';
+    action.context.toString = () => contextStr;
+    action.domain.toString = () => action.domain.length > 0
+        ? JSON.stringify(action.domain) : '';
+
+    return action;
+};

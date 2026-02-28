@@ -21,6 +21,11 @@ export class DashboardAction extends Component {
         },
         actionId: {
             type: [Number, String],
+            optional: true,
+        },
+        resModel: {
+            type: String,
+            optional: true,
         },
         viewMode: {
             type: String,
@@ -65,48 +70,70 @@ export class DashboardAction extends Component {
         this.viewProps = {};
 
         onWillStart(async () => {
-            let result = DashboardAction.cache[this.props.actionId];
+            if (this.props.actionId) {
+                // Mode: existing action
+                let result = DashboardAction.cache[this.props.actionId];
 
-            if (!result) {
-                result = await rpc('/web/action/load', {action_id: this.props.actionId});
-                DashboardAction.cache[this.props.actionId] = result;
-            }
+                if (!result) {
+                    result = await rpc('/web/action/load', {action_id: this.props.actionId});
+                    DashboardAction.cache[this.props.actionId] = result;
+                }
 
-            if (!result) {
+                if (!result) {
+                    this.isValid = false;
+
+                    return;
+                }
+
+                const viewMode = this.props.viewMode || result.views[0][1];
+                const formView = result.views.find((v) => v[1] === 'form');
+
+                if (formView) {
+                    this.formViewId = formView[0];
+                }
+
+                this.viewProps = {
+                    resModel: result.res_model,
+                    type: viewMode,
+                    display: {
+                        controlPanel: false,
+                        searchPanel: false,
+                    },
+                    selectRecord: (resId) => this.selectRecord(result.res_model, resId),
+                };
+
+                const view = result.views.find((v) => v[1] === viewMode);
+
+                if (view) {
+                    this.viewProps.viewId = view[0];
+                }
+
+                const searchView = result.views.find((v) => v[1] === 'search');
+
+                this.viewProps.views = [
+                    [this.viewProps.viewId || false, viewMode],
+                    [(searchView && searchView[0]) || false, 'search'],
+                ];
+            } else if (this.props.resModel) {
+                // Mode: direct view (without existing action)
+                const viewMode = this.props.viewMode;
+
+                this.viewProps = {
+                    resModel: this.props.resModel,
+                    type: viewMode,
+                    display: {
+                        controlPanel: false,
+                        searchPanel: false,
+                    },
+                    views: [[false, viewMode], [false, 'search']],
+                };
+            } else {
                 this.isValid = false;
 
                 return;
             }
 
-            const viewMode = this.props.viewMode || result.views[0][1];
-            const formView = result.views.find((v) => v[1] === 'form');
-
-            if (formView) {
-                this.formViewId = formView[0];
-            }
-
-            this.viewProps = {
-                resModel: result.res_model,
-                type: viewMode,
-                display: {
-                    controlPanel: false,
-                    searchPanel: false,
-                },
-                selectRecord: (resId) => this.selectRecord(result.res_model, resId),
-            };
-
-            const view = result.views.find((v) => v[1] === viewMode);
-
-            if (view) {
-                this.viewProps.viewId = view[0];
-            }
-
-            const searchView = result.views.find((v) => v[1] === 'search');
-
-            this.viewProps.views = [
-                [this.viewProps.viewId || false, viewMode],
-                [(searchView && searchView[0]) || false, 'search'],
-            ];
+            const viewMode = this.viewProps.type;
 
             if (this.props.context) {
                 this.viewProps.context = makeContext([
@@ -147,6 +174,13 @@ export class DashboardAction extends Component {
             if (this.props.domain) {
                 this.viewProps.domain = this.props.domain;
             }
+
+            this.viewProps.context = {
+                ...this.viewProps.context,
+                create: false,
+                edit: false,
+                delete: false,
+            };
 
             if (viewMode === 'list') {
                 this.viewProps.allowSelectors = false;

@@ -2,71 +2,154 @@
 <templates xml:space="preserve">
     <t t-name="pyper_dashboard_editor.DashboardActionDialog" t-inherit="pyper_dashboard_editor.DashboardDialogBase" t-inherit-mode="primary">
         <xpath expr="//t[@t-slot='default']" position="inside">
-            <div class="row">
-                <div class="col">
-                    <label class="o_form_label mb-2" for="title_0">
-                        Title
-                    </label>
+            <div class="d-flex gap-3 pyper_dashboard--action-dialog">
+                <!-- Left sidebar: configuration -->
+                <div class="pyper_dashboard--action-dialog-sidebar border rounded p-3">
+                    <!-- Model -->
+                    <div class="mb-3">
+                        <label class="o_form_label mb-2" for="model_0">
+                            Model
+                        </label>
 
-                    <div>
+                        <div t-att-class="{'border border-danger rounded': state.errors.model}">
+                            <ModelSelector
+                                id="'model_0'"
+                                value="state.modelLabel"
+                                onModelSelected.bind="onModelSelected"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Type -->
+                    <div class="mb-3">
+                        <label class="o_form_label mb-2" for="action_type_0">
+                            Type
+                        </label>
+
+                        <select id="action_type_0"
+                                class="o_input"
+                                autocomplete="nope"
+                                t-on-change="onTypeChanged"
+                        >
+                            <t t-foreach="actionTypes" t-as="actionType" t-key="actionType.key">
+                                <option t-att-value="actionType.key"
+                                        t-att-selected="actionType.key === state.type"
+                                        t-out="actionType.label"/>
+                            </t>
+                        </select>
+                    </div>
+
+                    <!-- Action (only for type 'action' and model selected) -->
+                    <div class="mb-3" t-if="state.type === 'action' and state.modelName">
+                        <label class="o_form_label mb-2">
+                            Action
+                        </label>
+
+                        <div t-att-class="{'border border-danger rounded': state.errors.action}">
+                            <RecordSelector
+                                resModel="'ir.actions.act_window'"
+                                resId="state.selectedActionId"
+                                domain="actionDomain"
+                                update.bind="onActionSelected"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- View type -->
+                    <div class="mb-3" t-if="state.modelName">
+                        <label class="o_form_label mb-2" for="view_mode_0">
+                            View type
+                        </label>
+
+                        <select id="view_mode_0"
+                                class="o_input"
+                                autocomplete="nope"
+                                t-on-change="onViewModeChanged"
+                        >
+                            <t t-foreach="state.viewTypes" t-as="vt" t-key="vt[0]">
+                                <option t-att-value="vt[0]"
+                                        t-att-selected="vt[0] === state.viewMode"
+                                        t-out="vt[1]"/>
+                            </t>
+                        </select>
+                    </div>
+
+                    <!-- Options -->
+                    <h6 class="mt-4 mb-0">Options</h6>
+                    <hr class="mt-1 mb-3"/>
+
+                    <!-- Title -->
+                    <div class="mb-3">
+                        <label class="o_form_label mb-2" for="title_0">
+                            Title
+                        </label>
+
                         <input type="text"
                                id="title_0"
                                t-model="title.input.value"
                                class="o_input"
                                t-att-class="{'is-invalid': title.input.hasError}"
-                               autofocus="autofocus"
+                               autocomplete="nope"
                         />
                     </div>
-                </div>
-            </div>
 
-            <div class="row mt-3">
-                <div class="col">
-                    <label class="o_form_label mb-2" for="height_0">
-                        Height
-                    </label>
+                    <!-- Heights -->
+                    <div class="mb-3">
+                        <label class="o_form_label mb-2" for="height_0">
+                            Height
+                        </label>
 
-                    <div>
                         <input type="text"
                                id="height_0"
                                t-model="height.input.value"
                                class="o_input"
                                t-att-class="{'is-invalid': height.input.hasError}"
+                               autocomplete="nope"
                                placeholder="auto"
                         />
                     </div>
-                </div>
 
-                <div class="col">
-                    <label class="o_form_label mb-2" for="min_height_0">
-                        Min Height
-                    </label>
+                    <div class="mb-3">
+                        <label class="o_form_label mb-2" for="min_height_0">
+                            Min Height
+                        </label>
 
-                    <div>
                         <input type="text"
                                id="min_height_0"
                                t-model="minHeight.input.value"
                                class="o_input"
                                t-att-class="{'is-invalid': minHeight.input.hasError}"
+                               autocomplete="nope"
                                placeholder="auto"
                         />
                     </div>
-                </div>
 
-                <div class="col">
-                    <label class="o_form_label mb-2" for="max_height_0">
-                        Max Height
-                    </label>
+                    <div class="mb-3">
+                        <label class="o_form_label mb-2" for="max_height_0">
+                            Max Height
+                        </label>
 
-                    <div>
                         <input type="text"
                                id="max_height_0"
                                t-model="maxHeight.input.value"
                                class="o_input"
                                t-att-class="{'is-invalid': maxHeight.input.hasError}"
+                               autocomplete="nope"
                                placeholder="auto"
                         />
                     </div>
+                </div>
+
+                <!-- Right: preview -->
+                <div class="d-flex flex-column flex-grow-1 min-w-0">
+                    <t t-if="state.showPreview">
+                        <DashboardPreview t-key="state.previewKey" t-props="previewProps"/>
+                    </t>
+                    <t t-else="">
+                        <div class="d-flex align-items-center justify-content-center h-100 text-muted border rounded p-3">
+                            Select a model and view type to preview
+                        </div>
+                    </t>
                 </div>
             </div>
         </xpath>

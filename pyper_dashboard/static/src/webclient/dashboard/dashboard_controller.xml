@@ -76,6 +76,7 @@
                                 <DashboardAction
                                     title="action.title"
                                     actionId="action.actionId"
+                                    resModel="action.resModel"
                                     viewMode="action.viewMode"
                                     context="action.context"
                                     domain="action.domain"

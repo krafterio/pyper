@@ -25,6 +25,9 @@ DashboardSection.props = {
     remove: {
         type: Function,
     },
+    addAction: {
+        type: Function,
+    },
     layoutEditable: {
         type: Boolean,
         optional: true,

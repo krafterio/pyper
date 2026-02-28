@@ -37,5 +37,9 @@
             'pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_dialog.xml',
             'pyper_dashboard_editor/static/src/webclient/**/*',
         ],
+
+        'web.assets_backend_lazy': [
+            'pyper_dashboard_editor/static/src/views/graph/**',
+        ],
     },
 }
