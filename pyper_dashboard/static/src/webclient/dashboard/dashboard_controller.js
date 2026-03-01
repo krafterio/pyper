@@ -62,6 +62,7 @@ export class DashboardController extends Component {
 
         onWillStart(async () => {
             const {arch, info} = this.props;
+            this.actionTitle = this.env.config.getDisplayName?.() || '';
             Object.assign(this.dashboard, new DashboardArchParser().parse(arch, info.customViewId));
 
             if (this.dashboard.useSwitcher) {
@@ -160,6 +161,10 @@ export class DashboardController extends Component {
 
         if (this.state.selectedBoard?.id) {
             this.props.updateActionState?.({resId: this.state.selectedBoard.id});
+            const displayName = this.actionTitle
+                ? `${this.actionTitle} - ${this.state.selectedBoard.name}`
+                : this.state.selectedBoard.name;
+            this.env.config.setDisplayName?.(displayName);
         }
     }
 
