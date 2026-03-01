@@ -12,12 +12,12 @@
                 </button>
 
                 <t t-set-slot="content">
-                    <DropdownItem t-if="props.isFolded" onSelected="() => this.props.toggle()">
+                    <DropdownItem t-if="false and props.isFolded" onSelected="() => this.props.toggle()">
                         <i class="oi-fw oi-fw me-1 fa fa-window-maximize"></i>
                         Maximize
                     </DropdownItem>
 
-                    <DropdownItem t-else="" onSelected="() => this.props.toggle()">
+                    <DropdownItem t-if="false" onSelected="() => this.props.toggle()">
                         <i class="oi-fw oi-fw me-1 fa fa-window-minimize"></i>
                         Minimize
                     </DropdownItem>
