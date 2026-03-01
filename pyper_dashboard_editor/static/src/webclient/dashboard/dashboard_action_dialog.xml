@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
     <t t-name="pyper_dashboard_editor.DashboardActionDialog" t-inherit="pyper_dashboard_editor.DashboardDialogBase" t-inherit-mode="primary">
         <xpath expr="//t[@t-slot='default']" position="inside">
-            <div class="d-flex gap-3 pyper_dashboard--action-dialog">
+            <div class="d-flex flex-column flex-md-row gap-3 pyper_dashboard--action-dialog">
                 <!-- Left sidebar: configuration -->
                 <div class="pyper_dashboard--action-dialog-sidebar border rounded p-3">
                     <!-- Model -->
@@ -22,21 +22,17 @@
 
                     <!-- Type -->
                     <div class="mb-3">
-                        <label class="o_form_label mb-2" for="action_type_0">
+                        <label class="o_form_label mb-2">
                             Type
                         </label>
 
-                        <select id="action_type_0"
-                                class="o_input"
-                                autocomplete="nope"
-                                t-on-change="onTypeChanged"
-                        >
-                            <t t-foreach="actionTypes" t-as="actionType" t-key="actionType.key">
-                                <option t-att-value="actionType.key"
-                                        t-att-selected="actionType.key === state.type"
-                                        t-out="actionType.label"/>
-                            </t>
-                        </select>
+                        <SelectMenu
+                            choices="actionTypeChoices"
+                            value="state.type"
+                            onSelect.bind="onTypeChanged"
+                            required="true"
+                            autoSort="false"
+                        />
                     </div>
 
                     <!-- Action (only for type 'action' and model selected) -->
@@ -57,21 +53,17 @@
 
                     <!-- View type -->
                     <div class="mb-3" t-if="state.modelName">
-                        <label class="o_form_label mb-2" for="view_mode_0">
+                        <label class="o_form_label mb-2">
                             View type
                         </label>
 
-                        <select id="view_mode_0"
-                                class="o_input"
-                                autocomplete="nope"
-                                t-on-change="onViewModeChanged"
-                        >
-                            <t t-foreach="state.viewTypes" t-as="vt" t-key="vt[0]">
-                                <option t-att-value="vt[0]"
-                                        t-att-selected="vt[0] === state.viewMode"
-                                        t-out="vt[1]"/>
-                            </t>
-                        </select>
+                        <SelectMenu
+                            choices="viewTypeChoices"
+                            value="state.viewMode"
+                            onSelect.bind="onViewModeChanged"
+                            required="true"
+                            autoSort="false"
+                        />
                     </div>
 
                     <!-- Options -->

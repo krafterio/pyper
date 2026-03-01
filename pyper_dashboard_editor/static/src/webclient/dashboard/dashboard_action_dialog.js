@@ -6,6 +6,7 @@ import {onWillStart, useState} from '@odoo/owl';
 import {_t} from '@web/core/l10n/translation';
 import {ModelSelector} from '@web/core/model_selector/model_selector';
 import {RecordSelector} from '@web/core/record_selectors/record_selector';
+import {SelectMenu} from '@web/core/select_menu/select_menu';
 import {useService} from '@web/core/utils/hooks';
 import {rpc} from '@web/core/network/rpc';
 import {DashboardDialogBase, useControlledInput} from './dashboard_dialog';
@@ -19,6 +20,7 @@ export class DashboardActionDialog extends DashboardDialogBase {
         ...DashboardDialogBase.components,
         ModelSelector,
         RecordSelector,
+        SelectMenu,
         DashboardPreview,
     };
 
@@ -126,13 +128,13 @@ export class DashboardActionDialog extends DashboardDialogBase {
 
                 if (result) {
                     this.state.modelName = result.res_model;
-                    this.state.modelLabel = result.res_model;
+                    this.state.modelLabel = await this._fetchModelLabel(result.res_model);
                     this._filterViewTypes(result.views);
                 }
 
                 this.state.showPreview = !!this.state.viewMode;
             } else if (this.props.resModel) {
-                this.state.modelLabel = this.props.resModel;
+                this.state.modelLabel = await this._fetchModelLabel(this.props.resModel);
                 this._setDefaultViewMode();
                 this.state.showPreview = !!this.state.viewMode;
             } else {
@@ -143,6 +145,14 @@ export class DashboardActionDialog extends DashboardDialogBase {
 
     get dialogSize() {
         return 'xl';
+    }
+
+    get actionTypeChoices() {
+        return this.actionTypes.map((at) => ({value: at.key, label: at.label}));
+    }
+
+    get viewTypeChoices() {
+        return this.state.viewTypes.map(([value, label]) => ({value, label}));
     }
 
     get actionDomain() {
@@ -230,11 +240,11 @@ export class DashboardActionDialog extends DashboardDialogBase {
         this.getPreviewState = getStateFn;
     }
 
-    onTypeChanged(ev) {
-        this.state.type = ev.target.value;
+    onTypeChanged(value) {
+        this.state.type = value;
         this.state.selectedActionId = false;
 
-        if (ev.target.value !== 'action') {
+        if (value !== 'action') {
             this.state.viewTypes = [...this.allViewTypes];
             this._setDefaultViewMode();
         }
@@ -270,8 +280,8 @@ export class DashboardActionDialog extends DashboardDialogBase {
         this._updatePreview();
     }
 
-    onViewModeChanged(ev) {
-        this.state.viewMode = ev.target.value;
+    onViewModeChanged(value) {
+        this.state.viewMode = value;
         this._updatePreview();
     }
 
@@ -283,6 +293,12 @@ export class DashboardActionDialog extends DashboardDialogBase {
             ([key]) => actionViewTypes.includes(key)
         );
         this._setDefaultViewMode();
+    }
+
+    async _fetchModelLabel(modelName) {
+        const result = await this.orm.call('ir.model', 'display_name_for', [[modelName]]);
+
+        return result[0]?.display_name || modelName;
     }
 
     _setDefaultViewMode() {
