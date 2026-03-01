@@ -30,8 +30,10 @@
 
                     <t t-foreach="layouts" t-as="layout" t-key="layout">
                         <DropdownItem onSelected="() => this.selectLayout(layout)">
-                            <img class="ms-4" t-attf-src="/pyper_dashboard_editor/static/img/layout_{{layout}}.png" alt="" width="32"/>
-                            <i t-if="layout === props.layout" class="fa oi-fw fa-check fa-lg text-success ms-3" aria-label="Layout" role="img" title="Layout"/>
+                            <i t-if="layout === props.layout" class="fa oi-fw fa-check fa-lg text-success" aria-label="Layout" role="img" title="Layout" style="width:24px;"/>
+                            <span t-else="" class="fa oi-fw fa-lg" style="display:inline-block;width:24px"/>
+                            <img class="ms-1" t-attf-src="/pyper_dashboard_editor/static/img/layout_{{layout}}.png" alt="" width="32"/>
+                            <span class="ms-2 text-muted" t-out="layout"/>
                         </DropdownItem>
                     </t>
                 </t>
