@@ -5,6 +5,7 @@ import {DashboardPreview} from './dashboard_preview';
 import {onWillStart, useState} from '@odoo/owl';
 import {_t} from '@web/core/l10n/translation';
 import {ModelSelector} from '@web/core/model_selector/model_selector';
+import {ModelFieldSelector} from '@web/core/model_field_selector/model_field_selector';
 import {RecordSelector} from '@web/core/record_selectors/record_selector';
 import {SelectMenu} from '@web/core/select_menu/select_menu';
 import {useService} from '@web/core/utils/hooks';
@@ -19,6 +20,7 @@ export class DashboardActionDialog extends DashboardDialogBase {
     static components = {
         ...DashboardDialogBase.components,
         ModelSelector,
+        ModelFieldSelector,
         RecordSelector,
         SelectMenu,
         DashboardPreview,
@@ -66,6 +68,14 @@ export class DashboardActionDialog extends DashboardDialogBase {
             type: String,
             optional: true,
         },
+        filterField: {
+            type: String,
+            optional: true,
+        },
+        filterFieldType: {
+            type: String,
+            optional: true,
+        },
     };
 
     static defaultProps = {
@@ -100,6 +110,8 @@ export class DashboardActionDialog extends DashboardDialogBase {
             viewMode: this.props.viewMode || '',
             showPreview: false,
             previewKey: 0,
+            filterField: this.props.filterField || '',
+            filterFieldType: this.props.filterFieldType || '',
             errors: {
                 model: false,
                 action: false,
@@ -200,6 +212,10 @@ export class DashboardActionDialog extends DashboardDialogBase {
         return props;
     }
 
+    get filterFieldFilter() {
+        return (fieldDef) => ['date', 'datetime'].includes(fieldDef.type);
+    }
+
     get formData() {
         const previewState = this.getPreviewState?.() || {};
         const actionId = this.state.type === 'action' ? this.state.selectedActionId : undefined;
@@ -215,6 +231,8 @@ export class DashboardActionDialog extends DashboardDialogBase {
             height: this.height.input.value || undefined,
             minHeight: this.minHeight.input.value || undefined,
             maxHeight: this.maxHeight.input.value || undefined,
+            filterField: this.state.filterField || undefined,
+            filterFieldType: this.state.filterFieldType || undefined,
         };
     }
 
@@ -257,9 +275,16 @@ export class DashboardActionDialog extends DashboardDialogBase {
         this.state.modelLabel = label;
         this.state.selectedActionId = false;
         this.state.errors.model = false;
+        this.state.filterField = '';
+        this.state.filterFieldType = '';
         this.state.viewTypes = [...this.allViewTypes];
         this._setDefaultViewMode();
         this._updatePreview();
+    }
+
+    onFilterFieldUpdate(path, fieldInfo) {
+        this.state.filterField = path || '';
+        this.state.filterFieldType = fieldInfo?.fieldDef?.type || '';
     }
 
     async onActionSelected(resId) {

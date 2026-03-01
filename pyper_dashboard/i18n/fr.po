@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0-20240831\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-31 10:03+0000\n"
-"PO-Revision-Date: 2024-08-31 10:03+0000\n"
+"POT-Creation-Date: 2026-03-01 10:06+0000\n"
+"PO-Revision-Date: 2026-03-01 10:06+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,9 +17,7 @@ msgstr ""
 
 #. module: pyper_dashboard
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
-#, python-format
 msgid ""
 "\"Add to\n"
 "                  dashboard\""
@@ -39,6 +37,19 @@ msgid "Administrator"
 msgstr "Administrateur"
 
 #. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_picker.js:0
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "All"
+msgstr "Tout"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_picker.xml:0
+msgid "Apply"
+msgstr "Appliquer"
+
+#. module: pyper_dashboard
 #: model:ir.model.fields,field_description:pyper_dashboard.field_dashboard_dashboard__arch
 msgid "Architecture"
 msgstr ""
@@ -50,6 +61,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:pyper_dashboard.view_dashboard_dashboard_search
 msgid "Archived"
 msgstr "Archivé"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_picker.xml:0
+msgid "Cancel"
+msgstr "Annuler"
 
 #. module: pyper_dashboard
 #: model:ir.ui.menu,name:pyper_dashboard.menu_dashboard_settings_category
@@ -80,11 +97,18 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "Custom"
+msgstr "Personnalisé"
+
+#. module: pyper_dashboard
 #: model:ir.actions.act_window,name:pyper_dashboard.action_dashboard_open
 #: model:ir.model,name:pyper_dashboard.model_dashboard_dashboard
 #: model:ir.module.category,name:pyper_dashboard.group_dashboard
 #: model:ir.module.category,name:pyper_dashboard.module_dashboard
 #: model:ir.module.category,name:pyper_dashboard.module_dashboard_root
+#: model:res.groups.privilege,name:pyper_dashboard.group_privilege_dashboard
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
@@ -105,34 +129,32 @@ msgstr "Catégorie du tableau de bord"
 
 #. module: pyper_dashboard
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
-#, python-format
 msgid "Dashboard is empty"
 msgstr "Tableau de bord est vide"
 
 #. module: pyper_dashboard
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
-#: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
-#, python-format
 msgid "Dashboard switcher"
 msgstr ""
 
 #. module: pyper_dashboard
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_view.js:0
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_view.js:0
 #: model:ir.actions.act_window,name:pyper_dashboard.action_dashboard_dashboard_list
 #: model:ir.ui.menu,name:pyper_dashboard.menu_dashboard_dashboard
 #: model:ir.ui.menu,name:pyper_dashboard.menu_dashboard_root
 #: model:ir.ui.menu,name:pyper_dashboard.menu_dashboard_settings_dashboard
 #: model_terms:ir.ui.view,arch_db:pyper_dashboard.view_dashboard_dashboard_search
-#, python-format
 msgid "Dashboards"
 msgstr "Tableaux de bord"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_picker.xml:0
+msgid "Date range"
+msgstr "Période"
 
 #. module: pyper_dashboard
 #: model:ir.model.fields,field_description:pyper_dashboard.field_dashboard_category__display_name
@@ -153,9 +175,7 @@ msgstr ""
 
 #. module: pyper_dashboard
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_action.xml:0
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_action.xml:0
-#, python-format
 msgid "Invalid action"
 msgstr "Action invalide"
 
@@ -163,6 +183,36 @@ msgstr "Action invalide"
 #: model:ir.model.fields,field_description:pyper_dashboard.field_dashboard_dashboard__is_editable
 msgid "Is editable?"
 msgstr "Est editable ?"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "Last 12 months"
+msgstr "Les 12 derniers mois"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "Last 3 months"
+msgstr "Les 3 derniers mois"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "Last 30 days"
+msgstr "30 derniers jours"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "Last 6 months"
+msgstr "Les 6 derniers mois"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "Last 7 days"
+msgstr "Les 7 derniers jours"
 
 #. module: pyper_dashboard
 #: model:ir.model.fields,field_description:pyper_dashboard.field_dashboard_category__write_uid
@@ -175,6 +225,30 @@ msgstr "Dernière modification par"
 #: model:ir.model.fields,field_description:pyper_dashboard.field_dashboard_dashboard__write_date
 msgid "Last Updated on"
 msgstr "Dernière modification le"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "Last month"
+msgstr "Le mois dernier"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "Last quarter"
+msgstr "Le dernier trimestre"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "Last year"
+msgstr "L’année dernière"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "Month to date"
+msgstr "Depuis le début du mois"
 
 #. module: pyper_dashboard
 #: model_terms:ir.ui.view,arch_db:pyper_dashboard.view_dashboard_category_form
@@ -194,11 +268,7 @@ msgstr "Nom"
 
 #. module: pyper_dashboard
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
-#: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
-#, python-format
 msgid "Options"
 msgstr ""
 
@@ -208,6 +278,18 @@ msgid "Original View"
 msgstr "Vue originale"
 
 #. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
+msgid "Refresh"
+msgstr "Rafraichir"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_section.xml:0
+msgid "Section"
+msgstr ""
+
+#. module: pyper_dashboard
 #: model:ir.model.fields,field_description:pyper_dashboard.field_dashboard_category__sequence
 #: model:ir.model.fields,field_description:pyper_dashboard.field_dashboard_dashboard__sequence
 msgid "Sequence"
@@ -215,35 +297,27 @@ msgstr "Séquence"
 
 #. module: pyper_dashboard
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.js:0
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.js:0
 #: model:ir.ui.menu,name:pyper_dashboard.menu_dashboard_settings
 #: model_terms:ir.ui.view,arch_db:pyper_dashboard.view_dashboard_dashboard_tree
-#, python-format
 msgid "Settings"
 msgstr "Paramètres"
 
 #. module: pyper_dashboard
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_arch_parser.js:0
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_arch_parser.js:0
-#, python-format
 msgid "The \"action\" tag must be a child of \"column\" and \"section\" tags"
 msgstr "Le tag \"action\" doit être un enfant des tags \"column\" et \"section\""
 
 #. module: pyper_dashboard
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_arch_parser.js:0
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_arch_parser.js:0
-#, python-format
 msgid "The \"column\" tag must be a child of \"section\" tag"
 msgstr "Le tag \"column\" doit être un enfant du tag \"section\""
 
 #. module: pyper_dashboard
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_arch_parser.js:0
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_arch_parser.js:0
-#, python-format
 msgid ""
 "The \"dashboard\" tag must be the only one child element of \"form\" tag. "
 "You cannot add other tags in the \"form\" tag if \"dashboard\" is used"
@@ -254,9 +328,31 @@ msgstr ""
 
 #. module: pyper_dashboard
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "This month"
+msgstr "Ce mois-ci"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "This quarter"
+msgstr "Ce trimestre"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "This week"
+msgstr "Cette semaine"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "This year"
+msgstr "Cette année"
+
+#. module: pyper_dashboard
+#. odoo-javascript
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
-#, python-format
 msgid ""
 "To add your first graph into this dashboard, go to any\n"
 "                  menu, switch to list or graph view, and click"
@@ -265,19 +361,21 @@ msgstr ""
 "                 menu, passez à la vue liste ou graphique, puis cliquez"
 
 #. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "Today"
+msgstr "Aujourd’hui"
+
+#. module: pyper_dashboard
 #. odoo-python
-#: code:addons/pyper/pyper_dashboard/models/dashboard_dashboard.py:0
 #: code:addons/pyper_dashboard/models/dashboard_dashboard.py:0
-#, python-format
 msgid "Unable to delete this dashboard because it is associated with a view"
 msgstr ""
 "Impossible de supprimer ce tableau de bord car il est associé à une vue"
 
 #. module: pyper_dashboard
 #. odoo-python
-#: code:addons/pyper/pyper_dashboard/models/dashboard_dashboard.py:0
 #: code:addons/pyper_dashboard/models/dashboard_dashboard.py:0
-#, python-format
 msgid "Unable to override this dashboard because it is associated with a view"
 msgstr ""
 "Impossible de remplacer ce tableau de bord car il est associé à une vue"
@@ -289,9 +387,19 @@ msgstr "Utilisateur"
 
 #. module: pyper_dashboard
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "Year to date"
+msgstr "Depuis le début de l'année"
+
+#. module: pyper_dashboard
+#. odoo-javascript
+#: code:addons/pyper_dashboard/static/src/webclient/dashboard/date_range_utils.js:0
+msgid "Yesterday"
+msgstr "Hier"
+
+#. module: pyper_dashboard
+#. odoo-javascript
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
-#, python-format
 msgid ""
 "You can group and filter data before inserting into the\n"
 "                  dashboard using the search options."
@@ -301,8 +409,6 @@ msgstr ""
 
 #. module: pyper_dashboard
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
 #: code:addons/pyper_dashboard/static/src/webclient/dashboard/dashboard_controller.xml:0
-#, python-format
 msgid "in the extended search options."
 msgstr "dans les options de recherche étendue."

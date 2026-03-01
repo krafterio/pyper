@@ -25,6 +25,8 @@
             <attribute name="remove">() => this.removeAction(column, action)</attribute>
             <attribute name="layoutEditable">section.layoutEditable and this.canEdit and this.isEditMode</attribute>
             <attribute name="isFolded">action.isFolded</attribute>
+            <attribute name="filterField">action.filterField</attribute>
+            <attribute name="filterFieldType">action.filterFieldType</attribute>
         </xpath>
     </t>
 
@@ -53,6 +55,8 @@
                                 t-att-height="action.height || undefined"
                                 t-att-min_height="action.minHeight || undefined"
                                 t-att-max_height="action.maxHeight || undefined"
+                                t-att-filter_field="action.filterField || undefined"
+                                t-att-filter_field_type="action.filterFieldType || undefined"
                             />
                         </t>
                     </column>

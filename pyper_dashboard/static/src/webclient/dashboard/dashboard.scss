@@ -278,6 +278,90 @@
     }
 }
 
+// Date Range Picker
+.pyper_dashboard--date-range-menu {
+    min-width: auto;
+    padding: 0;
+}
+
+.pyper_dashboard--date-range-presets {
+    width: 220px;
+    min-width: 220px;
+    max-height: 420px;
+    overflow-y: auto;
+    border-right: 1px solid var(--o-border-color, #{$border-color});
+    padding: 8px 0;
+}
+
+.pyper_dashboard--date-range-preset-item {
+    padding: 6px 16px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 0.875rem;
+
+    &:hover {
+        background-color: var(--o-dropdown-link-hover-bg, #{$dropdown-link-hover-bg});
+    }
+
+    &.active {
+        background-color: var(--o-action, #{$o-action});
+        color: white;
+        font-weight: 500;
+    }
+}
+
+.pyper_dashboard--date-range-calendar {
+    padding: 12px;
+    min-width: 280px;
+}
+
+.pyper_dashboard--date-range-date-display {
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--o-text-color-muted, #{$text-muted});
+}
+
+.pyper_dashboard--date-range-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 8px 12px;
+    border-top: 1px solid var(--o-border-color, #{$border-color});
+}
+
+@include media-breakpoint-down(md) {
+    .pyper_dashboard--date-range-menu {
+        .d-flex {
+            flex-direction: column;
+        }
+    }
+
+    .pyper_dashboard--date-range-presets {
+        width: 100%;
+        min-width: 100%;
+        max-height: 200px;
+        border-right: none;
+        border-bottom: 1px solid var(--o-border-color, #{$border-color});
+    }
+
+    .pyper_dashboard--date-range-calendar {
+        min-width: auto;
+    }
+}
+
+.o_bottom_sheet_body {
+    .pyper_dashboard--date-range-calendar {
+        .o_datetime_picker {
+            width: 100%;
+        }
+
+        .o_datetime_picker_header {
+            flex-direction: row;
+        }
+    }
+}
+
 // Dashboard Editable
 .pyper_dashboard.editable {
     .pyper_dashboard--section-header-title,

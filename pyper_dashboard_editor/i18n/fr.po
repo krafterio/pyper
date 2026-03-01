@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0-20241117\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-20 00:33+0000\n"
-"PO-Revision-Date: 2024-11-20 00:33+0000\n"
+"POT-Creation-Date: 2026-03-01 10:10+0000\n"
+"PO-Revision-Date: 2026-03-01 10:10+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,71 +17,72 @@ msgstr ""
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.js:0
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+msgid "Action"
+msgstr ""
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
-#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
-#, python-format
 msgid "Action settings"
 msgstr "Configuration de l’action"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.xml:0
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_controller.js:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.xml:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_controller.js:0
-#, python-format
 msgid "Add"
 msgstr "Ajouter"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_controller.js:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_controller.js:0
-#, python-format
 msgid "Add a section"
 msgstr "Ajouter une section"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.xml:0
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
+msgid "Add action"
+msgstr "Ajouter une action"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.xml:0
-#, python-format
 msgid "Add to dashboard"
 msgstr "Ajouter au tableau de bord"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_controller.js:0
-#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_controller.js:0
-#, python-format
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.js:0
 msgid "Are you sure that you want to remove this item?"
 msgstr "Etes-vous sûr de vouloir supprimer cet élément ?"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.js:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.js:0
-#, python-format
 msgid "Are you sure that you want to remove this section?"
 msgstr "Etes-vous sûr de vouloir supprimer cette section ?"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section_dialog.js:0
-#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section_dialog.js:0
-#, python-format
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_dialog.js:0
 msgid "Cancel"
 msgstr "Annuler"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.js:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.js:0
-#, python-format
 msgid "Could not add filter to dashboard"
 msgstr "Impossible d’ajouter un filtre au tableau de bord"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_type_registry.js:0
+#: model:ir.model,name:pyper_dashboard_editor.model_ir_ui_view_custom
+msgid "Custom View"
+msgstr "Vue personnalisée"
 
 #. module: pyper_dashboard_editor
 #: model:ir.model.fields,field_description:pyper_dashboard_editor.field_dashboard_dashboard__arch_db
@@ -96,99 +97,126 @@ msgstr "Tableau de bord"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.xml:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.xml:0
-#, python-format
 msgid "Dashboards"
 msgstr "Tableaux de bord"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.js:0
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.js:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.js:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
-#, python-format
 msgid "Delete"
 msgstr "Supprimer"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_controller.js:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_controller.js:0
-#, python-format
 msgid "Disable edit"
 msgstr "Désactiver l’édition"
 
 #. module: pyper_dashboard_editor
+#: model:ir.model.fields,field_description:pyper_dashboard_editor.field_dashboard_board__display_name
+#: model:ir.model.fields,field_description:pyper_dashboard_editor.field_dashboard_dashboard__display_name
+#: model:ir.model.fields,field_description:pyper_dashboard_editor.field_ir_ui_view_custom__display_name
+msgid "Display Name"
+msgstr "Nom"
+
+#. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.js:0
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.js:0
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.js:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
-#, python-format
 msgid "Edit"
 msgstr "Modifier"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_controller.js:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_controller.js:0
-#, python-format
 msgid "Enable edit"
 msgstr "Activer l’édition"
 
 #. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_type_registry.js:0
+msgid "Existing Action"
+msgstr "Action existante"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+msgid "Filter field"
+msgstr "Champ de filtre"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+msgid "Height"
+msgstr "Hauteur"
+
+#. module: pyper_dashboard_editor
 #: model:ir.model.fields,field_description:pyper_dashboard_editor.field_dashboard_board__id
+#: model:ir.model.fields,field_description:pyper_dashboard_editor.field_dashboard_dashboard__id
+#: model:ir.model.fields,field_description:pyper_dashboard_editor.field_ir_ui_view_custom__id
 msgid "ID"
 msgstr ""
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
-#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
-#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
-#, python-format
 msgid "Layout"
 msgstr "Mise en page"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+msgid "Max Height"
+msgstr "Hauteur max"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
-#, python-format
 msgid "Maximize"
 msgstr "Agrandir"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+msgid "Min Height"
+msgstr "Hauteur min"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
-#, python-format
 msgid "Minimize"
 msgstr "Réduire"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.js:0
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+msgid "Model"
+msgstr "Modèle"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.js:0
 #: model:ir.actions.act_window,name:pyper_dashboard_editor.action_my_dashboard_open
 #: model:ir.ui.menu,name:pyper_dashboard_editor.menu_dashboard_my_board
 #: model_terms:ir.ui.view,arch_db:pyper_dashboard_editor.view_dashboard_board
-#, python-format
 msgid "My dashboard"
 msgstr "Mon tableau de bord"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.js:0
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+msgid "Options"
+msgstr ""
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.js:0
-#, python-format
 msgid "Please refresh your browser for the changes to take effect."
 msgstr ""
 "Veuillez actualiser votre navigateur pour que les modifications prennent "
@@ -196,51 +224,63 @@ msgstr ""
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section_dialog.js:0
-#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section_dialog.js:0
-#, python-format
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_dialog.js:0
 msgid "Save"
 msgstr "Enregistrer"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section_dialog.js:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section_dialog.js:0
-#, python-format
 msgid "Section"
 msgstr ""
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
-#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
-#, python-format
 msgid "Section settings"
 msgstr "Configuration de la section"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section_dialog.xml:0
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_preview.xml:0
+msgid "Select a model and view type to preview"
+msgstr "Sélectionnez un modèle et un type de vue pour prévisualiser"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section_dialog.xml:0
-#, python-format
 msgid "Title"
 msgstr "Titre"
 
 #. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+msgid "Type"
+msgstr ""
+
+#. module: pyper_dashboard_editor
 #. odoo-python
-#: code:addons/pyper/pyper_dashboard_editor/models/dashboard_dashboard.py:0
 #: code:addons/pyper_dashboard_editor/models/dashboard_dashboard.py:0
-#, python-format
 msgid "Unable to override this dashboard because it is associated with a view"
 msgstr ""
 "Impossible de remplacer ce tableau de bord car il est associé à une vue"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.js:0
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+msgid "View type"
+msgstr "Type de vue"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+msgid "auto"
+msgstr ""
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.js:0
-#, python-format
 msgid "“%s” added to dashboard"
 msgstr "“%s” ajouté au tableau de bord"

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_dashboard.DateRangePicker">
+        <Dropdown state="dropdownState"
+                  menuClass="'pyper_dashboard--date-range-menu'"
+                  position="'bottom-end'"
+                  onOpened.bind="onDropdownOpened"
+        >
+            <button class="btn btn-outline-secondary py-1 ms-1">
+                <i class="fa fa-fw fa-calendar" aria-label="Date range" role="img"/>
+                <span class="ms-1 d-none d-md-inline" t-out="selectedLabel"/>
+            </button>
+
+            <t t-set-slot="content">
+                <div class="d-flex flex-column">
+                    <div class="d-flex">
+                        <!-- Left: preset list -->
+                        <div class="pyper_dashboard--date-range-presets">
+                            <t t-foreach="presets" t-as="preset" t-key="preset.key">
+                                <div class="pyper_dashboard--date-range-preset-item"
+                                     t-att-class="{'active': pending.rangeKey === preset.key}"
+                                     t-on-click="() => this.onPresetSelected(preset.key)"
+                                >
+                                    <t t-out="preset.label"/>
+                                </div>
+                            </t>
+                        </div>
+
+                        <!-- Right: calendar -->
+                        <div class="pyper_dashboard--date-range-calendar" t-if="showCalendar">
+                            <div class="pyper_dashboard--date-range-date-display mb-2">
+                                <t t-if="calendarValue">
+                                    <span class="pyper_dashboard--date-range-date-label" t-out="pendingLabel"/>
+                                </t>
+                            </div>
+
+                            <div t-att-class="{'pe-none opacity-75': !isCustom}">
+                                <DateTimePicker
+                                    t-key="pending.rangeKey"
+                                    type="'date'"
+                                    range="true"
+                                    value="calendarValue"
+                                    focusedDateIndex="pending.focusedDateIndex"
+                                    onSelect.bind="onCalendarSelect"
+                                    showWeekNumbers="false"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer: Cancel / Apply -->
+                    <div class="pyper_dashboard--date-range-footer">
+                        <button class="btn btn-sm btn-secondary" t-on-click="onCancel">
+                            Cancel
+                        </button>
+                        <button class="btn btn-sm btn-primary" t-on-click="onApply">
+                            Apply
+                        </button>
+                    </div>
+                </div>
+            </t>
+        </Dropdown>
+    </t>
+</templates>

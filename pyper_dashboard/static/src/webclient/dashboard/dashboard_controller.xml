@@ -42,6 +42,12 @@
             </div>
 
             <div>
+                <DateRangePicker t-if="hasFilterableActions"
+                    value="dateRangeState.rangeKey"
+                    customStart="dateRangeState.customStart"
+                    customEnd="dateRangeState.customEnd"
+                    onSelect="(key, start, end) => this.onDateRangeSelect(key, start, end)"
+                />
                 <button class="btn btn-outline-secondary py-1 ms-1" t-on-click="refreshDashboard">
                     <i class="fa fa-fw fa-refresh" aria-label="Refresh" role="img" title="Refresh"/>
                 </button>
@@ -79,7 +85,7 @@
                                     resModel="action.resModel"
                                     viewMode="action.viewMode"
                                     context="action.context"
-                                    domain="action.domain"
+                                    domain="this.getEffectiveDomain(action)"
                                     height="action.height"
                                     minHeight="action.minHeight"
                                     maxHeight="action.maxHeight"

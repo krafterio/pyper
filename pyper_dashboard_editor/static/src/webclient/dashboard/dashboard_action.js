@@ -34,6 +34,14 @@ DashboardAction.props = {
         type: Boolean,
         optional: true,
     },
+    filterField: {
+        type: String,
+        optional: true,
+    },
+    filterFieldType: {
+        type: String,
+        optional: true,
+    },
 };
 
 DashboardAction.defaultProps = {
@@ -65,6 +73,8 @@ patch(DashboardAction.prototype, {
             height: this.props.height,
             minHeight: this.props.minHeight,
             maxHeight: this.props.maxHeight,
+            filterField: this.props.filterField,
+            filterFieldType: this.props.filterFieldType,
             saveLabel: _t('Edit'),
             save: async (data) => {
                 await this.props.edit(data);

@@ -174,6 +174,9 @@ export const createAction = function(id, node) {
     action.context.toString = () => node.getAttribute('context');
     action.domain.toString = () => node.getAttribute('domain');
 
+    action.filterField = node.getAttribute('filter_field') || undefined;
+    action.filterFieldType = node.getAttribute('filter_field_type') || undefined;
+
     return action;
 }
 
@@ -222,6 +225,8 @@ export const createActionData = function(id, data) {
         height: data.height || undefined,
         minHeight: data.minHeight || undefined,
         maxHeight: data.maxHeight || undefined,
+        filterField: data.filterField || undefined,
+        filterFieldType: data.filterFieldType || undefined,
     };
 
     const contextStr = Object.keys(action.context).length > 0

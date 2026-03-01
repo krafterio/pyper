@@ -66,6 +66,23 @@
                         />
                     </div>
 
+                    <!-- Filter field -->
+                    <div class="mb-3" t-if="state.modelName">
+                        <label class="o_form_label mb-2">
+                            Filter field
+                        </label>
+
+                        <ModelFieldSelector
+                            resModel="state.modelName"
+                            path="state.filterField"
+                            readonly="false"
+                            allowEmpty="true"
+                            followRelations="false"
+                            filter="filterFieldFilter"
+                            update.bind="onFilterFieldUpdate"
+                        />
+                    </div>
+
                     <!-- Options -->
                     <h6 class="mt-4 mb-0">Options</h6>
                     <hr class="mt-1 mb-3"/>
