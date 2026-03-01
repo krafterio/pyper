@@ -186,7 +186,7 @@ export const createAction = function(id, node) {
  * @returns {String}
  */
 export const serializePythonValue = function(value) {
-    if (typeof value === 'string') return `'${value}'`;
+    if (typeof value === 'string') return `'${value.replace(/'/g, "\\'")}'`;
     if (typeof value === 'boolean') return value ? 'True' : 'False';
     if (typeof value === 'number') return String(value);
     if (Array.isArray(value)) return `[${value.map(serializePythonValue).join(', ')}]`;
@@ -202,7 +202,7 @@ export const serializePythonValue = function(value) {
 export const serializePythonDict = function(obj) {
     const entries = Object.entries(obj)
         .filter(([k]) => !k.startsWith('_') && k !== 'toString')
-        .map(([k, v]) => `'${k}': ${serializePythonValue(v)}`);
+        .map(([k, v]) => `'${k.replace(/'/g, "\\'")}': ${serializePythonValue(v)}`);
     return entries.length ? `{${entries.join(', ')}}` : '';
 };
 
