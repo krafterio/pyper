@@ -1,6 +1,7 @@
 /** @odoo-module **/
 
 import {dashboardActionTypeRegistry} from './dashboard_action_type_registry';
+import {DashboardKpiPreview} from './dashboard_kpi_preview';
 import {DashboardPreview} from './dashboard_preview';
 import {onWillStart, useState} from '@odoo/owl';
 import {_t} from '@web/core/l10n/translation';
@@ -24,6 +25,7 @@ export class DashboardActionDialog extends DashboardDialogBase {
         RecordSelector,
         SelectMenu,
         DashboardPreview,
+        DashboardKpiPreview,
     };
 
     static props = {
@@ -76,6 +78,10 @@ export class DashboardActionDialog extends DashboardDialogBase {
             type: String,
             optional: true,
         },
+        icon: {
+            type: String,
+            optional: true,
+        },
     };
 
     static defaultProps = {
@@ -88,6 +94,7 @@ export class DashboardActionDialog extends DashboardDialogBase {
 
         this.orm = useService('orm');
         this.title = useControlledInput(this.props.title, value => !!value || !value);
+        this.icon = useControlledInput(this.props.icon, () => true);
         this.height = useControlledInput(this.props.height, value => !value || /^\d+(px|vh)$/.test(value));
         this.minHeight = useControlledInput(this.props.minHeight, value => !value || /^\d+(px|vh)$/.test(value));
         this.maxHeight = useControlledInput(this.props.maxHeight, value => !value || /^\d+(px|vh)$/.test(value));
@@ -148,7 +155,7 @@ export class DashboardActionDialog extends DashboardDialogBase {
             } else if (this.props.resModel) {
                 this.state.modelLabel = await this._fetchModelLabel(this.props.resModel);
                 this._setDefaultViewMode();
-                this.state.showPreview = !!this.state.viewMode;
+                this.state.showPreview = this.isKpiType || !!this.state.viewMode;
             } else {
                 this._setDefaultViewMode();
             }
@@ -165,6 +172,10 @@ export class DashboardActionDialog extends DashboardDialogBase {
 
     get viewTypeChoices() {
         return this.state.viewTypes.map(([value, label]) => ({value, label}));
+    }
+
+    get isKpiType() {
+        return this.state.type === 'kpi';
     }
 
     get actionDomain() {
@@ -191,6 +202,20 @@ export class DashboardActionDialog extends DashboardDialogBase {
             if (!Object.keys(context).length) {
                 context = undefined;
             }
+        }
+
+        if (this.isKpiType) {
+            const props = {
+                resModel: this.state.modelName,
+                context,
+                onReady: (getStateFn) => this.onPreviewReady(getStateFn),
+            };
+
+            if (this.props.domain?.length) {
+                props.domain = this.props.domain;
+            }
+
+            return props;
         }
 
         const props = {
@@ -225,12 +250,13 @@ export class DashboardActionDialog extends DashboardDialogBase {
             actionId: actionId || undefined,
             resModel: !actionId ? this.state.modelName : undefined,
             title: this.title.input.value || undefined,
-            viewMode: this.state.viewMode,
+            icon: this.icon.input.value || undefined,
+            viewMode: this.isKpiType ? undefined : this.state.viewMode,
             context: previewState.context || {},
             domain: previewState.domain || [],
-            height: this.height.input.value || undefined,
-            minHeight: this.minHeight.input.value || undefined,
-            maxHeight: this.maxHeight.input.value || undefined,
+            height: this.isKpiType ? undefined : (this.height.input.value || undefined),
+            minHeight: this.isKpiType ? undefined : (this.minHeight.input.value || undefined),
+            maxHeight: this.isKpiType ? undefined : (this.maxHeight.input.value || undefined),
             filterField: this.state.filterField || undefined,
             filterFieldType: this.state.filterFieldType || undefined,
         };
@@ -262,7 +288,7 @@ export class DashboardActionDialog extends DashboardDialogBase {
         this.state.type = value;
         this.state.selectedActionId = false;
 
-        if (value !== 'action') {
+        if (value !== 'action' && value !== 'kpi') {
             this.state.viewTypes = [...this.allViewTypes];
             this._setDefaultViewMode();
         }
@@ -337,7 +363,12 @@ export class DashboardActionDialog extends DashboardDialogBase {
         const hasSource = this.state.type === 'action'
             ? !!this.state.selectedActionId
             : !!this.state.modelName;
-        this.state.showPreview = hasSource && !!this.state.viewMode;
+
+        if (this.isKpiType) {
+            this.state.showPreview = hasSource;
+        } else {
+            this.state.showPreview = hasSource && !!this.state.viewMode;
+        }
 
         if (this.state.showPreview) {
             this.state.previewKey++;

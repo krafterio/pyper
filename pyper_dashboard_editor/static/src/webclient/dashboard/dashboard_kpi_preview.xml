@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_dashboard_editor.DashboardKpiPreview">
+        <div class="pyper_dashboard--kpi-preview border rounded p-3 d-flex flex-column gap-3 h-100">
+            <!-- KPI Configuration Fields -->
+            <div class="d-flex flex-column gap-3">
+                <!-- Measure Method -->
+                <div>
+                    <label class="o_form_label mb-2">
+                        Measure method
+                    </label>
+
+                    <SelectMenu
+                        choices="measureMethodChoices"
+                        value="state.measureMethod"
+                        onSelect.bind="onMeasureMethodChanged"
+                        required="true"
+                        autoSort="false"
+                    />
+                </div>
+
+                <!-- Measure Field (only for sum) -->
+                <div t-if="needsMeasureField">
+                    <label class="o_form_label mb-2">
+                        Measure field
+                    </label>
+
+                    <ModelFieldSelector
+                        resModel="props.resModel"
+                        path="state.measureField !== '__count' ? state.measureField : ''"
+                        readonly="false"
+                        allowEmpty="true"
+                        followRelations="false"
+                        filter="measureFieldFilter"
+                        update.bind="onMeasureFieldUpdate"
+                    />
+                </div>
+
+                <!-- Subtitle -->
+                <div>
+                    <label class="o_form_label mb-2" for="kpi_subtitle_0">
+                        Subtitle
+                    </label>
+
+                    <input type="text"
+                           id="kpi_subtitle_0"
+                           t-att-value="state.subtitle"
+                           t-on-input="onSubtitleChanged"
+                           class="o_input"
+                           autocomplete="nope"
+                    />
+                </div>
+
+                <!-- Domain -->
+                <div>
+                    <label class="o_form_label mb-2">
+                        Domain
+                    </label>
+
+                    <DomainSelector
+                        resModel="props.resModel"
+                        domain="state.domainStr"
+                        readonly="false"
+                        update.bind="onDomainUpdate"
+                    />
+                </div>
+            </div>
+
+            <!-- Live KPI Card Preview -->
+            <div class="flex-grow-1 d-flex align-items-center justify-content-center">
+                <div class="pyper_dashboard--kpi-card bg-view border rounded p-4">
+                    <div class="pyper_dashboard--kpi-value">
+                        <t t-if="state.isLoading">
+                            <i class="fa fa-spinner fa-spin"/>
+                        </t>
+                        <t t-else="">
+                            <t t-out="formattedValue"/>
+                        </t>
+                    </div>
+
+                    <div class="pyper_dashboard--kpi-subtitle text-muted" t-if="state.subtitle">
+                        <t t-out="state.subtitle"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

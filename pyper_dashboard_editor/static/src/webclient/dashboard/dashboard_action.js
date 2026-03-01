@@ -23,6 +23,9 @@ DashboardAction.props = {
     edit: {
         type: Function,
     },
+    duplicate: {
+        type: Function,
+    },
     remove: {
         type: Function,
     },
@@ -62,14 +65,23 @@ patch(DashboardAction.prototype, {
     },
 
     editAction() {
+        let type;
+
+        if (this.props.type === 'kpi') {
+            type = 'kpi';
+        } else {
+            type = this.props.resModel ? 'view' : 'action';
+        }
+
         this.dialogService.add(DashboardActionDialog, {
-            type: this.props.resModel ? 'view' : 'action',
+            type,
             actionId: this.props.actionId,
             resModel: this.props.resModel,
             viewMode: this.props.viewMode,
             context: this.props.context,
             domain: this.props.domain,
             title: this.props.title,
+            icon: this.props.icon,
             height: this.props.height,
             minHeight: this.props.minHeight,
             maxHeight: this.props.maxHeight,
@@ -80,6 +92,10 @@ patch(DashboardAction.prototype, {
                 await this.props.edit(data);
             },
         });
+    },
+
+    duplicateAction() {
+        this.props.duplicate();
     },
 
     deleteAction() {

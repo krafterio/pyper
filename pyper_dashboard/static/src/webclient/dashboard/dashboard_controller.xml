@@ -80,7 +80,9 @@
                         <DashboardColumn attr="{'data-idx': column_index}">
                             <t t-foreach="column.actions" t-as="action" t-key="selectedBoard?.id + '__' + action.id + '__' + state.refreshKey">
                                 <DashboardAction
+                                    type="action.type"
                                     title="action.title"
+                                    icon="action.icon"
                                     actionId="action.actionId"
                                     resModel="action.resModel"
                                     viewMode="action.viewMode"

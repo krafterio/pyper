@@ -15,7 +15,15 @@ export class DashboardAction extends Component {
     };
 
     static props = {
+        type: {
+            type: String,
+            optional: true,
+        },
         title: {
+            type: String,
+            optional: true,
+        },
+        icon: {
             type: String,
             optional: true,
         },
@@ -29,6 +37,7 @@ export class DashboardAction extends Component {
         },
         viewMode: {
             type: String,
+            optional: true,
         },
         context: {
             type: Object,
@@ -65,11 +74,21 @@ export class DashboardAction extends Component {
 
     setup() {
         this.actionService = useService('action');
+        this.orm = useService('orm');
         this.formViewId = false;
         this.isValid = true;
+        this.isKpi = false;
+        this.kpiData = {};
         this.viewProps = {};
 
         onWillStart(async () => {
+            if (this.props.type === 'kpi') {
+                this.isKpi = true;
+                await this._loadKpiData();
+
+                return;
+            }
+
             if (this.props.actionId) {
                 // Mode: existing action
                 let result = DashboardAction.cache[this.props.actionId];
@@ -189,7 +208,58 @@ export class DashboardAction extends Component {
     }
 
     get showView() {
-        return this.isValid;
+        return this.isValid && !this.isKpi;
+    }
+
+    get formattedKpiValue() {
+        if (this.kpiData.value === null || this.kpiData.value === undefined) {
+            return '---';
+        }
+
+        return this.kpiData.value.toLocaleString();
+    }
+
+    async _loadKpiData() {
+        const ctx = this.props.context || {};
+        this.kpiData = {
+            subtitle: ctx.kpi_subtitle || '',
+            measureField: ctx.kpi_measure_field || '__count',
+            measureMethod: ctx.kpi_measure_method || 'count',
+            value: null,
+        };
+
+        if (!this.props.resModel) {
+            this.isValid = false;
+
+            return;
+        }
+
+        try {
+            const domain = this.props.domain || [];
+            const method = this.kpiData.measureMethod;
+            const field = this.kpiData.measureField;
+            const hasField = method !== 'count' && field && field !== '__count';
+            const fields = hasField ? [`${field}:${method}`] : [];
+
+            const result = await this.orm.call(
+                this.props.resModel,
+                'read_group',
+                [domain, fields, []],
+            );
+
+            if (result && result.length > 0) {
+                if (hasField) {
+                    this.kpiData.value = result[0][field] ?? 0;
+                } else {
+                    this.kpiData.value = result[0].__count || 0;
+                }
+            } else {
+                this.kpiData.value = 0;
+            }
+        } catch {
+            this.kpiData.value = null;
+            this.isValid = false;
+        }
     }
 
     selectRecord(resModel, resId) {

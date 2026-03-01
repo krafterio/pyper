@@ -22,6 +22,7 @@
         <xpath expr="//DashboardAction" position="attributes">
             <attribute name="toggle">() => this.toggleAction(action)</attribute>
             <attribute name="edit">(data) => this.editAction(action, data)</attribute>
+            <attribute name="duplicate">() => this.duplicateAction(column, action)</attribute>
             <attribute name="remove">() => this.removeAction(column, action)</attribute>
             <attribute name="layoutEditable">section.layoutEditable and this.canEdit and this.isEditMode</attribute>
             <attribute name="isFolded">action.isFolded</attribute>
@@ -48,6 +49,7 @@
                                 t-att-name="action.actionId || undefined"
                                 t-att-model="action.actionId ? undefined : action.resModel"
                                 t-att-string="action.title || undefined"
+                                t-att-icon="action.icon || undefined"
                                 t-att-view_mode="action.viewMode"
                                 t-att-context="Object.keys(action.context).filter(k =&gt; k !== 'toString').length ? action.context : undefined"
                                 t-att-domain="action.domain and action.domain.length ? action.domain : undefined"

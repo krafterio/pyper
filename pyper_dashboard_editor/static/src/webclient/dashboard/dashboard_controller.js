@@ -277,6 +277,22 @@ patch(DashboardController.prototype, {
         this.saveBoard();
     },
 
+    duplicateAction(column, action) {
+        const nextId = this.dashboard.sections.reduce((max, s) =>
+            s.columns.reduce((m, c) =>
+                c.actions.reduce((mx, a) => Math.max(mx, a.id), m), max), 0) + 1;
+
+        const clone = {...action, id: nextId};
+        clone.context = {...action.context};
+        clone.context.toString = action.context.toString;
+        clone.domain = [...action.domain];
+        clone.domain.toString = action.domain.toString;
+
+        const index = column.actions.indexOf(action);
+        column.actions.splice(index + 1, 0, clone);
+        this.saveBoard();
+    },
+
     removeAction(column, action) {
         const index = column.actions.indexOf(action);
         column.actions.splice(index, 1);

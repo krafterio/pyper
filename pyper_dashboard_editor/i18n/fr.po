@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-01 10:10+0000\n"
-"PO-Revision-Date: 2026-03-01 10:10+0000\n"
+"POT-Creation-Date: 2026-03-01 12:00+0000\n"
+"PO-Revision-Date: 2026-03-01 12:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -67,6 +67,12 @@ msgstr "Etes-vous sûr de vouloir supprimer cette section ?"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_kpi_preview.js:0
+msgid "Average"
+msgstr "Moyenne"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_dialog.js:0
 msgid "Cancel"
 msgstr "Annuler"
@@ -76,6 +82,12 @@ msgstr "Annuler"
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/add_to_dashboard/add_to_dashboard.js:0
 msgid "Could not add filter to dashboard"
 msgstr "Impossible d’ajouter un filtre au tableau de bord"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_kpi_preview.js:0
+msgid "Count"
+msgstr "Nombre"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
@@ -125,6 +137,18 @@ msgstr "Nom"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_kpi_preview.xml:0
+msgid "Domain"
+msgstr "Domaine"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
+msgid "Duplicate"
+msgstr "Dupliquer"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.js:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.js:0
@@ -165,6 +189,18 @@ msgstr ""
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+msgid "Icon"
+msgstr "Icône"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_type_registry.js:0
+msgid "KPI"
+msgstr ""
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_section.xml:0
 msgid "Layout"
 msgstr "Mise en page"
@@ -183,6 +219,24 @@ msgstr "Agrandir"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_kpi_preview.js:0
+msgid "Maximum"
+msgstr ""
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_kpi_preview.xml:0
+msgid "Measure field"
+msgstr "Champ de mesure"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_kpi_preview.xml:0
+msgid "Measure method"
+msgstr "Méthode de mesure"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
 msgid "Min Height"
 msgstr "Hauteur min"
@@ -192,6 +246,12 @@ msgstr "Hauteur min"
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action.xml:0
 msgid "Minimize"
 msgstr "Réduire"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_kpi_preview.js:0
+msgid "Minimum"
+msgstr ""
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
@@ -242,10 +302,27 @@ msgstr "Configuration de la section"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
-#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_preview.xml:0
 msgid "Select a model and view type to preview"
 msgstr "Sélectionnez un modèle et un type de vue pour prévisualiser"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+msgid "Select a model to preview"
+msgstr "Sélectionnez un modèle pour prévisualiser"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_kpi_preview.xml:0
+msgid "Subtitle"
+msgstr "Sous-titre"
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_kpi_preview.js:0
+msgid "Sum"
+msgstr "Somme"
 
 #. module: pyper_dashboard_editor
 #. odoo-javascript
@@ -277,6 +354,12 @@ msgstr "Type de vue"
 #. odoo-javascript
 #: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
 msgid "auto"
+msgstr ""
+
+#. module: pyper_dashboard_editor
+#. odoo-javascript
+#: code:addons/pyper_dashboard_editor/static/src/webclient/dashboard/dashboard_action_dialog.xml:0
+msgid "fa fa-users"
 msgstr ""
 
 #. module: pyper_dashboard_editor

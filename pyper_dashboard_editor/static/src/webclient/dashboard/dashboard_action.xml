@@ -27,6 +27,11 @@
                         Edit
                     </DropdownItem>
 
+                    <DropdownItem onSelected="() => this.duplicateAction()">
+                        <i class="oi-fw oi-fw me-1 fa fa-clone"></i>
+                        Duplicate
+                    </DropdownItem>
+
                     <DropdownItem onSelected="() => this.deleteAction()">
                         <i class="oi-fw oi-fw me-1 fa fa-trash-o"></i>
                         Delete

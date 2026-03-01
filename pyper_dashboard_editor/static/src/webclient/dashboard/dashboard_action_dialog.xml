@@ -52,7 +52,7 @@
                     </div>
 
                     <!-- View type -->
-                    <div class="mb-3" t-if="state.modelName">
+                    <div class="mb-3" t-if="state.modelName and !isKpiType">
                         <label class="o_form_label mb-2">
                             View type
                         </label>
@@ -102,61 +102,83 @@
                         />
                     </div>
 
+                    <!-- Icon -->
+                    <div class="mb-3">
+                        <label class="o_form_label mb-2" for="icon_0">
+                            Icon
+                        </label>
+
+                        <input type="text"
+                               id="icon_0"
+                               t-model="icon.input.value"
+                               class="o_input"
+                               autocomplete="nope"
+                               placeholder="fa fa-users"
+                        />
+                    </div>
+
                     <!-- Heights -->
-                    <div class="mb-3">
-                        <label class="o_form_label mb-2" for="height_0">
-                            Height
-                        </label>
+                    <t t-if="!isKpiType">
+                        <div class="mb-3">
+                            <label class="o_form_label mb-2" for="height_0">
+                                Height
+                            </label>
 
-                        <input type="text"
-                               id="height_0"
-                               t-model="height.input.value"
-                               class="o_input"
-                               t-att-class="{'is-invalid': height.input.hasError}"
-                               autocomplete="nope"
-                               placeholder="auto"
-                        />
-                    </div>
+                            <input type="text"
+                                   id="height_0"
+                                   t-model="height.input.value"
+                                   class="o_input"
+                                   t-att-class="{'is-invalid': height.input.hasError}"
+                                   autocomplete="nope"
+                                   placeholder="auto"
+                            />
+                        </div>
 
-                    <div class="mb-3">
-                        <label class="o_form_label mb-2" for="min_height_0">
-                            Min Height
-                        </label>
+                        <div class="mb-3">
+                            <label class="o_form_label mb-2" for="min_height_0">
+                                Min Height
+                            </label>
 
-                        <input type="text"
-                               id="min_height_0"
-                               t-model="minHeight.input.value"
-                               class="o_input"
-                               t-att-class="{'is-invalid': minHeight.input.hasError}"
-                               autocomplete="nope"
-                               placeholder="auto"
-                        />
-                    </div>
+                            <input type="text"
+                                   id="min_height_0"
+                                   t-model="minHeight.input.value"
+                                   class="o_input"
+                                   t-att-class="{'is-invalid': minHeight.input.hasError}"
+                                   autocomplete="nope"
+                                   placeholder="auto"
+                            />
+                        </div>
 
-                    <div class="mb-3">
-                        <label class="o_form_label mb-2" for="max_height_0">
-                            Max Height
-                        </label>
+                        <div class="mb-3">
+                            <label class="o_form_label mb-2" for="max_height_0">
+                                Max Height
+                            </label>
 
-                        <input type="text"
-                               id="max_height_0"
-                               t-model="maxHeight.input.value"
-                               class="o_input"
-                               t-att-class="{'is-invalid': maxHeight.input.hasError}"
-                               autocomplete="nope"
-                               placeholder="auto"
-                        />
-                    </div>
+                            <input type="text"
+                                   id="max_height_0"
+                                   t-model="maxHeight.input.value"
+                                   class="o_input"
+                                   t-att-class="{'is-invalid': maxHeight.input.hasError}"
+                                   autocomplete="nope"
+                                   placeholder="auto"
+                            />
+                        </div>
+                    </t>
                 </div>
 
                 <!-- Right: preview -->
                 <div class="d-flex flex-column flex-grow-1 min-w-0">
                     <t t-if="state.showPreview">
-                        <DashboardPreview t-key="state.previewKey" t-props="previewProps"/>
+                        <t t-if="isKpiType">
+                            <DashboardKpiPreview t-key="state.previewKey" t-props="previewProps"/>
+                        </t>
+                        <t t-else="">
+                            <DashboardPreview t-key="state.previewKey" t-props="previewProps"/>
+                        </t>
                     </t>
                     <t t-else="">
                         <div class="d-flex align-items-center justify-content-center h-100 text-muted border rounded p-3">
-                            Select a model and view type to preview
+                            Select a model to preview
                         </div>
                     </t>
                 </div>

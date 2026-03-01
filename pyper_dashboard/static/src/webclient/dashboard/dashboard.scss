@@ -171,6 +171,10 @@
             overflow: auto;
         }
 
+        &.o_graph_view .o_content {
+            overflow: visible;
+        }
+
         .o_timeline_renderer {
             height: 70vh;
 
@@ -242,6 +246,34 @@
     .o_control_panel {
         display: none;
     }
+}
+
+// Dashboard Action Header Icon
+.pyper_dashboard--action-header-icon {
+    flex-shrink: 0;
+    margin-left: 12px;
+    font-size: 1.25rem;
+    color: var(--o-text-color-muted, #{$text-muted});
+}
+
+// Dashboard KPI
+.pyper_dashboard--action-kpi {
+    overflow: visible;
+}
+
+.pyper_dashboard--kpi-body {
+    padding: 0 $pyper-dashboard-header-padding-h 24px;
+}
+
+.pyper_dashboard--kpi-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.pyper_dashboard--kpi-subtitle {
+    font-size: 0.875rem;
+    margin-top: 4px;
 }
 
 // Dashboard Responsive
