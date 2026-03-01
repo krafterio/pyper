@@ -1,3 +1,10 @@
+.pyper_dashboard {
+    .o_touch_bounce {
+        transform: none !important;
+        animation: none !important;
+    }
+}
+
 // Dashboard Button add to dashboard
 .pyper_dashboard--add-to-dashboard {
     svg {
@@ -20,6 +27,13 @@
     width: 240px;
     min-width: 240px;
     overflow-y: auto;
+}
+
+@include media-breakpoint-down(md) {
+    .pyper_dashboard--action-dialog-sidebar {
+        width: 100%;
+        min-width: 100%;
+    }
 }
 
 .pyper_dashboard--preview {
