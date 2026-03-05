@@ -248,7 +248,6 @@ export class DashboardAction extends Component {
         this.kpiData.subtitle = ctx.kpi_subtitle || '';
         this.kpiData.measureField = ctx.kpi_measure_field || '__count';
         this.kpiData.measureMethod = ctx.kpi_measure_method || 'count';
-        this.kpiData.value = null;
 
         if (!props.resModel) {
             this.isValid = false;
