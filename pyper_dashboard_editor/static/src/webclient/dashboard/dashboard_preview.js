@@ -5,6 +5,7 @@ import {DASHBOARD_PREVIEW_MODE, GRAPH_CONTEXT_KEYS, PAGER_PROPS_REF} from './das
 import {Component, onMounted, onWillStart, useSubEnv} from '@odoo/owl';
 import {patch} from '@web/core/utils/patch';
 import {View} from '@web/views/view';
+import {Domain} from '@web/core/domain';
 import {ControlPanel} from '@web/search/control_panel/control_panel';
 import {WithSearch} from '@web/search/with_search/with_search';
 import {rpc} from '@web/core/network/rpc';
@@ -189,6 +190,10 @@ export class DashboardPreview extends Component {
                 // (globalGroupBy applies silently without showing facets)
                 this._activateGroupByFacets(searchModel);
 
+                // Activate domain filters as visible facets in the search bar
+                // (globalDomain applies silently without showing facets)
+                this._activateFilterFacets(searchModel);
+
                 searchModel.blockNotification = false;
                 searchModel._notify();
             }
@@ -257,5 +262,42 @@ export class DashboardPreview extends Component {
 
         // Clear globalGroupBy since items are now active as facets
         searchModel.globalGroupBy = [];
+    }
+
+    _activateFilterFacets(searchModel) {
+        const domain = this.props.domain;
+
+        if (!domain || !domain.length) {
+            return;
+        }
+
+        const evalContext = searchModel.domainEvalContext;
+
+        // Get all inactive predefined filter items
+        const filterItems = searchModel.getSearchItems(
+            (item) => item.type === 'filter' && item.domain && !item.isActive
+        );
+
+        // Try to match the full domain against a single predefined filter
+        const domainStr = JSON.stringify(domain);
+
+        for (const item of filterItems) {
+            try {
+                const itemDomainList = new Domain(item.domain).toList(evalContext);
+
+                if (JSON.stringify(itemDomainList) === domainStr) {
+                    searchModel.toggleSearchItem(item.id);
+                    searchModel.globalDomain = [];
+
+                    return;
+                }
+            } catch {
+                // Skip filters with dynamic domains
+            }
+        }
+
+        // No predefined match → let Odoo parse, label and add the domain natively
+        searchModel.splitAndAddDomain(new Domain(domain).toString());
+        searchModel.globalDomain = [];
     }
 }
