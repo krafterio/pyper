@@ -62,6 +62,16 @@ class DashboardBoardItem(models.Model):
         domain=[('model', '=', 'dashboard.dashboard'), ('type', '=', 'qweb')],
     )
 
+    auto_refresh = fields.Boolean(
+        'Auto Refresh',
+        default=False,
+    )
+
+    refresh_interval = fields.Integer(
+        'Refresh Interval (s)',
+        default=10,
+    )
+
     is_editable = fields.Boolean(
         'Is editable?',
         compute='_compute_is_editable',

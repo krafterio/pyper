@@ -31,6 +31,8 @@
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="category_id"/>
+                <field name="auto_refresh"/>
+                <field name="refresh_interval" invisible="not auto_refresh"/>
                 <field name="group_ids" widget="many2many_tags"/>
                 <field name="full_name" optional="hide"/>
                 <field name="view_id" optional="hide"/>
@@ -78,6 +80,13 @@
 
                         <group>
                             <field name="group_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+
+                    <group name="refresh">
+                        <group>
+                            <field name="auto_refresh"/>
+                            <field name="refresh_interval" invisible="not auto_refresh"/>
                         </group>
                     </group>
                 </sheet>

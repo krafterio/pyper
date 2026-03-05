@@ -5,7 +5,7 @@ import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {_t} from '@web/core/l10n/translation';
 import {useService} from '@web/core/utils/hooks';
 import {standardViewProps} from '@web/views/standard_view_props';
-import {Component, onWillStart, useState} from '@odoo/owl';
+import {Component, onMounted, onWillStart, onWillUnmount, useState} from '@odoo/owl';
 import {View} from '@web/views/view';
 import {user} from '@web/core/user';
 import {browser} from '@web/core/browser/browser';
@@ -59,6 +59,7 @@ export class DashboardController extends Component {
             customStart: null,
             customEnd: null,
         });
+        this._autoRefreshTimer = null;
 
         onWillStart(async () => {
             const {arch, info} = this.props;
@@ -66,7 +67,7 @@ export class DashboardController extends Component {
             Object.assign(this.dashboard, new DashboardArchParser().parse(arch, info.customViewId));
 
             if (this.dashboard.useSwitcher) {
-                const boards = await this.orm.searchRead('dashboard.dashboard', [], ['id', 'name', 'category_id', 'full_name', 'arch', 'is_editable'], {
+                const boards = await this.orm.searchRead('dashboard.dashboard', [], ['id', 'name', 'category_id', 'full_name', 'arch', 'is_editable', 'auto_refresh', 'refresh_interval'], {
                     'order': 'category_sequence asc, sequence asc',
                 });
                 this.state.boards.length = 0;
@@ -79,6 +80,14 @@ export class DashboardController extends Component {
             }
 
             this._restoreDateRange(true);
+        });
+
+        onMounted(() => {
+            this._startAutoRefresh();
+        });
+
+        onWillUnmount(() => {
+            this._stopAutoRefresh();
         });
     }
 
@@ -185,6 +194,7 @@ export class DashboardController extends Component {
         }
 
         this._restoreDateRange();
+        this._startAutoRefresh();
     }
 
     refreshDashboard() {
@@ -360,5 +370,30 @@ export class DashboardController extends Component {
         }
 
         return [...action.domain, ...filterDomain];
+    }
+
+    // ---- Auto Refresh ----
+
+    _startAutoRefresh() {
+        this._stopAutoRefresh();
+
+        const board = this.state.selectedBoard;
+
+        if (!board || !board.auto_refresh) {
+            return;
+        }
+
+        const interval = (board.refresh_interval || 10) * 1000;
+
+        this._autoRefreshTimer = browser.setInterval(() => {
+            this.refreshDashboard();
+        }, interval);
+    }
+
+    _stopAutoRefresh() {
+        if (this._autoRefreshTimer) {
+            browser.clearInterval(this._autoRefreshTimer);
+            this._autoRefreshTimer = null;
+        }
     }
 }
