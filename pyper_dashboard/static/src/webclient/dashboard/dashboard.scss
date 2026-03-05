@@ -26,6 +26,8 @@
     justify-content: space-between;
     align-items: center;
     padding: $pyper-dashboard-padding-v $pyper-dashboard-padding-h;
+    background: $pyper-dashboard-header-bg;
+    border-bottom: 1px solid $pyper-dashboard-header-border-color;
 
     h2 {
         margin-bottom: 0;
@@ -38,6 +40,7 @@
     flex-direction: column;
     gap: $pyper-dashboard-container-gap;
     padding: $pyper-dashboard-padding-v $pyper-dashboard-padding-h;
+    overflow-y: auto;
 }
 
 // Dashboard Section
