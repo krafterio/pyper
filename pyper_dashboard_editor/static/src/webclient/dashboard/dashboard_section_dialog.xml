@@ -20,5 +20,11 @@
                 </div>
             </div>
         </xpath>
+
+        <xpath expr="//button[hasclass('btn-secondary')]" position="after">
+            <button t-if="isDebugMode and props.sectionData" class="btn btn-link ms-auto" t-on-click="showArchDialog">
+                <i class="fa fa-bug me-1"/>XML
+            </button>
+        </xpath>
     </t>
 </templates>

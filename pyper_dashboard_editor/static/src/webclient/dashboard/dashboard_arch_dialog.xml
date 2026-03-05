@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pyper_dashboard_editor.DashboardArchDialog">
+        <Dialog size="'lg'" title="props.title">
+            <CodeEditor
+                mode="'xml'"
+                value="props.arch"
+                onChange.bind="onArchChange"
+                maxLines="30"
+            />
+
+            <t t-set-slot="footer">
+                <button t-if="props.save" class="btn btn-primary" t-on-click="save">
+                    Save
+                </button>
+                <button class="btn btn-secondary" t-on-click="props.close">
+                    Close
+                </button>
+            </t>
+        </Dialog>
+    </t>
+</templates>

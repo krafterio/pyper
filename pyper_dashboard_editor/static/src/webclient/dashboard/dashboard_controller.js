@@ -1,19 +1,17 @@
 /** @odoo-module **/
 
-import {blockDom, useRef} from '@odoo/owl';
+import {useRef} from '@odoo/owl';
 import {browser} from '@web/core/browser/browser';
 import {_t} from '@web/core/l10n/translation';
 import {patch} from '@web/core/utils/patch';
-import {renderToString} from '@web/core/utils/render';
 import {useSortable} from '@web/core/utils/sortable_owl';
-import {createActionData, createColumnData, createSectionData, serializePythonDict} from '@pyper_dashboard/webclient/dashboard/dashboard_arch_parser';
+import {DashboardArchParser, createActionData, createColumnData, createSectionData, serializePythonDict} from '@pyper_dashboard/webclient/dashboard/dashboard_arch_parser';
 import {DashboardAction} from '@pyper_dashboard/webclient/dashboard/dashboard_action';
 import {DashboardController} from '@pyper_dashboard/webclient/dashboard/dashboard_controller';
 import {DEFAULT_LAYOUT} from '@pyper_dashboard/webclient/dashboard/dashboard_section';
 import {DashboardActionDialog} from './dashboard_action_dialog';
 import {DashboardSectionDialog} from './dashboard_section_dialog';
-
-const xmlSerializer = new XMLSerializer();
+import {renderDashboardArch} from './dashboard_arch_utils';
 
 patch(DashboardController.prototype, {
     leavedSectionIndex: null, // Use when action is dragged between 2 sections
@@ -299,13 +297,55 @@ patch(DashboardController.prototype, {
         this.saveBoard();
     },
 
+    onActionArchSave(action, column, xml) {
+        const wrappedArch = `<dashboard><section><column>${xml}</column></section></dashboard>`;
+        const parsed = new DashboardArchParser().parse(wrappedArch);
+        const parsedAction = parsed.sections[0]?.columns[0]?.actions[0];
+
+        if (!parsedAction) {
+            return;
+        }
+
+        parsedAction.id = action.id;
+        const index = column.actions.indexOf(action);
+
+        if (index !== -1) {
+            column.actions[index] = parsedAction;
+        }
+
+        DashboardAction.cache = {};
+        this.saveBoard();
+        this.env.bus.trigger('dashboard-refresh');
+    },
+
+    onSectionArchSave(section, sectionIndex, xml) {
+        const wrappedArch = `<dashboard>${xml}</dashboard>`;
+        const parsed = new DashboardArchParser().parse(wrappedArch);
+        const parsedSection = parsed.sections[0];
+
+        if (!parsedSection) {
+            return;
+        }
+
+        // Preserve action IDs by reassigning them sequentially
+        let nextId = this.dashboard.sections.reduce((max, s) =>
+            s.columns.reduce((m, c) =>
+                c.actions.reduce((mx, a) => Math.max(mx, a.id), m), max), 0) + 1;
+
+        for (const col of parsedSection.columns) {
+            for (const act of col.actions) {
+                act.id = nextId++;
+            }
+        }
+
+        this.dashboard.sections[sectionIndex] = parsedSection;
+        DashboardAction.cache = {};
+        this.saveBoard();
+        this.env.bus.trigger('dashboard-refresh');
+    },
+
     saveBoard() {
-        const templateFn = renderToString.app.getTemplate('pyper_dashboard_editor.Arch');
-        const bdom = templateFn(this.dashboard, {});
-        const root = document.createElement('rendertostring');
-        blockDom.mount(bdom, root);
-        const result = xmlSerializer.serializeToString(root);
-        const arch = result.slice(result.indexOf("<", 1), result.indexOf("</rendertostring>"));
+        const arch = renderDashboardArch(this.dashboard);
 
         if (this.dashboard.useSwitcher && this.state.selectedBoard?.id) {
             this.state.selectedBoard.arch = arch;

@@ -17,6 +17,9 @@
             <attribute name="remove">() => this.removeSection(section_index)</attribute>
             <attribute name="addAction">() => this.addAction(section)</attribute>
             <attribute name="layoutEditable">section.layoutEditable and this.canEdit and this.isEditMode</attribute>
+            <attribute name="sectionData">section</attribute>
+            <attribute name="sectionIndex">section_index</attribute>
+            <attribute name="onArchSave">(xml) => this.onSectionArchSave(section, section_index, xml)</attribute>
         </xpath>
 
         <xpath expr="//DashboardAction" position="attributes">
@@ -28,6 +31,8 @@
             <attribute name="isFolded">action.isFolded</attribute>
             <attribute name="filterField">action.filterField</attribute>
             <attribute name="filterFieldType">action.filterFieldType</attribute>
+            <attribute name="actionData">action</attribute>
+            <attribute name="onArchSave">(xml) => this.onActionArchSave(action, column, xml)</attribute>
         </xpath>
     </t>
 

@@ -32,6 +32,18 @@ DashboardSection.props = {
         type: Boolean,
         optional: true,
     },
+    sectionData: {
+        type: Object,
+        optional: true,
+    },
+    sectionIndex: {
+        type: Number,
+        optional: true,
+    },
+    onArchSave: {
+        type: Function,
+        optional: true,
+    },
 };
 
 DashboardSection.defaultProps = {
@@ -49,9 +61,13 @@ patch(DashboardSection.prototype, {
     editSection() {
         this.dialogService.add(DashboardSectionDialog, {
             title: this.props.title,
+            sectionData: this.props.sectionData,
             saveLabel: _t('Edit'),
             save: async (data) => {
                 await this.props.edit(data);
+            },
+            onArchSave: (xml) => {
+                this.props.onArchSave?.(xml);
             },
         });
     },

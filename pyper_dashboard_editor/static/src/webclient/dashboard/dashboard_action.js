@@ -45,6 +45,14 @@ DashboardAction.props = {
         type: String,
         optional: true,
     },
+    actionData: {
+        type: Object,
+        optional: true,
+    },
+    onArchSave: {
+        type: Function,
+        optional: true,
+    },
 };
 
 DashboardAction.defaultProps = {
@@ -87,9 +95,13 @@ patch(DashboardAction.prototype, {
             maxHeight: this.props.maxHeight,
             filterField: this.props.filterField,
             filterFieldType: this.props.filterFieldType,
+            actionData: this.props.actionData,
             saveLabel: _t('Edit'),
             save: async (data) => {
                 await this.props.edit(data);
+            },
+            onArchSave: (xml) => {
+                this.props.onArchSave?.(xml);
             },
         });
     },

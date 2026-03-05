@@ -1,8 +1,10 @@
 /** @odoo-module **/
 
 import {dashboardActionTypeRegistry} from './dashboard_action_type_registry';
+import {DashboardArchDialog} from './dashboard_arch_dialog';
 import {DashboardKpiPreview} from './dashboard_kpi_preview';
 import {DashboardPreview} from './dashboard_preview';
+import {renderActionArch} from './dashboard_arch_utils';
 import {onWillStart, useState} from '@odoo/owl';
 import {_t} from '@web/core/l10n/translation';
 import {ModelSelector} from '@web/core/model_selector/model_selector';
@@ -82,6 +84,14 @@ export class DashboardActionDialog extends DashboardDialogBase {
             type: String,
             optional: true,
         },
+        actionData: {
+            type: Object,
+            optional: true,
+        },
+        onArchSave: {
+            type: Function,
+            optional: true,
+        },
     };
 
     static defaultProps = {
@@ -92,6 +102,7 @@ export class DashboardActionDialog extends DashboardDialogBase {
     setup() {
         super.setup();
 
+        this.dialogService = useService('dialog');
         this.orm = useService('orm');
         this.title = useControlledInput(this.props.title, value => !!value || !value);
         this.icon = useControlledInput(this.props.icon, () => true);
@@ -356,6 +367,27 @@ export class DashboardActionDialog extends DashboardDialogBase {
         if (!this.state.viewMode || !this.state.viewTypes.some(([key]) => key === this.state.viewMode)) {
             this.state.viewMode = this.state.viewTypes.length > 0 ? this.state.viewTypes[0][0] : '';
         }
+    }
+
+    get isDebugMode() {
+        return Boolean(odoo.debug);
+    }
+
+    showArchDialog() {
+        const action = this.props.actionData;
+
+        if (!action) {
+            return;
+        }
+
+        this.dialogService.add(DashboardArchDialog, {
+            title: _t('Action XML'),
+            arch: renderActionArch(action),
+            save: (xml) => {
+                this.props.onArchSave?.(xml);
+                this.props.close();
+            },
+        });
     }
 
     _updatePreview() {
