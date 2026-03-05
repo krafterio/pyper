@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-import {Component, onWillStart} from '@odoo/owl';
+import {Component, onWillStart, onWillUpdateProps, onMounted, onWillUnmount, useState, useSubEnv} from '@odoo/owl';
 import {useService} from '@web/core/utils/hooks';
 import {makeContext} from '@web/core/context';
 import {View} from '@web/views/view';
@@ -78,132 +78,33 @@ export class DashboardAction extends Component {
         this.formViewId = false;
         this.isValid = true;
         this.isKpi = false;
-        this.kpiData = {};
-        this.viewProps = {};
+        this.kpiData = useState({
+            subtitle: '',
+            measureField: '__count',
+            measureMethod: 'count',
+            value: null,
+        });
+        this.viewProps = useState({});
+        this.dashboardState = {skipAnimation: false};
+
+        useSubEnv({dashboardState: this.dashboardState});
+
+        this._onDashboardRefresh = () => this._refresh();
 
         onWillStart(async () => {
-            if (this.props.type === 'kpi') {
-                this.isKpi = true;
-                await this._loadKpiData();
+            await this._loadAction(this.props);
+        });
 
-                return;
-            }
+        onWillUpdateProps(async (nextProps) => {
+            await this._onPropsUpdate(nextProps);
+        });
 
-            if (this.props.actionId) {
-                // Mode: existing action
-                let result = DashboardAction.cache[this.props.actionId];
+        onMounted(() => {
+            this.env.bus.addEventListener('dashboard-refresh', this._onDashboardRefresh);
+        });
 
-                if (!result) {
-                    result = await rpc('/web/action/load', {action_id: this.props.actionId});
-                    DashboardAction.cache[this.props.actionId] = result;
-                }
-
-                if (!result) {
-                    this.isValid = false;
-
-                    return;
-                }
-
-                const viewMode = this.props.viewMode || result.views[0][1];
-                const formView = result.views.find((v) => v[1] === 'form');
-
-                if (formView) {
-                    this.formViewId = formView[0];
-                }
-
-                this.viewProps = {
-                    resModel: result.res_model,
-                    type: viewMode,
-                    display: {
-                        controlPanel: false,
-                        searchPanel: false,
-                    },
-                    selectRecord: (resId) => this.selectRecord(result.res_model, resId),
-                };
-
-                const view = result.views.find((v) => v[1] === viewMode);
-
-                if (view) {
-                    this.viewProps.viewId = view[0];
-                }
-
-                const searchView = result.views.find((v) => v[1] === 'search');
-
-                this.viewProps.views = [
-                    [this.viewProps.viewId || false, viewMode],
-                    [(searchView && searchView[0]) || false, 'search'],
-                ];
-            } else if (this.props.resModel) {
-                // Mode: direct view (without existing action)
-                const viewMode = this.props.viewMode;
-
-                this.viewProps = {
-                    resModel: this.props.resModel,
-                    type: viewMode,
-                    display: {
-                        controlPanel: false,
-                        searchPanel: false,
-                    },
-                    views: [[false, viewMode], [false, 'search']],
-                };
-            } else {
-                this.isValid = false;
-
-                return;
-            }
-
-            const viewMode = this.viewProps.type;
-
-            if (this.props.context) {
-                this.viewProps.context = makeContext([
-                    this.props.context,
-                    {lang: user.context.lang},
-                ]);
-
-                if ('group_by' in this.viewProps.context) {
-                    const groupBy = this.viewProps.context.group_by;
-                    this.viewProps.groupBy = typeof groupBy === 'string' ? [groupBy] : groupBy;
-                }
-
-                if ('order_by' in this.viewProps.context) {
-                    const orderBy = this.viewProps.context.order_by;
-                    this.viewProps.orderBy = typeof orderBy === 'string' ? [orderBy] : orderBy;
-                }
-
-                if ('limit' in this.viewProps.context && ['list', 'kanban'].includes(viewMode)) {
-                    this.viewProps.limit = this.viewProps.context.limit;
-                }
-
-                if ('comparison' in this.viewProps.context) {
-                    const comparison = this.viewProps.context.comparison;
-
-                    if (
-                        comparison !== null
-                        && typeof comparison === 'object'
-                        && 'domains' in comparison
-                        && 'fieldName' in comparison
-                    ) {
-                        // Some comparison object with the wrong form might have been stored in db.
-                        // This is why we make the checks on the keys domains and fieldName
-                        this.viewProps.comparison = comparison;
-                    }
-                }
-            }
-
-            if (this.props.domain) {
-                this.viewProps.domain = this.props.domain;
-            }
-
-            this.viewProps.context = {
-                ...this.viewProps.context,
-                create: false,
-                edit: false,
-                delete: false,
-            };
-
-            if (viewMode === 'list') {
-                this.viewProps.allowSelectors = false;
-            }
+        onWillUnmount(() => {
+            this.env.bus.removeEventListener('dashboard-refresh', this._onDashboardRefresh);
         });
     }
 
@@ -219,30 +120,151 @@ export class DashboardAction extends Component {
         return this.kpiData.value.toLocaleString();
     }
 
-    async _loadKpiData() {
-        const ctx = this.props.context || {};
-        this.kpiData = {
-            subtitle: ctx.kpi_subtitle || '',
-            measureField: ctx.kpi_measure_field || '__count',
-            measureMethod: ctx.kpi_measure_method || 'count',
-            value: null,
+    async _loadAction(props) {
+        if (props.type === 'kpi') {
+            this.isKpi = true;
+            await this._loadKpiData(props);
+
+            return;
+        }
+
+        if (props.actionId) {
+            // Mode: existing action
+            let result = DashboardAction.cache[props.actionId];
+
+            if (!result) {
+                result = await rpc('/web/action/load', {action_id: props.actionId});
+                DashboardAction.cache[props.actionId] = result;
+            }
+
+            if (!result) {
+                this.isValid = false;
+
+                return;
+            }
+
+            const viewMode = props.viewMode || result.views[0][1];
+            const formView = result.views.find((v) => v[1] === 'form');
+
+            if (formView) {
+                this.formViewId = formView[0];
+            }
+
+            Object.assign(this.viewProps, {
+                resModel: result.res_model,
+                type: viewMode,
+                display: {
+                    controlPanel: false,
+                    searchPanel: false,
+                },
+                selectRecord: (resId) => this.selectRecord(result.res_model, resId),
+            });
+
+            const view = result.views.find((v) => v[1] === viewMode);
+
+            if (view) {
+                this.viewProps.viewId = view[0];
+            }
+
+            const searchView = result.views.find((v) => v[1] === 'search');
+
+            this.viewProps.views = [
+                [this.viewProps.viewId || false, viewMode],
+                [(searchView && searchView[0]) || false, 'search'],
+            ];
+        } else if (props.resModel) {
+            // Mode: direct view (without existing action)
+            const viewMode = props.viewMode;
+
+            Object.assign(this.viewProps, {
+                resModel: props.resModel,
+                type: viewMode,
+                display: {
+                    controlPanel: false,
+                    searchPanel: false,
+                },
+                views: [[false, viewMode], [false, 'search']],
+            });
+        } else {
+            this.isValid = false;
+
+            return;
+        }
+
+        const viewMode = this.viewProps.type;
+
+        if (props.context) {
+            this.viewProps.context = makeContext([
+                props.context,
+                {lang: user.context.lang},
+            ]);
+
+            if ('group_by' in this.viewProps.context) {
+                const groupBy = this.viewProps.context.group_by;
+                this.viewProps.groupBy = typeof groupBy === 'string' ? [groupBy] : groupBy;
+            }
+
+            if ('order_by' in this.viewProps.context) {
+                const orderBy = this.viewProps.context.order_by;
+                this.viewProps.orderBy = typeof orderBy === 'string' ? [orderBy] : orderBy;
+            }
+
+            if ('limit' in this.viewProps.context && ['list', 'kanban'].includes(viewMode)) {
+                this.viewProps.limit = this.viewProps.context.limit;
+            }
+
+            if ('comparison' in this.viewProps.context) {
+                const comparison = this.viewProps.context.comparison;
+
+                if (
+                    comparison !== null
+                    && typeof comparison === 'object'
+                    && 'domains' in comparison
+                    && 'fieldName' in comparison
+                ) {
+                    this.viewProps.comparison = comparison;
+                }
+            }
+        }
+
+        if (props.domain) {
+            this.viewProps.domain = props.domain;
+        }
+
+        this.viewProps.context = {
+            ...this.viewProps.context,
+            create: false,
+            edit: false,
+            delete: false,
         };
 
-        if (!this.props.resModel) {
+        if (viewMode === 'list') {
+            this.viewProps.allowSelectors = false;
+        }
+    }
+
+    async _loadKpiData(props) {
+        const ctx = props.context || {};
+        this.kpiData.subtitle = ctx.kpi_subtitle || '';
+        this.kpiData.measureField = ctx.kpi_measure_field || '__count';
+        this.kpiData.measureMethod = ctx.kpi_measure_method || 'count';
+        this.kpiData.value = null;
+
+        if (!props.resModel) {
             this.isValid = false;
 
             return;
         }
 
         try {
-            const domain = this.props.domain || [];
+            const domain = props.domain || [];
             const method = this.kpiData.measureMethod;
             const field = this.kpiData.measureField;
             const hasField = method !== 'count' && field && field !== '__count';
             const fields = hasField ? [`${field}:${method}`] : [];
 
             const result = await this.orm.call(
-                this.props.resModel,
+                props.resModel,
                 'read_group',
                 [domain, fields, []],
             );
@@ -259,6 +281,32 @@ export class DashboardAction extends Component {
         } catch {
             this.kpiData.value = null;
             this.isValid = false;
+        }
+    }
+
+    async _onPropsUpdate(nextProps) {
+        if (this.isKpi) {
+            const domainChanged = JSON.stringify(nextProps.domain) !== JSON.stringify(this.props.domain);
+
+            if (domainChanged) {
+                await this._loadKpiData(nextProps);
+            }
+        } else if (this.isValid) {
+            if (nextProps.domain) {
+                this.viewProps.domain = nextProps.domain;
+            }
+        }
+    }
+
+    async _refresh() {
+        this.dashboardState.skipAnimation = true;
+
+        if (this.isKpi) {
+            await this._loadKpiData(this.props);
+            this.dashboardState.skipAnimation = false;
+        } else if (this.isValid) {
+            // Force View to detect a change by creating a new domain reference
+            this.viewProps.domain = [...(this.props.domain || [])];
         }
     }
 

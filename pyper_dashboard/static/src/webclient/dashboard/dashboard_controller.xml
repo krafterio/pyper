@@ -78,7 +78,7 @@
                 >
                     <t t-foreach="section.columns" t-as="column" t-key="column_index">
                         <DashboardColumn attr="{'data-idx': column_index}">
-                            <t t-foreach="column.actions" t-as="action" t-key="selectedBoard?.id + '__' + action.id + '__' + state.refreshKey">
+                            <t t-foreach="column.actions" t-as="action" t-key="selectedBoard?.id + '__' + action.id">
                                 <DashboardAction
                                     type="action.type"
                                     title="action.title"

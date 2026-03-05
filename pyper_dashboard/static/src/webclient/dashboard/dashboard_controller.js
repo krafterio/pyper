@@ -5,7 +5,7 @@ import {DropdownItem} from '@web/core/dropdown/dropdown_item';
 import {_t} from '@web/core/l10n/translation';
 import {useService} from '@web/core/utils/hooks';
 import {standardViewProps} from '@web/views/standard_view_props';
-import {Component, onMounted, onWillUnmount, onWillStart, useState} from '@odoo/owl';
+import {Component, onWillStart, useState} from '@odoo/owl';
 import {View} from '@web/views/view';
 import {user} from '@web/core/user';
 import {browser} from '@web/core/browser/browser';
@@ -53,29 +53,11 @@ export class DashboardController extends Component {
             selectedBoard: null,
             useSwitcher: false,
             isAdmin: false,
-            refreshKey: 0,
         });
         this.dateRangeState = useState({
             rangeKey: 'all',
             customStart: null,
             customEnd: null,
-        });
-
-        this._onResize = null;
-
-        onMounted(() => {
-            let debounceTimer;
-            this._onResize = () => {
-                clearTimeout(debounceTimer);
-                debounceTimer = setTimeout(() => this.refreshDashboard(), 300);
-            };
-            window.addEventListener('resize', this._onResize);
-        });
-
-        onWillUnmount(() => {
-            if (this._onResize) {
-                window.removeEventListener('resize', this._onResize);
-            }
         });
 
         onWillStart(async () => {
@@ -207,7 +189,7 @@ export class DashboardController extends Component {
 
     refreshDashboard() {
         DashboardAction.cache = {};
-        this.state.refreshKey++;
+        this.env.bus.trigger('dashboard-refresh');
     }
 
     actionSettings() {
@@ -333,7 +315,6 @@ export class DashboardController extends Component {
 
         this._persistDateRangeToStorage();
         this._pushDateRangeToUrl();
-        this.refreshDashboard();
     }
 
     /**

@@ -273,8 +273,8 @@ patch(DashboardController.prototype, {
 
         Object.assign(action, {...actionData});
         DashboardAction.cache = {};
-        this.state.refreshKey++;
         this.saveBoard();
+        this.env.bus.trigger('dashboard-refresh');
     },
 
     duplicateAction(column, action) {
