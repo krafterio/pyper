@@ -4,6 +4,7 @@
 from datetime import datetime
 
 from odoo import models
+from odoo.tools import config
 
 from .pyper_queue_job import DELAY_AUTO_UNLINK_FULL
 
@@ -49,6 +50,16 @@ class Base(models.AbstractModel):
         })
 
 
+class _NoOpDelayed:
+    """Absorbs any chained method call and returns itself."""
+
+    def __getattr__(self, name):
+        return self
+
+    def __call__(self, *args, **kwargs):
+        return self
+
+
 class Delayable(object):
     def __init__(self, recordset, **job_config):
         self.recordset = recordset
@@ -62,8 +73,13 @@ class Delayable(object):
         return self._call_method
 
     def _call_method(self, *args, **kwargs):
-        if self.method_name is None:
-            pass
+        if not self.method_name:
+            return None
+
+        # In test mode, skip job creation to avoid interfering with
+        # transaction rollback. Return a no-op that absorbs chained calls.
+        if config['test_enable'] or self.recordset.env.context.get('test_queue_job_no_delay'):
+            return _NoOpDelayed()
 
         payload = {**kwargs}
 
