@@ -33,4 +33,4 @@ class ResConfigSettings(models.TransientModel):
             group_user.write({'implied_ids': [Command.link(group_multi_roles.id)]})
         else:
             group_user.write({'implied_ids': [Command.unlink(group_multi_roles.id)]})
-            group_multi_roles.users = [Command.clear()]
+            group_multi_roles.user_ids = [Command.clear()]

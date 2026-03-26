@@ -2,6 +2,5 @@
 <odoo>
     <record id="group_can_write_notes" model="res.groups">
         <field name="name">Can write notes</field>
-        <field name="category_id" ref="base.module_category_hidden"/>
     </record>
 </odoo>

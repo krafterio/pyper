@@ -65,7 +65,7 @@
         <field eval="3" name="priority"/>
         <field name="arch" type="xml">
             <search string="Importer Endpoints">
-                <field name="name"/>
+                <field name="endpoint_base_url"/>
                 <filter name="auth_none" string="Auth None" domain="[('auth_type', '=', 'none')]"/>
                 <filter name="auth_basic" string="Auth Basic" domain="[('auth_type', '=', 'basic')]"/>
                 <separator/>

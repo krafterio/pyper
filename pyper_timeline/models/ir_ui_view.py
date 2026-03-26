@@ -15,3 +15,8 @@ class IrUIView(models.Model):
 
     def _is_qweb_based_view(self, view_type):
         return super()._is_qweb_based_view(view_type) or view_type == 'timeline'
+
+    def _get_view_info(self):
+        res = super()._get_view_info()
+        res['timeline'] = {'icon': 'fa fa-clock-o'}
+        return res

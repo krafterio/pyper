@@ -26,6 +26,5 @@
 
         # Reports
         'report/sale_order_report_template.xml',
-        'report/sale_order_management_report_template.xml'
     ],
 }

@@ -49,21 +49,6 @@
             <attribute name="class" separator=" " remove="ms-1" add="d-block my-2"/>
         </xpath>
 
-        <!-- Tracking values -->
-        <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingOld')]" position="before">
-            <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingField')]" position="move"/>
-        </xpath>
-
-        <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingField')]" position="replace">
-            <span class="o-mail-Message-trackingField me-1"><t t-out="trackingValue.changedField"/> :</span>
-        </xpath>
-
-        <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingOld')]" position="attributes">
-            <attribute name="class" separator=" " remove="text-muted fw-bold"/>
-        </xpath>
-
-        <xpath expr="//li[hasclass('o-mail-Message-tracking')]/span[hasclass('o-mail-Message-trackingNew')]" position="attributes">
-            <attribute name="class" separator=" " remove="text-info fw-bold"/>
-        </xpath>
+        <!-- Tracking values: removed in v19 migration, tracking structure moved to message_patch.xml -->
     </t>
 </templates>

@@ -15,3 +15,8 @@ class IrUIView(models.Model):
 
     def _is_qweb_based_view(self, view_type):
         return super()._is_qweb_based_view(view_type) or view_type == 'pyper_map'
+
+    def _get_view_info(self):
+        res = super()._get_view_info()
+        res['pyper_map'] = {'icon': 'fa fa-map-marker'}
+        return res

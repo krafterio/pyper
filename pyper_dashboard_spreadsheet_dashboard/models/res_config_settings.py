@@ -63,7 +63,6 @@ class ResConfigSettings(models.TransientModel):
 
         if group:
             group.active = True
-            group._update_user_groups_view()
             self.env.registry.clear_cache()
 
     def _disable_spreadsheet_dashboard(self):
@@ -79,9 +78,8 @@ class ResConfigSettings(models.TransientModel):
         group = self.env.ref('spreadsheet_dashboard.group_dashboard_manager', raise_if_not_found=False)
 
         if group:
-            group.users = [Command.unlink(user.id) for user in group.users]
+            group.user_ids = [Command.unlink(user.id) for user in group.user_ids]
             group.active = False
-            group._update_user_groups_view()
             self.env.registry.clear_cache()
 
     def _translate_spreadsheet_dashboard_menus(self, active: bool):
