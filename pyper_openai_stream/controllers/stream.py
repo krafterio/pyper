@@ -10,7 +10,7 @@ from odoo.http import request
 
 
 class Stream(http.Controller):
-    @http.route('/openai/stream', type='json', auth='user', methods=['POST'])
+    @http.route('/openai/stream', type='jsonrpc', auth='user', methods=['POST'])
     def initialize_stream(self, **kwargs):
         openai_token = request.env['ir.config_parameter'].sudo().get_param('pyper_openai_connector.openai_token_api')
 
