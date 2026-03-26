@@ -8,24 +8,20 @@ from odoo.exceptions import RedirectWarning
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
-    role_id = fields.Many2one(
+    security_role_id = fields.Many2one(
         'res.groups',
-        string='Role',
-        domain=[('is_role', '=', True)],
-        compute='_compute_role_id',
-        inverse='_inverse_role_id',
+        string='Security Role',
+        compute='_compute_security_role_id',
+        inverse='_inverse_security_role_id',
         store=True,
     )
 
-    role_ids = fields.Many2many(
+    security_role_ids = fields.Many2many(
         'res.groups',
-        'res_users_role_rel',
+        'res_users_security_role_rel',
         'uid',
         'rid',
         string='Extra roles',
-        domain=[('is_role', '=', True)],
-        inverse='_inverse_role_ids',
-        store=True,
         help='Include the main role and allow to define other roles for this user',
     )
 
@@ -35,51 +31,51 @@ class ResUsers(models.Model):
         store=True,
     )
 
-    @api.depends('group_ids', 'group_ids.implied_ids', 'role_ids')
-    def _compute_role_id(self):
+    @api.depends('group_ids', 'group_ids.implied_ids', 'security_role_ids')
+    def _compute_security_role_id(self):
         for user in self:
-            if not user.role_id or not user.role_ids or user.role_id.id not in user.role_ids.ids:
-                user.role_id = user.role_ids[0] if user.role_ids else False
+            if not user.security_role_id or not user.security_role_ids or user.security_role_id.id not in user.security_role_ids.ids:
+                user.security_role_id = user.security_role_ids[0] if user.security_role_ids else False
 
-    def _inverse_role_id(self):
+    def _inverse_security_role_id(self):
         for user in self:
             user.group_ids = user.group_ids.filtered(lambda g: not g.is_role)
 
-            if user.role_id:
-                user.group_ids |= user.role_id
+            if user.security_role_id:
+                user.group_ids |= user.security_role_id
 
-    def _inverse_role_ids(self):
+    def _inverse_security_role_ids(self):
         for user in self:
             existing_groups = user.group_ids
-            user.group_ids |= user.role_ids - existing_groups
-            user.group_ids -= existing_groups.filtered(lambda g: g.is_role) - user.role_ids
+            user.group_ids |= user.security_role_ids - existing_groups
+            user.group_ids -= existing_groups.filtered(lambda g: g.is_role) - user.security_role_ids
 
-        self._compute_role_id()
+        self._compute_security_role_id()
 
-    @api.depends('group_ids', 'group_ids.implied_ids', 'role_ids')
+    @api.depends('group_ids', 'group_ids.implied_ids', 'security_role_ids')
     def _compute_has_custom_groups(self):
         for user in self:
-            user.has_custom_groups = user.role_id and len(get_custom_groups(user)) > 0
+            user.has_custom_groups = user.security_role_id and len(get_custom_groups(user)) > 0
 
-    @api.onchange('role_id')
-    def _onchange_role_id(self):
+    @api.onchange('security_role_id')
+    def _onchange_security_role_id(self):
         for user in self:
-            new_role_ids = [r.id for r in user.role_ids.filtered(lambda r: val_id(r) != val_id(user.role_id))]
+            new_role_ids = [r.id for r in user.security_role_ids.filtered(lambda r: val_id(r) != val_id(user.security_role_id))]
             new_role_cmds = [Command.unlink(rid) for rid in new_role_ids]
 
             # Add new role in roles if defined
-            if user.role_id and val_id(user.role_id) not in new_role_ids:
-                new_role_cmds.append(Command.link(user.role_id.id))
+            if user.security_role_id and val_id(user.security_role_id) not in new_role_ids:
+                new_role_cmds.append(Command.link(user.security_role_id.id))
 
             if new_role_cmds:
-                user.role_ids = new_role_cmds
+                user.security_role_ids = new_role_cmds
 
     def write(self, vals):
         res = super().write(vals)
 
         # Reset user security groups when main role is updated
-        if 'role_id' in vals and vals['role_id'] != False:
-            self._onchange_role_id()
+        if 'security_role_id' in vals and vals['security_role_id'] != False:
+            self._onchange_security_role_id()
             self.reset_security_groups()
 
         return res
@@ -111,10 +107,10 @@ class ResUsers(models.Model):
         )
 
     def reset_security_groups(self):
-        user_type_id = self.env.ref('base.module_category_user_type').id
+        user_type_groups = self.env['res.groups']._get_user_type_groups()
 
         for user in self:
-            kept_groups = user.group_ids.filtered(lambda g: g.is_role or g.category_id.id == user_type_id)
+            kept_groups = user.group_ids.filtered(lambda g: g.is_role or g in user_type_groups)
             implied_kept_groups = kept_groups
 
             for kept_group in kept_groups:
@@ -134,10 +130,10 @@ def val_id(r):
 
 
 def get_custom_groups(user):
-    user_type = user.env.ref('base.module_category_user_type')
-    user_type_group = user.group_ids.filtered(lambda g: g.category_id == user_type)
+    user_type_groups = user.env['res.groups']._get_user_type_groups()
+    user_type_group = user.group_ids & user_type_groups
 
-    roles_groups = user.role_ids + user.role_ids.trans_implied_ids
+    roles_groups = user.security_role_ids + user.security_role_ids.trans_implied_ids
     user_groups = user.group_ids + user.group_ids.trans_implied_ids
     user_groups -= user_type_group
     user_groups -= user_type_group.trans_implied_ids

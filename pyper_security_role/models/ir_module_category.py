@@ -4,8 +4,8 @@
 from odoo import fields, models
 
 
-class IrModuleCategory(models.Model):
-    _inherit = 'ir.module.category'
+class ResGroupsPrivilege(models.Model):
+    _inherit = 'res.groups.privilege'
 
     is_role = fields.Boolean(
         string='Is role?',
