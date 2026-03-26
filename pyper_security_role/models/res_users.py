@@ -35,7 +35,7 @@ class ResUsers(models.Model):
         store=True,
     )
 
-    @api.depends('groups_id', 'groups_id.implied_ids', 'role_ids')
+    @api.depends('group_ids', 'group_ids.implied_ids', 'role_ids')
     def _compute_role_id(self):
         for user in self:
             if not user.role_id or not user.role_ids or user.role_id.id not in user.role_ids.ids:
@@ -43,20 +43,20 @@ class ResUsers(models.Model):
 
     def _inverse_role_id(self):
         for user in self:
-            user.groups_id = user.groups_id.filtered(lambda g: not g.is_role)
+            user.group_ids = user.group_ids.filtered(lambda g: not g.is_role)
 
             if user.role_id:
-                user.groups_id |= user.role_id
+                user.group_ids |= user.role_id
 
     def _inverse_role_ids(self):
         for user in self:
-            existing_groups = user.groups_id
-            user.groups_id |= user.role_ids - existing_groups
-            user.groups_id -= existing_groups.filtered(lambda g: g.is_role) - user.role_ids
+            existing_groups = user.group_ids
+            user.group_ids |= user.role_ids - existing_groups
+            user.group_ids -= existing_groups.filtered(lambda g: g.is_role) - user.role_ids
 
         self._compute_role_id()
 
-    @api.depends('groups_id', 'groups_id.implied_ids', 'role_ids')
+    @api.depends('group_ids', 'group_ids.implied_ids', 'role_ids')
     def _compute_has_custom_groups(self):
         for user in self:
             user.has_custom_groups = user.role_id and len(get_custom_groups(user)) > 0
@@ -114,14 +114,14 @@ class ResUsers(models.Model):
         user_type_id = self.env.ref('base.module_category_user_type').id
 
         for user in self:
-            kept_groups = user.groups_id.filtered(lambda g: g.is_role or g.category_id.id == user_type_id)
+            kept_groups = user.group_ids.filtered(lambda g: g.is_role or g.category_id.id == user_type_id)
             implied_kept_groups = kept_groups
 
             for kept_group in kept_groups:
                 implied_kept_groups |= kept_group.trans_implied_ids
 
-            remove_groups = user.groups_id - implied_kept_groups
-            user.groups_id = remove_groups.mapped(lambda g: Command.unlink(val_id(g)))
+            remove_groups = user.group_ids - implied_kept_groups
+            user.group_ids = remove_groups.mapped(lambda g: Command.unlink(val_id(g)))
 
         return {
             'type': 'ir.actions.client',
@@ -135,10 +135,10 @@ def val_id(r):
 
 def get_custom_groups(user):
     user_type = user.env.ref('base.module_category_user_type')
-    user_type_group = user.groups_id.filtered(lambda g: g.category_id == user_type)
+    user_type_group = user.group_ids.filtered(lambda g: g.category_id == user_type)
 
     roles_groups = user.role_ids + user.role_ids.trans_implied_ids
-    user_groups = user.groups_id + user.groups_id.trans_implied_ids
+    user_groups = user.group_ids + user.group_ids.trans_implied_ids
     user_groups -= user_type_group
     user_groups -= user_type_group.trans_implied_ids
 

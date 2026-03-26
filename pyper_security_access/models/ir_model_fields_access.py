@@ -129,9 +129,9 @@ class IrModelFieldsAccess(models.Model):
     def get_field_access_rights(self, model: str, field: str) -> dict:
         return self.get_access_rights().get(model, {}).get(field, frozendict(build_access_right_item()))
 
-    @ormcache('frozenset(self.env.user.groups_id.ids)')
+    @ormcache('frozenset(self.env.user.group_ids.ids)')
     def get_access_rights(self):
-        domain = [('group_id', 'in', self.env.user.groups_id.ids)]
+        domain = [('group_id', 'in', self.env.user.group_ids.ids)]
         field_names = ['model_name', 'field_name', 'perm_read', 'perm_write', 'perm_invisible']
         access_rights = self.env['ir.model.fields.access'].sudo().search_read(domain, field_names)
         map_access_rights = {}

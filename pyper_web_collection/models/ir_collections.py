@@ -178,7 +178,7 @@ class IrCollections(models.Model):
             'collection_id': self.id,
             'user_id': self.user_id.id,
             'shared_user_ids': [Command.clear(), *[Command.link(u.id) for u in self.shared_user_ids]],
-            'groups_id': [Command.clear(), *[Command.link(g.id) for g in self.group_ids]],
+            'group_ids': [Command.clear(), *[Command.link(g.id) for g in self.group_ids]],
         }
 
     @api.model_create_multi
