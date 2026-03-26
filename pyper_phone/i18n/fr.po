@@ -21,12 +21,6 @@ msgid "Contact"
 msgstr ""
 
 #. module: pyper_phone
-#: model:ir.model.fields,field_description:pyper_phone.field_res_partner__mobile_formatted
-#: model:ir.model.fields,field_description:pyper_phone.field_res_users__mobile_formatted
-msgid "Mobile formatted"
-msgstr "Mobile formaté"
-
-#. module: pyper_phone
 #: model:ir.model.fields,field_description:pyper_phone.field_res_partner__phone_formatted
 #: model:ir.model.fields,field_description:pyper_phone.field_res_users__phone_formatted
 msgid "Phone formatted"
