@@ -1,9 +1,9 @@
 # Copyright Krafter SAS <hey@krafter.io>
 # LGPL-3 License (see LICENSE file).
 
-from odoo.addons.base.models.ir_module import Module
+from odoo.addons.base.models.ir_module import IrModuleModule
 
-_origin_get_values_from_terp = Module.get_values_from_terp
+_origin_get_values_from_terp = IrModuleModule.get_values_from_terp
 
 
 def get_values_from_terp(self, terp=None):
@@ -21,4 +21,4 @@ def get_values_from_terp(self, terp=None):
     return res
 
 
-Module.get_values_from_terp = get_values_from_terp
+IrModuleModule.get_values_from_terp = get_values_from_terp

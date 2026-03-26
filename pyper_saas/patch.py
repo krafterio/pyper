@@ -199,7 +199,10 @@ def _overload_load_manifest(pyper: PyperSaas, module, mod_path=None):
 
 
 def post_load():
-    pyper = PyperSaas(config.get('addons_path', '').strip().split(','))
+    addons_path = config.get('addons_path', [])
+    if isinstance(addons_path, str):
+        addons_path = addons_path.strip().split(',')
+    pyper = PyperSaas(addons_path)
 
     if not pyper.enable:
         return
