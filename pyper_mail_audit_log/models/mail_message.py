@@ -39,8 +39,8 @@ class MailMessage(models.Model):
         return vals
 
     @api.model
-    def _message_fetch(self, domain, search_term=None, before=None, after=None, around=None, limit=30):
+    def _message_fetch(self, domain, *, thread=None, search_term=None, is_notification=None, before=None, after=None, around=None, limit=30):
         if self.env.context.get('mail_message_without_audit_log', False):
             domain.append(('is_audit_log', '=', False))
 
-        return super()._message_fetch(domain, search_term, before, after, around, limit)
+        return super()._message_fetch(domain, thread=thread, search_term=search_term, is_notification=is_notification, before=before, after=after, around=around, limit=limit)

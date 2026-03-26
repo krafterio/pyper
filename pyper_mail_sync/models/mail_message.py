@@ -190,7 +190,6 @@ class MailMessage(models.Model):
 
         return True
 
-    @api.returns('mail.message', lambda value: value.id)
     def message_post(self, *,
                      body='', subject=None, message_type='notification',
                      email_from=None, author_id=None, parent_id=False,
@@ -203,7 +202,7 @@ class MailMessage(models.Model):
 
 
     @api.model
-    def _message_fetch(self, domain, search_term=None, before=None, after=None, around=None, limit=30):
+    def _message_fetch(self, domain, *, thread=None, search_term=None, is_notification=None, before=None, after=None, around=None, limit=30):
         if len(domain) > 2 and domain[0][0] == 'res_id' and domain[0][1] == '=' and domain[1][0] == 'model' and domain[1][1] == '=' and domain[1][2] == 'res.partner':
             res_id_filter = domain[0]
             extended_res_domain = [
@@ -215,4 +214,4 @@ class MailMessage(models.Model):
             del domain[0]
             domain[:0] = extended_res_domain
 
-        return super()._message_fetch(domain, search_term, before, after, around, limit)
+        return super()._message_fetch(domain, thread=thread, search_term=search_term, is_notification=is_notification, before=before, after=after, around=around, limit=limit)
