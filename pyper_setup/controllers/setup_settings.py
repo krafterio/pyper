@@ -2,11 +2,11 @@
 # LGPL-3 License (see LICENSE file).
 
 from odoo.http import Controller, route, request
-from odoo.osv.expression import OR
+from odoo.orm.domains import Domain
 
 
 class SetupSettings(Controller):
-    @route('/pyper_setup/settings', type='json', auth='user')
+    @route('/pyper_setup/settings', type='jsonrpc', auth='user')
     def setup_settings(self, prefix=None):
         if not prefix:
             return []
@@ -18,6 +18,6 @@ class SetupSettings(Controller):
             domains.append([('key', 'like', str(prefix) + '%')])
 
         return request.env['ir.config_parameter'].sudo().search_read(
-            OR(domains),
+            Domain.OR(domains),
             ['key', 'value'],
         )
