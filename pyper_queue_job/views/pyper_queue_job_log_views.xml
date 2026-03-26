@@ -54,7 +54,7 @@
                 <filter name="type_warning" string="Warning" domain="[('type', '=', 'warning')]"/>
                 <filter name="type_error" string="Error" domain="[('type', '=', 'error')]"/>
 
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="by_type" string="Type" domain="[]"  context="{'group_by': 'type'}"/>
                     <filter name="by_name" string="Name" domain="[]"  context="{'group_by': 'name'}"/>
                     <filter name="by_message" string="Message" domain="[]"  context="{'group_by': 'message'}"/>

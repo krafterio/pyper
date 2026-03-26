@@ -65,12 +65,13 @@
         <field eval="3" name="priority"/>
         <field name="arch" type="xml">
             <search string="Importer Endpoints">
+                <field name="name"/>
                 <filter name="auth_none" string="Auth None" domain="[('auth_type', '=', 'none')]"/>
                 <filter name="auth_basic" string="Auth Basic" domain="[('auth_type', '=', 'basic')]"/>
                 <separator/>
                 <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
 
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="by_auth_type" string="Auth Type" domain="[]"  context="{'group_by': 'auth_type'}"/>
                 </group>
             </search>

@@ -204,7 +204,7 @@
                 <filter name="log_warning_count" string="Has warning log" domain="[('log_warning_count', '>', 0)]"/>
                 <filter name="log_error_count" string="Has error log" domain="[('log_error_count', '>', 0)]"/>
 
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="by_state" string="State" domain="[]"  context="{'group_by': 'state'}"/>
                     <filter name="by_company_id" string="Company" domain="[]"  context="{'group_by': 'company_id'}"/>
                 </group>

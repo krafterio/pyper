@@ -147,6 +147,7 @@
         <field name="model">ir.collections</field>
         <field name="arch" type="xml">
             <search string="Collections">
+                <field name="name"/>
                 <filter string="My collections" name="my_collections" domain="[('user_id', '=', uid)]"/>
                 <separator/>
                 <filter string="Personal" name="personal" domain="[('category', '=', 'personal')]"/>
@@ -155,7 +156,7 @@
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
 
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="by_model" string="Model" domain="[]"  context="{'group_by': 'res_model_id'}"/>
                     <filter name="by_category" string="Category" domain="[]"  context="{'group_by': 'category'}"/>
                     <filter name="by_action" string="Action" domain="[]"  context="{'group_by': 'ir_action_id'}"/>
