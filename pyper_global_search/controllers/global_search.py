@@ -3,12 +3,12 @@
 
 from odoo import http
 from odoo.http import request
-from odoo.osv import expression
+from odoo.orm.domains import Domain
 from odoo.tools.safe_eval import safe_eval
 
 
 class GlobalSearch(http.Controller):
-    @http.route('/web/global-search', type='json', auth='user', methods=['POST'])
+    @http.route('/web/global-search', type='jsonrpc', auth='user', methods=['POST'])
     def global_search(self, search_value):
         icp = request.env['ir.config_parameter'].sudo()
         limit = int(icp.get_param('pyper_global_search.search_limit', '5'))
@@ -54,7 +54,7 @@ class GlobalSearch(http.Controller):
 
         operator = 'ilike'
         search_fnames = search_model._rec_names_search or ([search_model._rec_name] if search_model._rec_name else [])
-        aggregator = expression.AND
+        aggregator = Domain.AND
         domains = []
 
         # Add domain of action window
