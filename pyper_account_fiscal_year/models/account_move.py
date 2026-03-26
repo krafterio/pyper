@@ -2,7 +2,7 @@
 # LGPL-3 License (see LICENSE file).
 
 from odoo import api, fields, models
-from odoo.osv import expression
+from odoo.orm.domains import Domain
 
 
 class AccountMove(models.Model):
@@ -34,7 +34,7 @@ class AccountMove(models.Model):
 
         domain = [('id', '=', -1)]
         for date_range in date_ranges:
-            domain = expression.OR(
+            domain = Domain.OR(
                 [
                     domain,
                     [

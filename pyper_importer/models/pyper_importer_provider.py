@@ -13,7 +13,7 @@ from odoo import api, fields, models, _
 
 from odoo.addons.pyper_queue_job.exceptions import QueueJobError
 
-from odoo.osv.expression import AND
+from odoo.orm.domains import Domain
 
 from ..models.pyper_queue_job import PyperQueueJob
 from ..exceptions import PyperImporterError
@@ -251,7 +251,7 @@ class PyperImporterProvider(models.Model):
 
         if 'active' in env_model._fields:
             active_domain = [('active', 'in', [True, False])]
-            domain = AND([active_domain, domain]) if domain else active_domain
+            domain = Domain.AND([active_domain, domain]) if domain else active_domain
 
         if sudo:
             env_model = env_model.sudo()

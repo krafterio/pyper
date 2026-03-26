@@ -3,7 +3,7 @@
 
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
-from odoo.osv import expression
+from odoo.orm.domains import Domain
 
 from datetime import datetime
 
@@ -99,7 +99,7 @@ class AccountFiscalYear(models.Model):
             ('date_from', '>=', date_from),
             ('date_from', '<=', date_to),
         ]
-        intersection_domain = expression.OR(
+        intersection_domain = Domain.OR(
             [
                 intersection_domain_from,
                 intersection_domain_to,
@@ -107,7 +107,7 @@ class AccountFiscalYear(models.Model):
             ]
         )
 
-        return expression.AND(
+        return Domain.AND(
             [
                 company_domain,
                 intersection_domain,

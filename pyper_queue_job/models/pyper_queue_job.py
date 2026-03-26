@@ -11,7 +11,7 @@ import xmlrpc
 
 
 from odoo import api, fields, models, Command, _
-from odoo.osv import expression
+from odoo.orm.domains import Domain
 
 from ..utils import deserialize
 
@@ -579,10 +579,10 @@ class PyperQueueJob(models.Model):
 
     @api.model
     def count_opened_jobs_by_model_id(self, model_name, res_id):
-        return self.env[self._name].search_count(expression.AND([
+        return self.env[self._name].search_count(Domain.AND([
                 [('model_name', '=', model_name)],
                 [('state', 'not in', ['done', 'cancelled'])],
-                expression.OR([
+                Domain.OR([
                     [('recordset_ids', 'ilike', f"[{res_id}]")],
                     [('recordset_ids', 'ilike', f"[{res_id},")],
                     [('recordset_ids', 'ilike', f",{res_id},")],
