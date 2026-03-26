@@ -27,7 +27,7 @@ def get_db():
     return db
 
 class Session(Controller):
-    @route('/app-ext/session/authenticate', type='json', auth='none', cors='*', save_session=False)
+    @route('/app-ext/session/authenticate', type='jsonrpc', auth='none', cors='*', save_session=False)
     def authenticate(self, login, password):
         db = get_db()
         uid = request.session.authenticate(db, login, password)
@@ -60,7 +60,7 @@ class Session(Controller):
 
             return info
 
-    @route('/app-ext/session/logout', type='json', auth='none', cors='*', save_session=False)
+    @route('/app-ext/session/logout', type='jsonrpc', auth='none', cors='*', save_session=False)
     def logout(self, token_name):
         authorization = request.httprequest.headers.get('Authorization')
         if authorization.startswith('Bearer '):
