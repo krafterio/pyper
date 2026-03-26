@@ -13,12 +13,12 @@ class IrModelFields(models.Model):
         'Access rights',
     )
 
-    has_access = fields.Boolean(
+    has_field_access = fields.Boolean(
         string='Has access',
-        compute='_compute_has_access',
+        compute='_compute_has_field_access',
     )
 
     @api.depends('access_ids')
-    def _compute_has_access(self):
+    def _compute_has_field_access(self):
         for rec in self:
-            rec.has_access = len(rec.access_ids.ids) > 0
+            rec.has_field_access = len(rec.access_ids.ids) > 0

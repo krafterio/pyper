@@ -68,7 +68,6 @@ class SecuredBase(models.AbstractModel):
         vals = check_access_right_map_fields(self, vals, operation='write')
         return super().write(vals)
 
-    @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         _self = self
 
@@ -106,8 +105,7 @@ class SecuredBase(models.AbstractModel):
         return super().search_read(domain, fields, offset, limit, order, **read_kwargs)
 
     @api.model
-    @api.returns('self')
-    def search_fetch(self, domain, field_names, offset=0, limit=None, order=None):
+    def search_fetch(self, domain, field_names=None, offset=0, limit=None, order=None):
         field_names = check_access_right_field_names(self, field_names)
         return super().search_fetch(domain, field_names, offset, limit, order)
 
@@ -166,10 +164,10 @@ class SecuredBase(models.AbstractModel):
         return super().web_read(specification)
 
     @api.model
-    def web_read_group(self, domain, fields, groupby, limit=None, offset=0, orderby=False, lazy=True):
-        fields = check_access_right_field_names(self, fields)
+    def web_read_group(self, domain, groupby, aggregates=(), limit=None, offset=0, order=None, **kwargs):
+        aggregates = check_access_right_field_names(self, list(aggregates))
         groupby = check_access_right_groupby(self, groupby)
-        return super().web_read_group(domain, fields, groupby, limit, offset, orderby, lazy)
+        return super().web_read_group(domain, groupby, aggregates, limit, offset, order, **kwargs)
 
     @api.model
     def web_search_read(self, domain, specification, offset=0, limit=None, order=None, count_limit=None):
