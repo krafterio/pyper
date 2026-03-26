@@ -17,6 +17,7 @@
         'base',
         'base_setup',
         'web',
+        'pyper_setup',
     ],
     'data': [
         # Data

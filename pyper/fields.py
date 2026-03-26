@@ -4,7 +4,7 @@
 import logging
 import odoo
 
-from odoo.fields import resolve_mro
+from odoo.orm.fields import resolve_mro
 from xmlrpc.client import MAXINT
 
 
@@ -68,17 +68,17 @@ def _field_selection_get_attrs(self, model_class, name):
     return attrs
 
 
-_original_field_selection_setup_attrs = odoo.fields.Selection._setup_attrs
+_original_field_selection_setup_attrs = odoo.fields.Selection._setup_attrs__
 def _field_selection_setup_attrs(self, model_class, name):
     _original_field_selection_setup_attrs(self, model_class, name)
 
-    for field in self._base_fields:
-        if 'selection_replace' in field.args:
+    for field in self._base_fields__:
+        if 'selection_replace' in field._args__:
             if self.related:
                 _logger.warning("%s: selection_replace attribute will be ignored as the field is related", self)
 
             editable_selection = {t[0]: t[1] for t in self.selection}
-            selection_replace = field.args['selection_replace']
+            selection_replace = field._args__['selection_replace']
 
             assert isinstance(selection_replace, list), \
                 "%s: selection_replace=%r must be a list" % (self, selection_replace)
@@ -106,8 +106,8 @@ def _field_selection_selection_modules(self, model):
         if not module:
             continue
 
-        if 'selection_replace' in field.args:
-            for value_label in field.args['selection_replace']:
+        if 'selection_replace' in field._args__:
+            for value_label in field._args__['selection_replace']:
                 if len(value_label) > 1:
                     value_modules[value_label[0]].add(module)
 
@@ -115,5 +115,5 @@ def _field_selection_selection_modules(self, model):
 
 
 odoo.fields.Selection._get_attrs = _field_selection_get_attrs
-odoo.fields.Selection._setup_attrs = _field_selection_setup_attrs
+odoo.fields.Selection._setup_attrs__ = _field_selection_setup_attrs
 odoo.fields.Selection._selection_modules = _field_selection_selection_modules

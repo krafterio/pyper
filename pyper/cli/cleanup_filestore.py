@@ -3,8 +3,9 @@
 
 import sys
 
-from odoo import SUPERUSER_ID, registry
+from odoo import SUPERUSER_ID
 from odoo.api import Environment
+from odoo.modules.registry import Registry
 from odoo.cli import Command
 from odoo.tools import config
 from ..tools.filestore import cleanup_filestore
@@ -36,7 +37,7 @@ class CleanupFilestore(Command):
             if not dbname:
                 raise Exception('Cleanup filestore command needs a database name. Use "-d" argument')
 
-            with registry(dbname).cursor() as cr:
+            with Registry(dbname).cursor() as cr:
                 self.env = Environment(cr, SUPERUSER_ID, {})
                 self.cleanup()
         except Exception as e:
