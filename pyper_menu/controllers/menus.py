@@ -7,7 +7,7 @@ from odoo.tools.safe_eval import safe_eval
 
 
 class MenuItems(http.Controller):
-    @http.route('/web/webclient/load_menu_counters', methods=['POST'], type='json', auth='user')
+    @http.route('/web/webclient/load_menu_counters', methods=['POST'], type='jsonrpc', auth='user')
     def load_menu_counters(self, ids):
         menus = request.env['ir.ui.menu'].search([('id', 'in', ids)])
         values = {}
