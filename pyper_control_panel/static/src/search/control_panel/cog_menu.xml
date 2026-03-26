@@ -19,11 +19,11 @@
 
     <!-- Action Menus -->
     <t t-name="pyper_control_panel.ActionMenus" t-inherit="web.ActionMenus" t-inherit-mode="extension">
-        <xpath expr="div[hasclass('o_cp_action_menus')]/Dropdown[2]/t[@t-set-slot='toggler']/i" position="attributes">
+        <xpath expr="//div[hasclass('o_cp_action_menus')]//Dropdown[last()]/button/i" position="attributes">
             <attribute name="class" separator=" " remove="fa fa-cog me-1" add="fa fa-ellipsis-v fa-fw"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('o_cp_action_menus')]/Dropdown[2]/t[@t-set-slot='toggler']/span" position="attributes">
+        <xpath expr="//div[hasclass('o_cp_action_menus')]//Dropdown[last()]/button/span" position="attributes">
             <attribute name="class" separator=" " add="d-none"/>
         </xpath>
     </t>
