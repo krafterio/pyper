@@ -161,7 +161,6 @@ class PyperQueueJob(models.Model):
         readonly=True,
         default=lambda self: datetime.now(),
         copy=False,
-        automatic=True,
     )
 
     date_enqueued = fields.Datetime(
