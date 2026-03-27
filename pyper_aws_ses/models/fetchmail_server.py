@@ -113,13 +113,13 @@ class FetchmailServer(models.Model):
 
         return connection
 
-    def fetch_mail(self):
+    def fetch_mail(self, **kw):
         """ WARNING: meant for cron usage only - will commit() after each email! """
         aws_servers = self.filtered(lambda fms: fms._get_connection_type() == 'aws_ses_s3')
         other_servers = self.filtered(lambda fms: fms._get_connection_type() != 'aws_ses_s3')
 
         # Fetch other email servers
-        res = super(FetchmailServer, other_servers).fetch_mail()
+        res = super(FetchmailServer, other_servers).fetch_mail(**kw)
 
         # Fetch AWS SES S3 email servers
         additionnal_context = {
