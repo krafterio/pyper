@@ -70,13 +70,13 @@ class FetchmailServer(models.Model):
                     if not server.user:
                         server.user = server.user_id.login
 
-    def fetch_mail(self):
+    def fetch_mail(self, **kw):
         """ WARNING: meant for cron usage only - will commit() after each email! """
         sync_all_servers = self.filtered(lambda fms: fms._get_connection_type() == 'imap' and fms.sync_all)
         other_servers = self.filtered(lambda fms: not (fms._get_connection_type() == 'imap' and fms.sync_all))
 
         # Fetch other servers and sync all servers
-        res_other = super(FetchmailServer, other_servers).fetch_mail()
+        res_other = super(FetchmailServer, other_servers).fetch_mail(**kw)
         res_sync_all_imap = self._fetch_all_imap_mail(sync_all_servers)
 
         return res_other and res_sync_all_imap
