@@ -1,0 +1,111 @@
+// Overlay Menu
+// ============================================================================
+.o_overlay_menu {
+    position: fixed !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $o-overlay-menu-padding-v $o-overlay-menu-padding-h;
+    z-index: $o-overlay-menu-zindex;
+    background-color: $o-overlay-menu-bg;
+}
+
+.o_overlay_menu--container {
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+        max-width: $o-overlay-menu-container-size !important;
+    }
+}
+
+.o_overlay_menu--logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: $o-overlay-menu-padding-v;
+}
+
+.o_overlay_menu--menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: $o-overlay-menu-item-gap;
+
+    @include media-breakpoint-up(md) {
+        justify-content: flex-start;
+    }
+}
+
+.o_overlay_menu--item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: $o-overlay-menu-item-width;
+    padding: $o-overlay-menu-item-padding;
+    border-radius: $o-overlay-menu-item-border-radius;
+    border: $o-overlay-menu-item-border-width solid $o-overlay-menu-item-border-color;
+    background-color: $o-overlay-menu-item-border-bg;
+}
+
+.o_overlay_menu--item-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $o-overlay-menu-item-icon-size;
+    height: $o-overlay-menu-item-icon-size;
+}
+
+.o_overlay_menu--item-icon,
+.o_overlay_menu--item-icon-empty {
+    max-width: $o-overlay-menu-item-icon-size;
+    max-height: $o-overlay-menu-item-icon-size;
+    font-size: $o-overlay-menu-item-icon-size;
+    line-height: $o-overlay-menu-item-icon-line-height;
+    border-radius: $o-overlay-menu-item-icon-border-radius;
+    color: $o-overlay-menu-item-icon-color;
+}
+
+.o_overlay_menu--item-label {
+    color: $o-overlay-menu-item-label-color;
+    margin-top: $o-overlay-menu-item-spacer;
+}
+
+.o_overlay_menu--item {
+    &.o_overlay_menu--item-focused,
+    &:hover,
+    &:focus {
+        border-color: $o-overlay-menu-item-border-hover-color;
+        background-color: $o-overlay-menu-item-border-hover-bg;
+
+        .o_overlay_menu--item-icon,
+        .o_overlay_menu--item-icon-empty {
+            color: $o-overlay-menu-item-icon-color-hover;
+        }
+
+        .o_overlay_menu--item-label {
+            color: $o-overlay-menu-item-label-hover-color;
+        }
+    }
+}
+
+// Overlay Menu Toggler
+// ============================================================================
+.o_overlay_menu_toggler {
+    i {
+        font-size: $o-overlay-menu-toggler-font-size;
+    }
+
+    .dropdown-toggle {
+        &::after {
+            display: none;
+        }
+    }
+}

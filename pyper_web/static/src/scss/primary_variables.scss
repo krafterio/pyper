@@ -1,0 +1,17 @@
+// Color
+$o-brand-primary: #714B67 !default;
+$o-brand-odoo: $o-brand-primary !default;
+$o-community-color: $o-brand-primary !default;
+$o-enterprise-color: $o-brand-primary !default;
+$o-border-color: #dee2e6 !default;
+
+// Navbar
+$o-navbar-background: white !default;
+$o-navbar-border-bottom: transparent !default;
+
+$o-navbar-entry-color: #111827 !default;
+$o-navbar-entry-color--hover: rgba(#000, .9) !default;
+$o-navbar-entry-bg--hover: rgba(#000, .08) !default;
+
+$o-navbar-entry-color--active: $o-navbar-entry-color--hover !default;
+$o-navbar-entry-bg--active: $o-navbar-entry-bg--hover !default;
