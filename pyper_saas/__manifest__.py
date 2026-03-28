@@ -6,7 +6,7 @@
     'category': 'Hidden',
     'license': 'LGPL-3',
     'description': 'Configuration for SaaS',
-    'version': '1.1',
+    'version': '1.2',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',

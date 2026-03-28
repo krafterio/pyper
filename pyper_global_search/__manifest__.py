@@ -5,7 +5,7 @@
     'category': 'Hidden/Tools',
     'license': 'LGPL-3',
     'description': 'Add global search for all available models',
-    'version': '1.1',
+    'version': '1.2',
     'author': 'Krafter SAS',
     'website': 'https://krafter.io',
     'maintainer': [

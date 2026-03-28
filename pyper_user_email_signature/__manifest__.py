@@ -6,7 +6,7 @@
     'category': 'Technical',
     'license': 'LGPL-3',
     'description': 'Allow to use multiple email signatures.',
-    'version': '1.1',
+    'version': '1.2',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',

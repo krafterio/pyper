@@ -6,7 +6,7 @@
     'category': 'Productivity',
     'license': 'LGPL-3',
     'description': 'Build custom dashboards',
-    'version': '1.0',
+    'version': '1.2',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',

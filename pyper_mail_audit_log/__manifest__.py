@@ -5,7 +5,7 @@
     'category': 'Hidden/Tools',
     'license': 'LGPL-3',
     'description': 'Hide tracking values in mail chatter',
-    'version': '1.1',
+    'version': '1.2',
     'author': 'Krafter SAS',
     'website': 'https://krafter.io',
     'maintainer': [

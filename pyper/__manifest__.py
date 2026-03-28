@@ -6,7 +6,7 @@
     'category': 'Hidden/Tools',
     'license': 'LGPL-3',
     'description': 'Base of Pyper addons.',
-    'version': '1.1',
+    'version': '1.2',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',

@@ -6,7 +6,7 @@
     'category': 'Accounting/Accounting',
     'license': 'LGPL-3',
     'description': 'Add default service taxes.',
-    'version': '1.1',
+    'version': '1.2',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',

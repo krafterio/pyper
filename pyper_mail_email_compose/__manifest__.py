@@ -6,7 +6,7 @@
     'category': 'Productivity/Discuss',
     'license': 'LGPL-3',
     'description': 'Allow to send an simple email with Mail Compose.',
-    'version': '1.1',
+    'version': '1.2',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
