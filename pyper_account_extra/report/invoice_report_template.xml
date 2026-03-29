@@ -2,11 +2,11 @@
 <odoo>
     <template id="report_invoice_document" inherit_id="account.report_invoice_document">
         <xpath expr="//div[@id='right-elements']" position="attributes">
-            <attribute name="t-attf-class" separator=" " remove="ms-5"/>
+            <attribute name="t-attf-class">#{'col-5 mt-3' if report_type == 'pdf' else 'col-12 col-md-5'} d-inline-block float-end</attribute>
         </xpath>
 
         <xpath expr="//div[@id='right-elements']" position="before">
-            <div id="left-elements" t-attf-class="#{'col-6' if report_type != 'html' else 'col-12 col-md-6'} d-inline-block">
+            <div id="left-elements" t-attf-class="#{'col-6 mt-3' if report_type == 'pdf' else 'col-12 col-md-6'} d-inline-block">
                 <table
                     t-if="o.display_bank_account_on_document"
                     class="table table-sm"
