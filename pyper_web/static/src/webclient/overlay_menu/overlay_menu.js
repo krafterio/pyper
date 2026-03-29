@@ -150,7 +150,7 @@ export class OverlayMenu extends Component {
 
     selectMenu(menu) {
         if (menu) {
-            if (menu && !menu.actionID && menu.childrenTree.length > 0) {
+            if (menu && menu.childrenTree.length > 0) {
                 menu = findFirstSelectableMenu(menu.childrenTree);
             }
 
