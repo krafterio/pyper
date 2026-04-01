@@ -69,6 +69,32 @@ msgid "Journal Entry"
 msgstr "Pièce comptable"
 
 #. module: pyper_account_extra
+#: model:ir.model.fields,field_description:pyper_account_extra.field_account_bank_statement_line__hide_duplicate_customer_address
+#: model:ir.model.fields,field_description:pyper_account_extra.field_account_move__hide_duplicate_customer_address
+#: model:ir.model.fields,field_description:pyper_account_extra.field_account_payment__hide_duplicate_customer_address
+msgid "Hide Duplicate Customer Address"
+msgstr "Masquer l'adresse client en doublon"
+
+#. module: pyper_account_extra
+#: model:ir.model.fields,field_description:pyper_account_extra.field_account_bank_statement_line__hide_duplicate_reference
+#: model:ir.model.fields,field_description:pyper_account_extra.field_account_move__hide_duplicate_reference
+#: model:ir.model.fields,field_description:pyper_account_extra.field_account_payment__hide_duplicate_reference
+msgid "Hide Duplicate Reference"
+msgstr "Masquer la référence en doublon"
+
+#. module: pyper_account_extra
+#: model:ir.model.fields,field_description:pyper_account_extra.field_res_company__invoice_hide_duplicate_customer_address
+#: model:ir.model.fields,field_description:pyper_account_extra.field_res_config_settings__invoice_hide_duplicate_customer_address
+msgid "Hide customer address if same as main address?"
+msgstr "Masquer l'adresse client si identique à l'adresse principale ?"
+
+#. module: pyper_account_extra
+#: model:ir.model.fields,field_description:pyper_account_extra.field_res_company__invoice_hide_duplicate_reference
+#: model:ir.model.fields,field_description:pyper_account_extra.field_res_config_settings__invoice_hide_duplicate_reference
+msgid "Hide reference if same as source?"
+msgstr "Masquer la référence si identique à la source ?"
+
+#. module: pyper_account_extra
 #: model:ir.model.fields,field_description:pyper_account_extra.field_account_bank_statement_line__main_partner_id
 #: model:ir.model.fields,field_description:pyper_account_extra.field_account_move__main_partner_id
 #: model:ir.model.fields,field_description:pyper_account_extra.field_account_payment__main_partner_id

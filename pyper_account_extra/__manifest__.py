@@ -6,7 +6,7 @@
     'category': 'Accounting/Payment',
     'license': 'LGPL-3',
     'description': 'Extend Account features.',
-    'version': '1.2',
+    'version': '1.3',
     'author': 'Krafter SAS',
     'maintainer': [
         'Krafter SAS',
@@ -15,6 +15,7 @@
     'depends': [
         'web',
         'account',
+        'l10n_fr_account',
     ],
     'data': [
         # Views

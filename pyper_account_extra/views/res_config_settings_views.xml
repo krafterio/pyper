@@ -9,6 +9,12 @@
                 <setting company_dependent="1">
                     <field name="invoice_bank_account_in_report"/>
                 </setting>
+                <setting company_dependent="1">
+                    <field name="invoice_hide_duplicate_reference"/>
+                </setting>
+                <setting company_dependent="1">
+                    <field name="invoice_hide_duplicate_customer_address"/>
+                </setting>
             </xpath>
         </field>
     </record>

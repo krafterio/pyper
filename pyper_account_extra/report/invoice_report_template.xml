@@ -45,4 +45,16 @@
             </div>
         </xpath>
     </template>
+
+    <template id="report_invoice_hide_duplicate_reference" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@name='reference']" position="attributes">
+            <attribute name="t-if">o.ref and not o.hide_duplicate_reference</attribute>
+        </xpath>
+    </template>
+
+    <template id="report_invoice_hide_duplicate_customer_address" inherit_id="l10n_fr_account.report_invoice_document">
+        <xpath expr="//div[@name='customer_address']/.." position="attributes">
+            <attribute name="t-if">o.l10n_fr_is_company_french and o.partner_id.commercial_partner_id != o.partner_id and o.move_type.startswith('out_') and not o.hide_duplicate_customer_address</attribute>
+        </xpath>
+    </template>
 </odoo>
