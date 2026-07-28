@@ -106,7 +106,7 @@ class Delayable(object):
         company_id = job_vals.get('company_id', None)
         if isinstance(company_id, models.Model):
             job_vals['company_id'] = job_vals.get('company_id').id
-        elif user_id is None:
+        elif company_id is None:
             job_vals['company_id'] = self.recordset.env.company.id
 
         if job_vals.get('date_enqueued', None) is None:

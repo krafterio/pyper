@@ -573,8 +573,23 @@ class PyperQueueJob(models.Model):
         job = (self
                .with_company(self.company_id)
                .with_user(self.user_id)
-               .with_context(allowed_company_ids=[self.company_id.id]))
+               .with_context(**self._job_company_context()))
         job._process()
+
+    def _job_company_context(self):
+        """Context pinning the job company, empty when the job has none.
+
+        A job enqueued from an environment without company (a public
+        webhook runs as the public user, whose ``env.company`` is empty)
+        stores no company. Pinning ``allowed_company_ids=[False]`` then
+        empties ``env.company`` for the whole run and breaks every
+        compute resolving a company — the runner's own company is a far
+        better fallback than none.
+        """
+        if not self or not self.company_id:
+            return {}
+        self.ensure_one()
+        return {'allowed_company_ids': self.company_id.ids}
 
     @api.model
     def count_opened_jobs_by_model_id(self, model_name, res_id):
@@ -658,7 +673,7 @@ class PyperQueueJob(models.Model):
             # and the user defined to run the queued action may not have the access rights to edit the job.
             job = (job
                    .with_company(job.company_id)
-                   .with_context(allowed_company_ids=[job.company_id.id]))
+                   .with_context(**job._job_company_context()))
 
             return job
         except Exception:
@@ -686,7 +701,7 @@ class PyperQueueJob(models.Model):
             recordset = recordset \
                 .with_company(self.company_id) \
                 .with_user(self.user_id) \
-                .with_context(allowed_company_ids=[self.company_id.id])
+                .with_context(**self._job_company_context())
 
             if not hasattr(recordset, self.model_method):
                 raise QueueJobProcessError(_('The model method does not exist in model'))
